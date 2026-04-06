@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visionary Grow｜美容歯科技術研修｜ライブオペ×マンツーマン×個室ショールーム</title>
+<meta name="description" content="現役歯科医師が今日も患者に使っている口元コーディネート技術を、ライブオペ×マンツーマン×個室ショールームで完全習得。歯科医師・歯科衛生士向け美容歯科技術研修。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans JP', sans-serif; color: #333; line-height: 1.8; }
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ============ COLOR VARIABLES ============ */
+:root {
+  --navy: #1a3a4a;
+  --gold: #c9a96e;
+  --gold-light: #e8d5b0;
+  --rose: #c4727f;
+  --rose-dark: #a85565;
+  --white: #ffffff;
+  --gray-light: #f9f7f5;
+  --gray-mid: #eae6e1;
+  --text-main: #333333;
+  --text-sub: #666666;
+  --text-light: #999999;
+}
+
+/* ============ COMMON ============ */
+.lp-section {
+  width: 100%;
+  padding: 80px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.lp-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.lp-section-white { background: var(--white); }
+.lp-section-warm { background: var(--gray-light); }
+.lp-section-navy { background: var(--navy); }
+
+.lp-section-title {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.lp-label {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 900;
+  padding: 5px 16px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  letter-spacing: 0.1em;
+}
+.lp-section-title h2 {
+  font-size: clamp(22px, 4vw, 34px);
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+.lp-section-title p {
+  font-size: 15px;
+  color: var(--text-sub);
+  line-height: 1.9;
+}
+
+/* CTA Button */
+.lp-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+  color: var(--white);
+  font-size: clamp(15px, 2.5vw, 18px);
+  font-weight: 900;
+  padding: 18px 48px;
+  border-radius: 60px;
+  box-shadow: 0 6px 24px rgba(196,114,127,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.lp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(196,114,127,0.5);
+}
+.lp-btn-sub {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* ============ HEADER ============ */
+.lp-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+.lp-header-inner {
+  max-width: 1060px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.lp-header-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.lp-header-logo-main {
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--navy);
+}
+.lp-header-logo-sub {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--gold);
+}
+.lp-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.lp-header-nav a {
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+.lp-header-nav a:hover {
+  color: var(--navy);
+  background: var(--gray-light);
+}
+.lp-header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 900;
+  padding: 10px 18px;
+  border-radius: 50px;
+  box-shadow: 0 4px 14px rgba(196,114,127,0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.lp-header-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(196,114,127,0.45);
+}
+
+/* ============ HERO ============ */
+.hero-wrap {
+  padding-top: 64px;
+  background: var(--white);
+}
+.hero-topbar {
+  background: var(--navy);
+  padding: 12px 20px;
+  text-align: center;
+}
+.hero-topbar p {
+  color: var(--white);
+  font-size: clamp(13px, 2vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.hero-main {
+  display: flex;
+  align-items: center;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 56px 40px 72px;
+  gap: 48px;
+}
+.hero-text {
+  flex: 1;
+}
+.hero-h1 {
+  font-size: clamp(28px, 4.5vw, 46px);
+  font-weight: 900;
+  color: var(--rose-dark);
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
+.hero-body {
+  font-size: clamp(13px, 1.8vw, 15px);
+  color: #555;
+  line-height: 2;
+  margin-bottom: 24px;
+}
+.hero-bold {
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+}
+.hero-underline {
+  font-size: clamp(20px, 3.2vw, 32px);
+  font-weight: 900;
+  color: #333;
+  display: inline;
+  background: linear-gradient(transparent 60%, var(--gold-light) 60%);
+  padding-bottom: 2px;
+}
+.hero-sub-lead {
+  font-size: clamp(20px, 3.2vw, 32px);
+  font-weight: 900;
+  color: #333;
+  margin: 8px 0 20px;
+}
+.hero-cta-text {
+  font-size: clamp(14px, 2vw, 17px);
+  font-weight: 700;
+  color: var(--navy);
+}
+.hero-visual {
+  flex: 0 0 42%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.hero-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: linear-gradient(135deg, var(--gray-light), var(--gray-mid));
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--text-light);
+  text-align: center;
+  line-height: 1.6;
+}
+.hero-badges {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.hero-badge {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 10px;
+  box-shadow: 0 4px 16px rgba(201,169,110,0.4);
+}
+
+/* ============ OPENING ============ */
+.opening-section {
+  background: var(--gray-light);
+  padding: 72px 20px;
+}
+.opening-wrap {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.op-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.op-label-line {
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+}
+.op-label-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+.op-title {
+  text-align: left;
+  font-size: clamp(22px, 4.5vw, 36px);
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.op-sub {
+  text-align: left;
+  font-size: clamp(15px, 2.5vw, 19px);
+  font-weight: 700;
+  color: var(--rose);
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+.op-box {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border-left: 5px solid var(--navy);
+}
+.op-box p {
+  font-size: 15px;
+  line-height: 2;
+  color: #444;
+  margin-bottom: 16px;
+}
+.op-box p:last-child { margin-bottom: 0; }
+.op-box strong { color: var(--rose-dark); font-weight: 900; }
+.op-warn {
+  background: #fff8f3;
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+}
+.op-warn-title {
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.op-warn ul {
+  padding-left: 18px;
+  margin: 0;
+}
+.op-warn li {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.9;
+  margin-bottom: 6px;
+}
+.op-voice {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 28px;
+  border-left: 4px solid var(--gold);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+.op-voice p {
+  font-size: 14px;
+  line-height: 2;
+  color: #444;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.op-voice cite {
+  font-size: 12px;
+  color: var(--text-light);
+  font-style: normal;
+}
+.op-resolve {
+  background: linear-gradient(135deg, var(--navy) 0%, #2c5a6e 100%);
+  color: var(--white);
+  border-radius: 16px;
+  padding: 40px 44px;
+  text-align: left;
+}
+.op-resolve p {
+  font-size: clamp(14px, 2.2vw, 16px);
+  line-height: 2;
+  opacity: 0.92;
+  margin-bottom: 20px;
+}
+.op-resolve strong {
+  color: var(--gold-light);
+  font-size: 1.05em;
+}
+.op-resolve-note {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-bottom: 28px;
+  line-height: 1.8;
+}
+
+/* ============ REASONS ============ */
+.reason-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border-top: 4px solid var(--gold);
+}
+.reason-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.reason-num {
+  background: var(--gold);
+  color: var(--white);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+.reason-title {
+  font-size: clamp(17px, 3vw, 22px);
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1.4;
+}
+.reason-body p {
+  font-size: 15px;
+  line-height: 2;
+  color: #444;
+  margin-bottom: 14px;
+}
+.reason-body p:last-child { margin-bottom: 0; }
+
+.reason-card:nth-child(2) { border-top-color: var(--rose); }
+.reason-card:nth-child(2) .reason-num { background: var(--rose); }
+.reason-card:nth-child(3) { border-top-color: var(--navy); }
+.reason-card:nth-child(3) .reason-num { background: var(--navy); }
+.reason-card:nth-child(4) { border-top-color: #5a8a7a; }
+.reason-card:nth-child(4) .reason-num { background: #5a8a7a; }
+.reason-card:nth-child(5) { border-top-color: #7a6a9a; }
+.reason-card:nth-child(5) .reason-num { background: #7a6a9a; }
+
+/* ============ BENEFITS (3つの成果) ============ */
+.benefit-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.benefit-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 36px 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.benefit-icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--white);
+  font-weight: 900;
+}
+.benefit-text h3 {
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.benefit-text p {
+  font-size: 14px;
+  line-height: 2;
+  color: #555;
+}
+
+/* ============ COMPARISON ============ */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.compare-table thead th {
+  padding: 20px 16px;
+  font-size: 15px;
+  font-weight: 900;
+  text-align: center;
+  color: var(--white);
+}
+.compare-table thead th:first-child {
+  background: var(--text-sub);
+  width: 20%;
+}
+.compare-table thead th:nth-child(2) {
+  background: var(--rose-dark);
+  width: 40%;
+}
+.compare-table thead th:nth-child(3) {
+  background: #888;
+  width: 40%;
+}
+.compare-table tbody td {
+  padding: 18px 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  background: var(--white);
+}
+.compare-table tbody td:first-child {
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--gray-light);
+}
+.compare-table tbody td:nth-child(2) {
+  color: var(--rose-dark);
+  font-weight: 700;
+}
+.compare-table tbody td:nth-child(3) {
+  color: var(--text-sub);
+}
+.compare-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ============ VOICES ============ */
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.voice-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border-left: 4px solid var(--gold);
+}
+.voice-card p {
+  font-size: 14px;
+  line-height: 2;
+  color: #444;
+  margin-bottom: 16px;
+}
+.voice-meta {
+  font-size: 12px;
+  color: var(--text-light);
+  font-weight: 700;
+}
+
+/* ============ RECOMMEND ============ */
+.recommend-list {
+  max-width: 880px;
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+}
+.recommend-list li {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px 28px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.6;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.recommend-check {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recommend-check svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ============ PROFILE ============ */
+.profile-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 48px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+.profile-photo {
+  flex-shrink: 0;
+  width: 200px;
+  height: 240px;
+  background: linear-gradient(135deg, var(--gray-light), var(--gray-mid));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--text-light);
+  text-align: center;
+}
+.profile-info h3 {
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.profile-info .profile-ruby {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+.profile-info .profile-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.profile-info p {
+  font-size: 14px;
+  line-height: 2;
+  color: #555;
+  margin-bottom: 16px;
+}
+.profile-info p:last-child { margin-bottom: 0; }
+.profile-philosophy {
+  background: var(--gray-light);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 20px;
+}
+.profile-philosophy .ph-label {
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--gold);
+  margin-bottom: 8px;
+  letter-spacing: 0.1em;
+}
+.profile-philosophy p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--navy);
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+/* ============ FAQ ============ */
+.faq-list {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.faq-item {
+  background: var(--white);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 22px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  transition: background 0.15s;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { background: var(--gray-light); }
+.faq-q-badge {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--white);
+  font-weight: 900;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.faq-arrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+details[open] .faq-arrow { transform: rotate(180deg); }
+.faq-answer {
+  padding: 0 28px 24px 72px;
+  font-size: 14px;
+  line-height: 2;
+  color: #555;
+}
+
+/* ============ CTA SECTION ============ */
+.cta-section {
+  background: linear-gradient(135deg, var(--navy) 0%, #2c5a6e 100%);
+  padding: 80px 40px;
+  text-align: center;
+}
+.cta-section h2 {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.cta-section > p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.9;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-form-placeholder {
+  max-width: 560px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.1);
+  border: 2px dashed rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 60px 40px;
+  text-align: center;
+}
+.cta-form-placeholder p {
+  color: rgba(255,255,255,0.5);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ============ FOOTER ============ */
+.lp-footer {
+  background: #111;
+  padding: 40px 20px;
+  text-align: center;
+}
+.lp-footer p {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.8;
+}
+.footer-links {
+  margin-bottom: 16px;
+}
+.footer-links a {
+  font-size: 12px;
+  color: #aaa;
+  margin: 0 12px;
+  transition: color 0.15s;
+}
+.footer-links a:hover { color: var(--white); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .lp-section { padding: 56px 20px; }
+  .lp-header-nav { display: none; }
+  .lp-header-logo-main { font-size: 13px; }
+  .lp-header-cta { font-size: 12px; padding: 10px 16px; }
+
+  .hero-wrap { padding-top: 56px; }
+  .lp-header { height: 56px; }
+  .hero-main {
+    flex-direction: column-reverse;
+    padding: 32px 20px 56px;
+    gap: 28px;
+  }
+  .hero-visual { flex: none; }
+  .hero-badges { gap: 8px; }
+  .hero-badge { width: 84px; height: 84px; font-size: 10px; padding: 8px; }
+
+  .opening-section { padding: 48px 16px; }
+  .op-box { padding: 24px 20px; }
+  .op-warn { padding: 18px 16px; }
+  .op-voice { padding: 18px 16px; }
+  .op-resolve { padding: 28px 24px; }
+
+  .reason-card { padding: 24px 20px; }
+
+  .benefit-card { flex-direction: column; padding: 28px 24px; }
+
+  .compare-table { font-size: 12px; }
+  .compare-table thead th { padding: 14px 8px; font-size: 13px; }
+  .compare-table tbody td { padding: 14px 8px; font-size: 12px; }
+
+  .voice-grid { grid-template-columns: 1fr; }
+
+  .profile-card {
+    flex-direction: column;
+    padding: 32px 24px;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+  .profile-photo { width: 160px; height: 200px; }
+  .profile-info p { text-align: left; }
+
+  .cta-section { padding: 56px 20px; }
+  .cta-form-placeholder { padding: 40px 20px; }
+
+  .lp-btn { display: block; width: 100%; text-align: center; padding: 18px 20px; font-size: 15px; }
+}
+</style>
+</head>
+<body>
+
+<!-- =============================================
+     HEADER
+     ============================================= -->
+<header class="lp-header">
+  <div class="lp-header-inner">
+    <a href="#" class="lp-header-logo">
+      <span class="lp-header-logo-main">Visionary Grow</span>
+      <span class="lp-header-logo-sub">口元コーディネート専門</span>
+    </a>
+    <nav class="lp-header-nav">
+      <a href="#reasons">選ばれる理由</a>
+      <a href="#benefits">研修の成果</a>
+      <a href="#voices">受講者の声</a>
+      <a href="#profile">プロフィール</a>
+      <a href="#faq">よくある質問</a>
+    </nav>
+    <a href="#contact" class="lp-header-cta">
+      <svg width="15" height="15" viewBox="0 0 24 24"><path fill="#fff" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      無料相談はこちら
+    </a>
+  </div>
+</header>
+
+<!-- =============================================
+     HERO
+     ============================================= -->
+<div class="hero-wrap">
+  <div class="hero-topbar">
+    <p>美容歯科の導入を検討している歯科医師・歯科衛生士の方へ</p>
+  </div>
+  <div class="hero-main">
+    <div class="hero-text">
+      <h1 class="hero-h1">
+        「大手セミナーに行っても、<br>
+        自院で使えなかった」<br>
+        あなたへ。
+      </h1>
+      <p class="hero-body">
+        実は、美容歯科の研修には<br>
+        「見るだけで終わるセミナー」と<br>
+        「自院で施術できるレベルまで到達させる研修」の<br>
+        ２種類があります。
+      </p>
+      <div class="hero-bold">もしあなたが、明日から自院で</div>
+      <div><span class="hero-underline">口元から患者を美しくできる</span></div>
+      <div class="hero-sub-lead">技術と自信を手に入れたいなら</div>
+      <div class="hero-cta-text">「Visionary Grow」にお任せください。</div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo-placeholder">
+        講師写真<br>（後から設置）
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge">少人数<br>1〜3名制</div>
+        <div class="hero-badge">現役歯科医師の<br>ライブ<br>オペ型</div>
+        <div class="hero-badge">個室<br>ショールーム<br>完備</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     OPENING
+     ============================================= -->
+<section class="opening-section">
+  <div class="opening-wrap">
+
+    <div class="op-label">
+      <div class="op-label-line"></div>
+      <span class="op-label-text">PROBLEM</span>
+    </div>
+
+    <h2 class="op-title">ご存じでしたか？</h2>
+    <p class="op-sub">
+      美容歯科のセミナーに参加したのに<br>
+      「自院で使えなかった」という声が<br>
+      後を絶たないことを…
+    </p>
+
+    <div class="op-box">
+      <p>もしあなたが美容歯科の技術を学びたいと考えているなら、1つだけ確認が必要です。</p>
+      <p>というのも、美容歯科のセミナーには「大人数で講義を聞いて終わるタイプ」と「少人数で実際の施術を見ながら手技を習得できるタイプ」の2種類があるからです。</p>
+      <p>もし「見て学ぶだけで十分」と思って大手セミナーを受講してしまうと、自院に戻ったとき<strong>「結局、一人でどうやればいいのか分からない」</strong>という状態になります。技術は頭では理解できても、実際の患者さんを前にすると手が動かない。これが、多くの歯科医師・歯科衛生士が経験している現実です。</p>
+    </div>
+
+    <div class="op-warn">
+      <p class="op-warn-title">⚠ 実際に届いている相談</p>
+      <ul>
+        <li>「大手セミナーに参加したが、見るだけで終わって自院で使えなかった」</li>
+        <li>「口元の美容メニューを導入したいが、誰に習えばいいか分からない」</li>
+        <li>「技術だけでなく、材料の選び方やプロトコルまで教えてほしい」</li>
+      </ul>
+    </div>
+
+    <div class="op-voice">
+      <p>「実際に施術を見ながら学べて、手技のコツが初めて分かりました。大手セミナーとは全然違うレベルで理解できた。受講した翌日から自院で施術を始められたのが一番の驚きです。」</p>
+      <cite>（歯科医師・東京都）</cite>
+    </div>
+
+    <div class="op-resolve">
+      <p>
+        なので、もしあなたが美容歯科の技術を<br>
+        本気で自院に導入したいなら<br>
+        <strong>「Visionary Grow」にお任せください。</strong>
+      </p>
+      <p class="op-resolve-note">
+        現役歯科医師として、今日も患者さんに使っている技術を、ライブオペ×マンツーマン×個室ショールームという環境で、あなたが「自院で施術できる」レベルまで到達させます。
+      </p>
+      <div style="text-align:center;">
+        <a href="#contact" class="lp-btn">
+          無料相談はこちら
+          <span class="lp-btn-sub">24時間受付・相談無料</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============================================
+     REASONS（選ばれる5つの理由）
+     ============================================= -->
+<section id="reasons" class="lp-section lp-section-white">
+  <div class="lp-inner">
+
+    <div class="lp-section-title">
+      <div class="lp-label">選ばれる理由</div>
+      <h2>Visionary Growが<br>選ばれる5つの理由</h2>
+    </div>
+
+    <!-- 理由① -->
+    <div class="reason-card">
+      <div class="reason-header">
+        <div class="reason-num">1</div>
+        <div class="reason-title">現役歯科医師が"今日も患者に使っている技術"をそのまま伝授</div>
+      </div>
+      <div class="reason-body">
+        <p>教科書や座学ではなく、現役歯科医師である松岡夏紀が、実際に今日も患者さんに施術している技術をそのまま研修で伝えます。「教えるために用意した技術」ではなく、「今この瞬間も使っている生きた技術」だからこそ、受講者は現場で本当に使えるスキルを習得できます。</p>
+        <p>自分自身が毎日施術しているからこそ伝えられる「力加減」「注入角度」「患者への声かけ」まで、教科書には載っていないリアルなノウハウを余すことなくお伝えします。</p>
+      </div>
+    </div>
+
+    <!-- 理由② -->
+    <div class="reason-card">
+      <div class="reason-header">
+        <div class="reason-num">2</div>
+        <div class="reason-title">ライブオペ型：実際の患者への施術をリアルタイムで体感</div>
+      </div>
+      <div class="reason-body">
+        <p>大手セミナーでは模型やスライドを使った講義が中心です。しかし、本当に技術を身につけるためには「実際の患者さんへの施術」を目の前で見ることが不可欠です。</p>
+        <p>Visionary Growの研修では、実際の患者さんへの口元コーディネート施術をリアルタイムで見学・体感できます。口元全体のバランス判断、左右の調整、患者さんの反応への対応——すべてを「生の現場」で学ぶからこそ、自院に戻ったときに迷わず施術を始められます。</p>
+      </div>
+    </div>
+
+    <!-- 理由③ -->
+    <div class="reason-card">
+      <div class="reason-header">
+        <div class="reason-num">3</div>
+        <div class="reason-title">マンツーマン1〜3名制で一人ひとりに徹底指導</div>
+      </div>
+      <div class="reason-body">
+        <p>30人、50人が同じ部屋で受講する大手セミナーでは、分からないことがあっても質問しづらく、自分の手技を見てもらうこともできません。Visionary Growの研修は最大3名の少人数制。</p>
+        <p>一人ひとりの理解度・経験レベルに合わせて指導するので、「ついていけない」「置いていかれる」ということがありません。あなたが理解できるまで、できるようになるまで、徹底的に向き合います。</p>
+      </div>
+    </div>
+
+    <!-- 理由④ -->
+    <div class="reason-card">
+      <div class="reason-header">
+        <div class="reason-num">4</div>
+        <div class="reason-title">個室ショールームで非日常のラグジュアリー研修体験</div>
+      </div>
+      <div class="reason-body">
+        <p>Visionary Growの研修は、美容専用に設計されたラグジュアリーな個室ショールームで行います。照明・内装・機材配置まですべて美容施術に最適化された空間だからこそ、「こういう環境で施術すると患者さんにこう見える」という体験的な学びが得られます。</p>
+        <p>受講者自身が「特別な空間で学んでいる」と実感できる環境は、技術の記憶定着にも大きく影響します。</p>
+      </div>
+    </div>
+
+    <!-- 理由⑤ -->
+    <div class="reason-card">
+      <div class="reason-header">
+        <div class="reason-num">5</div>
+        <div class="reason-title">LMS完備：事前予習・事後復習で技術定着率を最大化</div>
+      </div>
+      <div class="reason-body">
+        <p>研修当日だけでなく、事前に動画教材で予習し、研修後もプロトコル資料やカリキュラム動画で繰り返し復習できるLMS（学習管理システム）を完備しています。</p>
+        <p>「習ったはいいけど、1ヶ月後にやり方を忘れた」という事態を防ぎ、研修で学んだ技術を確実に自分のものにするための仕組みです。全国どこからでもアクセスできるので、地方の先生方も安心して受講いただけます。</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============================================
+     BENEFITS（3つの成果）
+     ============================================= -->
+<section id="benefits" class="lp-section lp-section-warm">
+  <div class="lp-inner">
+
+    <div class="lp-section-title">
+      <div class="lp-label">研修の成果</div>
+      <h2>研修で手に入る<br>3つの成果</h2>
+    </div>
+
+    <div class="benefit-grid">
+
+      <div class="benefit-card">
+        <div class="benefit-icon">1</div>
+        <div class="benefit-text">
+          <h3>自院に戻った翌日から施術を始められる</h3>
+          <p>ライブオペ体験＋マンツーマン実技指導＋プロトコル資料の3点セットにより、研修が終わった翌日から自院で患者さんへの施術を開始できる状態に到達します。「大手セミナーで見ただけ」の状態とは、まったく異なるレベルの確信と自信を持って帰れます。</p>
+        </div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">2</div>
+        <div class="benefit-text">
+          <h3>「口元から美しくする」という新たな価値を提供できる</h3>
+          <p>ホワイトニング・ヒアルロン酸・口元全体のバランスコーディネートなど、歯科だからこそできる口元の美容メニューを自院に導入できます。歯科の職域として競合がまだ極めて少ない先進的な分野で、患者さんに新たな価値を届けながら、他院との差別化を実現します。</p>
+        </div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">3</div>
+        <div class="benefit-text">
+          <h3>研修後もLMSで繰り返し学べる安心のサポート体制</h3>
+          <p>研修が終わっても、LMSで動画教材・プロトコル資料にいつでもアクセスいただけます。「あの手技、どうだったかな？」と思ったときにすぐ確認できるので、技術の定着と向上を継続的にサポートします。</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- =============================================
+     COMPARISON（比較表）
+     ============================================= -->
+<section class="lp-section lp-section-white">
+  <div class="lp-inner">
+
+    <div class="lp-section-title">
+      <div class="lp-label">比較</div>
+      <h2>大手セミナーとの違い</h2>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Visionary Grow</th>
+          <th>大手セミナー</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>講師</td>
+          <td>現役歯科医師</td>
+          <td>専任講師・外部講師</td>
+        </tr>
+        <tr>
+          <td>研修形式</td>
+          <td>ライブオペ型<br>（実患者施術）</td>
+          <td>講義＋模型実習</td>
+        </tr>
+        <tr>
+          <td>人数</td>
+          <td>1〜3名<br>（マンツーマン）</td>
+          <td>30〜50名以上</td>
+        </tr>
+        <tr>
+          <td>研修空間</td>
+          <td>美容専用<br>個室ショールーム</td>
+          <td>会議室<br>セミナールーム</td>
+        </tr>
+        <tr>
+          <td>事前・事後学習</td>
+          <td>LMS完備<br>（動画・資料・プロトコル）</td>
+          <td>なし<br>（当日配布資料のみ）</td>
+        </tr>
+        <tr>
+          <td>ゴール</td>
+          <td>自院で施術できる<br>レベルまで到達</td>
+          <td>知識の習得</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</section>
+
+<!-- =============================================
+     VOICES（受講者の声）
+     ============================================= -->
+<section id="voices" class="lp-section lp-section-warm">
+  <div class="lp-inner">
+
+    <div class="lp-section-title">
+      <div class="lp-label">受講者の声</div>
+      <h2>受講者の声をご紹介します</h2>
+    </div>
+
+    <div class="voice-grid">
+
+      <div class="voice-card">
+        <p>「実際に施術を見ながら学べて、手技のコツが初めて分かりました。大手セミナーとは全然違うレベルで理解できました。」</p>
+        <div class="voice-meta">歯科医師・40代女性・東京都</div>
+      </div>
+
+      <div class="voice-card">
+        <p>「受講した翌日から自院で口元コーディネートの施術を始められました。患者さんから『こんなメニューが欲しかった』と言われ、リピーターも増えています。」</p>
+        <div class="voice-meta">歯科医師・30代女性・神奈川県</div>
+      </div>
+
+      <div class="voice-card">
+        <p>「少人数だからこそ、自分の弱点をピンポイントで指導してもらえました。大人数のセミナーでは絶対にできない体験です。」</p>
+        <div class="voice-meta">歯科衛生士・30代女性・埼玉県</div>
+      </div>
+
+      <div class="voice-card">
+        <p>「材料の選び方からプロトコルまで、全部一か所で学べたのが良かったです。研修を受けたらすぐに自院でスタートできる状態になりました。」</p>
+        <div class="voice-meta">歯科医師・50代男性・千葉県</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- =============================================
+     CTA（中間）
+     ============================================= -->
+<div class="cta-section" style="padding: 56px 40px;">
+  <h2 style="font-size: clamp(18px,3vw,26px); margin-bottom: 20px;">明日から自院で施術を始められる技術と自信を。</h2>
+  <div style="text-align:center;">
+    <a href="#contact" class="lp-btn">
+      無料相談はこちら
+      <span class="lp-btn-sub">24時間受付・相談無料</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============================================
+     RECOMMEND（こんな方におすすめ）
+     ============================================= -->
+<section class="lp-section lp-section-white">
+  <div class="lp-inner">
+
+    <div class="lp-section-title">
+      <div class="lp-label">こんな方におすすめ</div>
+      <h2>このような方に<br>受講いただいています</h2>
+    </div>
+
+    <ul class="recommend-list">
+      <li>
+        <span class="recommend-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        美容歯科を自院に導入したいが、どこで学べばいいか分からない方
+      </li>
+      <li>
+        <span class="recommend-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        大手セミナーに参加したが「見るだけ」で終わり、自院で使えなかった方
+      </li>
+      <li>
+        <span class="recommend-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        口元コーディネートの技術を、実際の施術を見ながら習得したい方
+      </li>
+      <li>
+        <span class="recommend-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        「治す」だけでなく「美しくする」メニューを自院に加えたい方
+      </li>
+      <li>
+        <span class="recommend-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        少人数・マンツーマンで、自分のペースで徹底的に学びたい方
+      </li>
+      <li>
+        <span class="recommend-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        材料の選び方・プロトコルまで、一か所でまとめて習得したい方
+      </li>
+      <li>
+        <span class="recommend-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        研修後のフォロー体制（LMS・動画復習）が整った研修を探している方
+      </li>
+    </ul>
+
+  </div>
+</section>
+
+<!-- =============================================
+     PROFILE
+     ============================================= -->
+<section id="profile" class="lp-section lp-section-warm">
+  <div class="lp-inner">
+
+    <div class="lp-section-title">
+      <div class="lp-label">講師紹介</div>
+      <h2>講師プロフィール</h2>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-photo">
+        講師写真<br>（後から設置）
+      </div>
+      <div class="profile-info">
+        <h3>松岡 夏紀</h3>
+        <p class="profile-ruby">まつおか なつき</p>
+        <p class="profile-title">現役歯科医師<br>Visionary Grow 代表</p>
+        <p>川崎市（新丸子）にて、歯科医師・歯科衛生士を対象とした美容系歯科技術の研修事業およびコンサルティング事業を運営。</p>
+        <p>現役歯科医師として医療法人にて一般歯科診療および口元の美容処置（ヒアルロン酸・ホワイトニング・口元バランスコーディネート等）を日々実践しながら、その実践ノウハウを全国の歯科医療従事者に伝える研修事業を展開しています。</p>
+        <p>「大手セミナーに行っても使えなかった」「誰に習えばいいかわからない」という声を現場で聞き続ける中で、「自分がやっているこの技術を、本気で仕組みとして届けなければ、日本中の患者が損をする」という確信のもと、ライブオペ型×マンツーマン×個室ショールームという唯一無二の研修スタイルを確立しました。</p>
+        <p>口元全体のバランスコーディネートという、歯科分野でも競合が極めて少ない先進的な領域を実践・体系化しています。</p>
+
+        <div class="profile-philosophy">
+          <p class="ph-label">PHILOSOPHY</p>
+          <p>歯科の可能性を広げ、口元から美しくなれる人を増やす。<br>学びを届けることで医療従事者と患者の双方に豊かさをもたらす。</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============================================
+     FAQ
+     ============================================= -->
+<section id="faq" class="lp-section lp-section-white">
+  <div class="lp-inner">
+
+    <div class="lp-section-title">
+      <div class="lp-label">よくある質問</div>
+      <h2>よくある質問</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-q-badge">Q</span>
+          歯科衛生士でも受講できますか？
+          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          はい、歯科衛生士の方も歯科医師の方もご受講いただけます。経験レベルに合わせてカリキュラムを調整しますので、美容歯科が初めての方でも安心してご参加ください。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-q-badge">Q</span>
+          研修は何日間ですか？
+          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          基本コースは1日間です。応用コースなど、内容に応じて複数日にわたるプログラムもございます。詳細はお問い合わせください。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-q-badge">Q</span>
+          遠方からの参加は可能ですか？
+          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          はい、全国から受講いただけます。研修会場は川崎市（新丸子）です。LMSによる事前予習・事後復習が可能ですので、研修当日に集中して実技を学んでいただけます。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-q-badge">Q</span>
+          使用する材料やメーカーは指定がありますか？
+          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          研修では実際に松岡が使用している材料・機材をベースにお伝えしますが、他メーカーの製品への応用も可能です。材料の選び方やプロトコルも研修内容に含まれています。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-q-badge">Q</span>
+          研修後のフォローはありますか？
+          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          LMS（学習管理システム）で動画教材・プロトコル資料にいつでもアクセスいただけます。研修後に自院で施術を始めてから出てきた疑問にも対応しています。
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-q-badge">Q</span>
+          キャンセルポリシーはありますか？
+          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          研修日の7日前までのキャンセルは全額返金いたします。詳細はお申し込み時にご案内します。
+        </div>
+      </details>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- =============================================
+     CTA + FORM PLACEHOLDER
+     ============================================= -->
+<section id="contact" class="cta-section">
+  <h2>まずは無料相談から</h2>
+  <p>美容歯科の技術を本気で自院に導入したい方へ。<br>あなたの経験レベル・目標に合わせた研修プランをご提案します。</p>
+  <div class="cta-form-placeholder">
+    <p>フォーム設置エリア<br>（後から埋め込み）</p>
+  </div>
+</section>
+
+<!-- =============================================
+     FOOTER
+     ============================================= -->
+<footer class="lp-footer">
+  <div class="footer-links">
+    <a href="#" onclick="document.getElementById('modal-privacy').style.display='flex';return false;">プライバシーポリシー</a>
+    <a href="#" onclick="document.getElementById('modal-tokusho').style.display='flex';return false;">特定商取引法に基づく表記</a>
+  </div>
+  <p>Visionary Grow｜美容歯科技術研修<br>所在地：川崎市（新丸子）</p>
+  <p style="margin-top:8px;">&copy; 2026 Visionary Grow</p>
+</footer>
+
+<!-- =============================================
+     MODALS
+     ============================================= -->
+<style>
+.lp-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0,0,0,0.6);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lp-modal {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 640px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 40px;
+  position: relative;
+}
+.lp-modal h3 {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+.lp-modal p, .lp-modal li {
+  font-size: 13px;
+  line-height: 2;
+  color: #555;
+  margin-bottom: 12px;
+}
+.lp-modal h4 {
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--navy);
+  margin: 20px 0 8px;
+}
+.lp-modal ul { padding-left: 20px; }
+.lp-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--gray-light);
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+.lp-modal-close:hover { background: var(--gray-mid); }
+</style>
+
+<!-- プライバシーポリシー -->
+<div id="modal-privacy" class="lp-modal-overlay" onclick="if(event.target===this)this.style.display='none'">
+  <div class="lp-modal">
+    <button class="lp-modal-close" onclick="document.getElementById('modal-privacy').style.display='none'">&times;</button>
+    <h3>プライバシーポリシー</h3>
+    <p>Visionary Grow（以下「当社」）は、お客様の個人情報の保護に関し、以下の方針を定めます。</p>
+    <h4>1. 個人情報の取得</h4>
+    <p>当社は、お問い合わせ・お申し込みの際に、お名前・メールアドレス・電話番号等の個人情報をお預かりすることがあります。</p>
+    <h4>2. 利用目的</h4>
+    <ul>
+      <li>研修に関するご連絡・ご案内</li>
+      <li>お問い合わせへの回答</li>
+      <li>サービス向上のための分析</li>
+    </ul>
+    <h4>3. 第三者提供</h4>
+    <p>法令に基づく場合を除き、お客様の同意なく個人情報を第三者に提供することはありません。</p>
+    <h4>4. 安全管理</h4>
+    <p>個人情報の漏えい・滅失・毀損の防止のため、適切な安全管理措置を講じます。</p>
+    <h4>5. お問い合わせ</h4>
+    <p>個人情報の取り扱いに関するお問い合わせは、当社までご連絡ください。</p>
+  </div>
+</div>
+
+<!-- 特定商取引法に基づく表記 -->
+<div id="modal-tokusho" class="lp-modal-overlay" onclick="if(event.target===this)this.style.display='none'">
+  <div class="lp-modal">
+    <button class="lp-modal-close" onclick="document.getElementById('modal-tokusho').style.display='none'">&times;</button>
+    <h3>特定商取引法に基づく表記</h3>
+    <h4>事業者名</h4>
+    <p>Visionary Grow</p>
+    <h4>代表者</h4>
+    <p>松岡 夏紀</p>
+    <h4>所在地</h4>
+    <p>川崎市（新丸子）<br>※詳細はお問い合わせ後にお知らせします。</p>
+    <h4>連絡先</h4>
+    <p>お問い合わせフォームよりご連絡ください。</p>
+    <h4>販売価格</h4>
+    <p>各研修コースの詳細ページに記載します。</p>
+    <h4>支払方法</h4>
+    <p>銀行振込</p>
+    <h4>引渡時期</h4>
+    <p>お申し込み確認後、研修日程を個別にご案内します。</p>
+    <h4>キャンセルポリシー</h4>
+    <p>研修日の7日前までのキャンセルは全額返金いたします。それ以降のキャンセルについては、個別にご相談ください。</p>
+  </div>
+</div>
+
+</body>
+</html>
