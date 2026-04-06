@@ -631,7 +631,12 @@ body {
   justify-content: center;
   overflow: hidden;
 }
-.proof-profile-photo svg { width: 56px; height: 56px; }
+.proof-profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
 .proof-profile-body { flex: 1; }
 .proof-profile-body .pp-role {
   font-size: 11px;
@@ -1234,7 +1239,7 @@ body {
     </div>
     <div class="proof-profile">
       <div class="proof-profile-photo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <img src="https://raw.githubusercontent.com/WellConsultant/hojokin-lp-assets/main/profile_akutsu.png" alt="阿久津 和宏">
       </div>
       <div class="proof-profile-body">
         <div class="pp-role">講師・登壇者</div>
