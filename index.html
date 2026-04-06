@@ -115,7 +115,7 @@ body {
    ============================================================= */
 .hero-section {
   background: var(--bg-dark);
-  padding: 0;
+  padding-top: 56px;
   position: relative;
   overflow: hidden;
 }
@@ -954,10 +954,105 @@ body {
   .solution-section, .proof-section, .benefit-section,
   .tokuten-section, .cta-section { padding: 60px 16px; }
   .cause-section { padding: 60px 16px; }
+  .lp-header-nav { display: none; }
+  .lp-header { height: 52px; }
+  .lp-header-inner { padding: 0 16px; }
+  .lp-header-name { font-size: 13px; }
+  .lp-header-cta { font-size: 12px; padding: 8px 16px; }
+  .hero-section { padding-top: 52px; }
+}
+
+/* ===== FIXED HEADER ===== */
+.lp-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  height: 56px;
+  background: rgba(17,17,19,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  font-family: 'Noto Sans JP', sans-serif;
+  transition: box-shadow 0.2s;
+}
+.lp-header.scrolled {
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+.lp-header-inner {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.lp-header-name {
+  font-size: 14px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.9);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.lp-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  justify-content: center;
+}
+.lp-header-nav a {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+.lp-header-nav a:hover {
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.06);
+}
+.lp-header-cta {
+  display: inline-flex;
+  align-items: center;
+  background: var(--coral);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 8px 20px;
+  border-radius: 40px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s, transform 0.15s;
+}
+.lp-header-cta:hover {
+  background: var(--coral-dark);
+  transform: translateY(-1px);
 }
 </style>
 </head>
 <body>
+
+<!-- ===== HEADER ===== -->
+<header class="lp-header" id="lp-header">
+  <div class="lp-header-inner">
+    <a href="#" class="lp-header-name">Claude AI セミナー</a>
+    <nav class="lp-header-nav">
+      <a href="#ideal-section">理想の姿</a>
+      <a href="#agenda-section">セミナー内容</a>
+      <a href="#speaker-section">講師紹介</a>
+      <a href="#benefit-section">参加メリット</a>
+    </nav>
+    <a href="#entry" class="lp-header-cta">今すぐ申し込む</a>
+  </div>
+</header>
 
 <!-- ===== HERO ===== -->
 <section class="hero-section">
@@ -1005,7 +1100,7 @@ body {
 </section>
 
 <!-- ===== IDEAL ===== -->
-<section class="ideal-section">
+<section class="ideal-section" id="ideal-section">
   <div class="ideal-inner">
     <p class="ideal-lead">本来あるべき姿</p>
     <h2 class="ideal-title">
@@ -1152,7 +1247,7 @@ body {
 </section>
 
 <!-- ===== AGENDA ===== -->
-<section class="solution-section">
+<section class="solution-section" id="agenda-section">
   <div class="solution-inner">
     <div style="text-align:center;">
       <span class="section-label">AGENDA</span>
@@ -1217,7 +1312,7 @@ body {
 </section>
 
 <!-- ===== PROOF ===== -->
-<section class="proof-section">
+<section class="proof-section" id="speaker-section">
   <div class="proof-inner">
     <div style="text-align:center;">
       <span class="section-label">SPEAKER</span>
@@ -1258,7 +1353,7 @@ body {
 </section>
 
 <!-- ===== BENEFIT ===== -->
-<section class="benefit-section">
+<section class="benefit-section" id="benefit-section">
   <div class="benefit-inner">
     <div style="text-align:center;">
       <span class="section-label">BENEFIT</span>
@@ -1373,14 +1468,26 @@ body {
 </footer>
 
 <script>
-document.querySelectorAll('a[href="#entry"]').forEach(function(a) {
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   a.addEventListener('click', function(e) {
-    e.preventDefault();
-    var target = document.getElementById('entry');
+    var id = this.getAttribute('href').slice(1);
+    if (!id) return;
+    var target = document.getElementById(id);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      e.preventDefault();
+      var offset = 56;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
     }
   });
+});
+window.addEventListener('scroll', function() {
+  var header = document.getElementById('lp-header');
+  if (window.scrollY > 20) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
 });
 </script>
 
