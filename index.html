@@ -1367,5 +1367,17 @@ body {
   <p>&copy; あくつ行政書士事務所</p>
 </footer>
 
+<script>
+document.querySelectorAll('a[href="#entry"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.getElementById('entry');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
 </body>
 </html>
