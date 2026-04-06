@@ -7,95 +7,114 @@
 <meta name="description" content="AIを入れても楽にならない…その原因と解決策を、現場で使い倒しているプロが解説。Claude Code導入マニュアル（PDF）特典付き。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
+/* =============================================================
+   COLOR / TOKENS
+   黒ベース × コーラル × アイボリー
+   ============================================================= */
 :root {
-  --navy:        #0f2d52;
-  --navy-light:  #1a4070;
-  --blue:        #1e5fa8;
-  --orange:      #e8821a;
-  --orange-light:#f5a623;
-  --red:         #dc3010;
-  --red-hover:   #b82000;
-  --green:       #27ae60;
-  --white:       #ffffff;
-  --gray-bg:     #f5f7fa;
-  --gray-border: #e0e6ed;
-  --text:        #1a1a2e;
-  --text-light:  #666680;
-  --shadow:      0 4px 20px rgba(0,0,0,0.10);
-  --shadow-lg:   0 8px 40px rgba(0,0,0,0.15);
-  --radius:      8px;
-  --radius-lg:   16px;
+  --bg-dark:     #111113;
+  --bg-dark2:    #1a1a1f;
+  --bg-warm:     #faf8f5;
+  --bg-warm2:    #f2efe9;
+  --coral:       #d4654a;
+  --coral-light: #e8856d;
+  --coral-dark:  #b8503a;
+  --accent:      #c9a96e;
+  --accent-light:#dcc48e;
+  --text-dark:   #18181b;
+  --text-body:   #3a3a42;
+  --text-muted:  #7a7a88;
+  --text-on-dark:rgba(255,255,255,0.92);
+  --text-on-dark2:rgba(255,255,255,0.6);
+  --border:      #e4e0da;
+  --border-dark: rgba(255,255,255,0.08);
+  --shadow:      0 2px 16px rgba(0,0,0,0.06);
+  --shadow-lg:   0 8px 40px rgba(0,0,0,0.10);
+  --radius:      10px;
+  --radius-lg:   20px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
-  color: var(--text);
+  font-family: 'Noto Sans JP', 'Inter', 'Hiragino Sans', sans-serif;
+  color: var(--text-body);
   line-height: 1.8;
   font-size: 16px;
-  background: var(--white);
+  background: var(--bg-warm);
+  -webkit-font-smoothing: antialiased;
 }
-
-.lp-container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
 
 /* ===== CTA BUTTON ===== */
 .lp-btn {
   display: inline-block;
-  background: var(--red);
-  color: var(--white);
+  background: var(--coral);
+  color: #fff;
   padding: 20px 56px;
-  border-radius: 6px;
-  font-size: 20px;
+  border-radius: 60px;
+  font-size: 18px;
   font-weight: 900;
   text-decoration: none;
-  box-shadow: 0 4px 15px rgba(220,48,16,0.45);
-  transition: all 0.2s;
+  transition: all 0.25s;
   cursor: pointer;
   border: none;
   line-height: 1.5;
   text-align: center;
+  letter-spacing: 0.02em;
 }
 .lp-btn:hover {
-  background: var(--red-hover);
+  background: var(--coral-dark);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(220,48,16,0.55);
+  box-shadow: 0 8px 32px rgba(212,101,74,0.35);
 }
 .lp-btn .lp-btn-sub {
-  font-size: 13px;
+  font-size: 12px;
   display: block;
   font-weight: 400;
-  opacity: 0.9;
-  margin-top: 4px;
+  opacity: 0.85;
+  margin-top: 6px;
 }
 .lp-btn-wrap { text-align: center; margin: 32px 0 8px; }
 
-/* ===== SVG ICON ===== */
+/* ===== SVG ICON CIRCLE ===== */
 .icon-circle {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   margin-bottom: 16px;
 }
-.icon-circle svg { width: 28px; height: 28px; }
-.icon-circle-orange { background: rgba(232,130,26,0.12); }
-.icon-circle-navy { background: rgba(15,45,82,0.1); }
-.icon-circle-red { background: rgba(220,48,16,0.1); }
-.icon-circle-green { background: rgba(39,174,96,0.1); }
-.icon-circle-blue { background: rgba(30,95,168,0.1); }
+.icon-circle svg { width: 26px; height: 26px; }
+
+/* ===== SECTION LABEL ===== */
+.section-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--coral);
+  border: 1.5px solid var(--coral);
+  padding: 4px 16px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+.section-label-light {
+  color: var(--accent-light);
+  border-color: var(--accent-light);
+}
 
 /* =============================================================
-   HERO（フェーズ1: 引き込み）
+   HERO
    ============================================================= */
 .hero-section {
-  background: linear-gradient(160deg, #0a1e38 0%, #0f2d52 40%, #1a4070 100%);
+  background: var(--bg-dark);
   padding: 0;
   position: relative;
   overflow: hidden;
@@ -103,41 +122,29 @@ body {
 .hero-section::before {
   content: '';
   position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(232,130,26,0.08) 0%, transparent 70%);
-  border-radius: 50%;
-}
-.hero-section::after {
-  content: '';
-  position: absolute;
-  bottom: -30%;
-  left: -10%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(30,95,168,0.06) 0%, transparent 70%);
-  border-radius: 50%;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(212,101,74,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(201,169,110,0.05) 0%, transparent 60%);
 }
 
 .hero-topbar {
-  background: rgba(232,130,26,0.15);
-  border-bottom: 1px solid rgba(232,130,26,0.3);
-  padding: 14px 20px;
+  background: rgba(212,101,74,0.1);
+  border-bottom: 1px solid rgba(212,101,74,0.15);
+  padding: 12px 20px;
   text-align: center;
 }
 .hero-topbar p {
-  color: var(--orange-light);
-  font-size: 14px;
+  color: var(--coral-light);
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 .hero-inner {
-  max-width: 860px;
+  max-width: 780px;
   margin: 0 auto;
-  padding: 52px 24px 60px;
+  padding: 56px 24px 64px;
   position: relative;
   z-index: 1;
 }
@@ -147,99 +154,79 @@ body {
   margin-bottom: 40px;
 }
 .hero-pains li {
-  color: rgba(255,255,255,0.88);
+  color: var(--text-on-dark2);
   font-size: 15px;
-  line-height: 2;
-  padding: 6px 0 6px 24px;
+  line-height: 2.1;
+  padding: 4px 0 4px 20px;
   position: relative;
-}
-.hero-pains li::before {
-  content: '';
-  position: absolute;
-  left: 4px;
-  top: 16px;
-  width: 8px;
-  height: 8px;
-  background: var(--orange);
-  border-radius: 50%;
+  border-left: 2px solid rgba(212,101,74,0.3);
+  margin-bottom: 4px;
 }
 
 .hero-bridge {
-  color: rgba(255,255,255,0.6);
+  color: var(--text-on-dark2);
   font-size: 14px;
   font-weight: 700;
   margin-bottom: 36px;
-  padding-left: 4px;
 }
 
 .hero-headline {
-  font-size: clamp(26px, 5vw, 44px);
+  font-size: clamp(28px, 5.5vw, 48px);
   font-weight: 900;
-  color: var(--white);
-  line-height: 1.45;
+  color: var(--text-on-dark);
+  line-height: 1.4;
   margin-bottom: 20px;
+  letter-spacing: -0.02em;
 }
 .hero-headline .hl-accent {
-  color: var(--orange-light);
+  color: var(--coral-light);
 }
 
 .hero-sub {
-  font-size: clamp(15px, 2.5vw, 18px);
-  color: rgba(255,255,255,0.7);
+  font-size: clamp(14px, 2vw, 17px);
+  color: var(--text-on-dark2);
   font-weight: 700;
   margin-bottom: 36px;
 }
 
 .hero-meta {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
   align-items: stretch;
 }
 .hero-date-badge {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px;
-  padding: 16px 28px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius);
+  padding: 16px 24px;
 }
 .hero-date-badge .date-label {
-  font-size: 11px;
-  color: var(--orange-light);
+  font-size: 10px;
+  color: var(--accent);
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 .hero-date-badge .date-value {
   font-size: 22px;
   font-weight: 900;
-  color: var(--white);
+  color: var(--text-on-dark);
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
 }
 .hero-date-badge .date-note {
-  font-size: 12px;
-  color: rgba(255,255,255,0.6);
+  font-size: 11px;
+  color: var(--text-on-dark2);
 }
 
-.hero-cta-area {
-  margin-top: 36px;
-}
-.hero-cta-area .lp-btn {
-  background: linear-gradient(135deg, var(--orange), var(--orange-light));
-  box-shadow: 0 4px 20px rgba(232,130,26,0.5);
-}
-.hero-cta-area .lp-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(232,130,26,0.6);
-  background: linear-gradient(135deg, #d0740f, var(--orange));
-}
+.hero-cta-area { margin-top: 40px; }
 
 /* =============================================================
-   IDEAL（フェーズ2: 理想の提示）
+   IDEAL
    ============================================================= */
 .ideal-section {
-  background: var(--white);
-  padding: 72px 20px;
+  background: var(--bg-warm);
+  padding: 80px 20px;
 }
 .ideal-inner {
   max-width: 860px;
@@ -247,112 +234,110 @@ body {
   text-align: center;
 }
 .ideal-lead {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
-  color: var(--orange);
-  letter-spacing: 0.1em;
-  margin-bottom: 16px;
+  color: var(--coral);
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
 }
 .ideal-title {
   font-size: clamp(22px, 4vw, 32px);
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   line-height: 1.5;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
 }
 
 .ideal-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 .ideal-card {
-  background: var(--gray-bg);
+  background: #fff;
   border-radius: var(--radius-lg);
-  padding: 32px 20px;
+  padding: 32px 24px;
   text-align: center;
+  border: 1px solid var(--border);
+  transition: box-shadow 0.2s;
 }
-.ideal-card .icon-circle { margin: 0 auto 16px; }
+.ideal-card:hover { box-shadow: var(--shadow-lg); }
+.ideal-card .icon-circle {
+  margin: 0 auto 16px;
+  background: rgba(212,101,74,0.08);
+}
 .ideal-card h3 {
   font-size: 15px;
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   line-height: 1.5;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .ideal-card p {
   font-size: 13px;
-  color: var(--text-light);
+  color: var(--text-muted);
   line-height: 1.7;
 }
 
 /* =============================================================
-   PROBLEM（フェーズ3: 現実の問題 + フェーズ4: 競合排除）
+   PROBLEM
    ============================================================= */
 .problem-section {
-  background: var(--gray-bg);
-  padding: 72px 20px;
+  background: #fff;
+  padding: 80px 20px;
 }
 .problem-inner {
   max-width: 860px;
   margin: 0 auto;
 }
-.section-label {
-  display: inline-block;
-  background: var(--orange);
-  color: var(--white);
-  padding: 4px 20px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 14px;
-  letter-spacing: 1px;
-}
 .problem-title {
   font-size: clamp(22px, 4vw, 32px);
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   line-height: 1.5;
   margin-bottom: 16px;
 }
-.problem-title .pt-accent { color: var(--red); }
+.problem-title .pt-accent { color: var(--coral); }
 .problem-subtitle {
   font-size: 15px;
-  color: var(--text-light);
-  margin-bottom: 36px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
   line-height: 1.8;
 }
 
 .problem-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 40px;
+  gap: 16px;
 }
 .problem-card {
-  background: var(--white);
+  background: var(--bg-warm);
   border-radius: var(--radius-lg);
   padding: 28px 24px;
-  box-shadow: var(--shadow);
-  border-top: 4px solid var(--orange);
+  border: 1px solid var(--border);
+}
+.problem-card .icon-circle {
+  background: rgba(212,101,74,0.08);
 }
 .problem-card .pc-title {
   font-size: 16px;
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   margin-bottom: 8px;
   line-height: 1.5;
 }
 .problem-card .pc-body {
   font-size: 14px;
-  color: var(--text-light);
+  color: var(--text-muted);
   line-height: 1.8;
 }
 
-/* 競合排除 */
+/* =============================================================
+   RIVAL
+   ============================================================= */
 .rival-section {
-  background: var(--white);
-  padding: 72px 20px;
+  background: var(--bg-warm);
+  padding: 80px 20px;
 }
 .rival-inner {
   max-width: 860px;
@@ -361,14 +346,14 @@ body {
 .rival-title {
   font-size: clamp(22px, 4vw, 32px);
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   line-height: 1.5;
   margin-bottom: 16px;
   text-align: center;
 }
 .rival-subtitle {
   font-size: 15px;
-  color: var(--text-light);
+  color: var(--text-muted);
   margin-bottom: 40px;
   text-align: center;
   line-height: 1.8;
@@ -377,87 +362,88 @@ body {
 .rival-items {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-bottom: 40px;
+  gap: 16px;
 }
 .rival-item {
   display: flex;
   gap: 20px;
   align-items: flex-start;
-  background: var(--gray-bg);
+  background: #fff;
   border-radius: var(--radius-lg);
-  padding: 28px 28px;
+  padding: 24px 28px;
+  border: 1px solid var(--border);
 }
 .rival-item .ri-icon {
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(220,48,16,0.08);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(212,101,74,0.06);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.rival-item .ri-icon svg { width: 22px; height: 22px; }
+.rival-item .ri-icon svg { width: 20px; height: 20px; }
 .rival-item .ri-content { flex: 1; }
 .rival-item .ri-title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 900;
-  color: var(--navy);
-  margin-bottom: 6px;
+  color: var(--text-dark);
+  margin-bottom: 4px;
 }
 .rival-item .ri-body {
   font-size: 14px;
-  color: var(--text-light);
+  color: var(--text-muted);
   line-height: 1.8;
 }
 
 /* =============================================================
-   CAUSE（フェーズ5: 真の原因）
+   CAUSE
    ============================================================= */
 .cause-section {
-  background: var(--navy);
-  padding: 72px 20px;
+  background: var(--bg-dark);
+  padding: 80px 20px;
   position: relative;
   overflow: hidden;
 }
 .cause-section::before {
   content: '';
   position: absolute;
-  top: 0; right: 0;
-  width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(232,130,26,0.08) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 70%);
   border-radius: 50%;
 }
 .cause-inner {
-  max-width: 860px;
+  max-width: 780px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
 }
 .cause-label {
   display: inline-block;
-  background: var(--orange);
-  color: var(--white);
-  padding: 4px 20px;
-  border-radius: 20px;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
-  margin-bottom: 14px;
-  letter-spacing: 1px;
+  letter-spacing: 0.2em;
+  color: var(--accent-light);
+  border: 1.5px solid var(--accent-light);
+  padding: 4px 16px;
+  border-radius: 4px;
+  margin-bottom: 16px;
 }
 .cause-title {
   font-size: clamp(24px, 4.5vw, 36px);
   font-weight: 900;
-  color: var(--white);
+  color: var(--text-on-dark);
   line-height: 1.5;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
+  letter-spacing: -0.01em;
 }
-.cause-title .ct-accent { color: var(--orange-light); }
+.cause-title .ct-accent { color: var(--coral-light); }
 
 .cause-box {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-dark);
   border-radius: var(--radius-lg);
   padding: 36px 32px;
   margin-bottom: 24px;
@@ -465,15 +451,15 @@ body {
 .cause-box p {
   font-size: 15px;
   line-height: 2;
-  color: rgba(255,255,255,0.88);
+  color: var(--text-on-dark2);
   margin-bottom: 16px;
 }
 .cause-box p:last-child { margin-bottom: 0; }
-.cause-box strong { color: var(--orange-light); font-weight: 900; }
+.cause-box strong { color: var(--coral-light); font-weight: 900; }
 
 .cause-point {
-  background: rgba(232,130,26,0.12);
-  border: 1px solid rgba(232,130,26,0.25);
+  background: rgba(212,101,74,0.08);
+  border: 1px solid rgba(212,101,74,0.18);
   border-radius: var(--radius-lg);
   padding: 28px 32px;
   text-align: center;
@@ -481,104 +467,104 @@ body {
 .cause-point p {
   font-size: clamp(16px, 2.5vw, 20px);
   font-weight: 900;
-  color: var(--white);
+  color: var(--text-on-dark);
   line-height: 1.6;
 }
-.cause-point .cp-accent { color: var(--orange-light); }
+.cause-point .cp-accent { color: var(--coral-light); }
 
 /* =============================================================
-   SOLUTION（フェーズ6: 解決策 = セミナー内容）
+   SOLUTION / AGENDA
    ============================================================= */
 .solution-section {
-  background: var(--white);
-  padding: 72px 20px;
+  background: #fff;
+  padding: 80px 20px;
 }
 .solution-inner {
-  max-width: 860px;
+  max-width: 780px;
   margin: 0 auto;
 }
 .solution-title {
   font-size: clamp(22px, 4vw, 32px);
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   line-height: 1.5;
   margin-bottom: 16px;
   text-align: center;
 }
 .solution-subtitle {
   font-size: 15px;
-  color: var(--text-light);
-  margin-bottom: 44px;
+  color: var(--text-muted);
+  margin-bottom: 48px;
   text-align: center;
   line-height: 1.8;
 }
 
-.agenda-list {
-  list-style: none;
-}
+.agenda-list { list-style: none; }
 .agenda-item {
   display: flex;
   align-items: flex-start;
   gap: 20px;
   padding: 28px 0;
-  border-bottom: 1px solid var(--gray-border);
+  border-bottom: 1px solid var(--border);
 }
 .agenda-item:last-child { border-bottom: none; }
 
 .agenda-num {
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, var(--navy), var(--blue));
-  color: var(--white);
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  background: var(--bg-dark);
+  color: var(--accent);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 900;
+  font-family: 'Inter', sans-serif;
 }
 .agenda-num.bonus {
-  background: linear-gradient(135deg, var(--orange), var(--orange-light));
+  background: var(--coral);
+  color: #fff;
   width: auto;
-  border-radius: 24px;
-  padding: 0 16px;
-  font-size: 13px;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 12px;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .agenda-content { flex: 1; }
 .agenda-content .ac-title {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   line-height: 1.5;
   margin-bottom: 4px;
 }
 .agenda-content .ac-desc {
   font-size: 14px;
-  color: var(--text-light);
+  color: var(--text-muted);
   line-height: 1.7;
 }
 
-/* mid-CTA */
 .mid-cta {
   text-align: center;
-  margin-top: 40px;
-  padding-top: 40px;
-  border-top: 2px solid var(--gray-border);
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
 }
 .mid-cta-text {
   font-size: 14px;
-  color: var(--text-light);
-  margin-bottom: 16px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
 }
 
 /* =============================================================
-   PROOF（フェーズ7: 根拠・証明）
+   PROOF
    ============================================================= */
 .proof-section {
-  background: var(--gray-bg);
-  padding: 72px 20px;
+  background: var(--bg-warm);
+  padding: 80px 20px;
 }
 .proof-inner {
   max-width: 860px;
@@ -587,7 +573,7 @@ body {
 .proof-title {
   font-size: clamp(22px, 4vw, 32px);
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   line-height: 1.5;
   margin-bottom: 40px;
   text-align: center;
@@ -596,111 +582,107 @@ body {
 .proof-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-bottom: 40px;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 .proof-card {
-  background: var(--white);
+  background: #fff;
   border-radius: var(--radius-lg);
-  padding: 32px 20px;
-  box-shadow: var(--shadow);
+  padding: 28px 20px;
+  border: 1px solid var(--border);
   text-align: center;
 }
 .proof-card .pf-num {
-  font-size: clamp(32px, 5vw, 44px);
+  font-size: clamp(28px, 4.5vw, 38px);
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   line-height: 1.2;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
 }
 .proof-card .pf-unit {
   font-size: 14px;
-  color: var(--orange);
+  color: var(--coral);
   font-weight: 700;
 }
 .proof-card .pf-label {
   font-size: 13px;
-  color: var(--text-light);
+  color: var(--text-muted);
   margin-top: 8px;
   line-height: 1.5;
 }
 
 .proof-profile {
-  background: var(--white);
+  background: #fff;
   border-radius: var(--radius-lg);
   padding: 36px 32px;
-  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
   display: flex;
   gap: 28px;
   align-items: flex-start;
 }
 .proof-profile-photo {
   flex-shrink: 0;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--navy), var(--blue));
+  background: var(--bg-dark);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
-.proof-profile-photo svg { width: 60px; height: 60px; }
+.proof-profile-photo svg { width: 56px; height: 56px; }
 .proof-profile-body { flex: 1; }
 .proof-profile-body .pp-role {
-  font-size: 12px;
-  color: var(--orange);
+  font-size: 11px;
+  color: var(--coral);
   font-weight: 700;
+  letter-spacing: 0.1em;
   margin-bottom: 4px;
 }
 .proof-profile-body .pp-name {
   font-size: 20px;
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   margin-bottom: 12px;
 }
 .proof-profile-body .pp-desc {
   font-size: 14px;
-  color: var(--text-light);
+  color: var(--text-muted);
   line-height: 1.9;
 }
 .proof-profile-body .pp-creds {
   list-style: none;
-  margin-top: 12px;
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .proof-profile-body .pp-creds li {
-  font-size: 13px;
-  color: #555;
-  padding: 3px 0 3px 20px;
-  position: relative;
-  line-height: 1.6;
-}
-.proof-profile-body .pp-creds li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 10px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--orange);
-  opacity: 0.6;
+  font-size: 12px;
+  color: var(--text-body);
+  padding: 4px 12px;
+  background: var(--bg-warm);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  line-height: 1.4;
 }
 
 /* =============================================================
-   BENEFIT（フェーズ8: ベネフィット）
+   BENEFIT
    ============================================================= */
 .benefit-section {
-  background: var(--white);
-  padding: 72px 20px;
+  background: #fff;
+  padding: 80px 20px;
 }
 .benefit-inner {
-  max-width: 860px;
+  max-width: 780px;
   margin: 0 auto;
 }
 .benefit-title {
   font-size: clamp(22px, 4vw, 32px);
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   line-height: 1.5;
   margin-bottom: 40px;
   text-align: center;
@@ -709,23 +691,23 @@ body {
 .benefit-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 .benefit-item {
   display: flex;
   gap: 20px;
   align-items: flex-start;
   padding: 24px 28px;
-  background: var(--gray-bg);
+  background: var(--bg-warm);
   border-radius: var(--radius-lg);
-  border-left: 4px solid var(--green);
+  border: 1px solid var(--border);
 }
 .benefit-item .bi-icon {
   flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(39,174,96,0.12);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(212,101,74,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -733,177 +715,160 @@ body {
 .benefit-item .bi-icon svg { width: 20px; height: 20px; }
 .benefit-item .bi-content { flex: 1; }
 .benefit-item .bi-title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   margin-bottom: 4px;
 }
 .benefit-item .bi-body {
   font-size: 14px;
-  color: var(--text-light);
+  color: var(--text-muted);
   line-height: 1.8;
 }
 
 /* =============================================================
-   URGENCY（フェーズ9: 緊急性）
+   URGENCY
    ============================================================= */
 .urgency-section {
-  background: linear-gradient(135deg, #7a1a0a 0%, #c0392b 100%);
-  padding: 56px 20px;
+  background: var(--bg-dark2);
+  padding: 64px 20px;
 }
 .urgency-inner {
-  max-width: 720px;
+  max-width: 680px;
   margin: 0 auto;
   text-align: center;
 }
 .urgency-title {
   font-size: clamp(20px, 3.5vw, 28px);
   font-weight: 900;
-  color: var(--white);
+  color: var(--text-on-dark);
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 .urgency-body {
   font-size: 15px;
-  color: rgba(255,255,255,0.85);
+  color: var(--text-on-dark2);
   line-height: 2;
-  margin-bottom: 28px;
 }
 .urgency-body strong {
-  color: #ffd700;
+  color: var(--coral-light);
   font-weight: 900;
 }
 
 /* =============================================================
-   TOKUTEN（特典）
+   TOKUTEN
    ============================================================= */
 .tokuten-section {
-  background: linear-gradient(135deg, #0f2d52 0%, #1e5fa8 100%);
-  padding: 72px 20px;
+  background: var(--bg-dark);
+  padding: 80px 20px;
 }
 .tokuten-inner {
-  max-width: 860px;
+  max-width: 780px;
   margin: 0 auto;
   text-align: center;
 }
 .tokuten-badge {
   display: inline-block;
-  background: var(--orange);
-  color: var(--white);
-  padding: 6px 24px;
-  border-radius: 24px;
-  font-size: 14px;
+  background: var(--coral);
+  color: #fff;
+  padding: 6px 20px;
+  border-radius: 6px;
+  font-size: 13px;
   font-weight: 900;
   margin-bottom: 20px;
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;
 }
 .tokuten-title {
   font-size: clamp(22px, 4vw, 32px);
   font-weight: 900;
-  color: var(--white);
+  color: var(--text-on-dark);
   line-height: 1.5;
   margin-bottom: 16px;
 }
 .tokuten-desc {
   font-size: 15px;
-  color: rgba(255,255,255,0.8);
+  color: var(--text-on-dark2);
   line-height: 1.9;
   margin-bottom: 36px;
 }
 
 .tokuten-card {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-dark);
   border-radius: var(--radius-lg);
   padding: 40px 32px;
-  max-width: 560px;
+  max-width: 520px;
   margin: 0 auto;
 }
 .tokuten-card .tk-icon-wrap {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: rgba(232,130,26,0.2);
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: rgba(201,169,110,0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
 }
-.tokuten-card .tk-icon-wrap svg { width: 36px; height: 36px; }
+.tokuten-card .tk-icon-wrap svg { width: 32px; height: 32px; }
 .tokuten-card .tk-name {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 900;
-  color: var(--white);
+  color: var(--text-on-dark);
   margin-bottom: 8px;
 }
 .tokuten-card .tk-format {
   display: inline-block;
-  background: var(--orange);
-  color: var(--white);
-  padding: 3px 14px;
+  background: var(--accent);
+  color: var(--bg-dark);
+  padding: 3px 12px;
   border-radius: 4px;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 900;
   margin-bottom: 16px;
 }
 .tokuten-card .tk-body {
   font-size: 14px;
-  color: rgba(255,255,255,0.75);
+  color: var(--text-on-dark2);
   line-height: 1.8;
 }
 
 /* =============================================================
-   CTA（フェーズ10: オファー）
+   CTA
    ============================================================= */
+.lp-divider {
+  height: 2px;
+  background: linear-gradient(90deg, var(--coral), var(--accent));
+}
+
 .cta-section {
-  background: var(--gray-bg);
-  padding: 72px 20px;
+  background: var(--bg-warm2);
+  padding: 80px 20px;
 }
 .cta-inner {
-  max-width: 680px;
+  max-width: 620px;
   margin: 0 auto;
   text-align: center;
 }
 .cta-title {
   font-size: clamp(22px, 4vw, 32px);
   font-weight: 900;
-  color: var(--navy);
+  color: var(--text-dark);
   line-height: 1.5;
   margin-bottom: 12px;
 }
 .cta-sub {
   font-size: 15px;
-  color: var(--text-light);
-  margin-bottom: 32px;
+  color: var(--text-muted);
+  margin-bottom: 36px;
 }
 
 .cta-box {
-  background: var(--white);
+  background: #fff;
   border-radius: var(--radius-lg);
   padding: 44px 36px;
   box-shadow: var(--shadow-lg);
-  margin-bottom: 24px;
-}
-.cta-date-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-}
-.cta-date-label {
-  background: var(--navy);
-  color: var(--white);
-  padding: 6px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 700;
-}
-.cta-date-value {
-  font-size: clamp(24px, 4vw, 32px);
-  font-weight: 900;
-  color: var(--navy);
+  border: 1px solid var(--border);
 }
 
 .cta-includes {
@@ -915,7 +880,7 @@ body {
 .cta-includes li {
   font-size: 15px;
   font-weight: 700;
-  color: #333;
+  color: var(--text-body);
   padding: 8px 0 8px 32px;
   position: relative;
 }
@@ -923,10 +888,10 @@ body {
   content: '';
   position: absolute;
   left: 0;
-  top: 13px;
+  top: 12px;
   width: 20px;
   height: 20px;
-  background: var(--green);
+  background: var(--coral);
   border-radius: 50%;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
   background-size: 14px;
@@ -936,23 +901,20 @@ body {
 
 .cta-note {
   font-size: 12px;
-  color: var(--text-light);
+  color: var(--text-muted);
   margin-top: 16px;
 }
 
 /* ===== FOOTER ===== */
 .lp-footer {
-  background: var(--navy);
-  padding: 24px 20px;
+  background: var(--bg-dark);
+  padding: 28px 20px;
   text-align: center;
 }
 .lp-footer p {
   font-size: 12px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.35);
 }
-
-/* ===== DIVIDER ===== */
-.lp-divider { height: 4px; background: linear-gradient(90deg, var(--orange), var(--red)); }
 
 /* =============================================================
    RESPONSIVE
@@ -960,38 +922,39 @@ body {
 @media (max-width: 768px) {
   .problem-cards, .proof-cards { grid-template-columns: 1fr; }
   .ideal-cards { grid-template-columns: 1fr; }
-  .hero-inner { padding: 36px 20px 44px; }
+  .hero-inner { padding: 36px 20px 48px; }
   .hero-pains li { font-size: 14px; }
   .hero-meta { flex-direction: column; }
   .lp-btn {
     padding: 18px 32px;
-    font-size: 18px;
+    font-size: 17px;
     display: block;
     width: 100%;
   }
   .cta-box { padding: 28px 20px; }
-  .agenda-item { gap: 14px; padding: 20px 0; }
-  .agenda-num { width: 40px; height: 40px; font-size: 15px; }
-  .rival-item { flex-direction: column; gap: 12px; padding: 24px 20px; }
-  .benefit-item { flex-direction: column; gap: 12px; padding: 24px 20px; }
+  .agenda-item { gap: 14px; padding: 22px 0; }
+  .agenda-num { width: 38px; height: 38px; font-size: 14px; }
+  .rival-item { flex-direction: column; gap: 12px; padding: 20px 20px; }
+  .benefit-item { flex-direction: column; gap: 12px; padding: 20px 20px; }
   .proof-profile { flex-direction: column; gap: 20px; padding: 28px 20px; }
-  .proof-profile-photo { width: 100px; height: 100px; margin: 0 auto; }
+  .proof-profile-photo { width: 90px; height: 90px; margin: 0 auto; }
   .tokuten-card { padding: 28px 20px; }
   .cause-box { padding: 28px 20px; }
   .cause-point { padding: 24px 20px; }
+  .ideal-section, .problem-section, .rival-section,
+  .solution-section, .proof-section, .benefit-section,
+  .tokuten-section, .cta-section { padding: 60px 16px; }
+  .cause-section { padding: 60px 16px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ========================================================================
-     HERO（フェーズ1: 引き込み）
-     ======================================================================== -->
+<!-- ===== HERO ===== -->
 <section class="hero-section">
   <div class="hero-topbar">
     <p>AIを導入したのに成果が出ていない専門家・士業の方へ</p>
   </div>
-
   <div class="hero-inner">
     <ul class="hero-pains">
       <li>「AIやツールを入れたのに、帰宅時間は変わらない...」</li>
@@ -1000,17 +963,13 @@ body {
       <li>役所の「ポンコツ書式」のせいでAIが使えない...</li>
       <li>汎用的な情報ばかりで自分の業務に活かせるかどうか、全然わからない</li>
     </ul>
-
     <p class="hero-bridge">と悩んでいる方へ...</p>
-
     <h1 class="hero-headline">
       本来の<span class="hl-accent">「専門家」</span>としての仕事を<br>
       実現するための<br>
       <span class="hl-accent">Claude AI</span>の使い方
     </h1>
-
     <p class="hero-sub">4/10（木）オンラインセミナー開催</p>
-
     <div class="hero-meta">
       <div class="hero-date-badge">
         <div>
@@ -1027,7 +986,6 @@ body {
         </div>
       </div>
     </div>
-
     <div class="hero-cta-area">
       <a href="https://fp1.easywebinar.live/event-registration-51" class="lp-btn" target="_blank" rel="noopener">
         4/10のセミナーに申し込む
@@ -1037,9 +995,7 @@ body {
   </div>
 </section>
 
-<!-- ========================================================================
-     IDEAL（フェーズ2: 理想の提示）
-     ======================================================================== -->
+<!-- ===== IDEAL ===== -->
 <section class="ideal-section">
   <div class="ideal-inner">
     <p class="ideal-lead">本来あるべき姿</p>
@@ -1047,25 +1003,24 @@ body {
       あなたが本当にやりたかったのは<br>
       こういう仕事ではありませんか？
     </h2>
-
     <div class="ideal-cards">
       <div class="ideal-card">
-        <div class="icon-circle icon-circle-orange" style="margin:0 auto 16px;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#e8821a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <h3>専門知識を活かした<br>本質的な仕事に集中する</h3>
         <p>書類作成やデータ整理ではなく、あなたの専門的な判断が求められる仕事に時間を使う。</p>
       </div>
       <div class="ideal-card">
-        <div class="icon-circle icon-circle-navy" style="margin:0 auto 16px;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#0f2d52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <h3>クライアントと<br>じっくり向き合う</h3>
         <p>事務作業に追われず、相談・提案・フォローといった「人にしかできない仕事」に時間を割く。</p>
       </div>
       <div class="ideal-card">
-        <div class="icon-circle icon-circle-green" style="margin:0 auto 16px;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <h3>定時に帰って<br>家族との時間を確保する</h3>
         <p>仕事の質を落とさず、むしろ上げながら、ライフスタイルを犠牲にしない働き方を実現する。</p>
@@ -1074,9 +1029,7 @@ body {
   </div>
 </section>
 
-<!-- ========================================================================
-     PROBLEM（フェーズ3: 現実の問題）
-     ======================================================================== -->
+<!-- ===== PROBLEM ===== -->
 <section class="problem-section">
   <div class="problem-inner">
     <div style="text-align:center;">
@@ -1088,32 +1041,31 @@ body {
     <p class="problem-subtitle" style="text-align:center;">
       AIを導入しても、多くの専門家がこんな状況に陥っています。
     </p>
-
     <div class="problem-cards">
       <div class="problem-card">
-        <div class="icon-circle icon-circle-red">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#dc3010" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="icon-circle" style="background:rgba(212,101,74,0.08);">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <div class="pc-title">自動化したはずが<br>回収作業に追われる</div>
         <div class="pc-body">AIで自動化できたはずなのに、結局その出力を直す作業が増えて、トータルの工数は変わっていない。</div>
       </div>
       <div class="problem-card">
-        <div class="icon-circle icon-circle-red">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#dc3010" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <div class="icon-circle" style="background:rgba(212,101,74,0.08);">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         </div>
         <div class="pc-title">汎用情報が<br>自分の業務に合わない</div>
         <div class="pc-body">ネットやSNSのAI活用術は一般論ばかり。自分の専門分野の書類・書式にそのまま使えるものが見つからない。</div>
       </div>
       <div class="problem-card">
-        <div class="icon-circle icon-circle-red">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#dc3010" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <div class="icon-circle" style="background:rgba(212,101,74,0.08);">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         </div>
         <div class="pc-title">役所の書式が<br>AIに対応していない</div>
         <div class="pc-body">独自フォーマット、手書き前提、PDFロック... 役所が出す書式はAI活用を想定していないものばかり。</div>
       </div>
       <div class="problem-card">
-        <div class="icon-circle icon-circle-red">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#dc3010" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <div class="icon-circle" style="background:rgba(212,101,74,0.08);">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
         </div>
         <div class="pc-title">SNSの情報に<br>振り回される</div>
         <div class="pc-body">新しいAIツールが出るたびに「乗り遅れたかも」と焦る。でも試しても、結局本業の効率化にはつながらない。</div>
@@ -1122,9 +1074,7 @@ body {
   </div>
 </section>
 
-<!-- ========================================================================
-     RIVAL（フェーズ4: 競合排除）
-     ======================================================================== -->
+<!-- ===== RIVAL ===== -->
 <section class="rival-section">
   <div class="rival-inner">
     <div style="text-align:center;">
@@ -1137,11 +1087,10 @@ body {
       もしかすると、すでにこんな方法を試したかもしれません。<br>
       でも、それではうまくいかないのには理由があります。
     </p>
-
     <div class="rival-items">
       <div class="rival-item">
         <div class="ri-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#dc3010" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </div>
         <div class="ri-content">
           <div class="ri-title">ChatGPTやGeminiなどの汎用AIをとりあえず使う</div>
@@ -1150,7 +1099,7 @@ body {
       </div>
       <div class="rival-item">
         <div class="ri-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#dc3010" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </div>
         <div class="ri-content">
           <div class="ri-title">AI活用セミナーやSNSの情報を片っ端から試す</div>
@@ -1159,7 +1108,7 @@ body {
       </div>
       <div class="rival-item">
         <div class="ri-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#dc3010" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </div>
         <div class="ri-content">
           <div class="ri-title">業務の一部だけAI化して「効率化した気」になる</div>
@@ -1170,9 +1119,7 @@ body {
   </div>
 </section>
 
-<!-- ========================================================================
-     CAUSE（フェーズ5: 真の原因）
-     ======================================================================== -->
+<!-- ===== CAUSE ===== -->
 <section class="cause-section">
   <div class="cause-inner">
     <span class="cause-label">TRUE CAUSE</span>
@@ -1180,14 +1127,12 @@ body {
       本当の原因は<br>
       <span class="ct-accent">「AIの使い方」ではなく<br>「使う側の設計」</span>にあります
     </h2>
-
     <div class="cause-box">
       <p>多くの人は「AIの使い方」を学ぼうとします。プロンプトの書き方、ツールの選び方、新機能の情報...。</p>
       <p>しかし、<strong>本当の問題はそこではありません。</strong></p>
       <p>AIが効果を発揮するためには、あなたの業務の「どこに」「どう」組み込むかという<strong>「設計」</strong>が必要です。この設計がないままツールだけ入れても、自動化のための作業が増えるだけです。</p>
       <p>逆に言えば、<strong>設計さえ正しくできれば、AIはあなたが寝ている間にも仕事を進めてくれます。</strong></p>
     </div>
-
     <div class="cause-point">
       <p>
         このセミナーでは<br>
@@ -1197,9 +1142,7 @@ body {
   </div>
 </section>
 
-<!-- ========================================================================
-     SOLUTION / AGENDA（フェーズ6: 解決策の提示）
-     ======================================================================== -->
+<!-- ===== AGENDA ===== -->
 <section class="solution-section">
   <div class="solution-inner">
     <div style="text-align:center;">
@@ -1210,7 +1153,6 @@ body {
       単なるAIの使い方講座ではありません。<br>
       あなたの専門業務にAIを組み込むための「設計」を、具体的な手順でお伝えします。
     </p>
-
     <ul class="agenda-list">
       <li class="agenda-item">
         <div class="agenda-num">1</div>
@@ -1255,7 +1197,6 @@ body {
         </div>
       </li>
     </ul>
-
     <div class="mid-cta">
       <p class="mid-cta-text">ここまでの内容に興味を持っていただけたなら</p>
       <a href="https://fp1.easywebinar.live/event-registration-51" class="lp-btn" target="_blank" rel="noopener">
@@ -1266,19 +1207,16 @@ body {
   </div>
 </section>
 
-<!-- ========================================================================
-     PROOF（フェーズ7: 根拠・証明）
-     ======================================================================== -->
+<!-- ===== PROOF ===== -->
 <section class="proof-section">
   <div class="proof-inner">
     <div style="text-align:center;">
       <span class="section-label">SPEAKER</span>
     </div>
     <h2 class="proof-title">講師紹介</h2>
-
     <div class="proof-cards">
       <div class="proof-card">
-        <div class="pf-num">AI<span class="pf-unit">×士業</span></div>
+        <div class="pf-num">AI<span class="pf-unit"> x 士業</span></div>
         <div class="pf-label">Claude Codeを<br>毎日実務で活用</div>
       </div>
       <div class="proof-card">
@@ -1290,10 +1228,9 @@ body {
         <div class="pf-label">Claude専用スキル<br>（業務自動化プログラム）を構築</div>
       </div>
     </div>
-
     <div class="proof-profile">
       <div class="proof-profile-photo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </div>
       <div class="proof-profile-body">
         <div class="pp-role">講師・登壇者</div>
@@ -1303,17 +1240,15 @@ body {
         </div>
         <ul class="pp-creds">
           <li>Claude Code による業務自動化を毎日実践</li>
-          <li>50種以上のClaude専用スキル（自動化プログラム）を自作・運用</li>
-          <li>行政書士 / 経済産業省認定 経営革新等認定支援機関</li>
+          <li>50種以上のClaude専用スキルを自作・運用</li>
+          <li>行政書士 / 経営革新等認定支援機関</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========================================================================
-     BENEFIT（フェーズ8: ベネフィット）
-     ======================================================================== -->
+<!-- ===== BENEFIT ===== -->
 <section class="benefit-section">
   <div class="benefit-inner">
     <div style="text-align:center;">
@@ -1323,11 +1258,10 @@ body {
       このセミナーに参加すると<br>
       手に入るもの
     </h2>
-
     <div class="benefit-list">
       <div class="benefit-item">
         <div class="bi-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <div class="bi-content">
           <div class="bi-title">AIを「入れただけ」の状態から「成果が出る状態」に変える視点</div>
@@ -1336,7 +1270,7 @@ body {
       </div>
       <div class="benefit-item">
         <div class="bi-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <div class="bi-content">
           <div class="bi-title">SNSの情報に振り回されなくなる判断基準</div>
@@ -1345,7 +1279,7 @@ body {
       </div>
       <div class="benefit-item">
         <div class="bi-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <div class="bi-content">
           <div class="bi-title">Claude Codeの導入手順と具体的な活用イメージ</div>
@@ -1354,7 +1288,7 @@ body {
       </div>
       <div class="benefit-item">
         <div class="bi-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d4654a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <div class="bi-content">
           <div class="bi-title">「寝ている間に事業計画が完成する」仕組みの全体像</div>
@@ -1365,14 +1299,10 @@ body {
   </div>
 </section>
 
-<!-- ========================================================================
-     URGENCY（フェーズ9: 緊急性）
-     ======================================================================== -->
+<!-- ===== URGENCY ===== -->
 <section class="urgency-section">
   <div class="urgency-inner">
-    <h2 class="urgency-title">
-      AIの進化は待ってくれません
-    </h2>
+    <h2 class="urgency-title">AIの進化は待ってくれません</h2>
     <p class="urgency-body">
       今、AIは月単位で大きく進化しています。<br>
       1か月前の情報がもう古くなる世界です。<br><br>
@@ -1385,9 +1315,7 @@ body {
   </div>
 </section>
 
-<!-- ========================================================================
-     TOKUTEN（特典）
-     ======================================================================== -->
+<!-- ===== TOKUTEN ===== -->
 <section class="tokuten-section">
   <div class="tokuten-inner">
     <span class="tokuten-badge">参加者限定 特典</span>
@@ -1396,10 +1324,9 @@ body {
       セミナー参加者全員に、<br>
       Claude Codeの導入手順をまとめたPDFマニュアルをプレゼントします。
     </p>
-
     <div class="tokuten-card">
       <div class="tk-icon-wrap">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="17" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="17" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/></svg>
       </div>
       <div class="tk-name">Claude Code導入マニュアル</div>
       <span class="tk-format">PDF</span>
@@ -1411,16 +1338,12 @@ body {
   </div>
 </section>
 
-<!-- ========================================================================
-     CTA（フェーズ10: オファー）
-     ======================================================================== -->
+<!-- ===== CTA ===== -->
 <div class="lp-divider"></div>
-
 <section class="cta-section" id="entry">
   <div class="cta-inner">
     <h2 class="cta-title">今すぐ席を確保してください</h2>
     <p class="cta-sub">4/10（木）オンライン開催・参加費無料</p>
-
     <div class="cta-box">
       <ul class="cta-includes">
         <li>オンライン開催</li>
@@ -1428,22 +1351,17 @@ body {
         <li>専門家・士業の方向けの実践内容</li>
         <li>参加費無料</li>
       </ul>
-
       <div class="lp-btn-wrap">
         <a href="https://fp1.easywebinar.live/event-registration-51" class="lp-btn" target="_blank" rel="noopener">
           4/10のセミナーに申し込む
           <span class="lp-btn-sub">お申し込みページに移動します</span>
         </a>
       </div>
-
       <p class="cta-note">※ お申し込み後、詳細をメールでお送りします</p>
     </div>
   </div>
 </section>
 
-<!-- ========================================================================
-     FOOTER
-     ======================================================================== -->
 <footer class="lp-footer">
   <p>&copy; あくつ行政書士事務所</p>
 </footer>
