@@ -568,6 +568,28 @@ body{margin:0;padding:0;background:#F5F5F5;}
   <div class="lp-inner">
     <p class="lp-heading lp-heading-white" style="display:block!important;width:100%!important;">3日間限定！特別価格で手に入れてください</p>
     <div class="lp-divider"></div>
+    <div id="countdown-timer" style="display:flex!important;justify-content:center!important;gap:clamp(0.5rem,2vw,1rem)!important;margin-bottom:clamp(1rem,2vw,1.5rem)!important;">
+      <div style="text-align:center!important;background:rgba(255,255,255,0.1)!important;border-radius:8px!important;padding:clamp(0.5rem,1.5vw,0.8rem) clamp(0.8rem,2vw,1.2rem)!important;min-width:60px!important;">
+        <p id="cd-days" style="display:block!important;width:100%!important;margin:0!important;font-size:clamp(1.5rem,4vw,2.2rem)!important;font-weight:900!important;color:#FFD700!important;line-height:1.2!important;">00</p>
+        <p style="display:block!important;width:100%!important;margin:0.2rem 0 0 0!important;font-size:clamp(0.65rem,1.5vw,0.75rem)!important;color:rgba(255,255,255,0.6)!important;">日</p>
+      </div>
+      <div style="text-align:center!important;background:rgba(255,255,255,0.1)!important;border-radius:8px!important;padding:clamp(0.5rem,1.5vw,0.8rem) clamp(0.8rem,2vw,1.2rem)!important;min-width:60px!important;">
+        <p id="cd-hours" style="display:block!important;width:100%!important;margin:0!important;font-size:clamp(1.5rem,4vw,2.2rem)!important;font-weight:900!important;color:#FFD700!important;line-height:1.2!important;">00</p>
+        <p style="display:block!important;width:100%!important;margin:0.2rem 0 0 0!important;font-size:clamp(0.65rem,1.5vw,0.75rem)!important;color:rgba(255,255,255,0.6)!important;">時間</p>
+      </div>
+      <div style="text-align:center!important;background:rgba(255,255,255,0.1)!important;border-radius:8px!important;padding:clamp(0.5rem,1.5vw,0.8rem) clamp(0.8rem,2vw,1.2rem)!important;min-width:60px!important;">
+        <p id="cd-mins" style="display:block!important;width:100%!important;margin:0!important;font-size:clamp(1.5rem,4vw,2.2rem)!important;font-weight:900!important;color:#FFD700!important;line-height:1.2!important;">00</p>
+        <p style="display:block!important;width:100%!important;margin:0.2rem 0 0 0!important;font-size:clamp(0.65rem,1.5vw,0.75rem)!important;color:rgba(255,255,255,0.6)!important;">分</p>
+      </div>
+      <div style="text-align:center!important;background:rgba(255,255,255,0.1)!important;border-radius:8px!important;padding:clamp(0.5rem,1.5vw,0.8rem) clamp(0.8rem,2vw,1.2rem)!important;min-width:60px!important;">
+        <p id="cd-secs" style="display:block!important;width:100%!important;margin:0!important;font-size:clamp(1.5rem,4vw,2.2rem)!important;font-weight:900!important;color:#FFD700!important;line-height:1.2!important;">00</p>
+        <p style="display:block!important;width:100%!important;margin:0.2rem 0 0 0!important;font-size:clamp(0.65rem,1.5vw,0.75rem)!important;color:rgba(255,255,255,0.6)!important;">秒</p>
+      </div>
+    </div>
+    <p style="display:block!important;width:100%!important;text-align:center!important;margin:0 0 clamp(1rem,2vw,1.5rem) 0!important;font-size:clamp(0.8rem,2vw,0.9rem)!important;color:rgba(255,255,255,0.7)!important;">特別価格の締切：2026年4月10日（金）23:59まで</p>
+    <script>
+    (function(){var deadline=new Date('2026-04-10T23:59:59+09:00').getTime();function tick(){var now=new Date().getTime();var t=deadline-now;if(t<=0){document.getElementById('cd-days').textContent='00';document.getElementById('cd-hours').textContent='00';document.getElementById('cd-mins').textContent='00';document.getElementById('cd-secs').textContent='00';return;}var d=Math.floor(t/86400000);var h=Math.floor((t%86400000)/3600000);var m=Math.floor((t%3600000)/60000);var s=Math.floor((t%60000)/1000);document.getElementById('cd-days').textContent=String(d).padStart(2,'0');document.getElementById('cd-hours').textContent=String(h).padStart(2,'0');document.getElementById('cd-mins').textContent=String(m).padStart(2,'0');document.getElementById('cd-secs').textContent=String(s).padStart(2,'0');}tick();setInterval(tick,1000);})();
+    </script>
     <div class="lp-price-box">
       <p style="display:block!important;width:100%!important;text-align:center!important;font-size:clamp(1rem,2.5vw,1.15rem)!important;font-weight:700!important;color:#FF6B35!important;margin-top:0!important;margin-bottom:clamp(0.8rem,2vw,1rem)!important;">動画講座（全5章・40本以上）</p>
       <p class="lp-price-stack" style="display:block!important;width:100%!important;"><span class="lp-chk">&#10003;</span> 第1章 持続化補助金の概要 — 7本</p>
