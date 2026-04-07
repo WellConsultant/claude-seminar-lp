@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>名刺サンプル - 【事務所名】（3パターン）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== リセット・ベース ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+      background: #f0f0f0;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    /* ========== 共通：名刺サイズ ========== */
+    /* 名刺サイズ：91mm × 55mm（塗り足し3mmを含めると97mm × 61mm） */
+    .card {
+      width: 91mm;
+      height: 55mm;
+      overflow: hidden;
+      position: relative;
+      background: #FFFFFF;
+      margin: 0 auto;
+      /* 塗り足し（裁ち落とし）3mmを考慮してください。
+         印刷入稿時はカードサイズを97mm×61mmに変更し、
+         背景色やラインは端から3mm外側まで伸ばしてください。 */
+    }
+
+    /* ========== パターン区切り ========== */
+    .pattern-section {
+      max-width: 800px;
+      margin: 0 auto 60px;
+    }
+    .pattern-title {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1B2A4A;
+      margin-bottom: 8px;
+    }
+    .pattern-desc {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 24px;
+    }
+    .card-pair {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .card-label {
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 6px;
+    }
+    .card-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ====================================================
+       パターンA：フォーマル
+       コンセプト：伝統的な士業名刺。格式高く信頼感を重視
+       配色：紺(#1B2A4A) + 白 + ゴールド(#C9A84C)
+       ==================================================== */
+    .formal-front {
+      background: #FFFFFF;
+      padding: 8mm 7mm;
+      font-family: "Noto Sans JP", sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    /* 行政書士マーク（右上） */
+    .formal-front .badge {
+      position: absolute;
+      top: 5mm;
+      right: 5mm;
+      width: 10mm;
+      height: 10mm;
+      border: 1.5px solid #C9A84C;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7pt;
+      color: #C9A84C;
+      font-weight: 700;
+    }
+    .formal-front .office-name {
+      font-size: 7pt;
+      color: #1B2A4A;
+      letter-spacing: 0.15em;
+      margin-bottom: 2mm;
+    }
+    .formal-front .name-area {
+      margin: 3mm 0;
+    }
+    .formal-front .name {
+      font-size: 16pt;
+      font-weight: 700;
+      color: #1B2A4A;
+      letter-spacing: 0.2em;
+    }
+    .formal-front .title-text {
+      font-size: 7pt;
+      color: #C9A84C;
+      margin-top: 1mm;
+      letter-spacing: 0.1em;
+    }
+    .formal-front .contact-info {
+      font-size: 6pt;
+      color: #333;
+      line-height: 1.8;
+      border-top: 0.5px solid #C9A84C;
+      padding-top: 2mm;
+    }
+    .formal-front .contact-info span {
+      display: block;
+    }
+
+    .formal-back {
+      background: #1B2A4A;
+      padding: 7mm;
+      font-family: "Noto Sans JP", sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #FFFFFF;
+    }
+    .formal-back .back-title {
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #C9A84C;
+      border-bottom: 0.5px solid #C9A84C;
+      padding-bottom: 2mm;
+      margin-bottom: 3mm;
+    }
+    .formal-back .services-list {
+      font-size: 7pt;
+      line-height: 2;
+      letter-spacing: 0.08em;
+      flex: 1;
+    }
+    .formal-back .services-list span {
+      display: inline-block;
+      margin-right: 3mm;
+    }
+    .formal-back .services-list span::before {
+      content: "■ ";
+      color: #C9A84C;
+      font-size: 5pt;
+    }
+    .formal-back .registration {
+      font-size: 6pt;
+      opacity: 0.7;
+      border-top: 0.5px solid rgba(255,255,255,0.2);
+      padding-top: 2mm;
+      line-height: 1.7;
+    }
+    .formal-back .message {
+      font-size: 6.5pt;
+      line-height: 1.7;
+      margin-bottom: 3mm;
+      font-style: italic;
+      opacity: 0.9;
+    }
+
+    /* ====================================================
+       パターンB：モダン
+       コンセプト：若手行政書士向け。清潔感と現代的な印象
+       配色：ダークブルー(#2C3E50) + ホワイト + アクセントブルー(#3498DB)
+       ==================================================== */
+    .modern-front {
+      background: #FFFFFF;
+      font-family: "Noto Sans JP", sans-serif;
+      display: flex;
+      flex-direction: row;
+    }
+    .modern-front .color-bar {
+      width: 8mm;
+      background: linear-gradient(180deg, #3498DB 0%, #2C3E50 100%);
+      flex-shrink: 0;
+    }
+    .modern-front .content {
+      padding: 6mm 6mm 5mm 5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+    .modern-front .top-area .office-name {
+      font-size: 6pt;
+      color: #999;
+      letter-spacing: 0.1em;
+      margin-bottom: 1mm;
+    }
+    .modern-front .top-area .name {
+      font-size: 15pt;
+      font-weight: 700;
+      color: #2C3E50;
+      letter-spacing: 0.15em;
+    }
+    .modern-front .top-area .title-text {
+      font-size: 7pt;
+      color: #3498DB;
+      margin-top: 0.5mm;
+    }
+    .modern-front .contact-area {
+      font-size: 6.5pt;
+      color: #555;
+      line-height: 1.9;
+    }
+    .modern-front .contact-area .row {
+      display: flex;
+      align-items: center;
+    }
+    /* アイコン風の装飾（CSS擬似要素） */
+    .modern-front .contact-area .icon {
+      display: inline-block;
+      width: 3.5mm;
+      height: 3.5mm;
+      background: #3498DB;
+      border-radius: 50%;
+      margin-right: 2mm;
+      flex-shrink: 0;
+    }
+
+    .modern-back {
+      background: #FFFFFF;
+      font-family: "Noto Sans JP", sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .modern-back .top-band {
+      height: 10mm;
+      background: linear-gradient(90deg, #3498DB 0%, #2C3E50 100%);
+      display: flex;
+      align-items: center;
+      padding: 0 6mm;
+    }
+    .modern-back .top-band .text {
+      font-size: 8pt;
+      color: #FFFFFF;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+    }
+    .modern-back .body-area {
+      padding: 4mm 6mm;
+    }
+    .modern-back .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2mm;
+      margin-bottom: 4mm;
+    }
+    .modern-back .tag {
+      display: inline-block;
+      background: #EBF5FB;
+      color: #2C3E50;
+      font-size: 6.5pt;
+      padding: 1mm 3mm;
+      border-radius: 2px;
+      border: 0.5px solid #3498DB;
+    }
+    .modern-back .qr-area {
+      width: 16mm;
+      height: 16mm;
+      background: #F0F0F0;
+      border: 0.5px solid #DDD;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5pt;
+      color: #999;
+      position: absolute;
+      bottom: 5mm;
+      right: 5mm;
+      /* QRコード配置エリア：
+         QRコード画像を<img>タグで差し替えてください。
+         推奨サービス：QRのススメ（https://qr.quel.jp/）等 */
+    }
+    .modern-back .registration {
+      font-size: 6pt;
+      color: #999;
+      line-height: 1.7;
+      margin-top: 2mm;
+    }
+
+    /* ====================================================
+       パターンC：シンプル
+       コンセプト：ミニマルで洗練された印象。余白を活かす
+       配色：白ベース + チャコール(#333) + 1色アクセント(#1B2A4A)
+       ==================================================== */
+    .simple-front {
+      background: #FFFFFF;
+      font-family: "Noto Sans JP", sans-serif;
+      padding: 10mm 8mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .simple-front .name {
+      font-size: 16pt;
+      font-weight: 700;
+      color: #1B2A4A;
+      letter-spacing: 0.2em;
+      margin-bottom: 1mm;
+    }
+    .simple-front .office-name {
+      font-size: 7pt;
+      color: #333;
+      letter-spacing: 0.1em;
+      margin-bottom: 5mm;
+    }
+    .simple-front .divider {
+      width: 20mm;
+      height: 0.5px;
+      background: #1B2A4A;
+      margin-bottom: 4mm;
+    }
+    .simple-front .contact-info {
+      font-size: 6pt;
+      color: #666;
+      line-height: 1.9;
+      letter-spacing: 0.05em;
+    }
+
+    .simple-back {
+      background: #FFFFFF;
+      font-family: "Noto Sans JP", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8mm;
+    }
+    .simple-back .office-name-large {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #1B2A4A;
+      letter-spacing: 0.2em;
+      margin-bottom: 4mm;
+    }
+    .simple-back .divider {
+      width: 15mm;
+      height: 0.5px;
+      background: #1B2A4A;
+      margin-bottom: 4mm;
+    }
+    .simple-back .services-text {
+      font-size: 6.5pt;
+      color: #666;
+      line-height: 2;
+      letter-spacing: 0.08em;
+    }
+
+    /* ========== 印刷用CSS ========== */
+    @media print {
+      body {
+        background: #FFFFFF;
+        padding: 0;
+        margin: 0;
+      }
+      .pattern-section {
+        margin: 0;
+        page-break-after: always;
+      }
+      .pattern-title,
+      .pattern-desc,
+      .card-label,
+      .print-note {
+        display: none;
+      }
+      .card-pair {
+        justify-content: center;
+        gap: 10mm;
+      }
+      .card {
+        box-shadow: none;
+        border: 0.5px solid #CCC;
+      }
+      /* 印刷時の設定：
+         - 用紙サイズ：A4
+         - 倍率：100%
+         - 余白：なし（または最小）
+         印刷業者への入稿時はPDF化を推奨します。 */
+    }
+
+    /* ========== 画面表示用の影 ========== */
+    @media screen {
+      .card {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      }
+    }
+
+    .print-note {
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      margin-top: 40px;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================================================
+       パターンA：フォーマル
+       コンセプト：伝統的な士業名刺。格式高く信頼感を重視
+       配色：紺(#1B2A4A) + 白 + ゴールド(#C9A84C)
+       ================================================== -->
+  <div class="pattern-section">
+    <h2 class="pattern-title">パターンA：フォーマル</h2>
+    <p class="pattern-desc">伝統的な士業名刺。格式高く信頼感を重視したデザイン</p>
+    <div class="card-pair">
+      <div class="card-wrapper">
+        <div class="card-label">表面</div>
+        <div class="card formal-front">
+          <div class="badge">行</div>
+          <div>
+            <div class="office-name">【事務所名】</div>
+            <div class="name-area">
+              <div class="name">【代表者名】</div>
+              <div class="title-text">代表行政書士</div>
+            </div>
+          </div>
+          <div class="contact-info">
+            <span>【郵便番号】 【事務所所在地】</span>
+            <span>TEL：【電話番号】</span>
+            <span>MAIL：【メールアドレス】</span>
+            <span>WEB：【WebサイトURL】</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-wrapper">
+        <div class="card-label">裏面</div>
+        <div class="card formal-back">
+          <div class="message">「お客様の"困った"に寄り添い、一つひとつ丁寧に対応いたします。」</div>
+          <div class="back-title">取扱業務</div>
+          <div class="services-list">
+            <span>建設業許可</span>
+            <span>相続・遺言</span>
+            <span>在留資格・ビザ</span>
+            <span>法人設立</span>
+            <span>各種許認可</span>
+            <span>契約書作成</span>
+          </div>
+          <div class="registration">
+            登録番号：【登録番号】<br>
+            【所属行政書士会】所属
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================
+       パターンB：モダン
+       コンセプト：若手行政書士向け。清潔感と現代的な印象
+       配色：ダークブルー(#2C3E50) + ホワイト + アクセントブルー(#3498DB)
+       ================================================== -->
+  <div class="pattern-section">
+    <h2 class="pattern-title">パターンB：モダン</h2>
+    <p class="pattern-desc">若手行政書士向け。清潔感と現代的な印象のデザイン</p>
+    <div class="card-pair">
+      <div class="card-wrapper">
+        <div class="card-label">表面</div>
+        <div class="card modern-front">
+          <div class="color-bar"></div>
+          <div class="content">
+            <div class="top-area">
+              <div class="office-name">【事務所名】</div>
+              <div class="name">【代表者名】</div>
+              <div class="title-text">代表行政書士</div>
+            </div>
+            <div class="contact-area">
+              <div class="row"><span class="icon"></span>【電話番号】</div>
+              <div class="row"><span class="icon"></span>【メールアドレス】</div>
+              <div class="row"><span class="icon"></span>【WebサイトURL】</div>
+              <div class="row"><span class="icon"></span>【地域名】高島2-1-1 横浜ビル5階</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-wrapper">
+        <div class="card-label">裏面</div>
+        <div class="card modern-back">
+          <div class="top-band">
+            <span class="text">SERVICES</span>
+          </div>
+          <div class="body-area">
+            <div class="tags">
+              <span class="tag">建設業許可</span>
+              <span class="tag">相続・遺言</span>
+              <span class="tag">在留資格・ビザ</span>
+              <span class="tag">法人設立</span>
+              <span class="tag">各種許認可</span>
+              <span class="tag">契約書作成</span>
+            </div>
+            <div class="registration">
+              登録番号：【登録番号】<br>
+              【所属行政書士会】所属
+            </div>
+          </div>
+          <div class="qr-area">QRコード<br>配置エリア</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================
+       パターンC：シンプル
+       コンセプト：ミニマルで洗練された印象。余白を活かす
+       配色：白ベース + チャコール(#333) + 1色アクセント(#1B2A4A)
+       ================================================== -->
+  <div class="pattern-section">
+    <h2 class="pattern-title">パターンC：シンプル</h2>
+    <p class="pattern-desc">ミニマルで洗練された印象。余白を最大限に活かしたデザイン</p>
+    <div class="card-pair">
+      <div class="card-wrapper">
+        <div class="card-label">表面</div>
+        <div class="card simple-front">
+          <div class="name">【代表者名】</div>
+          <div class="office-name">【事務所名】 ／ 代表行政書士</div>
+          <div class="divider"></div>
+          <div class="contact-info">
+            【郵便番号】 【事務所所在地】<br>
+            TEL 【電話番号】 ／ MAIL 【メールアドレス】<br>
+            WEB 【WebサイトURL】
+          </div>
+        </div>
+      </div>
+      <div class="card-wrapper">
+        <div class="card-label">裏面</div>
+        <div class="card simple-back">
+          <div class="office-name-large">【事務所名】</div>
+          <div class="divider"></div>
+          <div class="services-text">
+            建設業許可 ／ 相続・遺言 ／ 在留資格・ビザ<br>
+            法人設立 ／ 各種許認可 ／ 契約書作成
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="print-note">
+    ※ 名刺サイズ：91mm × 55mm（日本標準）<br>
+    ※ 印刷時は「倍率100%」「余白なし」に設定してください<br>
+    ※ 印刷業者への入稿時はPDF化を推奨いたします<br>
+    ※ 塗り足し（裁ち落とし）3mmは印刷業者の仕様に合わせて調整してください<br>
+    ※ QRコード生成サービス例：QRのススメ（https://qr.quel.jp/）
+  </p>
+
+</body>
+</html>

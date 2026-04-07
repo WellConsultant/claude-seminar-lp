@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紹介カード - 【事務所名】</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 15mm;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 10pt;
+    color: #333;
+    width: 180mm;
+    max-height: 267mm;
+    margin: 15mm auto;
+  }
+  h1 {
+    text-align: center;
+    font-size: 14pt;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  .instruction {
+    text-align: center;
+    font-size: 9pt;
+    color: #666;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 10px;
+  }
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10mm;
+    justify-content: center;
+  }
+  .card {
+    width: 91mm;
+    height: 55mm;
+    border: 1px solid #999;
+    border-radius: 2mm;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+
+  /* 表面 */
+  .card-front {
+    background: linear-gradient(135deg, #1a3a5c 0%, #2c5f8a 100%);
+    color: #fff;
+    padding: 5mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 55mm;
+  }
+  .card-front .catchcopy {
+    font-size: 11pt;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.5;
+    margin-top: 3mm;
+    letter-spacing: 0.05em;
+  }
+  .card-front .catchcopy .highlight {
+    color: #ffd700;
+    font-size: 13pt;
+  }
+  .card-front .office-name {
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2mm;
+    letter-spacing: 0.1em;
+  }
+  .card-front .contact {
+    font-size: 7.5pt;
+    text-align: center;
+    line-height: 1.6;
+    margin-top: 1mm;
+  }
+  .card-front .contact .tel {
+    font-size: 11pt;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+  .card-front .badge {
+    background: #ffd700;
+    color: #1a3a5c;
+    font-size: 7pt;
+    font-weight: bold;
+    text-align: center;
+    padding: 1mm 3mm;
+    border-radius: 1mm;
+    display: inline-block;
+    margin: 0 auto;
+  }
+  .card-front .badge-wrap {
+    text-align: center;
+  }
+
+  /* 裏面 */
+  .card-back {
+    background: #fff;
+    padding: 4mm 5mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 55mm;
+  }
+  .card-back .title {
+    font-size: 8.5pt;
+    font-weight: bold;
+    color: #1a3a5c;
+    text-align: center;
+    border-bottom: 1px solid #1a3a5c;
+    padding-bottom: 1.5mm;
+    margin-bottom: 2mm;
+  }
+  .card-back .services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1mm 3mm;
+    font-size: 7.5pt;
+    line-height: 1.5;
+  }
+  .card-back .services .item {
+    padding-left: 2mm;
+    position: relative;
+  }
+  .card-back .services .item::before {
+    content: "●";
+    color: #1a3a5c;
+    font-size: 5pt;
+    position: absolute;
+    left: 0;
+    top: 0.5mm;
+  }
+  .card-back .referral-note {
+    background: #f0f4f8;
+    border: 1px solid #1a3a5c;
+    border-radius: 1mm;
+    padding: 2mm 3mm;
+    font-size: 7pt;
+    text-align: center;
+    font-weight: bold;
+    color: #1a3a5c;
+    line-height: 1.4;
+  }
+  .card-back .bottom-info {
+    font-size: 6.5pt;
+    color: #666;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .section-label {
+    font-size: 9pt;
+    color: #666;
+    text-align: center;
+    margin: 5mm 0 3mm 0;
+    font-weight: bold;
+  }
+
+  .cut-line {
+    border-top: 1px dashed #ccc;
+    margin: 8mm 0;
+    position: relative;
+  }
+  .cut-line::after {
+    content: "✂ 切り取り線";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 0 10px;
+    font-size: 7pt;
+    color: #999;
+  }
+
+  @media print {
+    body {
+      margin: 0;
+      width: 100%;
+      max-height: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>紹介カード（名刺サイズ 91mm x 55mm）</h1>
+<div class="instruction">
+  以下のカードを切り取ってお使いください。紹介元の方がお客様にお渡しする用です。
+</div>
+
+<!-- カード1セット目 -->
+<div class="section-label">【表面】</div>
+<div class="cards-container">
+  <div class="card">
+    <div class="card-front">
+      <div class="badge-wrap">
+        <span class="badge">初回相談無料</span>
+      </div>
+      <div class="catchcopy">
+        <span class="highlight">建設業許可・ビザ</span>のことなら<br>お任せください
+      </div>
+      <div class="office-name">【事務所名】</div>
+      <div class="contact">
+        <div class="tel">【電話番号】</div>
+        <div>【地域名】高島2-1-1 横浜ビル5階（横浜駅徒歩5分）</div>
+        <div>【メールアドレス】</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-front">
+      <div class="badge-wrap">
+        <span class="badge">初回相談無料</span>
+      </div>
+      <div class="catchcopy">
+        <span class="highlight">建設業許可・ビザ</span>のことなら<br>お任せください
+      </div>
+      <div class="office-name">【事務所名】</div>
+      <div class="contact">
+        <div class="tel">【電話番号】</div>
+        <div>【地域名】高島2-1-1 横浜ビル5階（横浜駅徒歩5分）</div>
+        <div>【メールアドレス】</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cut-line"></div>
+
+<div class="section-label">【裏面】</div>
+<div class="cards-container">
+  <div class="card">
+    <div class="card-back">
+      <div class="title">取扱業務一覧</div>
+      <div class="services">
+        <div class="item">建設業許可（新規・更新）</div>
+        <div class="item">在留資格・ビザ申請</div>
+        <div class="item">相続・遺言</div>
+        <div class="item">法人設立</div>
+        <div class="item">各種許認可申請</div>
+        <div class="item">契約書作成</div>
+        <div class="item">経営事項審査</div>
+        <div class="item">補助金申請</div>
+      </div>
+      <div class="referral-note">
+        ご紹介いただいたお客様は<br>優先対応いたします
+      </div>
+      <div class="bottom-info">
+        行政書士 【代表者名】｜【所属行政書士会】所属<br>
+        【WebサイトURL】
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-back">
+      <div class="title">取扱業務一覧</div>
+      <div class="services">
+        <div class="item">建設業許可（新規・更新）</div>
+        <div class="item">在留資格・ビザ申請</div>
+        <div class="item">相続・遺言</div>
+        <div class="item">法人設立</div>
+        <div class="item">各種許認可申請</div>
+        <div class="item">契約書作成</div>
+        <div class="item">経営事項審査</div>
+        <div class="item">補助金申請</div>
+      </div>
+      <div class="referral-note">
+        ご紹介いただいたお客様は<br>優先対応いたします
+      </div>
+      <div class="bottom-info">
+        行政書士 【代表者名】｜【所属行政書士会】所属<br>
+        【WebサイトURL】
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cut-line"></div>
+
+<!-- カード2セット目 -->
+<div class="section-label">【表面】</div>
+<div class="cards-container">
+  <div class="card">
+    <div class="card-front">
+      <div class="badge-wrap">
+        <span class="badge">初回相談無料</span>
+      </div>
+      <div class="catchcopy">
+        <span class="highlight">建設業許可・ビザ</span>のことなら<br>お任せください
+      </div>
+      <div class="office-name">【事務所名】</div>
+      <div class="contact">
+        <div class="tel">【電話番号】</div>
+        <div>【地域名】高島2-1-1 横浜ビル5階（横浜駅徒歩5分）</div>
+        <div>【メールアドレス】</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-front">
+      <div class="badge-wrap">
+        <span class="badge">初回相談無料</span>
+      </div>
+      <div class="catchcopy">
+        <span class="highlight">建設業許可・ビザ</span>のことなら<br>お任せください
+      </div>
+      <div class="office-name">【事務所名】</div>
+      <div class="contact">
+        <div class="tel">【電話番号】</div>
+        <div>【地域名】高島2-1-1 横浜ビル5階（横浜駅徒歩5分）</div>
+        <div>【メールアドレス】</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

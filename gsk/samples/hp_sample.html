@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="【事務所名】 - 建設業許可・相続・遺言・在留資格のご相談は横浜の行政書士へ">
+  <meta name="keywords" content="行政書士,横浜,建設業許可,相続,遺言,在留資格,ビザ,法人設立">
+  <meta property="og:title" content="【事務所名】">
+  <meta property="og:description" content="建設業許可・相続・遺言・在留資格のご相談は横浜の【事務所名】へ。初回相談無料。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="【WebサイトURL】">
+  <title>【事務所名】 | 横浜の行政書士事務所</title>
+  <!-- ファビコン：行政書士マーク風SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%231B2A4A'/><text x='50' y='62' font-size='36' fill='%23C9A84C' text-anchor='middle' font-family='serif'>行</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== リセット・ベース ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "游ゴシック体", "Yu Gothic", "Noto Sans JP", "Hiragino Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+      letter-spacing: 0.05em;
+      color: #333333;
+      background: #FFFFFF;
+    }
+    img { max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ========== 共通 ========== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .section {
+      padding: 80px 0;
+    }
+    .section-bg {
+      background: #F5F5F5;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-title h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1B2A4A;
+      line-height: 1.4;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .section-title .en {
+      display: block;
+      font-size: 13px;
+      color: #1B2A4A;
+      opacity: 0.5;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #C9A84C;
+      margin: 16px auto 0;
+    }
+
+    /* ========== ヘッダー ========== */
+    .header {
+      background: #1B2A4A;
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+    }
+    /* 行政書士マーク（コスモスの花）CSS装飾 */
+    .header-logo::before {
+      content: "⚖";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: #C9A84C;
+      border-radius: 50%;
+      font-size: 18px;
+      margin-right: 12px;
+      color: #1B2A4A;
+    }
+    .header-logo a {
+      color: #FFFFFF;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .header-nav {
+      display: flex;
+      align-items: center;
+    }
+    .header-nav a {
+      color: #FFFFFF;
+      font-size: 14px;
+      margin-left: 28px;
+      transition: opacity 0.3s;
+      letter-spacing: 0.05em;
+    }
+    .header-nav a:hover {
+      opacity: 0.8;
+    }
+    .header-cta {
+      background: #C9A84C;
+      color: #FFFFFF !important;
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    .header-cta:hover {
+      opacity: 0.85;
+    }
+
+    /* ハンバーガーメニュー（スマホ用） */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: #FFFFFF;
+    }
+
+    /* ========== ファーストビュー ========== */
+    .hero {
+      background: linear-gradient(135deg, #1B2A4A 0%, #0F1A2E 100%);
+      padding: 100px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(201,168,76,0.08) 0%, transparent 60%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-catch {
+      font-size: 40px;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.5;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 40px;
+      letter-spacing: 0.05em;
+    }
+    .btn-cta {
+      display: inline-block;
+      background: #C9A84C;
+      color: #FFFFFF;
+      padding: 16px 40px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      transition: opacity 0.3s;
+    }
+    .btn-cta:hover {
+      opacity: 0.85;
+    }
+    .btn-sub {
+      display: inline-block;
+      background: transparent;
+      color: #FFFFFF;
+      padding: 16px 40px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      border: 1px solid #FFFFFF;
+      margin-left: 16px;
+      transition: opacity 0.3s;
+    }
+    .btn-sub:hover {
+      opacity: 0.85;
+    }
+
+    /* ========== 事務所紹介（3カラム） ========== */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .feature-item {
+      display: inline-block;
+      width: 31%;
+      text-align: center;
+      padding: 30px;
+      background: #FFFFFF;
+      border: 1px solid #E0E0E0;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: box-shadow 0.3s, transform 0.3s;
+      vertical-align: top;
+      margin-bottom: 20px;
+    }
+    .feature-item:hover {
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: #1B2A4A;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 24px;
+      color: #C9A84C;
+    }
+    .feature-item h3 {
+      font-size: 20px;
+      color: #1B2A4A;
+      margin-bottom: 12px;
+      line-height: 1.4;
+      letter-spacing: 0.1em;
+    }
+    .feature-item p {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.8;
+    }
+
+    /* ========== 取扱業務一覧（カード） ========== */
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .service-card {
+      display: inline-block;
+      width: 31%;
+      background: #FFFFFF;
+      border: 1px solid #E0E0E0;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 24px;
+      transition: box-shadow 0.3s, transform 0.3s;
+      vertical-align: top;
+    }
+    .service-card:hover {
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+    .service-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+      color: #C9A84C;
+    }
+    .service-card h3 {
+      font-size: 18px;
+      color: #1B2A4A;
+      margin-bottom: 10px;
+      letter-spacing: 0.08em;
+    }
+    .service-card p {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.7;
+    }
+
+    /* ========== 代表者プロフィール ========== */
+    .profile-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 40px;
+    }
+    .profile-photo {
+      /* 写真プレースホルダー：実際の写真に差し替えてください */
+      width: 300px;
+      min-height: 360px;
+      background: #E0E0E0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #999;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .profile-text {
+      flex: 1;
+      min-width: 280px;
+    }
+    .profile-text h3 {
+      font-size: 24px;
+      color: #1B2A4A;
+      margin-bottom: 8px;
+      letter-spacing: 0.1em;
+    }
+    .profile-text .title {
+      font-size: 14px;
+      color: #C9A84C;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .profile-text p {
+      margin-bottom: 16px;
+      line-height: 1.9;
+    }
+    .profile-text .credentials {
+      background: #F5F5F5;
+      padding: 16px 20px;
+      border-radius: 4px;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+    .profile-text .credentials dt {
+      font-weight: 700;
+      color: #1B2A4A;
+      margin-bottom: 4px;
+    }
+    .profile-text .credentials dd {
+      margin-bottom: 12px;
+      color: #666666;
+    }
+
+    /* ========== お客様の声 ========== */
+    .voices {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .voice-card {
+      display: inline-block;
+      width: 31%;
+      background: #FFFFFF;
+      border: 1px solid #E0E0E0;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 30px;
+      margin-bottom: 20px;
+      vertical-align: top;
+    }
+    .voice-card .voice-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .voice-avatar {
+      width: 48px;
+      height: 48px;
+      background: #1B2A4A;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #C9A84C;
+      font-size: 18px;
+      font-weight: 700;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+    .voice-meta .voice-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1B2A4A;
+    }
+    .voice-meta .voice-detail {
+      font-size: 12px;
+      color: #999;
+    }
+    .voice-card .voice-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #666666;
+    }
+    .voice-card .stars {
+      color: #C9A84C;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    /* ========== アクセス ========== */
+    .access-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .access-info {
+      flex: 1;
+      min-width: 280px;
+    }
+    .access-info table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    .access-info th {
+      text-align: left;
+      padding: 12px 16px;
+      background: #F5F5F5;
+      border-bottom: 1px solid #E0E0E0;
+      font-size: 14px;
+      color: #1B2A4A;
+      width: 100px;
+      font-weight: 500;
+    }
+    .access-info td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #E0E0E0;
+      font-size: 14px;
+    }
+    .access-map {
+      flex: 1;
+      min-width: 280px;
+      min-height: 300px;
+      background: #E0E0E0;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #999;
+    }
+    /* Google Maps埋め込み方法：
+       .access-map 内のテキストを削除し、以下のiframeに差し替えてください。
+       <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    */
+
+    /* ========== お問い合わせフォーム ========== */
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 24px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1B2A4A;
+      margin-bottom: 8px;
+    }
+    .form-group label .required {
+      background: #C9A84C;
+      color: #FFFFFF;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-left: 8px;
+      font-weight: 400;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #E0E0E0;
+      border-radius: 4px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #C9A84C;
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+    }
+    .form-group textarea {
+      height: 160px;
+      resize: vertical;
+    }
+    .form-submit {
+      text-align: center;
+    }
+    .form-submit button {
+      display: inline-block;
+      background: #C9A84C;
+      color: #FFFFFF;
+      padding: 16px 60px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      transition: opacity 0.3s;
+      font-family: inherit;
+    }
+    .form-submit button:hover {
+      opacity: 0.85;
+    }
+    .form-note {
+      text-align: center;
+      font-size: 13px;
+      color: #999;
+      margin-top: 16px;
+    }
+
+    /* ========== フッター ========== */
+    .footer {
+      background: #1B2A4A;
+      color: #FFFFFF;
+      padding: 50px 0 30px;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+    .footer-info {
+      max-width: 400px;
+    }
+    .footer-info h3 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      letter-spacing: 0.1em;
+    }
+    .footer-info p {
+      font-size: 13px;
+      line-height: 1.8;
+      opacity: 0.8;
+    }
+    .footer-nav a {
+      display: block;
+      color: #FFFFFF;
+      font-size: 14px;
+      margin-bottom: 10px;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    .footer-nav a:hover {
+      opacity: 1;
+    }
+    .footer-cta {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 30px;
+      background: rgba(201,168,76,0.1);
+      border-radius: 6px;
+    }
+    .footer-cta p {
+      font-size: 16px;
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      font-size: 12px;
+      opacity: 0.6;
+    }
+    .footer-badge {
+      font-size: 12px;
+      opacity: 0.7;
+      margin-top: 12px;
+    }
+
+    /* ========== レスポンシブ：タブレット ========== */
+    @media (max-width: 1199px) {
+      .section { padding: 60px 0; }
+      .section-title h2 { font-size: 24px; }
+      .hero-catch { font-size: 32px; }
+      .hero-sub { font-size: 16px; }
+      .feature-item { width: 48%; }
+      .service-card { width: 48%; }
+      .voice-card { width: 48%; }
+    }
+
+    /* ========== レスポンシブ：スマホ ========== */
+    @media (max-width: 767px) {
+      .section { padding: 40px 0; }
+      .section-title h2 { font-size: 20px; }
+      .section-title .en { font-size: 11px; }
+      .hero { padding: 60px 0; }
+      .hero-catch { font-size: 24px; }
+      .hero-sub { font-size: 14px; }
+      .btn-sub { margin-left: 0; margin-top: 12px; }
+
+      .header-nav { display: none; }
+      .hamburger { display: flex; }
+
+      .feature-item,
+      .service-card,
+      .voice-card { width: 100%; }
+
+      .profile-wrap { flex-direction: column; }
+      .profile-photo { width: 100%; min-height: 240px; }
+
+      .access-wrap { flex-direction: column; }
+      .access-map { min-height: 220px; }
+
+      body { font-size: 14px; }
+      .feature-item h3, .service-card h3 { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== ヘッダー ========== -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="#">【事務所名】</a>
+      </div>
+      <nav class="header-nav">
+        <a href="#about">事務所紹介</a>
+        <a href="#services">取扱業務</a>
+        <a href="#profile">代表紹介</a>
+        <a href="#voices">お客様の声</a>
+        <a href="#access">アクセス</a>
+        <a href="#contact" class="header-cta">お問い合わせ</a>
+      </nav>
+      <div class="hamburger" onclick="document.querySelector('.header-nav').style.display=document.querySelector('.header-nav').style.display==='flex'?'none':'flex'">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== ファーストビュー ========== -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1 class="hero-catch">あなたの「困った」を<br>法律の力で解決します</h1>
+      <p class="hero-sub">建設業許可・相続・遺言・在留資格・法人設立 — 横浜で開業20年の実績</p>
+      <div>
+        <a href="#contact" class="btn-cta">無料相談はこちら</a>
+        <a href="tel:【電話番号】" class="btn-sub">【電話番号】</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 事務所紹介 ========== -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="en">About Us</span>
+        <h2>【事務所名】について</h2>
+      </div>
+      <div class="features">
+        <div class="feature-item">
+          <div class="feature-icon">🤝</div>
+          <h3>初回相談無料</h3>
+          <p>まずはお気軽にご相談ください。お客様のお悩みを丁寧にお伺いし、最適な解決策をご提案いたします。費用のお見積りも無料です。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📋</div>
+          <h3>幅広い業務に対応</h3>
+          <p>建設業許可、相続・遺言、在留資格、法人設立など、暮らしやビジネスに関わる様々な許認可手続きをワンストップでサポートいたします。</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🏆</div>
+          <h3>横浜で開業20年の実績</h3>
+          <p>2006年の開業以来、横浜を中心に多くのお客様をサポートしてまいりました。豊富な経験と実績で、安心のサービスをお届けします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 取扱業務一覧 ========== -->
+  <section id="services" class="section section-bg">
+    <div class="container">
+      <div class="section-title">
+        <span class="en">Services</span>
+        <h2>取扱業務</h2>
+      </div>
+      <div class="services">
+        <div class="service-card">
+          <div class="service-icon">🏗</div>
+          <h3>建設業許可</h3>
+          <p>新規申請・更新・業種追加・経営事項審査など、建設業に関する許可手続きをトータルでサポートいたします。</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📜</div>
+          <h3>相続・遺言</h3>
+          <p>遺言書の作成支援、遺産分割協議書の作成、相続人調査など、円満な相続をお手伝いいたします。</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🌐</div>
+          <h3>在留資格・ビザ</h3>
+          <p>在留資格の認定・変更・更新、永住許可、帰化許可申請まで、外国人の方の日本での生活を支援いたします。</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏢</div>
+          <h3>法人設立</h3>
+          <p>株式会社、合同会社、一般社団法人、NPO法人など、法人設立に必要な定款作成・認証手続きを代行いたします。</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✅</div>
+          <h3>各種許認可</h3>
+          <p>飲食店営業許可、古物商許可、産業廃棄物収集運搬業許可など、各種許認可の取得をサポートいたします。</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📝</div>
+          <h3>契約書作成</h3>
+          <p>業務委託契約書、売買契約書、秘密保持契約書など、各種契約書の作成・リーガルチェックを行います。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 代表者プロフィール ========== -->
+  <section id="profile" class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="en">Profile</span>
+        <h2>代表者紹介</h2>
+      </div>
+      <div class="profile-wrap">
+        <!-- 写真プレースホルダー：実際の写真に差し替えてください
+             <img src="photo.jpg" alt="【代表者名】"> に置き換え可能です -->
+        <div class="profile-photo">代表者写真<br>（300×360px推奨）</div>
+        <div class="profile-text">
+          <h3>【代表者名】</h3>
+          <p class="title">代表行政書士 ／ 【事務所名】</p>
+          <p>横浜市生まれ。大学卒業後、法律事務所での勤務を経て2006年に行政書士登録。【地域名】にて【事務所名】を開業いたしました。</p>
+          <p>「お客様の"困った"に寄り添い、一つひとつ丁寧に対応する」をモットーに、建設業許可から相続・遺言、在留資格まで幅広い分野でサポートしております。難しい法律用語もわかりやすくご説明いたしますので、どうぞお気軽にご相談ください。</p>
+          <dl class="credentials">
+            <dt>保有資格</dt>
+            <dd>行政書士（登録番号：【登録番号】）</dd>
+            <dt>所属</dt>
+            <dd>【所属行政書士会】</dd>
+            <dt>経歴</dt>
+            <dd>法律事務所勤務（8年）→ 2006年 行政書士登録・開業<br>年間相談件数：約300件</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== お客様の声 ========== -->
+  <section id="voices" class="section section-bg">
+    <div class="container">
+      <div class="section-title">
+        <span class="en">Testimonials</span>
+        <h2>お客様の声</h2>
+      </div>
+      <div class="voices">
+        <!-- お客様の声1（プレースホルダー：後から差し替え可能） -->
+        <div class="voice-card">
+          <div class="voice-header">
+            <div class="voice-avatar">A</div>
+            <div class="voice-meta">
+              <div class="voice-name">A.S. 様</div>
+              <div class="voice-detail">建設業許可 新規申請</div>
+            </div>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p class="voice-text">初めての建設業許可で何もわからない状態でしたが、必要書類の準備から申請までとても丁寧に対応していただきました。おかげさまで無事に許可を取得でき、事業を拡大することができました。</p>
+        </div>
+        <!-- お客様の声2 -->
+        <div class="voice-card">
+          <div class="voice-header">
+            <div class="voice-avatar">K</div>
+            <div class="voice-meta">
+              <div class="voice-name">K.T. 様</div>
+              <div class="voice-detail">相続・遺言書作成</div>
+            </div>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p class="voice-text">母の遺言書作成をお願いしました。デリケートな話題にもかかわらず、親身になって対応してくださり感謝しております。家族全員が納得できる内容でまとめていただけました。</p>
+        </div>
+        <!-- お客様の声3 -->
+        <div class="voice-card">
+          <div class="voice-header">
+            <div class="voice-avatar">L</div>
+            <div class="voice-meta">
+              <div class="voice-name">L.W. 様</div>
+              <div class="voice-detail">在留資格変更許可申請</div>
+            </div>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p class="voice-text">留学ビザから就労ビザへの変更で困っていたところ、【代表者名】先生に相談しました。外国人の私にもわかりやすく説明してくださり、スムーズにビザを取得できました。本当にありがとうございます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== アクセス ========== -->
+  <section id="access" class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="en">Access</span>
+        <h2>アクセス</h2>
+      </div>
+      <div class="access-wrap">
+        <div class="access-info">
+          <table>
+            <tr><th>事務所名</th><td>【事務所名】</td></tr>
+            <tr><th>所在地</th><td>【郵便番号】<br>【事務所所在地】<br>横浜ビル5階</td></tr>
+            <tr><th>電話</th><td><a href="tel:【電話番号】">【電話番号】</a></td></tr>
+            <tr><th>メール</th><td><a href="mailto:【メールアドレス】">【メールアドレス】</a></td></tr>
+            <tr><th>営業時間</th><td>9:00〜18:00（土日祝休み）</td></tr>
+            <tr><th>最寄駅</th><td>JR・私鉄各線「横浜駅」東口 徒歩5分</td></tr>
+          </table>
+        </div>
+        <!-- Google Maps プレースホルダー：
+             この中身を <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe> に差し替えてください -->
+        <div class="access-map">Google Maps 埋め込みエリア<br>（iframeに差し替え可能）</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== お問い合わせフォーム ========== -->
+  <section id="contact" class="section section-bg">
+    <div class="container">
+      <div class="section-title">
+        <span class="en">Contact</span>
+        <h2>お問い合わせ</h2>
+      </div>
+      <!-- フォームのaction属性は空（バックエンド未実装のため） -->
+      <form class="contact-form" action="" method="post">
+        <div class="form-group">
+          <label>お名前 <span class="required">必須</span></label>
+          <input type="text" name="name" placeholder="例：【代表者名】" required>
+        </div>
+        <div class="form-group">
+          <label>メールアドレス <span class="required">必須</span></label>
+          <input type="email" name="email" placeholder="例：info@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>電話番号</label>
+          <input type="tel" name="tel" placeholder="例：【電話番号】">
+        </div>
+        <div class="form-group">
+          <label>ご相談内容 <span class="required">必須</span></label>
+          <textarea name="message" placeholder="ご相談内容をお気軽にご記入ください" required></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit">送信する</button>
+        </div>
+        <p class="form-note">※ 通常2営業日以内にご返信いたします。お急ぎの場合はお電話にてお問い合わせください。</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== フッター ========== -->
+  <footer class="footer">
+    <div class="container">
+      <!-- フッター上のCTA -->
+      <div class="footer-cta">
+        <p>まずはお気軽にご相談ください。初回相談無料です。</p>
+        <a href="#contact" class="btn-cta">お問い合わせはこちら</a>
+      </div>
+      <div class="footer-inner">
+        <div class="footer-info">
+          <h3>【事務所名】</h3>
+          <p>
+            【郵便番号】<br>
+            【事務所所在地】<br>
+            TEL：【電話番号】<br>
+            MAIL：【メールアドレス】<br>
+            URL：【WebサイトURL】
+          </p>
+          <p class="footer-badge">行政書士登録番号：【登録番号】 ／ 【所属行政書士会】所属</p>
+        </div>
+        <nav class="footer-nav">
+          <a href="#about">事務所紹介</a>
+          <a href="#services">取扱業務</a>
+          <a href="#profile">代表者紹介</a>
+          <a href="#voices">お客様の声</a>
+          <a href="#access">アクセス</a>
+          <a href="#contact">お問い合わせ</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 【事務所名】 All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

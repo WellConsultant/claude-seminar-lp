@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>請求書 - 【事務所名】</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== A4印刷用レイアウト ========== */
+    @page {
+      size: A4;
+      margin: 15mm;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 210mm;
+      min-height: 297mm;
+      max-height: 297mm;
+    }
+    body {
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+      font-size: 11px;
+      color: #333;
+      background: #FFFFFF;
+      padding: 15mm;
+      line-height: 1.6;
+    }
+
+    /* ========== 請求書タイトルエリア ========== */
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8mm;
+    }
+    .invoice-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1B2A4A;
+      letter-spacing: 0.3em;
+      border-bottom: 3px solid #1B2A4A;
+      padding-bottom: 4px;
+    }
+    .invoice-meta {
+      text-align: right;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+    .invoice-meta .label {
+      color: #666;
+    }
+
+    /* ========== 請求先 + 発行者 ========== */
+    .parties {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8mm;
+    }
+    .bill-to {
+      flex: 1;
+    }
+    .bill-to .company-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1B2A4A;
+      border-bottom: 2px solid #1B2A4A;
+      padding-bottom: 4px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    .bill-to .suffix {
+      font-size: 14px;
+      font-weight: 400;
+      margin-left: 4px;
+    }
+    .bill-to .sub-info {
+      font-size: 10px;
+      color: #666;
+      line-height: 1.7;
+    }
+    .issuer {
+      text-align: right;
+      font-size: 10px;
+      line-height: 1.8;
+      max-width: 55%;
+    }
+    .issuer .name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1B2A4A;
+      margin-bottom: 2px;
+    }
+    .issuer .registration {
+      color: #C9A84C;
+      font-weight: 500;
+      font-size: 10px;
+      margin-top: 2px;
+    }
+
+    /* ========== 合計金額（目立つ表示） ========== */
+    .total-box {
+      background: #F5F7FA;
+      border: 2px solid #1B2A4A;
+      border-radius: 4px;
+      padding: 5mm 6mm;
+      margin-bottom: 6mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .total-box .total-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1B2A4A;
+    }
+    .total-box .total-amount {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1B2A4A;
+    }
+    .total-box .total-amount .yen {
+      font-size: 14px;
+      font-weight: 400;
+      margin-right: 2px;
+    }
+
+    /* ========== 明細テーブル ========== */
+    .detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 5mm;
+      font-size: 10px;
+    }
+    .detail-table thead th {
+      background: #1B2A4A;
+      color: #FFFFFF;
+      padding: 3mm 3mm;
+      text-align: center;
+      font-weight: 500;
+      font-size: 10px;
+    }
+    .detail-table thead th:nth-child(1) { width: 8%; }
+    .detail-table thead th:nth-child(2) { width: 44%; text-align: left; }
+    .detail-table thead th:nth-child(3) { width: 10%; }
+    .detail-table thead th:nth-child(4) { width: 19%; }
+    .detail-table thead th:nth-child(5) { width: 19%; }
+    .detail-table tbody td {
+      padding: 3mm 3mm;
+      border-bottom: 1px solid #E0E0E0;
+      vertical-align: middle;
+    }
+    .detail-table tbody td:nth-child(1) { text-align: center; }
+    .detail-table tbody td:nth-child(3) { text-align: center; }
+    .detail-table tbody td:nth-child(4) { text-align: right; }
+    .detail-table tbody td:nth-child(5) { text-align: right; }
+    .detail-table .note {
+      font-size: 9px;
+      color: #999;
+    }
+
+    /* ========== 税率別集計 ========== */
+    .summary-area {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 6mm;
+    }
+    .summary-table {
+      width: 55%;
+      border-collapse: collapse;
+      font-size: 10px;
+    }
+    .summary-table td {
+      padding: 2mm 3mm;
+      border-bottom: 1px solid #E0E0E0;
+    }
+    .summary-table td:first-child {
+      text-align: left;
+      color: #666;
+    }
+    .summary-table td:last-child {
+      text-align: right;
+      font-weight: 500;
+    }
+    .summary-table .subtotal-row td {
+      border-bottom: 2px solid #1B2A4A;
+      font-weight: 700;
+      color: #1B2A4A;
+      font-size: 12px;
+      padding: 3mm;
+    }
+
+    /* ========== 振込先 ========== */
+    .payment-section {
+      margin-bottom: 5mm;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1B2A4A;
+      border-left: 3px solid #C9A84C;
+      padding-left: 3mm;
+      margin-bottom: 3mm;
+    }
+    .payment-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin-bottom: 3mm;
+    }
+    .payment-table th {
+      text-align: left;
+      background: #F5F5F5;
+      padding: 2mm 3mm;
+      border: 1px solid #E0E0E0;
+      font-weight: 500;
+      width: 20%;
+      color: #1B2A4A;
+    }
+    .payment-table td {
+      padding: 2mm 3mm;
+      border: 1px solid #E0E0E0;
+    }
+
+    /* ========== 備考欄 ========== */
+    .remarks {
+      font-size: 10px;
+      color: #666;
+      line-height: 1.8;
+      padding: 3mm;
+      background: #FAFAFA;
+      border: 1px solid #E0E0E0;
+      border-radius: 3px;
+    }
+    .remarks .remarks-title {
+      font-weight: 700;
+      color: #1B2A4A;
+      margin-bottom: 1mm;
+    }
+
+    /* ========== 印刷用 ========== */
+    @media print {
+      html, body {
+        width: auto;
+        min-height: auto;
+        max-height: none;
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        padding: 0;
+      }
+    }
+
+    /* ========== 画面表示用（中央寄せ） ========== */
+    @media screen {
+      body {
+        margin: 20px auto;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== 請求書ヘッダー ========== -->
+  <div class="invoice-header">
+    <div class="invoice-title">請 求 書</div>
+    <div class="invoice-meta">
+      <div><span class="label">請求番号：</span>INV-20260406-001</div>
+      <div><span class="label">請求日：</span>2026年4月6日</div>
+    </div>
+  </div>
+
+  <!-- ========== 請求先 + 発行者 ========== -->
+  <div class="parties">
+    <div class="bill-to">
+      <div class="company-name">株式会社サンプル商事<span class="suffix">御中</span></div>
+      <div class="sub-info">
+        ご担当：経理部 鈴木 一郎 様
+      </div>
+    </div>
+    <div class="issuer">
+      <div class="name">【事務所名】</div>
+      <div>代表行政書士　【代表者名】</div>
+      <div>【郵便番号】</div>
+      <div>【事務所所在地】</div>
+      <div>TEL：【電話番号】</div>
+      <div>MAIL：【メールアドレス】</div>
+      <div class="registration">適格請求書発行事業者登録番号：T1234567890123</div>
+    </div>
+  </div>
+
+  <!-- ========== 合計金額 ========== -->
+  <div class="total-box">
+    <div class="total-label">ご請求金額（税込）</div>
+    <div class="total-amount"><span class="yen">￥</span>217,000</div>
+  </div>
+
+  <!-- ========== 明細テーブル ========== -->
+  <table class="detail-table">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>品目・業務内容</th>
+        <th>数量</th>
+        <th>単価（税抜）</th>
+        <th>金額（税抜）</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>建設業許可 新規申請（知事）報酬</td>
+        <td>1</td>
+        <td>150,000</td>
+        <td>150,000</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>
+          登録免許税（知事許可）
+          <br><span class="note">※立替実費（税対象外）</span>
+        </td>
+        <td>1</td>
+        <td>50,000</td>
+        <td>50,000</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>
+          交通費
+          <br><span class="note">※立替実費（税対象外）</span>
+        </td>
+        <td>1</td>
+        <td>2,000</td>
+        <td>2,000</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ========== 税率別集計 ========== -->
+  <div class="summary-area">
+    <table class="summary-table">
+      <tr>
+        <td>10%対象 小計</td>
+        <td>150,000円</td>
+      </tr>
+      <tr>
+        <td>消費税（10%）</td>
+        <td>15,000円</td>
+      </tr>
+      <tr>
+        <td>10%対象 税込小計</td>
+        <td>165,000円</td>
+      </tr>
+      <tr>
+        <td>立替実費（税対象外）合計</td>
+        <td>52,000円</td>
+      </tr>
+      <tr>
+        <td>※行政書士報酬は標準税率10%が適用されます</td>
+        <td></td>
+      </tr>
+      <tr class="subtotal-row">
+        <td>ご請求合計額</td>
+        <td>217,000円</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ========== 振込先 ========== -->
+  <div class="payment-section">
+    <div class="section-label">お振込先</div>
+    <table class="payment-table">
+      <tr>
+        <th>銀行名</th>
+        <td>横浜銀行</td>
+        <th>支店名</th>
+        <td>横浜駅前支店</td>
+      </tr>
+      <tr>
+        <th>口座種別</th>
+        <td>普通</td>
+        <th>口座番号</th>
+        <td>1234567</td>
+      </tr>
+      <tr>
+        <th>口座名義</th>
+        <td colspan="3">ヤマダ タロウ</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ========== 備考欄 ========== -->
+  <div class="remarks">
+    <div class="remarks-title">備考</div>
+    ・お支払期限：2026年4月30日<br>
+    ・恐れ入りますが、振込手数料はお客様のご負担でお願いいたします。<br>
+    ・本請求書はインボイス制度に基づく適格請求書です。<br>
+    ・消費税の端数処理は切捨てにより算出しております。
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>行政書士チラシ 地域配布用サンプル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Noto Sans JP", "游ゴシック体", "Yu Gothic", "Hiragino Sans", sans-serif;
+    color: #333333;
+    background: #FFFFFF;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* A4: 210mm × 297mm — 全セクション合計が297mm以内に収まるよう設計 */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ==============================================
+     1. ヘッダー帯 + 代表者写真  ≈ 48mm
+     ============================================== */
+  .header-band {
+    background: #1B2A4A;
+    padding: 5mm 10mm 4mm 10mm;
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+  }
+  .header-left { flex: 1; }
+  .header-right { flex-shrink: 0; }
+
+  .office-badge {
+    display: inline-block;
+    border: 1px solid #C9A84C;
+    color: #C9A84C;
+    font-size: 7pt;
+    padding: 0.5mm 2.5mm;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5mm;
+  }
+  .area-name {
+    color: #C9A84C;
+    font-size: 12pt;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5mm;
+  }
+  .main-catch {
+    color: #FFFFFF;
+    font-size: 19pt;
+    font-weight: 900;
+    line-height: 1.3;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5mm;
+  }
+  .sub-catch {
+    color: rgba(255,255,255,0.8);
+    font-size: 8.5pt;
+    line-height: 1.5;
+  }
+
+  .representative-photo {
+    width: 30mm;
+    height: 36mm;
+    background: linear-gradient(135deg, #3a4f73, #2a3d5c);
+    border: 2px solid #C9A84C;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    text-align: center;
+  }
+  .photo-icon { font-size: 22pt; opacity: 0.8; }
+  .photo-label { font-size: 5.5pt; opacity: 0.7; margin-top: 0.5mm; }
+  .rep-name-header {
+    font-size: 7.5pt;
+    color: #C9A84C;
+    font-weight: 700;
+    margin-top: 1mm;
+    text-align: center;
+  }
+
+  /* ==============================================
+     ゴールドライン  ≈ 1.5mm
+     ============================================== */
+  .gold-line {
+    height: 1.5mm;
+    background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+    flex-shrink: 0;
+  }
+
+  /* ==============================================
+     2. お困りごとリスト  ≈ 28mm
+     ============================================== */
+  .troubles-section {
+    padding: 4mm 10mm 3mm 10mm;
+    background: #FDF6E3;
+  }
+  .section-title {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #1B2A4A;
+    text-align: center;
+    margin-bottom: 2.5mm;
+  }
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 12mm;
+    height: 0.7mm;
+    background: #C9A84C;
+    margin: 1mm auto 0;
+  }
+  .trouble-list { display: flex; flex-wrap: wrap; justify-content: center; }
+  .trouble-item {
+    display: inline-block;
+    width: 48%;
+    font-size: 8.5pt;
+    line-height: 1.4;
+    padding: 1mm 0 1mm 5mm;
+    position: relative;
+  }
+  .trouble-item::before {
+    content: "☑";
+    position: absolute;
+    left: 0;
+    color: #C0392B;
+    font-weight: 700;
+  }
+
+  /* ==============================================
+     3. 取扱業務一覧  ≈ 56mm
+     ============================================== */
+  .services-section { padding: 4mm 10mm 3mm 10mm; background: #FFFFFF; }
+  .service-cards { display: flex; flex-wrap: wrap; justify-content: space-between; }
+  .service-card {
+    display: inline-block;
+    width: 31.5%;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 3px;
+    padding: 2.5mm 2mm;
+    margin-bottom: 2mm;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .service-icon {
+    width: 10mm;
+    height: 10mm;
+    background: #1B2A4A;
+    border-radius: 50%;
+    margin: 0 auto 1mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C9A84C;
+    font-size: 12pt;
+  }
+  .service-name { font-size: 8.5pt; font-weight: 700; color: #1B2A4A; margin-bottom: 0.5mm; }
+  .service-desc { font-size: 6.5pt; color: #666666; line-height: 1.3; }
+
+  /* ==============================================
+     4. 選ばれる3つの理由  ≈ 30mm
+     ============================================== */
+  .reasons-section { padding: 3.5mm 10mm 3mm 10mm; background: #F5F5F5; }
+  .reasons-list { display: flex; justify-content: space-between; gap: 2mm; }
+  .reason-item { display: inline-block; width: 31%; text-align: center; }
+  .reason-number {
+    width: 7mm; height: 7mm;
+    background: #C9A84C; color: #FFFFFF;
+    font-size: 10pt; font-weight: 900;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1mm;
+  }
+  .reason-title { font-size: 9pt; font-weight: 700; color: #1B2A4A; margin-bottom: 0.5mm; }
+  .reason-text { font-size: 6.5pt; color: #666666; line-height: 1.4; }
+
+  /* ==============================================
+     5. 初回相談無料帯  ≈ 14mm
+     ============================================== */
+  .cta-band { background: #1B2A4A; padding: 3mm 10mm; text-align: center; }
+  .cta-main { font-size: 16pt; font-weight: 900; color: #C9A84C; letter-spacing: 0.12em; margin-bottom: 0.5mm; }
+  .cta-main .free-mark {
+    display: inline-block;
+    background: #C0392B; color: #FFFFFF;
+    font-size: 9pt; padding: 0.5mm 2mm;
+    border-radius: 2px; margin-right: 2mm;
+    vertical-align: middle; letter-spacing: 0.1em;
+  }
+  .cta-sub { font-size: 8pt; color: rgba(255,255,255,0.9); }
+
+  /* ==============================================
+     6. 代表者プロフィール  ≈ 22mm
+     ============================================== */
+  .profile-section {
+    padding: 3mm 10mm;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    border-bottom: 1px solid #E0E0E0;
+  }
+  .profile-photo {
+    width: 18mm; height: 18mm;
+    background: linear-gradient(135deg, #d4d4d4, #b0b0b0);
+    border-radius: 50%;
+    border: 1.5px solid #C9A84C;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .profile-photo-icon { font-size: 13pt; color: #888; }
+  .profile-photo-text { font-size: 4.5pt; color: #999; }
+  .profile-info { flex: 1; }
+  .profile-title { font-size: 6.5pt; color: #C9A84C; font-weight: 700; }
+  .profile-name { font-size: 11pt; font-weight: 700; color: #1B2A4A; margin-bottom: 0.5mm; }
+  .profile-name .ruby { font-size: 7pt; font-weight: 400; color: #666; margin-left: 1.5mm; }
+  .profile-text { font-size: 7pt; color: #666666; line-height: 1.4; }
+
+  /* ==============================================
+     7. 事務所情報 + 電話CTA  ≈ 90mm
+     ============================================== */
+  .footer-section {
+    padding: 3.5mm 10mm 3mm 10mm;
+    background: #F5F5F5;
+    flex: 1;
+  }
+  .footer-content { display: flex; justify-content: space-between; align-items: flex-start; gap: 4mm; }
+  .footer-left { display: inline-block; width: 55%; }
+  .footer-right { display: inline-block; width: 40%; text-align: center; }
+
+  .office-name-footer {
+    font-size: 11pt; font-weight: 700; color: #1B2A4A;
+    margin-bottom: 1.5mm;
+    border-bottom: 2px solid #C9A84C;
+    padding-bottom: 1mm;
+  }
+  .office-info-table {
+    width: 100%; font-size: 7pt;
+    line-height: 1.6; border-collapse: collapse;
+  }
+  .office-info-table th {
+    width: 16mm; text-align: left;
+    font-weight: 700; color: #1B2A4A;
+    vertical-align: top;
+    padding: 0.3mm 1.5mm 0.3mm 0;
+  }
+  .office-info-table td { vertical-align: top; padding: 0.3mm 0; }
+
+  .map-placeholder {
+    width: 100%; height: 18mm;
+    background: #E8E8E8;
+    border: 1px dashed #CCC;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 7pt; color: #999;
+    margin-top: 1.5mm; border-radius: 3px;
+  }
+
+  .phone-cta {
+    background: #C9A84C;
+    border-radius: 3px;
+    padding: 3mm;
+    margin-bottom: 2mm;
+  }
+  .phone-label { font-size: 7pt; color: #FFFFFF; margin-bottom: 0.5mm; }
+  .phone-number {
+    font-size: 18pt; font-weight: 900;
+    color: #FFFFFF; letter-spacing: 0.05em; line-height: 1.1;
+  }
+  .phone-hours { font-size: 6pt; color: rgba(255,255,255,0.9); margin-top: 0.5mm; }
+
+  .email-cta {
+    background: #FFFFFF;
+    border: 1.5px solid #1B2A4A;
+    border-radius: 3px;
+    padding: 2mm 3mm;
+    margin-bottom: 2mm;
+  }
+  .email-label { font-size: 6.5pt; color: #1B2A4A; font-weight: 700; }
+  .email-address { font-size: 8pt; color: #1B2A4A; font-weight: 500; }
+
+  .qr-area { display: flex; justify-content: center; align-items: center; gap: 2mm; }
+  .qr-placeholder {
+    width: 14mm; height: 14mm;
+    background: #FFFFFF;
+    border: 1px dashed #CCC;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5.5pt; color: #999; border-radius: 2px;
+  }
+  .qr-text { font-size: 6.5pt; color: #666; text-align: left; line-height: 1.4; }
+
+  /* ==============================================
+     最下部バー  ≈ 5mm
+     ============================================== */
+  .bottom-bar {
+    background: #1B2A4A;
+    padding: 1.5mm 10mm;
+    text-align: center;
+    font-size: 5.5pt;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  /* 印刷・画面 */
+  @media print {
+    body { margin: 0; padding: 0; }
+    .page { width: 210mm; height: 297mm; margin: 0; box-shadow: none; }
+  }
+  @media screen {
+    .page { box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin: 20px auto; }
+    body { background: #E0E0E0; padding: 20px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- 1. ヘッダー帯 + 代表者写真 -->
+  <div class="header-band">
+    <div class="header-left">
+      <div class="office-badge">行政書士事務所</div>
+      <div class="area-name">横浜市・川崎市の皆様へ</div>
+      <div class="main-catch">暮らしと事業の「困った」を<br>行政書士がまるごとサポート</div>
+      <div class="sub-catch">許認可申請・相続手続き・外国人雇用… 一人で悩まず、まずはご相談ください。</div>
+    </div>
+    <div class="header-right">
+      <!-- ★ 代表者写真をここに差し替え（推奨：縦長、30mm×36mm / 354×425px 相当） -->
+      <div class="representative-photo">
+        <div class="photo-icon">👤</div>
+        <div class="photo-label">代表者の写真を<br>ここに配置</div>
+      </div>
+      <div class="rep-name-header">代表 【代表者名】</div>
+    </div>
+  </div>
+
+  <div class="gold-line"></div>
+
+  <!-- 2. お困りごとリスト -->
+  <div class="troubles-section">
+    <div class="section-title">こんなお困りごとはありませんか？</div>
+    <div class="trouble-list">
+      <div class="trouble-item">建設業の許可を取りたいが手続きがわからない</div>
+      <div class="trouble-item">相続が発生したが何から始めればいいか不安</div>
+      <div class="trouble-item">外国人スタッフのビザ更新が迫っている</div>
+      <div class="trouble-item">遺言書を作りたいが書き方がわからない</div>
+      <div class="trouble-item">会社を設立したいが届出が多すぎて困っている</div>
+      <div class="trouble-item">役所に出す書類が複雑で自分では難しい</div>
+    </div>
+  </div>
+
+  <!-- 3. 取扱業務一覧 -->
+  <div class="services-section">
+    <div class="section-title">取扱業務のご案内</div>
+    <div class="service-cards">
+      <div class="service-card">
+        <div class="service-icon">🏗</div>
+        <div class="service-name">建設業許可</div>
+        <div class="service-desc">新規取得・更新・<br>業種追加に対応</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📜</div>
+        <div class="service-name">相続・遺言</div>
+        <div class="service-desc">遺産分割協議書・<br>公正証書遺言の作成</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌏</div>
+        <div class="service-name">在留資格・ビザ</div>
+        <div class="service-desc">就労ビザ・配偶者ビザ・<br>永住許可申請</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <div class="service-name">法人設立</div>
+        <div class="service-desc">株式会社・合同会社の<br>設立手続き一式</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <div class="service-name">各種許認可</div>
+        <div class="service-desc">飲食店営業・古物商・<br>産廃収集運搬など</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📝</div>
+        <div class="service-name">契約書作成</div>
+        <div class="service-desc">業務委託・売買・<br>賃貸借契約書の作成</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 選ばれる3つの理由 -->
+  <div class="reasons-section">
+    <div class="section-title">当事務所が選ばれる3つの理由</div>
+    <div class="reasons-list">
+      <div class="reason-item">
+        <div class="reason-number">1</div>
+        <div class="reason-title">横浜で15年の実績</div>
+        <div class="reason-text">地域に根ざして15年。年間200件以上のご相談に対応してまいりました。</div>
+      </div>
+      <div class="reason-item">
+        <div class="reason-number">2</div>
+        <div class="reason-title">土日・夜間も対応</div>
+        <div class="reason-text">お仕事帰りや休日のご相談もOK。事前予約制で柔軟に対応いたします。</div>
+      </div>
+      <div class="reason-item">
+        <div class="reason-number">3</div>
+        <div class="reason-title">明朗会計で安心</div>
+        <div class="reason-text">事前にお見積りを提示。追加費用は一切いただきません。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 初回相談無料帯 -->
+  <div class="cta-band">
+    <div class="cta-main"><span class="free-mark">無料</span>初回相談 60分</div>
+    <div class="cta-sub">完全予約制 ／ 秘密厳守 ／ 出張相談も承ります</div>
+  </div>
+
+  <!-- 6. 代表者プロフィール -->
+  <div class="profile-section">
+    <!-- ★ 代表者の丸写真に差し替え（推奨：正方形、18mm / 213px 相当） -->
+    <div class="profile-photo">
+      <div class="profile-photo-icon">👤</div>
+      <div class="profile-photo-text">写真</div>
+    </div>
+    <div class="profile-info">
+      <div class="profile-title">代表行政書士</div>
+      <div class="profile-name">【代表者名】<span class="ruby">（やまだ たろう）</span></div>
+      <div class="profile-text">【所属行政書士会】所属（登録番号：【登録番号】）。大手企業の法務部に10年勤務後、2011年に開業。建設業許可・在留資格を中心に、年間200件超の相談実績。「難しいことをわかりやすく」がモットーです。</div>
+    </div>
+  </div>
+
+  <!-- 7. 事務所情報 + 電話CTA -->
+  <div class="footer-section">
+    <div class="footer-content">
+      <div class="footer-left">
+        <div class="office-name-footer">【事務所名】</div>
+        <table class="office-info-table">
+          <tr><th>所在地</th><td>【郵便番号】 【事務所所在地】</td></tr>
+          <tr><th>アクセス</th><td>JR横浜駅 東口より徒歩5分</td></tr>
+          <tr><th>営業時間</th><td>平日 9:00〜18:00（土日祝は予約制）</td></tr>
+          <tr><th>電話番号</th><td>【電話番号】</td></tr>
+          <tr><th>メール</th><td>【メールアドレス】</td></tr>
+          <tr><th>Web</th><td>【WebサイトURL】</td></tr>
+        </table>
+        <!-- ★ 地図画像に差し替え -->
+        <div class="map-placeholder">🗺 地図画像をここに配置</div>
+      </div>
+      <div class="footer-right">
+        <div class="phone-cta">
+          <div class="phone-label">まずはお気軽にお電話ください</div>
+          <div class="phone-number">【電話番号】</div>
+          <div class="phone-hours">受付：平日 9:00〜18:00</div>
+        </div>
+        <div class="email-cta">
+          <div class="email-label">24時間受付 メール相談</div>
+          <div class="email-address">【メールアドレス】</div>
+        </div>
+        <div class="qr-area">
+          <!-- ★ QRコードに差し替え -->
+          <div class="qr-placeholder">QR<br>コード</div>
+          <div class="qr-text">Webからの<br>お問い合わせは<br>こちら →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    【事務所名】 ｜ 【地域名】高島2-1-1 横浜ビル5F ｜ TEL: 【電話番号】 ｜ 【所属行政書士会】所属
+  </div>
+
+</div>
+
+</body>
+</html>
