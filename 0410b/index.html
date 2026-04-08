@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code導入勉強会</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- =============================================
+   HEADER + HERO : Claude Code導入勉強会LP
+   ============================================= -->
+<style>
+html { scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* =================== HEADER =================== */
+.cc-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  height: 64px;
+  display: flex !important;
+  align-items: center !important;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-header-inner {
+  width: 100% !important;
+  max-width: 1060px;
+  margin: 0 !important;
+  padding: 0 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+}
+.cc-header-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.cc-header-logo-main {
+  font-size: 18px;
+  font-weight: 900;
+  color: #0f2d52;
+  white-space: nowrap;
+}
+.cc-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+}
+.cc-header-nav a {
+  font-size: 12px;
+  font-weight: 700;
+  color: #444;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+.cc-header-nav a:hover {
+  color: #0f2d52;
+  background: #f0f4f8;
+}
+.cc-header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #e8821a, #f5a623);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 10px 18px;
+  border-radius: 50px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(232,130,26,0.4);
+  flex-shrink: 0;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cc-header-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(232,130,26,0.5);
+}
+
+/* =================== HERO =================== */
+.cc-hero-wrap {
+  font-family: 'Noto Sans JP', sans-serif;
+  padding-top: 64px;
+  background: #fff;
+}
+.cc-hero-topbar {
+  background: #0f2d52;
+  padding: 14px 20px;
+  text-align: center;
+}
+.cc-hero-topbar p {
+  color: #fff;
+  font-size: clamp(13px, 2vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+.cc-hero-main {
+  max-width: 800px;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 56px 24px 64px !important;
+  box-sizing: border-box !important;
+}
+.cc-hero-h1 {
+  font-size: clamp(28px, 5vw, 48px) !important;
+  font-weight: 900 !important;
+  color: #0f2d52 !important;
+  line-height: 1.4 !important;
+  margin: 0 0 32px !important;
+  text-align: left !important;
+}
+.cc-hero-h1 span {
+  color: #0ea5a0;
+}
+.cc-hero-pains {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 36px !important;
+}
+.cc-hero-pains li {
+  font-size: clamp(14px, 2vw, 16px) !important;
+  color: #333 !important;
+  line-height: 2 !important;
+  padding-left: 24px !important;
+  position: relative !important;
+  text-align: left !important;
+}
+.cc-hero-pains li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  background: #0ea5a0;
+  border-radius: 50%;
+}
+.cc-hero-lead {
+  font-size: clamp(16px, 2.5vw, 20px) !important;
+  font-weight: 700 !important;
+  color: #0f2d52 !important;
+  line-height: 1.8 !important;
+  margin: 0 0 36px !important;
+  text-align: left !important;
+}
+.cc-hero-meta {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 28px !important;
+}
+.cc-hero-badge {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+.cc-hero-date {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f2d52;
+}
+.cc-hero-cta-wrap {
+  text-align: left;
+}
+.cc-hero-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #e8821a, #f5a623);
+  color: #fff;
+  font-size: clamp(15px, 2.5vw, 18px);
+  font-weight: 900;
+  padding: 18px 48px;
+  border-radius: 60px;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(232,130,26,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cc-hero-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(232,130,26,0.55);
+}
+.cc-hero-btn-sub {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+  .cc-header-nav { display: none; }
+  .cc-header { height: 56px; }
+  .cc-hero-wrap { padding-top: 56px; }
+  .cc-hero-main { padding: 36px 20px 48px !important; }
+  .cc-hero-btn { display: block; width: 100%; text-align: center; padding: 18px 20px; }
+}
+</style>
+
+<!-- ヘッダー -->
+<header class="cc-header">
+  <div class="cc-header-inner">
+    <a href="#" class="cc-header-logo">
+      <span class="cc-header-logo-main">Claude Code導入勉強会</span>
+    </a>
+    <nav class="cc-header-nav">
+      <a href="#cc-agenda">勉強会の内容</a>
+      <a href="#cc-recommend">こんな方へ</a>
+      <a href="#cc-profile">講師紹介</a>
+      <a href="#cc-bonus">参加特典</a>
+    </nav>
+    <a href="#cc-register" class="cc-header-cta">
+      お申し込みはこちら
+    </a>
+  </div>
+</header>
+
+<!-- ヒーロー -->
+<div class="cc-hero-wrap">
+  <div class="cc-hero-topbar">
+    <p>AIを導入したのに、全然楽にならない士業・経営者の方へ</p>
+  </div>
+
+  <div class="cc-hero-main">
+    <h1 class="cc-hero-h1">
+      本来の「専門家」としての仕事を<br>
+      取り戻すための<br>
+      <span>Claude AIの使い方</span>
+    </h1>
+
+    <ul class="cc-hero-pains">
+      <li>AIやツールを入れたのに、帰宅時間は変わらない</li>
+      <li>「自動化できる」と聞いたのに、自動化するための作業や修正作業に追われている</li>
+      <li>SNSを見ていると乗り遅れを感じて焦ってしまう</li>
+      <li>役所の「ポンコツ書式」のせいでAIが使えない</li>
+      <li>汎用的な情報ばかりで、自分の業務に活かせるかどうか全然わからない</li>
+    </ul>
+
+    <p class="cc-hero-lead">もしこのような状態なら、この勉強会が突破口になります。</p>
+
+    <div class="cc-hero-meta">
+      <span class="cc-hero-badge">参加無料</span>
+      <span class="cc-hero-badge">特典PDF付き</span>
+      <span class="cc-hero-date">2026年4月10日（金）開催</span>
+    </div>
+
+    <div class="cc-hero-cta-wrap">
+      <a href="#cc-register" class="cc-hero-btn">
+        今すぐ席を確保する
+        <span class="cc-hero-btn-sub">参加無料・Claude Code導入マニュアル（PDF）付き</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  section:has(.cc-header),
+  div:has(> .cc-header) {
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    line-height: 0 !important;
+  }
+</style>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  var el = document.querySelector('.cc-header');
+  if (!el) return;
+  var p = el.parentElement;
+  while (p && p !== document.body) {
+    p.style.setProperty('padding', '0', 'important');
+    p.style.setProperty('margin', '0', 'important');
+    p.style.setProperty('min-height', '0', 'important');
+    p.style.setProperty('line-height', '0', 'important');
+    if (p.tagName === 'SECTION') break;
+    p = p.parentElement;
+  }
+});
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; padding: 0; }
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  var selectors = ".cc-opening,.cc-deepdive,.cc-solution,.cc-agenda,.cc-benefits,.cc-recommend,.cc-profile,.cc-bonus,.cc-details,.cc-hero-wrap,.cc-header";
+  document.querySelectorAll(selectors).forEach(function(el){
+    var p = el.parentElement;
+    while(p && p !== document.body){
+      p.style.setProperty("padding-left","0","important");
+      p.style.setProperty("padding-right","0","important");
+      p.style.setProperty("margin-left","0","important");
+      p.style.setProperty("margin-right","0","important");
+      p.style.setProperty("max-width","none","important");
+      p.style.setProperty("width","100%","important");
+      if(p.tagName==="SECTION") break;
+      p = p.parentElement;
+    }
+  });
+});
+</script>
+
+<!-- =============================================
+   PART 02 : オープニング（問題提起）
+   ============================================= -->
+<style>
+.cc-opening {
+  background: #f5f7fa;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-opening-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-opening-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-opening-label {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-opening-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-opening-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 44px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  border-left: 5px solid #0ea5a0;
+}
+.cc-opening-box p {
+  font-size: 15px;
+  line-height: 2.1;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: left !important;
+}
+.cc-opening-box p:last-child { margin-bottom: 0; }
+.cc-opening-box strong { color: #0f2d52; font-weight: 900; }
+.cc-opening-box .cc-highlight { color: #dc3010; font-weight: 900; }
+
+@media(max-width: 600px) {
+  .cc-opening { padding: 48px 20px; }
+  .cc-opening-box { padding: 24px 20px; }
+  .cc-opening-box p { font-size: 14px; }
+}
+</style>
+
+<section class="cc-opening">
+  <div class="cc-opening-wrap">
+    <div class="cc-opening-title">
+      <div class="cc-opening-label">PROBLEM</div>
+      <h2>なぜ、AIを入れても<br>楽にならないのか？</h2>
+    </div>
+
+    <div class="cc-opening-box">
+      <p>「AIで業務を効率化しよう」。そう思って、ChatGPTを契約し、話題のツールを試し、YouTubeでプロンプトの書き方を勉強した。</p>
+      <p>でも気づけば、AIに指示を出すための準備に時間を取られ、出てきた文章を手直しする作業が増え、結局いつもと同じ時間に帰っている。</p>
+      <p>「AIを使いこなせていないのは自分だけなのでは」と焦って、また新しいツールの情報を探す。SNSを開けば「これ一発で自動化」という投稿が目に入り、試してみるが、自分の業務には合わない。</p>
+      <p>役所に出す書類は独自の書式だし、お客様ごとに内容が違うし、結局AIに丸投げできる仕事なんてほとんどない。</p>
+      <p><strong>この繰り返しに、心当たりはないでしょうか。</strong></p>
+      <p>実は、これには明確な理由があります。</p>
+      <p>ほとんどのAI情報が<span class="cc-highlight">「汎用的」</span>だからです。「AIの操作方法」は教えてくれても、「あなたの業務をどう変えるか」は誰も教えてくれません。</p>
+      <p>考えてみてください。料理のレシピを100個覚えても、毎日の夕食が楽にならないのと同じです。必要なのは「自分の冷蔵庫の中身」で「今日の夕食」を作る手順です。</p>
+      <p>AIも同じです。どれだけツールの使い方を知っていても、自分の業務フローの中にAIを組み込む設計ができなければ、業務は変わりません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 03 : 深掘り（AI情報が変わらない理由）
+   ============================================= -->
+<style>
+.cc-deepdive {
+  background: #fff;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-deepdive-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-deepdive-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-deepdive-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+.cc-deepdive-title p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.9;
+  margin: 12px 0 0;
+  text-align: center !important;
+}
+
+.cc-problem-card {
+  background: #f5f7fa;
+  border-radius: 14px;
+  padding: 32px 36px;
+  margin-bottom: 20px;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 20px !important;
+}
+.cc-problem-num {
+  background: #0f2d52;
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+.cc-problem-content h4 {
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 900;
+  color: #0f2d52;
+  margin-bottom: 10px;
+  text-align: left !important;
+}
+.cc-problem-content p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #444;
+  text-align: left !important;
+  margin: 0;
+}
+
+@media(max-width: 600px) {
+  .cc-deepdive { padding: 48px 20px; }
+  .cc-problem-card { flex-direction: column; padding: 24px 20px; gap: 12px !important; }
+}
+</style>
+
+<section class="cc-deepdive">
+  <div class="cc-deepdive-wrap">
+    <div class="cc-deepdive-title">
+      <h2>AI情報を追いかけても、<br>あなたの作業が変わらない理由</h2>
+      <p>世の中のAI情報には、3つの問題があります。</p>
+    </div>
+
+    <div class="cc-problem-card">
+      <div class="cc-problem-num">1</div>
+      <div class="cc-problem-content">
+        <h4>ツール紹介で止まっている</h4>
+        <p>「このツールが便利」「このプロンプトが使える」。しかし、それをあなたの業務のどこに、どう組み込むかは誰も教えてくれません。ツールを知ることと、業務が楽になることは別の話です。</p>
+      </div>
+    </div>
+
+    <div class="cc-problem-card">
+      <div class="cc-problem-num">2</div>
+      <div class="cc-problem-content">
+        <h4>汎用的すぎて実務に合わない</h4>
+        <p>「議事録を要約する」「メールの文案を作る」。確かに便利ですが、それは業務の末端です。あなたが本当に時間を取られているのは、役所の独自書式に合わせた書類作成や、何度もやり取りが必要な申請手続きではないでしょうか。</p>
+      </div>
+    </div>
+
+    <div class="cc-problem-card">
+      <div class="cc-problem-num">3</div>
+      <div class="cc-problem-content">
+        <h4>「全部AIにやらせる」という誤解</h4>
+        <p>AIに全てを任せようとして、結果的にAIの出力を修正する作業が増えている。これが「AIを入れたのに楽にならない」最大の原因です。正しくは、AIに任せる部分と自分がやる部分を設計することです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 04 : 解決策の提示
+   ============================================= -->
+<style>
+.cc-solution {
+  background: linear-gradient(135deg, #0f2d52 0%, #1e5fa8 100%);
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-solution-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-solution-title {
+  text-align: center !important;
+  margin-bottom: 36px;
+}
+.cc-solution-label {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-solution-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-solution-body {
+  max-width: 800px;
+  margin: 0;
+}
+.cc-solution-body p {
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 2.1;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 20px;
+  text-align: left !important;
+}
+.cc-solution-body p:last-child { margin-bottom: 0; }
+.cc-solution-body strong {
+  color: #f5a623;
+  font-weight: 900;
+}
+
+@media(max-width: 600px) {
+  .cc-solution { padding: 48px 20px; }
+}
+</style>
+
+<section class="cc-solution">
+  <div class="cc-solution-wrap">
+    <div class="cc-solution-title">
+      <div class="cc-solution-label">SOLUTION</div>
+      <h2>この勉強会では、<br>「あなたの業務」にAIを組み込む<br>設計方法をお伝えします</h2>
+    </div>
+
+    <div class="cc-solution-body">
+      <p>この勉強会でお伝えするのは、AIツールの使い方ではありません。</p>
+      <p>あなたの業務フローの中で、どこをAIに任せ、どこを自分がやるか。その<strong>設計方法</strong>です。</p>
+      <p>実際に補助金申請代行という業務にClaude Codeを導入し、事業計画書の作成・書類整理・レポート生成を自動化した実例をもとに、<strong>「専門家がAIを使って専門家の仕事に集中する」</strong>ための方法論をお見せします。</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 05 : アジェンダ（勉強会の内容）
+   ============================================= -->
+<style>
+.cc-agenda {
+  background: #f5f7fa;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-agenda-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-agenda-title {
+  text-align: center !important;
+  margin-bottom: 44px;
+}
+.cc-agenda-label {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-agenda-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-agenda-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 32px 36px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 20px !important;
+}
+.cc-agenda-num {
+  background: #0ea5a0;
+  color: #fff;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 20px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+.cc-agenda-content h4 {
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 900;
+  color: #0f2d52;
+  margin-bottom: 10px;
+  text-align: left !important;
+}
+.cc-agenda-content p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #444;
+  margin: 0;
+  text-align: left !important;
+}
+
+.cc-agenda-card:nth-child(odd) .cc-agenda-num { background: #0ea5a0; }
+.cc-agenda-card:nth-child(even) .cc-agenda-num { background: #0f2d52; }
+
+.cc-agenda-bonus {
+  border: 2px solid #e8821a;
+}
+.cc-agenda-bonus .cc-agenda-num {
+  background: #e8821a;
+}
+.cc-agenda-bonus-tag {
+  display: inline-block;
+  background: #fff3e6;
+  color: #e8821a;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+}
+
+@media(max-width: 600px) {
+  .cc-agenda { padding: 48px 20px; }
+  .cc-agenda-card { flex-direction: column; padding: 24px 20px; gap: 12px !important; }
+}
+</style>
+
+<section id="cc-agenda" class="cc-agenda">
+  <div class="cc-agenda-wrap">
+    <div class="cc-agenda-title">
+      <div class="cc-agenda-label">AGENDA</div>
+      <h2>勉強会で学べる6つのこと</h2>
+    </div>
+
+    <div class="cc-agenda-card">
+      <div class="cc-agenda-num">1</div>
+      <div class="cc-agenda-content">
+        <h4>なぜAIを入れても楽にならないのか</h4>
+        <p>「ツール導入」と「業務改善」の決定的な違いを解説します。AIで楽になる人とならない人の差は、ツールの種類ではなく、業務への組み込み方にあります。</p>
+      </div>
+    </div>
+
+    <div class="cc-agenda-card">
+      <div class="cc-agenda-num">2</div>
+      <div class="cc-agenda-content">
+        <h4>AI情報を取っても自分の作業が変わらない理由</h4>
+        <p>YouTube・SNS・セミナーでAI情報を追いかけても業務が変わらない構造的な理由と、そこから抜け出す方法をお伝えします。</p>
+      </div>
+    </div>
+
+    <div class="cc-agenda-card">
+      <div class="cc-agenda-num">3</div>
+      <div class="cc-agenda-content">
+        <h4>AI導入のマインドセット</h4>
+        <p>「全部AIにやらせる」ではなく「AIに任せる設計をする」。この考え方の転換が、AI活用の成否を分けます。多くの人がここでつまずいています。</p>
+      </div>
+    </div>
+
+    <div class="cc-agenda-card">
+      <div class="cc-agenda-num">4</div>
+      <div class="cc-agenda-content">
+        <h4>AI活用にかかせない3つの要素</h4>
+        <p>ツール・プロンプト・フローの三位一体。この3つが揃って初めてAIが業務を変えます。1つでも欠けると「便利だけど楽にならない」状態が続きます。</p>
+      </div>
+    </div>
+
+    <div class="cc-agenda-card">
+      <div class="cc-agenda-num">5</div>
+      <div class="cc-agenda-content">
+        <h4>Claude Code導入マニュアル解説</h4>
+        <p>Claude Codeの導入手順を、画面を見せながら解説します。勉強会の後、参加特典のマニュアル（PDF）を使って、すぐに自分の環境で再現できます。</p>
+      </div>
+    </div>
+
+    <div class="cc-agenda-card cc-agenda-bonus">
+      <div class="cc-agenda-num">6</div>
+      <div class="cc-agenda-content">
+        <div class="cc-agenda-bonus-tag">BONUS</div>
+        <h4>事業計画を一晩で作成する方法</h4>
+        <p>夕食を食べている間に、事業計画書をノンストップで作成する実演です。「AIが一晩で作った計画書」ではなく、「専門家の知識とAIの処理速度を掛け合わせた計画書」がどのように仕上がるかをお見せします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 06 : 参加するとどうなるか
+   ============================================= -->
+<style>
+.cc-benefits {
+  background: #fff;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-benefits-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-benefits-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-benefits-label {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-benefits-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-benefits-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+.cc-benefits-list li {
+  background: #f5f7fa;
+  border-radius: 12px;
+  padding: 22px 28px 22px 56px !important;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #333;
+  position: relative;
+  text-align: left !important;
+}
+.cc-benefits-list li::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 28px;
+  width: 16px;
+  height: 16px;
+  background: #0ea5a0;
+  border-radius: 50%;
+}
+.cc-benefits-list li::after {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 32px;
+  width: 8px;
+  height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+}
+
+/* 中間CTA */
+.cc-mid-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+.cc-mid-cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #e8821a, #f5a623);
+  color: #fff;
+  font-size: clamp(15px, 2.5vw, 18px);
+  font-weight: 900;
+  padding: 18px 48px;
+  border-radius: 60px;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(232,130,26,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cc-mid-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(232,130,26,0.55);
+}
+.cc-mid-cta-sub {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+@media(max-width: 600px) {
+  .cc-benefits { padding: 48px 20px; }
+  .cc-benefits-list li { padding: 18px 18px 18px 48px !important; font-size: 14px; }
+  .cc-benefits-list li::before { left: 18px; top: 24px; }
+  .cc-benefits-list li::after { left: 22px; top: 28px; }
+  .cc-mid-cta-btn { display: block; width: 100%; text-align: center; padding: 18px 20px; }
+}
+</style>
+
+<section class="cc-benefits">
+  <div class="cc-benefits-wrap">
+    <div class="cc-benefits-title">
+      <div class="cc-benefits-label">OUTCOME</div>
+      <h2>この勉強会に参加すると、<br>こうなります</h2>
+    </div>
+
+    <ul class="cc-benefits-list">
+      <li>AI情報に振り回されなくなる。何を追いかけるべきかがわかるようになる</li>
+      <li>「便利そうだけど自分の業務には使えない」という状態から抜け出せる</li>
+      <li>AIに任せる部分と自分がやる部分の線引きができるようになる</li>
+      <li>Claude Codeを自分のPCに導入し、実際に動かせる状態になる</li>
+      <li>役所の独自書式や紙ベースの業務にもAIを活用する考え方が身につく</li>
+      <li>「専門家としての仕事」に集中するための具体的な道筋が見える</li>
+    </ul>
+
+    <div class="cc-mid-cta">
+      <a href="#cc-register" class="cc-mid-cta-btn">
+        今すぐ席を確保する
+        <span class="cc-mid-cta-sub">参加無料・Claude Code導入マニュアル（PDF）付き</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 07 : こんな方におすすめ / 向かない方
+   ============================================= -->
+<style>
+.cc-recommend {
+  background: #f5f7fa;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-recommend-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-recommend-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-recommend-label {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-recommend-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-rec-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+}
+
+.cc-rec-box {
+  background: #fff;
+  border-radius: 14px;
+  padding: 32px 28px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+}
+.cc-rec-box-title {
+  font-size: 16px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  text-align: left !important;
+}
+.cc-rec-yes .cc-rec-box-title { color: #0ea5a0; }
+.cc-rec-no .cc-rec-box-title { color: #999; }
+
+.cc-rec-box ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.cc-rec-box li {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #444;
+  padding-left: 24px;
+  position: relative;
+  margin-bottom: 10px;
+  text-align: left !important;
+}
+.cc-rec-yes li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  background: #0ea5a0;
+  border-radius: 50%;
+}
+.cc-rec-yes li::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 9px;
+  width: 8px;
+  height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+}
+.cc-rec-no li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #ccc;
+  border-radius: 2px;
+}
+
+@media(max-width: 600px) {
+  .cc-recommend { padding: 48px 20px; }
+  .cc-rec-grid { grid-template-columns: 1fr !important; }
+}
+</style>
+
+<section id="cc-recommend" class="cc-recommend">
+  <div class="cc-recommend-wrap">
+    <div class="cc-recommend-title">
+      <div class="cc-recommend-label">FOR YOU?</div>
+      <h2>この勉強会は<br>こんな方のためのものです</h2>
+    </div>
+
+    <div class="cc-rec-grid">
+      <div class="cc-rec-box cc-rec-yes">
+        <div class="cc-rec-box-title">こんな方におすすめです</div>
+        <ul>
+          <li>AIを導入したが、結局自分の手作業は減っていない</li>
+          <li>ChatGPTを使ってはいるが、業務の本質的な部分には使えていない</li>
+          <li>AI関連の情報を追いかけるだけで疲れてきた</li>
+          <li>役所の独自書式や紙ベースの業務が多く、AIとの相性が悪いと感じている</li>
+          <li>「自動化」という言葉に期待したが、現実は手動の連続だった</li>
+          <li>Claude Codeという名前は聞いたことがあるが、何ができるかわからない</li>
+          <li>AIを使って本業に集中する時間を取り戻したい</li>
+        </ul>
+      </div>
+
+      <div class="cc-rec-box cc-rec-no">
+        <div class="cc-rec-box-title">こんな方には向きません</div>
+        <ul>
+          <li>AIの最新ニュースやトレンドを知りたいだけの方</li>
+          <li>自分の業務を変える気がない方</li>
+          <li>「ボタン一つで全自動」を期待している方</li>
+          <li>AIツールのレビューや比較が目的の方</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 08 : 講師プロフィール
+   ============================================= -->
+<style>
+.cc-profile {
+  background: #fff;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-profile-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-profile-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-profile-label {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-profile-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-profile-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.cc-profile-top {
+  background: linear-gradient(135deg, #0f2d52 0%, #1e5fa8 100%);
+  padding: 48px 48px 40px;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 36px !important;
+}
+.cc-profile-avatar {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.4);
+  flex-shrink: 0;
+  overflow: hidden;
+  background: rgba(255,255,255,0.15);
+}
+.cc-profile-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.cc-profile-intro {}
+.cc-profile-role {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.cc-profile-name {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.cc-profile-name-en {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 16px;
+}
+.cc-profile-badges {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+.cc-profile-badge {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.cc-profile-body {
+  padding: 40px 48px;
+}
+.cc-profile-text {
+  font-size: 15px;
+  line-height: 2;
+  color: #333;
+  margin-bottom: 24px;
+  text-align: left !important;
+}
+.cc-profile-text:last-child { margin-bottom: 0; }
+
+@media(max-width: 640px) {
+  .cc-profile { padding: 48px 20px; }
+  .cc-profile-top { flex-direction: column; padding: 32px 24px 28px; gap: 20px !important; }
+  .cc-profile-avatar { width: 80px; height: 80px; }
+  .cc-profile-body { padding: 28px 24px; }
+  .cc-profile-text { font-size: 14px; }
+}
+</style>
+
+<section id="cc-profile" class="cc-profile">
+  <div class="cc-profile-wrap">
+    <div class="cc-profile-title">
+      <div class="cc-profile-label">SPEAKER</div>
+      <h2>講師紹介</h2>
+    </div>
+
+    <div class="cc-profile-card">
+      <div class="cc-profile-top">
+        <div class="cc-profile-avatar">
+          <img src="https://raw.githubusercontent.com/WellConsultant/hojokin-lp-assets/main/profile_akutsu.png" alt="阿久津和宏">
+        </div>
+        <div class="cc-profile-intro">
+          <div class="cc-profile-role">行政書士</div>
+          <div class="cc-profile-name">阿久津 和宏</div>
+          <div class="cc-profile-name-en">Kazuhiro Akutsu</div>
+        </div>
+      </div>
+
+      <div class="cc-profile-body">
+        <p class="cc-profile-text">行政書士として補助金申請代行を行う中で、事業計画書の作成・書類整理・レポート生成などの実務にClaude Codeを導入。AIに任せる部分と自分がやる部分を設計することで、専門家としての判断や顧客対応に集中できる環境を作りました。</p>
+
+        <p class="cc-profile-text">自分自身が実務の中でAIを組み込んできた経験から、汎用的なAI情報ではなく「実務に落とし込む設計方法」を伝えることが必要だと考え、この勉強会を開催しています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 09 : 参加特典
+   ============================================= -->
+<style>
+.cc-bonus {
+  background: #f5f7fa;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-bonus-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-bonus-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-bonus-label {
+  display: inline-block;
+  background: #e8821a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-bonus-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-bonus-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 44px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  border-top: 5px solid #e8821a;
+}
+.cc-bonus-card-title {
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 900;
+  color: #0f2d52;
+  margin-bottom: 20px;
+  text-align: left !important;
+}
+.cc-bonus-card p {
+  font-size: 15px;
+  line-height: 2;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: left !important;
+}
+.cc-bonus-card p:last-child { margin-bottom: 0; }
+
+.cc-bonus-contents {
+  background: #f5f7fa;
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-top: 20px;
+}
+.cc-bonus-contents-title {
+  font-size: 14px;
+  font-weight: 900;
+  color: #0f2d52;
+  margin-bottom: 12px;
+  text-align: left !important;
+}
+.cc-bonus-contents ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.cc-bonus-contents li {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.9;
+  padding-left: 20px;
+  position: relative;
+  text-align: left !important;
+}
+.cc-bonus-contents li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  background: #e8821a;
+  border-radius: 50%;
+}
+
+@media(max-width: 600px) {
+  .cc-bonus { padding: 48px 20px; }
+  .cc-bonus-card { padding: 28px 20px; }
+  .cc-bonus-contents { padding: 18px 16px; }
+}
+</style>
+
+<section id="cc-bonus" class="cc-bonus">
+  <div class="cc-bonus-wrap">
+    <div class="cc-bonus-title">
+      <div class="cc-bonus-label">BONUS</div>
+      <h2>参加特典</h2>
+    </div>
+
+    <div class="cc-bonus-card">
+      <div class="cc-bonus-card-title">Claude Code導入マニュアル（PDF）</div>
+      <p>勉強会で解説する導入手順を、そのまま自分で再現できるマニュアルです。勉強会の後、自分のPCですぐに試すことができます。</p>
+
+      <div class="cc-bonus-contents">
+        <div class="cc-bonus-contents-title">マニュアルの内容</div>
+        <ul>
+          <li>Claude Codeのインストール手順</li>
+          <li>初期設定の方法</li>
+          <li>最初に試すべき操作</li>
+          <li>よくあるエラーと対処法</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 10 : 開催概要 + CTA
+   ============================================= -->
+<style>
+.cc-details {
+  background: linear-gradient(135deg, #0f2d52 0%, #1e5fa8 100%);
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-details-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-details-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-details-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-details-table {
+  width: 100% !important;
+  max-width: 600px;
+  margin: 0 auto 48px;
+  border-collapse: collapse;
+}
+.cc-details-table th,
+.cc-details-table td {
+  padding: 16px 20px;
+  font-size: 15px;
+  line-height: 1.8;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  text-align: left !important;
+}
+.cc-details-table th {
+  color: rgba(255,255,255,0.7);
+  font-weight: 700;
+  width: 120px;
+  white-space: nowrap;
+}
+.cc-details-table td {
+  color: #fff;
+  font-weight: 700;
+}
+.cc-details-table .cc-free {
+  color: #f5a623;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.cc-cta-block {
+  text-align: center;
+}
+.cc-cta-message {
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+  text-align: center !important;
+}
+.cc-cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #e8821a, #f5a623);
+  color: #fff;
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 900;
+  padding: 22px 60px;
+  border-radius: 60px;
+  text-decoration: none;
+  box-shadow: 0 8px 32px rgba(232,130,26,0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cc-cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(232,130,26,0.6);
+}
+.cc-cta-btn-sub {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 6px;
+}
+.cc-cta-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 16px;
+  text-align: center !important;
+}
+
+@media(max-width: 600px) {
+  .cc-details { padding: 48px 20px; }
+  .cc-details-table th { width: 90px; font-size: 13px; }
+  .cc-details-table td { font-size: 14px; }
+  .cc-cta-btn { display: block; width: 100%; text-align: center; padding: 20px 20px; font-size: 16px; }
+}
+</style>
+
+<section id="cc-register" class="cc-details">
+  <div class="cc-details-wrap">
+    <div class="cc-details-title">
+      <h2>今すぐ席を確保してください</h2>
+    </div>
+
+    <table class="cc-details-table">
+      <tr>
+        <th>日時</th>
+        <td>2026年4月10日（金）</td>
+      </tr>
+      <tr>
+        <th>形式</th>
+        <td>オンライン（EasyWebinar）</td>
+      </tr>
+      <tr>
+        <th>参加費</th>
+        <td><span class="cc-free">無料</span></td>
+      </tr>
+      <tr>
+        <th>特典</th>
+        <td>Claude Code導入マニュアル（PDF）</td>
+      </tr>
+    </table>
+
+    <div class="cc-cta-block">
+      <p class="cc-cta-message">AIを「知っている」から「使いこなす」へ。</p>
+      <a href="https://fp1.easywebinar.live/event-registration-51" class="cc-cta-btn" target="_blank" rel="noopener">
+        今すぐ席を確保する
+        <span class="cc-cta-btn-sub">参加無料・Claude Code導入マニュアル（PDF）付き</span>
+      </a>
+      <p class="cc-cta-note">お申し込み後、参加URLをメールでお届けします。</p>
+      <p class="cc-cta-note" style="margin-top: 8px; color: rgba(255,255,255,0.8); font-weight: 700;">※ アーカイブ配信はありません。当日のみの開催です。</p>
+    </div>
+  </div>
+</section>
+</body></html>
