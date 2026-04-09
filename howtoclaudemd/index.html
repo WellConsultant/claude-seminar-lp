@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLAUDE.md はじめの一歩 — 士業・コンサルのためのClaude Code設定入門</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #F8F7F4;
+  --card: #FFFFFF;
+  --text: #2D2A26;
+  --sub: #6B6560;
+  --accent: #C45D2C;
+  --accent-soft: #FDF0EB;
+  --accent-border: #E8835A;
+  --navy: #1B3A5C;
+  --navy-soft: #EDF2F7;
+  --green: #2D7D46;
+  --green-soft: #ECF7F0;
+  --warm: #8B6914;
+  --warm-soft: #FBF6E9;
+  --red: #B83232;
+  --red-soft: #FDF0F0;
+  --teal: #1A7A6D;
+  --teal-soft: #EBF9F7;
+  --border: #E2DED8;
+  --code-bg: #F3F1EC;
+  --gray-soft: #F5F3EF;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 2;
+  font-size: 15.5px;
+}
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+/* ===== COUNTDOWN ===== */
+.countdown-bar {
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.countdown-bar .timer-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.03em;
+}
+
+.expired-page {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.expired-page p {
+  font-size: 17px;
+  color: var(--sub);
+  line-height: 2;
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding: 56px 0 24px;
+}
+
+.hero-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  color: var(--navy);
+}
+
+.hero .subtitle {
+  font-size: 15px;
+  color: var(--sub);
+  line-height: 1.9;
+}
+
+.hero-line {
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin: 24px 0 40px;
+}
+
+/* ===== WHO ===== */
+.who-box {
+  background: var(--warm-soft);
+  border: 1px solid #EDE4C8;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 40px;
+  font-size: 14px;
+}
+
+.who-box strong {
+  color: var(--warm);
+}
+
+/* ===== TOC ===== */
+.toc {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-bottom: 48px;
+}
+
+.toc-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sub);
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.toc ol {
+  list-style: none;
+  counter-reset: toc;
+}
+
+.toc ol li {
+  counter-increment: toc;
+  padding: 5px 0;
+  font-size: 14.5px;
+}
+
+.toc ol li a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.toc ol li a::before {
+  content: counter(toc) ".";
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 14px;
+  min-width: 20px;
+}
+
+.toc ol li a:hover { color: var(--accent); }
+
+/* ===== SECTIONS ===== */
+.section {
+  margin-bottom: 56px;
+}
+
+.section h2 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+  padding-top: 8px;
+  border-top: 2px solid var(--border);
+  line-height: 1.6;
+}
+
+.section .lead {
+  color: var(--sub);
+  font-size: 14.5px;
+  margin-bottom: 20px;
+}
+
+.section h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 28px 0 8px;
+  color: var(--text);
+}
+
+.section p {
+  margin-bottom: 12px;
+}
+
+/* ===== ANALOGY BOX ===== */
+.analogy {
+  background: var(--navy-soft);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  font-size: 14.5px;
+  border-left: 4px solid var(--navy);
+}
+
+.analogy .a-title {
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+/* ===== TERM BOX ===== */
+.term {
+  background: var(--warm-soft);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-size: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.term-word {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--warm);
+  white-space: nowrap;
+  padding-top: 2px;
+  min-width: 80px;
+}
+
+.term-meaning {
+  color: var(--text);
+}
+
+/* ===== CODE BLOCKS ===== */
+.code-block {
+  background: #252320;
+  color: #D9D4CC;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #1C1A18;
+  font-size: 12.5px;
+  color: #9B9590;
+}
+
+.code-header .dots {
+  display: flex;
+  gap: 6px;
+}
+
+.code-header .dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot-r { background: #E8776A; }
+.dot-y { background: #E8C36A; }
+.dot-g { background: #7EC87E; }
+
+.code-block pre {
+  padding: 16px 20px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.8;
+  font-size: 13px;
+  white-space: pre;
+}
+
+.cm { color: #7A756E; }
+.h1 { color: #E8C36A; font-weight: bold; }
+.h2 { color: #7EB8E8; }
+.val { color: #C9A3E8; }
+.str { color: #7EC87E; }
+.warn { color: #E8776A; }
+.at { color: #E8A36A; }
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 14px;
+}
+
+.card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.card p { margin-bottom: 6px; font-size: 14.5px; }
+.card p:last-child { margin-bottom: 0; }
+
+/* ===== HIGHLIGHT ===== */
+.hl {
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.hl-red    { background: var(--red-soft); border-left: 4px solid var(--red); }
+.hl-green  { background: var(--green-soft); border-left: 4px solid var(--green); }
+.hl-navy   { background: var(--navy-soft); border-left: 4px solid var(--navy); }
+.hl-amber  { background: var(--warm-soft); border-left: 4px solid var(--warm); }
+.hl-teal   { background: var(--teal-soft); border-left: 4px solid var(--teal); }
+.hl-accent { background: var(--accent-soft); border-left: 4px solid var(--accent); }
+
+.hl strong { display: block; margin-bottom: 4px; }
+
+/* ===== GOOD/BAD ===== */
+.gb {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+@media (max-width: 600px) { .gb { grid-template-columns: 1fr; } }
+
+.g-box, .b-box {
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 13.5px;
+  line-height: 1.8;
+}
+
+.g-box { background: var(--green-soft); border: 1px solid #B8DFC5; }
+.b-box { background: var(--red-soft); border: 1px solid #F0C4C4; }
+
+.g-box .lbl, .b-box .lbl {
+  font-weight: 700;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.g-box .lbl { color: var(--green); }
+.b-box .lbl { color: var(--red); }
+
+/* ===== NUMBER LIST ===== */
+.num-list {
+  list-style: none;
+  counter-reset: nl;
+  margin: 16px 0;
+}
+
+.num-list li {
+  counter-increment: nl;
+  padding: 12px 0 12px 44px;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  font-size: 14.5px;
+}
+
+.num-list li:last-child { border-bottom: none; }
+
+.num-list li::before {
+  content: counter(nl);
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 28px;
+  height: 28px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.num-list li strong { color: var(--navy); }
+
+/* ===== TABLE ===== */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+.info-table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: var(--gray-soft);
+  font-weight: 700;
+  font-size: 13px;
+  border-bottom: 2px solid var(--border);
+}
+
+.info-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.info-table tr:last-child td { border-bottom: none; }
+
+.info-table code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  background: var(--code-bg);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+/* ===== CHECKLIST ===== */
+.checklist {
+  list-style: none;
+  margin: 16px 0;
+}
+
+.checklist li {
+  padding: 7px 0 7px 32px;
+  position: relative;
+  font-size: 14.5px;
+}
+
+.checklist li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 22px;
+  height: 22px;
+  background: var(--green);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 40px 0;
+  color: var(--sub);
+  font-size: 12.5px;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+.footer a { color: var(--navy); }
+</style>
+</head>
+<body>
+
+<!-- ===== COUNTDOWN BAR ===== -->
+<div class="countdown-bar" id="countdown-bar">
+  公開終了まで あと <span class="timer-value" id="countdown-value">--</span>
+</div>
+
+<!-- ===== EXPIRED MESSAGE (初期非表示) ===== -->
+<div class="expired-page" id="expired-message">
+  <p>このページの公開期間は終了いたしました。</p>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="main-content">
+<div class="container">
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-eyebrow">CLAUDE CODE 設定入門</div>
+  <h1>CLAUDE.md はじめの一歩<br><span style="font-size:18px; font-weight:400;">— 士業・コンサルタントのための「指示書」の書き方</span></h1>
+  <p class="subtitle">
+    Claude Codeは、あなたの代わりにファイルを作り、コマンドを実行してくれるAIアシスタントです。<br>
+    でも毎回ゼロから「うちのルール」を説明するのは面倒ですよね。<br>
+    <strong>CLAUDE.md</strong> は、Claude Codeに渡す「うちの事務所のルールブック」です。<br>
+    このガイドでは、プログラミング経験がなくても書けるように、<br>
+    士業・コンサルタントの日常業務に即した言葉で解説します。
+  </p>
+  <div class="hero-line"></div>
+</div>
+
+<!-- ===== 対象読者 ===== -->
+<div class="who-box">
+  <strong>こんな方に向けて書いています</strong><br>
+  行政書士・社労士・税理士・中小企業診断士などの士業、経営コンサルタント、補助金申請支援者。<br>
+  Claude Codeを使って業務を自動化したいが、エンジニア向けの説明ではピンと来ない方。
+</div>
+
+<!-- ===== TOC ===== -->
+<nav class="toc">
+  <div class="toc-title">もくじ</div>
+  <ol>
+    <li><a href="#s1">CLAUDE.mdって何？ — 「毎朝渡す引き継ぎメモ」</a></li>
+    <li><a href="#s2">どこに置く？ — ファイルの置き場所</a></li>
+    <li><a href="#s3">何を書く？ — 5つのブロックだけ覚える</a></li>
+    <li><a href="#s4">実例 ① 行政書士事務所の場合</a></li>
+    <li><a href="#s5">実例 ② 補助金コンサルの場合</a></li>
+    <li><a href="#s6">よくある専門用語をやさしく言い換え</a></li>
+    <li><a href="#s7">最初の一歩 — /init で自動生成する</a></li>
+    <li><a href="#s8">失敗しないための5つの心がけ</a></li>
+    <li><a href="#s9">最終チェック</a></li>
+  </ol>
+</nav>
+
+<!-- ===== SECTION 1 ===== -->
+<section class="section" id="s1">
+  <h2>1. CLAUDE.mdって何？</h2>
+  <p class="lead">一言で言えば「毎朝、助手に渡す引き継ぎメモ」です。</p>
+
+  <div class="analogy">
+    <div class="a-title">たとえるなら…</div>
+    あなたの事務所に、毎朝「今日が初出勤」の優秀な助手が来ると想像してください。<br>
+    能力は高い。でも、あなたの事務所のやり方は何も知りません。<br><br>
+    <strong>「うちはファイル名に日付を入れるルールだよ」</strong><br>
+    <strong>「顧客への連絡はこのテンプレートを使ってね」</strong><br>
+    <strong>「この補助金の申請書はこの順番で作ってね」</strong><br><br>
+    毎朝これを口頭で説明するのは大変ですよね。<br>
+    だから、<strong>紙に書いて渡す</strong>。これがCLAUDE.mdです。
+  </div>
+
+  <p>Claude Codeは、作業を始めるたびに<strong>前回の記憶がリセット</strong>されます。昨日どんなやり取りをしたか覚えていません。でもCLAUDE.mdは、毎回自動的に最初に読んでくれます。だから「何度も同じ説明をする」がなくなります。</p>
+
+  <div class="gb">
+    <div class="b-box">
+      <div class="lbl">❌ CLAUDE.mdがない場合</div>
+      「ファイル名は年月日_顧客名にして」<br>
+      「Wordで作って」<br>
+      「敬語で書いて」<br>
+      …と毎回指示し直す
+    </div>
+    <div class="g-box">
+      <div class="lbl">✅ CLAUDE.mdがある場合</div>
+      「○○さんの申請書を作って」<br>
+      の一言で、命名ルールも書式も敬語も<br>
+      全部守って作ってくれる
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2 ===== -->
+<section class="section" id="s2">
+  <h2>2. どこに置く？</h2>
+  <p class="lead">作業フォルダの一番上に置くだけです。</p>
+
+  <p>たとえばあなたの仕事用フォルダが <code>my-project</code> だとしたら：</p>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+      フォルダの中身
+    </div>
+    <pre><span class="str">my-project/</span>
+  ├── <span class="h1">CLAUDE.md</span>        <span class="cm">← ★ ここに置く</span>
+  ├── templates/        <span class="cm">← 申請書テンプレートなど</span>
+  ├── clients/          <span class="cm">← 顧客別フォルダなど</span>
+  └── scripts/          <span class="cm">← 自動化スクリプトなど</span></pre>
+  </div>
+
+  <div class="hl hl-red">
+    <strong>⚠️ ファイル名に注意</strong>
+    <code>CLAUDE.md</code> は大文字です。<code>claude.md</code>（小文字）では読み込まれません。<br>
+    「CLAUDE」が大文字、「.md」が小文字。これだけ守ってください。
+  </div>
+
+  <div class="hl hl-navy">
+    <strong>💡 もうひとつ：CLAUDE.local.md</strong>
+    自分だけのメモ（テスト用の設定など）は <code>CLAUDE.local.md</code> に書けます。<br>
+    このファイルは自動的に共有対象から外れるので、チームに見られる心配がありません。
+  </div>
+</section>
+
+<!-- ===== SECTION 3 ===== -->
+<section class="section" id="s3">
+  <h2>3. 何を書く？ — 5つのブロック</h2>
+  <p class="lead">全部書く必要はありません。自分の業務に合うものだけ選んでください。</p>
+
+  <ol class="num-list">
+    <li>
+      <strong>このプロジェクトは何か（概要）</strong><br>
+      1〜3行でOK。「何の仕事をするフォルダか」を書く。<br>
+      例）「建設業許可申請の書類作成プロジェクト」<br>
+      例）「小規模事業者持続化補助金の事業計画書作成支援」
+    </li>
+    <li>
+      <strong>よく使う操作の手順（コマンド）</strong><br>
+      「コマンド」とは、Claude Codeに打ち込む操作指示のことです。<br>
+      普段やる操作を書いておくと、Claudeが正しい手順を覚えてくれます。<br>
+      例）「Pythonスクリプトを動かすとき → <code>python scripts/generate.py</code>」<br>
+      例）「Wordファイルをプレビューするとき → <code>open output.docx</code>」
+    </li>
+    <li>
+      <strong>フォルダの役割（構造）</strong><br>
+      「どのフォルダに何が入っているか」を書く。<br>
+      Claudeが「このファイルはどこに保存すればいいか」を迷わなくなります。
+    </li>
+    <li>
+      <strong>仕事のルール（決まりごと）</strong><br>
+      命名規則、文体、フォーマットなど、事務所の「お作法」を書く。<br>
+      例）「ファイル名は 年月日_顧客名_書類名.docx」<br>
+      例）「敬体（です・ます調）で統一」
+    </li>
+    <li>
+      <strong>やってはいけないこと（注意事項）</strong><br>
+      Claude Codeが過去にやらかしたことや、絶対に守ってほしい禁止事項。<br>
+      例）「顧客の個人情報をファイル名に入れない」<br>
+      例）「テンプレートの元ファイルを直接編集しない。必ずコピーしてから使う」
+    </li>
+  </ol>
+
+  <div class="hl hl-accent">
+    <strong>書く基準はひとつだけ</strong>
+    「これを書いておかないと、Claudeが間違えること」だけ書く。<br>
+    当たり前のこと（「日本語で書いてね」など）は書かなくて大丈夫です。
+  </div>
+</section>
+
+<!-- ===== SECTION 4 ===== -->
+<section class="section" id="s4">
+  <h2>4. 実例 ① 行政書士事務所の場合</h2>
+  <p class="lead">建設業許可申請の書類作成を支援するプロジェクトの例です。</p>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+      CLAUDE.md（行政書士事務所）
+    </div>
+    <pre><span class="h1"># 建設業許可申請 書類作成プロジェクト</span>
+
+行政書士事務所の建設業許可申請に必要な書類を作成・管理する
+プロジェクト。クライアントごとにフォルダを分けて運用する。
+
+<span class="h2">## フォルダ構成</span>
+
+<span class="str">templates/</span>    <span class="cm">申請書のひな型（Word・Excel）。ここは読み取り専用。</span>
+<span class="str">clients/</span>      <span class="cm">顧客別フォルダ。中に申請書類一式を作成する。</span>
+<span class="str">reference/</span>    <span class="cm">法令資料・記載例・過去の申請事例。参考用。</span>
+<span class="str">scripts/</span>      <span class="cm">自動化用のPythonスクリプト。</span>
+<span class="str">output/</span>       <span class="cm">完成した書類の最終版を置く場所。</span>
+
+<span class="h2">## よく使う操作</span>
+
+<span class="cm"># 新しい顧客フォルダを作るとき</span>
+<span class="val">python scripts/new_client.py 会社名</span>
+
+<span class="cm"># 書類のWord→PDF変換</span>
+<span class="val">python scripts/convert_to_pdf.py ファイル名.docx</span>
+
+<span class="cm"># 記載例を確認するとき</span>
+<span class="val">reference/ フォルダの中を見る</span>
+
+<span class="h2">## ルール</span>
+
+<span class="h1">【ファイル命名規則】</span>
+  YYYYMMDD_会社名_書類名.拡張子
+  例: 20260409_田中建設_許可申請書.docx
+
+<span class="h1">【文体】</span>
+  申請書類 → 常体（である調）
+  クライアントへの案内文 → 敬体（です・ます調）
+
+<span class="h1">【テンプレート使用ルール】</span>
+  templates/ の中身は絶対に直接編集しない。
+  必ず clients/会社名/ にコピーしてから編集すること。
+
+<span class="h2">## 注意事項（必ず守ること）</span>
+
+<span class="warn">- 代表者の個人番号（マイナンバー）をファイル名に含めない</span>
+<span class="warn">- 許可番号・登録番号は reference/license_numbers.csv で管理。</span>
+<span class="warn">  手打ちせず、必ずこのファイルから転記すること</span>
+<span class="warn">- 提出期限は clients/会社名/deadline.txt に記載がある。</span>
+<span class="warn">  書類作成時に必ず確認すること</span>
+<span class="warn">- 完成した書類は必ず output/ にもコピーを置くこと</span></pre>
+  </div>
+
+  <div class="hl hl-green">
+    <strong>✅ この例のポイント</strong>
+    ① テンプレートを「直接編集するな」と明記している → Claudeが元ファイルを壊す事故を防げる<br>
+    ② 許可番号の参照先を指定している → 手打ちによる転記ミスを防げる<br>
+    ③ ファイル命名規則が具体的 → 「YYYYMMDD」と書くだけでClaude は日付を入れてくれる<br>
+    ④ マイナンバーの注意を書いている → 情報漏洩リスクを構造的に防げる
+  </div>
+</section>
+
+<!-- ===== SECTION 5 ===== -->
+<section class="section" id="s5">
+  <h2>5. 実例 ② 補助金コンサルの場合</h2>
+  <p class="lead">持続化補助金の事業計画書作成を支援するプロジェクトの例です。</p>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+      CLAUDE.md（補助金コンサル）
+    </div>
+    <pre><span class="h1"># 持続化補助金 事業計画書作成プロジェクト</span>
+
+小規模事業者持続化補助金の事業計画書を、
+クライアントのヒアリング内容をもとに作成するプロジェクト。
+
+<span class="h2">## フォルダ構成</span>
+
+<span class="str">hearings/</span>     <span class="cm">ヒアリング記録（文字起こし・メモ）</span>
+<span class="str">analysis/</span>     <span class="cm">市場分析・SWOT分析の結果</span>
+<span class="str">drafts/</span>       <span class="cm">計画書の下書き（バージョン管理）</span>
+<span class="str">final/</span>        <span class="cm">提出用の最終版</span>
+<span class="str">templates/</span>    <span class="cm">様式のひな型。直接編集禁止。</span>
+<span class="str">reference/</span>    <span class="cm">審査基準・公募要領・記載例</span>
+
+<span class="h2">## 作業の流れ</span>
+
+1. hearings/ のヒアリング記録を読む
+2. analysis/ に市場分析・SWOT分析を出力
+3. drafts/ に事業計画書の各セクションを作成
+4. 完成後 final/ に提出用ファイルを出力
+
+<span class="h2">## ルール</span>
+
+<span class="h1">【文体】</span>
+  事業計画書は常体（である調）で統一。
+  ただし「お客様の声」の引用部分は敬体でもよい。
+
+<span class="h1">【文字数】</span>
+  様式2: 経営計画 → 2,000〜3,000字
+  様式3: 補助事業計画 → 3,000〜5,000字
+  ※ 審査員が読みやすい分量を意識すること。
+
+<span class="h1">【数値の扱い】</span>
+  売上・経費の数値は必ず hearings/ 内の元データから引用。
+  推測で数字を作らない。不明な場合は「要確認」と記載する。
+
+<span class="h1">【下書きのバージョン管理】</span>
+  drafts/ 内のファイル名: v1_様式名.md, v2_様式名.md ...
+  上書きせず、バージョンを増やして保存すること。
+
+<span class="h2">## 注意事項</span>
+
+<span class="warn">- 数字を「それっぽく」でっち上げない。</span>
+<span class="warn">  根拠のない数値は審査で減点される。</span>
+<span class="warn">- クライアントの社名・代表者名が正しいか、</span>
+<span class="warn">  hearings/ の元データと必ず照合すること。</span>
+<span class="warn">- 公募要領の締切日は reference/schedule.txt に記載。</span>
+<span class="warn">  作業前に必ず確認。</span>
+<span class="warn">- 審査基準の5軸（自社の強み/市場分析/計画の具体性/</span>
+<span class="warn">  積算の妥当性/補助事業の効果）を必ず網羅すること。</span></pre>
+  </div>
+
+  <div class="hl hl-green">
+    <strong>✅ この例のポイント</strong>
+    ① 「数字をでっち上げるな」と明記 → AIが最もやりがちなミスを構造的に防止<br>
+    ② 文字数の目安がある → Claudeが長すぎず短すぎない計画書を書ける<br>
+    ③ 審査基準の5軸を書いている → 書き漏らしを防げる<br>
+    ④ 作業の流れが順番に書いてある → Claudeが迷わず段階的に作業できる
+  </div>
+</section>
+
+<!-- ===== SECTION 6 ===== -->
+<section class="section" id="s6">
+  <h2>6. よくある専門用語をやさしく言い換え</h2>
+  <p class="lead">技術者向けの解説でよく出てくる言葉を、実務に置き換えます。</p>
+
+  <div class="term">
+    <div class="term-word">ビルド</div>
+    <div class="term-meaning">書いたものを「完成品」にする作業。たとえばWordの下書きをPDFに変換する、Webサイトのコードを公開用に整えるなど。</div>
+  </div>
+
+  <div class="term">
+    <div class="term-word">テスト</div>
+    <div class="term-meaning">完成品に間違いがないかチェックする作業。書類のダブルチェック、リンク切れの確認など。</div>
+  </div>
+
+  <div class="term">
+    <div class="term-word">リント</div>
+    <div class="term-meaning">文書やコードの「書き方のルール違反」を自動でチェックすること。誤字脱字チェックツールのようなもの。</div>
+  </div>
+
+  <div class="term">
+    <div class="term-word">デプロイ</div>
+    <div class="term-meaning">完成品を「本番の場所」に届ける作業。Webサイトをサーバーに上げる、申請書を電子申請システムに提出するなど。</div>
+  </div>
+
+  <div class="term">
+    <div class="term-word">コマンド</div>
+    <div class="term-meaning">Claude Codeに打ち込む「操作指示」。パソコンに「この作業をやって」と文字で伝えること。</div>
+  </div>
+
+  <div class="term">
+    <div class="term-word">リポジトリ</div>
+    <div class="term-meaning">プロジェクトのファイル一式が入った「仕事用フォルダ」のこと。バージョン管理機能付き。</div>
+  </div>
+
+  <div class="term">
+    <div class="term-word">コミット</div>
+    <div class="term-meaning">作業の「セーブポイント」を作ること。「ここまでの変更を記録に残す」という意味。</div>
+  </div>
+
+  <div class="term">
+    <div class="term-word">git</div>
+    <div class="term-meaning">ファイルの変更履歴を管理するツール。「いつ、誰が、何を変えたか」を自動で記録してくれる日誌のようなもの。</div>
+  </div>
+
+  <div class="term">
+    <div class="term-word">/init</div>
+    <div class="term-meaning">Claude Codeに「このプロジェクトの内容を見て、CLAUDE.mdのたたき台を作って」とお願いする操作。</div>
+  </div>
+
+  <div class="term">
+    <div class="term-word">/clear</div>
+    <div class="term-meaning">Claude Codeの「今日の会話記録」をリセットする操作。CLAUDE.mdの設定は残したまま、頭をスッキリさせる。</div>
+  </div>
+</section>
+
+<!-- ===== SECTION 7 ===== -->
+<section class="section" id="s7">
+  <h2>7. 最初の一歩 — /init で自動生成する</h2>
+  <p class="lead">ゼロから書くのが不安なら、Claudeに下書きを作ってもらえます。</p>
+
+  <h3>やり方</h3>
+  <div class="code-block">
+    <div class="code-header">
+      <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+      ターミナル（黒い画面）に打ち込む
+    </div>
+    <pre><span class="cm"># ① 仕事用フォルダに移動する</span>
+<span class="val">cd my-project</span>
+
+<span class="cm"># ② Claude Codeを起動する</span>
+<span class="val">claude</span>
+
+<span class="cm"># ③ 下書きを自動生成する</span>
+<span class="val">/init</span></pre>
+  </div>
+
+  <p>するとClaudeがフォルダの中身を読み取って、CLAUDE.mdのたたき台を自動で作ってくれます。</p>
+
+  <h3>ただし、そのまま使わないでください</h3>
+
+  <p>自動生成されたファイルには「言われなくてもわかること」が大量に含まれます。これを整理するのが大事です。</p>
+
+  <div class="gb">
+    <div class="b-box">
+      <div class="lbl">❌ そのまま使うと…</div>
+      「このプロジェクトはPythonを使っています」<br>
+      「ファイルはフォルダに整理されています」<br>
+      ↑ 当たり前すぎて意味がない。<br>
+      こういう「ノイズ」が多いと、<br>
+      本当に大事な指示が埋もれます。
+    </div>
+    <div class="g-box">
+      <div class="lbl">✅ 整理すると…</div>
+      不要な記述を削除して、<br>
+      自分の事務所固有のルールを追記。<br>
+      短くて、具体的で、<br>
+      Claudeが間違えなくなるファイルに。
+    </div>
+  </div>
+
+  <div class="hl hl-amber">
+    <strong>整理の手順</strong>
+    ① 生成されたファイルを読む<br>
+    ② 「当たり前のこと」を<strong>削除する</strong>（これが一番大事）<br>
+    ③ 前述の「5つのブロック」に沿って、足りない情報を<strong>追記する</strong><br>
+    ④ 使いながら育てる（Claudeが間違えたらその都度ルールを追記）
+  </div>
+</section>
+
+<!-- ===== SECTION 8 ===== -->
+<section class="section" id="s8">
+  <h2>8. 失敗しないための5つの心がけ</h2>
+  <p class="lead">CLAUDE.mdを効果的に使い続けるためのポイント。</p>
+
+  <div class="card" style="border-left: 4px solid var(--accent);">
+    <h4>❶ 短く書く。目安は印刷して1〜2ページ</h4>
+    <p>CLAUDE.mdは毎回全文読み込まれます。長すぎると、書いてある指示を均等に無視し始めます。「10個のルールを全部守る」より「5個のルールを確実に守る」方が成果が出ます。</p>
+  </div>
+
+  <div class="card" style="border-left: 4px solid var(--navy);">
+    <h4>❷ やらかしたことをメモする</h4>
+    <p>Claude Codeが間違えたとき、その場で直すだけで終わらせない。CLAUDE.mdに「二度とやるなリスト」として追記する。「テンプレを直接編集した」「存在しない補助金名を書いた」など、一度起きたミスは二度と繰り返さなくなります。</p>
+  </div>
+
+  <div class="card" style="border-left: 4px solid var(--green);">
+    <h4>❸ 参照先を具体的に書く</h4>
+    <p>「正確な情報を使うこと」では曖昧すぎます。「<code>reference/license_numbers.csv</code> から転記すること」のように、<strong>ファイル名まで指定</strong>すると確実です。</p>
+    <div class="gb" style="margin-top: 8px;">
+      <div class="b-box"><div class="lbl">❌ 曖昧</div>正確な情報を使うこと</div>
+      <div class="g-box"><div class="lbl">✅ 具体的</div>許可番号は reference/license_numbers.csv から転記すること</div>
+    </div>
+  </div>
+
+  <div class="card" style="border-left: 4px solid var(--red);">
+    <h4>❹ パスワードや個人情報を書かない</h4>
+    <p>CLAUDE.mdはチームで共有するファイルです。APIキー、パスワード、マイナンバーなどの秘密情報は絶対に書かないでください。個人用のメモは <code>CLAUDE.local.md</code> に。</p>
+  </div>
+
+  <div class="card" style="border-left: 4px solid var(--teal);">
+    <h4>❺ 月に一度は見直す</h4>
+    <p>仕事の進め方は変わります。古くなったルール、もう使わないフォルダ構成、終わった案件の注意事項…。定期的に掃除して、常に「今の仕事」に合った状態を保ちましょう。</p>
+  </div>
+</section>
+
+<!-- ===== SECTION 9 ===== -->
+<section class="section" id="s9">
+  <h2>9. 最終チェック</h2>
+  <p class="lead">CLAUDE.mdを書き終えたら、この項目を確認してください。</p>
+
+  <div class="card">
+    <ul class="checklist">
+      <li>ファイル名が <code>CLAUDE.md</code>（大文字）になっている</li>
+      <li>作業フォルダの一番上（ルート）に置いてある</li>
+      <li>「このプロジェクトは何か」が1〜3行で書かれている</li>
+      <li>フォルダの役割が説明されている</li>
+      <li>ファイルの命名ルールが具体的に書かれている</li>
+      <li>「やってはいけないこと」が明記されている</li>
+      <li>数字や固有名詞の参照先（ファイル名）が具体的に指定されている</li>
+      <li>パスワード・個人情報が含まれていない</li>
+      <li>印刷したら1〜2ページに収まる長さ</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== まとめ ===== -->
+<div class="card" style="background: var(--accent-soft); border: 2px solid var(--accent-border); padding: 28px 24px;">
+  <p style="font-family:'Noto Serif JP',serif; font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px;">CLAUDE.md は「優秀だけど記憶がない助手」への引き継ぎメモ</p>
+  <p style="color: var(--sub); font-size: 14px; margin-bottom: 0;">
+    最初から完璧を目指さなくて大丈夫です。<br>
+    まず「プロジェクト概要」と「ファイル命名ルール」と「やってはいけないこと」の3つだけ書く。<br>
+    あとはClaude Codeが間違えるたびに、1行ずつ追記していけばいい。<br>
+    使いながら育てる。それが一番確実な方法です。
+  </p>
+</div>
+
+<div class="footer">
+  CLAUDE.md はじめの一歩 — 士業・コンサルタントのための Claude Code 設定入門<br>
+  作成: 2026年4月<br>
+  参考: <a href="https://claude.com/blog/using-claude-md-files">Anthropic公式ブログ</a> / <a href="https://code.claude.com/docs/en/overview">Claude Code 公式ドキュメント</a>
+</div>
+
+</div><!-- /.container -->
+</div><!-- /#main-content -->
+
+<script>
+(function() {
+  // ===== 設定 =====
+  // 公開日（日本時間）：この日から EXPIRE_DAYS 日後にコンテンツが非表示になります
+  var PUBLISH_DATE = '2026-04-09T00:00:00+09:00';
+  var EXPIRE_DAYS = 3;
+
+  var expireTime = new Date(PUBLISH_DATE).getTime() + EXPIRE_DAYS * 24 * 60 * 60 * 1000;
+
+  function update() {
+    var now = Date.now();
+    var remaining = expireTime - now;
+
+    if (remaining <= 0) {
+      document.getElementById('main-content').style.display = 'none';
+      document.getElementById('countdown-bar').style.display = 'none';
+      document.getElementById('expired-message').style.display = 'flex';
+      return;
+    }
+
+    var d = Math.floor(remaining / 86400000);
+    var h = Math.floor((remaining % 86400000) / 3600000);
+    var m = Math.floor((remaining % 3600000) / 60000);
+    var s = Math.floor((remaining % 60000) / 1000);
+
+    var el = document.getElementById('countdown-value');
+    if (el) {
+      el.textContent = d + '日 ' + h + '時間 ' + m + '分 ' + s + '秒';
+    }
+  }
+
+  update();
+  setInterval(update, 1000);
+})();
+</script>
+
+</body>
+</html>
