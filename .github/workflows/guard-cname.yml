@@ -1,0 +1,30 @@
+name: CNAME削除ガード
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-cname:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: CNAMEファイルの存在確認
+        run: |
+          if [ ! -f CNAME ]; then
+            echo "::error::CNAMEファイルが存在しません。lp.well-c.biz が表示できなくなります。"
+            exit 1
+          fi
+
+          EXPECTED="lp.well-c.biz"
+          ACTUAL=$(cat CNAME | tr -d '[:space:]')
+
+          if [ "$ACTUAL" != "$EXPECTED" ]; then
+            echo "::error::CNAMEの内容が不正です。期待値: $EXPECTED / 実際: $ACTUAL"
+            exit 1
+          fi
+
+          echo "OK: CNAME = $ACTUAL"
