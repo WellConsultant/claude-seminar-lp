@@ -479,6 +479,36 @@ body {
 }
 
 .footer a { color: var(--navy); }
+
+/* ===== SAVE BUTTON ===== */
+.save-btn {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 40px auto 0;
+  padding: 16px 24px;
+  background: var(--navy);
+  color: #fff;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.6;
+  transition: background 0.2s;
+}
+
+.save-btn:hover { background: #244D75; }
+
+.save-btn-sub {
+  display: block;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--sub);
+  margin-top: 8px;
+}
 </style>
 </head>
 <body>
@@ -960,6 +990,9 @@ body {
   </p>
 </div>
 
+<button class="save-btn" id="save-btn" onclick="savePage()">このページを保存する</button>
+<span class="save-btn-sub">公開期間終了後もお手元でご覧いただけます</span>
+
 <div class="footer">
   CLAUDE.md はじめの一歩 — 士業・コンサルタントのための Claude Code 設定入門<br>
   作成: 2026年4月<br>
@@ -1003,6 +1036,17 @@ body {
   update();
   setInterval(update, 1000);
 })();
+
+function savePage() {
+  var html = document.documentElement.outerHTML;
+  // タイマーと期限切れ表示を除いたクリーンなHTMLを保存
+  var blob = new Blob(['<!DOCTYPE html>\n' + html], { type: 'text/html; charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'CLAUDE-md-はじめの一歩.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
 </script>
 
 </body>
