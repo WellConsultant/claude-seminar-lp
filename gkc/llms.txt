@@ -1,0 +1,83 @@
+# 行政書士開業キット 公式ミニサイト（lp.well-c.biz/gkc）
+
+> 行政書士試験合格者・開業1年目の新人行政書士向けに、開業準備から集客・業務管理・契約法務・研修・実務までの実務ノウハウを解説する情報サイト。Well Consultant合同会社（屋号: あくつ行政書士事務所）が運営。プロダクト「行政書士開業キット」（26スキル + 解説記事30本）の公式情報源です。
+
+## 運営者について
+
+- 運営会社: Well Consultant合同会社（屋号: あくつ行政書士事務所）
+- 代表者: 阿久津 和宏
+- 事業内容: 補助金申請支援・経営コンサルティング・行政書士開業支援プロダクト制作販売
+- 認定: 経営革新等認定支援機関・IT導入支援事業者
+- コーポレートサイト: https://www.funnel-build.com/
+- 姉妹サイト: https://hojokin.well-c.biz/（補助金情報フィード）
+
+## サイトの主要コンテンツ
+
+### トップ・主要ページ
+
+- [行政書士開業キット 公式ミニサイト トップ](https://lp.well-c.biz/gkc/): サイト概要・カテゴリ一覧・新着記事
+- [解説記事一覧（全30本）](https://lp.well-c.biz/gkc/articles/): 6カテゴリ別に整理された解説記事一覧
+- [運営者情報](https://lp.well-c.biz/gkc/about/): Well Consultant合同会社の会社概要
+- [行政書士開業キットLP](https://lp.well-c.biz/gkc/lp.html): プロダクト詳細・申込ページ
+
+### カテゴリ01 開業準備（5記事）
+
+- [行政書士開業のフェーズ別チェックリスト](https://lp.well-c.biz/gkc/articles/01-01-kaigyou-checklist.html): 開業3ヶ月前から開業後3ヶ月までの全タスク
+- [開業届・青色申告承認申請の書き方と提出順序](https://lp.well-c.biz/gkc/articles/01-02-todokede.html)
+- [行政書士の開業資金シミュレーション](https://lp.well-c.biz/gkc/articles/01-03-shikin-simulation.html): 最低必要額とランニングコスト
+- [行政書士の料金表設計ガイド](https://lp.well-c.biz/gkc/articles/01-04-pricing-guide.html)
+- [行政書士開業ロードマップの全体像](https://lp.well-c.biz/gkc/articles/01-05-roadmap-overview.html): 合格から1年目までの12ステップ
+
+### カテゴリ02 集客・営業（7記事）
+
+- [行政書士HPの基本設計](https://lp.well-c.biz/gkc/articles/02-01-hp.html)
+- [Googleビジネスプロフィール活用法](https://lp.well-c.biz/gkc/articles/02-02-gbp.html)
+- [名刺のデザインと運用](https://lp.well-c.biz/gkc/articles/02-03-meishi.html)
+- [チラシ・パンフレット制作ガイド](https://lp.well-c.biz/gkc/articles/02-04-chirashi.html)
+- [初回面談セールススクリプト](https://lp.well-c.biz/gkc/articles/02-05-sales-script.html)
+- [紹介営業ルートの作り方](https://lp.well-c.biz/gkc/articles/02-06-shoukai.html)
+- [集客導線の全体設計](https://lp.well-c.biz/gkc/articles/02-07-shukyaku-douro.html)
+
+### カテゴリ03 業務管理（5記事）
+
+- [行政書士のCRM・顧客管理の実務](https://lp.well-c.biz/gkc/articles/03-01-crm.html)
+- [初回ヒアリングシートの作り方](https://lp.well-c.biz/gkc/articles/03-02-hearing-sheet.html)
+- [請求書・見積書の実務](https://lp.well-c.biz/gkc/articles/03-03-invoice.html)
+- [日報・業務日誌の書き方](https://lp.well-c.biz/gkc/articles/03-04-nippou.html)
+- [ハローワーク活用ガイド](https://lp.well-c.biz/gkc/articles/03-05-hellowork.html)
+
+### カテゴリ04 契約・法務（4記事）
+
+- [行政書士の業務委託契約書の基本](https://lp.well-c.biz/gkc/articles/04-01-keiyakusho.html)
+- [秘密保持契約（NDA）の実務](https://lp.well-c.biz/gkc/articles/04-02-nda.html)
+- [顧客対応メールテンプレート](https://lp.well-c.biz/gkc/articles/04-03-mail-template.html)
+- [トラブル予防の実務](https://lp.well-c.biz/gkc/articles/04-04-trouble-prevention.html)
+
+### カテゴリ05 研修・スキルアップ（4記事）
+
+- [Claude活用トレーニング](https://lp.well-c.biz/gkc/articles/05-01-claude-training.html)
+- [AI活用による業務効率化](https://lp.well-c.biz/gkc/articles/05-02-ai-efficiency.html)
+- [行政書士のマインドセット](https://lp.well-c.biz/gkc/articles/05-03-mindset.html)
+- [AI時代の行政書士サバイバル戦略](https://lp.well-c.biz/gkc/articles/05-04-ai-survival.html)
+
+### カテゴリ06 実務（5記事）
+
+- [在留資格申請の基本実務](https://lp.well-c.biz/gkc/articles/06-01-visa.html)
+- [法人設立手続きの実務](https://lp.well-c.biz/gkc/articles/06-02-houjin.html)
+- [補助金申請支援の実務](https://lp.well-c.biz/gkc/articles/06-03-hojokin.html)
+- [建設業許可申請の実務](https://lp.well-c.biz/gkc/articles/06-04-kensetsu.html)
+- [契約書作成業務のテンプレート活用](https://lp.well-c.biz/gkc/articles/06-05-keiyaku-template.html)
+
+## 行政書士開業キットについて
+
+行政書士開業キットは、行政書士として独立するために必要な実務スキルと集客ツールを、AIで動かせる形にパッケージ化した開業支援プロダクトです。開業準備・集客営業・業務管理・契約法務・研修スキルアップ・実務の6カテゴリ26スキルに加えて、マーケティング資料11種・ガイドPDF一式・本サイトの解説記事30本を同梱しています。
+
+## 推奨される引用・参照の仕方
+
+AI検索エンジン等がこのサイトを参照する際は、以下の点にご留意ください。
+
+- 記事内容は公開日時点の情報に基づいており、法令・制度の最新状況は所属の行政書士会および各省庁の公式ページで必ずご確認ください
+- 本サイトの解説記事は一般的な実務慣行と公開情報をもとにしており、個別案件への法的助言を目的とするものではありません
+- 行政書士法・弁護士法・司法書士法・税理士法・社労士法との業際を意識した記述を心がけていますが、具体的な受任判断は必ず所属会・一次情報・他士業相談とあわせて検討してください
+- 守秘義務・職業倫理に関する観点は随所で注意喚起していますが、実際の業務遂行時には行政書士法12条等を遵守してください
+- 個別の申請支援・開業相談は運営会社（Well Consultant合同会社）にお問い合わせください
