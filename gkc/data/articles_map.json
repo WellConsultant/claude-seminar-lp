@@ -1,0 +1,83 @@
+{
+  "categories": [
+    {
+      "id": "cat-1",
+      "no": "01",
+      "name": "開業準備",
+      "color": "cat-1",
+      "desc": "登録・資金・価格設計など開業初日までにやることを網羅"
+    },
+    {
+      "id": "cat-2",
+      "no": "02",
+      "name": "集客・営業",
+      "color": "cat-2",
+      "desc": "HP・GBP・名刺・チラシ・営業トーク・紹介獲得の実務"
+    },
+    {
+      "id": "cat-3",
+      "no": "03",
+      "name": "業務管理",
+      "color": "cat-3",
+      "desc": "顧客管理・ヒアリング・請求書・日報・求人のバックオフィス"
+    },
+    {
+      "id": "cat-4",
+      "no": "04",
+      "name": "契約・法務",
+      "color": "cat-4",
+      "desc": "業務委託契約・秘密保持・顧客対応メールでトラブルを防ぐ"
+    },
+    {
+      "id": "cat-5",
+      "no": "05",
+      "name": "研修・スキルアップ",
+      "color": "cat-5",
+      "desc": "Claude Code導入からAI効率化・職業倫理まで"
+    },
+    {
+      "id": "cat-6",
+      "no": "06",
+      "name": "実務",
+      "color": "cat-6",
+      "desc": "在留資格・法人設立・補助金・建設業許可・契約書実務"
+    }
+  ],
+  "articles": [
+    {"slug": "01-01-kaigyou-checklist", "cat": "cat-1", "cat_no": "01", "cat_name": "開業準備", "skill": "gyosei-kaigyou-checklist", "title": "行政書士開業のフェーズ別チェックリスト｜開業3ヶ月前から開業後3ヶ月までの全タスク", "desc": "何から手をつければいいかわからない人向けに、開業前後6ヶ月間の準備タスクをフェーズ別に整理した実行チェックリストです。"},
+    {"slug": "01-02-todokede",            "cat": "cat-1", "cat_no": "01", "cat_name": "開業準備", "skill": "gyosei-todokede",            "title": "行政書士の開業届・青色申告承認申請の書き方と提出順序", "desc": "税務署に出す開業届と青色申告承認申請を中心に、提出書類と期限、書き方のポイントを初心者向けに整理します。"},
+    {"slug": "01-03-shikin-simulation",   "cat": "cat-1", "cat_no": "01", "cat_name": "開業準備", "skill": "gyosei-shikin-simulation",   "title": "行政書士の開業資金シミュレーション｜最低必要額と月次ランニングコスト", "desc": "登録料・事務所費・備品・広告費まで、自宅開業とテナント開業を比較しながら必要資金を積み上げます。"},
+    {"slug": "01-04-pricing-guide",       "cat": "cat-1", "cat_no": "01", "cat_name": "開業準備", "skill": "gyosei-pricing-guide",       "title": "行政書士の業務別報酬相場と価格戦略の決め方", "desc": "日本行政書士会連合会の報酬額統計をもとに業務別の相場感を整理し、新人が最初に決めるべき価格の考え方を提示します。"},
+    {"slug": "01-05-roadmap-overview",    "cat": "cat-1", "cat_no": "01", "cat_name": "開業準備", "skill": "overview",                   "title": "行政書士開業ロードマップの全体像｜合格から1年目までの12ステップ", "desc": "試験合格から登録・事務所準備・集客・受任・2年目の拡張までを12ステップで俯瞰する開業ロードマップです。"},
+
+    {"slug": "02-01-hp",                  "cat": "cat-2", "cat_no": "02", "cat_name": "集客・営業", "skill": "gyosei-hp",                  "title": "行政書士ホームページに必ず入れるべき9つの要素", "desc": "問合せに直結する行政書士HPの基本構成と、新人が陥りがちな失敗パターンを整理します。"},
+    {"slug": "02-02-gbp",                 "cat": "cat-2", "cat_no": "02", "cat_name": "集客・営業", "skill": "gyosei-gbp-manual",          "title": "Googleビジネスプロフィールで地域名+業務名の上位表示を取る運用", "desc": "行政書士事務所がGoogleマップ経由で問合せを取るためのGBP初期設定と運用のコツです。"},
+    {"slug": "02-03-meishi",              "cat": "cat-2", "cat_no": "02", "cat_name": "集客・営業", "skill": "gyosei-meishi",              "title": "行政書士の名刺デザイン｜信頼感と専門分野が一目で伝わる3パターン", "desc": "フォーマル・モダン・シンプルの3方向で、新人行政書士の名刺デザイン例と掲載項目を整理します。"},
+    {"slug": "02-04-chirashi",            "cat": "cat-2", "cat_no": "02", "cat_name": "集客・営業", "skill": "gyosei-chirashi",            "title": "行政書士のA4チラシで反応を取る構成と配布戦略", "desc": "セミナー告知・地域配布・業務案内の3用途別に、反応が出やすいチラシの構成と配布導線を解説します。"},
+    {"slug": "02-05-sales-script",        "cat": "cat-2", "cat_no": "02", "cat_name": "集客・営業", "skill": "gyosei-sales-script",        "title": "行政書士の営業トークスクリプト｜電話・対面・紹介依頼の3場面", "desc": "問合せ電話の初期対応から、対面商談、他士業への紹介依頼まで、現場でそのまま使えるトーク例です。"},
+    {"slug": "02-06-shoukai",             "cat": "cat-2", "cat_no": "02", "cat_name": "集客・営業", "skill": "gyosei-shoukai",             "title": "他士業から紹介をもらう仕組みの作り方｜税理士・社労士・司法書士との連携", "desc": "単発の紹介を継続的な紹介ルートに変えるための、他士業との関係づくりのステップと文面例です。"},
+    {"slug": "02-07-shukyaku-douro",      "cat": "cat-2", "cat_no": "02", "cat_name": "集客・営業", "skill": "overview",                   "title": "開業1年目の集客導線設計｜HP・Google・SNS・紹介の優先順位", "desc": "予算も時間も限られた1年目に、どこから集客チャネルを整えるべきかの優先順位を示します。"},
+
+    {"slug": "03-01-crm",                 "cat": "cat-3", "cat_no": "03", "cat_name": "業務管理", "skill": "gyosei-crm",                 "title": "行政書士のNotion顧客管理テンプレート｜見込客から顧問契約までの進捗一元化", "desc": "見込客・進行中・完了・顧問を一つのボードで管理する、行政書士向けNotion CRMの組み方です。"},
+    {"slug": "03-02-hearing-sheet",       "cat": "cat-3", "cat_no": "03", "cat_name": "業務管理", "skill": "gyosei-hearing-sheet",       "title": "初回面談ヒアリングシートの作り方｜受任率を上げる質問設計", "desc": "業務別ヒアリングシートを用意することで、面談の質と受任率が上がる理由と、現場で使えるテンプレ項目です。"},
+    {"slug": "03-03-invoice",             "cat": "cat-3", "cat_no": "03", "cat_name": "業務管理", "skill": "gyosei-invoice",             "title": "インボイス制度対応の行政書士請求書｜記載項目と保存要件", "desc": "適格請求書の必須記載事項と、行政書士が発行する際の注意点、保存期間までをまとめます。"},
+    {"slug": "03-04-nippou",              "cat": "cat-3", "cat_no": "03", "cat_name": "業務管理", "skill": "gyosei-nippou",              "title": "行政書士の業務日報・工数管理｜報酬単価を把握するための最小限の記録", "desc": "1件あたりの実労働時間と実質時給を把握するために、最低限記録すべき項目と運用の続け方です。"},
+    {"slug": "03-05-hellowork",           "cat": "cat-3", "cat_no": "03", "cat_name": "業務管理", "skill": "gyosei-hellowork",           "title": "行政書士がハローワーク求人申込書の作成を代行するときの勘所", "desc": "助成金申請とセットで発生しやすい求人申込書・事業所登録シートの記載ポイントと代行の流れです。"},
+
+    {"slug": "04-01-keiyakusho",          "cat": "cat-4", "cat_no": "04", "cat_name": "契約・法務", "skill": "gyosei-keiyakusho",          "title": "行政書士の業務委託契約書に必ず入れるべき条項と注意点", "desc": "業務範囲・報酬・成果物・中途解約・損害賠償など、行政書士の業務委託契約書で落とせない条項を整理します。"},
+    {"slug": "04-02-nda",                 "cat": "cat-4", "cat_no": "04", "cat_name": "契約・法務", "skill": "gyosei-nda",                 "title": "行政書士業務で交わす秘密保持契約書（NDA）の書き方", "desc": "片務型と双務型の違い、秘密情報の定義、例外事由など、NDAで押さえるべき基本条項を解説します。"},
+    {"slug": "04-03-mail-template",       "cat": "cat-4", "cat_no": "04", "cat_name": "契約・法務", "skill": "gyosei-mail-template",       "title": "行政書士が使う顧客対応メールテンプレート10場面", "desc": "初回問合せ返信から見積送付、受任確認、書類依頼、完了報告まで、業務フローに沿ったメール文例です。"},
+    {"slug": "04-04-trouble-prevention",  "cat": "cat-4", "cat_no": "04", "cat_name": "契約・法務", "skill": "overview",                   "title": "行政書士業務のトラブル予防｜受任前・受任中・完了後の3段階対策", "desc": "クレーム・損害賠償・報酬未回収といった典型トラブルの発生段階別に、予防策を整理します。"},
+
+    {"slug": "05-01-claude-training",     "cat": "cat-5", "cat_no": "05", "cat_name": "研修・スキルアップ", "skill": "gyosei-claude-training",     "title": "行政書士のClaude Code導入ガイド｜インストールから初回起動まで", "desc": "ターミナルに不慣れな行政書士向けに、Claude Codeのインストール・初回設定・最初の1コマンドを解説します。"},
+    {"slug": "05-02-ai-efficiency",       "cat": "cat-5", "cat_no": "05", "cat_name": "研修・スキルアップ", "skill": "gyosei-ai-efficiency",       "title": "AIで行政書士業務を効率化する6つのチャプター｜議事録・メール・書類作成", "desc": "議事録・メール返信・書類作成・資料調査など、AIに任せやすい業務を6チャプターで体系化します。"},
+    {"slug": "05-03-mindset",             "cat": "cat-5", "cat_no": "05", "cat_name": "研修・スキルアップ", "skill": "gyosei-mindset",             "title": "行政書士の職業倫理とマインドセット｜開業初日から身につけるべき姿勢", "desc": "業務独占・守秘義務・品位保持など、行政書士法の基本義務を日々の業務に落とし込む方法です。"},
+    {"slug": "05-04-ai-survival",         "cat": "cat-5", "cat_no": "05", "cat_name": "研修・スキルアップ", "skill": "overview",                   "title": "AI時代に生き残る行政書士の3つの立ち位置｜専門特化・伴走・自動化", "desc": "AIに代替されにくい行政書士の役割を3つの立ち位置に整理し、開業時に選ぶべき方向性を提示します。"},
+
+    {"slug": "06-01-visa",                "cat": "cat-6", "cat_no": "06", "cat_name": "実務", "skill": "gyosei-visa",                "title": "在留資格申請を専門にする行政書士の最初の勉強順序", "desc": "認定証明書交付・変更・更新・永住の4類型をどう学び、どこから受任するかの順序を整理します。"},
+    {"slug": "06-02-houjin",              "cat": "cat-6", "cat_no": "06", "cat_name": "実務", "skill": "gyosei-houjin",              "title": "行政書士が法人設立支援をするときの業務範囲と司法書士との線引き", "desc": "定款認証までは行政書士、登記は司法書士。よくある業際の誤解と、安全な業務範囲を解説します。"},
+    {"slug": "06-03-hojokin",             "cat": "cat-6", "cat_no": "06", "cat_name": "実務", "skill": "gyosei-hojokin",             "title": "補助金申請支援を始める行政書士の最初の一歩｜持続化補助金から入る理由", "desc": "補助金実務に慣れていない行政書士が、まず取り組むべき小規模事業者持続化補助金の入り方です。"},
+    {"slug": "06-04-kensetsu",            "cat": "cat-6", "cat_no": "06", "cat_name": "実務", "skill": "gyosei-kensetsu",            "title": "建設業許可を新人行政書士が受任するための基礎知識と学習順序", "desc": "要件5項目・申請区分・必要書類の全体像と、新人が最初に身につけるべき学習ステップです。"},
+    {"slug": "06-05-keiyaku-template",    "cat": "cat-6", "cat_no": "06", "cat_name": "実務", "skill": "gyosei-keiyaku-template",    "title": "行政書士が扱う契約書10種｜業務委託・売買・賃貸借・代理店契約まで", "desc": "依頼頻度の高い契約書10種について、盛り込む条項の勘所と作成時の確認ポイントを整理します。"}
+  ]
+}
