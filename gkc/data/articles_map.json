@@ -49,6 +49,7 @@
     {"slug": "01-03-shikin-simulation",   "cat": "cat-1", "cat_no": "01", "cat_name": "開業準備", "skill": "gyosei-shikin-simulation",   "title": "行政書士の開業資金シミュレーション｜最低必要額と月次ランニングコスト", "desc": "登録料・事務所費・備品・広告費まで、自宅開業とテナント開業を比較しながら必要資金を積み上げます。"},
     {"slug": "01-04-pricing-guide",       "cat": "cat-1", "cat_no": "01", "cat_name": "開業準備", "skill": "gyosei-pricing-guide",       "title": "行政書士の業務別報酬相場と価格戦略の決め方", "desc": "日本行政書士会連合会の報酬額統計をもとに業務別の相場感を整理し、新人が最初に決めるべき価格の考え方を提示します。"},
     {"slug": "01-05-roadmap-overview",    "cat": "cat-1", "cat_no": "01", "cat_name": "開業準備", "skill": "overview",                   "title": "行政書士開業ロードマップの全体像｜合格から1年目までの12ステップ", "desc": "試験合格から登録・事務所準備・集客・受任・2年目の拡張までを12ステップで俯瞰する開業ロードマップです。"},
+    {"slug": "01-06-first-year-hojokin", "cat": "cat-1", "cat_no": "01", "cat_name": "開業準備", "skill": "gyosei-hojokin",             "title": "行政書士の1年目は補助金業務で9割決まる｜初年度年商600万を目指す現実的な戦略", "desc": "行政書士開業1年目に補助金業務を軸に据え、週4日・1日6時間で年商600万を目指すための専門分野の選び方・集客の仕組み・事業計画書の型を解説します。"},
 
     {"slug": "02-01-hp",                  "cat": "cat-2", "cat_no": "02", "cat_name": "集客・営業", "skill": "gyosei-hp",                  "title": "行政書士ホームページに必ず入れるべき9つの要素", "desc": "問合せに直結する行政書士HPの基本構成と、新人が陥りがちな失敗パターンを整理します。"},
     {"slug": "02-02-gbp",                 "cat": "cat-2", "cat_no": "02", "cat_name": "集客・営業", "skill": "gyosei-gbp-manual",          "title": "Googleビジネスプロフィールで地域名+業務名の上位表示を取る運用", "desc": "行政書士事務所がGoogleマップ経由で問合せを取るためのGBP初期設定と運用のコツです。"},
