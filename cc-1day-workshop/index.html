@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code 実装1DAYワークショップ｜士業・コンサルタントのための</title>
+<meta name="description" content="私に1日だけ、ください。あなたの本業時間を増やすAIを、1つ作らせてみせます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;
+  --ink:#111111;
+  --ink-2:#333;
+  --muted:#666;
+  --navy:#0f2d52;
+  --navy-deep:#091b33;
+  --gold:#f5c83a;
+  --red:#d8292f;
+  --red-bg:#b71c1c;
+  --highlight:#fff59d;
+  --highlight-strong:#ffe066;
+  --gray-bg:#f6f6f6;
+  --gray-dark:#2a2a2a;
+  --border:#e5e5e5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;font-weight:500;line-height:1.95;-webkit-font-smoothing:antialiased;font-size:18px}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+.wrap-wide{max-width:1100px;margin:0 auto;padding:0 24px}
+.section{padding:90px 0}
+.section-tight{padding:60px 0}
+mark{background:transparent;padding:0;font-weight:900;color:inherit}
+mark.red{background:transparent;color:var(--red);font-weight:900}
+mark.strong{background:transparent;padding:0;font-weight:900;color:inherit}
+u.red{text-decoration-color:var(--red);text-decoration-thickness:3px;text-underline-offset:4px;font-weight:900;color:var(--red);text-decoration-skip-ink:none}
+hr.rule{border:0;border-top:1px solid var(--border);margin:50px 0}
+
+/* HEADER */
+.topbar{background:#000;color:#fff;font-size:11px;text-align:center;padding:6px 10px;letter-spacing:.12em}
+
+/* HERO */
+.hero{background:linear-gradient(180deg,#f4f7fc 0%,#fff 60%,#fff 100%);padding:80px 20px 80px;text-align:center;position:relative;overflow:hidden;border-bottom:5px solid var(--navy)}
+.hero::before{content:"";position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle, rgba(200,162,80,.18) 0%, transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;bottom:-80px;right:-80px;width:360px;height:360px;background:radial-gradient(circle, rgba(15,45,82,.12) 0%, transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
+.hero .hero-badge{display:inline-block;background:var(--red);color:#fff;font-size:15px;font-weight:900;padding:8px 28px;letter-spacing:.3em;margin-bottom:26px;position:relative;box-shadow:0 4px 0 #8b1616}
+.hero .hero-badge::before,.hero .hero-badge::after{content:"";position:absolute;top:0;bottom:0;width:14px;background:var(--red)}
+.hero .hero-badge::before{left:-10px;transform:skewX(-20deg);box-shadow:0 4px 0 #8b1616}
+.hero .hero-badge::after{right:-10px;transform:skewX(20deg);box-shadow:0 4px 0 #8b1616}
+.hero .brand-line{font-size:22px;color:#8b1a1a;letter-spacing:.25em;margin-bottom:26px;font-weight:900}
+.hero h1{font-size:56px;font-weight:900;line-height:1.35;color:var(--ink);margin-bottom:34px;letter-spacing:-.01em}
+.hero h1 .small{font-size:32px;display:block;font-weight:900;margin-bottom:14px;color:var(--ink)}
+.hero h1 .big{font-size:76px;display:block;letter-spacing:.02em;line-height:1.15;background:linear-gradient(180deg,var(--ink) 0%,var(--navy-deep) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 0 0 transparent}
+.hero .sub{font-size:26px;color:var(--ink);font-weight:700;margin:34px auto 0;max-width:820px;line-height:1.75;text-align:center}
+.hero .sub .line-1,.hero .sub .line-2{display:block}
+.hero .sub .line-1{font-size:30px;margin-bottom:10px;color:var(--navy);font-weight:900}
+.hero .sub .line-2{font-size:24px;font-weight:700;color:var(--ink)}
+.hero .sub u.red-u{text-decoration:none;background:transparent;color:#8b1a1a;font-weight:900;padding:0}
+.hero .sub mark{background:transparent;color:var(--ink);font-weight:900;padding:0}
+.hero h1 .big .accent{color:var(--gold)}
+.hero-claim{margin:34px auto 24px;font-size:22px;font-weight:700;color:var(--ink);max-width:820px;line-height:1.8;text-align:center}
+.hero-axis{display:flex;justify-content:center;gap:20px;max-width:960px;margin:30px auto 0;list-style:none;padding:0}
+.hero-axis li{flex:1;text-align:left;padding:26px 22px 24px 28px;background:#fff;border:2px solid var(--navy);border-radius:6px;box-shadow:5px 5px 0 var(--gold);display:flex;flex-direction:column;gap:12px;min-height:210px;position:relative;overflow:hidden}
+.hero-axis li::before{content:"";position:absolute;top:0;left:0;bottom:0;width:6px;background:#8b1a1a}
+.hero-axis .axis-badge{display:inline-block;background:#8b1a1a;color:#fff;font-size:13px;font-weight:700;padding:7px 14px 6px;letter-spacing:.12em;align-self:flex-start;border-radius:2px;box-shadow:2px 2px 0 rgba(0,0,0,.15)}
+.hero-axis .axis-badge strong{font-size:17px;font-weight:900;letter-spacing:.2em;margin-right:6px;border-right:1px solid rgba(255,255,255,.4);padding-right:8px}
+.hero-axis .axis-title{font-size:20px;font-weight:900;color:var(--ink);line-height:1.55;margin:0;padding-top:2px}
+.hero-axis .axis-body{font-size:16px;font-weight:500;color:var(--ink-2);line-height:1.85;margin:0}
+.hero-axis u.red-u{text-decoration:none;background:transparent;color:#8b1a1a;font-weight:900;padding:0}
+@media(max-width:720px){.hero-axis{flex-direction:column;gap:12px}.hero-axis li{min-height:auto}}
+.from .opening-question{font-size:32px;font-weight:900;color:var(--ink);text-align:center;line-height:1.75;margin:0 auto 46px;padding:30px 20px;border-top:3px solid var(--navy);border-bottom:3px solid var(--navy);max-width:900px}
+.from .opening-question u.red-u{text-decoration:none;background:transparent;color:#8b1a1a;font-weight:900;padding:0}
+@media(max-width:720px){.from .opening-question{font-size:24px}}
+
+/* 3 FACTS */
+.facts{background:#f4f4f4;color:var(--ink);padding:90px 20px;border-top:1px solid #ddd;border-bottom:1px solid #ddd}
+.facts h2{text-align:center;font-size:44px;font-weight:900;margin-bottom:16px;line-height:1.4;color:var(--ink)}
+.facts h2 .line{color:var(--navy)}
+.facts .facts-sub{text-align:center;font-size:19px;color:var(--muted);margin-bottom:56px;font-weight:500}
+.facts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1040px;margin:0 auto}
+.fact-card{background:#fff;padding:40px 30px 34px;border:2px solid var(--ink);border-radius:4px;box-shadow:6px 6px 0 var(--navy);text-align:center}
+.fact-card .label{display:inline-block;background:var(--navy);color:#fff;font-size:15px;font-weight:900;padding:6px 18px;letter-spacing:.25em;margin-bottom:22px}
+.fact-card .fact-num{font-size:54px;font-weight:900;color:var(--red);line-height:1.1;margin-bottom:6px;font-family:"Georgia",serif}
+.fact-card .fact-num small{font-size:22px;color:var(--ink-2);font-weight:900;display:block;margin-top:4px;font-family:"Noto Sans JP",sans-serif}
+.fact-card .fact-arrow{font-size:26px;color:var(--gold);margin:10px 0;font-weight:900}
+.fact-card .fact-before{font-size:15px;color:var(--muted);font-weight:700;text-decoration:line-through;margin-bottom:2px}
+.fact-card .fact-after{font-size:34px;color:var(--navy);font-weight:900;line-height:1.2;margin-bottom:18px}
+.fact-card .fact-title{font-size:22px;font-weight:900;line-height:1.55;margin-bottom:16px;color:var(--ink);padding-top:18px;border-top:2px dashed #ddd}
+.fact-card .fact-desc{font-size:16px;color:var(--ink-2);line-height:2;text-align:left;font-weight:500}
+
+/* OFFER BOX */
+.offer-box{background:#0b0b0b;color:#fff;padding:70px 20px 80px;text-align:center;border-top:1px solid #222}
+.offer-box .tag{display:inline-block;background:var(--red);color:#fff;font-size:18px;font-weight:900;padding:8px 28px;letter-spacing:.3em;margin-bottom:30px}
+.offer-box .offer-title{font-size:52px;font-weight:900;line-height:1.35;margin-bottom:24px;letter-spacing:.02em}
+.offer-box .offer-sub{font-size:20px;color:#ddd;margin-bottom:26px;font-weight:700}
+.offer-box .offer-note{background:#fff;color:#000;display:inline-block;padding:12px 32px;font-weight:900;margin-top:20px;font-size:17px;letter-spacing:.1em}
+.offer-box .deadline{background:var(--red-bg);color:#fff;display:inline-block;padding:10px 26px;font-weight:900;margin-top:16px;letter-spacing:.08em;font-size:18px}
+.cta-btn{display:block;width:100%;max-width:640px;background:linear-gradient(180deg,#b71c1c 0%,#8b1a1a 100%);color:#fff;font-weight:900;font-size:28px;padding:28px 32px;text-decoration:none;border-radius:999px;margin:16px auto 0;box-shadow:0 8px 20px rgba(139,26,26,0.35);letter-spacing:.05em;transition:transform .15s,box-shadow .15s;text-align:center;box-sizing:border-box}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(139,26,26,0.45)}
+.cta-btn .arrow{margin-left:10px}
+
+/* FROM LETTER */
+.from{background:#fff;padding:90px 20px}
+.from p{font-size:19px;line-height:1.95;color:var(--ink);margin-bottom:10px;font-weight:500}
+.from p + p{margin-top:0}
+.from p.section-break{margin-top:26px}
+.from .lead{font-size:32px;font-weight:900;color:var(--ink);line-height:1.7;margin-bottom:30px;text-align:center}
+.from .self-intro-wrap{display:flex;gap:28px;align-items:center;margin:10px 0}
+.from .self-intro-body{flex:1;font-size:19px;line-height:1.95;color:var(--ink);font-weight:500;margin:0}
+.from .self-intro-photo{width:120px;height:120px;border-radius:50%;overflow:hidden;flex-shrink:0;margin:0}
+.from .self-intro-photo img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:720px){.from .self-intro-wrap{flex-direction:column;align-items:flex-start;gap:14px}}
+
+/* H2 BIG */
+.h2-big{font-size:42px;font-weight:900;line-height:1.5;color:var(--ink);text-align:center;margin-bottom:50px;position:relative;letter-spacing:-.01em}
+.h2-big::after{content:"";display:block;width:80px;height:4px;background:var(--navy);margin:22px auto 0}
+.h2-narrow{font-size:32px;font-weight:900;text-align:center;margin-bottom:36px;line-height:1.55}
+
+/* NAVY BAND */
+.navy-band{background:var(--navy);color:#fff;padding:80px 20px;text-align:center}
+.navy-band h2{font-size:40px;font-weight:900;line-height:1.55;margin-bottom:30px}
+.navy-band h2 .gold{color:var(--gold)}
+.navy-band p{font-size:19px;color:#e5ebf2;line-height:2;font-weight:500}
+
+/* EVIDENCE CARDS */
+.evidence-lead{font-size:18px;line-height:1.95;color:var(--ink);font-weight:500;margin:0 auto 40px;max-width:820px;text-align:left}
+.evidence-container{counter-reset:evi-counter}
+.evidence-item{border:2px solid var(--ink);padding:40px 36px 36px 160px;margin-bottom:32px;background:#fff;border-radius:4px;box-shadow:8px 8px 0 var(--navy);position:relative;counter-increment:evi-counter;min-height:180px}
+.evidence-item::before{content:counter(evi-counter) ".";position:absolute;left:24px;top:20px;font-size:88px;color:#8b1a1a;font-weight:900;font-family:"Georgia",serif;line-height:1;letter-spacing:-.04em;font-style:italic;text-shadow:none}
+.evidence-item h3{font-size:24px;font-weight:900;color:var(--navy);margin-bottom:18px;line-height:1.55;border-bottom:3px solid var(--gold);padding-bottom:12px}
+.feature-step{position:relative;background:#fff;border-top:5px solid var(--navy);padding:36px 40px 34px 40px;margin-bottom:28px;box-shadow:0 4px 14px rgba(0,0,0,.06);border-radius:0 0 6px 6px}
+.feature-step-num{display:inline-flex;align-items:baseline;gap:14px;background:var(--navy);color:#fff;padding:14px 30px 14px 28px;margin:-36px 0 24px -40px;border-radius:0 0 6px 0;line-height:1}
+.feature-step-label{font-size:20px;font-weight:900;letter-spacing:.2em;color:var(--gold)}
+.feature-step-digit{font-size:40px;font-weight:900;font-family:"Georgia",serif;color:#fff}
+.feature-step-body h3{font-size:26px;font-weight:900;color:var(--navy);margin:0 0 16px;line-height:1.55;border-bottom:2px solid var(--gold);padding-bottom:12px}
+.feature-step-body p{font-size:17px;line-height:1.95;color:var(--ink);margin:0}
+.feature-step-body{padding-left:0}
+@media(max-width:640px){.feature-step{padding:32px 24px 28px}.feature-step-num{margin:-32px 0 18px -24px;padding:10px 18px}.feature-step-body h3{font-size:20px}}
+.evidence-item p{font-size:17px;line-height:1.95;color:var(--ink-2);margin-bottom:12px;font-weight:500}
+.evidence-item .evi-image{margin:20px 0 10px;border:1px solid #ddd;border-radius:4px;overflow:hidden;background:#f4f4f4}
+.evidence-item .evi-image img{width:100%;height:auto;display:block}
+.evidence-item .evi-image .caption{font-size:13px;color:var(--muted);padding:8px 12px;background:#fafafa;border-top:1px solid #eee}
+@media(max-width:720px){
+  .evidence-item{padding:32px 22px 26px;padding-top:120px}
+  .evidence-item::before{font-size:80px;left:20px;top:14px}
+  .evidence-item h3{font-size:22px}
+  .evidence-item p{font-size:17px}
+}
+
+/* LIST */
+.ul-plain{list-style:none;padding:0}
+.ul-plain li{padding:14px 0 14px 26px;position:relative;font-size:18px;line-height:1.95;color:var(--ink-2);border-bottom:1px dashed #eee;font-weight:500}
+.ul-plain li::before{content:"・";position:absolute;left:0;color:var(--gold);font-weight:900;font-size:22px}
+
+/* COMPARE 2-COL */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:40px;border:2px solid #000;border-radius:0;overflow:hidden;box-shadow:6px 6px 0 rgba(0,0,0,.15)}
+.compare-box{padding:34px 30px 32px;position:relative;min-height:240px}
+.compare-box.ok{background:#fff;color:var(--ink);border-right:1px solid #ddd}
+.compare-box.ng{background:#fff5f5;color:var(--ink)}
+.compare-box h4{font-size:20px;font-weight:900;margin-bottom:20px;padding-left:60px;min-height:44px;display:flex;align-items:center;line-height:1.45}
+.compare-box.ok h4{color:#1b5e20}
+.compare-box.ng h4{color:#b71c1c}
+.compare-box h4::before{position:absolute;left:24px;top:32px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;border-radius:50%;content:""}
+.compare-box.ok h4::before{content:"◯";background:#2e7d32;color:#fff}
+.compare-box.ng h4::before{content:"×";background:#c62828;color:#fff;font-size:24px}
+.compare-box p{font-size:18px;line-height:1.95}
+.compare-box.ng p{color:var(--ink)}
+.compare-head{font-size:22px;font-weight:900;margin-bottom:24px;color:#fff;position:relative;padding:22px 22px 22px 70px;background:var(--navy);text-align:left;border-left:0;border-radius:6px 6px 0 0}
+.compare-head .num{position:absolute;left:0;top:0;bottom:0;width:54px;display:flex;align-items:center;justify-content:center;background:var(--navy);color:var(--gold);font-weight:900;font-size:26px;font-family:"Georgia",serif;font-style:italic}
+.compare-head .label{color:var(--ink);display:inline-block;margin-left:6px}
+.compare-head .sep{color:var(--gold);margin:0 10px}
+@media(max-width:720px){
+  .compare-grid{grid-template-columns:1fr;box-shadow:4px 4px 0 rgba(0,0,0,.15)}
+  .compare-box.ok{border-right:0;border-bottom:1px solid #ddd}
+  .compare-head{font-size:17px;padding-left:60px}
+  .compare-head .num{width:48px;font-size:22px}
+}
+
+/* STEP CARDS */
+.step{background:#fff;padding:36px 32px;border:none;border-radius:0;margin-bottom:36px;position:relative;border-left:4px solid var(--navy);box-shadow:none}
+.step .step-num{display:block;background:none;color:#3b82f6;font-weight:900;font-size:64px;padding:0;letter-spacing:0;margin-bottom:12px;font-family:"Georgia",serif;font-style:italic;line-height:1;letter-spacing:-.03em}
+.step h3{font-size:26px;font-weight:900;line-height:1.5;margin-bottom:16px;color:#0f2d52}
+.step p{font-size:18px;line-height:2;color:var(--ink-2);font-weight:500}
+.step-arrow{display:none}
+
+/* BONUS */
+.bonus-section{background:#f5f7fa;padding:60px 20px;position:relative}
+.bonus-ribbon{display:inline-block;background:var(--gold);color:#000;font-size:22px;font-weight:900;padding:12px 44px;letter-spacing:.3em;margin-bottom:22px;position:relative}
+.bonus-ribbon::before,.bonus-ribbon::after{content:"";position:absolute;top:0;bottom:0;width:14px;background:var(--gold);transform:skewX(-20deg)}
+.bonus-ribbon::before{left:-8px}
+.bonus-ribbon::after{right:-8px;transform:skewX(20deg)}
+.bonus-card{display:flex;gap:26px;align-items:flex-start;background:#fff;border:2px solid var(--gold);padding:28px 30px;margin-bottom:20px;border-radius:8px}
+.bonus-card .bonus-icon{flex:0 0 84px;width:84px;height:84px;border-radius:50%;background:#fdf6e3;display:flex;align-items:center;justify-content:center;color:var(--navy)}
+.bonus-card .bonus-icon svg{width:48px;height:48px}
+.bonus-card .bonus-body{flex:1}
+.bonus-card .bonus-label{display:inline-block;background:#000;color:var(--gold);font-size:14px;font-weight:900;padding:5px 14px;letter-spacing:.2em;margin-bottom:14px;border-radius:3px}
+.bonus-card h4{font-size:21px;font-weight:900;color:var(--ink);margin-bottom:12px;line-height:1.5}
+.bonus-card p{font-size:16px;line-height:1.9;color:var(--ink)}
+@media(max-width:640px){.bonus-card{flex-direction:column;gap:16px}.bonus-card .bonus-icon{flex:auto;width:72px;height:72px}}
+
+/* PRICE TABLE */
+.price-table{width:100%;border-collapse:collapse;background:#fff;border:2px solid var(--ink);margin:24px 0}
+.price-table th,.price-table td{padding:20px 22px;border-bottom:1px solid var(--border);font-size:18px;text-align:left}
+.price-table th{background:#f5f5f5;font-weight:700;color:var(--ink)}
+.price-table td:last-child{text-align:right;font-weight:700;white-space:nowrap}
+.price-table tr.total td{background:#111;color:var(--gold);font-size:22px;font-weight:900;padding:22px 22px;border-top:2px solid var(--ink)}
+.price-ba{display:flex;justify-content:center;align-items:stretch;margin:40px 0;padding:0}
+.price-ba .ba-after{min-width:380px;max-width:520px;width:100%}
+.price-ba .ba-col{text-align:center;padding:34px 28px;border-radius:12px;display:flex;flex-direction:column;justify-content:center}
+.price-ba .ba-before{background:#f1f2f5;color:var(--ink-2);border:1px solid #d8dbe1}
+.price-ba .ba-after{background:linear-gradient(180deg,#fff 0%,#fff5f5 100%);color:var(--red);border:3px solid var(--red);box-shadow:0 10px 28px rgba(139,26,26,0.18);position:relative}
+.price-ba .ba-after::before{content:"限定";position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:14px;font-weight:900;letter-spacing:.2em;padding:6px 22px;border-radius:20px;box-shadow:0 4px 10px rgba(139,26,26,0.35)}
+.price-ba .ba-label{font-size:16px;font-weight:900;letter-spacing:.15em;margin-bottom:14px}
+.price-ba .ba-before .ba-value{font-size:44px;font-weight:900;line-height:1.1;font-family:"Noto Sans JP",sans-serif;font-style:normal;text-decoration:line-through;text-decoration-color:#999;color:var(--ink-2)}
+.price-ba .ba-after .ba-value{font-size:72px;font-weight:900;line-height:1.1;font-family:"Noto Sans JP",sans-serif;font-style:normal;color:var(--red)}
+.price-ba .ba-value span.unit{font-size:22px;margin-left:4px;text-decoration:none;color:inherit;font-family:"Noto Sans JP",sans-serif}
+.price-ba .ba-after .ba-value span.unit{font-size:28px}
+.price-ba .ba-arrow{font-size:56px;color:var(--red);font-weight:900;line-height:1;align-self:center}
+.price-ba .ba-note{font-size:14px;color:var(--muted);margin-top:12px;font-weight:500}
+@media(max-width:900px){.price-ba{grid-template-columns:1fr;gap:14px}.price-ba .ba-arrow{display:none}.price-ba .ba-after::before{top:-14px;font-size:12px;padding:5px 18px}}
+
+/* WARNING */
+.warning{background:#fff;padding:40px 20px;text-align:center}
+.warning h3{color:var(--red);font-size:24px;font-weight:900;margin-bottom:14px}
+.warning .warning-title{font-size:22px;font-weight:900;margin-bottom:10px}
+.warning p{font-size:16px;color:var(--ink-2);line-height:2;text-align:left;max-width:640px;margin:0 auto 16px}
+
+/* FAQ */
+.faq-item{background:#fff;border-radius:8px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,0.06);overflow:hidden}
+.faq-item summary{font-size:22px;font-weight:700;color:var(--navy);padding:26px 64px 26px 66px;position:relative;cursor:pointer;list-style:none;line-height:1.55}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::before{content:"Q.";position:absolute;left:26px;top:26px;color:#8b1a1a;font-weight:900;font-size:24px}
+.faq-item summary::after{content:"＋";position:absolute;right:28px;top:24px;color:var(--navy);font-weight:900;font-size:28px;transition:transform .2s}
+.faq-item[open] summary::after{content:"−"}
+.faq-item .a{font-size:20px;color:var(--ink);line-height:1.95;padding:6px 28px 30px 66px;position:relative;margin:0}
+.faq-item .a::before{content:"A.";position:absolute;left:26px;top:6px;color:var(--navy);font-weight:900;font-size:24px}
+
+/* FINAL CTA */
+.final-cta{background:#fff;color:var(--ink);padding:60px 20px;text-align:center}
+.final-cta h2{font-size:36px;font-weight:900;margin-bottom:30px;line-height:1.5;color:var(--navy)}
+.final-card{background:#fff;color:var(--ink);max-width:720px;margin:0 auto;padding:44px 36px;border-radius:8px;box-shadow:0 10px 30px rgba(15,45,82,.15);border:1px solid #e5e9ef}
+.final-card h3{font-size:32px;font-weight:900;color:var(--ink);margin:0 auto 22px;line-height:1.4;max-width:420px}
+.final-card > *{max-width:420px!important;margin-left:auto!important;margin-right:auto!important;text-align:center}
+.final-card > ul.bullets{text-align:left}
+.final-card > .notice{text-align:left}
+.final-card .icon{width:80px;height:80px;background:var(--red);border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:40px;font-weight:900}
+.final-card .limit-tag{background:var(--highlight-strong);padding:6px 14px;display:inline-block;font-weight:900;margin-bottom:16px}
+.final-card .live-date{background:var(--red);color:#fff;padding:14px 32px;font-size:20px;letter-spacing:.15em;display:inline-block;margin-bottom:18px;font-weight:900;border-radius:6px}
+.final-card .bullets{text-align:left;margin:24px auto;max-width:420px}
+.final-card .bullets li{padding:12px 0 12px 36px;position:relative;font-size:18px;list-style:none;font-weight:700}
+.final-card .bullets li::before{content:"✓";position:absolute;left:0;color:#2e7d32;font-weight:900;font-size:24px;top:10px}
+.final-card .cta-btn{max-width:420px!important;margin-left:auto!important;margin-right:auto!important;display:block!important}
+.final-card .notice{font-size:15px;color:var(--ink-2);text-align:left;background:#f5f5f5;padding:16px 18px;margin:22px auto 0;line-height:1.9;max-width:420px}
+.final-deadline{background:var(--navy);color:#fff;font-weight:900;font-size:22px;padding:14px 24px;display:inline-block;margin-top:24px;letter-spacing:.1em;border-radius:4px}
+
+/* FOOTER */
+footer{background:#fff;padding:30px 20px;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--border)}
+footer a{color:var(--muted);margin:0 8px;text-decoration:none}
+footer .copy{margin-top:10px}
+
+/* INLINE CTA */
+.inline-cta{background:#fff;padding:40px 20px;text-align:center;border-top:2px solid var(--navy);border-bottom:2px solid var(--navy)}
+.inline-cta h3{font-size:20px;font-weight:900;margin-bottom:18px}
+.inline-cta .sub{font-size:14px;color:var(--muted);margin-top:10px}
+
+/* VOICE 40 */
+.voice-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding:0;list-style:none;margin:0 0 20px 0}
+.voice-list li{padding:28px 26px 26px 26px;font-size:20px;line-height:1.9;color:var(--ink);background:#fff;border:none;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.08);list-style:none;position:relative}
+.voice-list li::before{content:"";display:block;width:56px;height:56px;border-radius:50%;background-color:#f3efe6;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238b1a1a'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");background-size:36px 36px;background-repeat:no-repeat;background-position:center;margin:0 0 12px 0}
+.voice-list li strong{color:#8b1a1a;font-weight:900;font-size:18px;display:inline}
+.voice-list--negative li{background:#f5f6f8;border:1px dashed #b8bfcc;box-shadow:none;border-radius:6px}
+.voice-list--negative li::before{background-color:#dfe3ec;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23707c92'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E")}
+.voice-list--negative li strong{color:#5b6778}
+.voice-group-title{font-size:16px;font-weight:900;color:var(--navy);margin:24px 0 10px;padding:8px 14px;background:#f3efe6;border-left:4px solid #8b1a1a;line-height:1.4}
+@media (max-width:700px){.voice-list{grid-template-columns:1fr}}
+
+/* MAIL BOX */
+.mail-box{background:var(--gray-bg);border-left:5px solid var(--navy);padding:32px 32px;margin:24px 0;font-size:18px;line-height:1.95;color:var(--ink);font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
+.mail-box .from-tag{font-size:14px;color:var(--muted);display:block;margin-top:20px;text-align:right;font-family:"Noto Sans JP",sans-serif}
+
+/* PS BLOCK */
+.ps-block{background:var(--gray-bg);color:var(--ink);padding:80px 20px;text-align:left}
+.ps-block .wrap{max-width:1000px}
+.ps-block .closing-title{font-size:44px;font-weight:900;color:var(--navy);text-align:center;margin-bottom:18px;letter-spacing:.05em}
+.ps-block .closing-sub{font-size:22px;font-weight:900;color:var(--red);text-align:center;margin-bottom:40px;line-height:1.6}
+.ps-block p{font-size:19px;line-height:2.0;color:var(--ink);margin-bottom:22px}
+.ps-block p mark{background:#fff7a8;padding:2px 0;font-weight:700;color:var(--ink)}
+.ps-block p strong{color:var(--navy);background:transparent;padding:0;font-weight:900}
+.ps-block p.sig{color:var(--navy)!important;font-weight:900;font-size:22px;margin-top:36px}
+
+/* BREAK HERO SVG PLACEHOLDER */
+.hero-placeholder{background:linear-gradient(180deg,#0f2d52 0%,#1a4680 100%);height:360px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;border-radius:4px;position:relative;overflow:hidden}
+.hero-placeholder::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 40%, rgba(200,162,80,.3), transparent 50%)}
+
+/* SMALL */
+@media(max-width:720px){
+  .hero{padding:40px 16px 20px}
+  .hero h1 .big{font-size:38px}
+  .hero h1 .small{font-size:17px}
+  .hero .sub{font-size:15px}
+  .facts-grid{grid-template-columns:1fr}
+  .offer-box .offer-title{font-size:26px}
+  .from p{font-size:15px}
+  .h2-big{font-size:22px}
+  .section{padding:40px 0}
+  .final-card{padding:26px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="brand-line">士業・コンサルタントのための</div>
+    <h1>
+      <span class="big">Claude Code 実装</span>
+      <span class="big"><span class="accent">1DAY</span> ワークショップ</span>
+    </h1>
+    <p class="sub">
+      <span class="line-1">私に<u class="red-u">1日だけ</u>、ください。</span>
+      <span class="line-2">あなたの<mark>"本業時間"</mark>を増やすAIを、1つ作らせてみせます。</span>
+    </p>
+
+    <p class="hero-claim">
+      たった<u class="red-u">1日</u>で、Claude Codeを<mark>"自分色のAI"</mark>にすることができる
+    </p>
+    <ul class="hero-axis">
+      <li>
+        <span class="axis-badge"><strong>事実</strong> 01</span>
+        <p class="axis-title">これまで<u class="red-u">5時間かかっていた作業</u>が、起きたら完了</p>
+        <p class="axis-body">16:18に指示を出して事務所を出て、翌朝8時、40ページのサイトが立ち上がっている。</p>
+      </li>
+      <li>
+        <span class="axis-badge"><strong>事実</strong> 02</span>
+        <p class="axis-title">AIがクローン作業で、<u class="red-u">2倍の仕事</u>が可能に</p>
+        <p class="axis-body">私がお客様と面談している間、裏でもう一つのAIが、別の事業計画書のドラフトを仕上げている。</p>
+      </li>
+      <li>
+        <span class="axis-badge"><strong>事実</strong> 03</span>
+        <p class="axis-title">義務感で支払っていた経費が、<u class="red-u">9割削減</u></p>
+        <p class="axis-body">月15,000円のチャットボット代が、月200円に。API連携ツールの年間20万円も不要。桁が2つ変わる。</p>
+      </li>
+    </ul>
+  </div>
+</header>
+
+
+
+<!-- OPENING -->
+<section class="from">
+  <div class="wrap">
+    <h2 class="opening-question">
+      月数千円で、<u class="red-u">3人分、5人分の労力</u>を手に入れたら、<br>
+      <u class="red-u">専門家としての地位</u>をあげることができたら、<br>
+      あなたにとってどれくらいの価値がありますか？
+    </h2>
+    <div class="self-intro-wrap">
+      <p class="self-intro-body">こんにちは、阿久津です。<br>
+      今日あなたにこのお手紙を送っているのは、実はあなたに伝えたいことがあるからです。<br>
+      というのも実は、、、</p>
+      <figure class="self-intro-photo">
+        <img src="assets/img/akutsu-portrait.jpg" alt="阿久津和宏">
+      </figure>
+    </div>
+
+    <p>ちょっと想像して欲しいのですが、</p>
+
+    <p>もし、これから1ヶ月後、朝一番から本業だけに集中できる1日が当たり前になっていたり、1人事務所でもスタッフが2人いるような回り方に変わっていたり、これまで断ってきた高単価案件の売上が入ってくるようになっていたりしたら…。</p>
+
+    <p>あなたの1日、そして仕事環境、売上は、どんなふうに変わっているでしょうか？</p>
+
+    <p class="section-break">月40時間かかっていた事務作業は、月8時間に。<br>
+    空いた32時間は、お客様との面談、単価の高い案件、専門性の磨き込みへ回せるようになる。<br>
+    100時間かけていた補助金の事業計画書は、わずか3〜5時間で仕上がる。<br>
+    ——こんな変化も、決して夢物語ではなくなるんです。</p>
+
+    <p><mark>信じられないと思うかもしれませんが、これは真実です。</mark><br>
+    手紙を1、2分取って読んでください。</p>
+  </div>
+</section>
+
+<!-- EVIDENCE 10 -->
+<section class="section" style="background:var(--gray-bg)">
+  <div class="wrap">
+    <h2 class="h2-big">論より証拠、<br>私たちがClaude Codeで<br>何十人分の仕事をしてきた結果を<br>ご覧いただきたいのですが...</h2>
+
+    <p class="evidence-lead">エンジニアでない私たちが、言葉だけで、この1ヶ月間、Claude Codeで業務を効率化したり、仕事量を増やす取り組みをしてきたのですが、こんなことを導入直後からできるようになりました。</p>
+
+    <div class="evidence-item">
+      <h3>全40ページのオンライン完結型行政書士サイトを、わずか半日で完成！</h3>
+      <p>ある行政書士さんが扱っていたサイトを閉鎖することになって、うちで作り直すことになりました。</p>
+      <p>昨日の16時18分に指示を出して事務所を出て、翌朝8時に事務所に来たら、40ページ超のサイトが出来上がっていました。</p>
+      <p>ランディング→決済→ヒアリングフォーム→内容証明の自動生成→メール通知まで、全部つながっていて、お客様が申し込んでから書類が手元に届くまで、ほぼ自動で回る状態です。</p>
+    </div>
+
+    <div class="evidence-item">
+      <h3>Notionに600件の補助金情報が自動蓄積！各省庁を毎日巡回するAIサイト</h3>
+      <p>各省庁・自治体のサイトを毎日巡回して、補助金情報を集めるサイトを作りました。</p>
+      <p>今、Notionに600件ほどの情報が入っていて、毎朝パソコンを開くと新着情報が通知されます。</p>
+      <p>公開してまだ1週間も経っていないのに、<mark>106セッション、255PV、エンゲージメント率65%超</mark>。平均セッション時間は約11分です。問い合わせも、順調に入ってきているサイトになりました。</p>
+    </div>
+
+    <div class="evidence-item">
+      <h3>100時間かかった事業計画書が、3〜5時間で完成！成約率3割の人気講座に</h3>
+      <p>ヒアリング→現状分析→環境分析→戦略設計→事業計画書まで、これまで、どう頑張っても100時間かかっていた作業が、今は3〜5時間で一次版まで仕上がります。</p>
+      <p>これ、先日キャンペーンで販売したんですけど、おかげさまで、うちの人気講座になりました。<mark>成約率は3割</mark>。業界では、なかなか出ない数字です。</p>
+    </div>
+
+    <div class="evidence-item">
+      <h3>月15,000円のチャットボットを月200円で自作！年間18万円の経費削減</h3>
+      <p>去年、おととしあたりにIT導入補助金のツール登録で使っていたチャットボットサービス、月額15,000円払っていました。</p>
+      <p>これをClaude Codeで自作したら、<mark>月200円で動くものに置き換わった</mark>んです。年間で約18万円、経費が浮きました。同じ機能で、桁が2つ変わった感じです。</p>
+    </div>
+
+    <div class="evidence-item">
+      <h3>年間20万円のAPI連携ツールが不要に！Claude Code一本で全自動化</h3>
+      <p>複数のツールを繋ぐザピアというサービス、年間約20万円払っていました。</p>
+      <p>Claude Codeがあれば自動連携は全部こっちで組めるので、もう不要です。ここでも、<mark>年間20万円分の経費が浮きました</mark>。</p>
+    </div>
+
+    <div class="evidence-item">
+      <h3>複雑なエクセル書式にも自動入力が可能に！ヒアリング1回で書類一式が完了</h3>
+      <p>建設業許可の新規申請。工事経歴書・誓約書・経営業務管理責任者証明書・専技証明書・財産要件チェックと、書類が多くて、毎回それなりに時間がかかる業務でした。</p>
+      <p>今は、ヒアリングシートに答えてもらえば、AIがExcelの書式に直接打ち込むところまでやってくれます。書式のズレや項目漏れに使っていた時間を、お客様対応の方に回せるようになりました。</p>
+    </div>
+
+    <div class="evidence-item">
+      <h3>顧客情報やヒアリング結果をドラッグするだけで、チェック・資料作成が完了するAIが完成！</h3>
+      <p>在留資格の判定・要件チェック・不許可リスク評価・申請書類作成・理由書のドラフトまで、一本化しました。</p>
+      <p>外国人を雇いたい企業さんとの初回面談で、その場で「この方は技術・人文知識・国際業務で通る可能性が高いです。ただし学歴要件がここで引っかかるので、こう補強しましょう」というところまで、出せるようになっています。</p>
+      <p>打ち合わせの前の準備時間が、ほぼゼロになりました。</p>
+    </div>
+
+    <div class="evidence-item">
+      <h3>デジタル化・AI導入補助金支援事業者登録申請の難問、機能説明書・価格説明書をテンプレ化・AI化に成功！</h3>
+      <p>IT導入補助金（今はデジタル化AI導入補助金）の支援事業者登録、機能概要説明資料と価格説明資料の作成が、去年から特に大変になりました。</p>
+      <p>単価×時間×人数の根拠まで細かく書かないと、不備で戻ってくる世界です。その初稿を、書式通りにAIが作るところまで自動化したので、不備で戻ってくる回数そのものが減る状態になっています。</p>
+    </div>
+
+    <div class="evidence-item">
+      <h3>AIの作業履歴がすべて残り、"自分の色"に染まるAIチームが育つ</h3>
+      <p>AIが裏でどんな作業をやったか、人間には見えない部分が多いんですよ。</p>
+      <p>これを全部ログとして残しています。「あの時、ああ言ったじゃないか」が全部残るので、指示や会話が蓄積されていって、AIが<mark>"自分の色"に染まっていく</mark>んですね。</p>
+    </div>
+
+    <div class="evidence-item">
+      <h3>面倒なGoogleアナリティクスの画面をダッシュボード化、日々のサイト状況把握が可能に。しかも39サイトを2時間で完成!</h3>
+      <p>お客様のサイトのアクセス解析を、自動でダッシュボード化しています。</p>
+      <p>これ、実は組める人が今まで少なかった業務で、外注案件の単価としても成立する世界でした。Claude Codeに言葉で指示するだけで、お客様ごとのダッシュボードが朝までに出来上がる時代になりました。</p>
+    </div>
+
+    <hr class="rule">
+
+    <div style="background:#fff9e5;border:2px solid #e8d17a;border-radius:10px;padding:36px 32px;margin:30px auto 0;max-width:820px;box-shadow:0 2px 12px rgba(0,0,0,0.05)">
+      <p style="text-align:center;font-size:26px;font-weight:900;color:var(--ink);line-height:1.85;margin:0">
+        …どうでしょうか。<br>
+        共通しているのは、<mark>全部「<span style="color:var(--red)">日本語</span>で指示しただけ」</mark>ということ。<br>
+        エンジニアではないので、コードは1行も書いていません。
+      </p>
+      <p style="text-align:center;font-size:17px;color:var(--ink);margin:20px 0 0 0;font-weight:600;line-height:1.8">
+        これが、Claude Codeで変わった1ヶ月なんですが…<br>
+        でも、これは何も私だけの話じゃないんですね。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE 40 -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="h2-big">
+      つい先日、<br>
+      <span style="color:#8b1a1a">こんなメールが届きました</span>
+    </h2>
+    <p style="text-align:center;font-size:22px;color:var(--ink);margin-bottom:24px;font-weight:700;line-height:1.95">
+      業界のあちこちで、同じような動きが始まっています。<br>
+      中でも一番驚いたのが、この1通のメールでした。
+    </p>
+    <p style="text-align:center;font-size:20px;color:var(--ink);margin-bottom:40px;font-weight:700;line-height:1.95">
+      送ってくれたのは、<br>
+      僕の知り合いのコンサルタントで、社会保険労務士の方です。
+    </p>
+
+    <div class="mail-box">
+      下記一緒に売れないですかね？？？？<br><br>
+      Claude Codeいじっていたら出来ました。笑<br>
+      作ったのは、正式にはClaude Codeです。<br>
+      Netflix見ながら作りました。<br><br>
+      ものはなんとなく出来ましたが、売ることを全く考えていなく。<br>
+      行政書士の資格も私はないので。笑<br><br>
+      AIが作ったのでどこまで出来ているか不明です。<br>
+      お手隙際にいじって問題点を教えてください<br>
+      <span class="from-tag">— YIさんから、僕宛に届いた、そのままのメールです。</span>
+    </div>
+
+    <p style="font-size:17px;line-height:1.95;color:var(--ink);margin-top:24px;font-weight:400">
+      Netflix見ながら、AIで、行政書士業務の仕組みが、出来上がっちゃってる。<br>
+      しかも、行政書士資格を持っていない方が、です。
+    </p>
+    <p style="font-size:17px;line-height:1.95;color:var(--ink);margin-top:18px;font-weight:400">
+      …笑い話みたいに聞こえるかもしれません。<br>
+      でも、一番怖いのは、こういう人たちが、<mark>あなたの業界のすぐ近くで、もう動き始めている</mark>ということなんですよ。
+    </p>
+
+    <hr class="rule">
+
+    <h2 class="h2-big" style="margin-top:30px">
+      さらに...<br>
+      <span style="color:#8b1a1a">こんなふうにAIを活用している方もいます</span>
+    </h2>
+    <p style="text-align:center;font-size:19px;color:var(--ink);margin-bottom:40px;font-weight:700;line-height:1.9">
+      実は、業界のあちこちで、同じような取り組みが始まっています。<br>
+      この1〜2ヶ月で、うちのコミュニティや業界の知り合いから、<br>
+      こういう"現場報告"が次々に入ってきています。
+    </p>
+
+    <ul class="voice-list">
+      <li><strong>行政書士のSKさん</strong>は、<br>建設業許可の工事経歴書を、1件3時間かかっていたのが30分で片付くようになった</li>
+      <li><strong>行政書士のMTさん</strong>は、<br>入管理由書のドラフト作成を1件8時間→1時間に短縮。浮いた時間を単価の高い案件に回すようにシフト</li>
+      <li><strong>行政書士のKOさん</strong>は、<br>補助金事業計画書の100時間仕事が、5時間で一次版まで仕上がるように</li>
+      <li><strong>行政書士のYNさん</strong>は、<br>遺言書のヒアリングから原案作成までを1日で完了。以前は3〜4日かかっていた</li>
+      <li><strong>行政書士のHMさん</strong>は、<br>建設業の決算変更届。1社1日だった作業が半日に。顧問契約の離脱率も下がった</li>
+      <li><strong>行政書士のTSさん</strong>は、<br>会社設立の定款を、1時間で一次完成まで持っていけるように</li>
+      <li><strong>行政書士のRNさん</strong>は、<br>在留資格の要件判定を、初回面談の場でその場返答できるようになり、成約率がはっきり上がった</li>
+      <li><strong>行政書士のRIさん</strong>は、<br>古物商許可の添付書類チェックをAIに任せて、不備差し戻しゼロに</li>
+      <li><strong>行政書士のAYさん</strong>は、<br>農地転用許可のヒアリングシートをAIに作らせて、顧客対応の時間を半分に</li>
+      <li><strong>社労士のRKさん</strong>は、<br>就業規則の起案を数日仕事から数時間に。単価を維持したまま回転数が上がった</li>
+      <li><strong>社労士のYHさん</strong>は、<br>助成金申請の不備対応時間を7割削減</li>
+      <li><strong>社労士のKMさん</strong>は、<br>顧問先の給与計算の監査にAIを入れて、月末の徹夜がなくなった</li>
+      <li><strong>社労士のTNさん</strong>は、<br>36協定・変形労働時間制の届出を1時間以内で起案</li>
+      <li><strong>社労士のHFさん</strong>は、<br>キャリアアップ助成金の書類確認をAI化して、不採択率が激減</li>
+      <li><strong>社労士のMIさん</strong>は、<br>顧客ごとの離職票チェックを自動化。エラー件数がほぼゼロに</li>
+      <li><strong>税理士のJSさん</strong>は、<br>決算書の注記文言を自動生成。1社1時間の仕事が10分で終わる</li>
+      <li><strong>税理士のTMさん</strong>は、<br>顧問先ミーティングの議事録整理を8割削減</li>
+      <li><strong>税理士のOIさん</strong>は、<br>仕訳の大量データ振り分けを自動化。経理担当の残業がゼロに</li>
+      <li><strong>税理士のMSさん</strong>は、<br>確定申告期の書類チェックをAI化して、同じ人員で処理量を1.5倍に</li>
+      <li><strong>税理士のKYさん</strong>は、<br>クラウド会計のエラー検知を自動化。月次の顧客レポートが翌朝には完成</li>
+      <li><strong>税理士のRSさん</strong>は、<br>事業承継のシミュレーションを半日で回せるようになり、新規の相談枠が増えた</li>
+      <li><strong>司法書士のNTさん</strong>は、<br>登記書類のドラフトを自動生成。1件3時間の作業が45分に</li>
+      <li><strong>司法書士のKIさん</strong>は、<br>相続関係図を戸籍画像から自動生成。複雑な相続案件も2日で整う</li>
+      <li><strong>司法書士のSYさん</strong>は、<br>会社変更登記の書類一式を1時間で揃えるように</li>
+      <li><strong>司法書士のHRさん</strong>は、<br>契約書レビューをAIに一次チェックさせて、確認時間が半分に</li>
+      <li><strong>中小企業診断士のMKさん</strong>は、<br>補助金情報の収集サイトを自作。月40時間の調査時間がゼロに</li>
+      <li><strong>補助金コンサルのTHさん</strong>は、<br>採択事例を学習させた提案書で、採択率が上がり、紹介が増えた</li>
+      <li><strong>補助金コンサルのYTさん</strong>は、<br>複数補助金の事業計画書テンプレを統一化。1社で複数申請が当たり前に</li>
+      <li><strong>中小企業診断士のSNさん</strong>は、<br>ヒアリング音声からSWOTとクロスSWOTが自動で出るように。初回面談の場で方向性まで提示</li>
+      <li><strong>補助金コンサルのFRさん</strong>は、<br>経営改善計画書の起案を1週間→3日に短縮</li>
+      <li><strong>マーケティングコンサルのKSさん</strong>は、<br>LP制作を自動化。1日1本ペースで、月30本のLPを納品する体制に</li>
+      <li><strong>マーケティングコンサルのOMさん</strong>は、<br>ステップメール10通セットを1日で組めるようになり、単価が倍に</li>
+      <li><strong>WebコンサルのINさん</strong>は、<br>クライアントのSEO記事を週20本量産。月額顧問料が3倍</li>
+      <li><strong>マーケティングコンサルのEIさん</strong>は、<br>競合分析レポートを月次で自動生成。提案会議の準備時間が消えた</li>
+      <li><strong>WebコンサルのFKさん</strong>は、<br>広告コピーを複数パターン数時間で量産</li>
+      <li><strong>弁理士のHSさん</strong>は、<br>特許明細書の一次起案を自動化。1件の所要時間が3分の1に</li>
+      <li><strong>宅建士のTUさん</strong>は、<br>重要事項説明書を自動生成。案件回転が倍に</li>
+      <li><strong>経営コンサルのYMさん</strong>は、<br>顧問先の月次レポートを自動化。顧問料を値上げする交渉材料に</li>
+      <li><strong>行政書士のWTさん</strong>は、<br>事務所のフォルダ整理と顧客管理をAIに任せて、月5時間の事務時間が浮いた</li>
+      <li><strong>IT導入補助金支援コンサルのTAさん</strong>は、<br>支援事業者申請の不備対応を自動化。差し戻し率が激減</li>
+    </ul>
+
+    <div style="text-align:center;margin:70px auto 20px;padding:50px 20px 40px;position:relative">
+      <div style="width:80px;height:2px;background:var(--red);margin:0 auto 28px"></div>
+      <p style="font-size:44px;font-weight:900;color:var(--navy);line-height:1.5;letter-spacing:.1em;margin:0;font-family:'Noto Serif JP','Noto Sans JP',serif">
+        ただ、その一方で…
+      </p>
+      <div style="width:80px;height:2px;background:var(--red);margin:28px auto 0"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CANT USE 22 -->
+<section class="section" style="background:var(--gray-bg)">
+  <div class="wrap">
+    <h2 class="h2-big">こういう人も、多くいます</h2>
+    <p style="text-align:center;font-size:20px;color:var(--ink);margin-bottom:30px;line-height:1.95;font-weight:700">
+      ここまで見てきたように、業界でClaude Codeが動き出しているのは、事実です。<br>
+      正直なところ、こんな声も、毎日のように入ってきています。
+    </p>
+
+    <ul class="voice-list voice-list--negative">
+      <li><strong>行政書士のAMさん</strong>：「入れようと思って、ターミナルを開いた瞬間、見たことないコマンドが並んでて…本気で固まりました。」</li>
+      <li><strong>行政書士のBNさん</strong>：「YouTubeを2時間見て、やっとインストールまでいったんですけど、そこから先、何をすればいいのか分からなくて止まっています。」</li>
+      <li><strong>行政書士のCOさん</strong>：「CLAUDE.md？スキル？何を書いたらいいのか、正直、1行も進みません。」</li>
+      <li><strong>行政書士のDPさん</strong>：「使い始めて3日で、利用制限にかかっちゃったんですよね。何がダメだったのか…」</li>
+      <li><strong>行政書士のEQさん</strong>：「お客様の情報をAIに渡していいのか、セキュリティが心配すぎて、結局、毎回ChatGPTに戻っています。」</li>
+      <li><strong>行政書士のFRさん</strong>：「自分の業務に、どう使えばいいのか分からなくて。理由書を書かせたら、全然違うのが出てきて、直すのに倍の時間がかかりました。」</li>
+      <li><strong>社労士のGSさん</strong>：「就業規則を書かせようとしたら、なんか英語っぽい日本語が出てきて…結局、ワードに戻って手直ししています。」</li>
+      <li><strong>社労士のHUさん</strong>：「インストールは出来たんですけど、『プロジェクトフォルダって何？』って段階で止まっています。」</li>
+      <li><strong>社労士のIVさん</strong>：「権限設定の画面で、チェックを全部入れていいのか、本当に怖くて進めないんですよ。」</li>
+      <li><strong>税理士のJWさん</strong>：「ターミナルって言葉で、もう拒絶反応が出ました。何を打ち込めば動くのかすら分からない状態です。」</li>
+      <li><strong>税理士のKXさん</strong>：「顧問先の仕訳データを読み込ませたいんですけど、フォルダ構造の話から先に進めません。」</li>
+      <li><strong>税理士のLYさん</strong>：「設定したつもりが、翌日、同じことを指示したら全然違う動きをするんです。設定、効いてないんですかね…」</li>
+      <li><strong>司法書士のMZさん</strong>：「登記書類をやらせたら、書式がズレて、結局ワードで1から直すことになりました。これ、楽になってるんでしょうか…」</li>
+      <li><strong>司法書士のAEさん</strong>：「チャット形式しか使ったことがなくて、Claude Codeとチャットの違いが、正直、分からないまま止まっています。」</li>
+      <li><strong>補助金コンサルのBGさん</strong>：「補助金のデータを読み込ませたら、全然違う制度の情報を混ぜて返してきて、使い物にならなかったんです。」</li>
+      <li><strong>中小企業診断士のCIさん</strong>：「どのスキルから作ればいいのか、優先順位が分からず、手当たり次第でどれも中途半端になっています。」</li>
+      <li><strong>補助金コンサルのDKさん</strong>：「事業計画書を書かせたら、数値の整合性がバラバラで、修正の方が大変でした。」</li>
+      <li><strong>マーケティングコンサルのEMさん</strong>：「LPを作らせたんですけど、英語圏のレイアウトが混じってて、毎回手直ししています。」</li>
+      <li><strong>WebコンサルのFOさん</strong>：「GitHubとの連携で詰まって、3日間そのまま放置しているんですよ。」</li>
+      <li><strong>マーケティングコンサルのGQさん</strong>：「クライアントに見せる前のチェックポイントが分からなくて、結局、納品するのが怖くなりました。」</li>
+      <li><strong>行政書士のHSさん</strong>：「インストールした翌日、OSのアップデートが入って、動かなくなりました。今、再起動しようか迷っています。」</li>
+      <li><strong>社労士のIUさん</strong>：「1週間で本気で使えるようになるとは思えません。そもそも、始め方すら分からないんです。」</li>
+    </ul>
+
+    <p style="text-align:center;font-size:18px;line-height:1.95;color:var(--ink);margin-top:36px;font-weight:500">
+      …どうでしょうか。<br>
+      もし、ここに書いてある声のどれか一つでも、自分に当てはまる気がしたなら、それは、あなただけじゃないんです。
+    </p>
+    <p style="font-size:22px;font-weight:700;color:var(--ink);margin-top:24px;line-height:1.95">
+      でも不思議に思いませんか？<br>
+      なぜ同じ業種、同じ職種でも、こんな差が出てしまうのでしょうか？
+    </p>
+  </div>
+</section>
+
+<!-- NAVY BAND: DIFFERENCE -->
+<section class="navy-band">
+  <div class="wrap">
+    <h2>なぜ、同じ業種・同じ職種でも、<br><span class="gold">これほど違いが出てしまう</span>のでしょうか？</h2>
+    <p>バリバリ活用している人と、止まってしまっている人。<br>
+    やっていることは、同じClaude Codeなんですよ。<br>
+    なのに、これだけ差が出るのは、なぜか？</p>
+    <p style="margin-top:20px;color:#fff;font-size:18px;font-weight:700">ぶっちゃけ、たった3つのポイントで、綺麗に分かれているんです。</p>
+  </div>
+</section>
+
+<!-- COMPARE 3 -->
+<section class="section">
+  <div class="wrap">
+    <div class="compare-head">◼︎ ポイント①｜「まず学んでから」やろうとしている</div>
+    <div class="compare-grid">
+      <div class="compare-box ok">
+        <h4>触って覚える</h4>
+        <p>分からないことが出てきても、その場でClaude Codeに聞く。今使える情報で、すぐに答えが返ってくる。だから止まる時間がほとんどなく、毎日、業務が少しずつ自動化されていっています。</p>
+      </div>
+      <div class="compare-box ng">
+        <h4>勉強してから始めようとしている</h4>
+        <p>YouTubeや本を探し続けて、「もうちょっと勉強してから」と、始められないまま。学び終わった頃には、AIの中身はもう変わっている。「今月も手を付けられなかった」が繰り返されます。</p>
+      </div>
+    </div>
+
+    <div class="compare-head">◼︎ ポイント②｜「お客様に迷惑をかけるのでは」と心配している</div>
+    <div class="compare-grid">
+      <div class="compare-box ok">
+        <h4>セキュリティから設定する</h4>
+        <p>権限の分離、プロジェクト単位のデータ管理、情報の送信先コントロール。この3つを理解したうえで使っています。だから、お客様の書類を扱う作業にも、安心して踏み込めます。</p>
+      </div>
+      <div class="compare-box ng">
+        <h4>「渡して大丈夫なの？」で踏み込めない</h4>
+        <p>「お客様の情報、AIに渡して大丈夫なの？」という不安が先に立って、進められない。結局、汎用のChatGPTにコピペする日々が続く。知識がないまま使い続けるほうが、実はリスクが大きい。</p>
+      </div>
+    </div>
+
+    <div class="compare-head">◼︎ ポイント③｜「AI専門家の方が役に立つ」と思っている</div>
+    <div class="compare-grid">
+      <div class="compare-box ok">
+        <h4>どう無駄な時間を解消するか？に焦点を当てている</h4>
+        <p>CLAUDE.mdというファイルに、自分の業務ルール・書式・判断基準を書き込んでいます。だから、AIが"自分仕様"で動く。自分の業務知識が、そのまま武器になります。</p>
+      </div>
+      <div class="compare-box ng">
+        <h4>「専門家に聞けば」で、外に頼り続けている</h4>
+        <p>「AI専門家の方が詳しいから」と、使い方を外から教わろうとする。でも、自分の業務を一番知っているのは自分自身。出力は一般的なままで、現場の仕事には刺さらない。</p>
+      </div>
+    </div>
+
+    <p style="font-size:20px;line-height:1.95;margin-top:34px;color:var(--ink);font-weight:500">
+      …あなたはどちらでしたか？<br>
+      もし、この3つのポイントで止まっている人のほうに近かったとしても、心配しないでください。<br>
+      越えられない壁ではありません。1日でまとめて越えられます。
+    </p>
+  </div>
+</section>
+
+<!-- NAVY: 1 DAY STRUCTURE -->
+<section class="navy-band">
+  <div class="wrap">
+    <h2>どうしたら、思い通りの仕事環境と<br><span class="gold">本業時間を増やして</span><br>顧客から信頼を得られるポジションを<br>獲得できるのでしょうか？</h2>
+    <p>答えは、シンプルです。<br>
+    <mark style="background:#f5c83a;color:#0f2d52;padding:10px 22px;font-size:30px;font-weight:900;line-height:1.5;display:inline-block;margin:14px 0;border-radius:4px">初期設定・セキュリティ・効果的な使い方</mark></p>
+  </div>
+</section>
+
+<!-- 1 DAY STRUCTURE EXPLAIN -->
+<section class="section">
+  <div class="wrap">
+
+    <h2 class="h2-big" style="text-align:center;margin-bottom:20px">Claude Codeで仕事環境を<br><span style="color:#8b1a1a">劇的に変える</span>3つの要素</h2>
+    <p style="font-size:18px;line-height:1.95;color:var(--ink);margin:0 0 40px 0;font-weight:400;text-align:left;max-width:820px;margin-left:auto;margin-right:auto">
+      実は、たくさんの方を見てきてわかったことは、この3つこそ、Claude Codeで仕事環境を変えている人たちの特徴なんです。<br>
+      その特徴とは──
+    </p>
+
+    <div class="feature-step">
+      <div class="feature-step-num"><span class="feature-step-label">要素</span><span class="feature-step-digit">01</span></div>
+      <div class="feature-step-body">
+        <h3>初期設定を、その日のうちに終わらせる</h3>
+        <p>CLAUDE.md、スキル、プロジェクトフォルダ、権限設定。バラバラに学ぶと1ヶ月かかるものを、順番通りに進めれば1日で整います。翌日から、すぐに本業の作業に入れる状態まで、持っていきます。</p>
+      </div>
+    </div>
+
+    <div class="feature-step">
+      <div class="feature-step-num"><span class="feature-step-label">要素</span><span class="feature-step-digit">02</span></div>
+      <div class="feature-step-body">
+        <h3>セキュリティを"知った上で"使う</h3>
+        <p>APIキーの管理、権限設定、顧客情報の扱い方。避けるべき落とし穴と、安全に使うための具体的な設定方法を、1日でまとめて習得します。「怖いから使えない」が、「怖さを知った上で使える」に変わります。</p>
+      </div>
+    </div>
+
+    <div class="feature-step">
+      <div class="feature-step-num"><span class="feature-step-label">要素</span><span class="feature-step-digit">03</span></div>
+      <div class="feature-step-body">
+        <h3>CLAUDE.md運用で"あなた仕様"に育てる</h3>
+        <p>業務固有のルール・書式・判断基準を、CLAUDE.mdに書き込んでいく運用。この運用さえ身につけば、AIがあなたの業務パターンを覚えて、毎回ゼロから指示する必要がなくなります。使えば使うほど賢くなる、育てていくAIの仕組みが手に入ります。</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BIG BENEFIT SECTION -->
+<section class="section" style="background:linear-gradient(180deg,#f5f0e4 0%,#faf5e8 100%);padding:90px 20px">
+  <div class="wrap">
+    <h2 style="font-size:36px;font-weight:900;color:var(--navy);text-align:center;line-height:1.55;margin:0 0 10px 0">
+      1日後から、<br>
+      <span style="color:#8b1a1a">あなたの仕事はこう変わります</span>
+    </h2>
+    <p style="text-align:center;font-size:18px;color:var(--ink);margin:0 0 40px 0;font-weight:500">
+      Claude Codeが"自分仕様"で動き始めた、次の朝の景色です。
+    </p>
+    <div style="background:#fff;border-radius:14px;padding:48px 48px 42px;max-width:900px;margin:0 auto;box-shadow:0 14px 36px rgba(0,0,0,0.14);position:relative">
+      <div style="position:absolute;top:-20px;left:40px;background:var(--navy);color:#fff;font-size:14px;font-weight:900;letter-spacing:.3em;padding:8px 22px;border-radius:4px">BENEFIT</div>
+      <ul style="list-style:none;padding:0;margin:0 0 28px 0;text-align:left">
+        <li style="font-size:20px;line-height:1.95;color:var(--ink);padding:14px 0 14px 48px;position:relative;border-bottom:1px dashed #d8d8d8;font-weight:500"><span style="position:absolute;left:4px;top:14px;width:32px;height:32px;background:#2e7d32;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900">◯</span>翌朝から、迷わずターミナルを開いて、その日の業務にすぐ入れる。</li>
+        <li style="font-size:20px;line-height:1.95;color:var(--ink);padding:14px 0 14px 48px;position:relative;border-bottom:1px dashed #d8d8d8;font-weight:500"><span style="position:absolute;left:4px;top:14px;width:32px;height:32px;background:#2e7d32;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900">◯</span>動きながら、聞きながら、毎日少しずつ業務が自動化されていく。</li>
+        <li style="font-size:20px;line-height:1.95;color:var(--ink);padding:14px 0 14px 48px;position:relative;border-bottom:1px dashed #d8d8d8;font-weight:500"><span style="position:absolute;left:4px;top:14px;width:32px;height:32px;background:#2e7d32;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900">◯</span>お客様の書類を扱う仕事にも、安心して踏み込める。</li>
+        <li style="font-size:20px;line-height:1.95;color:var(--ink);padding:14px 0 14px 48px;position:relative;font-weight:500"><span style="position:absolute;left:4px;top:14px;width:32px;height:32px;background:#2e7d32;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900">◯</span>あなた仕様で動くAIが、使える成果物をその場で返してくれる。</li>
+      </ul>
+      <p style="font-size:22px;line-height:1.85;color:var(--ink);margin:0;text-align:center;font-weight:700;background:#fff9e5;padding:24px 24px;border-radius:8px;border:1px solid #f0dba0">
+        そして、<mark style="background:#f5c83a;color:var(--navy);padding:4px 10px;border-radius:3px">月々のツール代が、Claude Codeひとつに集約</mark>されていきます。<br>
+        <span style="font-size:17px;font-weight:500;display:inline-block;margin-top:10px;line-height:1.85">月15,000円のチャットボットも、年間20万円のAPI連携ツールも、Claude Code 1本に置き換わっていきます。</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSHOP DETAIL 10 STEPS -->
+<section class="section" style="background:var(--gray-bg)">
+  <div class="wrap">
+    <h2 class="h2-big">Claude Code 実装1DAYワークショップの<br>具体的な内容</h2>
+    <p style="text-align:center;font-size:18px;color:var(--ink);margin-bottom:40px;line-height:1.95;font-weight:500">
+      当日、順番に進めていく全ステップ。<br>
+      コードは1行も書きません。日本語で指示するだけで、1つのAIの仕組みが、あなたの手元に残ります。
+    </p>
+
+    <div class="step">
+      <div class="step-num">1.</div>
+      <h3>一発で動き出す、プロの起動準備</h3>
+      <p>インストール、ターミナルの初期設定、最初の起動確認まで。業界で一番多くの方が「ここで止まって、1ヶ月動かなかった」と言う場所を、講師と一緒に30分で越えます。この時点で「自分のPCでAIが日本語で動いている」状態が出来上がります。</p>
+    </div>
+    <div class="step-arrow">▼</div>
+
+    <div class="step">
+      <div class="step-num">2.</div>
+      <h3>一生困らないセキュリティ体制構築法</h3>
+      <p>APIキーの管理、権限の許可範囲、顧客情報を扱う時の考え方。ここを知らないまま使うと、1つのミスで数百万円の請求が来る世界です。逆に、このフェーズを越えれば、お客様の書類を扱う業務にも安心して踏み込めるようになります。"怖いから使えない"が、"怖さを知った上で、ちゃんと使える"に変わる時間です。</p>
+    </div>
+    <div class="step-arrow">▼</div>
+
+    <div class="step">
+      <div class="step-num">3.</div>
+      <h3>案件が自動で回り出す、あなた専用の仕事環境</h3>
+      <p>お客様ごと・案件ごとのフォルダ設計をどう組むか。ここの作りが甘いと、あとで全部やり直しになります。士業・コンサル業務に適した、再利用しやすい設計を、最初に作り込みます。</p>
+    </div>
+    <div class="step-arrow">▼</div>
+
+    <div class="step">
+      <div class="step-num">4.</div>
+      <h3>Claudeのブレインを最初から最強にする方法</h3>
+      <p>AIに業務ルール・書式・判断基準を覚えさせる、いちばん重要なファイル。ここの書き方で、AIが"あなた専用"になるか、汎用AIのままかが決まります。</p>
+    </div>
+    <div class="step-arrow">▼</div>
+
+    <div class="step">
+      <div class="step-num">5.</div>
+      <h3>1本作れば一生使える、業務AIロボットの生み出し方</h3>
+      <p>「建設業許可スキル」「在留資格スキル」のように、業務ごとに切り分けた"道具"を作っていく発想。1つ作ると、翌日から同じ業務が繰り返し使えるようになります。</p>
+    </div>
+    <div class="step-arrow">▼</div>
+
+    <div class="step">
+      <div class="step-num">6.</div>
+      <h3>AIツール使用料を1/10に抑える、賢者のトークン運用術</h3>
+      <p>毎月のトークン上限、リセットタイミング、Plan選び。知らずに使うと、3日で止まります。知っていれば、1ヶ月フル稼働できます。</p>
+    </div>
+    <div class="step-arrow">▼</div>
+
+    <div class="step">
+      <div class="step-num">7.</div>
+      <h3>業務AIを1つ作って、そこから拡張させていく方法</h3>
+      <p>当日の午後は、あなたの実務の中から1つ選んで、実際にAIに落とし込みます。ヒアリングシートの自動化、書類の下書き生成、お客様対応メールの自動化──何でも構いません。</p>
+    </div>
+    <div class="step-arrow">▼</div>
+
+    <div class="step">
+      <div class="step-num">8.</div>
+      <h3>詰まっても5分で抜け出せる、実践的エラー対処法</h3>
+      <p>使っていれば、必ずエラーが出ます。そこで止まる人と、5分で自己解決できる人の差。このパターンを覚えれば、1人で使い続けられるようになります。</p>
+    </div>
+    <div class="step-arrow">▼</div>
+
+    <div class="step">
+      <div class="step-num">9.</div>
+      <h3>使うほど鋭くなる、"育てるAI"の仕込み方</h3>
+      <p>指示履歴・会話ログを残して、AIを"育てていく"運用。使えば使うほど賢くなる仕組みを、最後に仕込みます。</p>
+    </div>
+    <div class="step-arrow">▼</div>
+
+    <div class="step">
+      <div class="step-num">10.</div>
+      <h3>月曜の朝から動き出す、あなた専用の戦略設計</h3>
+      <p>最後に、あなたの事務所・業務・お客様に合わせて、何から優先して自動化すべきか、1つずつ戦略に落とし込みます。漠然とした「これからAIを使う」ではなく、「来週月曜の朝、この作業から手を付ける」という、具体的な次の一手まで、一緒に作ります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERMISSION TO NOT DO -->
+<section class="section" style="background:linear-gradient(180deg,#fdf8ee 0%,#faf0d8 100%);padding:90px 20px">
+  <div class="wrap">
+    <h2 style="font-size:34px;font-weight:900;color:var(--navy);text-align:center;line-height:1.55;margin:0 0 18px 0">
+      もう、あなたは<br>
+      <span style="color:#8b1a1a">こんな苦労をする必要はありません</span>
+    </h2>
+    <p style="text-align:center;font-size:18px;color:var(--ink);margin:0 0 50px 0;font-weight:500;line-height:1.9">
+      Claude Codeで、あなたの環境が大きく変わる機会かもしれません。
+    </p>
+    <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+      <div style="background:#fff;padding:28px 32px 28px 84px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.08);position:relative">
+        <span style="position:absolute;left:22px;top:26px;width:48px;height:48px;background:#2e7d32;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V8h16v10zM7.5 17l-3.5-3.5L5.41 12.09 7.5 14.17 11.09 10.59 12.5 12 7.5 17z"/></svg></span>
+        <h3 style="font-size:26px;font-weight:900;color:var(--navy);margin:0 0 14px;line-height:1.55">Claude Codeが"自分仕様"で動くようになるので、3日間ターミナルを開けないまま止まる必要は、もうありません。</h3>
+        <p style="font-size:17px;line-height:1.95;color:var(--ink);margin:0">CLAUDE.md・スキル・権限設定を、最初の1日で順番通りに整えるから、翌朝にはもう、AIが日本語で動く状態。「何から触ればいい？」という迷いが消えて、朝パソコンを開けばすぐ本業に入れる日が、当たり前になっていきます。</p>
+      </div>
+      <div style="background:#fff;padding:28px 32px 28px 84px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.08);position:relative">
+        <span style="position:absolute;left:22px;top:26px;width:48px;height:48px;background:#1565c0;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 9h-4v4h-2v-4H7V9h4V5h2v4h4v2z"/></svg></span>
+        <h3 style="font-size:26px;font-weight:900;color:var(--navy);margin:0 0 14px;line-height:1.55">動きながら、聞きながら進められるようになるので、YouTubeを何時間も見続ける必要は、もうありません。</h3>
+        <p style="font-size:17px;line-height:1.95;color:var(--ink);margin:0">分からないことは、その場でClaude Codeに聞けばいい。今使える最新情報で、あなたの状況に合った答えがすぐ返ってきます。古い動画を順番に観続けていた何時間も、本業や家族との時間に取り戻せるようになります。</p>
+      </div>
+      <div style="background:#fff;padding:28px 32px 28px 84px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.08);position:relative">
+        <span style="position:absolute;left:22px;top:26px;width:48px;height:48px;background:#2e7d32;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></span>
+        <h3 style="font-size:26px;font-weight:900;color:var(--navy);margin:0 0 14px;line-height:1.55">情報の送信先・権限を理解できるので、お客様の書類が怖くてChatGPTに戻る必要は、もうありません。</h3>
+        <p style="font-size:17px;line-height:1.95;color:var(--ink);margin:0">権限の分離、プロジェクト単位のデータ管理、情報の送信先コントロール。この3つを把握できているから、お客様の書類にも安心して踏み込める。「漏れたらどうしよう」が、「この範囲なら大丈夫」に変わります。</p>
+      </div>
+      <div style="background:#fff;padding:28px 32px 28px 84px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.08);position:relative">
+        <span style="position:absolute;left:22px;top:26px;width:48px;height:48px;background:#1565c0;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94 0 .31.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></span>
+        <h3 style="font-size:26px;font-weight:900;color:var(--navy);margin:0 0 14px;line-height:1.55">AIが"あなた仕様"の出力を返すようになるので、毎回出力を直し続ける必要は、もうありません。</h3>
+        <p style="font-size:17px;line-height:1.95;color:var(--ink);margin:0">CLAUDE.mdに業務ルール・書式・判断基準が入っているから、AIが"自分仕様"で動きます。毎回ゼロから指示し直したり、出てきた成果物を直す時間が消えて、そのまま使える割合が跳ね上がります。</p>
+      </div>
+      <div style="background:#fff;padding:28px 32px 28px 84px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.08);position:relative">
+        <span style="position:absolute;left:22px;top:26px;width:48px;height:48px;background:#2e7d32;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/></svg></span>
+        <h3 style="font-size:26px;font-weight:900;color:var(--navy);margin:0 0 14px;line-height:1.55">1業務が自動化されているので、同じ作業を毎回繰り返す必要は、もうありません。</h3>
+        <p style="font-size:17px;line-height:1.95;color:var(--ink);margin:0">その日の午後に仕込んだ業務AIが、翌日から勝手に動き始めます。ヒアリングシートの作成、書類の下書き、お客様対応メール──1つ仕込めば、同じ作業を2回やる必要がなくなります。空いた時間で、次の業務に仕込みを回せます。</p>
+      </div>
+      <div style="background:#fff;padding:28px 32px 28px 84px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.08);position:relative">
+        <span style="position:absolute;left:22px;top:26px;width:48px;height:48px;background:#f57c00;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C7.58 2 4 5.58 4 10c0 3.54 2.28 6.57 5.45 7.68l-.45 1.32h6l-.45-1.32C17.72 16.57 20 13.54 20 10c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm-2 4h4v2h-4z"/></svg></span>
+        <h3 style="font-size:26px;font-weight:900;color:var(--navy);margin:0 0 14px;line-height:1.55">エラーも自己解決できるようになるので、詰まるたびに誰かに聞き続ける必要は、もうありません。</h3>
+        <p style="font-size:17px;line-height:1.95;color:var(--ink);margin:0">よくあるエラーのパターンと、Claude自身に聞く型を持っているから、5分で抜け出せます。30日のチャットサポートも付いていますが、1ヶ月後にはあなた1人で運用を回せている状態が目標です。</p>
+      </div>
+      <div style="background:#fff;padding:28px 32px 28px 84px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.08);position:relative">
+        <span style="position:absolute;left:22px;top:26px;width:48px;height:48px;background:#8b1a1a;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></span>
+        <h3 style="font-size:26px;font-weight:900;color:var(--navy);margin:0 0 14px;line-height:1.55">Claude Code 1本に機能が集まるので、月々高いツール代を払い続ける必要は、もうありません。</h3>
+        <p style="font-size:17px;line-height:1.95;color:var(--ink);margin:0">月15,000円のチャットボット、年間20万円のAPI連携ツール。こうした道具をバラバラに買い足していた運用が、Claude Code 1本で置き換わっていきます。固定費の圧縮分が、そのまま手元の利益として残ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POST-WORKSHOP SUPPORT -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="h2-big" style="text-align:center">さらに、あなた流Claude Codeの強化を<br><span style="color:#8b1a1a">全力でサポートします！</span></h2>
+    <p style="text-align:center;font-size:18px;color:var(--ink);margin:0 auto 50px;font-weight:500;line-height:1.95;max-width:760px">
+      1日で越えた後、翌日から"自分仕様"で回し続けるために、<br>
+      あなたの伴走を2つ、ご用意しています。
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:960px;margin:0 auto">
+      <div style="background:#fff;padding:40px 36px;border-radius:12px;box-shadow:0 8px 26px rgba(0,0,0,0.10)">
+        <div style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;background:#fdf6e3;border-radius:50%;margin-bottom:20px;color:var(--navy)"><svg viewBox="0 0 24 24" width="44" height="44" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></div>
+        <h3 style="font-size:22px;font-weight:900;color:var(--navy);margin:0 0 14px;line-height:1.5">30日間のチャットサポート</h3>
+        <p style="font-size:17px;line-height:1.95;color:var(--ink);margin:0">ワークショップ後、30日間、Chatworkで直接質問できます。エラーで止まった時、操作が分からなくなった時、お客様案件で悩んだ時。当日1日で越えた壁が、30日後には"1人で運用できる状態"になっています。</p>
+      </div>
+      <div style="background:#fff;padding:40px 36px;border-radius:12px;box-shadow:0 8px 26px rgba(0,0,0,0.10)">
+        <div style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;background:#fdf6e3;border-radius:50%;margin-bottom:20px;color:var(--navy)"><svg viewBox="0 0 24 24" width="44" height="44" fill="currentColor"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+        <h3 style="font-size:22px;font-weight:900;color:var(--navy);margin:0 0 14px;line-height:1.5">1on1戦略セッション（30日以内）</h3>
+        <p style="font-size:17px;line-height:1.95;color:var(--ink);margin:0">あなたの事務所・業務・お客様に合わせて、「次に何を自動化すべきか」を1on1で一緒に戦略設計します。Chatwork経由でGoogleカレンダー予約。1日の経験を、あなたの事務所のロードマップに落とし込む時間です。</p>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:22px;font-weight:900;color:var(--navy);margin:56px auto 0;line-height:1.7;max-width:820px">
+      この1日と30日のサポートをフル活用すれば、<br>
+      あなたは<mark style="background:#fff2c2;color:var(--navy);padding:4px 14px">"士業業界のAI専門家レベル"</mark>の<br>
+      ポジションを確保し、業界で信頼される立ち位置を築けます。
+    </p>
+  </div>
+</section>
+
+<!-- INSTRUCTOR -->
+<section class="section" style="background-image:linear-gradient(rgba(240,240,240,0.55),rgba(240,240,240,0.55)),url('assets/img/office-bg.jpg');background-size:cover;background-position:center;background-repeat:no-repeat">
+  <div class="wrap">
+    <h2 class="h2-big" style="color:var(--navy)">講師プロフィール</h2>
+    <div style="background:#ffffff;padding:36px;border-radius:8px;display:flex;gap:42px;align-items:flex-start;box-shadow:0 8px 28px rgba(0,0,0,0.18)">
+      <div style="flex:0 0 220px">
+        <img src="assets/img/akutsu-portrait.jpg" alt="阿久津和宏" style="width:220px;height:220px;object-fit:cover;border-radius:50%;box-shadow:0 6px 18px rgba(0,0,0,0.15)">
+        <p style="font-size:14px;color:var(--muted);text-align:center;margin:14px 0 0 0;line-height:1.7">阿久津 和宏<br>（あくつ かずひろ）</p>
+      </div>
+      <div style="flex:1">
+        <h3 style="font-size:26px;font-weight:900;margin:0 0 10px 0;color:var(--navy);line-height:1.5">阿久津 和宏（あくつ かずひろ）</h3>
+        <p style="font-size:16px;color:var(--muted);margin-bottom:24px;font-weight:700">Well Consultant合同会社 代表<br>あくつ行政書士事務所 代表</p>
+        <p style="font-size:18px;line-height:1.95;color:var(--ink);margin:0 0 18px 0">行政書士として、補助金・建設業許可・在留資格・IT導入補助金支援事業者登録を中心に実務を行う傍ら、<mark>士業業務のAI実装に特化したスキル群を自ら開発・運用</mark>。開発したスキルは100種を超える。</p>
+        <p style="font-size:18px;line-height:1.95;color:var(--ink);margin:0 0 18px 0">Claude Code導入後、自身の事務所で<mark>月40時間の事務作業を月8時間に短縮</mark>。<mark>補助金事業計画書の作成時間を100時間→3〜5時間に削減</mark>。行政書士39サイトを2時間で構築するなど、「1人士業事務所」の在り方を根本から変えた実績を持つ。</p>
+        <p style="font-size:18px;line-height:1.95;color:var(--ink);margin:0 0 18px 0">補助金コンサルタント実践会を主宰し、成約率3割の補助金攻略コースは継続販売中。士業・コンサル業界向けのAI活用セミナー・ワークショップを全国で展開し、受講生からは「その日から業務が変わった」という声が多数寄せられている。</p>
+        <p style="font-size:18px;line-height:1.95;color:var(--ink);margin:0;font-weight:700">自分で使いながら、自分で実装しながら、業界に向けて共有している。──この"現役プレイヤー兼発信者"という立ち位置こそが、この講師の最大の武器です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUYER BONUS -->
+<section class="bonus-section">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:30px">
+      <span class="bonus-ribbon">BONUS!!</span>
+      <h2 class="h2-narrow" style="margin-top:16px">ワークショップに加えて、<br>こんな参加特典を同梱しています</h2>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="bonus-body">
+        <span class="bonus-label">参加特典 01</span>
+        <h4>事前動画（購入後、すぐ配布）</h4>
+        <p>ワークショップ本番前に見ておいてほしい基礎動画。Chatworkグループで配布します。当日スムーズに進めるための前提知識が、事前に手に入る状態になります。</p>
+      </div>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/></svg></div>
+      <div class="bonus-body">
+        <span class="bonus-label">参加特典 02</span>
+        <h4>30日チャットサポート（Chatwork）</h4>
+        <p>ワークショップ後、30日間のChatworkでのチャットサポート付き。エラーで止まった時、操作が分からなくなった時、その場で質問できる環境を、30日間、付けます。</p>
+      </div>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+      <div class="bonus-body">
+        <span class="bonus-label">参加特典 03</span>
+        <h4>30日以内の1on1ウェルカムセッション</h4>
+        <p>Chatwork経由でGoogleカレンダー予約。あなたの事務所・業務に合わせて、「次に何を自動化すべきか」を1on1で一緒に戦略設計します。</p>
+      </div>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
+      <div class="bonus-body">
+        <span class="bonus-label">参加特典 04</span>
+        <h4>当日返金保証</h4>
+        <p>ワークショップ当日、内容にご満足いただけなかった場合、全額返金します。ノーリスクで参加してください。</p>
+      </div>
+    </div>
+
+    <div class="bonus-card" style="border-color:var(--red)">
+      <div class="bonus-icon" style="background:#fff0f0;color:var(--red)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 12 7.4l3.38 4.6L17 10.83 14.92 8H20v6z"/></svg></div>
+      <div class="bonus-body">
+        <span class="bonus-label" style="background:var(--red);color:#fff">本日限定特典（30万円相当）</span>
+        <h4>30万円相当の秘密の特典</h4>
+        <p>当日ご参加いただいた方だけにお渡しする、特別な特典をご用意しています。内容は、当日お渡しするその瞬間まで、どうぞお楽しみにお待ちください。ワークショップ本体と合わせて、30万円相当の資産が、1日であなたの手元に残ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- VALUE SECTION -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="h2-big">Claude Code 実装1DAYワークショップは、<br>あなたにとって、いくらの価値があるでしょうか？</h2>
+
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin-bottom:24px">
+      さて、気になる価格ですが、その前に少し考えていただきたいことがあります。
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin-bottom:24px">
+      もしClaude Codeが"自分仕様"で使えなければ、月40時間以上の事務作業や、100時間かけて仕上げる補助金計画書を、今まで通り抱え続けるという大きな損失があります。あなたがAI活用をしようと思えば、さらにYouTubeや書籍で数ヶ月、独学しなくてはいけないでしょう。でも、その場合、少なくとも独学期間中に積み上がっていく"数ヶ月分の売上機会"という損失やリスクがあります。
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin-bottom:24px">
+      ですが、もし"自分仕様で動くClaude Code"があれば、毎回ゼロから指示し直す必要なく、日々の業務を自動化していくことができます。さらに、CLAUDE.md運用があれば、お客様の情報を怖くて扱えないこともなく、出力を毎回手直しすることもなく、そのまま使える成果物をその場で受け取ることができるのです。
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin-bottom:24px">
+      そんなClaude Code 実装1DAYワークショップ＋30日チャットサポート＋1on1戦略セッション＋本日限定の業務特化型サイト一式を、たったの9,800円で手に入れることができます。しかも、当日ご満足いただけなければ全額返金という保証付きです。そう考えると、この価格がいかに安いかお分かりいただけるのではないでしょうか。
+    </p>
+    <p style="font-size:34px;line-height:1.6;color:#8b1a1a;margin:36px 0 32px;font-weight:900;text-align:center">
+      でも、ちょっと待って下さい…
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin-bottom:24px">
+      このClaude Code 実装1DAYワークショップは、今回が初めてのご案内です。もちろん今後も継続して販売していきたいとは思っていますが、そのためには今回できるだけ多くの方にご参加いただき、満足してもらわなければいけません。そこで、1人でも多くの方にお手にとっていただけるよう、通常価格49,800円から40,000円引きの9,800円でお求めいただけるようにしました。
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin-bottom:24px">
+      あなたが手にする結果──月40時間の事務作業が月8時間に、100時間の補助金計画書が3〜5時間に、という1年後の未来──と比べてみれば、迷う理由なんてありませんよね？気をつけてください。このオファーの有効期限は4月21日（火）23:59までの期間限定となります。
+    </p>
+    <p style="font-size:18px;line-height:2;color:var(--ink);margin-bottom:0;font-weight:700">
+      ただし、これは先着人数限定のオファーでもあるので、期日を待たずに上限に達した場合、そこで販売は終了となります。お急ぎください。
+    </p>
+  </div>
+</section>
+
+<!-- 3 ROADS -->
+<section class="section" style="background-image:linear-gradient(rgba(255,255,255,0.68),rgba(255,255,255,0.68)),url('assets/img/roads-bg.jpg');background-size:cover;background-position:center;background-repeat:no-repeat">
+  <div class="wrap">
+    <h2 class="h2-big">あなたには今、<br>3つの道があります</h2>
+
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:40px 0 0;font-weight:400">
+      1つ目の道は、Claude Codeでの本格的なAI活用をやらないという道です。この場合、おそらく同業の士業・コンサルの方々がどんどんAI活用を進めて、業務効率と顧客獲得のスピードを加速していくでしょう。
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:20px 0 0;font-weight:400">
+      これからの時代、AI活用は業界の中で標準装備になっていくので、気づいた時には手遅れだった…この道を選んだ場合は、そんな事が起きてしまうかもしれません。
+    </p>
+
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:40px 0 0;font-weight:400">
+      2つ目の道は、Claude Codeを自分で独学でやるという道です。きっと勉強熱心なあなたなら、地道に独学を続ければいつか成果が出るかもしれません。
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:20px 0 0;font-weight:400">
+      ですが、その「いつか」はいつやってくるかは誰にもわからないことです。しかも、日々の業務を回しながら、AI活用の独学を続けるのはとても大変なことです。それに、初期設定・セキュリティ・CLAUDE.md運用という、成果を出すためのノウハウを、順番通りに学ばなければいけません。
+    </p>
+
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:40px 0 0;font-weight:400">
+      3つ目の道は、私のこのClaude Code 実装1DAYワークショップに参加して、Claude Codeを1日で"自分仕様"に立ち上げられるようになるという道です。もちろん、このワークショップに参加したからといって、100%必ず成果が出るというお約束はできません。
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:20px 0 0;font-weight:400">
+      ですが、少なくとも、あなたが1人でAI活用を手探りするよりも、遥かに高い確率で成果が出ることはお約束できます。なぜなら、もしあなたが行政書士なら、あなたが許認可のプロであるように、私は士業業務のAI実装のプロだからです。
+    </p>
+
+    <p style="font-size:19px;line-height:2;color:var(--ink);margin:44px 0 0;font-weight:400">
+      どの道を選ぶかはあなた次第です。でもきっとここまで読んでくれたということはあなたの答えはもう決まっていますよね？
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:22px 0 0;font-weight:400">
+      もし、私のこのClaude Code 実装1DAYワークショップに少しでも興味があるのでしたら、まずは一度下記のフォームからお問い合わせ下さい。確認次第すぐにご連絡をします。そして、あなたと直接お話させて頂き、納得がいったら、正式にお申し込み下さい。
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:18px 0 0;font-weight:400">
+      あなたからのお返事お待ちしております。
+    </p>
+  </div>
+</section>
+
+<!-- PRICE TABLE -->
+<section class="section" style="background:var(--gray-bg)">
+  <div class="wrap">
+    <h2 class="h2-big">まとめると…</h2>
+    <table class="price-table">
+      <tr><th>Claude Code 実装1DAYワークショップ（本体）</th><td>200,000円</td></tr>
+      <tr><th>事前動画（購入後、Chatworkグループ配布）</th><td>30,000円</td></tr>
+      <tr><th>30日チャットサポート（Chatwork）</th><td>50,000円</td></tr>
+      <tr><th>30日以内の1on1ウェルカムセッション</th><td>50,000円</td></tr>
+      <tr><th>当日返金保証</th><td>プライスレス</td></tr>
+      <tr><th>【本日限定】30万円相当の秘密の特典</th><td>300,000円相当</td></tr>
+      <tr class="total"><td>合計</td><td>630,000円相当</td></tr>
+    </table>
+
+    <div class="price-ba">
+      <div class="ba-col ba-after">
+        <div class="ba-label">3日間限定・特別価格</div>
+        <div class="ba-value">9,800<span class="unit">円（税込）</span></div>
+        <div class="ba-note">買い切り／永久アップデート付き</div>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:19px;line-height:1.95;color:var(--ink);margin-top:20px;font-weight:500">
+      4月18日（土）〜4月21日（火）23:59までの、3日間限定の特別価格です。<br>
+      この期間を過ぎると、通常価格49,800円に戻ってしまうので、この機会にClaude Codeのあなた専用スキルを、Claude Code導入1DAYワークショップで手に入れてください。
+    </p>
+
+    <div style="text-align:center;margin-top:30px">
+      <a href="https://www.funnel-build.com/cc-1day1" class="cta-btn">今すぐワークショップの席を確保する ▶</a>
+      <p style="font-size:20px;color:var(--red);margin-top:20px;font-weight:900">受付は4月21日（火）23:59まで</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:#fff">
+  <div class="wrap">
+    <h2 class="h2-big">よくあるご質問</h2>
+    <details class="faq-item">
+      <summary>PCが苦手なのですが、参加できますか？</summary>
+      <p class="a">大丈夫です。Claude Codeは日本語で指示するだけで動きます。PCが得意な方より、むしろ素直に使える方が多い傾向にあります。1日で、ターミナルの使い方からCLAUDE.mdの運用まで、一緒に進めます。参加後30日間のチャットサポートと1on1セッションで、参加後のフォローも付けています。安心してご参加ください。</p>
+    </details>
+    <details class="faq-item">
+      <summary>当日、何を準備すればいいですか？</summary>
+      <p class="a">ノートPCを1台ご持参ください。WindowsでもMacでも、どちらでも大丈夫です。ネット環境があれば、その場で初期設定から始められます。事前動画で、もう少し具体的にお伝えします。</p>
+    </details>
+    <details class="faq-item">
+      <summary>自宅から参加できますか？</summary>
+      <p class="a">はい、自宅からオンラインで参加できます。</p>
+    </details>
+    <details class="faq-item">
+      <summary>Claude Code 実装1DAYワークショップの開催日に参加できない場合は？</summary>
+      <p class="a">ご安心ください。Claude Code 実装1DAYワークショップは、アーカイブ映像の提供と、オートウェビナー形式での開催を複数回予定しています。当日のご都合が合わない方でも、後日アーカイブを視聴いただきながら、同じ順番で初期設定・セキュリティ・CLAUDE.md運用を進めていただけます。さらに、オートウェビナー開催日にご都合のよい日程を選んでご参加いただくこともできます。加えて、30日間のチャットサポート・1on1ウェルカムセッションは日程ご都合に合わせて個別にご案内しますので、ワークショップを観ながら詰まった箇所は、その場でご質問いただけます。「当日見られないから後悔する」という状態にならないよう、フォロー体制を整えてお届けしています。</p>
+    </details>
+    <details class="faq-item">
+      <summary>1日で、本当に使えるようになりますか？</summary>
+      <p class="a">初期設定・セキュリティ・CLAUDE.md運用の3つは、その日のうちに越えられる内容でカリキュラムを組んでいます。翌日から本業で使い始められる状態を目標にしています。また、30日間のチャットサポートと1on1セッションで、参加後のフォローも付けています。</p>
+    </details>
+    <details class="faq-item">
+      <summary>顧客情報をAIに渡すのが不安です</summary>
+      <p class="a">その不安、正しい感覚です。APIキーの流出や権限設定のミスで、実際に100万円超の請求が発生した事例もあります。だからこそ、セキュリティ編をSTEP 02に配置しました。知った上で、安全に使うための設定を、この1日で身につけることができます。参加後30日間のチャットサポートも付いていますので、実際に顧客情報を扱う場面で迷ったときも、その場で確認いただけます。安心してご参加ください。</p>
+    </details>
+    <details class="faq-item">
+      <summary>申し込み後の流れは？</summary>
+      <p class="a">お申し込みいただいた後、すぐに講師（阿久津）から直接ご連絡し、専用のChatworkグループへご招待いたします。事前動画や当日の詳しいご案内、30日間のチャットサポート、1on1戦略セッションの日程調整も、すべてこのChatworkグループ経由でお届けします。1人で進める不安がないよう、最初から最後まで、講師と直接つながった状態で進めていただけます。</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>インボイス（適格請求書）は発行してもらえますか？</summary>
+      <p class="a">はい、発行いたします。お申し込み後、ご希望の方には適格請求書発行事業者としての登録番号を記載した請求書を、Chatwork経由でお送りします。事務所経費・研修費として計上される場合は、お申し込み時にその旨をお知らせください。</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>お支払い方法は何が使えますか？</summary>
+      <p class="a">クレジットカード決済（Visa／Mastercard／JCB／American Express）でお支払いいただけます。お申し込みフォームから、そのまま決済まで完了します。</p>
+    </details>
+  </div>
+</section>
+
+<!-- PS BLOCK -->
+<section class="ps-block">
+  <div class="wrap">
+    <h2 class="closing-title">最後に…</h2>
+    <p class="closing-sub">僕が保険代理店2年目で<br>どん底を経験した時の話をします</p>
+
+    <p>僕は、もともと保険代理店として独立しました。1年目は、業界でMDTと呼ばれる報酬1,000万円クラスの水準──これは日本の保険営業のトップ5%と言われる水準なのですが──そこへ「あと1本」というところまで到達していました。</p>
+
+    <p>ところが、<mark>2年目にどん底に陥ったのです。</mark>全然売れない時期を経験しました。</p>
+
+    <p>あの頃は、売上をどう上げるか、そればかり考えていました。そして、見よう見まねでいろんな営業手法を試しましたが、まったく結果が出ない時期が続いたのです。</p>
+
+    <p>そんな時期に、お客さんから相談されるようになったのが「補助金」でした。保険やお金にまつわる相談の延長で、補助金の話をすると、どんな経営者も前のめりに聞いてくれた。<mark>補助金の仕組みそのものが、会社や事業を伸ばすことに直結している</mark>ことに気づいたのです。そこから、補助金を切り口に、コンビニのオーナーさんへの飛び込み営業・紹介依頼を重ね、信頼できるお客さんだけと仕事ができる状態を手に入れていきました。</p>
+
+    <p>そして今、行政書士として、補助金申請・建設業許可・在留資格──あらゆる士業業務を回しています。ありがたいことにご依頼は途切れることなく、同時に、事務処理の量が爆発的に増えていきました。</p>
+
+    <p>このままだと、せっかく掴んだ「信頼できるお客さんだけと仕事ができる状態」を、事務作業で潰してしまう──。そう危機感を覚え始めていた2023年頃、ちょうど世の中でAIが広がり始めたのです。ChatGPTから始まって、僕もいろんなAIを試しました。確かに使える部分はあった。でも、顧客情報を扱う士業業務には、どうしても踏み込めなかったのです。</p>
+
+    <p>そんな中で、最近、出会ったのが Claude Code でした。</p>
+
+    <p>正直、最初は半信半疑でした。僕はエンジニアではありません。プログラミングなんて、for文すら書けない。それでも、ダメ元で試したのです。補助金の事業計画書を書かせるスキル、1本だけ。</p>
+
+    <p>そうしたら、<mark>これまで何時間もかかっていた計画書の土台が、その日のうちに仕上がった</mark>のです。</p>
+
+    <p>これは、誰が見ても「これは違うな」と言う結果でした。そこから、ニュースレターを書くスキル、メールを返すスキル、顧客情報を整理するスキル、在留資格の書類を整えるスキル──業務の種類だけスキルを作るほどに、事務所は加速度的に楽になり、僕は本業のコンサル業務・顧客対応に時間を使えるようになったのです。</p>
+
+    <p>そして、僕はそうした実体験をもとに、Claude Code を今度は同業・士業の仲間にも広めるべきだという確信を持ちました。そして、その理念を貫き、僕が"1日限り"でサポートに入るクライアントさんに、このワークショップを必ず実践してもらっています。結果、<mark>このワークショップを実践してくれた方は、翌週から自分の事務所で Claude Code を使い始められる状態</mark>を手に入れています。</p>
+
+    <p>もちろん、絶対の保証なんてできません。この世に100%確実なものは存在しません。もしかしたら、このワークショップを受けてくださっても、そこまでの成果は出ないかもしれません。でも、1つだけ言えるのは、このワークショップを実践して、翌日からClaude Codeに触れない状態で戻ってしまった方は、今のところ1人もいないということです。それだけは、僕が責任を持ってお約束します。</p>
+
+    <p>今日、あなたにこのワークショップを実践してもらい、大きく事務時間を減らしてほしいという想いから、ウチとしては初の試みながら、かなり思いきったご提案をさせていただきました。</p>
+
+    <p>なので、もしこの提案に乗ってきてくださる方でしたら…このワークショップの価値に気づいてくださる方が1人でもいて、そして、僕らが行うワークショップであなたの"本業時間"を大きく増やすことができたら…こんなに嬉しいことはありません。</p>
+
+    <p>あなたからいいお返事をいただけることを、待っています。</p>
+
+    <div style="margin-top:40px;display:flex;justify-content:flex-end"><img src="assets/img/akutsu-signature-dark-v2.png" alt="阿久津 和宏" style="display:block;max-width:320px;height:auto"></div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <h2>今すぐお申し込みください</h2>
+
+    <div class="final-card">
+      <h3>Claude Code 実装<br>1DAYワークショップ</h3>
+      <span class="live-date">3日間限定キャンペーン</span>
+      <div style="margin:14px 0">
+        <div style="font-size:14px;color:var(--muted);text-decoration:line-through">通常価格 ¥49,800</div>
+        <div style="font-size:42px;font-weight:900;color:var(--red)">¥9,800<span style="font-size:16px;color:var(--ink-2);margin-left:4px">（税込）</span></div>
+      </div>
+      <ul class="bullets">
+        <li>Claude Code 実装1DAYワークショップ（複数回開催）</li>
+        <li>事前動画（Chatworkで配布）</li>
+        <li>30日チャットサポート</li>
+        <li>30日以内の1on1ウェルカムセッション</li>
+        <li>当日返金保証</li>
+        <li>本日限定特典（30万円相当）</li>
+      </ul>
+      <a href="https://www.funnel-build.com/cc-1day1" class="cta-btn" style="width:100%;font-size:22px;padding:22px 16px">今すぐワークショップの席を確保する ▶</a>
+      <div class="notice">
+        ※お支払いはクレジットカード決済となります<br>
+        ※お申し込み後、Chatworkグループへご招待します<br>
+        ※事前動画・サポートはChatwork経由でお届けします<br>
+        ※1on1セッションはGoogleカレンダーでご予約いただけます
+      </div>
+    </div>
+
+    <div class="final-deadline">受付は4月21日（火）23:59まで</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="#" onclick="document.getElementById('tokusho-modal').style.display='flex';return false;">特定商取引法に基づく表記</a>
+    ｜
+    <a href="#" onclick="document.getElementById('privacy-modal').style.display='flex';return false;">プライバシーポリシー</a>
+  </div>
+  <div class="copy">掲載の情報・画像等、すべてのコンテンツの無断複写・転載を禁じます。<br>
+  Copyright © 2026 Well Consultant合同会社 All Rights Reserved.</div>
+</footer>
+
+<!-- TOKUSHO MODAL -->
+<div id="tokusho-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;align-items:center;justify-content:center;padding:20px" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;max-width:780px;max-height:85vh;overflow:auto;padding:40px;border-radius:6px;position:relative">
+    <button onclick="document.getElementById('tokusho-modal').style.display='none'" style="position:absolute;top:12px;right:16px;background:none;border:0;font-size:24px;cursor:pointer">×</button>
+    <h3 style="margin-bottom:20px;font-size:24px;color:var(--navy)">特定商取引法に基づく表記</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:14px;line-height:1.8">
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;width:32%;vertical-align:top;color:#333;font-weight:700">販売事業者名</th><td style="padding:12px 8px;color:#333">Well Consultant合同会社</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">運営統括責任者</th><td style="padding:12px 8px;color:#333">阿久津 和宏</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">所在地</th><td style="padding:12px 8px;color:#333">請求があった場合、遅滞なく開示いたします</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">電話番号</th><td style="padding:12px 8px;color:#333">請求があった場合、遅滞なく開示いたします<br><span style="font-size:12px;color:#666">（お問い合わせは原則メールにてお願いいたします）</span></td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">メールアドレス</th><td style="padding:12px 8px;color:#333">info@fp-1.info</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">販売価格</th><td style="padding:12px 8px;color:#333">各商品ページに税込価格で表示<br>Claude Code 実装1DAYワークショップ：9,800円（税込）<br><span style="font-size:12px;color:#666">※3日間限定の特別価格です。通常価格49,800円（税込）</span></td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">商品代金以外の必要料金</th><td style="padding:12px 8px;color:#333">インターネット接続料金・通信料金等はお客様のご負担となります</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">お支払い方法</th><td style="padding:12px 8px;color:#333">クレジットカード決済（Visa / Mastercard / JCB / American Express）</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">お支払い時期</th><td style="padding:12px 8px;color:#333">お申し込み手続き完了時に即時決済</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">商品の引渡時期</th><td style="padding:12px 8px;color:#333">お申し込み・決済完了後、すみやかにChatworkグループへご招待し、事前動画・当日参加方法をお届けいたします。ワークショップ本編は、お申し込みフォーム記載の開催日にオンラインで開催いたします。</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">返品・返金について</th><td style="padding:12px 8px;color:#333">ワークショップ当日、内容にご満足いただけなかった場合、当日中にその旨をお申し出いただければ、全額を返金いたします（当日返金保証）。なお、デジタルコンテンツ（事前動画・配布ファイル等）の性質上、上記を除きご購入後の返品・返金はお受けできません。</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">動作環境</th><td style="padding:12px 8px;color:#333">インターネット接続可能なノートPC（Windows または macOS）、Zoom等のオンライン会議ツールを利用できる環境、Chatworkアカウント</td></tr>
+      <tr><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">表現及び商品に関する注意書き</th><td style="padding:12px 8px;color:#333">本商品に表示している効果・成果は、ワークショップ参加者の個別事例であり、全ての参加者において同一の効果を保証するものではありません。</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- PRIVACY MODAL -->
+<div id="privacy-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;align-items:center;justify-content:center;padding:20px" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;max-width:680px;max-height:80vh;overflow:auto;padding:36px;border-radius:6px;position:relative">
+    <button onclick="document.getElementById('privacy-modal').style.display='none'" style="position:absolute;top:12px;right:16px;background:none;border:0;font-size:24px;cursor:pointer">×</button>
+    <h3 style="margin-bottom:16px;font-size:22px">プライバシーポリシー</h3>
+    <p style="font-size:13px;line-height:1.9;color:#333">Well Consultant合同会社（以下、「当社」）は、お客様の個人情報の保護に関して、以下のとおり取り扱います。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">1. 個人情報の取得</h4>
+    <p style="font-size:13px;line-height:1.9;color:#333">当社は、適法かつ公正な手段によって、個人情報を取得します。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">2. 個人情報の利用目的</h4>
+    <p style="font-size:13px;line-height:1.9;color:#333">お申し込みいただいた商品・サービスの提供、お客様サポート、商品改善のため、取得した個人情報を利用します。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">3. 個人情報の第三者提供</h4>
+    <p style="font-size:13px;line-height:1.9;color:#333">法令に基づく場合を除き、お客様の同意なく個人情報を第三者に提供することはありません。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">4. お問い合わせ</h4>
+    <p style="font-size:13px;line-height:1.9;color:#333">個人情報の開示・訂正・削除をご希望の場合は、info@fp-1.info までご連絡ください。</p>
+  </div>
+</div>
+
+</body>
+</html>
