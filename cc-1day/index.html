@@ -298,6 +298,7 @@ footer .copy{margin-top:10px}
 
 /* COUNTDOWN */
 .countdown-bar{background:linear-gradient(90deg,#0f2d52 0%,#1a4680 50%,#0f2d52 100%);color:#fff;padding:16px 20px;text-align:center;border-radius:8px;max-width:640px;margin:0 auto 24px;border:1px solid #2a5a9e}
+.countdown-bar--top{background:linear-gradient(90deg,#0a1e38 0%,#1a4680 50%,#0a1e38 100%);max-width:none;border-radius:0;border:0;border-top:3px solid #ffd700;border-bottom:3px solid #ffd700;margin:0;padding:22px 20px}
 .countdown-bar .cd-label{font-size:14px;font-weight:900;letter-spacing:.08em;margin-bottom:10px}
 .countdown-bar .cd-label .cd-warn{color:#ffd700;margin-right:6px}
 .countdown-bar .cd-grid{display:inline-flex;gap:8px;justify-content:center;align-items:stretch;flex-wrap:wrap}
@@ -400,15 +401,13 @@ footer .copy{margin-top:10px}
 </header>
 
 <!-- COUNTDOWN TIMER (TOP) -->
-<div style="padding:24px 20px 0">
-  <div class="countdown-bar" id="countdown-top">
-    <div class="cd-label"><span class="cd-warn">⚠</span>3日間限定キャンペーン（〜4月21日（火）23:59）残り</div>
-    <div class="cd-grid">
-      <div class="cd-unit"><div class="cd-num" id="cd-d-0">00</div><div class="cd-unitname">DAYS</div></div>
-      <div class="cd-unit"><div class="cd-num" id="cd-h-0">00</div><div class="cd-unitname">HOURS</div></div>
-      <div class="cd-unit"><div class="cd-num" id="cd-m-0">00</div><div class="cd-unitname">MINUTES</div></div>
-      <div class="cd-unit"><div class="cd-num" id="cd-s-0">00</div><div class="cd-unitname">SECONDS</div></div>
-    </div>
+<div class="countdown-bar countdown-bar--top" id="countdown-top">
+  <div class="cd-label"><span class="cd-warn">⚠</span>3日間限定キャンペーン（〜4月21日（火）23:59）残り</div>
+  <div class="cd-grid">
+    <div class="cd-unit"><div class="cd-num" id="cd-d-0">00</div><div class="cd-unitname">DAYS</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-h-0">00</div><div class="cd-unitname">HOURS</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-m-0">00</div><div class="cd-unitname">MINUTES</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-s-0">00</div><div class="cd-unitname">SECONDS</div></div>
   </div>
 </div>
 
