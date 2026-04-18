@@ -361,6 +361,15 @@ footer .copy{margin-top:10px}
   .final-cta h2{font-size:22px}
   .h2-big{font-size:20px}
 }
+@media(max-width:720px){
+  .instructor-card{flex-direction:column!important;gap:24px!important;padding:24px!important}
+  .instructor-card > div:first-child{flex:none!important;width:100%!important;text-align:center}
+  .instructor-card > div:first-child img{width:180px!important;height:180px!important}
+  .instructor-card > div:nth-child(2){width:100%}
+  .instructor-card h3{font-size:22px!important}
+  .instructor-card p{font-size:16px!important;line-height:1.85!important}
+  .post-support-grid{grid-template-columns:1fr!important;gap:18px!important}
+}
 </style>
 </head>
 <body>
@@ -905,7 +914,7 @@ footer .copy{margin-top:10px}
       1日で越えた後、翌日から"自分仕様"で回し続けるために、<br>
       あなたの伴走を2つ、ご用意しています。
     </p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:960px;margin:0 auto">
+    <div class="post-support-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:960px;margin:0 auto">
       <div style="background:#fff;padding:40px 36px;border-radius:12px;box-shadow:0 8px 26px rgba(0,0,0,0.10)">
         <div style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;background:#fdf6e3;border-radius:50%;margin-bottom:20px;color:var(--navy)"><svg viewBox="0 0 24 24" width="44" height="44" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></div>
         <h3 style="font-size:22px;font-weight:900;color:var(--navy);margin:0 0 14px;line-height:1.5">30日間のチャットサポート</h3>
@@ -930,7 +939,7 @@ footer .copy{margin-top:10px}
 <section class="section" style="background-image:linear-gradient(rgba(240,240,240,0.55),rgba(240,240,240,0.55)),url('assets/img/office-bg.jpg');background-size:cover;background-position:center;background-repeat:no-repeat">
   <div class="wrap">
     <h2 class="h2-big" style="color:var(--navy)">講師プロフィール</h2>
-    <div style="background:#ffffff;padding:36px;border-radius:8px;display:flex;gap:42px;align-items:flex-start;box-shadow:0 8px 28px rgba(0,0,0,0.18)">
+    <div class="instructor-card" style="background:#ffffff;padding:36px;border-radius:8px;display:flex;gap:42px;align-items:flex-start;box-shadow:0 8px 28px rgba(0,0,0,0.18)">
       <div style="flex:0 0 220px">
         <img src="assets/img/akutsu-portrait.jpg" alt="阿久津和宏" style="width:220px;height:220px;object-fit:cover;border-radius:50%;box-shadow:0 6px 18px rgba(0,0,0,0.15)">
         <p style="font-size:14px;color:var(--muted);text-align:center;margin:14px 0 0 0;line-height:1.7">阿久津 和宏<br>（あくつ かずひろ）</p>
@@ -1304,8 +1313,10 @@ footer .copy{margin-top:10px}
   function tick(){
     var diff = deadline - Date.now();
     if (diff <= 0){
-      var bars = document.querySelectorAll('.countdown-bar');
-      bars.forEach(function(b){ b.innerHTML = '<div class="cd-ended">受付は終了いたしました</div>'; });
+      // 期限切れページへリダイレクト
+      if (!/expired\.html$/.test(location.pathname)){
+        location.replace('expired.html');
+      }
       return;
     }
     var d = Math.floor(diff/86400000);
