@@ -297,21 +297,21 @@ footer .copy{margin-top:10px}
 .hero-placeholder::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 40%, rgba(200,162,80,.3), transparent 50%)}
 
 /* COUNTDOWN */
-.countdown-bar{background:linear-gradient(90deg,#8b1a1a 0%,#b71c1c 50%,#8b1a1a 100%);color:#fff;padding:26px 20px;text-align:center;border-bottom:3px solid #ffd700;border-top:3px solid #ffd700}
-.countdown-bar .cd-label{font-size:19px;font-weight:900;letter-spacing:.08em;margin-bottom:16px}
-.countdown-bar .cd-label .cd-warn{color:#ffd700;margin-right:8px}
-.countdown-bar .cd-grid{display:inline-flex;gap:14px;justify-content:center;align-items:stretch;flex-wrap:wrap}
-.countdown-bar .cd-unit{background:rgba(0,0,0,.32);border:2px solid rgba(255,255,255,.28);border-radius:10px;padding:14px 22px;min-width:100px}
-.countdown-bar .cd-num{font-size:48px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:.02em}
-.countdown-bar .cd-unitname{font-size:13px;font-weight:700;opacity:.92;margin-top:8px;letter-spacing:.1em}
-.countdown-bar .cd-ended{font-size:26px;font-weight:900;padding:14px 0}
+.countdown-bar{background:linear-gradient(90deg,#8b1a1a 0%,#b71c1c 50%,#8b1a1a 100%);color:#fff;padding:16px 20px;text-align:center;border-radius:8px;max-width:640px;margin:0 auto 24px}
+.countdown-bar .cd-label{font-size:14px;font-weight:900;letter-spacing:.08em;margin-bottom:10px}
+.countdown-bar .cd-label .cd-warn{color:#ffd700;margin-right:6px}
+.countdown-bar .cd-grid{display:inline-flex;gap:8px;justify-content:center;align-items:stretch;flex-wrap:wrap}
+.countdown-bar .cd-unit{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:8px 14px;min-width:66px}
+.countdown-bar .cd-num{font-size:28px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.countdown-bar .cd-unitname{font-size:10px;font-weight:700;opacity:.92;margin-top:4px;letter-spacing:.1em}
+.countdown-bar .cd-ended{font-size:18px;font-weight:900;padding:8px 0}
 @media(max-width:720px){
-  .countdown-bar{padding:20px 12px}
-  .countdown-bar .cd-label{font-size:15px;margin-bottom:12px}
-  .countdown-bar .cd-grid{gap:6px}
-  .countdown-bar .cd-unit{padding:10px 8px;min-width:64px}
-  .countdown-bar .cd-num{font-size:28px}
-  .countdown-bar .cd-unitname{font-size:10px;margin-top:4px}
+  .countdown-bar{padding:14px 10px;margin:0 auto 18px}
+  .countdown-bar .cd-label{font-size:12px;margin-bottom:8px}
+  .countdown-bar .cd-grid{gap:5px}
+  .countdown-bar .cd-unit{padding:6px 8px;min-width:52px}
+  .countdown-bar .cd-num{font-size:22px}
+  .countdown-bar .cd-unitname{font-size:9px;margin-top:3px}
 }
 
 /* SMALL */
@@ -398,17 +398,6 @@ footer .copy{margin-top:10px}
     </ul>
   </div>
 </header>
-
-<!-- COUNTDOWN TIMER -->
-<div class="countdown-bar" id="countdown-main">
-  <div class="cd-label"><span class="cd-warn">⚠</span>3日間限定キャンペーン 受付終了まで</div>
-  <div class="cd-grid">
-    <div class="cd-unit"><div class="cd-num" id="cd-d">00</div><div class="cd-unitname">DAYS</div></div>
-    <div class="cd-unit"><div class="cd-num" id="cd-h">00</div><div class="cd-unitname">HOURS</div></div>
-    <div class="cd-unit"><div class="cd-num" id="cd-m">00</div><div class="cd-unitname">MINUTES</div></div>
-    <div class="cd-unit"><div class="cd-num" id="cd-s">00</div><div class="cd-unitname">SECONDS</div></div>
-  </div>
-</div>
 
 <!-- OPENING -->
 <section class="from">
@@ -1098,6 +1087,15 @@ footer .copy{margin-top:10px}
     </p>
 
     <div style="text-align:center;margin-top:30px">
+      <div class="countdown-bar" id="countdown-price">
+        <div class="cd-label"><span class="cd-warn">⚠</span>3日間限定キャンペーン（〜4月21日（火）23:59）残り</div>
+        <div class="cd-grid">
+          <div class="cd-unit"><div class="cd-num" id="cd-d-1">00</div><div class="cd-unitname">DAYS</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cd-h-1">00</div><div class="cd-unitname">HOURS</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cd-m-1">00</div><div class="cd-unitname">MINUTES</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cd-s-1">00</div><div class="cd-unitname">SECONDS</div></div>
+        </div>
+      </div>
       <a href="https://www.funnel-build.com/cc-1day1" class="cta-btn">今すぐワークショップの席を確保する ▶</a>
       <p style="font-size:20px;color:var(--red);margin-top:20px;font-weight:900">受付は4月21日（火）23:59まで</p>
     </div>
@@ -1193,6 +1191,16 @@ footer .copy{margin-top:10px}
 <section class="final-cta">
   <div class="wrap">
     <h2>今すぐお申し込みください</h2>
+
+    <div class="countdown-bar" id="countdown-final">
+      <div class="cd-label"><span class="cd-warn">⚠</span>3日間限定キャンペーン（〜4月21日（火）23:59）残り</div>
+      <div class="cd-grid">
+        <div class="cd-unit"><div class="cd-num" id="cd-d-2">00</div><div class="cd-unitname">DAYS</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-h-2">00</div><div class="cd-unitname">HOURS</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-m-2">00</div><div class="cd-unitname">MINUTES</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-s-2">00</div><div class="cd-unitname">SECONDS</div></div>
+      </div>
+    </div>
 
     <div class="final-card">
       <h3>Claude Code 実装<br>1DAYワークショップ</h3>
