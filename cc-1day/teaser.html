@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>【予告】Claude Code 実装1DAYワークショップ｜士業・コンサルタントのための</title>
+<meta name="description" content="明日4月19日（土）10時、3日間限定のご案内を始めます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;
+  --ink:#111111;
+  --ink-2:#333;
+  --muted:#666;
+  --navy:#0f2d52;
+  --navy-deep:#091b33;
+  --gold:#f5c83a;
+  --red:#d8292f;
+  --red-bg:#b71c1c;
+  --highlight:#fff59d;
+  --highlight-strong:#ffe066;
+  --gray-bg:#f6f6f6;
+  --border:#e5e5e5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;font-weight:500;line-height:1.95;-webkit-font-smoothing:antialiased;font-size:18px}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+
+/* HERO */
+.hero{background:linear-gradient(180deg,#f4f7fc 0%,#fff 60%,#fff 100%);padding:80px 20px 80px;text-align:center;position:relative;overflow:hidden;border-bottom:5px solid var(--navy)}
+.hero::before{content:"";position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle, rgba(200,162,80,.18) 0%, transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;bottom:-80px;right:-80px;width:360px;height:360px;background:radial-gradient(circle, rgba(15,45,82,.12) 0%, transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
+.hero .brand-line{font-size:22px;color:#8b1a1a;letter-spacing:.25em;margin-bottom:26px;font-weight:900}
+.hero h1{font-size:56px;font-weight:900;line-height:1.35;color:var(--ink);margin-bottom:34px;letter-spacing:-.01em}
+.hero h1 .big{font-size:76px;display:block;letter-spacing:.02em;line-height:1.15;background:linear-gradient(180deg,var(--ink) 0%,var(--navy-deep) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{font-size:26px;color:var(--ink);font-weight:700;margin:34px auto 0;max-width:820px;line-height:1.75;text-align:center}
+.hero .sub .line-1,.hero .sub .line-2{display:block}
+.hero .sub .line-1{font-size:30px;margin-bottom:10px;color:var(--navy);font-weight:900}
+.hero .sub .line-2{font-size:24px;font-weight:700;color:var(--ink)}
+.hero .sub u.red-u{text-decoration:none;background:transparent;color:#8b1a1a;font-weight:900;padding:0}
+.hero .sub mark{background:transparent;color:var(--ink);font-weight:900;padding:0}
+.hero h1 .big .accent{color:var(--gold)}
+.hero-claim{margin:34px auto 24px;font-size:22px;font-weight:700;color:var(--ink);max-width:820px;line-height:1.8;text-align:center}
+.hero-axis{display:flex;justify-content:center;gap:20px;max-width:960px;margin:30px auto 0;list-style:none;padding:0}
+.hero-axis li{flex:1;text-align:left;padding:26px 22px 24px 28px;background:#fff;border:2px solid var(--navy);border-radius:6px;box-shadow:5px 5px 0 var(--gold);display:flex;flex-direction:column;gap:12px;min-height:210px;position:relative;overflow:hidden}
+.hero-axis li::before{content:"";position:absolute;top:0;left:0;bottom:0;width:6px;background:#8b1a1a}
+.hero-axis .axis-badge{display:inline-block;background:#8b1a1a;color:#fff;font-size:13px;font-weight:700;padding:7px 14px 6px;letter-spacing:.12em;align-self:flex-start;border-radius:2px;box-shadow:2px 2px 0 rgba(0,0,0,.15)}
+.hero-axis .axis-badge strong{font-size:17px;font-weight:900;letter-spacing:.2em;margin-right:6px;border-right:1px solid rgba(255,255,255,.4);padding-right:8px}
+.hero-axis .axis-title{font-size:20px;font-weight:900;color:var(--ink);line-height:1.55;margin:0;padding-top:2px}
+.hero-axis .axis-body{font-size:16px;font-weight:500;color:var(--ink-2);line-height:1.85;margin:0}
+.hero-axis u.red-u{text-decoration:none;background:transparent;color:#8b1a1a;font-weight:900;padding:0}
+
+/* COMING SOON NOTICE */
+.notice{background:linear-gradient(180deg,#0f2d52 0%,#1a4680 100%);color:#fff;padding:80px 20px;text-align:center;border-top:3px solid var(--gold);border-bottom:3px solid var(--gold)}
+.notice .pre{font-size:15px;font-weight:900;color:var(--gold);letter-spacing:.2em;margin-bottom:18px}
+.notice h2{font-size:40px;font-weight:900;line-height:1.5;margin-bottom:20px}
+.notice h2 .em{color:var(--gold)}
+.notice p{font-size:18px;line-height:1.95;font-weight:500;margin-bottom:10px;opacity:.95}
+.notice .date{font-size:32px;font-weight:900;color:#fff;margin:28px 0 8px;letter-spacing:.03em}
+.notice .date .em{color:var(--gold)}
+.notice .note{font-size:14px;opacity:.8;margin-top:20px;line-height:1.8}
+
+footer{background:#111;color:#ccc;padding:30px 20px;text-align:center;font-size:12px;line-height:1.9}
+footer .copy{margin-top:8px;color:#888}
+
+@media(max-width:720px){
+  .hero{padding:40px 16px 50px}
+  .hero .brand-line{font-size:15px;margin-bottom:18px}
+  .hero h1 .big{font-size:38px}
+  .hero .sub{font-size:17px}
+  .hero .sub .line-1{font-size:20px}
+  .hero .sub .line-2{font-size:16px}
+  .hero-claim{font-size:17px}
+  .hero-axis{flex-direction:column;gap:12px}
+  .hero-axis li{min-height:auto}
+  .notice{padding:50px 16px}
+  .notice h2{font-size:24px}
+  .notice p{font-size:15px}
+  .notice .date{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="brand-line">士業・コンサルタントのための</div>
+    <h1>
+      <span class="big">Claude Code 実装</span>
+      <span class="big"><span class="accent">1DAY</span> ワークショップ</span>
+    </h1>
+    <p class="sub">
+      <span class="line-1">私に<u class="red-u">1日だけ</u>、ください。</span>
+      <span class="line-2">あなたの<mark>"本業時間"</mark>を増やすAIを、1つ作らせてみせます。</span>
+    </p>
+
+    <p class="hero-claim">
+      たった<u class="red-u">1日</u>で、Claude Codeを<mark>"自分色のAI"</mark>にすることができる
+    </p>
+    <ul class="hero-axis">
+      <li>
+        <span class="axis-badge"><strong>事実</strong> 01</span>
+        <p class="axis-title">これまで<u class="red-u">5時間かかっていた作業</u>が、起きたら完了</p>
+        <p class="axis-body">16:18に指示を出して事務所を出て、翌朝8時、40ページのサイトが立ち上がっている。</p>
+      </li>
+      <li>
+        <span class="axis-badge"><strong>事実</strong> 02</span>
+        <p class="axis-title">AIがクローン作業で、<u class="red-u">2倍の仕事</u>が可能に</p>
+        <p class="axis-body">私がお客様と面談している間、裏でもう一つのAIが、別の事業計画書のドラフトを仕上げている。</p>
+      </li>
+      <li>
+        <span class="axis-badge"><strong>事実</strong> 03</span>
+        <p class="axis-title">義務感で支払っていた経費が、<u class="red-u">9割削減</u></p>
+        <p class="axis-body">月15,000円のチャットボット代が、月200円に。API連携ツールの年間20万円も不要。桁が2つ変わる。</p>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<!-- COMING SOON NOTICE -->
+<section class="notice">
+  <div class="wrap">
+    <div class="pre">▼ 3日間限定のご案内 ▼</div>
+    <h2>明日、<span class="em">4月19日（土）10時</span><br>あなた宛にご案内を始めます</h2>
+    <p>
+      同じClaude Codeを触っているのに、<br>
+      「1業務3時間→30分」側と「1ヶ月動かず」側に分かれる──<br>
+      この差を1日で越える場を、明日から3日間限定でご案内します。
+    </p>
+    <div class="date"><span class="em">2026年4月19日（土）10:00</span> スタート</div>
+    <p class="note">明日届くメールを、見逃さないようご準備ください。</p>
+  </div>
+</section>
+
+<footer>
+  <div>Copyright © 2026 Well Consultant合同会社 All Rights Reserved.</div>
+  <div class="copy">掲載の情報・画像等、すべてのコンテンツの無断複写・転載を禁じます。</div>
+</footer>
+
+</body>
+</html>
