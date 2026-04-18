@@ -296,6 +296,24 @@ footer .copy{margin-top:10px}
 .hero-placeholder{background:linear-gradient(180deg,#0f2d52 0%,#1a4680 100%);height:360px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;border-radius:4px;position:relative;overflow:hidden}
 .hero-placeholder::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 40%, rgba(200,162,80,.3), transparent 50%)}
 
+/* COUNTDOWN */
+.countdown-bar{background:linear-gradient(90deg,#8b1a1a 0%,#b71c1c 50%,#8b1a1a 100%);color:#fff;padding:26px 20px;text-align:center;border-bottom:3px solid #ffd700;border-top:3px solid #ffd700}
+.countdown-bar .cd-label{font-size:19px;font-weight:900;letter-spacing:.08em;margin-bottom:16px}
+.countdown-bar .cd-label .cd-warn{color:#ffd700;margin-right:8px}
+.countdown-bar .cd-grid{display:inline-flex;gap:14px;justify-content:center;align-items:stretch;flex-wrap:wrap}
+.countdown-bar .cd-unit{background:rgba(0,0,0,.32);border:2px solid rgba(255,255,255,.28);border-radius:10px;padding:14px 22px;min-width:100px}
+.countdown-bar .cd-num{font-size:48px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.countdown-bar .cd-unitname{font-size:13px;font-weight:700;opacity:.92;margin-top:8px;letter-spacing:.1em}
+.countdown-bar .cd-ended{font-size:26px;font-weight:900;padding:14px 0}
+@media(max-width:720px){
+  .countdown-bar{padding:20px 12px}
+  .countdown-bar .cd-label{font-size:15px;margin-bottom:12px}
+  .countdown-bar .cd-grid{gap:6px}
+  .countdown-bar .cd-unit{padding:10px 8px;min-width:64px}
+  .countdown-bar .cd-num{font-size:28px}
+  .countdown-bar .cd-unitname{font-size:10px;margin-top:4px}
+}
+
 /* SMALL */
 @media(max-width:720px){
   .hero{padding:40px 16px 20px}
@@ -381,7 +399,16 @@ footer .copy{margin-top:10px}
   </div>
 </header>
 
-
+<!-- COUNTDOWN TIMER -->
+<div class="countdown-bar" id="countdown-main">
+  <div class="cd-label"><span class="cd-warn">⚠</span>3日間限定キャンペーン 受付終了まで</div>
+  <div class="cd-grid">
+    <div class="cd-unit"><div class="cd-num" id="cd-d">00</div><div class="cd-unitname">DAYS</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-h">00</div><div class="cd-unitname">HOURS</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-m">00</div><div class="cd-unitname">MINUTES</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-s">00</div><div class="cd-unitname">SECONDS</div></div>
+  </div>
+</div>
 
 <!-- OPENING -->
 <section class="from">
@@ -1288,5 +1315,29 @@ footer .copy{margin-top:10px}
   </div>
 </div>
 
+<script>
+(function(){
+  var deadline = new Date('2026-04-21T23:59:00+09:00').getTime();
+  function pad(n){return n<10?'0'+n:''+n;}
+  function tick(){
+    var diff = deadline - Date.now();
+    if (diff <= 0){
+      var bars = document.querySelectorAll('.countdown-bar');
+      bars.forEach(function(b){ b.innerHTML = '<div class="cd-ended">受付は終了いたしました</div>'; });
+      return;
+    }
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor((diff/3600000)%24);
+    var m = Math.floor((diff/60000)%60);
+    var s = Math.floor((diff/1000)%60);
+    document.querySelectorAll('[id^="cd-d"]').forEach(function(e){e.textContent=pad(d);});
+    document.querySelectorAll('[id^="cd-h"]').forEach(function(e){e.textContent=pad(h);});
+    document.querySelectorAll('[id^="cd-m"]').forEach(function(e){e.textContent=pad(m);});
+    document.querySelectorAll('[id^="cd-s"]').forEach(function(e){e.textContent=pad(s);});
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
 </body>
 </html>
