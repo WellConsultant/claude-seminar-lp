@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>デジタル化・AI導入補助金攻略勉強会｜スキママーケット開拓法</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- =============================================
+   HEADER + HERO : Claude Code導入勉強会LP
+   ============================================= -->
+<style>
+html { scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* =================== HEADER =================== */
+.cc-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  height: 64px;
+  display: flex !important;
+  align-items: center !important;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-header-inner {
+  width: 100% !important;
+  max-width: 1060px;
+  margin: 0 !important;
+  padding: 0 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+}
+.cc-header-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.cc-header-logo-main {
+  font-size: 18px;
+  font-weight: 900;
+  color: #0f2d52;
+  white-space: nowrap;
+}
+.cc-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+}
+.cc-header-nav a {
+  font-size: 12px;
+  font-weight: 700;
+  color: #444;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+.cc-header-nav a:hover {
+  color: #0f2d52;
+  background: #f0f4f8;
+}
+.cc-header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #e8821a, #f5a623);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 10px 18px;
+  border-radius: 50px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(232,130,26,0.4);
+  flex-shrink: 0;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cc-header-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(232,130,26,0.5);
+}
+
+/* =================== HERO =================== */
+.cc-hero-wrap {
+  font-family: 'Noto Sans JP', sans-serif;
+  padding-top: 64px;
+  background: #fff;
+  position: relative;
+}
+.cc-hero-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Cdefs%3E%3Cstyle%3Ecircle%7Bfill:%230ea5a0%7Dline%7Bstroke:%230ea5a0;stroke-width:0.8%7D%3C/style%3E%3C/defs%3E%3Cline x1='120' y1='80' x2='280' y2='150' opacity='.12'/%3E%3Cline x1='280' y1='150' x2='400' y2='90' opacity='.08'/%3E%3Cline x1='400' y1='90' x2='580' y2='140' opacity='.1'/%3E%3Cline x1='580' y1='140' x2='720' y2='80' opacity='.07'/%3E%3Cline x1='280' y1='150' x2='350' y2='280' opacity='.1'/%3E%3Cline x1='400' y1='90' x2='500' y2='240' opacity='.08'/%3E%3Cline x1='580' y1='140' x2='620' y2='300' opacity='.09'/%3E%3Cline x1='60' y1='320' x2='200' y2='250' opacity='.07'/%3E%3Cline x1='200' y1='250' x2='350' y2='280' opacity='.1'/%3E%3Cline x1='350' y1='280' x2='500' y2='240' opacity='.08'/%3E%3Cline x1='500' y1='240' x2='620' y2='300' opacity='.1'/%3E%3Cline x1='620' y1='300' x2='760' y2='260' opacity='.07'/%3E%3Cline x1='150' y1='420' x2='300' y2='380' opacity='.08'/%3E%3Cline x1='300' y1='380' x2='450' y2='440' opacity='.1'/%3E%3Cline x1='450' y1='440' x2='580' y2='400' opacity='.07'/%3E%3Cline x1='580' y1='400' x2='700' y2='460' opacity='.09'/%3E%3Cline x1='350' y1='280' x2='300' y2='380' opacity='.06'/%3E%3Cline x1='500' y1='240' x2='450' y2='440' opacity='.06'/%3E%3Cline x1='200' y1='250' x2='150' y2='420' opacity='.05'/%3E%3Cline x1='620' y1='300' x2='580' y2='400' opacity='.06'/%3E%3Cline x1='100' y1='520' x2='250' y2='500' opacity='.07'/%3E%3Cline x1='250' y1='500' x2='450' y2='440' opacity='.06'/%3E%3Cline x1='450' y1='440' x2='650' y2='520' opacity='.08'/%3E%3Ccircle cx='120' cy='80' r='3' opacity='.15'/%3E%3Ccircle cx='280' cy='150' r='4' opacity='.18'/%3E%3Ccircle cx='400' cy='90' r='3' opacity='.12'/%3E%3Ccircle cx='580' cy='140' r='4' opacity='.16'/%3E%3Ccircle cx='720' cy='80' r='2.5' opacity='.1'/%3E%3Ccircle cx='60' cy='320' r='2.5' opacity='.1'/%3E%3Ccircle cx='200' cy='250' r='3.5' opacity='.14'/%3E%3Ccircle cx='350' cy='280' r='5' opacity='.2'/%3E%3Ccircle cx='500' cy='240' r='4' opacity='.16'/%3E%3Ccircle cx='620' cy='300' r='3.5' opacity='.14'/%3E%3Ccircle cx='760' cy='260' r='2.5' opacity='.1'/%3E%3Ccircle cx='150' cy='420' r='3' opacity='.12'/%3E%3Ccircle cx='300' cy='380' r='3.5' opacity='.14'/%3E%3Ccircle cx='450' cy='440' r='4.5' opacity='.18'/%3E%3Ccircle cx='580' cy='400' r='3' opacity='.12'/%3E%3Ccircle cx='700' cy='460' r='3' opacity='.12'/%3E%3Ccircle cx='100' cy='520' r='2.5' opacity='.1'/%3E%3Ccircle cx='250' cy='500' r='3' opacity='.12'/%3E%3Ccircle cx='650' cy='520' r='3' opacity='.12'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  z-index: 0;
+}
+.cc-hero-topbar { position: relative; z-index: 1; }
+.cc-hero-main { position: relative; z-index: 1; }
+.cc-hero-topbar {
+  background: #0f2d52;
+  padding: 14px 20px;
+  text-align: center;
+}
+.cc-hero-topbar p {
+  color: #fff;
+  font-size: clamp(13px, 2vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+.cc-hero-main {
+  max-width: 800px;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 56px 24px 64px !important;
+  box-sizing: border-box !important;
+}
+.cc-hero-h1 {
+  font-size: clamp(28px, 5vw, 48px) !important;
+  font-weight: 900 !important;
+  color: #0f2d52 !important;
+  line-height: 1.4 !important;
+  margin: 0 0 32px !important;
+  text-align: left !important;
+}
+.cc-hero-h1 span {
+  color: #0ea5a0;
+}
+.cc-hero-pains {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 36px !important;
+}
+.cc-hero-pains li {
+  font-size: clamp(14px, 2vw, 16px) !important;
+  color: #333 !important;
+  line-height: 2 !important;
+  padding-left: 24px !important;
+  position: relative !important;
+  text-align: left !important;
+}
+.cc-hero-pains li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  background: #0ea5a0;
+  border-radius: 50%;
+}
+.cc-hero-lead {
+  font-size: clamp(16px, 2.5vw, 20px) !important;
+  font-weight: 700 !important;
+  color: #0f2d52 !important;
+  line-height: 1.8 !important;
+  margin: 0 0 36px !important;
+  text-align: left !important;
+}
+.cc-hero-meta {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 28px !important;
+}
+.cc-hero-badge {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+.cc-hero-date {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f2d52;
+}
+.cc-hero-cta-wrap {
+  text-align: left;
+}
+.cc-hero-btn {
+  text-align: center;
+}
+.cc-hero-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #e8821a, #f5a623);
+  color: #fff;
+  font-size: clamp(15px, 2.5vw, 18px);
+  font-weight: 900;
+  padding: 18px 48px;
+  border-radius: 60px;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(232,130,26,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cc-hero-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(232,130,26,0.55);
+}
+.cc-hero-btn-sub {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+  .cc-header-nav { display: none; }
+  .cc-header { height: 56px; }
+  .cc-hero-wrap { padding-top: 56px; }
+  .cc-hero-main { padding: 36px 20px 48px !important; }
+  .cc-hero-btn { display: block; width: 100%; text-align: center; padding: 18px 20px; }
+}
+</style>
+
+<!-- ヘッダー -->
+<header class="cc-header">
+  <div class="cc-header-inner">
+    <a href="#" class="cc-header-logo">
+      <span class="cc-header-logo-main">デジタル化・AI導入補助金攻略勉強会</span>
+    </a>
+    <nav class="cc-header-nav">
+      <a href="#cc-agenda">勉強会の内容</a>
+      <a href="#cc-recommend">こんな方へ</a>
+      <a href="#cc-profile">講師紹介</a>
+      <a href="#cc-bonus">参加特典</a>
+    </nav>
+    <a href="#cc-register" class="cc-header-cta">
+      お申し込みはこちら
+    </a>
+  </div>
+</header>
+
+<!-- ヒーロー -->
+<div class="cc-hero-wrap">
+  <div class="cc-hero-topbar">
+    <p><a href="https://lp.well-c.biz/0424b" style="color:#fff; text-decoration:underline;">ここに手付かずのスキマ市場に参加したい方は他にいませんか？</a></p>
+  </div>
+
+  <div class="cc-hero-main">
+    <h1 class="cc-hero-h1">
+      デジタル化・AI導入補助金<br>
+      攻略勉強会
+    </h1>
+    <p class="cc-hero-subh" style="font-size: clamp(18px, 2.6vw, 22px); font-weight: 700; color: #0ea5a0; margin: -16px 0 28px; line-height: 1.6;">
+      スキママーケット開拓法
+    </p>
+    <ul class="cc-hero-pains">
+      <li>補助金サポートをしているが、客単価やLTVの頭打ちを感じている</li>
+      <li>新しい業務領域を探しているが、実戦で手応えのある選択肢に出会えていない</li>
+      <li>顧問先・見込み客に提案できる「自分の武器」を増やしたい</li>
+      <li>AI時代の士業・コンサルとしての立ち位置を明確にしたい</li>
+    </ul>
+
+    <div class="cc-hero-meta">
+      <span class="cc-hero-badge">無料オンライン勉強会</span>
+      <span class="cc-hero-badge">実例ベース</span>
+      <span class="cc-hero-date">2026年4月24日（金）15:00〜16:30（最大17:00）</span>
+    </div>
+
+    <div class="cc-hero-cta-wrap">
+      <a href="#cc-register" class="cc-hero-btn">
+        今すぐ席を確保する
+        <span class="cc-hero-btn-sub">参加無料・IT導入支援事業者登録プレゼン資料プレゼント</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  section:has(.cc-header),
+  div:has(> .cc-header) {
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    line-height: 0 !important;
+  }
+</style>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  var el = document.querySelector('.cc-header');
+  if (!el) return;
+  var p = el.parentElement;
+  while (p && p !== document.body) {
+    p.style.setProperty('padding', '0', 'important');
+    p.style.setProperty('margin', '0', 'important');
+    p.style.setProperty('min-height', '0', 'important');
+    p.style.setProperty('line-height', '0', 'important');
+    if (p.tagName === 'SECTION') break;
+    p = p.parentElement;
+  }
+});
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; padding: 0; }
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  var selectors = ".cc-opening,.cc-deepdive,.cc-solution,.cc-agenda,.cc-benefits,.cc-recommend,.cc-profile,.cc-bonus,.cc-details,.cc-hero-wrap,.cc-header";
+  document.querySelectorAll(selectors).forEach(function(el){
+    var p = el.parentElement;
+    while(p && p !== document.body){
+      p.style.setProperty("padding-left","0","important");
+      p.style.setProperty("padding-right","0","important");
+      p.style.setProperty("margin-left","0","important");
+      p.style.setProperty("margin-right","0","important");
+      p.style.setProperty("max-width","none","important");
+      p.style.setProperty("width","100%","important");
+      if(p.tagName==="SECTION") break;
+      p = p.parentElement;
+    }
+  });
+});
+</script>
+
+<!-- =============================================
+   PART 02 : オープニング（問題提起）
+   ============================================= -->
+<style>
+.cc-opening {
+  background: #f5f7fa;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-opening-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-opening-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-opening-label {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-opening-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-opening-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 44px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  border-left: 5px solid #0ea5a0;
+}
+.cc-opening-box p {
+  font-size: 17px;
+  line-height: 2.1;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: left !important;
+}
+.cc-opening-box p:last-child { margin-bottom: 0; }
+.cc-opening-box strong { color: #0f2d52; font-weight: 900; }
+.cc-opening-box .cc-highlight { color: #dc3010; font-weight: 900; }
+
+@media(max-width: 600px) {
+  .cc-opening { padding: 48px 20px; }
+  .cc-opening-box { padding: 24px 20px; }
+  .cc-opening-box p { font-size: 14px; }
+}
+</style>
+
+<section class="cc-opening">
+  <div class="cc-opening-wrap">
+    <div class="cc-opening-title">
+      <div class="cc-opening-label">OPENING</div>
+      <h2><span style="font-size: 0.55em !important; font-weight: 400 !important; display: block; margin-bottom: 8px;">今、あなたの目の前で</span>大きな機会損失が発生しているのを<br>あなたはご存知ですか？</h2>
+    </div>
+
+    <div class="cc-opening-box">
+      <p>もしあなたが、士業・コンサルタントとして補助金業務に関わる中で、「単価が伸びない」「新しい武器がほしい」と感じているなら、あなたのための勉強会かも知れません。</p>
+      <p>なぜなら、ほとんどの同業者がまだ気づいていないスキママーケットとも言えるマーケットがあるからです。というのも、行政書士法改正や、IT導入補助金からデジタル化・AI導入補助金という名前に変わったということも相まって、需要が急増しているんです。</p>
+      <p>もしあなたもそれを知らないままこれからお客様と接していたら、大きな機会損失が生じてしまうかもしれませんし、あなたのクライアントが損をしてしまうかも知れない、そうおもって、今回、この勉強会を行うことにしました。</p>
+      <p>もしあなたも少しでも興味を持ってくれたなら、少し1分くらい時間をとってこのページをご覧ください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 03 : 深掘り（AI情報が変わらない理由）
+   ============================================= -->
+<style>
+.cc-deepdive {
+  background: #fff;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-deepdive-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-deepdive-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-deepdive-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+.cc-deepdive-title p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.9;
+  margin: 12px 0 0;
+  text-align: center !important;
+}
+
+.cc-problem-card {
+  background: #f5f7fa;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 16px !important;
+}
+.cc-problem-num {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  flex-shrink: 0;
+  min-width: 72px;
+  padding-top: 2px;
+  text-align: left !important;
+}
+.cc-problem-num-label {
+  font-size: 20px;
+  font-weight: 900;
+  color: #0f2d52;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  text-align: left !important;
+}
+.cc-problem-num-figure {
+  font-size: 64px;
+  font-weight: 900;
+  color: #c0392b;
+  font-style: italic;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1;
+  text-shadow: 0 2px 0 rgba(192,57,43,0.15);
+  text-align: left !important;
+}
+.cc-problem-content {
+  flex: 1;
+}
+.cc-problem-content h4 {
+  padding-bottom: 10px;
+  border-bottom: 3px solid #f5c83a;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cc-problem-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  color: #0ea5a0;
+}
+.cc-problem-content h4 {
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 900;
+  color: #0f2d52;
+  margin-bottom: 10px;
+  text-align: left !important;
+}
+.cc-problem-content p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #444;
+  text-align: left !important;
+  margin: 0;
+}
+
+@media(max-width: 600px) {
+  .cc-deepdive { padding: 48px 20px; }
+  .cc-problem-card { flex-direction: column; padding: 24px 20px; gap: 12px !important; }
+}
+</style>
+
+<section class="cc-deepdive">
+  <div class="cc-deepdive-wrap">
+    <div class="cc-deepdive-title">
+      <h2>今、デジタル化・AI導入補助金の<br>需要が急増しています</h2>
+      <p>今、デジタル化・AI導入補助金の需要が急増しています。<br>なぜなら、この勉強会を開催しようと思ったのは、このような3つの理由があるからです。</p>
+    </div>
+
+    <div class="cc-problem-card">
+      <div class="cc-problem-num">
+        <span class="cc-problem-num-label">理由</span>
+        <span class="cc-problem-num-figure">1.</span>
+      </div>
+      <div class="cc-problem-content">
+        <h4><svg class="cc-problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>デジタル化・AI導入補助金に名前が変わった</h4>
+        <p>2025年までは「IT導入補助金」という名称でしたが、2026年度から「デジタル化・AI導入補助金」に変わりました。それに伴い、事業者側の関心が一気に高まっており、申請やご相談の動きがここ数ヶ月で目立って増えています。特に「AI」という言葉が正式名称に入ったことで、これまで関心の薄かった業種からの問い合わせも増加傾向にあります。今まさに、補助金を使ってAI活用に踏み出したい企業が動き始めているタイミングなんです。</p>
+      </div>
+    </div>
+
+    <div class="cc-problem-card">
+      <div class="cc-problem-num">
+        <span class="cc-problem-num-label">理由</span>
+        <span class="cc-problem-num-figure">2.</span>
+      </div>
+      <div class="cc-problem-content">
+        <h4><svg class="cc-problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2"/></svg>行政書士法の改正</h4>
+        <p>実は2026年から行政書士法が改正されました。この影響で、私たちの元にも、デジタル化・AI導入補助金に関する問い合わせ、特にIT導入支援事業者からの問い合わせが増加しているんです。多くの関心が集まっている証拠でもあり、行政書士やコンサルタントにとって今、機会そのものが目の前にあることがよくわかります。</p>
+      </div>
+    </div>
+
+    <div class="cc-problem-card">
+      <div class="cc-problem-num">
+        <span class="cc-problem-num-label">理由</span>
+        <span class="cc-problem-num-figure">3.</span>
+      </div>
+      <div class="cc-problem-content">
+        <h4><svg class="cc-problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.8.6 1.3 1.5 1.3 2.5V18h5.4v-.8c0-1 .5-1.9 1.3-2.5A7 7 0 0 0 12 2z"/></svg>業務負担が急増している事実</h4>
+        <p>私たちは2023年頃からIT導入支援事業者として、各種ツールとサポートを行ってきました。そこで、いいこと、負担になること、できるならサポートして欲しいこと、などを鮮明にみてきました。昨今、IT導入補助金の不正発覚などにより、多くのIT導入支援事業者が取り消しなどになっています。そのため業務量がこれまで以上に増えているのが実情です。ここに大きな勝機があると考えているのですが…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 04 : 解決策の提示
+   ============================================= -->
+<style>
+.cc-solution {
+  background:
+    linear-gradient(135deg, rgba(15,45,82,0.92) 0%, rgba(30,95,168,0.92) 100%),
+    url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-solution-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-solution-title {
+  text-align: center !important;
+  margin-bottom: 36px;
+}
+.cc-solution-label {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-solution-title h2 {
+  font-size: clamp(26px, 4.8vw, 42px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.35;
+  margin: 0;
+  text-align: center !important;
+}
+.cc-solution-sub {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 500;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.5;
+}
+
+.cc-solution-body {
+  max-width: 800px;
+  margin: 0;
+}
+.cc-solution-body p {
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.94);
+  margin-bottom: 4px;
+  text-align: left !important;
+}
+.cc-solution-body p:last-child { margin-bottom: 0; }
+.cc-solution-body strong {
+  color: #f5a623;
+  font-weight: 900;
+}
+
+@media(max-width: 600px) {
+  .cc-solution { padding: 48px 20px; }
+}
+</style>
+
+<section class="cc-solution">
+  <div class="cc-solution-wrap">
+    <div class="cc-solution-title">
+      <h2>デジタル化・AI導入補助金、<br>行政書士がやることあります？<br><span class="cc-solution-sub">これはよく僕が同業者に聞かれることなんですが...</span></h2>
+    </div>
+
+    <div class="cc-solution-body">
+      <p>結論から言うと、普通にあります。</p>
+      <p>ただ、何ができるのかが見えていないと、動きようがないんですよね。</p>
+      <p>なのでこの勉強会では、全体像が見えるようにお伝えします。</p>
+      <p>①市場の構造、②最近増えている相談の背景、③AI時代の業務拡張イメージ。この3点を、現場で見てきた実例を交えて話します。</p>
+      <p>行動を急かすつもりはありません。どう活かすかは、あなた次第です。</p>
+      <p>いつも不思議でならないのですが、なぜやることがないと思うのかわかりません。</p>
+      <p>僕は行政書士でもあり、IT導入支援事業者として活動しながらいつも思っています。</p>
+      <p>めんどくさ、何言ってるかわからん、手引き？どこに書いてあるんだよ！？と...</p>
+      <p>これ、行政書士やコンサルタントが得意なことですよね。</p>
+      <p>でもこれをフォローしてもらえるとは知らずに多くの支援事業者は自分で、もしくは従業員さんにやらせて、「社長、いつまでこれやらせるんですか！？」って怒られているんです。</p>
+      <p>それくらいならいいのですが、実は、もっと重大なことがあるんです。</p>
+      <p>それは、支援事業者登録申請やITツール登録はダメと言われることはほとんどありません。</p>
+      <p>でも、その先に響いてしまうことはあります。</p>
+      <p>なぜか？</p>
+      <p>ここでは語りきれないので、その辺は勉強会でお伝えできればと思っています。</p>
+      <p>で、その勉強会の内容はと言うと、</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 05 : アジェンダ（勉強会の内容）
+   ============================================= -->
+<style>
+.cc-agenda {
+  background: #f5f7fa;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-agenda-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-agenda-title {
+  text-align: center !important;
+  margin-bottom: 44px;
+}
+.cc-agenda-label {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-agenda-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-agenda-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 20px !important;
+}
+.cc-agenda-num {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  flex-shrink: 0;
+  min-width: 72px;
+  padding-top: 2px;
+  text-align: left !important;
+  background: none;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  font-size: 64px;
+  font-weight: 900;
+  color: #1e5fa8;
+  font-style: italic;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1;
+  text-shadow: 0 2px 0 rgba(30,95,168,0.15);
+}
+.cc-agenda-content h4 {
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 900;
+  color: #0f2d52;
+  margin-bottom: 10px;
+  text-align: left !important;
+}
+.cc-agenda-content p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #444;
+  margin: 0;
+  text-align: left !important;
+}
+
+.cc-agenda-card:nth-child(odd) .cc-agenda-num { background: none; }
+.cc-agenda-card:nth-child(even) .cc-agenda-num { background: none; }
+
+.cc-agenda-bonus {
+  border: 2px solid #e8821a;
+}
+.cc-agenda-bonus .cc-agenda-num {
+  background: none;
+  color: #e8821a;
+}
+.cc-agenda-bonus-tag {
+  display: inline-block;
+  background: #fff3e6;
+  color: #e8821a;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+}
+
+@media(max-width: 600px) {
+  .cc-agenda { padding: 48px 20px; }
+  .cc-agenda-card { flex-direction: column; padding: 24px 20px; gap: 12px !important; }
+}
+</style>
+
+<section id="cc-agenda" class="cc-agenda">
+  <div class="cc-agenda-wrap">
+    <div class="cc-agenda-title">
+      <div class="cc-agenda-label">AGENDA</div>
+      <h2>デジタル化・AI導入補助金攻略勉強会の<br>アジェンダ</h2>
+    </div>
+
+    <div class="cc-agenda-card">
+      <div class="cc-agenda-num">1.</div>
+      <div class="cc-agenda-content">
+        <h4>なぜ今、デジタル化・AI導入補助金が熱いのか？</h4>
+        <p>デジタル化・AI導入補助金2026年版の概要と、今なぜこの補助金が注目されているのかを市場の動きと合わせてお伝えします。「どこに機会があるのか」が自分の言葉で説明できるようになるので、目の前のクライアントにも自信を持って提案できる立ち位置が手に入ります。</p>
+      </div>
+    </div>
+
+    <div class="cc-agenda-card">
+      <div class="cc-agenda-num">2.</div>
+      <div class="cc-agenda-content">
+        <h4>士業・コンサルがデジタル化・AI導入補助金で活躍できる理由</h4>
+        <p>デジタル化・AI導入補助金は、手引きが難解で手続きもめんどくさい——その煩雑さに行政書士やコンサルタントが入り込める構造をお伝えします。「なぜ自分の事務所が選ばれる立場にあるのか」が言語化できるようになるので、営業の場面でも迷わず価値を伝えられる軸が手に入ります。</p>
+      </div>
+    </div>
+
+    <div class="cc-agenda-card">
+      <div class="cc-agenda-num">3.</div>
+      <div class="cc-agenda-content">
+        <h4>デジタル化・AI導入補助金2026の概要と必勝ポイント</h4>
+        <p>デジタル化・AI導入補助金2026年版の補助対象、枠組み、審査の勘所までお伝えします。補助金を使える案件・使えない案件を自分で判断できるようになるので、クライアントに提案できる引き出しが広がります。</p>
+      </div>
+    </div>
+
+    <div class="cc-agenda-card">
+      <div class="cc-agenda-num">4.</div>
+      <div class="cc-agenda-content">
+        <h4>他の補助金にない、メリット・デメリット</h4>
+        <p>デジタル化・AI導入補助金ならではの強みと、気をつけるべき落とし穴を、他の補助金と比較しながらお伝えします。「どの案件にこの補助金を提案すべきか」の判断基準が持てるようになるので、自信を持って事業者にお勧めできるスタンスが手に入ります。</p>
+      </div>
+    </div>
+
+    <div class="cc-agenda-card">
+      <div class="cc-agenda-num">5.</div>
+      <div class="cc-agenda-content">
+        <h4>デジタル化・AI導入補助金で顧客の信頼を獲得する方法</h4>
+        <p>デジタル化・AI導入補助金の支援は、単なる申請代行ではありません。支援パートナーとして選ばれるためのアプローチを、現場の実例と合わせてお伝えします。顧客から「次もあなたに相談したい」と言われる関わり方が身につくので、価格競争に巻き込まれない立ち位置が手に入ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 06 : 参加するとどうなるか
+   ============================================= -->
+<style>
+.cc-benefits {
+  background: #fff;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-benefits-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-benefits-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-benefits-label {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-benefits-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-benefits-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+.cc-benefits-list li {
+  background: #f5f7fa;
+  border-radius: 12px;
+  padding: 28px 32px 28px 82px !important;
+  color: #333;
+  position: relative;
+  text-align: left !important;
+}
+.cc-benefits-list li::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 30px;
+  width: 36px;
+  height: 36px;
+  background: #0ea5a0;
+  border-radius: 50%;
+}
+.cc-benefits-list li::after {
+  content: '';
+  position: absolute;
+  left: 33px;
+  top: 40px;
+  width: 18px;
+  height: 9px;
+  border-left: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: rotate(-45deg);
+}
+.cc-benefits-item-title {
+  font-size: 19px;
+  font-weight: 900;
+  color: #0f2d52;
+  margin: 0 0 8px;
+  line-height: 1.4;
+  text-align: left !important;
+}
+.cc-benefits-item-text {
+  font-size: 15px;
+  font-weight: 400;
+  color: #444;
+  line-height: 1.75;
+  margin: 0;
+  text-align: left !important;
+}
+
+/* 中間CTA */
+.cc-mid-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+.cc-mid-cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #e8821a, #f5a623);
+  color: #fff;
+  font-size: clamp(15px, 2.5vw, 18px);
+  font-weight: 900;
+  padding: 18px 48px;
+  border-radius: 60px;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(232,130,26,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cc-mid-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(232,130,26,0.55);
+}
+.cc-mid-cta-sub {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+@media(max-width: 600px) {
+  .cc-benefits { padding: 48px 20px; }
+  .cc-benefits-list li { padding: 22px 20px 22px 64px !important; font-size: 16px; }
+  .cc-benefits-list li::before { left: 18px; width: 30px; height: 30px; }
+  .cc-benefits-list li::after { left: 26px; width: 14px; height: 7px; }
+  .cc-mid-cta-btn { display: block; width: 100%; text-align: center; padding: 18px 20px; }
+}
+</style>
+
+<section class="cc-benefits">
+  <div class="cc-benefits-wrap">
+    <div class="cc-benefits-title">
+      <div class="cc-benefits-label">OUTCOME</div>
+      <h2>デジタル化・AI導入補助金攻略勉強会で<br>あなたが得られること</h2>
+    </div>
+
+    <ul class="cc-benefits-list">
+      <li>
+        <div class="cc-benefits-item-title">他の士業がまだ動けていない領域で、先に手を打てるポジションが手に入る</div>
+        <p class="cc-benefits-item-text">デジタル化・AI導入補助金という新しい潮流の中で、士業・コンサルタントに残された業務領域はまだ埋まっていません。この全体像が見えている人だけが、先に取りに行けるポジションに立てるんです。</p>
+      </li>
+      <li>
+        <div class="cc-benefits-item-title">顧問契約以外の継続売り上げを獲得するマーケットが手に入る</div>
+        <p class="cc-benefits-item-text">単発の申請代行で終わらない、継続的に収益が生まれるマーケットがそこに広がっています。顧問契約の頭打ちから抜け出して、あなたの事務所に新しい売上の柱が加わるんです。</p>
+      </li>
+      <li>
+        <div class="cc-benefits-item-title">行政書士法改正のトレンドで活躍できるようになる</div>
+        <p class="cc-benefits-item-text">2026年の行政書士法改正は、デジタル化・AI導入補助金の市場と重なるタイミングで追い風になっています。この流れに乗って動き出せる行政書士・コンサルタントは、まだ少数です。あなたはその少数側に立てるんです。</p>
+      </li>
+      <li>
+        <div class="cc-benefits-item-title">先行者の動きから見える、自分だけの打ち手</div>
+        <p class="cc-benefits-item-text">もう動き始めている同業者がいます。彼らがどんな判断をし、どこに踏み込んだのか——実例から見えるのは、机上の理論ではなく現場で通用する打ち手です。あなたの事務所に応用できる具体的な動き方が、ここで見つかるでしょう。</p>
+      </li>
+    </ul>
+
+    <div class="cc-mid-cta">
+      <a href="#cc-register" class="cc-mid-cta-btn">
+        今すぐ席を確保する
+        <span class="cc-mid-cta-sub">参加無料・IT導入支援事業者登録プレゼン資料プレゼント</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 07 : こんな方におすすめ / 向かない方
+   ============================================= -->
+<style>
+.cc-recommend {
+  background: #f5f7fa;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-recommend-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-recommend-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-recommend-label {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-recommend-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-rec-cards {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 20px !important;
+  justify-content: center !important;
+}
+.cc-rec-card {
+  position: relative;
+  background: #fff;
+  border: 2px solid #0f2d52;
+  border-radius: 14px;
+  overflow: hidden;
+  width: calc(33.333% - 14px);
+  box-shadow: 0 6px 24px rgba(15,45,82,0.15);
+  padding: 22px 22px 22px;
+  background-size: cover !important;
+  background-position: center !important;
+}
+.cc-rec-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.9);
+}
+.cc-rec-card-body {
+  position: relative;
+  width: 100%;
+}
+.cc-rec-card-title {
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.4;
+  color: #0f2d52;
+  margin: 0 0 10px;
+  text-align: left !important;
+}
+.cc-rec-card-text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+  text-align: left !important;
+}
+
+@media(max-width: 900px) {
+  .cc-rec-card { width: calc(50% - 10px); }
+}
+@media(max-width: 600px) {
+  .cc-recommend { padding: 48px 20px; }
+  .cc-rec-card { width: 100%; }
+}
+</style>
+
+<section id="cc-recommend" class="cc-recommend">
+  <div class="cc-recommend-wrap">
+    <div class="cc-recommend-title">
+      <div class="cc-recommend-label">FOR YOU</div>
+      <h2>こんな方におすすめです</h2>
+    </div>
+
+    <div class="cc-rec-cards">
+      <div class="cc-rec-card" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=70');">
+        <div class="cc-rec-card-body">
+          <div class="cc-rec-card-title">補助金業務を扱う行政書士の方</div>
+          <p class="cc-rec-card-text">申請代行だけで終わらせない。デジタル化・AI導入補助金という新しい柱をあなたの事務所に加える道が見えてきます。</p>
+        </div>
+      </div>
+
+      <div class="cc-rec-card" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=70');">
+        <div class="cc-rec-card-body">
+          <div class="cc-rec-card-title">補助金業務を扱うコンサルタントの方</div>
+          <p class="cc-rec-card-text">単発の提案で終わる関係から、継続契約につながるパートナーシップへ。クライアントとの関わり方が根本から変わります。</p>
+        </div>
+      </div>
+
+      <div class="cc-rec-card" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=70');">
+        <div class="cc-rec-card-body">
+          <div class="cc-rec-card-title">自社のITツールを提供している事業者の方</div>
+          <p class="cc-rec-card-text">価格競争から抜け出せずに疲弊していませんか。補助金を使った価値訴求で、商談の質そのものが変わっていきます。</p>
+        </div>
+      </div>
+
+      <div class="cc-rec-card" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=70');">
+        <div class="cc-rec-card-body">
+          <div class="cc-rec-card-title">デジタル化・AI導入補助金の申請を検討している方</div>
+          <p class="cc-rec-card-text">「どの枠で、いくら取れるのか」が曖昧なまま時間が過ぎていく——その状態に終止符を打てます。自分の言葉で勝ち筋を語れるように。</p>
+        </div>
+      </div>
+
+      <div class="cc-rec-card" style="background-image:url('https://images.unsplash.com/photo-1460472178825-e5240623afd5?auto=format&fit=crop&w=800&q=70');">
+        <div class="cc-rec-card-body">
+          <div class="cc-rec-card-title">IT導入支援事業者の登録を考えている方</div>
+          <p class="cc-rec-card-text">登録要件21項目、差戻しの罠、料金の決め方——「面倒くさい」で後回しにしてきた壁を、最短ルートで超える道筋が見えます。</p>
+        </div>
+      </div>
+
+      <div class="cc-rec-card" style="background-image:url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=70');">
+        <div class="cc-rec-card-body">
+          <div class="cc-rec-card-title">AI時代に事務所の業務拡張を考えている方</div>
+          <p class="cc-rec-card-text">AIに仕事を取られる側で終わりますか。使いこなす側に回って事務所を伸ばす具体的な動き方が、この勉強会で手に入ります。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 08 : 講師プロフィール
+   ============================================= -->
+<style>
+.cc-profile {
+  background: #fff;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-profile-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-profile-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-profile-label {
+  display: inline-block;
+  background: #0ea5a0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-profile-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-profile-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.cc-profile-top {
+  background: linear-gradient(135deg, #0f2d52 0%, #1e5fa8 100%);
+  padding: 48px 48px 40px;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 36px !important;
+}
+.cc-profile-avatar {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.4);
+  flex-shrink: 0;
+  overflow: hidden;
+  background: rgba(255,255,255,0.15);
+}
+.cc-profile-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.cc-profile-intro {}
+.cc-profile-role {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.cc-profile-name {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.cc-profile-name-en {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 16px;
+}
+.cc-profile-badges {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+.cc-profile-badge {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.cc-profile-body {
+  padding: 40px 48px;
+}
+.cc-profile-text {
+  font-size: 15px;
+  line-height: 2;
+  color: #333;
+  margin-bottom: 24px;
+  text-align: left !important;
+}
+.cc-profile-text:last-child { margin-bottom: 0; }
+
+@media(max-width: 640px) {
+  .cc-profile { padding: 48px 20px; }
+  .cc-profile-top { flex-direction: column; padding: 32px 24px 28px; gap: 20px !important; }
+  .cc-profile-avatar { width: 80px; height: 80px; }
+  .cc-profile-body { padding: 28px 24px; }
+  .cc-profile-text { font-size: 14px; }
+}
+</style>
+
+<section id="cc-profile" class="cc-profile">
+  <div class="cc-profile-wrap">
+    <div class="cc-profile-title">
+      <div class="cc-profile-label">SPEAKER</div>
+      <h2>今回の勉強会の講師は？</h2>
+    </div>
+
+    <div class="cc-profile-card">
+      <div class="cc-profile-top">
+        <div class="cc-profile-avatar">
+          <img src="https://raw.githubusercontent.com/WellConsultant/hojokin-lp-assets/main/profile_akutsu.png" alt="阿久津和宏">
+        </div>
+        <div class="cc-profile-intro">
+          <div class="cc-profile-role">行政書士</div>
+          <div class="cc-profile-name">阿久津 和宏</div>
+          <div class="cc-profile-name-en">Kazuhiro Akutsu</div>
+        </div>
+      </div>
+
+      <div class="cc-profile-body">
+        <p class="cc-profile-text">行政書士として補助金申請の現場に立ちながら、事業計画書の作成・書類作成・レポート生成といった実務にAIを本格導入してきました。今はIT導入支援事業者として、事業者さんとの協業型支援にも活動領域を広げています。士業業務とAI活用を両立させた支援スタイルは、同業の方から「どうやっているのか」と聞かれる機会が増えてきました。</p>
+
+        <p class="cc-profile-text">ここ数ヶ月、補助金関連のご相談が明らかに増えています。特にデジタル化・AI導入補助金は、2026年の名称変更と制度改正をきっかけに、事業者の関心が一気に高まりました。その動きを現場で見てきた中で、士業・コンサルタントにこそ残されている参入領域の構造がはっきり見えてきたんです。</p>
+
+        <p class="cc-profile-text">この勉強会では、その構造を包み隠さずお伝えします。「何をすれば参入できるのか」「どうすれば顧客から支援パートナーとして選ばれるのか」——抽象論ではなく、現場で通用する具体的な話です。あなたが勉強会を終える頃には、自分の事務所がこの市場にどう関わるべきかの輪郭が、はっきり見えているでしょう。</p>
+
+        <p class="cc-profile-text">行政書士の枠にとどまらず、IT導入支援事業者として現場に飛び込んだからこそ見えたものがあります。AI時代に、士業・コンサルタントに残されている仕事は、想像以上に大きい——この確信を、勉強会の中で一緒に確かめていきましょう。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 09 : 参加特典
+   ============================================= -->
+<style>
+.cc-bonus {
+  background: #f5f7fa;
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-bonus-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-bonus-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-bonus-label {
+  display: inline-block;
+  background: #e8821a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.cc-bonus-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #0f2d52;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-bonus-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 44px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  border-top: 5px solid #e8821a;
+}
+.cc-bonus-card-title {
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 900;
+  color: #0f2d52;
+  margin-bottom: 20px;
+  text-align: left !important;
+}
+.cc-bonus-card p {
+  font-size: 15px;
+  line-height: 2;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: left !important;
+}
+.cc-bonus-card p:last-child { margin-bottom: 0; }
+
+.cc-bonus-contents {
+  background: #f5f7fa;
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-top: 20px;
+}
+.cc-bonus-contents-title {
+  font-size: 14px;
+  font-weight: 900;
+  color: #0f2d52;
+  margin-bottom: 12px;
+  text-align: left !important;
+}
+.cc-bonus-contents ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.cc-bonus-contents li {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.9;
+  padding-left: 20px;
+  position: relative;
+  text-align: left !important;
+}
+.cc-bonus-contents li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  background: #e8821a;
+  border-radius: 50%;
+}
+
+@media(max-width: 600px) {
+  .cc-bonus { padding: 48px 20px; }
+  .cc-bonus-card { padding: 28px 20px; }
+  .cc-bonus-contents { padding: 18px 16px; }
+}
+</style>
+
+<section id="cc-bonus" class="cc-bonus">
+  <div class="cc-bonus-wrap">
+    <div class="cc-bonus-title">
+      <div class="cc-bonus-label">BONUS</div>
+      <h2>参加特典</h2>
+    </div>
+
+    <div class="cc-bonus-card">
+      <div class="cc-bonus-card-title">IT導入支援事業者として活躍する秘密をまとめたプレゼン資料</div>
+      <p>デジタル化・AI導入補助金2026に対応したIT導入支援事業者登録について、阿久津が現場で掴んだ実務のすべてを1冊にまとめた資料を、ご参加のあなたにお渡しします。</p>
+      <p>資料の中身は、制度の概要、登録要件21項目のチェックポイント、差戻しを回避する書類作成の勘所、料金の決め方、審査期間の全体像、登録完了までの流れまで。実際に事業者の登録をサポートしてきた経験をベースに書き起こしたものです。</p>
+      <p>この資料を手にしたあなたは、「IT導入支援事業者として登録し、事業者からの相談に応える立ち位置に立てるのか」を判断するための材料が一通り揃います。同業の行政書士・コンサルタントが机上で学んでいる間に、あなたは現場で動き出せる一歩先の情報を手に入れられるでしょう。</p>
+
+      <div class="cc-bonus-contents">
+        <div class="cc-bonus-contents-title">参加者全員への特典</div>
+        <ul>
+          <li>IT導入支援事業者として活躍する秘密をまとめたプレゼン資料（阿久津が現場で使用中のもの）</li>
+          <li>勉強会当日のライブ配信</li>
+          <li>勉強会中の質疑応答の時間</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+   PART 10 : 開催概要 + CTA
+   ============================================= -->
+<style>
+.cc-details {
+  background: linear-gradient(135deg, #0f2d52 0%, #1e5fa8 100%);
+  padding: 72px 40px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.cc-details-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
+
+.cc-details-title {
+  text-align: center !important;
+  margin-bottom: 40px;
+}
+.cc-details-title h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center !important;
+}
+
+.cc-details-table {
+  width: 100% !important;
+  max-width: 600px;
+  margin: 0 auto 48px;
+  border-collapse: collapse;
+}
+.cc-details-table th,
+.cc-details-table td {
+  padding: 16px 20px;
+  font-size: 15px;
+  line-height: 1.8;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  text-align: left !important;
+}
+.cc-details-table th {
+  color: rgba(255,255,255,0.7);
+  font-weight: 700;
+  width: 120px;
+  white-space: nowrap;
+}
+.cc-details-table td {
+  color: #fff;
+  font-weight: 700;
+}
+.cc-details-table .cc-free {
+  color: #f5a623;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.cc-cta-block {
+  text-align: center;
+}
+.cc-cta-message {
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+  text-align: center !important;
+}
+.cc-cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #e8821a, #f5a623);
+  color: #fff;
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 900;
+  padding: 22px 60px;
+  border-radius: 60px;
+  text-decoration: none;
+  box-shadow: 0 8px 32px rgba(232,130,26,0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cc-cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(232,130,26,0.6);
+}
+.cc-cta-btn-sub {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 6px;
+}
+.cc-cta-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 16px;
+  text-align: center !important;
+}
+
+@media(max-width: 600px) {
+  .cc-details { padding: 48px 20px; }
+  .cc-details-table th { width: 90px; font-size: 13px; }
+  .cc-details-table td { font-size: 14px; }
+  .cc-cta-btn { display: block; width: 100%; text-align: center; padding: 20px 20px; font-size: 16px; }
+}
+</style>
+
+<section id="cc-register" class="cc-details">
+  <div class="cc-details-wrap">
+    <div class="cc-details-title">
+      <h2>今すぐ席を確保してください</h2>
+      <!-- 定員・期間限定要素あり -->
+    </div>
+
+    <table class="cc-details-table">
+      <tr>
+        <th>日時</th>
+        <td>2026年4月24日（金）15:00〜16:30（最大17:00）</td>
+      </tr>
+      <tr>
+        <th>形式</th>
+        <td>オンライン（EasyWebinar）</td>
+      </tr>
+      <tr>
+        <th>参加費</th>
+        <td><span class="cc-free">無料</span></td>
+      </tr>
+      <tr>
+        <th>特典</th>
+        <td>IT導入支援事業者登録プレゼン資料（阿久津が現場で使用中のもの）</td>
+      </tr>
+    </table>
+
+    <div class="cc-cta-block">
+      <p class="cc-cta-message">士業・コンサルタントに残された、新しい業務領域を一緒に見ていきましょう。</p>
+      <div style="margin: 0 auto; max-width: 600px;">
+        <div class="ew-wid" data-wid="p/TVr9CQCQflU2QpL7M32w==" data-loaded="no" data-schloaded="no"><script type="text/javascript" src="https://ewpcdn-ecs.easywebinar.com/widget/js/new/ew-script.js"></script></div>
+      </div>
+      <p class="cc-cta-note" style="margin-top: 16px; color: rgba(255,255,255,0.8); font-weight: 700;">※ アーカイブ配信はありません。当日のみの開催です。</p>
+    </div>
+  </div>
+</section>
+</body></html>
