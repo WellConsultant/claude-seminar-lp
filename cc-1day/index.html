@@ -1323,10 +1323,8 @@ footer .copy{margin-top:10px}
   function tick(){
     var diff = deadline - Date.now();
     if (diff <= 0){
-      // 期限切れページへリダイレクト
-      if (!/expired\.html$/.test(location.pathname)){
-        location.replace('expired.html');
-      }
+      // 期限切れ：あらかじめ用意した受付終了ページへ遷移
+      location.replace('https://saipon.jp/h/xhw525');
       return;
     }
     var d = Math.floor(diff/86400000);
