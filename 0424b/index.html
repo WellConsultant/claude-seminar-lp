@@ -1539,4 +1539,30 @@ document.addEventListener("DOMContentLoaded", function(){
     </p>
   </div>
 </section>
+
+<footer style="background:#1e3a5f;color:#fff;padding:32px 20px;text-align:center;font-size:13px;line-height:1.9;">
+  <div style="margin-bottom:10px;">
+    <a href="#" onclick="document.getElementById('privacy-modal').style.display='flex';return false;" style="color:#fff;text-decoration:underline;">プライバシーポリシー</a>
+  </div>
+  <div style="opacity:.8;font-size:12px;">
+    掲載の情報・画像等、すべてのコンテンツの無断複写・転載を禁じます。<br>
+    Copyright © 2026 Well Consultant合同会社 All Rights Reserved.
+  </div>
+</footer>
+
+<div id="privacy-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;align-items:center;justify-content:center;padding:20px" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;max-width:680px;max-height:80vh;overflow:auto;padding:36px;border-radius:6px;position:relative">
+    <button onclick="document.getElementById('privacy-modal').style.display='none'" style="position:absolute;top:12px;right:16px;background:none;border:0;font-size:24px;cursor:pointer">×</button>
+    <h3 style="margin-bottom:16px;font-size:22px">プライバシーポリシー</h3>
+    <p style="font-size:13px;line-height:1.9;color:#333">Well Consultant合同会社（以下、「当社」）は、お客様の個人情報の保護に関して、以下のとおり取り扱います。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">1. 個人情報の取得</h4>
+    <p style="font-size:13px;line-height:1.9;color:#333">当社は、適法かつ公正な手段によって、個人情報を取得します。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">2. 個人情報の利用目的</h4>
+    <p style="font-size:13px;line-height:1.9;color:#333">お申し込みいただいた商品・サービスの提供、お客様サポート、商品改善のため、取得した個人情報を利用します。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">3. 個人情報の第三者提供</h4>
+    <p style="font-size:13px;line-height:1.9;color:#333">法令に基づく場合を除き、お客様の同意なく個人情報を第三者に提供することはありません。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">4. お問い合わせ</h4>
+    <p style="font-size:13px;line-height:1.9;color:#333">個人情報の開示・訂正・削除をご希望の場合は、info@fp-1.info までご連絡ください。</p>
+  </div>
+</div>
 </body></html>
