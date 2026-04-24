@@ -1383,7 +1383,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <style>
 .cc-details {
   background: linear-gradient(135deg, #0f2d52 0%, #1e5fa8 100%);
-  padding: 72px 40px;
+  padding: 72px 40px 40px;
   font-family: 'Noto Sans JP', sans-serif;
 }
 .cc-details-wrap { max-width: 800px; width: 100%; margin: 0 auto; }
@@ -1472,11 +1472,14 @@ document.addEventListener("DOMContentLoaded", function(){
 }
 
 @media(max-width: 600px) {
-  .cc-details { padding: 48px 20px; }
+  .cc-details { padding: 48px 20px 24px; }
   .cc-details-table th { width: 90px; font-size: 13px; }
   .cc-details-table td { font-size: 14px; }
   .cc-cta-btn { display: block; width: 100%; text-align: center; padding: 20px 20px; font-size: 16px; }
 }
+
+/* EasyWebinarウィジェット未設定時は非表示（空の余白対策） */
+.ew-wid[data-wid="REPLACE_WITH_EASYWEBINAR_WID"] { display: none !important; }
 </style>
 
 <section id="cc-register" class="cc-details">
