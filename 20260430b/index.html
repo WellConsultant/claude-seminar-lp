@@ -1569,5 +1569,87 @@ document.addEventListener("DOMContentLoaded", function(){
   </div>
 </div>
 
+<script>
+(function(){
+  var SLUG_DATE = '2026-04-30';
+  var DEFAULT_TIME = '15:00';
+  var PAID_URL = 'https://www.funnel-build.com/20260430b';
+  var PAID_PRICE = '2,980円';
+
+  function readEventDateTime(){
+    var time = DEFAULT_TIME;
+    var dateNodes = document.querySelectorAll('.cc-hero-date, .cc-details-table td');
+    for (var i = 0; i < dateNodes.length; i++) {
+      var t = dateNodes[i].textContent || '';
+      var m = t.match(/(\d{1,2}):(\d{2})/);
+      if (m) { time = ('0'+m[1]).slice(-2) + ':' + m[2]; break; }
+    }
+    return new Date(SLUG_DATE + 'T' + time + ':00+09:00');
+  }
+
+  function applyPostEvent(){
+    document.querySelectorAll('.ew-wid').forEach(function(el){ el.style.display = 'none'; });
+
+    var ctaBlock = document.querySelector('.cc-cta-block');
+    if (ctaBlock && !document.getElementById('cc-post-event-btn')) {
+      var formWrap = ctaBlock.querySelector('div[style*="max-width: 600px"]') || ctaBlock;
+      var btn = document.createElement('a');
+      btn.id = 'cc-post-event-btn';
+      btn.href = PAID_URL;
+      btn.target = '_blank';
+      btn.rel = 'noopener noreferrer';
+      btn.className = 'cc-cta-btn';
+      btn.innerHTML = '今すぐアーカイブを視聴する<span class="cc-cta-btn-sub">' + PAID_PRICE + '（税込・買い切り）</span>';
+      formWrap.appendChild(btn);
+    }
+
+    document.querySelectorAll('.cc-free').forEach(function(el){
+      el.textContent = PAID_PRICE;
+      el.style.color = '#f5a623';
+    });
+
+    document.querySelectorAll('.cc-header-cta').forEach(function(el){
+      el.setAttribute('href', PAID_URL);
+      el.setAttribute('target', '_blank');
+      el.textContent = '有料アーカイブを見る';
+    });
+
+    document.querySelectorAll('.cc-hero-btn, .cc-mid-cta-btn').forEach(function(el){
+      el.setAttribute('href', PAID_URL);
+      el.setAttribute('target', '_blank');
+      var subClass = el.classList.contains('cc-hero-btn') ? 'cc-hero-btn-sub' : 'cc-mid-cta-sub';
+      el.innerHTML = '今すぐアーカイブを視聴する<span class="' + subClass + '">' + PAID_PRICE + '（税込・買い切り）</span>';
+    });
+
+    document.querySelectorAll('.cc-hero-badge').forEach(function(el){
+      if (el.textContent.indexOf('無料') !== -1) el.textContent = 'アーカイブ販売中';
+    });
+
+    document.querySelectorAll('.cc-hero-date').forEach(function(el){
+      el.textContent = '勉強会は終了しました（アーカイブ販売中）';
+    });
+
+    document.querySelectorAll('.cc-cta-message').forEach(function(el){
+      el.textContent = '当日参加できなかった方も、こちらから本編アーカイブをご視聴いただけます。';
+    });
+
+    document.querySelectorAll('.cc-details-table td').forEach(function(el){
+      el.innerHTML = el.innerHTML.replace('オンライン（EasyWebinar）', 'オンライン視聴（買い切り型）');
+    });
+  }
+
+  function run(){
+    var eventDate = readEventDateTime();
+    if (new Date() >= eventDate) applyPostEvent();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+
 </body>
 </html>
