@@ -1530,7 +1530,13 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="cc-cta-block">
       <p class="cc-cta-message">士業・コンサルタントに残された、新しい業務領域を一緒に見ていきましょう。</p>
       <div style="margin: 0 auto; max-width: 600px;">
-        <div class="ew-wid" data-wid="p/TVr9CQCQflU2QpL7M32w==" data-loaded="no" data-schloaded="no"><script type="text/javascript" src="https://ewpcdn-ecs.easywebinar.com/widget/js/new/ew-script.js"></script></div>
+        <!-- 開催前：EasyWebinarウィジェット -->
+        <div id="cc-pre-event-form" class="ew-wid" data-wid="p/TVr9CQCQflU2QpL7M32w==" data-loaded="no" data-schloaded="no"><script type="text/javascript" src="https://ewpcdn-ecs.easywebinar.com/widget/js/new/ew-script.js"></script></div>
+        <!-- 開催後：有料アーカイブ誘導ボタン（JSで表示） -->
+        <a id="cc-post-event-btn" href="#" class="cc-cta-btn" style="display:none;" target="_blank">
+          今すぐアーカイブを視聴する
+          <span class="cc-cta-btn-sub">2,980円（税込・買い切り）</span>
+        </a>
       </div>
     </div>
   </div>
@@ -1576,4 +1582,103 @@ document.addEventListener("DOMContentLoaded", function(){
     <p style="font-size:13px;line-height:1.9;color:#333">個人情報の開示・訂正・削除をご希望の場合は、info@fp-1.info までご連絡ください。</p>
   </div>
 </div>
+
+<!-- =============================================
+   期日経過後 自動切替スクリプト（汎用版）
+   ページ内の日時表記とfunnel-build.comリンクを自動で読み取り、
+   開催日時を過ぎたらフォームを有料商品ボタンに切替える
+   ============================================= -->
+<script>
+(function(){
+  function parseEventDate(){
+    // 開催日時セルから日時を取得（例：2026年4月24日（金）15:00〜...）
+    var cells = document.querySelectorAll('.cc-details-table td');
+    for (var i = 0; i < cells.length; i++) {
+      var t = cells[i].textContent;
+      var m = t.match(/(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日.*?(\d{1,2}):(\d{2})/);
+      if (m) {
+        return new Date(parseInt(m[1])+'-'+('0'+m[2]).slice(-2)+'-'+('0'+m[3]).slice(-2)+'T'+('0'+m[4]).slice(-2)+':'+m[5]+':00+09:00');
+      }
+    }
+    return null;
+  }
+
+  function findPaidUrl(){
+    // ページ末尾のfunnel-build.comリンクを使う
+    var links = document.querySelectorAll('a[href*="funnel-build.com"]');
+    if (links.length > 0) return links[links.length - 1].getAttribute('href');
+    return null;
+  }
+
+  function applyPostEvent(paidUrl){
+    // 1. EasyWebinarフォームを非表示、有料ボタンを表示
+    var preForm = document.getElementById('cc-pre-event-form');
+    var postBtn = document.getElementById('cc-post-event-btn');
+    if (preForm) preForm.style.display = 'none';
+    if (postBtn) {
+      postBtn.setAttribute('href', paidUrl);
+      postBtn.style.display = 'inline-block';
+    }
+
+    // 2. 「参加費 無料」を有料金額に書換
+    document.querySelectorAll('.cc-free').forEach(function(el){
+      el.textContent = '2,980円';
+      el.style.color = '#f5a623';
+    });
+
+    // 3. ヘッダーCTAを有料商品リンクに差替
+    document.querySelectorAll('.cc-header-cta').forEach(function(el){
+      el.setAttribute('href', paidUrl);
+      el.setAttribute('target', '_blank');
+      el.textContent = '有料アーカイブを見る';
+    });
+
+    // 4. ヒーロー・中間CTAを有料商品リンクに差替
+    document.querySelectorAll('.cc-hero-btn, .cc-mid-cta-btn').forEach(function(el){
+      el.setAttribute('href', paidUrl);
+      el.setAttribute('target', '_blank');
+      var subClass = el.classList.contains('cc-hero-btn') ? 'cc-hero-btn-sub' : 'cc-mid-cta-sub';
+      el.innerHTML = '今すぐアーカイブを視聴する<span class="' + subClass + '">2,980円（税込・買い切り）</span>';
+    });
+
+    // 5. 「無料オンライン勉強会」バッジを「アーカイブ販売中」に
+    document.querySelectorAll('.cc-hero-badge').forEach(function(el){
+      if (el.textContent.indexOf('無料') !== -1) {
+        el.textContent = 'アーカイブ販売中';
+      }
+    });
+
+    // 6. 形式表記の「EasyWebinar」を視聴用文言に
+    document.querySelectorAll('.cc-details-table td').forEach(function(el){
+      el.innerHTML = el.innerHTML.replace('オンライン（EasyWebinar）', 'オンライン視聴（買い切り型）');
+    });
+
+    // 7. CTAメッセージを有料案内に差替
+    document.querySelectorAll('.cc-cta-message').forEach(function(el){
+      el.textContent = '当日参加できなかった方も、こちらから本編アーカイブをご視聴いただけます。';
+    });
+
+    // 8. ヒーロー部の日時表記をアーカイブ案内に差替
+    document.querySelectorAll('.cc-hero-date').forEach(function(el){
+      el.textContent = '※ 勉強会は終了しました（アーカイブ販売中）';
+    });
+  }
+
+  function run(){
+    var eventDate = parseEventDate();
+    var paidUrl = findPaidUrl();
+    if (!eventDate || !paidUrl) return;
+    if (new Date() >= eventDate) {
+      applyPostEvent(paidUrl);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+
 </body></html>
