@@ -4,78 +4,512 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>【アーカイブ単品】集客できる次世代型HPの作り方勉強会｜2,980円</title>
-<meta name="description" content="2026年5月8日(金)開催「集客できる次世代型HPの作り方勉強会」のアーカイブ動画単品販売。HPを"看板"から"稼ぐ装置"に変えるファネルハブ設計を解説した120分の勉強会本編アーカイブ。">
+<meta name="description" content="ホームページを「看板」から「稼ぐ装置」に変える。HP・LP・SNSを"線で繋ぐ"ファネルハブ設計を、12年・累計300回以上の現場で辿り着いた方法でお伝えする無料WEB勉強会。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0f2d52;--navy-deep:#091b33;--gold:#f5c83a;--orange:#f39800;--orange-deep:#e8821a;--red:#d8292f;--ink:#1a1a1a;--ink-2:#444;--muted:#777;--bg:#f4f7fc;--line:#e5e9f0}
+:root{--navy:#0f2d52;--navy-deep:#091b33;--gold:#f5c83a;--orange:#f39800;--orange-deep:#e8821a;--red:#d8292f;--ink:#1a1a1a;--ink-2:#444;--muted:#777;--bg:#f4f7fc;--line:#e5e9f0;--frame-width:640px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 ul{list-style:none}
-body{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;color:var(--ink);background:#fff;line-height:1.85;font-size:17px;-webkit-font-smoothing:antialiased}
+body{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic','Meiryo',sans-serif;color:var(--ink);background:#fff;line-height:1.85;font-size:17px;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
 .wrap{max-width:880px;margin:0 auto;padding:0 20px}
-.hero{background:linear-gradient(135deg,rgba(15,45,82,.85),rgba(9,27,51,.90)),url('../20260508b/20260418_004658.jpg') center/cover no-repeat;color:#fff;padding:96px 0 64px;text-align:center}
-.hero .pre{font-size:13px;color:#fff;margin-bottom:14px;letter-spacing:.04em;font-weight:700;opacity:.9}
-.hero h1{font-size:38px;line-height:1.45;font-weight:900;margin-bottom:20px}
+
+/* HEADER */
+.cc-header{position:fixed;top:0;left:0;right:0;z-index:9999;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.10);height:60px;display:flex;align-items:center}
+.cc-header-inner{max-width:1060px;width:100%;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.cc-header-logo{display:flex;flex-direction:column;line-height:1.2;text-decoration:none}
+.cc-header-logo-main{font-size:16px;font-weight:900;color:var(--navy)}
+.cc-header-logo-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.cc-header-nav{display:flex;align-items:center;gap:4px}
+.cc-header-nav a{font-size:12px;font-weight:700;color:#444;text-decoration:none;padding:6px 10px;border-radius:6px;white-space:nowrap}
+.cc-header-nav a:hover{color:var(--navy);background:#f0f4f8}
+.cc-header-cta{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--orange-deep),var(--orange));color:#fff;font-size:13px;font-weight:900;padding:10px 18px;border-radius:50px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 14px rgba(232,130,26,.4)}
+.cc-header-cta:hover{transform:translateY(-1px)}
+
+/* HERO */
+.hero{padding:96px 0 60px;background:linear-gradient(135deg,rgba(15,45,82,.85) 0%,rgba(9,27,51,.90) 100%),url('20260418_004658.jpg') center/cover no-repeat;color:#fff;text-align:center;position:relative}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 0%,rgba(9,27,51,.4) 100%);pointer-events:none}
+.hero > *{position:relative;z-index:1}
+.hero .pre{font-size:14px;color:#fff;margin-bottom:20px;letter-spacing:.04em;font-weight:700}
+.hero h1{font-size:42px;line-height:1.4;font-weight:900;margin-bottom:24px;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.hero h1 .sub{display:block;font-size:18px;color:#fff;margin-bottom:10px;font-weight:700;opacity:.9}
 .hero h1 strong{color:var(--gold);border-bottom:3px solid var(--red);padding-bottom:2px}
-.hero .lead{font-size:18px;line-height:1.85;margin-bottom:24px;max-width:680px;margin-left:auto;margin-right:auto}
-.cta-btn{display:inline-block;background:linear-gradient(135deg,var(--orange-deep),var(--orange));color:#fff;padding:20px 48px;font-size:20px;font-weight:900;border-radius:8px;text-decoration:none;margin-top:18px;box-shadow:0 6px 20px rgba(232,130,26,.45);letter-spacing:.04em}
-.price-block{background:#fff;color:var(--ink);border-radius:10px;padding:24px;max-width:560px;margin:24px auto;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.2)}
-.price-block .price{font-size:42px;font-weight:900;color:var(--red);line-height:1}
-.price-block .tax{font-size:14px;color:var(--muted);margin-top:6px}
+.hero .pains{background:rgba(9,27,51,.7);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:24px 28px;margin:28px auto 24px;max-width:var(--frame-width);text-align:left;backdrop-filter:blur(4px)}
+.hero .pains li{margin:12px 0;padding-left:36px;position:relative;font-size:16px;line-height:1.7;min-height:24px}
+.hero .pains li::before{content:"✓";color:#fff;background:var(--red);width:22px;height:22px;border-radius:50%;display:inline-block;text-align:center;line-height:22px;font-size:14px;font-weight:900;position:absolute;left:0;top:2px}
+.hero .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:24px auto 16px;max-width:var(--frame-width)}
+.hero .badge{background:var(--gold);color:var(--navy-deep);padding:10px 12px;border-radius:24px;font-size:13px;font-weight:700;width:200px;flex:0 0 200px;text-align:center;line-height:1.4;box-sizing:border-box}
+.hero .schedule{background:#fff;color:var(--ink);border-radius:10px;padding:20px 24px;max-width:var(--frame-width);margin:24px auto;text-align:left;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.hero .schedule .label{color:var(--navy);font-weight:700;font-size:13px;margin-bottom:8px;letter-spacing:.04em}
+.hero .schedule .date{font-size:24px;font-weight:900;color:var(--navy)}
+.hero .schedule .time{font-size:18px;margin-top:4px;color:var(--ink-2)}
+.hero .schedule .form{font-size:14px;margin-top:6px;color:var(--muted)}
+.cta-btn{display:inline-block;background:linear-gradient(135deg,var(--orange-deep),var(--orange));color:#fff;padding:20px 56px;font-size:21px;font-weight:900;border-radius:8px;text-decoration:none;margin-top:18px;box-shadow:0 6px 20px rgba(232,130,26,.45);letter-spacing:.04em}
+.cta-btn:hover{filter:brightness(1.05);transform:translateY(-1px)}
+.cta-note{font-size:13px;margin-top:14px;opacity:.92}
+
+/* SECTION */
 section{padding:64px 0;border-bottom:1px solid var(--line)}
-section h2{font-size:28px;color:var(--navy);font-weight:900;text-align:center;margin-bottom:28px;line-height:1.5}
-.contents{background:#fff;border-radius:10px;padding:32px 36px;box-shadow:0 4px 16px rgba(0,0,0,.06)}
-.contents li{margin:14px 0;padding-left:48px;position:relative;font-size:16px;line-height:1.7;min-height:32px}
-.contents li::before{content:"✓";color:#fff;background:var(--red);width:32px;height:32px;border-radius:50%;display:inline-block;text-align:center;line-height:32px;font-size:18px;font-weight:900;position:absolute;left:0;top:0}
-.final-cta{background:linear-gradient(135deg,var(--orange),var(--red));color:#fff;padding:64px 0;text-align:center}
-.final-cta h2{color:#fff;margin-bottom:24px;font-size:30px}
-footer{background:#1a1a1a;color:#999;padding:32px 0;text-align:center;font-size:13px}
-@media(max-width:720px){.hero{padding:60px 0 40px}.hero h1{font-size:24px}.cta-btn{padding:16px 24px;font-size:17px;width:90%}.price-block .price{font-size:32px}}
+section h2{font-size:30px;color:var(--navy);font-weight:900;text-align:center;margin-bottom:36px;line-height:1.5}
+section h2 .small{display:block;font-size:14px;color:var(--red);margin-bottom:8px;font-weight:700;letter-spacing:.08em}
+.bg-light{background:var(--bg)}
+
+/* OPENING */
+.opening .lead{font-size:24px;color:var(--navy);font-weight:900;text-align:center;margin-bottom:28px;line-height:1.7}
+.opening p{margin:18px 0;font-size:17px;line-height:2}
+
+/* REASONS */
+.reason{background:#fff;border-left:6px solid var(--red);padding:28px 32px;margin:24px 0;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.04)}
+.reason h3{font-size:22px;color:var(--navy);margin-bottom:14px;font-weight:900;line-height:1.5}
+.reason h3 .num{color:var(--red);margin-right:12px;font-size:32px;font-weight:900;line-height:1}
+.reason ul{margin-top:8px}
+.reason ul li{margin:10px 0;padding-left:26px;position:relative;line-height:1.85}
+.reason ul li{padding-left:34px}
+.reason ul li::before{content:"▶";color:var(--red);position:absolute;left:0;font-size:20px;top:4px;line-height:1}
+
+/* AGENDA */
+.agenda{display:grid;grid-template-columns:1fr;gap:24px;margin-top:24px}
+.agenda .card{background:#fff;border-radius:14px;padding:0;box-shadow:0 8px 32px rgba(15,45,82,.10);overflow:hidden;display:grid;grid-template-columns:140px 1fr;align-items:stretch;border-left:8px solid var(--orange)}
+.agenda .card .num{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;font-size:54px;font-weight:900;display:flex;align-items:center;justify-content:center;letter-spacing:-.02em;line-height:1;padding:32px 0;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.agenda .card .body{padding:28px 32px}
+.agenda .card h4{font-size:22px;color:var(--navy);margin-bottom:14px;font-weight:900;line-height:1.5;border-bottom:2px solid var(--gold);padding-bottom:10px}
+.agenda .card p{font-size:16px;line-height:1.95;color:var(--ink-2)}
+
+/* OUTCOME */
+.outcome{background:#fff;border-radius:10px;padding:36px 40px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.outcome ul li{margin:18px 0;padding-left:54px;position:relative;font-size:17px;line-height:1.8;min-height:36px}
+.outcome ul li::before{content:"✓";color:#fff;background:var(--red);width:36px;height:36px;border-radius:50%;display:inline-block;text-align:center;line-height:36px;font-size:22px;font-weight:900;position:absolute;left:0;top:0;box-shadow:0 2px 6px rgba(216,41,47,.3)}
+
+/* MID CTA */
+.mid-cta{background:var(--navy);color:#fff;padding:48px 0;text-align:center}
+.mid-cta h3{font-size:34px;color:var(--gold);font-weight:900;margin-bottom:16px;line-height:1.5}
+
+/* FOR YOU */
+.for-you-section{background:linear-gradient(rgba(244,247,252,.92),rgba(244,247,252,.92)),url('roads-bg.jpg') center/cover no-repeat}
+.for-you-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
+.for-you-card{background:#fff;padding:24px 24px;border-radius:10px;border:2px solid var(--navy);box-shadow:0 6px 20px rgba(15,45,82,.08);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.for-you-card::before{content:"";position:absolute;inset:0;background-image:var(--card-img);background-size:cover;background-position:center;opacity:.10;filter:grayscale(1) brightness(.7) sepia(.3) hue-rotate(190deg) saturate(2);pointer-events:none}
+.for-you-card .img-band{display:none}
+.for-you-card .body{position:relative;z-index:1}
+.for-you-card h4{font-size:18px;color:var(--navy);font-weight:900;line-height:1.45;margin-bottom:14px}
+.for-you-card p{font-size:14px;line-height:1.85;color:var(--ink)}
+@media(max-width:920px){.for-you-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.for-you-grid{grid-template-columns:1fr}}
+
+/* SPEAKER */
+.speaker{display:grid;grid-template-columns:220px 1fr;gap:36px;align-items:start;background:#fff;border-radius:10px;padding:36px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.speaker .photo img{width:100%;border-radius:10px;display:block}
+.speaker h3{font-size:24px;color:var(--navy);margin-bottom:12px;font-weight:900}
+.speaker .title{color:var(--navy);font-size:14px;margin-bottom:18px;font-weight:700;letter-spacing:.04em;background:var(--bg);padding:8px 14px;border-radius:6px;display:inline-block}
+.speaker p{line-height:1.6;font-size:14px}
+
+/* BONUS */
+.bonus{background:linear-gradient(rgba(255,255,255,.96),rgba(255,255,255,.96)),url('20260418_004658.jpg') center/cover no-repeat;color:var(--ink);border-radius:14px;padding:40px 44px;text-align:center;border:1px solid var(--line);box-shadow:0 12px 40px rgba(15,45,82,.10)}
+.bonus h3{font-size:26px;margin-bottom:24px;font-weight:900;color:var(--navy)}
+.bonus ul{display:inline-block;text-align:left;margin-top:8px}
+.bonus ul li{margin:10px 0;font-size:17px;font-weight:700;padding-left:32px;position:relative;color:var(--ink)}
+.bonus ul li::before{content:"◎";color:var(--red);position:absolute;left:0;font-size:20px}
+
+/* FINAL CTA */
+.final-cta{background:var(--navy-deep);color:#fff;padding:72px 0;text-align:center}
+.final-cta h2{color:#fff;margin-bottom:28px;font-size:30px}
+.final-cta h2 span{color:var(--gold)}
+.final-cta .schedule{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:28px;max-width:560px;margin:28px auto}
+.final-cta .schedule .date{font-size:26px;color:var(--gold);font-weight:900}
+.final-cta .schedule .time{font-size:18px;margin-top:8px}
+.final-cta .schedule .place{font-size:14px;margin-top:10px;opacity:.85}
+
+/* FOOTER */
+footer{background:#1a1a1a;color:#999;padding:36px 0;text-align:center;font-size:13px}
+footer a{color:#999;text-decoration:underline}
+footer p{margin:6px 0}
+
+/* CLOSED BANNER */
+#closed-banner{display:none;position:fixed;top:0;left:0;right:0;background:var(--red);color:#fff;text-align:center;padding:20px;font-size:18px;font-weight:700;z-index:99999;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+#closed-banner a{color:var(--gold);font-weight:900}
+
+/* MOBILE */
+@media(max-width:720px){
+  .cc-header{height:54px}
+  .cc-header-nav{display:none}
+  .cc-header-logo-main{font-size:13px}
+  .cc-header-logo-sub{font-size:10px}
+  .cc-header-cta{font-size:11px;padding:8px 12px}
+  .hero{padding:74px 0 44px}
+  .hero h1{font-size:26px;line-height:1.45}
+  .hero h1 .sub{font-size:14px}
+  .hero .pains{padding:18px 22px}
+  .hero .pains li{font-size:14px}
+  section{padding:44px 0}
+  section h2{font-size:22px}
+  .opening .lead{font-size:18px}
+  .reason{padding:22px 24px}
+  .reason h3{font-size:18px}
+  .speaker{grid-template-columns:1fr;text-align:center;padding:24px}
+  .speaker .photo{max-width:200px;margin:0 auto}
+  .cta-btn{padding:16px 32px;font-size:17px;width:100%;display:block}
+  .bonus{padding:24px}
+  .bonus h3{font-size:20px}
+  .final-cta{padding:48px 0}
+  .final-cta h2{font-size:22px}
+  body{font-size:15px}
+}
+@media(max-width:420px){
+  .hero h1{font-size:22px}
+  section h2{font-size:19px}
+  .reason h3{font-size:17px}
+  .agenda .card h4{font-size:17px}
+}
 </style>
 </head>
 <body>
 
-<section class="hero">
-  <div class="wrap">
-    <div class="pre">2026年5月8日（金）開催・勉強会本編アーカイブ単品販売</div>
-    <h1>ホームページを<strong>「看板」</strong>から<br><strong>「稼ぐ装置」</strong>に変える<br>勉強会のアーカイブ動画</h1>
-    <p class="lead">日程が合わずどうしても参加できなかった方のために、勉強会本編（120分）のアーカイブ動画を有料単品でご用意しました。</p>
-    <div class="price-block">
-      <div class="price">2,980<span style="font-size:18px">円（税込）</span></div>
-      <div class="tax">買い切り・無期限視聴可</div>
-    </div>
-    <a href="https://www.funnel-build.com/20260508b-s-archive" target="_blank" rel="noopener" class="cta-btn">▶ アーカイブ動画を購入する</a>
-    <div style="font-size:13px;margin-top:14px;opacity:.92">購入後すぐに視聴できます</div>
-  </div>
-</section>
+<!-- 受付終了バナー（5/8 15:00以降表示） -->
+<div id="closed-banner">
+本勉強会の受付は終了しました。次回以降のご案内は <a href="https://lp.well-c.biz/b-vip/" target="_blank" rel="noopener">こちら</a> をご確認ください。
+</div>
 
-<section>
+<!-- HEADER -->
+<header class="cc-header">
+  <div class="cc-header-inner">
+    <a href="#top" class="cc-header-logo">
+      <span class="cc-header-logo-main">集客できる次世代型HPの作り方</span>
+      <span class="cc-header-logo-sub">無料WEB勉強会｜2026年5月8日（金）15:00</span>
+    </a>
+    <nav class="cc-header-nav">
+      <a href="#agenda">勉強会の内容</a>
+      <a href="#for-you">こんな方へ</a>
+      <a href="#speaker">講師紹介</a>
+      <a href="#bonus">参加特典</a>
+    </nav>
+    <a href="#cta" class="cc-header-cta">▶ 席を確保する</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="hero">
   <div class="wrap">
-    <h2>このアーカイブで手に入るもの</h2>
-    <ul class="contents">
-      <li>HPを「看板」から「稼ぐ装置」に変えるファネルハブの全体設計図</li>
-      <li>9割の見込み客を取りこぼさない、線で繋ぐ動線の組み方</li>
-      <li>持続化補助金にHP・ファネル構築費を組み込む設計の組み立て方</li>
-      <li>クライアント案件で1案件300万円規模の高単価提案を成立させる型</li>
-      <li>AI（Claude Code等）を活用した、ファネル構築の制作工数圧縮の実演</li>
+    <div class="pre">日程が合わず参加できなかった方へ・勉強会本編アーカイブ動画（120分）単品販売</div>
+    <h1>
+      <span class="sub">2026年5月8日（金）開催・勉強会本編アーカイブ単品</span>
+      ホームページを<strong>「看板」</strong>から<br>
+      <strong>「稼ぐ装置」</strong>に変える。<br>
+      集客できる次世代型HPの作り方勉強会
+    </h1>
+    <ul class="pains">
+      <li>クライアントから「HP作ったのに問い合わせが来ない」と言われ、答えに詰まる</li>
+      <li>自分のHPからも、ほぼ問い合わせが来ない（所在確認のためだけのもの）</li>
+      <li>HPリニューアル・SNS運用・広告・LP制作と試したが、どれも"線"にならず疲れた</li>
+      <li>クライアントへ"次の高単価サービス"を提案するネタが切れている</li>
     </ul>
+    <div class="badges">
+      <span class="badge">2,980円（税込）</span>
+      <span class="badge">オンライン開催</span>
+      <span class="badge">12年・300回の現場知見</span>
+    </div>
+    <div class="schedule">
+      <div class="label">▼ 開催日時</div>
+      <div class="date">2026年5月8日（金）</div>
+      <div class="time">15:00〜</div>
+      <div class="form">無期限視聴・買い切り</div>
+    </div>
+    <a href="#cta" class="cta-btn">▶ アーカイブ動画を購入する（2,980円）</a>
+    <div class="cta-note">購入後すぐに視聴できます</div>
   </div>
 </section>
 
-<section class="final-cta">
+<!-- OPENING -->
+<section class="opening">
   <div class="wrap">
-    <h2>勉強会本編を、いつでも・何度でも。</h2>
-    <a href="https://www.funnel-build.com/20260508b-s-archive" target="_blank" rel="noopener" class="cta-btn">▶ アーカイブ動画を購入する</a>
-    <div style="font-size:14px;margin-top:14px;opacity:.92">2,980円（税込・買い切り）／無期限視聴可／購入後すぐに受け取れます</div>
+    <p class="lead">
+      もしあなたがホームページを集客ツールになったらな、<br>
+      と思っているのなら
+    </p>
+    <p>もしあなたが、自分のHPから問い合わせが来ない現状を「もう仕方ないこと」だと諦めかけているのなら、この勉強会はあなたのためかもしれません。</p>
+    <p>なぜなら、HPを"動く資産"に組み直し、勝手に売上を生むファネルハブとして運用している士業・コンサル・WEB制作会社が、静かに増えているからです。彼らはLPもSNSも、すべてHPを中心にした"1本の線"で繋いでいます。</p>
+    <p>2時間、お時間をください。あなたのHPを、明日から"稼ぐ装置"に変えるための設計図と、補助金で経費組み込みする方法を、まとめてお渡しします。</p>
   </div>
 </section>
 
+<!-- REASONS -->
+<section class="bg-light">
+  <div class="wrap">
+    <h2>なぜ今、この勉強会をやるのか。<br>理由は3つあります。</h2>
+
+    <div class="reason">
+      <h3><span class="num">理由1.</span>HP・LP・SNSを"バラバラ"に投資する時代が、終わったから。</h3>
+      <ul>
+        <li>HPは「会社の所在確認」、LPは「広告の受け皿」、SNSは「認知獲得」と縦割りで予算を割いても、売上は積み上がらない。これがこの20年、私たちが繰り返してきた失敗の正体です</li>
+        <li>勝っているのは、HPを"ハブ（中心）"にして、LP・SNS・メールを"1本の線"で繋いだ事業者です</li>
+        <li>1サイトから問い合わせ・優良顧客・上位顧客が集まり続ける状態を、自分の頭の中で組めるようになります</li>
+      </ul>
+    </div>
+
+    <div class="reason">
+      <h3><span class="num">理由2.</span>AI時代、"設計力"が単価を決める時代に入ったから。</h3>
+      <ul>
+        <li>HP制作・LP制作の単価は、生成AIの普及で下がり続けます。「綺麗に作るだけ」では、ご飯が食べられなくなります</li>
+        <li>残るのは、「集客→教育→販売を1本の線で繋ぐ設計力」を持つ人です</li>
+        <li>クライアントへ"ファネルハブ構築"として高単価で提案できる業態に、自分自身を変えていけます</li>
+      </ul>
+    </div>
+
+    <div class="reason">
+      <h3><span class="num">理由3.</span>補助金の対象経費に、"組み込み方"次第で組み込めるから。</h3>
+      <ul>
+        <li>持続化補助金は、設計の組み立て次第でファネルハブ構築費の主要部分を経費化できます</li>
+        <li>「販路開拓費」「システム構築費」として組み立てれば、クライアントから「予算がない」で断られていた案件が通り始めます</li>
+        <li>士業・コンサル・WEB制作会社こそ、この組み込み方を知るだけで、提案単価が一気に上がります</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda">
+  <div class="wrap">
+    <h2>当日お伝えする5つの内容</h2>
+    <div class="agenda">
+      <div class="card">
+        <div class="num">01</div>
+        <div class="body">
+          <h4>なぜHPは集客できないツールになってしまったのか？</h4>
+          <p>HPは"会社の看板"として作られ、SEO・LP・SNSが分業化された20年で、線で繋ぐ役割が誰にも担えなくなりました。HPが"集客できない箱"になった構造的な理由を、ファネルハブの視点で解きほぐします。</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <div class="body">
+          <h4>HPの限界を突破するファネルハブ戦略</h4>
+          <p>HP単体・LP単発・SNS単打は全部"点"です。それをHPをハブ（中心）に置いて1つの売上動線に変える――それがファネルハブ戦略の本体。HPを"動く資産"に変える設計の全体像をお伝えします。</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <div class="body">
+          <h4>良質な顧客だけ集める方法</h4>
+          <p>9割の見込み客を取りこぼさず、その中から"買う気のある優良顧客"だけを温度別に振り分ける。安い客を弾き、高単価で買う客だけが届く仕組みを、ファネルハブ内のフィルター設計で組み立てます。</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="num">04</div>
+        <div class="body">
+          <h4>細々とした作業を一括生成する50の質問リスト</h4>
+          <p>LP・告知メール・SNS・スライドを毎回ゼロから書き起こす苦行は終わりです。50個の質問に答えるだけで、ファネルハブ運用に必要な全成果物が一括で立ち上がる質問リストをお渡しします。</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="num">05</div>
+        <div class="body">
+          <h4>海外のマーケターがこぞって使うホームページ戦略5STEP</h4>
+          <p>海外のトップマーケターが標準にしているHP戦略を、5つのSTEPに圧縮。HPを稼ぐ装置に変えるファネルハブの実装手順を、そのまま持ち帰れます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOME -->
+<section class="bg-light">
+  <div class="wrap">
+    <h2>あなたが手に入れるものは？</h2>
+    <div class="outcome">
+      <ul>
+        <li>自分のHPを「看板」から「稼ぐ装置」に変える、ファネルハブの設計図を、その日のうちに持ち帰れる</li>
+        <li>HP・LP・SNSを"1本の線"で繋ぐ全体像が、頭の中に入る</li>
+        <li>クライアントに"ファネルハブ構築"として高単価提案できる型が、手元に残る</li>
+        <li>持続化補助金でファネルハブ構築費を経費組み込みする方法が、明確になる</li>
+        <li>明日から、何を・どの順番で・どこから手をつけるかが、迷わず決まる</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MID CTA -->
+<section class="mid-cta">
+  <div class="wrap">
+    <h3>このまま"看板のままのHP"を放置しますか？</h3>
+    <p style="font-size:17px;line-height:2;color:#fff;margin-top:18px;max-width:720px;margin-left:auto;margin-right:auto;text-align:left">
+      HPからの問い合わせはほぼゼロ。LPは点で孤立。SNSはフォロワーが増えるだけ。<br>
+      取りこぼしている9割の見込み客は、いまも毎日、競合のHPに流れ込んでいます。<br>
+      この20年、HP・LP・SNSをバラバラに頑張ってきた業界の構造的な失敗を、ここで断ち切るタイミングです。<br>
+      この勉強会の続きで、HPを"稼ぐ装置"に変える、ファネルハブの全体設計図をお見せします。
+    </p>
+  </div>
+</section>
+
+<!-- FOR YOU -->
+<section id="for-you" class="for-you-section">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:24px"><span style="display:inline-block;background:#3fc6b8;color:#fff;font-size:13px;font-weight:900;padding:6px 22px;border-radius:24px;letter-spacing:.08em">FOR YOU</span></div>
+    <h2 style="margin-bottom:36px">こんな方におすすめです</h2>
+    <div class="for-you-grid">
+      <div class="for-you-card" style="--card-img:url('office-bg.jpg')">
+        <div class="body">
+          <h4>自社HPから問い合わせを<br>増やしたい士業・コンサルの方</h4>
+          <p>HPは作ったが問い合わせはほぼゼロ。"看板"のままのHPを"稼ぐ装置"に組み直す、ファネルハブの全体設計が頭の中に入ります。</p>
+        </div>
+      </div>
+      <div class="for-you-card" style="--card-img:url('20260418_004658.jpg')">
+        <div class="body">
+          <h4>クライアントへの"次の高単価提案"を<br>求めるコンサル・WEB制作会社の方</h4>
+          <p>単発のHP制作・LP制作はAIで単価が下がる時代。線で繋ぐ設計力を持てば、1案件300万円規模の提案が可能になります。</p>
+        </div>
+      </div>
+      <div class="for-you-card" style="--card-img:url('20260418_090323.jpg')">
+        <div class="body">
+          <h4>HP・LP・SNSが線にならず<br>疲れたスモールビジネスオーナーの方</h4>
+          <p>点で打ち手を増やす時代は終わりです。HPをハブに、LP・SNS・メールを1本の線で繋ぐ全体像が手に入ります。</p>
+        </div>
+      </div>
+      <div class="for-you-card" style="--card-img:url('roads-bg.jpg')">
+        <div class="body">
+          <h4>補助金経費にHPを組み込みたい<br>行政書士・コンサルの方</h4>
+          <p>販路開拓費・システム構築費として組み立てれば、持続化補助金の対象に収まる設計が可能。クライアント提案ネタが増えます。</p>
+        </div>
+      </div>
+      <div class="for-you-card" style="--card-img:url('article_thumbnail.jpg')">
+        <div class="body">
+          <h4>AI時代に業界先行ポジションを<br>取りたい方</h4>
+          <p>Claude Code等のAIを業務に組み込み、ファネル構築工数を圧縮しつつ設計力で単価を維持。今動けば確実に先行ポジションが取れます。</p>
+        </div>
+      </div>
+      <div class="for-you-card" style="--card-img:url('article_thumbnail.jpg')">
+        <div class="body">
+          <h4>"単発取次ぎ"から"成果型ファネル設計支援"へ<br>業態転換したい方</h4>
+          <p>制作費差益10〜20%の限界から、設計＋運用＋成果保証で月額継続契約を持つビジネスモデルへの転換が可能になります。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKER -->
+<section class="bg-light" id="speaker">
+  <div class="wrap">
+    <h2>この勉強会であなたに指導するのは？</h2>
+    <div class="speaker">
+      <div class="photo"><img src="akutsu-portrait.jpg" alt="阿久津 和宏"></div>
+      <div>
+        <h3>阿久津 和宏（あくつ かずひろ）</h3>
+        <div class="title">行政書士・コンサルタント・経済産業省認定経営革新等認定支援機関・ワンモアピース共創協会 代表理事</div>
+        <p>12年・累計300回以上の現場で、士業・コンサル・WEB制作会社の集客設計を支援してきた経験から、システム開発会社・介護事業者・コンサルタント各社へファネルハブ型のHP構築を1案件300万円で提供。生成AI（Claude Code等）を活用したファネル構築と補助金経費組み込み設計を独自に体系化し、業界先行のポジションを築く。</p>
+        <p style="margin-top:12px">経済産業省認定の経営革新等認定支援機関として、補助金申請支援を業務領域に持ち、行政書士業務と一体化した「補助金経費に組み込めるHP・ファネル構築」を士業・コンサル業界で初めて体系化。ワンモアピース共創協会の代表理事として、士業・コンサル・スモールビジネスオーナーが「自分の事業を線で繋ぐ」ための実装コミュニティを主宰。毎週金曜の定例勉強会と1DAYワークショップを通じて、AI時代の集客設計を体得した受講生を業界に送り出している。</p>
+        <p style="margin-top:12px">著書・連載・登壇多数。クライアントの補助金採択支援は累計100社超、士業・コンサル業界では「補助金×AI×ファネル」を一気通貫で設計できる数少ない実務家として知られる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BONUS -->
+<section id="bonus">
+  <div class="wrap">
+    <h2>当日参加者だけに、<br>これを丸ごとお渡しします</h2>
+
+    <div style="background:linear-gradient(rgba(255,255,255,.96),rgba(255,255,255,.96)),url('20260418_004658.jpg') center/cover no-repeat;border-radius:14px;padding:48px 44px;border:2px solid var(--navy);box-shadow:0 12px 40px rgba(15,45,82,.12);position:relative;overflow:hidden">
+
+      <div style="position:absolute;top:0;left:0;background:var(--red);color:#fff;padding:8px 24px;font-size:13px;font-weight:900;letter-spacing:.08em">LIMITED BONUS</div>
+
+      <div style="text-align:center;margin-top:16px">
+        <h3 style="font-size:30px;color:var(--navy);font-weight:900;line-height:1.45;margin-bottom:8px">オンライン完結型サイトテンプレート</h3>
+        <p style="font-size:16px;color:var(--ink-2);margin-bottom:24px">士業・コンサル・WEB制作会社向け／全40ページ分・そのまま使えるファネルハブ実装版</p>
+        <div style="margin:0 auto 24px;max-width:560px;border-radius:10px;overflow:hidden;border:1px solid var(--line);box-shadow:0 8px 24px rgba(15,45,82,.10)">
+          <img src="article_thumbnail.jpg" alt="オンライン完結型サイトテンプレート アイキャッチ" style="width:100%;height:auto;display:block">
+        </div>
+      </div>
+      </div>
+
+      <div style="text-align:center;margin-top:28px">
+        <div style="display:inline-block;background:var(--bg);border:2px solid var(--navy);border-radius:10px;padding:18px 32px">
+          <div style="font-size:13px;color:var(--ink-2);margin-bottom:4px">通常価格</div>
+          <div style="font-size:34px;font-weight:900;color:var(--ink);text-decoration:line-through;line-height:1">300,000円</div>
+          <div style="font-size:14px;color:var(--red);margin-top:10px;font-weight:900">▼ 当日参加者にだけ ▼</div>
+          <div style="font-size:28px;font-weight:900;color:var(--red);line-height:1;margin-top:6px">無料プレゼント</div>
+        </div>
+      </div>
+
+      <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:18px">※ お渡しは勉強会本編にご参加いただいた方限定です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="cta">
+  <div class="wrap">
+    <h2>アーカイブを<span>今すぐ手に入れる</span></h2>
+    <div class="schedule">
+      <div class="date">2026年5月8日（金）</div>
+      <div class="time">15:00〜</div>
+      <div class="place">オンライン開催・参加無料</div>
+    </div>
+    <!-- ▼ EasyWebinar Widget 埋め込み（勉強会告知LPの正規申込フォーム） -->
+    <a href="https://www.funnel-build.com/20260508b-s-archive" target="_blank" rel="noopener" class="cta-btn">▶ アーカイブ動画を購入する（2,980円）</a>
+    <div class="cta-note" style="margin-top:18px">購入後すぐに視聴できます</div>
+    
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
   <div class="wrap">
     <p>主催：Well Consultant合同会社／ワンモアピース共創協会</p>
+    <p><a href="#privacy-modal" onclick="document.getElementById('privacy-modal').style.display='flex';return false;">プライバシーポリシー</a> ｜ <a href="#tokushoho-modal" onclick="document.getElementById('tokushoho-modal').style.display='flex';return false;">特定商取引法に基づく表記</a></p>
     <p style="margin-top:14px;font-size:12px">Copyright © 2026 Well Consultant合同会社 All Rights Reserved.</p>
   </div>
 </footer>
+
+<!-- プライバシーポリシー モーダル -->
+<div id="privacy-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:99998;align-items:center;justify-content:center;padding:20px;overflow-y:auto" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;max-width:720px;width:100%;max-height:80vh;overflow-y:auto;border-radius:10px;padding:36px;color:#333">
+    <h3 style="font-size:22px;color:var(--navy);margin-bottom:18px;font-weight:900">プライバシーポリシー</h3>
+    <p style="font-size:13px;line-height:1.9">Well Consultant合同会社（以下、「当社」）は、お客様の個人情報の保護に関して、以下のとおり取り扱います。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">1. 個人情報の取得</h4>
+    <p style="font-size:13px;line-height:1.9">当社は、適法かつ公正な手段によって、個人情報を取得します。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">2. 個人情報の利用目的</h4>
+    <p style="font-size:13px;line-height:1.9">お申し込みいただいた商品・サービスの提供、お客様サポート、商品改善のため、取得した個人情報を利用します。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">3. 個人情報の第三者提供</h4>
+    <p style="font-size:13px;line-height:1.9">法令に基づく場合を除き、お客様の同意なく個人情報を第三者に提供することはありません。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">4. お問い合わせ</h4>
+    <p style="font-size:13px;line-height:1.9">個人情報の開示・訂正・削除をご希望の場合は、info@fp-1.info までご連絡ください。</p>
+    <button onclick="document.getElementById('privacy-modal').style.display='none'" style="margin-top:24px;background:var(--navy);color:#fff;border:none;padding:12px 32px;border-radius:6px;font-weight:700;cursor:pointer">閉じる</button>
+  </div>
+</div>
+
+<!-- 特定商取引法 モーダル -->
+<div id="tokushoho-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:99998;align-items:center;justify-content:center;padding:20px;overflow-y:auto" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;max-width:720px;width:100%;max-height:80vh;overflow-y:auto;border-radius:10px;padding:36px;color:#333">
+    <h3 style="font-size:22px;color:var(--navy);margin-bottom:18px;font-weight:900">特定商取引法に基づく表記</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:13px">
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;width:32%;vertical-align:top;color:#333;font-weight:700">販売事業者名</th><td style="padding:12px 8px">Well Consultant合同会社</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">運営責任者</th><td style="padding:12px 8px">阿久津 和宏</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">メールアドレス</th><td style="padding:12px 8px">info@fp-1.info</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">販売価格</th><td style="padding:12px 8px">本勉強会は無料です</td></tr>
+      <tr><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">提供方法</th><td style="padding:12px 8px">オンライン（EasyWebinar）にて配信</td></tr>
+    </table>
+    <button onclick="document.getElementById('tokushoho-modal').style.display='none'" style="margin-top:24px;background:var(--navy);color:#fff;border:none;padding:12px 32px;border-radius:6px;font-weight:700;cursor:pointer">閉じる</button>
+  </div>
+</div>
+
+<script>
+// 5/8 15:00 (JST) 以降は受付終了バナー表示＋CTA無効化
+(function(){
+  var deadline = new Date('2026-05-08T15:00:00+09:00').getTime();
+  var now = Date.now();
+  if(now >= deadline){
+    document.getElementById('closed-banner').style.display = 'block';
+    document.body.style.paddingTop = '70px';
+    document.querySelectorAll('.cta-btn,.cc-header-cta').forEach(function(btn){
+      btn.style.background = '#999';
+      btn.style.pointerEvents = 'none';
+      btn.removeAttribute('href');
+      if(btn.classList.contains('cta-btn')){btn.textContent = '受付終了しました';}
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
