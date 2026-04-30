@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>勉強会マーケティングシステム 1DAYワークショップ｜士業・コンサル・スモールビジネスオーナーのための</title>
+<meta name="description" content="調査→勉強会→販売を自動化して、勉強会台本と運営に全精力を費やせる仕組みを、1日で組み上げます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;--ink:#111111;--ink-2:#333;--muted:#666;--navy:#0f2d52;--navy-deep:#091b33;
+  --gold:#f5c83a;--red:#d8292f;--red-bg:#b71c1c;--highlight:#fff59d;--highlight-strong:#ffe066;
+  --gray-bg:#f6f6f6;--gray-dark:#2a2a2a;--border:#e5e5e5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;font-weight:500;line-height:1.95;-webkit-font-smoothing:antialiased;font-size:18px}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+.section{padding:90px 0}
+mark{background:transparent;padding:0;font-weight:900;color:inherit}
+u.red-u{text-decoration:none;background:transparent;color:#8b1a1a;font-weight:900;padding:0}
+hr.rule{border:0;border-top:1px solid var(--border);margin:50px 0}
+
+/* HERO */
+.hero{background:linear-gradient(180deg,#f4f7fc 0%,#fff 60%,#fff 100%);padding:80px 20px 80px;text-align:center;position:relative;overflow:hidden;border-bottom:5px solid var(--navy)}
+.hero::before{content:"";position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(200,162,80,.18) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;bottom:-80px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(15,45,82,.12) 0%,transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
+.hero .brand-line{font-size:22px;color:#8b1a1a;letter-spacing:.25em;margin-bottom:26px;font-weight:900}
+.hero h1{font-size:56px;font-weight:900;line-height:1.35;color:var(--ink);margin-bottom:34px}
+.hero h1 .small{font-size:38px;display:block;font-weight:900;margin-bottom:14px;color:var(--ink);letter-spacing:.02em;line-height:1.3}
+.hero h1 .big{font-size:72px;display:block;line-height:1.18;background:linear-gradient(180deg,var(--ink) 0%,var(--navy-deep) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.02em}
+.hero h1 .big .accent{color:var(--gold)}
+.hero .sub{font-size:26px;color:var(--ink);font-weight:700;margin:34px auto 0;max-width:860px;line-height:1.75;text-align:center}
+.hero .sub .line-1{display:block;font-size:30px;margin-bottom:10px;color:var(--navy);font-weight:900}
+.hero .sub .line-2{display:block;font-size:22px;font-weight:700;color:var(--ink)}
+.hero-claim{margin:34px auto 24px;font-size:22px;font-weight:700;color:var(--ink);max-width:860px;line-height:1.8}
+.hero-axis{display:flex;justify-content:center;gap:20px;max-width:980px;margin:30px auto 0;list-style:none;padding:0}
+.hero-axis li{flex:1;text-align:left;padding:26px 22px 24px 28px;background:#fff;border:2px solid var(--navy);border-radius:6px;box-shadow:5px 5px 0 var(--gold);display:flex;flex-direction:column;gap:12px;min-height:230px;position:relative;overflow:hidden}
+.hero-axis li::before{content:"";position:absolute;top:0;left:0;bottom:0;width:6px;background:#8b1a1a}
+.hero-axis .axis-badge{display:inline-block;background:#8b1a1a;color:#fff;font-size:13px;font-weight:700;padding:7px 14px 6px;letter-spacing:.12em;align-self:flex-start;border-radius:2px;box-shadow:2px 2px 0 rgba(0,0,0,.15)}
+.hero-axis .axis-badge strong{font-size:17px;font-weight:900;letter-spacing:.2em;margin-right:6px;border-right:1px solid rgba(255,255,255,.4);padding-right:8px}
+.hero-axis .axis-title{font-size:20px;font-weight:900;color:var(--ink);line-height:1.55;margin:0}
+.hero-axis .axis-body{font-size:16px;font-weight:500;color:var(--ink-2);line-height:1.85;margin:0}
+@media(max-width:720px){.hero-axis{flex-direction:column;gap:12px}.hero-axis li{min-height:auto}}
+
+.from{background:#fff;padding:90px 20px}
+.from p{font-size:19px;line-height:1.95;color:var(--ink);margin-bottom:10px;font-weight:500}
+.from p.section-break{margin-top:26px}
+.from .opening-question{font-size:32px;font-weight:900;color:var(--ink);text-align:center;line-height:1.75;margin:0 auto 46px;padding:30px 20px;border-top:3px solid var(--navy);border-bottom:3px solid var(--navy);max-width:900px}
+.from .self-intro-wrap{display:flex;gap:28px;align-items:center;margin:10px 0}
+.from .self-intro-body{flex:1;font-size:19px;line-height:1.95;color:var(--ink);font-weight:500;margin:0}
+.from .self-intro-photo{width:120px;height:120px;border-radius:50%;overflow:hidden;flex-shrink:0;margin:0}
+.from .self-intro-photo img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:720px){.from .opening-question{font-size:24px}.from .self-intro-wrap{flex-direction:column;align-items:flex-start;gap:14px}}
+
+.h2-big{font-size:42px;font-weight:900;line-height:1.5;color:var(--ink);text-align:center;margin-bottom:50px;letter-spacing:-.01em}
+.h2-big::after{content:"";display:block;width:80px;height:4px;background:var(--navy);margin:22px auto 0}
+
+.navy-band{background:var(--navy);color:#fff;padding:80px 20px;text-align:center}
+.navy-band h2{font-size:40px;font-weight:900;line-height:1.55;margin-bottom:30px}
+.navy-band h2 .gold{color:var(--gold)}
+.navy-band p{font-size:19px;color:#e5ebf2;line-height:2;font-weight:500}
+
+.evidence-lead{font-size:18px;line-height:1.95;color:var(--ink);font-weight:500;margin:0 auto 40px;max-width:820px;text-align:left}
+
+.feature-step{position:relative;background:#fff;border-top:5px solid var(--navy);padding:36px 40px 34px 40px;margin-bottom:28px;box-shadow:0 4px 14px rgba(0,0,0,.06);border-radius:0 0 6px 6px}
+.feature-step-num{display:inline-flex;align-items:baseline;gap:14px;background:var(--navy);color:#fff;padding:14px 30px 14px 28px;margin:-36px 0 24px -40px;border-radius:0 0 6px 0;line-height:1}
+.feature-step-label{font-size:20px;font-weight:900;letter-spacing:.2em;color:var(--gold)}
+.feature-step-digit{font-size:40px;font-weight:900;font-family:"Georgia",serif;color:#fff}
+.feature-step-body h3{font-size:26px;font-weight:900;color:var(--navy);margin:0 0 16px;line-height:1.55;border-bottom:2px solid var(--gold);padding-bottom:12px}
+.feature-step-body p{font-size:17px;line-height:1.95;color:var(--ink);margin:0}
+@media(max-width:640px){.feature-step{padding:32px 24px 28px}.feature-step-num{margin:-32px 0 18px -24px;padding:10px 18px}.feature-step-body h3{font-size:20px}}
+
+.ul-plain{list-style:none;padding:0;max-width:820px;margin:0 auto}
+.ul-plain li{padding:14px 0 14px 26px;position:relative;font-size:18px;line-height:1.95;color:var(--ink-2);border-bottom:1px dashed #eee;font-weight:500}
+.ul-plain li::before{content:"・";position:absolute;left:0;color:var(--gold);font-weight:900;font-size:22px}
+
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:40px;border:2px solid #000;border-radius:0;overflow:hidden;box-shadow:6px 6px 0 rgba(0,0,0,.15)}
+.compare-box{padding:34px 30px 32px;position:relative;min-height:240px}
+.compare-box.ok{background:#fff;color:var(--ink);border-right:1px solid #ddd}
+.compare-box.ng{background:#fff5f5;color:var(--ink)}
+.compare-box h4{font-size:20px;font-weight:900;margin-bottom:20px;padding-left:60px;min-height:44px;display:flex;align-items:center;line-height:1.45}
+.compare-box.ok h4{color:#1b5e20}
+.compare-box.ng h4{color:#b71c1c}
+.compare-box h4::before{position:absolute;left:24px;top:32px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;border-radius:50%;content:""}
+.compare-box.ok h4::before{content:"◯";background:#2e7d32;color:#fff}
+.compare-box.ng h4::before{content:"×";background:#c62828;color:#fff;font-size:24px}
+.compare-box p{font-size:18px;line-height:1.95}
+.compare-head{font-size:22px;font-weight:900;margin-bottom:24px;color:#fff;position:relative;padding:22px 22px 22px 70px;background:var(--navy);text-align:left;border-radius:6px 6px 0 0}
+.compare-head .num{position:absolute;left:0;top:0;bottom:0;width:54px;display:flex;align-items:center;justify-content:center;background:var(--navy);color:var(--gold);font-weight:900;font-size:26px;font-family:"Georgia",serif;font-style:italic}
+@media(max-width:720px){.compare-grid{grid-template-columns:1fr}.compare-box.ok{border-right:0;border-bottom:1px solid #ddd}.compare-head{font-size:17px;padding-left:60px}}
+
+.step{background:#fff;padding:36px 32px;margin-bottom:36px;position:relative;border-left:4px solid var(--navy)}
+.step .step-num{display:block;color:#3b82f6;font-weight:900;font-size:64px;letter-spacing:0;margin-bottom:12px;font-family:"Georgia",serif;font-style:italic;line-height:1}
+.step h3{font-size:26px;font-weight:900;line-height:1.5;margin-bottom:16px;color:#0f2d52}
+.step p{font-size:18px;line-height:2;color:var(--ink-2);font-weight:500}
+
+.bonus-section{background:#f5f7fa;padding:60px 20px;position:relative}
+.bonus-ribbon{display:inline-block;background:var(--gold);color:#000;font-size:22px;font-weight:900;padding:12px 44px;letter-spacing:.3em;margin-bottom:22px;position:relative}
+.bonus-ribbon::before,.bonus-ribbon::after{content:"";position:absolute;top:0;bottom:0;width:14px;background:var(--gold);transform:skewX(-20deg)}
+.bonus-ribbon::before{left:-8px}
+.bonus-ribbon::after{right:-8px;transform:skewX(20deg)}
+.bonus-card{display:flex;gap:26px;align-items:flex-start;background:#fff;border:2px solid var(--gold);padding:28px 30px;margin-bottom:20px;border-radius:8px}
+.bonus-card .bonus-icon{flex:0 0 84px;width:84px;height:84px;border-radius:50%;background:#fdf6e3;display:flex;align-items:center;justify-content:center;color:var(--navy)}
+.bonus-card .bonus-icon svg{width:48px;height:48px}
+.bonus-card .bonus-body{flex:1}
+.bonus-card .bonus-label{display:inline-block;background:#000;color:var(--gold);font-size:14px;font-weight:900;padding:5px 14px;letter-spacing:.2em;margin-bottom:14px;border-radius:3px}
+.bonus-card h4{font-size:21px;font-weight:900;color:var(--ink);margin-bottom:12px;line-height:1.5}
+.bonus-card p{font-size:16px;line-height:1.9;color:var(--ink)}
+@media(max-width:640px){.bonus-card{flex-direction:column;gap:16px}.bonus-card .bonus-icon{flex:auto;width:72px;height:72px}}
+
+.price-table{width:100%;border-collapse:collapse;background:#fff;border:2px solid var(--ink);margin:24px 0}
+.price-table th,.price-table td{padding:20px 22px;border-bottom:1px solid var(--border);font-size:18px;text-align:left}
+.price-table th{background:#f5f5f5;font-weight:700;color:var(--ink)}
+.price-table td:last-child{text-align:right;font-weight:700;white-space:nowrap}
+.price-table tr.total td{background:#111;color:var(--gold);font-size:22px;font-weight:900;padding:22px 22px;border-top:2px solid var(--ink)}
+.price-ba{display:flex;justify-content:center;align-items:stretch;margin:40px 0}
+.price-ba .ba-after{min-width:380px;max-width:520px;width:100%;background:linear-gradient(180deg,#fff 0%,#fff5f5 100%);color:var(--red);border:3px solid var(--red);box-shadow:0 10px 28px rgba(139,26,26,0.18);position:relative;text-align:center;padding:34px 28px;border-radius:12px}
+.price-ba .ba-after::before{content:"限定";position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:14px;font-weight:900;letter-spacing:.2em;padding:6px 22px;border-radius:20px;box-shadow:0 4px 10px rgba(139,26,26,0.35)}
+.price-ba .ba-label{font-size:16px;font-weight:900;letter-spacing:.15em;margin-bottom:14px}
+.price-ba .ba-after .ba-value{font-size:72px;font-weight:900;line-height:1.1;color:var(--red)}
+.price-ba .ba-value span.unit{font-size:28px;margin-left:4px}
+.price-ba .ba-note{font-size:14px;color:var(--muted);margin-top:12px;font-weight:500}
+
+.guarantee-box{background:linear-gradient(180deg,#fdf8ee 0%,#faf0d8 100%);border:3px solid var(--gold);border-radius:14px;padding:48px 40px;max-width:820px;margin:0 auto;box-shadow:0 10px 28px rgba(0,0,0,0.08);position:relative}
+.guarantee-box .seal{position:absolute;top:-30px;left:40px;width:100px;height:100px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;line-height:1.3;text-align:center;box-shadow:0 6px 14px rgba(139,26,26,0.35)}
+.guarantee-box h3{font-size:30px;font-weight:900;color:var(--navy);margin:30px 0 18px;line-height:1.5}
+.guarantee-box p{font-size:18px;line-height:1.95;color:var(--ink);margin-bottom:14px}
+
+.faq-item{background:#fff;border-radius:8px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,0.06);overflow:hidden}
+.faq-item summary{font-size:22px;font-weight:700;color:var(--navy);padding:26px 64px 26px 66px;position:relative;cursor:pointer;list-style:none;line-height:1.55}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::before{content:"Q.";position:absolute;left:26px;top:26px;color:#8b1a1a;font-weight:900;font-size:24px}
+.faq-item summary::after{content:"＋";position:absolute;right:28px;top:24px;color:var(--navy);font-weight:900;font-size:28px}
+.faq-item[open] summary::after{content:"−"}
+.faq-item .a{font-size:20px;color:var(--ink);line-height:1.95;padding:6px 28px 30px 66px;position:relative;margin:0}
+.faq-item .a::before{content:"A.";position:absolute;left:26px;top:6px;color:var(--navy);font-weight:900;font-size:24px}
+
+.final-cta{background:#fff;color:var(--ink);padding:50px 20px;text-align:center}
+.final-cta h2{font-size:32px;font-weight:900;margin-bottom:22px;line-height:1.5;color:var(--navy)}
+.final-card{background:#fff;color:var(--ink);max-width:640px;margin:0 auto;padding:32px 28px;border-radius:8px;box-shadow:0 10px 30px rgba(15,45,82,.15);border:1px solid #e5e9ef}
+.final-card h3{font-size:24px;font-weight:900;color:var(--ink);margin:0 auto 16px;line-height:1.4}
+.final-card .live-date{background:var(--red);color:#fff;padding:10px 22px;font-size:16px;letter-spacing:.12em;display:inline-block;margin-bottom:14px;font-weight:900;border-radius:6px}
+.final-card .bullets{text-align:left;margin:18px 0;list-style:none;padding:0}
+.final-card .bullets li{padding:8px 0 8px 30px;position:relative;font-size:15px;font-weight:700;line-height:1.6}
+.final-card .bullets li::before{content:"✓";position:absolute;left:0;color:#2e7d32;font-weight:900;font-size:20px;top:6px}
+.final-card .notice{font-size:13px;color:var(--ink-2);text-align:left;background:#f5f5f5;padding:12px 14px;margin:16px 0 0;line-height:1.8}
+.final-deadline{background:var(--navy);color:#fff;font-weight:900;font-size:18px;padding:10px 20px;display:inline-block;margin-top:18px;letter-spacing:.08em;border-radius:4px}
+
+.cta-btn{display:block;width:100%;max-width:640px;background:linear-gradient(180deg,#b71c1c 0%,#8b1a1a 100%);color:#fff;font-weight:900;font-size:28px;padding:28px 32px;text-decoration:none;border-radius:999px;margin:16px auto 0;box-shadow:0 8px 20px rgba(139,26,26,0.35);letter-spacing:.05em;text-align:center;box-sizing:border-box}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(139,26,26,0.45)}
+
+footer{background:#fff;padding:30px 20px;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--border)}
+footer a{color:var(--muted);margin:0 8px;text-decoration:none}
+footer .copy{margin-top:10px}
+
+.ps-block{background:var(--gray-bg);color:var(--ink);padding:80px 20px;text-align:left}
+.ps-block .wrap{max-width:1000px}
+.ps-block .closing-title{font-size:44px;font-weight:900;color:var(--navy);text-align:center;margin-bottom:18px;letter-spacing:.05em}
+.ps-block p{font-size:19px;line-height:2.0;color:var(--ink);margin-bottom:22px}
+.ps-block p.sig{color:var(--navy)!important;font-weight:900;font-size:22px;margin-top:36px}
+
+.countdown-bar{background:linear-gradient(90deg,#0f2d52 0%,#1a4680 50%,#0f2d52 100%);color:#fff;padding:16px 20px;text-align:center;border-radius:8px;max-width:640px;margin:0 auto 24px;border:1px solid #2a5a9e}
+.countdown-bar--top{background:linear-gradient(90deg,#0a1e38 0%,#1a4680 50%,#0a1e38 100%);max-width:none;border-radius:0;border:0;border-top:3px solid #ffd700;border-bottom:3px solid #ffd700;margin:0;padding:22px 20px}
+.countdown-bar .cd-label{font-size:14px;font-weight:900;letter-spacing:.08em;margin-bottom:10px}
+.countdown-bar .cd-grid{display:inline-flex;gap:8px;justify-content:center;align-items:stretch;flex-wrap:wrap}
+.countdown-bar .cd-unit{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:8px 14px;min-width:66px}
+.countdown-bar .cd-num{font-size:28px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.countdown-bar .cd-unitname{font-size:10px;font-weight:700;opacity:.92;margin-top:4px;letter-spacing:.1em}
+.countdown-bar .cd-deadline{font-size:12px;font-weight:600;opacity:.85;margin-top:10px;letter-spacing:.05em}
+@media(max-width:720px){
+  .hero{padding:40px 16px 20px}.hero h1 .big{font-size:36px}.hero .sub{font-size:15px}
+  .h2-big{font-size:22px}.section{padding:40px 0}
+  .final-card{padding:26px 20px}.final-card .cta-btn{font-size:17px!important;padding:18px 10px!important;letter-spacing:0!important}
+  .final-card h3{font-size:24px}.final-card .live-date{font-size:16px;padding:10px 18px;letter-spacing:.1em}
+  .final-card .bullets li{font-size:15px;padding:10px 0 10px 28px}.final-card .notice{font-size:13px;padding:12px 14px}
+  .final-deadline{font-size:17px;padding:12px 18px;letter-spacing:.05em}.final-cta h2{font-size:26px}
+  .ps-block{padding:50px 16px}.ps-block .closing-title{font-size:32px;letter-spacing:.05em}.ps-block p{font-size:16px;line-height:1.9;margin-bottom:18px}
+  .ps-block p.sig{font-size:18px}
+  .hero-axis li{font-size:15px}.h2-big{line-height:1.5}
+  .faq-item summary{font-size:17px;padding:20px 44px 20px 48px;line-height:1.55}
+  .faq-item summary::before{font-size:19px;left:18px;top:20px}.faq-item summary::after{font-size:22px;right:20px;top:18px}
+  .faq-item .a{font-size:15px;padding:4px 20px 22px 48px;line-height:1.85}.faq-item .a::before{font-size:19px;left:18px;top:4px}
+  .cta-btn{font-size:18px!important;padding:18px 20px!important;letter-spacing:0!important}.wrap{padding:0 18px}
+  .guarantee-box{padding:30px 20px 20px}.guarantee-box .seal{width:80px;height:80px;font-size:12px;left:20px;top:-24px}.guarantee-box h3{font-size:22px;margin-top:24px}
+  .countdown-bar{padding:14px 10px;margin:0 auto 18px}.countdown-bar .cd-label{font-size:12px;margin-bottom:8px}.countdown-bar .cd-grid{gap:5px}
+  .countdown-bar .cd-unit{padding:6px 8px;min-width:52px}.countdown-bar .cd-num{font-size:22px}
+  .instructor-card{flex-direction:column!important;gap:24px!important;padding:24px!important;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- COUNTDOWN -->
+<div class="countdown-bar countdown-bar--top">
+  <div class="cd-label">3日間限定の特別価格でのご案内の締め切りまで、あと…</div>
+  <div class="cd-grid">
+    <div class="cd-unit"><div class="cd-num" id="cd-d-0">00</div><div class="cd-unitname">DAYS</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-h-0">00</div><div class="cd-unitname">HOURS</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-m-0">00</div><div class="cd-unitname">MINUTES</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-s-0">00</div><div class="cd-unitname">SECONDS</div></div>
+  </div>
+  <div class="cd-deadline">（締切：2026年5月3日（日）23:59）</div>
+</div>
+
+<!-- HERO（型001：私に〇日ください） -->
+<header class="hero">
+  <div class="wrap">
+    <div class="brand-line">士業・コンサル・スモールビジネスオーナーのための</div>
+
+    <h1>
+      <span class="small">勉強会マーケティング・システム</span>
+      <span class="big">習得 <span class="accent">1DAY</span> ワークショップ</span>
+    </h1>
+
+    <!-- アイキャッチSVG：勉強会→バックエンド販売の見える化 -->
+    <div style="margin:20px auto 30px;max-width:980px">
+      <svg viewBox="0 0 1000 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block" role="img" aria-label="勉強会からバックエンド販売までの自動化フロー">
+        <rect x="0" y="0" width="1000" height="320" fill="transparent"/>
+
+        <!-- 上部バンド：AIが裏で動く -->
+        <rect x="60" y="14" width="880" height="56" rx="28" fill="#0f2d52"/>
+        <text x="500" y="48" fill="#f5c83a" font-size="22" font-weight="900" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">⚙ AIが裏で全部動く（調査・告知・フォロー・販売）</text>
+
+        <line x1="200" y1="78" x2="200" y2="120" stroke="#f5c83a" stroke-width="3" stroke-dasharray="6 6"/>
+        <line x1="500" y1="78" x2="500" y2="100" stroke="#f5c83a" stroke-width="3" stroke-dasharray="6 6"/>
+        <line x1="800" y1="78" x2="800" y2="120" stroke="#f5c83a" stroke-width="3" stroke-dasharray="6 6"/>
+
+        <!-- 1. 集客 -->
+        <circle cx="200" cy="190" r="68" fill="#ffffff" stroke="#0f2d52" stroke-width="3"/>
+        <text x="200" y="184" fill="#0f2d52" font-size="22" font-weight="900" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">集客</text>
+        <text x="200" y="210" fill="#666" font-size="13" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">調査・告知</text>
+
+        <line x1="278" y1="190" x2="412" y2="190" stroke="#0f2d52" stroke-width="3"/>
+        <polygon points="412,190 400,182 400,198" fill="#0f2d52"/>
+
+        <!-- 2. 勉強会（中央） -->
+        <circle cx="500" cy="190" r="82" fill="#fff9e5" stroke="#d8292f" stroke-width="5"/>
+        <text x="500" y="178" fill="#d8292f" font-size="24" font-weight="900" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">勉強会</text>
+        <text x="500" y="204" fill="#8b1a1a" font-size="12" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">本番台本＋運営</text>
+        <text x="500" y="222" fill="#8b1a1a" font-size="11" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">（あなたの全精力）</text>
+
+        <line x1="588" y1="190" x2="722" y2="190" stroke="#0f2d52" stroke-width="3"/>
+        <polygon points="722,190 710,182 710,198" fill="#0f2d52"/>
+
+        <!-- 3. バックエンド販売 -->
+        <circle cx="800" cy="190" r="68" fill="#ffffff" stroke="#0f2d52" stroke-width="3"/>
+        <text x="800" y="180" fill="#0f2d52" font-size="18" font-weight="900" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">バックエンド</text>
+        <text x="800" y="204" fill="#0f2d52" font-size="18" font-weight="900" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">販売</text>
+        <text x="800" y="225" fill="#666" font-size="11" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">ステップメール</text>
+
+        <!-- 下部ラベル -->
+        <rect x="280" y="278" width="440" height="34" rx="17" fill="#d8292f"/>
+        <text x="500" y="301" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle" font-family="'Noto Sans JP',sans-serif">あなたが手を動かすのは「勉強会の本番」だけ</text>
+      </svg>
+    </div>
+    <p class="sub">
+      <span class="line-1">私に1日だけ、ください。</span>
+      <span class="line-2">「<u class="red-u">調査→勉強会→販売</u>」を自動化して、<br>あなたが<mark>勉強会の台本と運営に全精力を費やせる</mark>仕組みを、丸ごと組み上げます。</span>
+    </p>
+
+    <p class="hero-claim">
+      たった<u class="red-u">1日</u>で、勉強会から売上が積み上がる仕組みが、<mark>"自分の事務所仕様"</mark>で手元に残ります。
+    </p>
+
+    <ul class="hero-axis">
+      <li>
+        <span class="axis-badge"><strong>事実</strong> 01</span>
+        <p class="axis-title">調査・集客・販売の<u class="red-u">3工程をまるごと自動化</u></p>
+        <p class="axis-body">毎週、見込み客の調査からフォロー販売まで、裏でAIが回り続けます。あなたが手を動かすのは「本番の台本作りと運営」だけ。</p>
+      </li>
+      <li>
+        <span class="axis-badge"><strong>事実</strong> 02</span>
+        <p class="axis-title">浮いた時間を<u class="red-u">本番台本と運営に全投下</u>できる</p>
+        <p class="axis-body">中途半端な準備で、妄想で組み立てた台本ともサヨナラ。自分の魂を込めた本気の台本で、見込み客の考え方を変えられる勉強会になります。</p>
+      </li>
+      <li>
+        <span class="axis-badge"><strong>事実</strong> 03</span>
+        <p class="axis-title">12年・累計300回・<u class="red-u">成約率50%</u>の実証済みフォーマット</p>
+        <p class="axis-body">机上の理論ではなく、私自身が現場で12年、300回以上、回し続けて磨いてきた本物の型。成約率50%・ステップメール成約率42%という、業界の倍以上の数字で動いています。</p>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<!-- OPENING（型006：想像してください） -->
+<section class="from">
+  <div class="wrap">
+    <h2 class="opening-question">
+      もし、これから1ヶ月後、<br>
+      <u class="red-u">勉強会の集客と販売がほぼ自動で回り</u>、<br>
+      あなたが本番台本と運営だけに<br>全精力を注げる状態になっていたとしたら…
+    </h2>
+
+    <div class="self-intro-wrap">
+      <p class="self-intro-body">こんにちは、阿久津です。<br>
+      今日あなたにこのお手紙を送っているのは、ある事実をお伝えしたいからです。<br>
+      というのも実は、、、</p>
+      <figure class="self-intro-photo"><img src="assets/img/akutsu-portrait.jpg" alt="阿久津和宏"></figure>
+    </div>
+
+    <p>想像してください。</p>
+
+    <p>もし、1ヶ月後、毎週同じ曜日に勉強会が回り続け、見込み客の調査も、勉強会への集客も、勉強会後のメールフォローも、ぜんぶAIが裏で勝手にやってくれていたとしたら…。</p>
+
+    <p>あなたが手を動かすのは、勉強会の台本と本番の運営だけ。妄想で組み立てた中途半端な台本ではなく、見込み客の頭の中に深く刺さる、魂の入った本気の台本に、毎週、思う存分時間を使えるとしたら…。</p>
+
+    <p class="section-break">紹介がある月とない月で売上が跳ねる、あの読めない毎月とサヨナラ。<br>
+    広告代理店に毎月数十万投じていた集客費用が、月数千円のAIツール代に置き換わる。<br>
+    勉強会の最後に、見込み客のほうから「お願いします」と言われる側に変わる。<br>
+    ——これは、決して夢物語ではありません。</p>
+
+    <p><mark>信じられないと思うかもしれません。でも、これは事実です。</mark><br>
+    手紙を1〜2分取って、続きを読んでください。</p>
+  </div>
+</section>
+
+<!-- ペイン提起（型005：注意！＋こんな月、ありませんか？） -->
+<section class="section" style="background:var(--gray-bg)">
+  <div class="wrap">
+    <h2 class="h2-big">注意！<br>これを知らずに<br><span style="color:#8b1a1a">勉強会を続けないでください</span></h2>
+
+    <p class="evidence-lead">
+      ここまで読んでくれているということは、たぶん、心当たりがあるんじゃないかと思うんです。
+    </p>
+
+    <ul class="ul-plain">
+      <li>毎月の集客に追われて、勉強会の<mark>台本を作る時間がない</mark></li>
+      <li>仕方なく、過去の感覚と<mark>妄想</mark>で台本を組み立てている</li>
+      <li>結果、自分でも「<mark>何が刺さってるかわからない</mark>」中途半端な勉強会になっている</li>
+      <li>勉強会後のフォローも手が回らず、<mark>申込みにつながらない</mark>まま機会損失</li>
+      <li>紹介がある月とない月で売上が跳ねて、<mark>来月の数字が読めない</mark></li>
+      <li>広告や集客代行に毎月数十万投じているのに、思ったほど返ってこない</li>
+    </ul>
+
+    <p style="text-align:center;font-size:22px;color:var(--ink);margin-top:36px;font-weight:700;line-height:1.95">
+      …どれか1つでも、心当たりがありましたか？<br>
+      実は、これ、特別な悩みじゃありません。<br>
+      <mark>業界全体が、いま、ここで止まっている</mark>んです。
+    </p>
+  </div>
+</section>
+
+<!-- 数字が語る現実 -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="h2-big">これは妄想。<br>あなたの周りではこんな現象が起こっています。</h2>
+
+    <div style="border:2px solid var(--ink);padding:36px 32px;margin-bottom:28px;background:#fff;border-radius:4px;box-shadow:8px 8px 0 var(--navy)">
+      <h3 style="font-size:24px;font-weight:900;color:var(--navy);margin-bottom:14px;border-bottom:3px solid var(--gold);padding-bottom:10px">行政書士の <span style="color:#d8292f">76.8%</span> が、年商500万円未満</h3>
+      <p style="font-size:17px;color:var(--ink-2);line-height:1.95">日本行政書士会連合会の実態調査の数字です。スキルや知識の問題ではなく、<mark>「お客様と出会う仕組み」を持っているかどうか</mark>で、ここまで分かれてしまうんですね。</p>
+    </div>
+
+    <div style="border:2px solid var(--ink);padding:36px 32px;margin-bottom:28px;background:#fff;border-radius:4px;box-shadow:8px 8px 0 var(--navy)">
+      <h3 style="font-size:24px;font-weight:900;color:var(--navy);margin-bottom:14px;border-bottom:3px solid var(--gold);padding-bottom:10px">廃業した中小企業のうち、<span style="color:#d8292f">51.1%</span> は黒字のまま廃業</h3>
+      <p style="font-size:17px;color:var(--ink-2);line-height:1.95">中小企業白書 2025年版の数字です。赤字で潰れているわけじゃないんですよ。<mark>「次のお客様と、安定して出会えるかどうか」</mark>だけで、半分以上が事業を畳むことになっているんです。</p>
+    </div>
+
+    <div style="border:2px solid var(--ink);padding:36px 32px;margin-bottom:28px;background:#fff;border-radius:4px;box-shadow:8px 8px 0 var(--navy)">
+      <h3 style="font-size:24px;font-weight:900;color:var(--navy);margin-bottom:14px;border-bottom:3px solid var(--gold);padding-bottom:10px">新規開業者が苦労した上位は、毎年<span style="color:#d8292f">「顧客・販路の開拓」</span></h3>
+      <p style="font-size:17px;color:var(--ink-2);line-height:1.95">日本政策金融公庫 2025年度の調査です。これ、毎年、上位から外れたことがありません。業界全体が、ずっと同じ場所でつまずいている、ということなんですね。</p>
+    </div>
+
+    <div style="border:2px solid var(--ink);padding:36px 32px;background:#fff;border-radius:4px;box-shadow:8px 8px 0 var(--navy)">
+      <h3 style="font-size:24px;font-weight:900;color:var(--navy);margin-bottom:14px;border-bottom:3px solid var(--gold);padding-bottom:10px">新規開業者の <span style="color:#d8292f">40.2%</span> が、現在の月商100万円未満</h3>
+      <p style="font-size:17px;color:var(--ink-2);line-height:1.95">同じく日本政策金融公庫の数字です。これも、スキルの差というより、<mark>お客様と出会う仕組みを持っているかどうか</mark>の差なんですよ。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- なぜ差が出るのか（型13一体何がこの差を生んでいるのか） -->
+<section class="navy-band">
+  <div class="wrap">
+    <h2>なぜ、同じ業種・同じ職種でも、<br><span class="gold">これほど差が出てしまう</span>のでしょうか？</h2>
+    <p>毎月、勉強会から売上を立て続けている方と、紹介任せで来月の数字が読めないまま止まっている方。<br>
+    商品力の差ではありません。話す力の差でもありません。<br>
+    たった3つの違いで、綺麗に分かれているんです。</p>
+  </div>
+</section>
+
+<!-- COMPARE 3（自動化 vs 手動） -->
+<section class="section">
+  <div class="wrap">
+    <div class="compare-head"><span class="num">1</span>調査・見込み客リサーチ</div>
+    <div class="compare-grid">
+      <div class="compare-box ok">
+        <h4>AIに毎週リサーチさせる</h4>
+        <p>市場の悩み・競合の動き・見込み客の検索キーワード。これらを毎週AIが裏で集めて、月曜の朝にレポートが届く状態。台本に「いま刺さる話題」を入れられるので、勉強会の鮮度が落ちません。</p>
+      </div>
+      <div class="compare-box ng">
+        <h4>調査の時間が取れない</h4>
+        <p>本業に追われてリサーチができない。半年前と同じ感覚で台本を作ってしまい、いまの市場の温度感とズレた話を続けることに。気づけば、見込み客の心は動かなくなっています。</p>
+      </div>
+    </div>
+
+    <div class="compare-head"><span class="num">2</span>勉強会の集客・告知</div>
+    <div class="compare-grid">
+      <div class="compare-box ok">
+        <h4>毎週同じ曜日にカレンダー固定＋告知が自動配信</h4>
+        <p>毎週同じ曜日に勉強会が立ち、ポータル登録・過去顧客リストへの一斉案内・SNS告知が、AIで自動配信。最初の5人は、広告ゼロで埋まり続けます。来月の数字が読めるようになる、ここが入口です。</p>
+      </div>
+      <div class="compare-box ng">
+        <h4>気が向いた時にだけ集客する</h4>
+        <p>「今月は時間ができたら勉強会やろう」が、気づけば3ヶ月、半年と空いていく。来月、再来月の予定が空白のまま、紹介が来ない月の売上に怯えます。</p>
+      </div>
+    </div>
+
+    <div class="compare-head"><span class="num">3</span>勉強会後の販売・フォロー</div>
+    <div class="compare-grid">
+      <div class="compare-box ok">
+        <h4>成約率42%のステップメールが自動で配信される</h4>
+        <p>勉強会終了後、参加者の温度に合わせてステップメールが自動で流れ、関心の高い人から自然に申込みが入る。営業電話も、しつこい売り込みも、いっさい不要。「お願いします」と向こうから来ます。</p>
+      </div>
+      <div class="compare-box ng">
+        <h4>勉強会のあと、フォローが止まる</h4>
+        <p>本業に戻った瞬間、参加者へのフォローが後回しに。一番熱が高い「勉強会直後の3日間」を逃して、申込みのチャンスが冷めていく。せっかく集めた5人が、また来月、ゼロからのスタートに。</p>
+      </div>
+    </div>
+
+    <p style="font-size:20px;line-height:1.95;margin-top:34px;color:var(--ink);font-weight:500">
+      …あなたはどちらでしたか？<br>
+      もし、右側に近かったとしても、心配しないでください。<br>
+      この3つは、1日でまとめて自動化の側に組み替えられます。
+    </p>
+  </div>
+</section>
+
+<!-- NAVY: 1日で組み上げる -->
+<section class="navy-band">
+  <div class="wrap">
+    <h2>では、どうしたら、<br><span class="gold">時間に追われず</span>勉強会を回し、<br>本番の台本と運営に全集中できるのでしょうか？</h2>
+    <p>答えは、シンプルです。</p>
+    <p style="margin-top:14px"><mark style="background:#f5c83a;color:#0f2d52;padding:10px 22px;font-size:28px;font-weight:900;line-height:1.5;display:inline-block;border-radius:4px">調査・集客・販売の3工程を、まるごと自動化する</mark></p>
+    <p style="margin-top:24px;font-size:18px">この3工程さえAIに渡せば、あなたが手を動かすのは「勉強会の台本と本番運営」だけ。<br>これが、12年・累計300回以上の現場で辿り着いた、唯一の答えなんです。</p>
+  </div>
+</section>
+
+<!-- 3工程の自動化 -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="h2-big">勉強会マーケティングを<br><span style="color:#8b1a1a">回し続けるための</span>3つの自動化</h2>
+    <p style="font-size:18px;line-height:1.95;color:var(--ink);margin:0 0 40px 0;font-weight:400;text-align:left;max-width:820px;margin-left:auto;margin-right:auto">
+      毎週、勉強会から売上を立て続けている方は、必ずこの3つを自動化しています。<br>
+      逆に、ここを手動でやり続けている限り、本番の台本と運営に時間を使うことは、永遠にできません。
+    </p>
+
+    <div class="feature-step">
+      <div class="feature-step-num"><span class="feature-step-label">自動化</span><span class="feature-step-digit">01</span></div>
+      <div class="feature-step-body">
+        <h3>調査の自動化｜見込み客リサーチを毎週AIが回す</h3>
+        <p>市場の悩み・競合の動き・見込み客の検索キーワード・SNSの反応。毎週、AIが裏で集めて、月曜の朝にあなたの手元にレポートが届く状態を作ります。台本作りで「いま刺さる話題」に迷わなくなり、勉強会の鮮度がずっと保たれます。</p>
+      </div>
+    </div>
+
+    <div class="feature-step">
+      <div class="feature-step-num"><span class="feature-step-label">自動化</span><span class="feature-step-digit">02</span></div>
+      <div class="feature-step-body">
+        <h3>集客の自動化｜カレンダー固定＋告知配信を仕組み化</h3>
+        <p>毎週同じ曜日に勉強会のスロットを固定し、ポータルサイト登録・過去顧客リストへの一斉案内・SNS告知の3経路を、AIで自動配信。広告ゼロで毎週5人を集める仕組みが、その日のうちに動き始めます。</p>
+      </div>
+    </div>
+
+    <div class="feature-step">
+      <div class="feature-step-num"><span class="feature-step-label">自動化</span><span class="feature-step-digit">03</span></div>
+      <div class="feature-step-body">
+        <h3>販売の自動化｜成約率42%のステップメールを自動配信</h3>
+        <p>勉強会終了後、参加者の温度に合わせて自動でステップメールが流れ、関心の高い人から自然に申込みが入る仕組み。営業電話も、しつこい売り込みも不要。あなたが寝ている間も、販売が回り続けます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIG BENEFIT -->
+<section class="section" style="background:linear-gradient(180deg,#f5f0e4 0%,#faf5e8 100%)">
+  <div class="wrap">
+    <h2 style="font-size:36px;font-weight:900;color:var(--navy);text-align:center;line-height:1.55;margin:0 0 10px 0">
+      1日後から、<br>
+      <span style="color:#8b1a1a">あなたの1週間はこう変わります</span>
+    </h2>
+    <p style="text-align:center;font-size:18px;color:var(--ink);margin:0 0 40px 0;font-weight:500">
+      3工程の自動化が動き始めた、次の月曜の朝の景色です。
+    </p>
+    <div style="background:#fff;border-radius:14px;padding:48px 48px 42px;max-width:900px;margin:0 auto;box-shadow:0 14px 36px rgba(0,0,0,0.14);position:relative">
+      <div style="position:absolute;top:-20px;left:40px;background:var(--navy);color:#fff;font-size:14px;font-weight:900;letter-spacing:.3em;padding:8px 22px;border-radius:4px">BENEFIT</div>
+      <ul style="list-style:none;padding:0;margin:0 0 28px 0">
+        <li style="font-size:20px;line-height:1.95;color:var(--ink);padding:14px 0 14px 48px;position:relative;border-bottom:1px dashed #d8d8d8;font-weight:500"><span style="position:absolute;left:4px;top:14px;width:32px;height:32px;background:#2e7d32;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900">◯</span>朝、メールを開けば、見込み客リサーチの最新レポートが届いている。</li>
+        <li style="font-size:20px;line-height:1.95;color:var(--ink);padding:14px 0 14px 48px;position:relative;border-bottom:1px dashed #d8d8d8;font-weight:500"><span style="position:absolute;left:4px;top:14px;width:32px;height:32px;background:#2e7d32;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900">◯</span>今週の勉強会には、すでに5人の申込みが入っている。</li>
+        <li style="font-size:20px;line-height:1.95;color:var(--ink);padding:14px 0 14px 48px;position:relative;border-bottom:1px dashed #d8d8d8;font-weight:500"><span style="position:absolute;left:4px;top:14px;width:32px;height:32px;background:#2e7d32;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900">◯</span>先週の勉強会の参加者から、ステップメール経由で2件の申込みが入っている。</li>
+        <li style="font-size:20px;line-height:1.95;color:var(--ink);padding:14px 0 14px 48px;position:relative;font-weight:500"><span style="position:absolute;left:4px;top:14px;width:32px;height:32px;background:#2e7d32;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900">◯</span>あなたが今日やるのは、今週の勉強会の台本と本番の準備、それだけ。</li>
+      </ul>
+      <p style="font-size:22px;line-height:1.85;color:var(--ink);margin:0;text-align:center;font-weight:700;background:#fff9e5;padding:24px 24px;border-radius:8px;border:1px solid #f0dba0">
+        <mark style="background:#f5c83a;color:var(--navy);padding:4px 10px;border-radius:3px">本番の台本と運営に、全精力を費やせる</mark>。<br>
+        <span style="font-size:17px;font-weight:500;display:inline-block;margin-top:10px;line-height:1.85">これが、勉強会から売上を積み上げ続ける方が、毎週送っているリアルな景色です。</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 5つの成果物 -->
+<section class="section" style="background:var(--gray-bg)">
+  <div class="wrap">
+    <h2 class="h2-big">私に1日、ください。<br>この5つを、手元に揃えさせて見せます。</h2>
+    <p style="text-align:center;font-size:18px;color:var(--ink);margin-bottom:40px;line-height:1.95;font-weight:500">
+      コードは1行も書きません。日本語で指示するだけで、勉強会マーケティングの仕組みが、あなたの手元に残ります。
+    </p>
+
+    <div class="step">
+      <div class="step-num">1.</div>
+      <h3>戦略設計シート（A4 1枚）</h3>
+      <p>「誰に・何を・なぜ届けるか」が、A4 1枚に固まった状態。3工程の自動化の方向性は、すべてこの1枚から逆算で組まれます。迷ったときに戻れる、あなたの事務所の北極星です。</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2.</div>
+      <h3>調査自動化AIスキル｜見込み客リサーチを毎週回す</h3>
+      <p>市場の悩み・競合の動き・検索キーワード・SNSの反応を、毎週AIが裏で集めて月曜の朝にレポート化。台本作りで迷わなくなる「いま刺さる話題」が、毎週手元に届きます。</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3.</div>
+      <h3>勉強会の本番台本＋スライド約60枚</h3>
+      <p>売り込まずに相手の考え方を変える、成約率50%の台本構造。あなたの業務に当てはめた状態で、当日中に1本目を仕上げます。妄想ではなく、12年・300回の現場で磨いた本物の型です。</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4.</div>
+      <h3>集客自動化セット｜LP＋ポータル登録＋告知配信AI</h3>
+      <p>12項目フォーミュラのLPドラフト、ポータル登録リスト、過去顧客への一斉案内文、SNS告知文。毎週同じ曜日にカレンダーが固定で埋まる仕組みが、帰った夜から動き出します。</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5.</div>
+      <h3>販売自動化セット｜成約率42%のステップメールテンプレ＋AI配信</h3>
+      <p>勉強会後、参加者の温度に合わせて自動配信されるステップメール一式。件名・本文・送信タイミングまで、そのまま使える状態。あなたが寝ている間も販売が回り続けます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 他との違い（文章で書く） -->
+<section class="section">
+  <div class="wrap" style="max-width:880px">
+    <h2 class="h2-big">他との違い</h2>
+
+    <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:24px">
+      この勉強会マーケティング・システム 習得1DAYワークショップが、ほかのセミナー系講座と決定的に違う点が、5つあります。
+    </p>
+
+    <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:24px">
+      まず<mark>1つ目</mark>は、このワークショップが<strong>「教えるだけ」で終わらない</strong>ことです。セミナーでよくある「学んで終わり」ではなく、当日中に、調査・集客・販売の3工程の自動化が、あなたのPCで動き始める状態まで持っていきます。ワークショップを終えた時点で、あなたの仕組みは、もう動き始めている状態でお返しします。
+    </p>
+
+    <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:24px">
+      <mark>2つ目</mark>は、<strong>畳一畳・パソコン一台で回せるシンプルさ</strong>です。大きな会場も、立派な機材も、いっさい要りません。パソコン一台あれば、自宅の畳一畳のスペースで仕組みが動きます。これが、私が12年やってきて辿り着いた、いちばん身軽な形です。
+    </p>
+
+    <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:24px">
+      <mark>3つ目</mark>は、講師である私が<strong>累計300回以上の現場から持ち帰った本物の型</strong>を扱うことです。机の上で考えた理論ではなく、300回以上、自分で現場に立って磨いた型です。うまくいかなかった回もたくさんありました。その失敗も含めて、全部、当日お話しします。
+    </p>
+
+    <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:24px">
+      <mark>4つ目</mark>は、<strong>「型にはめない」</strong>ことです。業界によって、あなたのお客様の層も、扱う商品も、まったく違います。だから、固定のテンプレを押し付けることはしません。あなたの業務・お客様・単価に合わせて、その場で組み立てていきます。
+    </p>
+
+    <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:24px">
+      そして<mark>5つ目</mark>が、もっとも大きな違いです。<strong>事業計画書を作る過程を、この勉強会に組み込みました。</strong>勉強会の中に、補助金申請でも使える事業計画書のドラフトを組み上げる流れを、そのまま組み込んでいます。だから、あなたの勉強会は「学ぶだけ」から<mark>「参加者が自分の事業計画書を持ち帰る勉強会」</mark>に変わります。参加者の満足度が一段上がり、勉強会後のバックエンド販売（補助金代行・コンサル契約・継続支援）への信頼の土台が、その日のうちに深まるんです。
+    </p>
+  </div>
+</section>
+
+<!-- 講師プロフィール -->
+<section class="section" style="background:var(--gray-bg)">
+  <div class="wrap">
+    <h2 class="h2-big" style="color:var(--navy)">講師プロフィール</h2>
+
+    <div class="instructor-card" style="background:#fff;padding:36px;border-radius:8px;display:flex;gap:42px;align-items:flex-start;box-shadow:0 8px 28px rgba(0,0,0,0.10)">
+      <div style="flex:0 0 220px">
+        <img src="assets/img/akutsu-portrait.jpg" alt="阿久津和宏" style="width:220px;height:220px;object-fit:cover;border-radius:50%;box-shadow:0 6px 18px rgba(0,0,0,0.15)">
+        <p style="font-size:14px;color:var(--muted);text-align:center;margin:14px 0 0 0;line-height:1.7">阿久津 和宏<br>（あくつ かずひろ）</p>
+      </div>
+      <div style="flex:1">
+        <h3 style="font-size:26px;font-weight:900;margin:0 0 10px 0;color:var(--navy);line-height:1.5">阿久津 和宏（あくつ かずひろ）</h3>
+        <p style="font-size:16px;color:var(--muted);margin-bottom:24px;font-weight:700">Well Consultant合同会社 代表<br>あくつ行政書士事務所 代表</p>
+
+        <p style="font-size:18px;line-height:1.95;color:var(--ink);margin:0 0 18px 0">2013年11月独立。2014年7月13日、新宿のルノアールの一席で初めて勉強会を開催。集まったのは5人、そのうち2人がその場で契約。<mark>コミッション30万円・契約100万円</mark>からスタートしました。</p>
+
+        <p style="font-size:18px;line-height:1.95;color:var(--ink);margin:0 0 18px 0">そこから12年、<mark>累計300回以上、勉強会を継続</mark>。広告費0円・畳一畳・パソコン一台で、紹介に頼らず売上を積み上げ続けてきました。<mark>勉強会の成約率は50%、勉強会後のステップメール成約率は42%</mark>と、業界数字の倍以上で動いています。</p>
+
+        <p style="font-size:18px;line-height:1.95;color:var(--ink);margin:0 0 18px 0">行政書士業務（補助金・建設業許可・在留資格・IT導入補助金支援事業者登録）を回す傍ら、<mark>士業業務のAI実装に特化したスキル群を100種以上開発・運用</mark>。Claude Code導入後、自身の事務所で月40時間の事務作業を月8時間に短縮し、その時間を勉強会の台本と運営に投下しています。</p>
+
+        <p style="font-size:20px;line-height:1.85;color:var(--navy);margin:0;font-weight:900;background:#fff9e5;padding:22px 24px;border-left:4px solid var(--gold);border-radius:4px">
+          「勉強会は、教える場所じゃありません。<br>
+          価値を提供して、相手の考え方を、変える場所なんです」
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- こんな方におすすめ -->
+<section class="section" style="background:linear-gradient(180deg,#f5f0e4 0%,#faf5e8 100%)">
+  <div class="wrap">
+    <h2 class="h2-big">こんな方におすすめ</h2>
+    <p style="text-align:center;font-size:18px;color:var(--ink);margin:0 auto 50px;font-weight:500;line-height:1.95;max-width:760px">
+      このワークショップは、特に次のような方のためにご用意しています。
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:960px;margin:0 auto">
+      <div style="background:#fff;padding:36px 32px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.08);border-top:5px solid var(--navy)">
+        <div style="width:72px;height:72px;background:#fdf6e3;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="#0f2d52"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+        </div>
+        <h3 style="font-size:21px;font-weight:900;color:var(--navy);margin:0 0 12px;line-height:1.55">毎週の勉強会を本気で回したい方</h3>
+        <p style="font-size:16px;line-height:1.95;color:var(--ink-2);margin:0">集客と販売に追われて、本番の台本作りに時間が取れていない方。3工程の自動化で、本番台本に向き合う時間を取り戻せます。</p>
+      </div>
+
+      <div style="background:#fff;padding:36px 32px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.08);border-top:5px solid var(--navy)">
+        <div style="width:72px;height:72px;background:#fdf6e3;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="#0f2d52"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+        </div>
+        <h3 style="font-size:21px;font-weight:900;color:var(--navy);margin:0 0 12px;line-height:1.55">紹介頼みから卒業したい士業・コンサル</h3>
+        <p style="font-size:16px;line-height:1.95;color:var(--ink-2);margin:0">紹介がある月とない月で売上が跳ねている方。自前の水源を1つ持つだけで、来月の数字が読めるようになります。</p>
+      </div>
+
+      <div style="background:#fff;padding:36px 32px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.08);border-top:5px solid var(--navy)">
+        <div style="width:72px;height:72px;background:#fdf6e3;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="#0f2d52"><path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/></svg>
+        </div>
+        <h3 style="font-size:21px;font-weight:900;color:var(--navy);margin:0 0 12px;line-height:1.55">本や講座を読んできたのに動けていない方</h3>
+        <p style="font-size:16px;line-height:1.95;color:var(--ink-2);margin:0">学んでも実行に移せない方。1日でその場で組み上げてしまう構造なので、夕方には仕組みが手元にある状態になります。</p>
+      </div>
+
+      <div style="background:#fff;padding:36px 32px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.08);border-top:5px solid var(--navy)">
+        <div style="width:72px;height:72px;background:#fdf6e3;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="#0f2d52"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3 style="font-size:21px;font-weight:900;color:var(--navy);margin:0 0 12px;line-height:1.55">1日集中で一気に作り切りたい実行型の方</h3>
+        <p style="font-size:16px;line-height:1.95;color:var(--ink-2);margin:0">調査・集客・販売の3工程を、自分のPCで動く状態まで、その日のうちに作り切りたい方。手を動かす伴走型の1日です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 誰でも参加できるわけではありません（独立パーツ・理念/信念/本気度） -->
+<section class="section" style="background:#0f2d52;color:#fff;padding:100px 20px">
+  <div class="wrap" style="max-width:920px">
+    <h2 style="font-size:42px;font-weight:900;color:#fff;text-align:center;line-height:1.5;margin-bottom:14px;letter-spacing:-.01em">誰でも参加できるわけではありません</h2>
+    <p style="text-align:center;font-size:18px;color:#f5c83a;font-weight:700;letter-spacing:.15em;margin-bottom:46px">— 信念のために、ハッキリお伝えしておきます —</p>
+
+    <div style="background:#fff;color:var(--ink);padding:50px 50px 40px;border-radius:8px;box-shadow:0 16px 40px rgba(0,0,0,0.25)">
+      <p style="font-size:22px;line-height:1.95;color:var(--ink);font-weight:900;margin-bottom:24px">正直に言います。</p>
+
+      <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:18px">
+        「とにかく稼げればいい」<br>
+        「楽して、売上が立てばいい」
+      </p>
+
+      <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:24px">
+        ——こういうお気持ちが強い方には、このワークショップは、本当に向きません。お金を払って、当日来て、適当に話を聞いて帰る、というスタンスの方も、申し訳ないんですが、ご遠慮ください。
+      </p>
+
+      <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:24px">
+        なぜなら、このワークショップは、ただのノウハウ集でも、ただのAIスキル集でもないんです。
+      </p>
+
+      <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:24px">
+        私が12年、累計300回以上、現場で勉強会を回し続けてきて、たった1つだけ、辿り着いた答えがあります。
+      </p>
+
+      <p style="font-size:24px;font-weight:900;color:var(--navy);background:#fff9e5;padding:28px 30px;border-left:6px solid var(--gold);border-radius:4px;line-height:1.85;margin:30px 0">
+        「勉強会は、教える場所じゃありません。<br>
+        価値を提供して、相手の考え方を、変える場所なんです」
+      </p>
+
+      <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:24px">
+        正直、最初から信じていたわけじゃないんですよ。独立した最初の頃、私も「とにかく売上がほしい」で動いていました。売り込めば売り込むほど、見込み客が離れていく。本当に苦しかった時期です。
+      </p>
+
+      <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:24px">
+        でも、勉強会で<mark style="background:#fff7a8;font-weight:900">「相手の考え方をアップデートする」</mark>ことに集中し始めた瞬間、すべてが変わったんですね。紹介がなくても、広告がなくても、毎月の売上が積み上がる景色が、ようやく見られるようになったんです。
+      </p>
+
+      <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:24px">
+        だから、このワークショップでお渡しするのは、テンプレートでも、AIスキルそのものでもないんです。<mark style="background:#fff7a8;font-weight:900">あなたが「相手の考え方を変えられる勉強会」を、一生、回し続けられる土台</mark>そのものです。
+      </p>
+
+      <p style="font-size:19px;line-height:2;color:var(--ink);margin-bottom:30px;font-weight:700">
+        これを本気で持ち帰る覚悟のある方にだけ、ご参加いただきたいんです。
+      </p>
+
+      <div style="border-top:2px dashed #ddd;padding-top:30px;margin-top:30px">
+        <p style="font-size:18px;line-height:2;color:var(--ink);margin-bottom:14px;font-weight:700">次の3つのうち、1つでも強く頷けるなら——</p>
+        <ul style="list-style:none;padding:0;margin:0 0 28px 0">
+          <li style="font-size:20px;line-height:1.85;color:var(--navy);font-weight:900;padding:10px 0 10px 32px;position:relative"><span style="position:absolute;left:0;top:10px;color:var(--red);font-weight:900">✓</span>「自前の水源を、本気で1つ持ちたい」</li>
+          <li style="font-size:20px;line-height:1.85;color:var(--navy);font-weight:900;padding:10px 0 10px 32px;position:relative"><span style="position:absolute;left:0;top:10px;color:var(--red);font-weight:900">✓</span>「本番の台本に、本気で向き合いたい」</li>
+          <li style="font-size:20px;line-height:1.85;color:var(--navy);font-weight:900;padding:10px 0 10px 32px;position:relative"><span style="position:absolute;left:0;top:10px;color:var(--red);font-weight:900">✓</span>「中途半端な勉強会から、もう卒業したい」</li>
+        </ul>
+        <p style="font-size:20px;line-height:1.85;color:var(--ink);margin:0;font-weight:900;text-align:center;background:#fff9e5;padding:22px 24px;border-radius:6px">
+          このワークショップは、間違いなくあなたのためにあります。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 参加者の声（6枚＋人物アイコン） -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="h2-big">参加者の声</h2>
+    <p style="text-align:center;font-size:14px;color:var(--muted);margin-bottom:40px">※実例は最終確認後に差し替え予定</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto">
+
+      <div style="background:#fff;padding:32px 30px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border-top:4px solid var(--navy)">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+          <div style="width:56px;height:56px;border-radius:50%;background:#f3efe6;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="#8b1a1a"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <div>
+            <p style="font-size:16px;font-weight:900;color:var(--navy);margin:0;line-height:1.4">Fさん</p>
+            <p style="font-size:13px;color:var(--muted);margin:0;font-weight:700">行政書士</p>
+          </div>
+        </div>
+        <p style="font-size:16px;line-height:1.95;color:var(--ink);margin:0">「半年動けなかった私が、1日で動き出せました。3工程の自動化が回り始めて、毎週月曜の朝が楽しみになりました。」</p>
+      </div>
+
+      <div style="background:#fff;padding:32px 30px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border-top:4px solid var(--navy)">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+          <div style="width:56px;height:56px;border-radius:50%;background:#f3efe6;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="#8b1a1a"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <div>
+            <p style="font-size:16px;font-weight:900;color:var(--navy);margin:0;line-height:1.4">Mさん</p>
+            <p style="font-size:13px;color:var(--muted);margin:0;font-weight:700">中小企業診断士</p>
+          </div>
+        </div>
+        <p style="font-size:16px;line-height:1.95;color:var(--ink);margin:0">「来月の数字が読めるようになったのが、いちばん大きな変化です。本番台本に向き合う時間が、ようやく取れるようになりました。」</p>
+      </div>
+
+      <div style="background:#fff;padding:32px 30px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border-top:4px solid var(--navy)">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+          <div style="width:56px;height:56px;border-radius:50%;background:#f3efe6;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="#8b1a1a"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <div>
+            <p style="font-size:16px;font-weight:900;color:var(--navy);margin:0;line-height:1.4">Tさん</p>
+            <p style="font-size:13px;color:var(--muted);margin:0;font-weight:700">社労士</p>
+          </div>
+        </div>
+        <p style="font-size:16px;line-height:1.95;color:var(--ink);margin:0">「ステップメールが自動で動き始めて、勉強会後のフォローを忘れる、という機会損失がゼロになりました。」</p>
+      </div>
+
+      <div style="background:#fff;padding:32px 30px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border-top:4px solid var(--navy)">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+          <div style="width:56px;height:56px;border-radius:50%;background:#f3efe6;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="#8b1a1a"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <div>
+            <p style="font-size:16px;font-weight:900;color:var(--navy);margin:0;line-height:1.4">Hさん</p>
+            <p style="font-size:13px;color:var(--muted);margin:0;font-weight:700">補助金コンサル</p>
+          </div>
+        </div>
+        <p style="font-size:16px;line-height:1.95;color:var(--ink);margin:0">「広告に毎月20万入れていたのを、ぜんぶ止めました。それでも勉強会経由で来月の予定が埋まっています。」</p>
+      </div>
+
+      <div style="background:#fff;padding:32px 30px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border-top:4px solid var(--navy)">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+          <div style="width:56px;height:56px;border-radius:50%;background:#f3efe6;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="#8b1a1a"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <div>
+            <p style="font-size:16px;font-weight:900;color:var(--navy);margin:0;line-height:1.4">Kさん</p>
+            <p style="font-size:13px;color:var(--muted);margin:0;font-weight:700">税理士</p>
+          </div>
+        </div>
+        <p style="font-size:16px;line-height:1.95;color:var(--ink);margin:0">「事業計画書の作成過程が勉強会に組み込まれているので、参加者が成果物を持ち帰る勉強会に変わりました。バックエンドの契約率が一気に上がりました。」</p>
+      </div>
+
+      <div style="background:#fff;padding:32px 30px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border-top:4px solid var(--navy)">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+          <div style="width:56px;height:56px;border-radius:50%;background:#f3efe6;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="#8b1a1a"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <div>
+            <p style="font-size:16px;font-weight:900;color:var(--navy);margin:0;line-height:1.4">Sさん</p>
+            <p style="font-size:13px;color:var(--muted);margin:0;font-weight:700">マーケティングコンサル</p>
+          </div>
+        </div>
+        <p style="font-size:16px;line-height:1.95;color:var(--ink);margin:0">「妄想で組んでいた台本が、毎週のリサーチデータをもとに作れるようになりました。参加者の反応が、明らかに変わりました。」</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 6つの中身（特典） -->
+<section class="bonus-section">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:30px">
+      <span class="bonus-ribbon">CONTENTS</span>
+      <h2 style="font-size:30px;font-weight:900;text-align:center;margin-top:16px;line-height:1.55">あなたが<br>「勉強会マーケティング・システム<br>習得1DAYワークショップ」で<br>手に入れるものは？</h2>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+      <div class="bonus-body">
+        <span class="bonus-label">①｜本体</span>
+        <h4>1DAYワークショップ本体（通常 98,000円）</h4>
+        <p>朝から夕方まで、阿久津本人が伴走。調査・集客・販売の3工程の自動化を、その日のうちにあなたのPCで動かせる状態まで持っていきます。</p>
+      </div>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM8 20V4h5v5h5v11H8z"/></svg></div>
+      <div class="bonus-body">
+        <span class="bonus-label">②｜500,000円相当</span>
+        <h4>成約率50%の「勉強会台本」を最速で作るAIスキル</h4>
+        <p>私が現場で実際に使っている成約率50%の台本構造を、そのまま入れ込んだAIスキル。あなたの業務情報を渡すだけで、台本のドラフトが最速で出てきます。</p>
+      </div>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+      <div class="bonus-body">
+        <span class="bonus-label">③｜39,800円相当</span>
+        <h4>成約率42%の「ステップメールテンプレート」を作るAIスキル</h4>
+        <p>勉強会後、関心の高い人から自然に申込みが入る、ステップメール一式を作るAIスキル。件名・本文・送信タイミングまで、そのまま使える状態で出てきます。</p>
+      </div>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="bonus-body">
+        <span class="bonus-label">④｜198,000円相当</span>
+        <h4>過去開催ワークショップのアーカイブ動画</h4>
+        <p>これまでに開催したワークショップの録画。当日聞き逃したところも、何度でも見返せる状態になります。</p>
+      </div>
+    </div>
+
+    <div class="bonus-card" style="border-color:var(--red)">
+      <div class="bonus-icon" style="background:#fff0f0;color:var(--red)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+      <div class="bonus-body">
+        <span class="bonus-label" style="background:var(--red);color:#fff">⑤｜非売品</span>
+        <h4>ウェビナー構築AI</h4>
+        <p>私が業務で実際に使っている、ウェビナー構築用のAI。通常は外には出していません。このワークショップ参加者にだけ、特別にお渡しします。</p>
+      </div>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94 0 .31.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></div>
+      <div class="bonus-body">
+        <span class="bonus-label">⑥｜500,000円相当</span>
+        <h4>Claude Code 全体流れルール設計</h4>
+        <p>AIで業務を回すときの、全体ルール設計テンプレート。これがあると、AIが"あなた仕様"で動き始めます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 価格プレゼン（型003：やらないことによる損失） -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="h2-big">あなたにとってどれくらいの価値がありますか？</h2>
+
+    <table class="price-table">
+      <tr><th>①｜1DAYワークショップ本体</th><td>98,000円</td></tr>
+      <tr><th>②｜成約率50%「勉強会台本」を最速で作るAIスキル</th><td>500,000円相当</td></tr>
+      <tr><th>③｜成約率42%「ステップメール」を作るAIスキル</th><td>39,800円相当</td></tr>
+      <tr><th>④｜過去開催ワークショップ アーカイブ動画</th><td>198,000円相当</td></tr>
+      <tr><th>⑤｜ウェビナー構築AI</th><td>非売品</td></tr>
+      <tr><th>⑥｜Claude Code 全体流れルール設計</th><td>500,000円相当</td></tr>
+      <tr class="total"><td>合計</td><td>1,335,800円相当 ＋ 非売品</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 安心保証（テンプレ忠実・ガッツリ） -->
+<section class="section" style="background:linear-gradient(180deg,#fdf8ee 0%,#faf0d8 100%);padding:90px 20px">
+  <div class="wrap" style="max-width:920px">
+    <h2 class="h2-big" style="color:var(--navy)">安心保証</h2>
+    <p style="text-align:center;font-size:18px;color:var(--ink);margin:0 auto 50px;font-weight:500;line-height:1.95;max-width:760px">
+      あなたに、ノーリスクで踏み出していただけるよう、しっかり保証をご用意しています。
+    </p>
+
+    <div class="guarantee-box" style="margin-bottom:30px">
+      <span class="seal">7日間<br>安心<br>保証</span>
+      <h3>参加後7日以内なら、全額返金します</h3>
+      <p>このワークショップに参加後、7日以内に「得るものがなかった」と感じられた場合は、理由を問わず、<mark style="background:#fff7a8;font-weight:900">あなたが支払った参加費を全額返金</mark>します。</p>
+      <p>リスクは、こちらで持ちます。あなたが背負うものは、何もありません。</p>
+      <p>正直、この保証を付けるのは、私としても怖いんですよ。それでも付けているのは、<mark style="background:#fff7a8;font-weight:900">12年・累計300回以上の現場で磨いてきた中身に、それだけ自信があるから</mark>です。</p>
+    </div>
+
+    <div style="background:#fff;border:2px solid var(--navy);border-radius:12px;padding:36px 40px;box-shadow:0 6px 20px rgba(0,0,0,0.08)">
+      <h3 style="font-size:22px;font-weight:900;color:var(--navy);margin:0 0 18px;line-height:1.55;border-bottom:2px solid var(--gold);padding-bottom:12px">あなたを守る、3つの安心ポイント</h3>
+      <div style="display:grid;grid-template-columns:1fr;gap:18px">
+        <div style="padding:18px 22px;background:#fafafa;border-left:4px solid #2e7d32;border-radius:4px">
+          <p style="font-size:17px;font-weight:900;color:var(--navy);margin:0 0 6px">① ワークショップ参加後 7日間 全額返金保証</p>
+          <p style="font-size:15px;color:var(--ink-2);margin:0;line-height:1.85">参加後7日以内であれば、理由を問わず全額返金。気軽にご参加いただけます。</p>
+        </div>
+        <div style="padding:18px 22px;background:#fafafa;border-left:4px solid #2e7d32;border-radius:4px">
+          <p style="font-size:17px;font-weight:900;color:var(--navy);margin:0 0 6px">② 当日参加できなくても、アーカイブ動画で受講可能</p>
+          <p style="font-size:15px;color:var(--ink-2);margin:0;line-height:1.85">急な予定変更で当日参加できない場合も、アーカイブ動画を後日お送りしますので、無駄になりません。</p>
+        </div>
+        <div style="padding:18px 22px;background:#fafafa;border-left:4px solid #2e7d32;border-radius:4px">
+          <p style="font-size:17px;font-weight:900;color:var(--navy);margin:0 0 6px">③ 自宅から、オンラインで受講可能</p>
+          <p style="font-size:15px;color:var(--ink-2);margin:0;line-height:1.85">遠方の方も、ノートPC1台で参加できます。会場までの交通費・移動時間のリスクもゼロです。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3つの道（型002） -->
+<section class="section" style="background:linear-gradient(rgba(255,255,255,0.85),rgba(255,255,255,0.85)),linear-gradient(180deg,#f4f7fc 0%,#fff 100%)">
+  <div class="wrap">
+    <h2 class="h2-big">あなたには今、<br>3つの道があります</h2>
+
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:40px 0 0">
+      1つ目の道は、何もしないで、今までと同じ日常に戻る道です。来月も、毎週の集客と販売に追われ、本番台本に時間が取れず、妄想で組み立てた中途半端な勉強会を続けることになります。同業の士業・コンサルが3工程の自動化で来月の数字を読める状態になっていく中、あなたは紹介任せの月を繰り返す可能性が、いちばん高い道です。
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:20px 0 0">
+      これからの時代、勉強会マーケティングの自動化は業界の中で標準装備になっていきます。気づいた時には、あなたの見込み客は、自前の水源を持つ方々のもとへ流れていた…そんな事が起きてしまうかもしれません。
+    </p>
+
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:40px 0 0">
+      2つ目の道は、自分で独学で組み上げる道です。やる気と時間があれば、いつかは仕組みが回り始めるかもしれません。
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:20px 0 0">
+      ですが、その「いつか」がいつ来るかは誰にも分かりません。日々の業務を回しながら、調査・集客・販売・台本・運営の5つを順番通りに組み上げるのは、本当に大変なことです。私自身、ここに辿り着くまでに12年かかっています。
+    </p>
+
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:40px 0 0">
+      3つ目の道は、私のこの1DAYワークショップに参加して、1日で「自分の事務所仕様」の3工程自動化を、丸ごと手元に持ち帰る道です。もちろん、100%必ず成果が出るというお約束はできません。
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:20px 0 0">
+      ですが、少なくとも、あなたが1人で手探りするよりも、<mark>遥かに高い確率で成果が出る</mark>ことはお約束できます。なぜなら、私は12年・累計300回以上の現場で、勉強会から売上を立て続けてきた、勉強会マーケティングのプロだからです。
+    </p>
+
+    <p style="font-size:19px;line-height:2;color:var(--ink);margin:44px 0 0">
+      どの道を選ぶかはあなた次第です。でも、ここまで読んでくれたということは、もう答えは決まっていますよね？
+    </p>
+    <p style="font-size:20px;line-height:2;color:var(--ink);margin:22px 0 0">
+      あなたからのお返事、お待ちしております。
+    </p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--gray-bg)">
+  <div class="wrap">
+    <h2 class="h2-big">よくあるご質問</h2>
+
+    <details class="faq-item">
+      <summary>まだ自分には早い気がします。本当に参加して大丈夫でしょうか？</summary>
+      <p class="a">「早い」と感じる方ほど、うまくいきます。完璧に準備してから、という方ほど、半年経っても動けないままなんですよ。動きながら整えていくのが、いちばん早いです。</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>本当に1日で、3工程の自動化が動き始めますか？</summary>
+      <p class="a">はい、動き始める構造で組んでいます。ゼロから書くのではなく、私が12年で磨いてきた台本構造・ステップメール・調査ロジックを、独自AIに入れ込んだ状態でお渡しします。あなたは「自分の業務情報」を渡すだけで、その日のうちに3工程が動きます。</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>AIが苦手です。それでも大丈夫ですか？</summary>
+      <p class="a">大丈夫です。AIは日本語で話しかけるだけで動きます。当日、私が横について最初の操作から一緒に進めますので、AI初体験の方でも、その日のうちに3工程の自動化が動き始める状態まで持っていきます。</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>勉強会のテーマや業界が決まっていなくても大丈夫ですか？</summary>
+      <p class="a">大丈夫です。ワークショップの最初に、戦略設計シート（A4 1枚）で「誰に・何を・なぜ届けるか」を一緒に固めていきます。漠然とした状態でご参加いただいても、夕方には軸が立った状態でお帰りいただけます。</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>開催日はいつですか？参加方法は？</summary>
+      <p class="a">オンラインとリアル会場、どちらも選べます。次回開催日は、お申し込みフォームでご確認ください。</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>返金保証は、本当に使えますか？</summary>
+      <p class="a">はい、使えます。参加後7日以内にご連絡いただければ、理由を問わず全額返金します。リスクは、こちらで持ちます。</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>申し込み後の流れは？</summary>
+      <p class="a">お申し込み後、すぐに講師（阿久津）から直接ご連絡し、専用のChatworkグループへご招待いたします。事前のご案内、当日の参加方法、特典のお渡しも、すべてChatworkグループ経由でお届けします。</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>インボイス（適格請求書）は発行してもらえますか？</summary>
+      <p class="a">はい、発行いたします。お申し込み後、ご希望の方には適格請求書発行事業者としての登録番号を記載した請求書を、Chatwork経由でお送りします。</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>お支払い方法は何が使えますか？</summary>
+      <p class="a">クレジットカード決済（Visa／Mastercard／JCB／American Express）でお支払いいただけます。お申し込みフォームから、そのまま決済まで完了します。</p>
+    </details>
+  </div>
+</section>
+
+<!-- PS -->
+<section class="ps-block">
+  <div class="wrap">
+    <h2 class="closing-title">最後に</h2>
+
+    <p>累計300回以上、勉強会を続けてきて、辿り着いた答えが1つあります。</p>
+
+    <p style="font-size:24px;font-weight:900;color:var(--navy);background:#fff;padding:24px 28px;border-left:5px solid var(--gold);border-radius:4px">「勉強会は、教える場所じゃありません。価値を提供して、相手の考え方を、変える場所なんです」</p>
+
+    <p>そして、相手の考え方を変える勉強会を打ち続けるためには、<mark>本番の台本と運営に全精力を費やせる時間</mark>が、絶対に必要です。集客や販売に追われ、妄想で組み立てた中途半端な台本では、相手の心は動きません。</p>
+
+    <p>この1DAYワークショップでお渡しするのは、その時間を生み出すための「3工程の自動化」です。調査も、集客も、販売も、AIに任せて、あなたは台本と運営にだけ向き合う。これが、12年・累計300回で辿り着いた、唯一の答えです。</p>
+
+    <p>1年後に振り返ったとき、後悔しない選択を、してください。</p>
+
+    <p class="sig">阿久津 和宏</p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <h2>今すぐお申し込みください</h2>
+
+    <div class="countdown-bar">
+      <div class="cd-label">3日間限定の特別価格でのご案内の締め切りまで、あと…</div>
+      <div class="cd-grid">
+        <div class="cd-unit"><div class="cd-num" id="cd-d-2">00</div><div class="cd-unitname">DAYS</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-h-2">00</div><div class="cd-unitname">HOURS</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-m-2">00</div><div class="cd-unitname">MINUTES</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-s-2">00</div><div class="cd-unitname">SECONDS</div></div>
+      </div>
+      <div class="cd-deadline">（締切：2026年5月3日（日）23:59）</div>
+    </div>
+
+    <div class="final-card">
+      <h3>勉強会マーケティング・システム<br>習得1DAYワークショップ</h3>
+      <span class="live-date">3日間限定キャンペーン</span>
+      <div style="margin:14px 0">
+        <div style="font-size:14px;color:var(--muted);text-decoration:line-through">通常 1,335,800円相当 ＋ 非売品</div>
+        <div style="font-size:42px;font-weight:900;color:var(--red)">¥29,800<span style="font-size:16px;color:var(--ink-2);margin-left:4px">（税込）</span></div>
+      </div>
+      <ul class="bullets">
+        <li>1DAYワークショップ本体（朝〜夕方／阿久津本人が伴走）</li>
+        <li>成約率50%「勉強会台本」を最速で作るAIスキル</li>
+        <li>成約率42%「ステップメール」を作るAIスキル</li>
+        <li>過去開催ワークショップ アーカイブ動画</li>
+        <li>ウェビナー構築AI（非売品）</li>
+        <li>Claude Code 全体流れルール設計</li>
+        <li>7日間 安心保証付き</li>
+      </ul>
+      <a href="https://www.funnel-build.com/20260430b-s" class="cta-btn" target="_blank" rel="noopener" style="width:100%;font-size:22px;padding:22px 16px">今すぐワークショップの席を確保する ▶</a>
+      <div class="notice">
+        ※お支払いはクレジットカード決済となります<br>
+        ※お申し込み後、Chatworkグループへご招待します<br>
+        ※特典・サポートはChatwork経由でお届けします<br>
+        ※開催はオンライン・リアル会場、どちらも選べます
+      </div>
+    </div>
+
+    <div class="final-deadline">受付は5月3日（日）23:59まで</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="#" onclick="document.getElementById('tokusho-modal').style.display='flex';return false;">特定商取引法に基づく表記</a>
+    ｜
+    <a href="#" onclick="document.getElementById('privacy-modal').style.display='flex';return false;">プライバシーポリシー</a>
+  </div>
+  <div class="copy">掲載の情報・画像等、すべてのコンテンツの無断複写・転載を禁じます。<br>
+  Copyright © 2026 Well Consultant合同会社 All Rights Reserved.</div>
+</footer>
+
+<!-- TOKUSHO -->
+<div id="tokusho-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;align-items:center;justify-content:center;padding:20px" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;max-width:780px;max-height:85vh;overflow:auto;padding:40px;border-radius:6px;position:relative">
+    <button onclick="document.getElementById('tokusho-modal').style.display='none'" style="position:absolute;top:12px;right:16px;background:none;border:0;font-size:24px;cursor:pointer">×</button>
+    <h3 style="margin-bottom:20px;font-size:24px;color:var(--navy)">特定商取引法に基づく表記</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:14px;line-height:1.8">
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;width:32%;vertical-align:top;color:#333;font-weight:700">販売事業者名</th><td style="padding:12px 8px;color:#333">Well Consultant合同会社</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">運営統括責任者</th><td style="padding:12px 8px;color:#333">阿久津 和宏</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">所在地</th><td style="padding:12px 8px;color:#333">請求があった場合、遅滞なく開示いたします</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">電話番号</th><td style="padding:12px 8px;color:#333">請求があった場合、遅滞なく開示いたします</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">メールアドレス</th><td style="padding:12px 8px;color:#333">info@fp-1.info</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">販売価格</th><td style="padding:12px 8px;color:#333">勉強会マーケティングシステム 1DAYワークショップ：29,800円（税込）<br><span style="font-size:12px;color:#666">※3日間限定の特別価格。通常 1,335,800円相当（特典含む）</span></td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">商品代金以外の必要料金</th><td style="padding:12px 8px;color:#333">インターネット接続料金等はお客様のご負担となります</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">お支払い方法</th><td style="padding:12px 8px;color:#333">クレジットカード決済（Visa / Mastercard / JCB / American Express）</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">お支払い時期</th><td style="padding:12px 8px;color:#333">お申し込み手続き完了時に即時決済</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">商品の引渡時期</th><td style="padding:12px 8px;color:#333">お申し込み・決済完了後、すみやかにChatworkグループへご招待し、当日参加方法をお届けします</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">返品・返金</th><td style="padding:12px 8px;color:#333">参加後7日以内に「得るものがなかった」とお申し出いただいた場合、理由を問わず全額返金（7日間 安心保証）</td></tr>
+      <tr><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">表現及び商品に関する注意書き</th><td style="padding:12px 8px;color:#333">本商品に表示している効果・成果は参加者の個別事例であり、全ての参加者において同一の効果を保証するものではありません</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- PRIVACY -->
+<div id="privacy-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;align-items:center;justify-content:center;padding:20px" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;max-width:680px;max-height:80vh;overflow:auto;padding:36px;border-radius:6px;position:relative">
+    <button onclick="document.getElementById('privacy-modal').style.display='none'" style="position:absolute;top:12px;right:16px;background:none;border:0;font-size:24px;cursor:pointer">×</button>
+    <h3 style="margin-bottom:16px;font-size:22px">プライバシーポリシー</h3>
+    <p style="font-size:13px;line-height:1.9;color:#333">Well Consultant合同会社（以下、「当社」）は、お客様の個人情報を以下のとおり取り扱います。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">1. 個人情報の取得</h4>
+    <p style="font-size:13px;line-height:1.9;color:#333">当社は、適法かつ公正な手段によって、個人情報を取得します。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">2. 個人情報の利用目的</h4>
+    <p style="font-size:13px;line-height:1.9;color:#333">お申し込みいただいた商品・サービスの提供、お客様サポート、商品改善のため利用します。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">3. 個人情報の第三者提供</h4>
+    <p style="font-size:13px;line-height:1.9;color:#333">法令に基づく場合を除き、お客様の同意なく個人情報を第三者に提供することはありません。</p>
+    <h4 style="margin-top:18px;margin-bottom:8px;font-size:15px">4. お問い合わせ</h4>
+    <p style="font-size:13px;line-height:1.9;color:#333">個人情報の開示・訂正・削除をご希望の場合は、info@fp-1.info までご連絡ください。</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var deadline = new Date('2026-05-03T23:59:00+09:00').getTime();
+  function pad(n){return n<10?'0'+n:''+n;}
+  function tick(){
+    var diff = deadline - Date.now();
+    if (diff <= 0){
+      document.querySelectorAll('[id^="cd-"]').forEach(function(e){e.textContent='00';});
+      return;
+    }
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor((diff/3600000)%24);
+    var m = Math.floor((diff/60000)%60);
+    var s = Math.floor((diff/1000)%60);
+    document.querySelectorAll('[id^="cd-d"]').forEach(function(e){e.textContent=pad(d);});
+    document.querySelectorAll('[id^="cd-h"]').forEach(function(e){e.textContent=pad(h);});
+    document.querySelectorAll('[id^="cd-m"]').forEach(function(e){e.textContent=pad(m);});
+    document.querySelectorAll('[id^="cd-s"]').forEach(function(e){e.textContent=pad(s);});
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
