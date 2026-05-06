@@ -177,7 +177,8 @@ u.red{text-decoration-color:var(--red);text-decoration-thickness:3px;text-underl
 .deadline-stamp{background:var(--red-bg);color:#fff;display:inline-block;padding:14px 28px;font-weight:900;letter-spacing:.06em;font-size:18px;border-radius:4px;margin-top:14px}
 
 .guarantee{background:#fff;border:3px dashed var(--orange);border-radius:14px;padding:48px 40px;text-align:center;margin:40px auto;max-width:780px}
-.guarantee .stamp{display:inline-block;background:var(--red);color:#fff;width:128px;height:128px;border-radius:50%;line-height:128px;font-size:36px;font-weight:900;margin-bottom:18px}
+.guarantee .badge{display:inline-block;width:148px;height:148px;margin-bottom:22px;filter:drop-shadow(0 6px 14px rgba(15,45,82,0.20))}
+.guarantee .badge svg{width:100%;height:100%;display:block}
 .guarantee h3{font-size:28px;color:var(--navy);margin-bottom:16px;font-weight:900;line-height:1.5}
 .guarantee p{font-size:18px;line-height:1.95;color:var(--ink-2)}
 
@@ -250,7 +251,7 @@ footer .copy{margin-top:14px;color:#888}
   .bonus-section{padding:50px 16px}.bonus-card{flex-direction:column;gap:14px;padding:22px 20px}.bonus-card .bonus-num{flex:auto;width:64px;height:64px;font-size:22px}.bonus-card h4{font-size:19px}
   .price-ba .ba-after{padding:32px 20px;min-width:auto}.price-ba .ba-value{font-size:54px}.price-ba .ba-value .yen{font-size:24px}
   .cta-btn{font-size:18px;padding:20px 16px;letter-spacing:0}
-  .guarantee{padding:30px 20px}.guarantee h3{font-size:22px}
+  .guarantee{padding:30px 20px}.guarantee h3{font-size:22px}.guarantee .badge{width:118px;height:118px;margin-bottom:16px}
   .faq-item summary{font-size:16px;padding:20px 50px 20px 52px}.faq-item summary::before{font-size:19px;left:18px;top:20px}.faq-item summary::after{font-size:22px;right:20px;top:18px}.faq-item .a{font-size:15px;padding:4px 22px 22px 52px}.faq-item .a::before{font-size:19px;left:18px;top:4px}
   .ps-block{padding:50px 16px}.ps-block .closing-title{font-size:28px}.ps-block .closing-sub{font-size:18px}.ps-block p{font-size:16px}
   .final-cta{padding:50px 16px}.final-cta h2{font-size:24px}
@@ -595,7 +596,41 @@ footer .copy{margin-top:14px;color:#888}
   <div class="wrap">
     <h2 class="h2-big">最後に、ひとつ約束させてください</h2>
     <div class="guarantee">
-      <div class="stamp">100%</div>
+      <div class="badge" aria-label="30日間 全額返金保証バッジ">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="gb-navy" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#163d6b"/>
+              <stop offset="100%" stop-color="#0f2d52"/>
+            </linearGradient>
+            <linearGradient id="gb-gold" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f6d36a"/>
+              <stop offset="100%" stop-color="#e8b733"/>
+            </linearGradient>
+          </defs>
+          <!-- リボン（左右） -->
+          <path d="M48 130 L30 188 L60 174 L72 156 Z" fill="#b1882a"/>
+          <path d="M152 130 L170 188 L140 174 L128 156 Z" fill="#b1882a"/>
+          <path d="M52 126 L36 178 L62 166 L74 150 Z" fill="#e8b733"/>
+          <path d="M148 126 L164 178 L138 166 L126 150 Z" fill="#e8b733"/>
+          <!-- 外円（紺） -->
+          <circle cx="100" cy="92" r="78" fill="url(#gb-navy)"/>
+          <!-- ギザギザ（印章ノッチ） -->
+          <g fill="url(#gb-gold)">
+            <circle cx="100" cy="92" r="74"/>
+          </g>
+          <!-- 内円（紺） -->
+          <circle cx="100" cy="92" r="66" fill="url(#gb-navy)"/>
+          <!-- 内側の細い金線 -->
+          <circle cx="100" cy="92" r="60" fill="none" stroke="#e8b733" stroke-width="1.2"/>
+          <!-- テキスト：30 DAYS -->
+          <text x="100" y="78" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="14" font-weight="700" fill="#e8b733" letter-spacing="2">30 DAYS</text>
+          <!-- メイン：全額返金 -->
+          <text x="100" y="106" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="22" font-weight="900" fill="#ffffff">全額返金</text>
+          <!-- サブ：保証 -->
+          <text x="100" y="130" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="14" font-weight="700" fill="#e8b733" letter-spacing="4">GUARANTEE</text>
+        </svg>
+      </div>
       <h3>30日間 全額返金保証</h3>
       <p>ワークショップに参加してみて、もし「自分には合わなかった」「期待と違った」と感じたら、開催から30日以内であれば、<mark style="background:#fff59d;padding:2px 6px">理由を問わず全額をお返しします。</mark><br><br>申請はメール1通で結構です。引き止めません。<br><br>なぜここまで言い切るかというと、装置を組む話は、見ても聞いてもらえないと意味がないからです。中身を見てもらえないなら、お金を持っていてもらう理由がありません。<br><br><strong style="color:var(--navy)">リスクは、こちらが持ちます。</strong></p>
     </div>
