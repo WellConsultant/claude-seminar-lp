@@ -209,8 +209,24 @@ footer{background:#1a1a1a;color:#aaa;padding:36px 20px;text-align:center;font-si
 footer a{color:#bbb;margin:0 8px;text-decoration:underline}
 footer .copy{margin-top:14px;color:#888}
 
+/* 画像を本文の行を奪わない小サイズ右寄せサムネに変更（2026-05-06阿久津さん指摘対応） */
+.thumb-right{float:right;width:240px;max-width:38%;margin:6px 0 16px 24px;padding:0;border-radius:8px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.thumb-right img{display:block;width:100%;height:auto;border-radius:8px}
+.thumb-left{float:left;width:240px;max-width:38%;margin:6px 24px 16px 0;padding:0;border-radius:8px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.thumb-left img{display:block;width:100%;height:auto;border-radius:8px}
+.thumb-row{display:flex;gap:16px;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin:24px auto;padding:0;clear:both}
+.thumb-row figure{flex:0 1 220px;margin:0;padding:0;border-radius:8px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.thumb-row figure img{display:block;width:100%;height:150px;object-fit:cover;border-radius:8px}
+.thumb-clear{clear:both;display:block;height:0;line-height:0;font-size:0}
+.thumb-final{margin:0;padding:0}
+.thumb-final img{width:100%;height:auto;display:block;max-height:280px;object-fit:cover}
+
 @media(max-width:720px){
   body{font-size:16px}
+  .thumb-right,.thumb-left{float:none;width:60%;max-width:60%;margin:18px auto;display:block}
+  .thumb-row figure{flex:0 1 45%}
+  .thumb-row figure img{height:120px}
+  .thumb-final img{max-height:180px}
   .wrap{padding:0 18px}
   .section{padding:50px 0}
   .hero{padding:50px 16px}
@@ -301,9 +317,10 @@ footer .copy{margin-top:14px;color:#888}
     <p>ちょっと想像してみてほしいのですが、</p>
     <p>もし今から1ヶ月後、自社のHPから良質な問い合わせが毎週届くようになっていたり、HP・LP・SNSが1本の線で繋がって、勝手に売上が回り出していたり、クライアント案件として「ファネルハブ構築」を100万・200万・300万で提案できるようになっていたら…。</p>
     <p>あなたの1日、そして売上、専門家としての立ち位置は、どんなふうに変わっているでしょうか？</p>
-    <figure style="margin:30px auto;max-width:880px"><img src="cp-img-05-problem-owner.jpg" alt="HP・LP・SNSを点で打ち続けて疲弊する経営者" loading="lazy" style="border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.10);width:100%"></figure>
+    <figure class="thumb-right"><img src="cp-img-05-problem-owner.jpg" alt="HP・LP・SNSを点で打ち続けて疲弊する経営者" loading="lazy"></figure>
     <p class="section-break">毎週のSNS投稿に追われ、点で打ち続けるLP制作で消耗し、クライアントから「HP作っても問い合わせ来ないんだけど」と言われて言葉に詰まる――そんな状態が、<mark>「うちのHPは、勝手に売上を生む装置です」と胸を張って言える状態</mark>に変わる。</p>
     <p>こんな変化も、決して夢物語ではないんです。<mark>信じられないかもしれませんが、これは真実です。</mark>少しだけ、お時間をください。</p>
+    <span class="thumb-clear"></span>
   </div>
 </section>
 
@@ -321,9 +338,9 @@ footer .copy{margin-top:14px;color:#888}
 
 <section class="section" style="background:var(--gray-bg)">
   <div class="wrap">
-    <h2 class="h2-big">3つの「常識」を、<br>根本から書き換えます</h2>
+    <h2 class="h2-big">なぜ、同じ業界の中で<br>「HPから問い合わせが来る人」と<br>「来ない人」がここまで分かれるのか？</h2>
     <p style="font-size:18px;line-height:1.95;color:var(--ink);margin:0 auto 36px;max-width:820px;font-weight:500">
-      なぜ、同じ業界・同じ職種で、<mark>HPから問い合わせが来る人と、来ない人</mark>がここまで分かれるのか。たどり着いた答えは、「持っている常識が違う」ということでした。このワークショップで、その常識を1つずつ書き換えていきます。
+      同じ業界・同じ職種で、HPから問い合わせが来る人と、来ない人。たどり着いた答えは、「持っている前提が違う」ということでした。このワークショップで一緒に見ていきたい3つを、先にお伝えします。
     </p>
     <div class="belief-block">
       <h3>① HPは「看板」ではなく「稼ぐ装置」である</h3>
@@ -359,11 +376,11 @@ footer .copy{margin-top:14px;color:#888}
 <section class="section" style="background:#fff">
   <div class="wrap">
     <h2 class="h2-big">なぜ、これほど多くの人が<br>HPで集客できないのか？<br><span style="color:var(--red);font-size:0.7em">――「3つの壁」が立ちはだかっているから。</span></h2>
-    <figure style="margin:0 auto 36px;max-width:980px"><img src="cp-img-01-three-walls.jpg" alt="人は見ない・信じない・行動しない――3つの壁のイメージ" loading="lazy" style="border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.10);width:100%"></figure>
-    <p style="font-size:19px;line-height:1.85;color:var(--ink);margin:0 auto 36px;max-width:840px;text-align:center;font-weight:500">
-      これは私が12年・累計300回以上の現場で出した結論です。<br>
-      HPでも、LPでも、広告でも、SNSでも――<mark style="background:#fff59d;padding:2px 6px">うまくいかない理由はいつも、たった3つの壁</mark>。
+    <figure class="thumb-right"><img src="cp-img-01-three-walls.jpg" alt="人は見ない・信じない・行動しない――3つの壁のイメージ" loading="lazy"></figure>
+    <p style="font-size:19px;line-height:1.85;color:var(--ink);margin:0 auto 36px;max-width:840px;font-weight:500">
+      これは私が12年・累計300回以上の現場で出した結論です。HPでも、LPでも、広告でも、SNSでも――<mark style="background:#fff59d;padding:2px 6px">うまくいかない理由はいつも、たった3つの壁</mark>。
     </p>
+    <span class="thumb-clear"></span>
     <div class="belief-block" style="border-left-color:var(--red)">
       <h3 style="color:var(--red)">壁① 人は、見ない。</h3>
       <ul>
@@ -403,7 +420,7 @@ footer .copy{margin-top:14px;color:#888}
       従来の集客は、見てもらえなければ終わり。信じてもらえなければ終わり。行動してもらえなければ終わり。<br>
       つまり、<u style="text-decoration-color:var(--gold);text-decoration-thickness:3px">3つの壁すべてを、たった1回の接触で同時に越えなければ売れない</u>――そんな無茶な勝負をしているのが、今の集客の正体です。
     </p>
-    <figure style="margin:36px auto 0;max-width:920px"><img src="cp-img-02-bucket-vs-pipe.jpg" alt="穴の空いたバケツに水を注ぎ続ける従来集客と、線で繋いだファネルハブの違い" loading="lazy" style="border-radius:10px;box-shadow:0 12px 36px rgba(0,0,0,.30);width:100%"></figure>
+    <figure class="thumb-right" style="box-shadow:0 8px 22px rgba(0,0,0,.30)"><img src="cp-img-02-bucket-vs-pipe.jpg" alt="穴の空いたバケツに水を注ぎ続ける従来集客と、線で繋いだファネルハブの違い" loading="lazy"></figure>
     <p style="font-size:24px;line-height:1.7;margin:36px auto 0;max-width:820px;font-weight:900;color:var(--gold)">
       これはまるで、<br>「あなたの空いたバケツに、水を注ぎ続けている」ようなもの。
     </p>
@@ -419,11 +436,11 @@ footer .copy{margin-top:14px;color:#888}
 <section class="section" style="background:#fff">
   <div class="wrap">
     <h2 class="h2-big">ではどうすればいいのか？<br><span style="color:var(--orange-deep)">――答えは「ベビーステップ」の設計です。</span></h2>
-    <figure style="margin:0 auto 36px;max-width:980px"><img src="cp-img-03-baby-steps.jpg" alt="ベビーステップで段階的に接触機会を作る設計のイメージ" loading="lazy" style="border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.10);width:100%"></figure>
-    <p style="font-size:19px;line-height:1.85;color:var(--ink);margin:0 auto 28px;max-width:860px;text-align:center;font-weight:500">
-      <mark style="background:#fff59d;padding:2px 6px">一回で仕留めようとせず、スルーされない設計に変える。</mark><br>
-      これがファネルハブの根っこにある考え方です。
+    <figure class="thumb-right"><img src="cp-img-03-baby-steps.jpg" alt="ベビーステップで段階的に接触機会を作る設計のイメージ" loading="lazy"></figure>
+    <p style="font-size:19px;line-height:1.85;color:var(--ink);margin:0 auto 28px;max-width:860px;font-weight:500">
+      <mark style="background:#fff59d;padding:2px 6px">一回で仕留めようとせず、スルーされない設計に変える。</mark>これがファネルハブの根っこにある考え方です。
     </p>
+    <span class="thumb-clear"></span>
     <div class="belief-block">
       <h3>"事前情報"を与えるだけで、理解度は2.6倍に変わる</h3>
       <ul>
@@ -453,7 +470,9 @@ footer .copy{margin-top:14px;color:#888}
       <mark style="background:var(--gold);padding:4px 12px;border-radius:4px;color:var(--navy-deep)">接触するたびに信頼が積み上がる構造</mark>に作り変える。<br>
       <span style="font-size:0.78em;font-weight:500;display:block;margin-top:14px;line-height:1.85">これを、HP・LP・SNS・メールを"線"で繋いで実装するのが、<strong style="color:var(--orange-deep)">ファネルハブ</strong>の正体です。</span>
     </p>
-    <figure style="margin:40px auto 0;max-width:980px"><img src="cp-img-04-funnel-hub.jpg" alt="ファネルハブ設計図：HPを中心にLP・SNS・メール・記事を線で繋ぐ" loading="lazy" style="border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.10);width:100%"></figure>
+    <span class="thumb-clear"></span>
+    <figure class="thumb-right"><img src="cp-img-04-funnel-hub.jpg" alt="ファネルハブ設計図：HPを中心にLP・SNS・メール・記事を線で繋ぐ" loading="lazy"></figure>
+    <span class="thumb-clear"></span>
   </div>
 </section>
 
@@ -502,7 +521,7 @@ footer .copy{margin-top:14px;color:#888}
       <div style="font-size:20px;font-weight:900;color:var(--ink);line-height:1.7">オンライン1DAYワークショップ<br>（Zoom開催・録画提供あり）</div>
       <div style="font-size:13px;color:var(--muted);margin-top:10px;line-height:1.7">※ アーカイブ動画はご参加者全員に提供いたします<br>※ 当日参加できない場合もアーカイブと30日サポートで実装まで辿り着けます</div>
     </div>
-    <figure style="margin:0 auto 32px;max-width:920px"><img src="cp-img-08-workshop-scene.jpg" alt="ファネルハブ構築ワークショップの当日イメージ" loading="lazy" style="border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.10);width:100%"></figure>
+    <figure class="thumb-right"><img src="cp-img-08-workshop-scene.jpg" alt="ファネルハブ構築ワークショップの当日イメージ" loading="lazy"></figure>
     <p style="text-align:center;font-size:18px;color:var(--ink);margin-bottom:40px;line-height:1.95;font-weight:500">当日、1つずつ順番に進めていく全6パート。点でバラバラだったHP・LP・SNSが、線で繋がる感覚を、その日のうちに手に入れていただきます。</p>
     <div class="step"><span class="step-num">PART 01</span><h3>ファネルハブの全体設計図</h3><p>HP・LP・SNS・メールを"1本の線"で繋ぐ設計の頭の中。明日から「何を・どの順番で・どこから手をつけるか」が迷わず決まる状態を作ります。ここを越えるだけで、点で打ち続けてきた疲労感が消えます。</p></div>
     <div class="step"><span class="step-num">PART 02</span><h3>9割の見込み客を取りこぼさない動線</h3><p>LPだけでは、今すぐ客しか拾えません。残り9割の「まだ買わない見込み客」を、リスト化し、教育し、買ってもらうまでの動線。HPをハブとして使った、9割回収型ファネルの組み方を実装します。</p></div>
@@ -551,7 +570,7 @@ footer .copy{margin-top:14px;color:#888}
 
 <section class="benefit-box">
   <div class="wrap">
-    <figure style="margin:0 auto 30px;max-width:980px"><img src="cp-img-09-after-success.jpg" alt="ファネルハブを実装した1日後の朝の景色" loading="lazy" style="border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);width:100%"></figure>
+    <figure class="thumb-right"><img src="cp-img-09-after-success.jpg" alt="ファネルハブを実装した1日後の朝の景色" loading="lazy"></figure>
     <h2 style="font-size:36px;font-weight:900;color:var(--navy);text-align:center;line-height:1.55;margin:0 0 12px">1日後から、<br><span style="color:var(--orange-deep)">あなたの事業はこう変わります</span></h2>
     <p style="text-align:center;font-size:18px;color:var(--ink);margin:0 0 40px;font-weight:500">ファネルハブが"自分の事業仕様"で動き始めた、次の朝の景色です。</p>
     <div class="benefit-card">
@@ -611,7 +630,7 @@ footer .copy{margin-top:14px;color:#888}
 
 <section class="paths-section">
   <div class="wrap">
-    <figure style="margin:0 auto 30px;max-width:980px"><img src="cp-img-06-two-paths.jpg" alt="2つの道：今までと同じ点での集客 vs ファネルハブで線にする道" loading="lazy" style="border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.10);width:100%"></figure>
+    <figure class="thumb-right"><img src="cp-img-06-two-paths.jpg" alt="2つの道：今までと同じ点での集客 vs ファネルハブで線にする道" loading="lazy"></figure>
     <p class="paths-lead">…いま、あなたには<br><mark style="background:#ffe066;padding:4px 14px;border-radius:4px">2つの道</mark>があります。</p>
     <div class="path-block path-bad">
       <h3>今までと同じ"看板のままのHP"を放置する</h3>
@@ -625,7 +644,7 @@ footer .copy{margin-top:14px;color:#888}
       <p>ですが、あなたが1人でHP・LP・SNSを点で組み続けるよりも、遥かに高い確率で成果が出ることはお約束できます。なぜなら、私が「許認可のプロ」であるあなたに、私の「ファネルハブ実装のプロ」としての設計図を、12年・300回以上の現場でしか手に入らない形で、そのままお渡しするからです。</p>
       <div class="future"><strong>3〜5年後：</strong> 自社HPに毎週、良質な問い合わせが入っている。クライアント案件として「ファネルハブ構築」を100万・200万・300万で提案できる。「成果を出せる専門家」のポジションを、業界先行で押さえている――。あなたが1日のワークショップで手に入れた設計図が、3〜5年後の事業を支える土台になります。</div>
     </div>
-    <p style="font-size:20px;line-height:1.95;color:var(--ink);margin:40px 0 0;font-weight:500;text-align:center">どちらの道を選ぶかは、あなた次第です。でも、ここまで読んでくれたということは、<mark style="background:#fff59d;padding:2px 6px">あなたの答えは、もう決まっている</mark>はずです。</p>
+    <p style="font-size:20px;line-height:1.95;color:var(--ink);margin:40px 0 0;font-weight:500;text-align:center">どちらの道を選ぶかは、あなた次第です。ここまで読んでくださったということは、<mark style="background:#fff59d;padding:2px 6px">心の中で、もうどちらかを選び始めている</mark>かもしれません。</p>
   </div>
 </section>
 
@@ -657,7 +676,7 @@ footer .copy{margin-top:14px;color:#888}
         <div class="ba-note">買い切り／永久アップデート付き／全額返金保証</div>
       </div>
     </div>
-    <p style="font-size:18px;line-height:1.95;color:var(--ink);margin:20px 0;font-weight:500;text-align:center">合計93.5万円相当 → <mark style="background:#ffe066;padding:2px 8px">49,800円（税込）</mark><br>あなたが手にする結果――1案件300万円規模の提案ができるようになる、3〜5年後の未来――と比べてみれば、迷う理由はないはずです。</p>
+    <p style="font-size:18px;line-height:1.95;color:var(--ink);margin:20px 0;font-weight:500;text-align:center">合計93.5万円相当 → <mark style="background:#ffe066;padding:2px 8px">49,800円（税込）</mark><br>あなたが手にする結果――1案件300万円規模の提案ができるようになる、3〜5年後の未来――と比べてみれば、検討する価値はあるのではないでしょうか。</p>
     <p style="font-size:17px;line-height:1.95;color:var(--ink-2);text-align:center;font-weight:700">ただし、このオファーの有効期限は <span style="color:var(--red)">2026年5月20日（火）23:59</span> までの期間限定です。期日を待たずに上限に達した場合、そこで販売は終了となります。</p>
     <div style="text-align:center;margin-top:36px">
       <div class="countdown-bar" style="background:linear-gradient(90deg,var(--navy) 0%,#1a4680 50%,var(--navy) 100%);max-width:640px;margin:0 auto 24px;border-top:none;border-bottom:none;border-radius:8px;padding:18px 20px">
@@ -679,7 +698,7 @@ footer .copy{margin-top:14px;color:#888}
 <section class="section" style="background:#fff">
   <div class="wrap">
     <h2 class="h2-big">リスクは、<br>こちらが全部引き受けます</h2>
-    <figure style="margin:0 auto 24px;max-width:540px"><img src="cp-img-07-guarantee.jpg" alt="100%全額返金保証バッジ" loading="lazy" style="border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.10);width:100%"></figure>
+    <figure class="thumb-right" style="width:200px"><img src="cp-img-07-guarantee.jpg" alt="100%全額返金保証バッジ" loading="lazy"></figure>
     <div class="guarantee">
       <div class="stamp">100%</div>
       <h3>全額返金保証</h3>
@@ -720,7 +739,7 @@ footer .copy{margin-top:14px;color:#888}
 </section>
 
 <section style="padding:0;margin:0">
-  <figure style="margin:0;padding:0"><img src="cp-img-10-final-sunrise.jpg" alt="今日の決断が3〜5年後の未来を変える" loading="lazy" style="width:100%;display:block"></figure>
+  <figure class="thumb-final"><img src="cp-img-10-final-sunrise.jpg" alt="今日の決断が3〜5年後の未来を変える" loading="lazy"></figure>
 </section>
 <section class="final-cta" id="cta">
   <div class="wrap">
