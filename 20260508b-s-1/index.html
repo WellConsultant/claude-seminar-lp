@@ -27,6 +27,35 @@
   --orange:#f39800;--orange-deep:#e8821a;--red:#d8292f;--red-bg:#b71c1c;
   --highlight:#fff59d;--highlight-strong:#ffe066;--gray-bg:#f6f6f6;--border:#e5e5e5;
 }
+
+/* 価値プレゼン用 積み上げ型ブレット */
+.value-stack{background:#fff;border:2px solid var(--navy);border-radius:10px;padding:36px 40px;max-width:860px;margin:0 auto;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.value-stack .vs-lead{font-size:18px;line-height:1.95;color:var(--ink);margin-bottom:24px;font-weight:500}
+.price-bullets{list-style:none;padding:0;margin:0 0 24px 0}
+.price-bullets li{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;padding:18px 0;border-bottom:1px dashed #d8d8d8}
+.price-bullets li:last-child{border-bottom:none}
+.price-bullets .pb-item{font-size:17px;line-height:1.7;color:var(--ink);font-weight:700}
+.price-bullets .pb-item small{display:block;font-size:14px;color:var(--ink-2);font-weight:500;margin-top:4px;line-height:1.7}
+.price-bullets .pb-value{font-size:18px;color:var(--red);font-weight:900;white-space:nowrap;align-self:start;font-family:Georgia,"Times New Roman",serif}
+.price-bullets li.bonus .pb-item::before{content:"BONUS ";color:var(--orange-deep);font-size:12px;font-weight:900;letter-spacing:.15em;margin-right:6px}
+.value-stack .vs-total{background:var(--navy);color:var(--gold);font-size:24px;font-weight:900;text-align:center;padding:22px 20px;border-radius:8px;margin-bottom:24px;letter-spacing:.04em}
+.value-stack .vs-total .vs-total-num{font-size:36px;color:var(--gold);font-family:Georgia,serif;letter-spacing:-.02em;margin:0 6px}
+.value-stack .vs-arrow{text-align:center;font-size:28px;color:var(--orange-deep);font-weight:900;margin:18px 0;line-height:1}
+.value-stack .vs-now{background:linear-gradient(180deg,#fff8e1 0%,#fff3c4 100%);border:3px solid var(--gold);border-radius:8px;padding:30px 24px;text-align:center}
+.value-stack .vs-now .vs-now-label{font-size:16px;font-weight:900;color:var(--navy);margin-bottom:10px;letter-spacing:.1em}
+.value-stack .vs-now .vs-now-price{font-size:54px;font-weight:900;color:var(--red);line-height:1.1;font-family:Georgia,serif}
+.value-stack .vs-now .vs-now-price .yen{font-size:30px;margin-right:4px}
+.value-stack .vs-now .vs-now-price .unit{font-size:18px;color:var(--ink-2);margin-left:6px;font-weight:700;font-family:"Noto Sans JP",sans-serif}
+.value-stack .vs-now .vs-now-note{font-size:13px;color:var(--muted);margin-top:10px}
+@media(max-width:720px){
+  .value-stack{padding:26px 20px}
+  .price-bullets li{grid-template-columns:1fr;gap:6px}
+  .price-bullets .pb-value{justify-self:end}
+  .value-stack .vs-total{font-size:18px;padding:18px 14px}
+  .value-stack .vs-total .vs-total-num{font-size:26px}
+  .value-stack .vs-now .vs-now-price{font-size:40px}
+  .value-stack .vs-now .vs-now-price .yen{font-size:22px}
+}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;font-weight:500;line-height:1.85;-webkit-font-smoothing:antialiased;font-size:18px}
 img{max-width:100%;height:auto;display:block}
@@ -404,12 +433,47 @@ footer .copy{margin-top:14px;color:#888}
       <p style="font-size:18px;line-height:1.95;color:var(--ink);margin-bottom:18px">オンライン開催・参加日は別途ご案内・録画あり。当日参加できなくても、後からアーカイブで全部追えます。</p>
       <p style="font-size:18px;line-height:1.95;color:var(--ink);margin-bottom:30px;font-weight:500">カリキュラムは、6つのパートに分けて進みます。</p>
     </div>
-    <div class="step"><span class="step-num">PART 01</span><h3>現状診断</h3><p>いま動いているホームページ・LP・広告を一緒に見て、「どこで人が止まっているか」「どこで信頼が崩れているか」を特定します。これをやらずに先に進むと、設計しても穴の空いたバケツに水を入れることになります。</p></div>
-    <div class="step"><span class="step-num">PART 02</span><h3>出会いの入口設計</h3><p>最初に「目に止まる入口」を、業種別に組みます。検索からの入口・SNSからの入口・紹介からの入口を、自分の業界に合わせて決めていきます。</p></div>
-    <div class="step"><span class="step-num">PART 03</span><h3>信頼を作るコンテンツ動線</h3><p>入口に来た人を、いきなり売り込まずに、まず信じてもらうための動線を組みます。実績・声・記事・ストーリー、どれをどの順番で見せるかを設計します。</p></div>
-    <div class="step"><span class="step-num">PART 04</span><h3>行動を促すクロージング</h3><p>信じた人に「いま動く理由」を渡す場面を組み立てます。LPの締めくくり・メールの最後・問い合わせフォーム直前、それぞれを書き直します。</p></div>
-    <div class="step"><span class="step-num">PART 05</span><h3>全体をひとつの装置に繋ぐ</h3><p>PART 02〜04を、ばらばらの部品ではなく、ひとつの流れとして繋ぎます。ここまで来ると、ホームページが「看板」ではなく「装置」に変わります。</p></div>
-    <div class="step"><span class="step-num">PART 06</span><h3>実装と次の一歩</h3><p>組んだ設計を、実際の自分のサイト・LP・メールに落とすところまで、その日のうちにやります。「分かった」で終わらせず、「動いた」まで持っていきます。</p></div>
+    <div class="step"><span class="step-num">PART 01</span><h3>ファネルハブとは何か（現状診断）</h3>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">何をするか。</strong>まず最初の1時間で、ファネルハブという考え方そのものを腹落ちさせます。「ハブ＝中心駅」のイメージで、いま手元にあるホームページ・LP・SNS・メール・広告が、ばらばらに動いているのか、一本の線で繋がっているのか、を一緒に見ます。そのうえで、自分の現状のホームページ・LP・広告を共有してもらい、「どこで人が止まっているか」「どこで信頼が崩れているか」を1つずつ特定していきます。</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">なぜ必要か。</strong>ハブが見えていないまま設計しても、結局は「単発のページを増やすだけ」で終わるからです。最初に全体像を持っておかないと、PART 02以降の作業がバラバラの部品作りになってしまいます。</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">持って帰れるもの。</strong>「自分の集客が、いまどこで漏れているか」を文字で書き出した1枚の現状診断シート。ここがすべての出発点になります。</p>
+      <p style="margin:0"><strong style="color:var(--navy)">業種別の応用例（士業）。</strong>「事務所サイトはあるのに、SNSと連動していない」「無料相談ページはあるのに、検索からそこに辿り着く動線がない」など、現場でよく出てくる「分断」が一気に見えてきます。</p>
+    </div>
+
+    <div class="step"><span class="step-num">PART 02</span><h3>ワンシング（売れる1メッセージを決める）</h3>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">何をするか。</strong>「自分は、誰に、何を、一言で伝えるのか」を、その日のうちに1つに絞り込みます。サービスメニューを並べるのではなく、「これを言ったらこの業界の人が振り向く」という1メッセージを決める時間です。日本語として違和感がないか、刺さる言葉になっているかを、その場で何度も書き直します。</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">なぜ必要か。</strong>ワンシングが決まらないと、サイトもLPも広告もブレます。読み手は3秒で離脱するので、「何屋さんなのか」「自分のための情報なのか」が一瞬で分からないと、それ以上は読まれません。ここを言語化しておくと、後の動線設計がすべて速くなります。</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">持って帰れるもの。</strong>自分のワンシング（1行コピー）と、その下に並べる3〜5個のサブメッセージ。これだけで、サイトの上半分・SNSのプロフィール・名刺・営業メールの冒頭、すべてに使い回せます。</p>
+      <p style="margin:0"><strong style="color:var(--navy)">業種別の応用例（コンサルタント）。</strong>「経営コンサル」を「○○業界の値上げ専門コンサル」に絞り直す、といった具体的な絞り込み作業を、当日その場でやり切ります。</p>
+    </div>
+
+    <div class="step"><span class="step-num">PART 03</span><h3>テンプレートで土台を組む</h3>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">何をするか。</strong>ゼロから設計図を引くのではなく、すでに動いている実証済みのテンプレートに、自分のワンシングと業種データを当てはめていきます。トップページ・サービスページ・申込ページ・サンクスページ・メール、それぞれの型を当日中にひと通り埋めます。</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">なぜ必要か。</strong>「設計から自分で考える」ことの99%は、すでに誰かが正解を出しています。テンプレートを使うと、考える時間が消えて、書き込む時間だけになります。1日で組み上げ切るには、この「考えなくていい部分は考えない」という割り切りが必要です。</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">持って帰れるもの。</strong>自分のサイト・LP・メールの「枠」が一気に埋まった、書き換え可能なテンプレート一式。当日中に完成形の8割が見える状態になります。</p>
+      <p style="margin:0"><strong style="color:var(--navy)">業種別の応用例（WEB制作会社）。</strong>「制作実績の羅列ページ」を、テンプレートに沿って「課題→解決→成果→次の一手」の流れに組み直します。</p>
+    </div>
+
+    <div class="step"><span class="step-num">PART 04</span><h3>意識レベル毎の動線設計</h3>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">何をするか。</strong>来る人は全員同じではありません。「困りごとはあるけど解決策は知らない人」「解決策は知っているけど自分に合うか疑っている人」「もうほぼ買う気で比較している人」を分けて、それぞれに見せる中身を変えます。当日は、自分の業種で「3つの意識レベルそれぞれが何を見たがるか」を整理し、サイトの中で動線を分岐させていきます。</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">なぜ必要か。</strong>1ページで全員に売ろうとすると、誰にも刺さらないからです。逆に、意識レベルごとに見せる場所を分けると、「真剣な人ほど深く読む」「冷やかしの人は早く離脱する」という、お客さんの自動フィルターが効くようになります。</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">持って帰れるもの。</strong>3つの意識レベル × 自分の業種、の動線マトリクス1枚。これがあれば、次に何を書けばいいかで迷わなくなります。</p>
+      <p style="margin:0"><strong style="color:var(--navy)">業種別の応用例（士業）。</strong>「在留資格って何？」の人と「自分のケースで許可が下りるか不安」の人を、入口から分けて違うページに連れて行く設計を、その場で組みます。</p>
+    </div>
+
+    <div class="step"><span class="step-num">PART 05</span><h3>くみたてる（全部をひとつの装置に繋ぐ）</h3>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">何をするか。</strong>PART 01〜04で作ったパーツ（現状診断・ワンシング・テンプレート・意識レベル動線）を、1本の流れに繋ぎます。「最初に何で出会って、どこで信頼を作って、どこで動いてもらうか」を、ホームページ・LP・SNS・メールをまたいで1つの装置として組み上げます。ここでようやく、看板だったホームページが「動く資産」に変わります。</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">なぜ必要か。</strong>パーツを作っても、繋がっていないと動きません。逆にいうと、繋ぐ作業さえすれば、寝ている間も装置が回り続けます。「組み立て」までやるかどうかが、当日の成果と翌日からの売上を分けます。</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">持って帰れるもの。</strong>自分の事業のファネルハブ全体図（A4・1枚）。どこから人が入って、どこで信頼が積み上がり、どこで申込に至るかが、矢印で繋がった状態の設計図です。</p>
+      <p style="margin:0"><strong style="color:var(--navy)">業種別の応用例（コンサルタント）。</strong>「ブログ→無料診断→個別相談→提案→契約」までの一連の流れを、その日のうちに自分の事業で書ききります。</p>
+    </div>
+
+    <div class="step"><span class="step-num">PART 06</span><h3>実装と次の一歩</h3>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">何をするか。</strong>組み上げた設計図を、実際の自分のサイト・LP・メールに落としていきます。文章を書き換える、ボタンの位置を直す、メールの順序を組み替える──「分かった」で終わらせず、画面の中で「動いた」までやり切ります。最後に、翌日から自分一人で続けるための「次の一歩リスト」を作って、当日のワークを締めます。</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">なぜ必要か。</strong>設計だけ持って帰っても、実装しないと売上は変わりません。多くのワークショップが「考え方は分かったけど自社では止まったまま」になるのは、この最後の実装をやらないからです。</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--navy)">持って帰れるもの。</strong>当日中に書き換えた、本物の自分のサイト・LP・メール。さらに、翌日から30日でやることを書き出した次の一歩リスト。</p>
+      <p style="margin:0"><strong style="color:var(--navy)">業種別の応用例（WEB制作会社）。</strong>自社サイトのトップページを、当日中に「制作実績の羅列」から「装置」に書き換えるところまで完了します。これがそのまま、次の自社の営業ツールになります。</p>
+    </div>
   </div>
 </section>
 
@@ -500,15 +564,53 @@ footer .copy{margin-top:14px;color:#888}
 <section class="section" style="background:var(--gray-bg)">
   <div class="wrap">
     <h2 class="h2-big">いくらの価値があるか</h2>
-    <div style="max-width:820px;margin:0 auto">
-      <p style="font-size:18px;line-height:1.95;color:var(--ink);margin-bottom:22px">このワークショップの中身を、もし普通に組もうとしたら、いくらかかるのか。</p>
-      <p style="font-size:18px;line-height:1.95;color:var(--ink);margin-bottom:18px">PART 01の現状診断を個別で受けると、相場は10万円前後です。</p>
-      <p style="font-size:18px;line-height:1.95;color:var(--ink);margin-bottom:18px">PART 02〜05の設計を別々のコンサルに頼むと、合計で30〜50万円ほどになります。</p>
-      <p style="font-size:18px;line-height:1.95;color:var(--ink);margin-bottom:30px">PART 06の実装支援まで含めると、さらに数十万円が乗ります。</p>
-
-      <p style="font-size:21px;line-height:1.85;color:var(--ink);margin-bottom:30px;font-weight:700;text-align:center">合計で、ざっと <mark style="background:#ffe066;padding:2px 10px">70〜90万円相当</mark> の中身を、1日に圧縮しています。</p>
-
-      <p style="font-size:21px;line-height:1.85;color:var(--ink);margin-bottom:0;font-weight:700;text-align:center">それを、当日価格 <mark style="background:#ffe066;padding:2px 10px">49,800円（税込）</mark> でお渡しします。</p>
+    <div class="value-stack">
+      <p class="vs-lead">ワークショップ本編に加えて、当日その場で使える特典を5つ重ねています。それぞれを単体で外部に依頼した場合の相場を、正直にそのまま並べます。</p>
+      <ul class="price-bullets">
+        <li>
+          <div class="pb-item">ファネルハブ構築ワークショップ（本編）
+            <small>1日完結のオンライン実装ワークショップ。PART 01〜06を通して、自分の事業のファネルハブを当日中に組み上げます。</small>
+          </div>
+          <div class="pb-value">300,000円相当</div>
+        </li>
+        <li class="bonus">
+          <div class="pb-item">特典1：ファネルハブ設計テンプレート（PDF）
+            <small>当日の設計をそのまま落とし込めるテンプレート一式。トップページ・サービスページ・申込ページ・サンクスページ・メールの型がそろっています。</small>
+          </div>
+          <div class="pb-value">98,000円相当</div>
+        </li>
+        <li class="bonus">
+          <div class="pb-item">特典2：業種別動線サンプル集（ファネルハブ制作キット）
+            <small>士業・コンサル・WEB制作会社、それぞれの動線サンプルとパーツ集をまとめたキット。自分の業種に近い形を、そのまま借りて組めます。</small>
+          </div>
+          <div class="pb-value">300,000円相当</div>
+        </li>
+        <li class="bonus">
+          <div class="pb-item">特典3：広告効果が読めるようになる管理シート（GA4ダッシュボード制作AIパイプライン）
+            <small>費用対効果を「感覚」ではなく「数字」で見るための管理シートと、GA4のダッシュボード制作を半自動化するAIパイプライン。当日、自分の数字を入れたところまで一緒に作ります。</small>
+          </div>
+          <div class="pb-value">非売品（300,000円相当）</div>
+        </li>
+        <li class="bonus">
+          <div class="pb-item">特典4：30日間のフォローアップコミュニティ
+            <small>ワークショップ後の30日間、つまずいた場所をその場で質問できるチャットサポート。「組んだけど反応が薄い」「ここの動線、合っているか分からない」を放置せずに直していけます。</small>
+          </div>
+          <div class="pb-value">15,000円相当</div>
+        </li>
+        <li class="bonus">
+          <div class="pb-item">特典5：実装チェックリスト＆ファネルハブ戦略セッション
+            <small>組み上げた装置がちゃんと動くかを自分で確認するためのチェックリスト。さらに、戦略の方向性をすり合わせる初回セッション枠つきです。</small>
+          </div>
+          <div class="pb-value">55,000円相当</div>
+        </li>
+      </ul>
+      <div class="vs-total">合計：<span class="vs-total-num">768,000</span>円相当</div>
+      <div class="vs-arrow">▼</div>
+      <div class="vs-now">
+        <div class="vs-now-label">それを、当日価格</div>
+        <div class="vs-now-price"><span class="yen">¥</span>49,800<span class="unit">（税込）</span></div>
+        <div class="vs-now-note">差額 718,200円ぶんを、こちらで持ちます。</div>
+      </div>
     </div>
   </div>
 </section>
@@ -570,7 +672,7 @@ footer .copy{margin-top:14px;color:#888}
   <div class="wrap">
     <div style="text-align:center;margin-bottom:30px">
       <span class="bonus-ribbon">+ MORE BONUS</span>
-      <h2 style="font-size:32px;font-weight:900;text-align:center;margin-top:18px;line-height:1.55">最後の背中押しとして、<br>追加特典を2つ用意しました</h2>
+      <h2 style="font-size:32px;font-weight:900;text-align:center;margin-top:18px;line-height:1.55">さらに、追加特典を2つ用意しました</h2>
     </div>
     <div class="bonus-card">
       <div class="bonus-num">04</div>
