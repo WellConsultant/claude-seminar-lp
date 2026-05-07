@@ -332,17 +332,21 @@ footer .copy{margin-top:14px;color:#888}
 .kc9-body p.lead{font-size:20px;font-weight:700}
 .kc9-body strong.em{color:var(--navy);font-weight:900}
 .kc9-body strong.warm{color:var(--red-deep);font-weight:900}
-/* メリット段落型（v4） */
-.kc9-merit{padding:28px 0;border-bottom:1px solid #e5e5e5}
-.kc9-merit:last-child{border-bottom:none}
-.kc9-merit h3{font-size:24px;font-weight:900;color:var(--navy);margin-bottom:14px;line-height:1.5}
-.kc9-merit h3 .ml-num{display:inline-block;color:var(--red-deep);font-family:"Helvetica Neue","Hiragino Sans","Noto Sans JP",sans-serif;font-size:28px;margin-right:10px}
-.kc9-merit p{font-size:17px;line-height:1.6;color:var(--ink);margin-bottom:12px;font-weight:500}
-/* PARTカード（KC-swipe9のセクション参考・段落型） */
-.kc9-part{background:#fff;border-left:5px solid var(--navy);padding:32px 36px;margin-bottom:24px;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
-.kc9-part .part-label{display:inline-block;background:var(--navy);color:var(--red);font-weight:900;font-size:14px;letter-spacing:.18em;padding:6px 16px;border-radius:3px;margin-bottom:14px}
+/* メリット段落型（巨大数字 1,2,3） */
+.merit-bullet{display:grid;grid-template-columns:110px 1fr;gap:24px;align-items:start;padding:28px 0;border-bottom:1px solid #e5e5e5}
+.merit-bullet:last-child{border-bottom:none}
+.merit-bullet .m-num{font-size:96px;font-weight:900;color:var(--red);line-height:1;font-family:"Helvetica Neue","Hiragino Sans","Noto Sans JP",sans-serif;text-align:center;letter-spacing:-.04em}
+.merit-bullet .m-content h3{font-size:22px;color:var(--navy);margin:0 0 10px;font-weight:900;line-height:1.5}
+.merit-bullet .m-content p{font-size:17px;line-height:1.6;color:var(--ink);margin-bottom:12px;font-weight:500}
+.merit-bullet .m-content p:last-child{margin-bottom:0}
+/* PARTカード（バッジ赤背景・h3紺・段落型） */
+.kc9-part{background:#fff;padding:32px 36px;margin-bottom:24px;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.kc9-part .part-label{display:inline-block;background:var(--red);color:#fff;font-weight:900;font-size:14px;letter-spacing:.18em;padding:6px 16px;border-radius:3px;margin-bottom:14px}
 .kc9-part h3{font-size:22px;font-weight:900;color:var(--navy);line-height:1.5;margin-bottom:14px}
 .kc9-part p{font-size:17px;line-height:1.6;color:var(--ink-2);margin-bottom:0;font-weight:500}
+.kc9-part .part-thumb{float:right;width:200px;max-width:35%;margin:0 0 14px 24px;border-radius:6px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.10)}
+.kc9-part .part-thumb img{display:block;width:100%;height:auto}
+.kc9-part::after{content:"";display:block;clear:both}
 /* 違い ブレット型 */
 .kc9-diff-bullet{padding:18px 0 18px 32px;border-bottom:1px dashed #d8d8d8;position:relative;font-size:17px;line-height:1.6;color:var(--ink);font-weight:500}
 .kc9-diff-bullet:last-child{border-bottom:none}
@@ -370,8 +374,11 @@ footer .copy{margin-top:14px;color:#888}
   .kc9-photo-right{width:110px;margin:0 0 14px 14px}
   .kc9-photo-right img{width:110px;height:110px}
   .kc9-body p{font-size:16px}
-  .kc9-merit h3,.kc9-part h3,.kc9-path h3{font-size:19px}
+  .merit-bullet .m-content h3,.kc9-part h3,.kc9-path h3{font-size:19px}
+  .merit-bullet{grid-template-columns:60px 1fr;gap:14px}
+  .merit-bullet .m-num{font-size:54px}
   .kc9-part{padding:22px 20px}
+  .kc9-part .part-thumb{width:120px;margin:0 0 10px 14px}
   .kc9-bonus{padding:22px 20px}
   .kc9-bonus h4{font-size:18px}
 }
@@ -422,7 +429,7 @@ footer .copy{margin-top:14px;color:#888}
   <div class="wrap">
     <h2 class="kc9-bigtitle">なぜこのワークショップを作ったのか？</h2>
     <div class="kc9-body">
-      <figure class="thumb-right"><img src="article_thumbnail.jpg" alt="ファネルハブの全体像"></figure>
+      <figure class="thumb-right"><img src="slide-img/slide-02-funnel-definition.jpg" alt="ファネルハブの全体像"></figure>
       <p>子どものころ、プラモデルを組み立てたことはありますでしょうか。</p>
       <p>箱を開けると、プラスチックのパーツがランナーにくっついた状態でぎっしり詰まっています。色のついたパーツ、ネジ、シール。パーツだけを並べても、何ができるのかは分かりません。</p>
       <p>ですが、組み立てていくと、最後に手元に残るのは、動く完成品です。バラバラのパーツの状態と、組み上がった完成品の状態は、見える景色がぜんぜん違います。</p>
@@ -442,32 +449,29 @@ footer .copy{margin-top:14px;color:#888}
       <p>見込み客は通常、 <strong class="em">3ヶ月〜3年の間に、ゆっくり判断する</strong> と言われています。その検討期間の間、彼らはあなたの名前を検索し、SNSを見て、何度もあなたの情報に触れているのかもしれません。</p>
       <p>LPの書き方を学ぶ。広告の入札を学ぶ。SNSの伸ばし方を学ぶ。一つひとつの技術を磨くこと自体は素晴らしいことです。ですが、 <strong class="em">その95%の検討期間に何を見せるか</strong> を受け止める集客装置がないまま現場に出ると、せっかくのコピーも広告も、「1回きりの一発勝負」で終わってしまうことがあるかもしれません。</p>
       <p>クライアントの現場では「広告は出した、LPもある、SNSも頑張っている。でも申込が続かない」という相談がよくあります。話をうかがってみると、ミニサイト・ファネル・ブログがバラバラに散らばっていて、検討中の見込み客が「あなたが何者か」を確かめに来ても、古いLPだけが出てくるという方が多いように感じます。</p>
-      <p>そこで先に <strong class="em">ファネルハブ</strong> という次世代型のHPのような集客装置を組んでおくと、現場の景色が変わってくる方も多くいて、海外ではむしろ主流のホームページの型として活用されているんです。</p>
+      <p>そこで先に <strong class="em">ファネルハブ</strong> という次世代型のHPのような集客装置を組んでおくと、現場の景色が変わってくる方も多くいて、これからのホームページの型として広がりつつある考え方です。</p>
     </div>
   </div>
 </section>
 
-<!-- ファネルハブを手に入れた海外の事例（スライド準拠：VOICE 02・03） -->
+<!-- ある事業者の声（VOICE 1・2） -->
 <section class="kc9-dark">
   <div class="wrap">
-    <h2 class="kc9-bigtitle">ファネルハブを手に入れた<br>海外の事業者の声</h2>
+    <h2 class="kc9-bigtitle">ある事業者の声</h2>
 
-    <p style="font-size:17px;line-height:1.65;color:#e5ebf2;margin-bottom:24px">海外では、ファネルハブはすでに先行して活用されていて、結果を出している方々が多くいます。スライドでも触れている事例を、いくつかご紹介させてください。</p>
+    <p style="font-size:17px;line-height:1.65;color:#e5ebf2;margin-bottom:24px">ファネルハブの考え方を取り入れて、現場の景色が変わってきた方々の話を、いくつかご紹介させてください。</p>
 
-    <div style="background:rgba(255,255,255,0.06);border-left:4px solid var(--red);padding:24px 28px;border-radius:6px;margin-bottom:22px">
-      <p style="font-size:15px;color:#cbd3df;letter-spacing:.05em;margin-bottom:10px;font-weight:700">VOICE 1｜オンラインコースクリエイター（デジタル教育・複数ニッチ展開）</p>
-      <p style="font-size:17px;line-height:1.65;color:#fff;margin-bottom:14px">「複数のコースを別サイトで売っていた頃は、運用が破綻寸前でした。1つのハブに集約し、コースごとに専用ファネルを差し込む設計に変えてから、新講座のリリースが圧倒的に楽になり、購入率も大きく改善しました。」</p>
-      <p style="font-size:18px;font-weight:900;color:var(--red);line-height:1.5;margin-bottom:0">RESULT：単一ファネル累計売上 100万ドル超（Two Comma Club達成）</p>
+    <div style="background:rgba(255,255,255,0.06);padding:24px 28px;border-radius:6px;margin-bottom:22px">
+      <p style="font-size:15px;color:#cbd3df;letter-spacing:.05em;margin-bottom:10px;font-weight:700">VOICE 1｜ある教育コンテンツの作り手</p>
+      <p style="font-size:17px;line-height:1.65;color:#fff;margin-bottom:0">ある教育コンテンツの作り手の話があります。複数のコースを別サイトで売っていた頃は運用が破綻寸前でしたが、1つの集客装置に集約し、コースごとに専用ファネルを差し込む設計に変えてから、新講座のリリースが楽になり、購入率も大きく改善した方もいるそうです。</p>
     </div>
 
-    <div style="background:rgba(255,255,255,0.06);border-left:4px solid var(--red);padding:24px 28px;border-radius:6px;margin-bottom:24px">
-      <p style="font-size:15px;color:#cbd3df;letter-spacing:.05em;margin-bottom:10px;font-weight:700">VOICE 2｜フィットネスコーチ（健康・フィットネス／オンライン指導）</p>
-      <p style="font-size:17px;line-height:1.65;color:#fff;margin-bottom:14px">「以前は『コンテンツの質が悪いから売れないのだ』と思っていました。本当に足りなかったのは『動線』だったのです。ファネル設計を学び、ハブで全体を統制してから、同じコンテンツでも結果が一変しました。」</p>
-      <p style="font-size:18px;font-weight:900;color:var(--red);line-height:1.5;margin-bottom:0">RESULT：累計売上 1,000万ドル超／Two Comma Club 6回達成</p>
+    <div style="background:rgba(255,255,255,0.06);padding:24px 28px;border-radius:6px;margin-bottom:24px">
+      <p style="font-size:15px;color:#cbd3df;letter-spacing:.05em;margin-bottom:10px;font-weight:700">VOICE 2｜あるオンラインコーチ</p>
+      <p style="font-size:17px;line-height:1.65;color:#fff;margin-bottom:0">あるオンラインコーチの話もあります。以前は「コンテンツの質が悪いから売れないのだ」と思っていたそうですが、本当に足りなかったのは「動線」だった、と気づき、ファネル設計を学び、ハブで全体を統制してから、同じコンテンツでも結果が一変したそうです。</p>
     </div>
 
-    <p>派手な裏技を入れたわけでもなければ、新しい広告媒体に飛び込んだわけでもありません。バラバラに散らばっていたミニサイト・ファネル・ブログ・SNS・実績を、1つの集客装置として組み直して、95%の検討中の見込み客との接点を維持できるようにしただけ。海外で先行している考え方なので、日本でも同じ動きを再現できる方が出てくるのかもしれません。</p>
-    <p style="font-size:13px;color:#9aa5b5;margin-top:14px">※Two Comma Club＝ClickFunnels公式の表彰制度。単一ファネルで100万ドル超を達成した者に贈られる。出典：勉強会本番スライド「集客できる次世代型HPの作り方」VOICE 02・VOICE 03。</p>
+    <p>派手な裏技を入れたわけでもなければ、新しい広告媒体に飛び込んだわけでもありません。バラバラに散らばっていたミニサイト・ファネル・ブログ・SNS・実績を、1つの集客装置として組み直して、95%の検討中の見込み客との接点を維持できるようにしただけ。同じ動きを再現できる方が出てくるのかもしれません。</p>
   </div>
 </section>
 
@@ -476,22 +480,31 @@ footer .copy{margin-top:14px;color:#888}
   <div class="wrap" style="max-width:920px">
     <h2 class="kc9-bigtitle">ファネルハブを知れば、<br>あなたにもこんな3つのメリットが…</h2>
 
-    <div class="kc9-merit">
-      <h3><span class="ml-num">①</span>契約が長く続く</h3>
-      <p>単発のLPを納品して終わりではなく、クライアントの現場に <strong class="em">ホームページの代わりに動き続ける、次世代型の集客装置</strong> として渡せるようになるかもしれません。次の月もその次の月も、装置が動き続けるので、契約が自然と続きやすくなる方もいます。</p>
-      <p>なぜなら、ファネルハブは、あなたのこと、あなたのサービス、あなたのサービスで得られる価値をわかる人を醸成する装置になるからです。</p>
+    <div class="merit-bullet">
+      <div class="m-num">1</div>
+      <div class="m-content">
+        <h3>契約が長く続く</h3>
+        <p>単発のLPを納品して終わりではなく、クライアントの現場に <strong class="em">ホームページの代わりに動き続ける、次世代型の集客装置</strong> として渡せるようになるかもしれません。次の月もその次の月も、装置が動き続けるので、契約が自然と続きやすくなる方もいます。</p>
+        <p>なぜなら、ファネルハブは、あなたのこと、あなたのサービス、あなたのサービスで得られる価値をわかる人を醸成する装置になるからです。</p>
+      </div>
     </div>
 
-    <div class="kc9-merit">
-      <h3><span class="ml-num">②</span>単価が上がる</h3>
-      <p>広告費・LP制作費・ホームページ制作費を <strong class="em">「ファネルハブという次世代型の集客装置を組み上げる1セットの提案」</strong> として渡せるようになると、提案の説得力が変わってきます。1案件あたりの単価が上がる方も出てきます。</p>
-      <p>というのも、ファネルハブは、意識レベル（興味の濃度）が違う人に対して、それぞれの教育や興味や関心を醸成する仕組みを持っています。そして、ホームページでは体験できない仕組みを兼ね備えているからです。</p>
+    <div class="merit-bullet">
+      <div class="m-num">2</div>
+      <div class="m-content">
+        <h3>単価が上がる</h3>
+        <p>広告費・LP制作費・ホームページ制作費を <strong class="em">「ファネルハブという次世代型の集客装置を組み上げる1セットの提案」</strong> として渡せるようになると、提案の説得力が変わってきます。1案件あたりの単価が上がる方も出てきます。</p>
+        <p>というのも、ファネルハブは、意識レベル（興味の濃度）が違う人に対して、それぞれの教育や興味や関心を醸成する仕組みを持っています。そして、ホームページでは体験できない仕組みを兼ね備えているからです。</p>
+      </div>
     </div>
 
-    <div class="kc9-merit">
-      <h3><span class="ml-num">③</span>紹介で仕事の依頼が来る</h3>
-      <p>成果が出るクライアントは、自分の仲間に話してくれることがあります。何もしなくても「実は知り合いに紹介したくて…」という連絡が届くようになる方もいます。営業を増やさなくても、案件が増えていくかもしれません。</p>
-      <p>なぜこんなことが起こるのか？理屈はシンプルです。紹介で出会う初めての見込み客もすんなりあなたのことを知ることになるからです。ファネルハブはそんな力を持っているんです。</p>
+    <div class="merit-bullet">
+      <div class="m-num">3</div>
+      <div class="m-content">
+        <h3>紹介で仕事の依頼が来る</h3>
+        <p>成果が出るクライアントは、自分の仲間に話してくれることがあります。何もしなくても「実は知り合いに紹介したくて…」という連絡が届くようになる方もいます。営業を増やさなくても、案件が増えていくかもしれません。</p>
+        <p>なぜこんなことが起こるのか？理屈はシンプルです。紹介で出会う初めての見込み客もすんなりあなたのことを知ることになるからです。ファネルハブはそんな力を持っているんです。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -513,44 +526,50 @@ footer .copy{margin-top:14px;color:#888}
     <div style="text-align:center;margin-bottom:40px">
       <span class="kc9-announce">発表！新講座</span>
       <h2 class="kc9-bigtitle" style="margin-top:14px">ファネルハブ構築ワークショップ</h2>
-      <p style="font-size:20px;font-weight:700;color:var(--navy);text-align:center;line-height:1.55">1日完結のオンライン実装ワークショップ</p>
+      <p style="font-size:20px;font-weight:700;color:var(--navy);text-align:center;line-height:1.55">オンライン実装ワークショップ</p>
     </div>
 
     <p style="font-size:18px;line-height:1.6;color:var(--ink);max-width:860px;margin:0 auto 36px;font-weight:500">このワークショップで手に入れていただけるかもしれない中身を、簡単にご紹介させてください。</p>
 
     <div style="max-width:860px;margin:0 auto">
-      <figure class="thumb-right"><img src="article_thumbnail_with_text.jpg" alt="ファネルハブのイメージ"></figure>
+      <figure class="thumb-right"><img src="slide-img/slide-08-product-intro.jpg" alt="ファネルハブのイメージ"></figure>
       <div class="kc9-part">
+        <figure class="part-thumb"><img src="slide-img/slide-09-part01.jpg" alt="PART 01のイメージ"></figure>
         <span class="part-label">PART 01</span>
         <h3>ファネルハブとは何か（共通言語をそろえる）</h3>
         <p>ファネルハブとは、ミニサイト・ファネル・ブログの集合体を1つに集めた、次世代型の集客装置のこと。「AIのせいでWebサイトは死んだ」と言われる時代に、なぜホームページの代わりに次世代型の集客装置が必要なのか。ハブ＝中心駅という考え方で、HP・LP・SNSをどう線で繋いで、次の一手を出すのか。ここで参加者全員の共通言語をそろえる時間です。</p>
       </div>
 
       <div class="kc9-part">
+        <figure class="part-thumb"><img src="slide-img/slide-10-part02.jpg" alt="PART 02のイメージ"></figure>
         <span class="part-label">PART 02</span>
         <h3>業種別のファネルハブ事例（士業・コンサル・WEB制作）</h3>
         <p>士業・コンサル・WEB制作それぞれで、現場で動いているファネルハブの形は違います。それぞれの事例を見ながら、自分の現場に当てはめると何が変わるかを考える時間です。</p>
       </div>
 
       <div class="kc9-part">
+        <figure class="part-thumb"><img src="slide-img/slide-11-part03.jpg" alt="PART 03のイメージ"></figure>
         <span class="part-label">PART 03</span>
         <h3>ホームページが「看板」から「稼ぐ装置」へ変わる組み立て方</h3>
         <p>ホームページは情報提示型の「看板」、ファネルハブは行動設計型の「稼ぐ装置」。ホームページの代わりに、入り口が広がる・意識レベルに合わせた戦略が打てる・情報不足が解消される・チラシ・LP・広告・SNSへ転用できる、という4つのメリットがある形に組み上げます。</p>
       </div>
 
       <div class="kc9-part">
+        <figure class="part-thumb"><img src="slide-img/slide-12-part04.jpg" alt="PART 04のイメージ"></figure>
         <span class="part-label">PART 04</span>
         <h3>ファネルハブ構築の5STEP</h3>
         <p>ファネルハブとは何か→ホームページとの違い→テンプレートで組み立てる、までの5STEPを順番に通します。実証済みの型を使うので、ゼロから設計せずに時短で立ち上げていただけるかもしれません。</p>
       </div>
 
       <div class="kc9-part">
+        <figure class="part-thumb"><img src="slide-img/slide-13-part05.jpg" alt="PART 05のイメージ"></figure>
         <span class="part-label">PART 05</span>
         <h3>実装ワーク</h3>
         <p>ワークショップ当日に、 <strong class="em">あなた自身のファネルハブ</strong> を組み始める時間を取ります。ミニサイト・ファネル・ブログという3つの要素を組み上げて、入り口を広げて、終わったときに「次にやることが3つに絞れている」状態を目指します。</p>
       </div>
 
       <div class="kc9-part">
+        <figure class="part-thumb"><img src="slide-img/slide-14-part06.jpg" alt="PART 06のイメージ"></figure>
         <span class="part-label">PART 06</span>
         <h3>30日後の運用設計</h3>
         <p>組んだだけでは動きません。このファネルハブは作って終わりではなく、毎日の発信で育てる集客装置です。30日後・60日後・90日後に「何を測って、何を改善するか」を最初に決めておく時間です。ここを設計しておくと、運用がぶれにくくなる方もいます。</p>
@@ -603,7 +622,7 @@ footer .copy{margin-top:14px;color:#888}
       <p>さて、気になる価格ですが、その前に少し考えていただきたいことがあります。</p>
 
       <p>もしファネルハブがなければ、 <strong class="em">ファネルでコンバージョンしなかった95%の検討中の見込み客</strong> との接点を、3ヶ月〜3年のあいだ取り逃し続けることになるかもしれません。月10万円の広告費を入れて、半年で60万円。1年で120万円。受け皿になる次世代型の集客装置がないまま使い続けると、その全部が「効いたかどうか分からないお金」になってしまう方もいます。</p>
-      <p>あなたが自分でファネルハブを組もうと思えば、書籍を読んで、海外のスワイプを集めて、ミニサイト・ファネル・ブログという3つの要素を1つひとつ自分で考えて、半年〜1年かけて少しずつ形にしていくしかないかもしれません。でも、その場合、その間に動かせなかった案件・取り逃したクライアントという、もっと大きな損失やリスクがあるかもしれません。</p>
+      <p>あなたが自分でファネルハブを組もうと思えば、書籍を読んで、スワイプを集めて、ミニサイト・ファネル・ブログという3つの要素を1つひとつ自分で考えて、半年〜1年かけて少しずつ形にしていくしかないかもしれません。でも、その場合、その間に動かせなかった案件・取り逃したクライアントという、もっと大きな損失やリスクがあるかもしれません。</p>
 
       <p>ですが、もしファネルハブを組み上げる順番が手元にあれば、半年〜1年の遠回りをすることなく、現場でそのまま動かしていただけるかもしれません。さらに、業種別の事例があれば、ゼロから考えることもなく、自分の現場に当てはめていただけるかもしれません。</p>
       <p>そんなファネルハブ構築ワークショップを、 <strong class="em">通常 98,000円（税込）のところ、今回特別に 49,800円（税込）</strong> で手に入れていただけます。しかも、 <strong class="em">30日間の全額返金保証</strong> 付きです。そう考えると、この価格がいかに安いかお分かりいただけるかもしれません。とは言え…</p>
@@ -671,15 +690,19 @@ footer .copy{margin-top:14px;color:#888}
     </div>
 
     <div class="kc9-bonus">
+      <figure class="thumb-right"><img src="slide-img/slide-15-bonus1.jpg" alt="特典1のイメージ"></figure>
       <span class="bn-label">特典 1</span>
       <h4>そのまま使えるCFテンプレート<span class="price">98,000円相当</span></h4>
       <p>ファネルハブを動かすためにそのまま使える、ClickFunnelsテンプレートをお渡しします。ゼロから設計せず、実証済みの型から立ち上げていただけるかもしれません。Click Funnelsというツールを使っていなくても、HTML形式でお渡しするので、ワードプレスでもその他のHTMLを埋め込めるツールならどこでも使えます。</p>
+      <div style="clear:both"></div>
     </div>
 
     <div class="kc9-bonus">
+      <figure class="thumb-right"><img src="slide-img/slide-16-bonus2.jpg" alt="特典2のイメージ"></figure>
       <span class="bn-label">特典 2</span>
       <h4>ファネルハブ制作キット<span class="price">30万円相当</span></h4>
       <p>ファネルハブを組み上げるための制作キット一式をお渡しします。ミニサイト・ファネル・ブログという3つの要素を、ホームページの進化形としてどう束ねるかが分かる、現場用のキットです。使い方はシンプル、例えばあなたがClaude Codeを使っているならフォルダごと投げて私流のものを作ってください、と投げてください。そうすればあとはAIがあなたに質問しながら作ってくれる設計になっています。</p>
+      <div style="clear:both"></div>
     </div>
 
     <div class="kc9-bonus">
@@ -705,7 +728,7 @@ footer .copy{margin-top:14px;color:#888}
     </div>
 
     <div class="kc9-bonus" style="border-color:var(--red);background:#f4f7fc">
-      <figure class="thumb-right"><img src="article_thumbnail_with_text.jpg" alt="AIO型ミニブログテンプレート"></figure>
+      <figure class="thumb-right"><img src="slide-img/slide-21-bonus-today.jpg" alt="AIO型ミニブログテンプレート"></figure>
       <span class="bn-label" style="background:var(--red);color:#fff">本日申込特典</span>
       <h4>AIO型ミニブログテンプレート＆スキル（Claude Code）<span class="price">30万円相当</span></h4>
       <p>ファネルハブの中で、検索からの入り口を広げてくれるAIO型ミニブログ。そのテンプレートと、Claude Codeでブログを量産するためのスキルをセットでプレゼントします。今、AIの時代。AIに選ばれるページ設計が肝になったと言われています。その重要な設計を知っているAIに任せれば、自分でゼロから作らなくてもAIが構造をあなたに伝えながら、あなたが本当に伝えたいことを表現する土台となるでしょう。</p>
@@ -722,7 +745,7 @@ footer .copy{margin-top:14px;color:#888}
       <ul class="price-bullets">
         <li>
           <div class="pb-item">ファネルハブ構築ワークショップ（本編）
-            <small>1日完結のオンライン実装ワークショップ。PART 01〜06。</small>
+            <small>オンライン実装ワークショップ。PART 01〜06。</small>
           </div>
           <div class="pb-value">300,000円相当</div>
         </li>
@@ -806,22 +829,28 @@ footer .copy{margin-top:14px;color:#888}
     <p style="font-size:18px;line-height:1.6;color:var(--ink);margin:0 auto 30px;max-width:820px;font-weight:500;text-align:left">ここまで読んでくださったあなたには、今、3つの道があるかもしれません。</p>
 
     <div class="kc9-path">
+      <figure class="thumb-right"><img src="slide-img/slide-17-path1.jpg" alt="1つ目の道のイメージ"></figure>
       <h3>今までと同じ、ホームページのままで広告とLPを毎回1回きりで打ち続ける</h3>
       <p>1つ目の道は、今まで通り、ホームページのままで広告とLPを毎回1回きりで打ち続ける道です。もしあなたが、現状のやり方で十分に案件が回っているのなら、この道がもっとも賢い選択になるでしょう。</p>
       <p>でも、もし、もっと案件を安定させたいのなら…</p>
+      <div style="clear:both"></div>
     </div>
 
     <div class="kc9-path">
+      <figure class="thumb-right"><img src="slide-img/slide-18-path2.jpg" alt="2つ目の道のイメージ"></figure>
       <h3>ファネルハブを自分で組み立てる</h3>
       <p>2つ目の道は、ファネルハブを自分で組み立てる道があります。ファネルハブを組み上げるためには、ミニサイト・ファネル・ブログという3つの要素を、ホームページの代わりとして1つの集客装置にまとめる組み立て方を身につける必要があります。</p>
-      <p>書籍や海外のスワイプで断片的に学ぶことはできるかもしれません。ですが、断片を集めて1つの装置として動かすところまで持っていくのに、半年〜1年の時間がかかってしまうかもしれません。その間、現場のクライアントを待たせてしまう方も出てきます。</p>
+      <p>書籍やスワイプで断片的に学ぶことはできるかもしれません。ですが、断片を集めて1つの装置として動かすところまで持っていくのに、半年〜1年の時間がかかってしまうかもしれません。その間、現場のクライアントを待たせてしまう方も出てきます。</p>
+      <div style="clear:both"></div>
     </div>
 
     <div class="kc9-path good">
+      <figure class="thumb-right"><img src="slide-img/slide-19-path3.jpg" alt="3つ目の道のイメージ"></figure>
       <h3>ファネルハブ構築ワークショップに参加して、講師と一緒に組み立てる</h3>
       <p>3つ目の道は、ファネルハブ構築ワークショップに参加して、講師と一緒に組み立てる道です。</p>
       <p>今、申し上げたように、自力で組み上げる道はとても遠回りな道かもしれません。優秀なあなたなら、いずれは組み上げられるかもしれません。ですが、それがいつになるのかは、誰にも分かりません。</p>
       <p>今回のワークショップでは、業種別事例・ファネルハブを組み立てるためのテンプレート・実装の進め方までセットでお渡しします。なので、もしあなたがこの3つ目の道を選んでくださったのなら、今日のうちにあなた自身のファネルハブを組み始めて持ち帰っていただけるかもしれません。</p>
+      <div style="clear:both"></div>
     </div>
 
     <p style="font-size:18px;line-height:1.6;color:var(--ink);margin:30px auto 14px;max-width:820px;font-weight:500;text-align:left">さて、この3つの道のうち、どれがあなたにとって一番の道でしょうか？</p>
@@ -851,7 +880,7 @@ footer .copy{margin-top:14px;color:#888}
         <span class="now">¥<span class="cp-price">49,800</span><span class="unit">（税込）</span></span>
       </div>
       <p class="cp-deadline-note" style="font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.55;text-align:center">※ お申し込み締切（2026年5月20日 23:59）を過ぎますと、通常価格 98,000円（税込）に戻ります。</p>
-      <p style="font-size:17px;line-height:1.6;color:var(--ink);margin:18px 0 14px;text-align:left;font-weight:500">本編は、1日完結のオンライン実装ワークショップ（PART 01〜06）です。当日その場で、あなた自身のファネルハブを組み始めて持ち帰っていただけるかもしれません。</p>
+      <p style="font-size:17px;line-height:1.6;color:var(--ink);margin:18px 0 14px;text-align:left;font-weight:500">本編は、オンライン実装ワークショップ（PART 01〜06）です。当日その場で、あなた自身のファネルハブを組み始めて持ち帰っていただけるかもしれません。</p>
       <p style="font-size:17px;line-height:1.6;color:var(--ink);margin:0 0 14px;text-align:left;font-weight:500">特典として、<strong>そのまま使えるCFテンプレート</strong>、<strong>ファネルハブ制作キット</strong>、<strong>GA4ダッシュボード制作AIパイプライン（非売品）</strong>、<strong>30日間チャットサポート</strong>、<strong>Funnel Hub戦略セッション</strong>の5点に加えて、本日申込特典として<strong>AIO型ミニブログテンプレート＆スキル</strong>をお付けします。</p>
       <p style="font-size:17px;line-height:1.6;color:var(--ink);margin:0 0 18px;text-align:left;font-weight:500">当日参加できなくても、アーカイブ動画で後からゆっくり追えます。さらに、30日間の全額返金保証つき。安心してご参加ください。</p>
       <a href="https://www.funnel-build.com/20260508b-s-1/" target="_blank" rel="noopener" class="cta-btn" style="font-size:22px;padding:22px 16px">今すぐワークショップに申し込む ▶</a>
