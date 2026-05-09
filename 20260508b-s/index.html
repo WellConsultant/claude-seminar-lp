@@ -423,7 +423,6 @@ footer p{margin:6px 0}
           <img src="article_thumbnail.jpg" alt="オンライン完結型サイトテンプレート アイキャッチ" style="width:100%;height:auto;display:block">
         </div>
       </div>
-      </div>
 
       <div style="text-align:center;margin-top:28px">
         <div style="display:inline-block;background:var(--bg);border:2px solid var(--navy);border-radius:10px;padding:18px 32px">
@@ -483,30 +482,13 @@ footer p{margin:6px 0}
       <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;width:32%;vertical-align:top;color:#333;font-weight:700">販売事業者名</th><td style="padding:12px 8px">Well Consultant合同会社</td></tr>
       <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">運営責任者</th><td style="padding:12px 8px">阿久津 和宏</td></tr>
       <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">メールアドレス</th><td style="padding:12px 8px">info@fp-1.info</td></tr>
-      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">販売価格</th><td style="padding:12px 8px">本勉強会は無料です</td></tr>
+      <tr style="border-bottom:1px solid #e5e5e5"><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">販売価格</th><td style="padding:12px 8px">2,980円（税込）</td></tr>
       <tr><th style="text-align:left;padding:12px 8px;vertical-align:top;color:#333;font-weight:700">提供方法</th><td style="padding:12px 8px">オンライン（EasyWebinar）にて配信</td></tr>
     </table>
     <button onclick="document.getElementById('tokushoho-modal').style.display='none'" style="margin-top:24px;background:var(--navy);color:#fff;border:none;padding:12px 32px;border-radius:6px;font-weight:700;cursor:pointer">閉じる</button>
   </div>
 </div>
 
-<script>
-// 5/8 15:00 (JST) 以降は受付終了バナー表示＋CTA無効化
-(function(){
-  var deadline = new Date('2026-05-08T15:00:00+09:00').getTime();
-  var now = Date.now();
-  if(now >= deadline){
-    document.getElementById('closed-banner').style.display = 'block';
-    document.body.style.paddingTop = '70px';
-    document.querySelectorAll('.cta-btn,.cc-header-cta').forEach(function(btn){
-      btn.style.background = '#999';
-      btn.style.pointerEvents = 'none';
-      btn.removeAttribute('href');
-      if(btn.classList.contains('cta-btn')){btn.textContent = '受付終了しました';}
-    });
-  }
-})();
-</script>
 
 </body>
 </html>
