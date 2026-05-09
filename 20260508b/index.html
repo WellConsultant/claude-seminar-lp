@@ -212,7 +212,7 @@ footer p{margin:6px 0}
     </div>
     <div class="schedule">
       <div class="label">▼ 開催日時（3日程・ご都合の良い日にご参加ください）</div>
-      <div class="date">2026年5月8日（金）／ 5月9日（土）／ 5月15日（金）</div>
+      <div class="date">2026年5月8日（金）／ <span style="text-decoration:line-through;opacity:.45">5月9日（土）</span><span style="color:#c00;font-size:.65em;vertical-align:middle;font-weight:700"> 満員御礼</span>／ 5月15日（金）</div>
       <div class="time">いずれも 15:00〜</div>
       <div class="form">オンラインWEB勉強会・各回ともライブ配信</div>
     </div>
@@ -443,7 +443,7 @@ footer p{margin:6px 0}
   <div class="wrap">
     <h2>今すぐ <span>席を確保</span> してください</h2>
     <div class="schedule">
-      <div class="date">2026年5月8日（金）／ 5月9日（土）／ 5月15日（金）</div>
+      <div class="date">2026年5月8日（金）／ <span style="text-decoration:line-through;opacity:.45">5月9日（土）</span><span style="color:#c00;font-size:.65em;vertical-align:middle;font-weight:700"> 満員御礼</span>／ 5月15日（金）</div>
       <div class="time">いずれも 15:00〜</div>
       <div class="place">オンライン開催・参加無料／お好きな1回をお申込みください</div>
     </div>
@@ -512,10 +512,15 @@ footer p{margin:6px 0}
 </div>
 
 <script>
-// 最終回 5/15 17:00 (JST) 以降は受付終了バナー表示＋CTA無効化
+// 最終回 5/15 17:00 (JST) 以降は受付終了バナー表示＋CTA無効化 / 5/16 以降はアーカイブ販売LPへリダイレクト
 (function(){
   var deadline = new Date('2026-05-15T17:00:00+09:00').getTime();
+  var redirectDate = new Date('2026-05-16T00:00:00+09:00').getTime();
   var now = Date.now();
+  if(now >= redirectDate){
+    window.location.replace('https://lp.well-c.biz/20260508b-s/');
+    return;
+  }
   if(now >= deadline){
     document.getElementById('closed-banner').style.display = 'block';
     document.body.style.paddingTop = '70px';
