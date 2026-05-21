@@ -12,8 +12,8 @@
 <meta property="og:image" content="article_thumbnail_with_text.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-<!-- Stripe Buy Button (v2試作・離脱率比較用) -->
-<script async src="https://js.stripe.com/v3/buy-button.js"></script>
+<!-- Stripe Embedded Checkout (v2試作・LP内常時展開型・離脱率比較用) -->
+<script src="https://js.stripe.com/v3/"></script>
 <style>
 :root{--navy:#0f2d52;--navy-deep:#091b33;--gold:#f5c83a;--orange:#f39800;--orange-deep:#e8821a;--red:#d8292f;--ink:#1a1a1a;--ink-2:#444;--muted:#777;--bg:#f4f7fc;--line:#e5e9f0;--frame-width:640px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -449,13 +449,28 @@ footer p{margin:6px 0}
       <div class="date">2026年5月22日（金）開催分</div>
       <div class="time">本編約2時間・配布資料一式付き／買い切り・無期限視聴</div>
     </div>
-    <!-- v2: Stripe Buy Button 埋め込み（離脱率比較用・ページ離脱なしで決済可能） -->
-    <div style="display:flex;justify-content:center;margin:24px 0">
-      <stripe-buy-button
-        buy-button-id="buy_btn_1TZSVULEBuO6I3WlDYxnAmCd"
-        publishable-key="pk_live_51H83U6LEBuO6I3WlGVcZrYgQDLfccHd1n3fleh29wIa2u2hMlYV0zjOkXJiY7Pi7oNyZe8X4r0F21PzXlm4XNMOj00KCKkv4D3">
-      </stripe-buy-button>
-    </div>
+    <!-- v2: Stripe Embedded Checkout 埋め込み（LP内常時展開型・離脱率比較用） -->
+    <div id="checkout" style="background:#fff;border-radius:12px;min-height:520px;margin:24px 0;padding:8px;overflow:hidden"></div>
+    <script>
+    (function(){
+      var pk = 'pk_live_51H83U6LEBuO6I3WlGVcZrYgQDLfccHd1n3fleh29wIa2u2hMlYV0zjOkXJiY7Pi7oNyZe8X4r0F21PzXlm4XNMOj00KCKkv4D3';
+      var endpoint = 'https://fp-1.info/stripe/create-checkout-session.php';
+      var mountEl = document.getElementById('checkout');
+      function showFallback(msg){
+        mountEl.innerHTML = '<div style="padding:48px 24px;text-align:center;color:#1a1a1a"><p style="font-weight:700;margin-bottom:12px">'+msg+'</p><a href="https://buy.stripe.com/cNibJ2biidFE1x3ds6fMA2u" target="_blank" rel="noopener" style="display:inline-block;background:#f39800;color:#fff;font-weight:900;padding:16px 32px;border-radius:8px;text-decoration:none">▶ 別タブで決済ページを開く（2,980円・税込）</a></div>';
+      }
+      if (typeof Stripe !== 'function') { showFallback('決済システムを読み込めませんでした。下のボタンからお進みください。'); return; }
+      var stripe = Stripe(pk);
+      var fetchClientSecret = function(){
+        return fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'} })
+          .then(function(r){ if(!r.ok){ throw new Error('http '+r.status); } return r.json(); })
+          .then(function(d){ if(!d.client_secret){ throw new Error('no client_secret'); } return d.client_secret; });
+      };
+      stripe.initEmbeddedCheckout({ fetchClientSecret: fetchClientSecret })
+        .then(function(checkout){ checkout.mount('#checkout'); })
+        .catch(function(){ showFallback('決済システムを準備中です。下のボタンからお進みください。'); });
+    })();
+    </script>
     <div class="cta-note" style="margin-top:18px">クレジットカード決済（Stripe）。ご購入完了後、視聴URLと配布資料一式（PDF）を直接メールにてお届けいたします。マイページへのログイン操作は不要です。</div>
   </div>
 </section>
