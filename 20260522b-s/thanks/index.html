@@ -30,6 +30,7 @@ img{max-width:100%;height:auto;display:block}
 .hero h1{font-size:38px;font-weight:900;line-height:1.5;margin-bottom:18px;text-shadow:0 2px 12px rgba(0,0,0,.3)}
 .hero h1 strong{color:var(--gold)}
 .hero .lead{font-size:17px;line-height:1.9;max-width:640px;margin:0 auto;opacity:.95}
+.hero .greet{font-size:20px;font-weight:700;color:var(--gold);margin-bottom:8px;min-height:30px}
 
 .wrap{max-width:880px;margin:0 auto;padding:0 20px}
 
@@ -62,6 +63,19 @@ section h2 .small{display:block;font-size:13px;color:var(--red);margin-bottom:8p
 .next-list li::before{content:"✓";position:absolute;left:0;top:18px;width:30px;height:30px;background:var(--gold);color:var(--navy-deep);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px}
 .next-list li strong{color:var(--navy);font-weight:900}
 
+/* UPSELL */
+.upsell{background:linear-gradient(135deg,#fff8e7 0%,#fffbf0 100%);border:3px solid var(--gold);border-radius:14px;padding:40px 36px;text-align:center;box-shadow:0 8px 32px rgba(245,200,58,.18)}
+.upsell .ribbon{display:inline-block;background:var(--red);color:#fff;padding:6px 22px;border-radius:20px;font-size:13px;font-weight:900;letter-spacing:.08em;margin-bottom:16px}
+.upsell h3{font-size:26px;color:var(--navy);font-weight:900;margin-bottom:16px;line-height:1.5}
+.upsell h3 strong{color:var(--red)}
+.upsell .lead{font-size:16px;line-height:1.9;margin-bottom:24px;color:var(--ink-2)}
+.upsell .merit{text-align:left;max-width:580px;margin:0 auto 24px;background:#fff;border-radius:10px;padding:22px 26px;border:1px solid var(--line)}
+.upsell .merit li{padding:8px 0 8px 32px;position:relative;font-size:15px;line-height:1.8}
+.upsell .merit li::before{content:"★";position:absolute;left:0;top:8px;color:var(--orange);font-weight:900}
+.upsell .btn-vip{display:inline-block;background:linear-gradient(135deg,var(--red),#b71c1c);color:#fff;padding:22px 56px;font-size:20px;font-weight:900;border-radius:10px;text-decoration:none;box-shadow:0 8px 28px rgba(216,41,47,.4);letter-spacing:.04em}
+.upsell .btn-vip:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.upsell .note{font-size:13px;color:var(--muted);margin-top:14px}
+
 /* CONTACT */
 .contact-box{background:linear-gradient(135deg,#fff8e7 0%,#fff 100%);border:2px solid var(--gold);border-radius:14px;padding:32px 36px;text-align:center}
 .contact-box h3{font-size:22px;color:var(--navy);font-weight:900;margin-bottom:14px}
@@ -76,11 +90,14 @@ footer .small{opacity:.7;font-size:12px;margin-top:8px}
   .hero h1{font-size:26px}
   .hero{padding:100px 0 48px}
   .hero .check{width:72px;height:72px;font-size:38px}
+  .hero .greet{font-size:16px}
   section{padding:40px 0}
   section h2{font-size:22px}
-  .access-card,.thanks-message,.next-list,.contact-box{padding:24px 22px}
+  .access-card,.thanks-message,.next-list,.contact-box,.upsell{padding:24px 22px}
   .access-card h3{font-size:18px}
   .access-card .btn{padding:16px 28px;font-size:16px;width:100%;text-align:center}
+  .upsell h3{font-size:19px}
+  .upsell .btn-vip{padding:18px 28px;font-size:17px;width:100%}
 }
 </style>
 </head>
@@ -99,36 +116,22 @@ footer .small{opacity:.7;font-size:12px;margin-top:8px}
   <div class="wrap">
     <div class="check">✓</div>
     <div class="pre">PAYMENT COMPLETED</div>
+    <div class="greet" id="customer-greet"></div>
     <h1>ご購入、<strong>誠にありがとうございました</strong></h1>
-    <p class="lead">勉強会本編アーカイブ動画＋PDF資料、ご決済が完了しました。<br>このページに、視聴方法・資料ダウンロード・今後の進め方をすべてまとめてあります。<br><small style="opacity:.85">※同内容のご案内メールも、ご登録メールアドレスへ自動送信されています。</small></p>
+    <p class="lead">勉強会本編アーカイブ＋PDF資料、ご決済が完了しました。<br>このページに、資料ダウンロード・今後の進め方をすべてまとめてあります。<br><small style="opacity:.85">※同内容のご案内メールも、ご登録メールアドレスへ自動送信されます（数分以内）。</small></p>
   </div>
 </div>
 
 <section>
   <div class="wrap">
-    <h2><span class="small">STEP 1</span>本編アーカイブ動画の視聴</h2>
-    <div class="card-grid">
-      <div class="access-card">
-        <span class="step">VIDEO ACCESS</span>
-        <h3>2026年5月22日開催・本編アーカイブ動画（約2時間）</h3>
-        <p>下のボタンから、本編アーカイブ動画の視聴ページへお進みください。<br>買い切り・無期限視聴・スマホ／PC両対応です。</p>
-        <a href="#" class="btn" target="_blank" rel="noopener" id="video-link">▶ 動画を視聴する（視聴URLは別途メールでご案内）</a>
-        <p class="note">※ 視聴URLは、ご決済から24時間以内にご登録メールアドレスへ自動送信されます。万一届かない場合は、迷惑メールフォルダをご確認のうえ、下記のお問い合わせ先までご連絡ください。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="bg-light">
-  <div class="wrap">
-    <h2><span class="small">STEP 2</span>勉強会PDF資料のダウンロード</h2>
+    <h2><span class="small">DOWNLOAD</span>勉強会PDF資料のダウンロード</h2>
     <div class="card-grid">
       <div class="access-card">
         <span class="step">PDF DOWNLOAD</span>
-        <h3>当日配布のPDF資料一式</h3>
-        <p>本編で使用したスライド・チェックリスト・参考資料をPDFでまとめてあります。<br>印刷してメモを取りながら視聴される方も多くいらっしゃいます。</p>
-        <a href="#" class="btn secondary" target="_blank" rel="noopener" id="pdf-link">▼ PDF資料をダウンロード（リンクは別途メールでご案内）</a>
-        <p class="note">※ ダウンロードURLは、ご決済から24時間以内にご登録メールアドレスへ自動送信されます。</p>
+        <h3>勉強会アーカイブ 受け取り方法・PDF資料一式</h3>
+        <p>本編アーカイブの受け取り方法、当日配布資料、視聴・閲覧のご案内をPDFにまとめてあります。<br>下のボタンから今すぐダウンロードいただけます（同じPDFはご登録メールアドレスにも自動送信されます）。</p>
+        <a href="./assets/受け取り方法.pdf" class="btn" target="_blank" rel="noopener" download>▼ PDF資料をダウンロード（受け取り方法）</a>
+        <p class="note">※ ダウンロードが始まらない場合は、ボタンを右クリック→「リンク先を保存」でもダウンロードいただけます。<br>※ ご登録メールアドレス宛にも同じPDFを自動送信しております（数分以内）。</p>
       </div>
     </div>
   </div>
@@ -140,7 +143,7 @@ footer .small{opacity:.7;font-size:12px;margin-top:8px}
     <div class="thanks-message">
       <p>このたびは、勉強会本編アーカイブのご購入、本当にありがとうございました。</p>
       <p>この勉強会は「国が本気の制度を、現場で実際に攻略するための2時間」として開催しました。制度の表面的な紹介ではなく、認定経営革新等支援機関として日々支援している現場の手順・つまずきやすい箇所・お客様にどう説明して進めるかまで、すべて入れています。</p>
-      <p>動画は買い切り・無期限視聴ですので、ご自身のペースで何度でもご覧ください。1回目は全体像を、2回目以降は実務手順をなぞる形で活用いただくと、現場での歩留まりが大きく変わります。</p>
+      <p>買い切り・無期限視聴ですので、ご自身のペースで何度でもご覧ください。1回目は全体像を、2回目以降は実務手順をなぞる形で活用いただくと、現場での歩留まりが大きく変わります。</p>
       <p>もしご覧になって「この部分をもっと詳しく」「自分のケースで具体的に確認したい」というお気持ちが出てきた場合は、遠慮なく下のメールアドレスまでご連絡ください。当機関で個別のご相談にも対応しています。</p>
       <p>ご購入いただいた皆様の事業が、この制度を入口に一段伸びていくこと、本気で願っています。</p>
       <div class="signature">
@@ -151,12 +154,32 @@ footer .small{opacity:.7;font-size:12px;margin-top:8px}
   </div>
 </section>
 
-<section class="bg-light">
+<section>
+  <div class="wrap">
+    <h2><span class="small">SPECIAL OFFER</span>ご購入者様だけの、次の一歩のご案内</h2>
+    <div class="upsell">
+      <div class="ribbon">FOR BUYERS ONLY</div>
+      <h3>勉強会を本気で活かしきる<br><strong>「年間会員VIPコース」</strong>のご案内</h3>
+      <p class="lead">単発のアーカイブで「制度の入口」は掴めます。<br>その先、毎月の制度アップデート・実務深掘り・個別相談まで踏み込みたい方のために、<br><strong>年間会員VIPコース</strong>をご用意しています。</p>
+      <ul class="merit">
+        <li>毎月の制度アップデート勉強会（年間視聴可）</li>
+        <li>過去開催アーカイブの年間視聴権</li>
+        <li>会員限定の実務深掘り資料・テンプレート</li>
+        <li>個別相談・現場フォローアップの優先枠</li>
+        <li>本日ご購入のアーカイブ単品料金分が、入会時に充当される実質割引もご用意</li>
+      </ul>
+      <a href="https://lp.well-c.biz/b-vip/" class="btn-vip" target="_blank" rel="noopener">▶ 年間会員VIPコースの詳細を見る</a>
+      <p class="note">※ ご購入者様限定のご案内です。詳細・料金・お申し込みは上のボタンからご確認いただけます。</p>
+    </div>
+  </div>
+</section>
+
+<section>
   <div class="wrap">
     <h2><span class="small">NEXT STEPS</span>これから進める3つのステップ</h2>
     <ul class="next-list">
-      <li><strong>① まずは動画を最初から最後まで1度ご視聴ください。</strong>制度の全体像と、現場で押さえるべきポイントが2時間でつながります。</li>
-      <li><strong>② PDF資料を手元に置いて、2回目以降をご覧ください。</strong>スライドにメモを書き込みながら見ると、自社・お客様への落とし込みが具体化します。</li>
+      <li><strong>① まずは上のPDF資料をダウンロードし、受け取り方法をご確認ください。</strong>本編アーカイブの視聴方法・特典資料の受領手順がまとまっています。</li>
+      <li><strong>② ご登録メールアドレス宛の自動送信メールもご確認ください。</strong>同じPDF資料を添付してお送りしています（迷惑メールフォルダもご確認ください）。</li>
       <li><strong>③ 不明点・自社事例の相談は、下記メールへご連絡ください。</strong>当機関で個別フォローアップにも対応しています。</li>
     </ul>
   </div>
@@ -166,7 +189,7 @@ footer .small{opacity:.7;font-size:12px;margin-top:8px}
   <div class="wrap">
     <div class="contact-box">
       <h3>お問い合わせ・ご質問</h3>
-      <p>視聴URLが届かない・資料が開けない・内容についてのご質問など、<br>下記メールアドレスまでお気軽にご連絡ください。</p>
+      <p>PDFが開けない・内容についてのご質問など、<br>下記メールアドレスまでお気軽にご連絡ください。</p>
       <div class="mail">info@fp-1.info</div>
       <p style="margin-top:14px;font-size:14px;color:var(--muted)">（受付：平日10:00〜18:00／土日祝はご返信が翌営業日となります）</p>
     </div>
@@ -177,6 +200,30 @@ footer .small{opacity:.7;font-size:12px;margin-top:8px}
   <div>Well Consultant｜認定経営革新等支援機関</div>
   <div class="small">© Well Consultant All Rights Reserved.</div>
 </footer>
+
+<script>
+// 購入者名差し込み：Stripe Checkout Session の session_id を URL クエリから取得し、
+// サーバレスエンドポイント（後日構築）から購入者名を取得して表示する。
+// 取得失敗時は何も表示しない（無音フォールバック）。
+(function(){
+  var greet = document.getElementById('customer-greet');
+  if(!greet) return;
+  var params = new URLSearchParams(window.location.search);
+  var sessionId = params.get('session_id');
+  if(!sessionId) return;
+  // 名前取得APIエンドポイント（Cloudflare Workers 等で別途構築予定）
+  // 例: https://api.well-c.biz/stripe/customer-name?session_id=cs_live_xxx
+  var apiUrl = 'https://api.well-c.biz/stripe/customer-name?session_id=' + encodeURIComponent(sessionId);
+  fetch(apiUrl, {method:'GET', mode:'cors'})
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(d){
+      if(d && d.name){
+        greet.textContent = d.name + ' 様';
+      }
+    })
+    .catch(function(){ /* 無音フォールバック */ });
+})();
+</script>
 
 </body>
 </html>
