@@ -450,16 +450,41 @@ footer p{margin:6px 0}
       <div class="time">本編約2時間・配布資料一式付き／買い切り・無期限視聴</div>
     </div>
     <!-- v2: Stripe Embedded Checkout 埋め込み（LP内常時展開型・離脱率比較用） -->
-    <div id="checkout" style="background:#fff;border-radius:12px;min-height:520px;margin:24px 0;padding:8px;overflow:hidden"></div>
+    <div id="checkout" style="background:#fff;border-radius:12px;min-height:520px;margin:24px 0;padding:8px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.18)"></div>
     <script>
     (function(){
       var pk = 'pk_live_51H83U6LEBuO6I3WlGVcZrYgQDLfccHd1n3fleh29wIa2u2hMlYV0zjOkXJiY7Pi7oNyZe8X4r0F21PzXlm4XNMOj00KCKkv4D3';
       var endpoint = 'https://fp-1.info/stripe/create-checkout-session.php';
+      var paymentLink = 'https://buy.stripe.com/cNibJ2biidFE1x3ds6fMA2u';
       var mountEl = document.getElementById('checkout');
-      function showFallback(msg){
-        mountEl.innerHTML = '<div style="padding:48px 24px;text-align:center;color:#1a1a1a"><p style="font-weight:700;margin-bottom:12px">'+msg+'</p><a href="https://buy.stripe.com/cNibJ2biidFE1x3ds6fMA2u" target="_blank" rel="noopener" style="display:inline-block;background:#f39800;color:#fff;font-weight:900;padding:16px 32px;border-radius:8px;text-decoration:none">▶ 別タブで決済ページを開く（2,980円・税込）</a></div>';
+      function showFallback(){
+        mountEl.innerHTML = ''
+          + '<div style="padding:32px 24px;text-align:left;color:#1a1a1a;font-family:inherit">'
+          +   '<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5e9f0;padding-bottom:16px;margin-bottom:20px">'
+          +     '<div>'
+          +       '<div style="font-size:13px;color:#777;letter-spacing:.04em">アーカイブ動画＋PDF資料</div>'
+          +       '<div style="font-size:18px;font-weight:700;margin-top:4px">勉強会本編（2026年5月22日開催分）</div>'
+          +     '</div>'
+          +     '<div style="text-align:right">'
+          +       '<div style="font-size:13px;color:#777">税込</div>'
+          +       '<div style="font-size:28px;font-weight:900;color:#0f2d52;line-height:1">¥2,980</div>'
+          +     '</div>'
+          +   '</div>'
+          +   '<ul style="list-style:none;padding:0;margin:0 0 24px 0;font-size:14px;color:#444;line-height:1.9">'
+          +     '<li>✓ 本編約2時間・無期限視聴（買い切り）</li>'
+          +     '<li>✓ 配布資料一式（PDF）付き</li>'
+          +     '<li>✓ クレジットカード決済（Stripe・国際標準のセキュア決済）</li>'
+          +     '<li>✓ 購入完了後、視聴URLと資料を直接メールにて即時お届け</li>'
+          +   '</ul>'
+          +   '<a href="' + paymentLink + '" target="_blank" rel="noopener" style="display:block;background:#635bff;color:#fff;font-weight:900;font-size:17px;padding:18px 24px;border-radius:8px;text-align:center;text-decoration:none;letter-spacing:.02em">クレジットカードで購入する（¥2,980）</a>'
+          +   '<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;font-size:12px;color:#777">'
+          +     '<span>Powered by</span>'
+          +     '<span style="font-weight:700;color:#635bff">Stripe</span>'
+          +     '<span>・SSL暗号化通信</span>'
+          +   '</div>'
+          + '</div>';
       }
-      if (typeof Stripe !== 'function') { showFallback('決済システムを読み込めませんでした。下のボタンからお進みください。'); return; }
+      if (typeof Stripe !== 'function') { showFallback(); return; }
       var stripe = Stripe(pk);
       var fetchClientSecret = function(){
         return fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'} })
@@ -468,7 +493,7 @@ footer p{margin:6px 0}
       };
       stripe.initEmbeddedCheckout({ fetchClientSecret: fetchClientSecret })
         .then(function(checkout){ checkout.mount('#checkout'); })
-        .catch(function(){ showFallback('決済システムを準備中です。下のボタンからお進みください。'); });
+        .catch(function(){ showFallback(); });
     })();
     </script>
     <div class="cta-note" style="margin-top:18px">クレジットカード決済（Stripe）。ご購入完了後、視聴URLと配布資料一式（PDF）を直接メールにてお届けいたします。マイページへのログイン操作は不要です。</div>
