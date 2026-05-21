@@ -457,7 +457,7 @@ footer p{margin:6px 0}
       var endpoint = 'https://fp-1.info/stripe/create-checkout-session.php';
       var paymentLink = 'https://buy.stripe.com/cNibJ2biidFE1x3ds6fMA2u';
       var mountEl = document.getElementById('checkout');
-      function showFallback(){
+      function renderFallback(){
         mountEl.innerHTML = ''
           + '<div style="padding:32px 24px;text-align:left;color:#1a1a1a;font-family:inherit">'
           +   '<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5e9f0;padding-bottom:16px;margin-bottom:20px">'
@@ -484,16 +484,28 @@ footer p{margin:6px 0}
           +   '</div>'
           + '</div>';
       }
-      if (typeof Stripe !== 'function') { showFallback(); return; }
-      var stripe = Stripe(pk);
-      var fetchClientSecret = function(){
-        return fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'} })
-          .then(function(r){ if(!r.ok){ throw new Error('http '+r.status); } return r.json(); })
-          .then(function(d){ if(!d.client_secret){ throw new Error('no client_secret'); } return d.client_secret; });
-      };
-      stripe.initEmbeddedCheckout({ fetchClientSecret: fetchClientSecret })
-        .then(function(checkout){ checkout.mount('#checkout'); })
-        .catch(function(){ showFallback(); });
+      // ① 必ず先に決済カードを描画（読込スケルトンが残る事故を物理的に消す）
+      renderFallback();
+      // ② プレフライト：endpoint が 200 + client_secret を返した時だけ Embedded Checkout に置換
+      if (typeof Stripe !== 'function') return;
+      var preflight;
+      try {
+        preflight = fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          cache: 'no-store'
+        });
+      } catch (e) { return; }
+      preflight
+        .then(function(r){ if(!r.ok){ throw new Error('http '+r.status); } return r.json(); })
+        .then(function(d){
+          if (!d || !d.client_secret) throw new Error('no client_secret');
+          var stripe = Stripe(pk);
+          mountEl.innerHTML = '';
+          return stripe.initEmbeddedCheckout({ clientSecret: d.client_secret })
+            .then(function(checkout){ checkout.mount('#checkout'); });
+        })
+        .catch(function(){ /* fallback はすでに描画済み */ });
     })();
     </script>
     <div class="cta-note" style="margin-top:18px">クレジットカード決済（Stripe）。ご購入完了後、視聴URLと配布資料一式（PDF）を直接メールにてお届けいたします。マイページへのログイン操作は不要です。</div>
