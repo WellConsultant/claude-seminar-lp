@@ -67,9 +67,30 @@
     .pricebox .now{font-size:38px}.cta-btn{font-size:17px;padding:17px 28px}
     section{padding:44px 0}
   }
+  /* countdown */
+  .cd-bar{position:sticky;top:0;z-index:60;background:#c0392b;color:#fff;text-align:center;padding:10px 12px;font-weight:900;letter-spacing:.03em;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+  .cd-bar .cd-label{font-size:14px;font-weight:700;margin-right:10px}
+  .cd-bar .cd-timer{font-size:18px;color:#ffe97a;font-variant-numeric:tabular-nums}
+  .cd-cta{background:rgba(255,255,255,.08);border:1px solid rgba(255,210,74,.55);border-radius:12px;padding:16px 18px;margin:0 auto 24px;max-width:440px}
+  .cd-cta .cd-cta-label{font-size:14px;opacity:.95;margin-bottom:6px}
+  .cd-cta .cd-timer-lg{font-size:32px;font-weight:900;color:#ffd24a;font-variant-numeric:tabular-nums;line-height:1.2}
+  @media(max-width:600px){
+    .cd-bar .cd-label{display:block;margin:0 0 2px}
+    .cd-bar .cd-timer{font-size:16px}
+    .cd-cta .cd-timer-lg{font-size:25px}
+  }
+  /* limited bonus */
+  .bonus-sec{background:linear-gradient(160deg,#fff7e0 0%,#fff0c4 100%)}
+  .bonus-tag{display:inline-block;background:#c0392b;color:#fff;font-weight:900;font-size:12px;letter-spacing:.1em;padding:6px 16px;border-radius:999px;margin-bottom:18px}
+  .bonus-cmd{background:#0f2d52;color:#ffe97a;border-radius:10px;padding:16px 18px;margin:18px 0;font-size:14.5px;line-height:1.85;font-family:"SFMono-Regular",Consolas,Menlo,monospace}
+  .bonus-card{background:#fff;border:2px solid #ffd24a;border-radius:14px;padding:24px 22px;margin-top:18px;box-shadow:0 8px 22px rgba(15,45,82,.08)}
 </style>
 </head>
 <body>
+
+<div class="cd-bar" id="cdBar">
+  <span class="cd-label">この特別価格の受付終了まで</span><span class="cd-timer" id="cdTimer1">--日 --:--:--</span>
+</div>
 
 <div class="bar">価格設定ワークシート：売れる価格設定ガイド・戦略セッション付</div>
 
@@ -194,6 +215,22 @@
   </div>
 </section>
 
+<section class="bonus-sec" id="cdBonus">
+  <div class="wrap-narrow" style="text-align:center">
+    <span class="bonus-tag">期間限定プレゼント</span>
+    <h2>価格を決めた、その先まで。<br><span class="yl">「売る環境」もまるごと自動化</span></h2>
+  </div>
+  <div class="wrap-narrow">
+    <p>価格設定はできました。でも、その先には「LPに決済リンクを実装する」「お客様にご案内する」といった工数が、まだ残っています。</p>
+    <p>でも、安心してください。<strong>Claude Code</strong> に、こうお願いするだけでいいんです。</p>
+    <div class="bonus-cmd">「{商品名}を{あなたが設定した価格}でリンクを発行してください。それと同時に、自動返信メール、ChatWork通知、決済完了後に遷移するページを完成させて」</div>
+    <p>これだけで、決済リンクの発行・自動返信メール・購入通知まで、面倒な作業をまるごと減らすことができます。</p>
+    <div class="bonus-card">
+      <p style="margin:0">この、僕（阿久津）が実際に使っているスクリプトを、<strong>さらにプレゼントします。</strong>これであなたは、「売れる価格設定」と「売る環境」を、両方そろえることができます。</p>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap-narrow">
     <h2>他の「価格の本」「価格の情報」と<br>違うところ</h2>
@@ -267,6 +304,10 @@
     <h2>今すぐ手に入れる</h2>
     <p style="margin-bottom:8px">『価格設定ワークシート：売れる価格設定ガイド・戦略セッション付』</p>
     <p style="font-size:20px;font-weight:900;color:#ffd24a;margin-bottom:26px">50,000円相当 → 4,980円（税込）</p>
+    <div class="cd-cta" id="cdCta">
+      <div class="cd-cta-label">この特別価格の受付終了まで残り</div>
+      <div class="cd-timer-lg" id="cdTimer2">--日 --:--:--</div>
+    </div>
     <a class="cta-btn" href="https://buy.stripe.com/cNifZi7227hgdfLco2fMA2v" target="_blank" rel="noopener">▶ 申し込みはこちら</a>
     <p class="cta-note">30日間・全額返金保証つき／お支払い後すぐにご利用いただけます</p>
   </div>
@@ -276,6 +317,41 @@
   Well Consultant合同会社／阿久津 和宏<br>
   info@fp-1.info ・ https://fp-1.info ・ 埼玉県熊谷市石原641番地3
 </footer>
+
+<script>
+(function(){
+  var KEY='psw_cd_deadline';
+  var DURATION=3*24*60*60*1000; /* 3日間 */
+  var dl=localStorage.getItem(KEY);
+  if(!dl){ dl=Date.now()+DURATION; localStorage.setItem(KEY,String(dl)); } else { dl=parseInt(dl,10); }
+  var t1=document.getElementById('cdTimer1');
+  var t2=document.getElementById('cdTimer2');
+  var bar=document.getElementById('cdBar');
+  var cta=document.getElementById('cdCta');
+  var bonus=document.getElementById('cdBonus');
+  function pad(n){ return n<10 ? '0'+n : ''+n; }
+  var timer=setInterval(tick,1000);
+  function tick(){
+    var diff=dl-Date.now();
+    if(diff<=0){
+      /* 3日間が過ぎたらカウントダウンと期間限定プレゼントを消し、LPはそのまま継続 */
+      if(bar) bar.style.display='none';
+      if(cta) cta.style.display='none';
+      if(bonus) bonus.style.display='none';
+      clearInterval(timer);
+      return;
+    }
+    var d=Math.floor(diff/86400000);
+    var h=Math.floor(diff%86400000/3600000);
+    var m=Math.floor(diff%3600000/60000);
+    var s=Math.floor(diff%60000/1000);
+    var txt=d+'日 '+pad(h)+':'+pad(m)+':'+pad(s);
+    if(t1) t1.textContent=txt;
+    if(t2) t2.textContent=txt;
+  }
+  tick();
+})();
+</script>
 
 </body>
 </html>
