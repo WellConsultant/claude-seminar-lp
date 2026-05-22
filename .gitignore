@@ -1,1 +1,5 @@
 .DS_Store
+
+# Chatwork通知の本番設定（トークンを含むためGitHubに上げない）
+keiei-kashika/keiei-kashika-config.php
+**/keiei-kashika-config.php
