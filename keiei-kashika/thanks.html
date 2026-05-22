@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ご回答ありがとうございます｜経営可視化パッケージ</title>
+<meta name="description" content="事前シートのご回答ありがとうございます。続いて、無料ヒアリング（60分）のご都合の良い日程をご予約ください。">
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --navy:#14213d;--navy-2:#1b2f4e;--gold:#c9a227;--gold-d:#b08d1c;
+    --ink:#1a2b4a;--gray:#5b6577;--line:#e3e6ec;--bg:#f6f7f9;--white:#fff;--green:#1f7a4d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic Medium","Meiryo",sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:0 20px;width:100%;}
+
+  header.hero{
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);
+    color:#fff;padding:50px 0 64px;text-align:center;position:relative;overflow:hidden;
+  }
+  header.hero::after{content:"";position:absolute;right:-120px;bottom:-160px;width:360px;height:360px;
+    border-radius:50%;background:rgba(255,255,255,.04);}
+  .check{
+    width:74px;height:74px;border-radius:50%;background:var(--gold);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 22px;
+    box-shadow:0 8px 22px rgba(201,162,39,.4);
+  }
+  .check svg{width:38px;height:38px;}
+  .hero h1{font-size:26px;font-weight:800;margin-bottom:12px;}
+  .hero p{font-size:15px;color:#dfe5ef;max-width:520px;margin:0 auto;}
+
+  /* steps */
+  .steps{display:flex;gap:8px;margin:30px auto 0;max-width:560px;}
+  .steps .step{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+    border-radius:10px;padding:11px 8px;font-size:12.5px;color:#dfe5ef;text-align:center;}
+  .steps .step b{display:block;font-size:11px;letter-spacing:.06em;margin-bottom:3px;color:#9fb0cc;}
+  .steps .step.done{background:rgba(31,122,77,.22);border-color:rgba(31,122,77,.5);}
+  .steps .step.done b{color:#7fd3a6;}
+  .steps .step.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700;}
+  .steps .step.active b{color:var(--navy);}
+
+  main{flex:1;padding:0 0 56px;}
+  .card{
+    background:var(--white);border-radius:16px;padding:34px 30px;margin:-32px auto 0;
+    box-shadow:0 10px 30px rgba(20,33,61,.1);position:relative;z-index:2;text-align:center;
+  }
+  .card .next-label{
+    display:inline-block;background:rgba(201,162,39,.14);color:var(--gold-d);
+    font-weight:700;font-size:13px;padding:5px 16px;border-radius:999px;margin-bottom:18px;letter-spacing:.04em;
+  }
+  .card h2{font-size:21px;color:var(--navy);margin-bottom:12px;line-height:1.5;}
+  .card .desc{font-size:14.5px;color:var(--gray);max-width:480px;margin:0 auto 26px;}
+
+  .cta-btn{
+    display:inline-block;background:var(--gold);color:var(--navy);
+    font-weight:800;font-size:18px;text-decoration:none;
+    padding:18px 36px;border-radius:999px;width:100%;max-width:440px;
+    box-shadow:0 10px 24px rgba(201,162,39,.34);transition:.15s;
+  }
+  .cta-btn:hover{background:var(--gold-d);transform:translateY(-2px);}
+  .cta-sub{font-size:12.5px;color:var(--gray);margin-top:14px;}
+
+  .info{
+    margin:30px auto 0;background:#f8f9fb;border:1px solid var(--line);border-radius:12px;
+    padding:20px 22px;text-align:left;max-width:520px;
+  }
+  .info h3{font-size:14px;color:var(--navy);margin-bottom:12px;font-weight:800;}
+  .info ul{list-style:none;}
+  .info li{position:relative;padding:6px 0 6px 24px;font-size:13.5px;color:var(--ink);border-top:1px dashed var(--line);}
+  .info li:first-child{border-top:none;}
+  .info li::before{content:"✓";position:absolute;left:2px;top:6px;color:var(--gold-d);font-weight:800;}
+
+  .contact{margin:26px auto 0;font-size:13px;color:var(--gray);text-align:center;}
+  .contact a{color:var(--navy);font-weight:700;text-decoration:none;}
+
+  footer{background:var(--navy);color:#aeb8cb;text-align:center;padding:24px 20px;font-size:12.5px;}
+  footer .biz{color:#fff;font-weight:700;margin-bottom:4px;}
+
+  @media(max-width:600px){
+    .hero h1{font-size:22px;}
+    .card{padding:28px 20px;}
+    .card h2{font-size:18px;}
+    .cta-btn{font-size:16px;padding:16px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="check" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <h1>事前シートのご回答、<br>ありがとうございました。</h1>
+    <p>内容は確かに受け付けました。続いて、無料ヒアリング（60分）の日程をご予約ください。</p>
+
+    <div class="steps">
+      <div class="step done"><b>STEP 1</b>回答 完了</div>
+      <div class="step active"><b>STEP 2</b>日程を予約</div>
+      <div class="step"><b>STEP 3</b>ヒアリング 60分</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="card">
+      <span class="next-label">あと1ステップで完了です</span>
+      <h2>ご都合の良い日時を選んで、<br>日程を確定してください</h2>
+      <p class="desc">下のボタンからカレンダーが開きます。空いている枠から、お好きな日時をお選びください。日程確定後、当日の進め方をメールでお送りします。</p>
+
+      <a class="cta-btn" href="https://calendar.app.google/9JJEp2xT3F5MDjdL8" target="_blank" rel="noopener">
+        ▶ 無料ヒアリングの日程を予約する
+      </a>
+      <p class="cta-sub">新しいタブでGoogleカレンダーの予約画面が開きます。</p>
+
+      <div class="info">
+        <h3>無料ヒアリング（60分）でお伺いすること</h3>
+        <ul>
+          <li>現在の売上規模・業種・社員数・主な悩み</li>
+          <li>過去3年で起きた経営上の出来事（伸びた／落ちた）</li>
+          <li>直近で打ちたい打ち手と、止まっている理由</li>
+          <li>お客様について（誰が・なぜ買っているか）</li>
+          <li>3年後にどんな会社になっていたいか</li>
+        </ul>
+      </div>
+
+      <p class="contact">
+        日程予約がうまくいかない場合は、こちらからご連絡ください。<br>
+        <a href="mailto:info@fp-1.info">info@fp-1.info</a> ／ 050-3707-3507（平日9-18時）<br>
+        <small>★ 無理な勧誘は一切いたしません。</small>
+      </p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="biz">経営可視化パッケージ</div>
+  現在地を1枚に、未来を月次の数字に。
+</footer>
+
+</body>
+</html>
