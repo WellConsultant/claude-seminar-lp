@@ -748,7 +748,7 @@ footer .copy{margin-top:10px}
       <div class="feature-step-num"><span class="feature-step-label">要素</span><span class="feature-step-digit">02</span></div>
       <div class="feature-step-body">
         <h3>セキュリティを"知った上で"使う</h3>
-        <p>APIキーの管理、権限設定、顧客情報の扱い方。避けるべき落とし穴と、安全に使うための具体的な設定方法を、1日でまとめて習得します。「怖いから使えない」が、「怖さを知った上で使える」に変わります。</p>
+        <p>APIキーの管理、権限設定、顧客情報の扱い方。避けるべきポイントと、安全に使うための具体的な設定方法を、1日でまとめて習得します。「怖いから使えない」が、「怖さを知った上で使える」に変わります。</p>
       </div>
     </div>
 
@@ -1143,8 +1143,8 @@ footer .copy{margin-top:10px}
         </div>
         <div class="cd-deadline">（締切：2026年4月22日（水）23:59）</div>
       </div>
-      <a href="https://www.funnel-build.com/cc-1day1" class="cta-btn">今すぐワークショップの席を確保する ▶</a>
-      <p style="font-size:20px;color:var(--red);margin-top:20px;font-weight:900">受付は4月22日（水）23:59まで</p>
+      <a href="https://buy.stripe.com/3cIbJ2gCC7hg3FbafUfMA2h" class="cta-btn" target="_blank" rel="noopener">今すぐワークショップの席を確保する ▶</a>
+      <p class="js-deadline-text" style="font-size:20px;color:var(--red);margin-top:20px;font-weight:900">受付は4月22日（水）23:59まで</p>
     </div>
   </div>
 </section>
@@ -1265,7 +1265,7 @@ footer .copy{margin-top:10px}
         <li>当日返金保証</li>
         <li>30万円相当の秘密の特典</li>
       </ul>
-      <a href="https://www.funnel-build.com/cc-1day1" class="cta-btn" style="width:100%;font-size:22px;padding:22px 16px">今すぐワークショップの席を確保する ▶</a>
+      <a href="https://buy.stripe.com/3cIbJ2gCC7hg3FbafUfMA2h" class="cta-btn" style="width:100%;font-size:22px;padding:22px 16px" target="_blank" rel="noopener">今すぐワークショップの席を確保する ▶</a>
       <div class="notice">
         ※お支払いはクレジットカード決済となります<br>
         ※お申し込み後、Chatworkグループへご招待します<br>
@@ -1331,14 +1331,35 @@ footer .copy{margin-top:10px}
 
 <script>
 (function(){
-  var deadline = new Date('2026-04-22T23:59:00+09:00').getTime();
+  // JST（日本時間）に変換した Date を返す
+  function toJst(ms){ return new Date(ms + new Date(ms).getTimezoneOffset()*60000 + 9*3600000); }
+  // 指定時刻が属する月の「月末日 23:59:59（JST）」を UTC ミリ秒で返す
+  function monthEnd(ms){
+    var j = toJst(ms);
+    var y = j.getFullYear(), m = j.getMonth();
+    var lastDay = new Date(Date.UTC(y, m+1, 0)).getUTCDate();
+    return Date.UTC(y, m, lastDay, 14, 59, 59); // 14:59:59 UTC = 23:59:59 JST
+  }
+  // 締切を「YYYY年M月D日（曜）23:59」表記に整形
+  function fmtText(ms){
+    var j = toJst(ms);
+    var w = ['日','月','火','水','木','金','土'][j.getDay()];
+    return j.getFullYear()+'年'+(j.getMonth()+1)+'月'+j.getDate()+'日（'+w+'）23:59';
+  }
   function pad(n){return n<10?'0'+n:''+n;}
+  var deadline = monthEnd(Date.now());
+  function refreshLabels(){
+    var dl = fmtText(deadline);
+    document.querySelectorAll('.cd-deadline').forEach(function(e){e.textContent='（締切：'+dl+'）';});
+    document.querySelectorAll('.js-deadline-text, .final-deadline').forEach(function(e){e.textContent='受付は'+dl+'まで';});
+  }
   function tick(){
     var diff = deadline - Date.now();
     if (diff <= 0){
-      // 期限切れ：あらかじめ用意した受付終了ページへ遷移
-      location.replace('https://saipon.jp/h/xhw525');
-      return;
+      // 月末到達：受付終了にせず、翌月の月末でカウントダウンを再スタート（リセット）
+      deadline = monthEnd(Date.now());
+      refreshLabels();
+      diff = deadline - Date.now();
     }
     var d = Math.floor(diff/86400000);
     var h = Math.floor((diff/3600000)%24);
@@ -1349,6 +1370,7 @@ footer .copy{margin-top:10px}
     document.querySelectorAll('[id^="cd-m"]').forEach(function(e){e.textContent=pad(m);});
     document.querySelectorAll('[id^="cd-s"]').forEach(function(e){e.textContent=pad(s);});
   }
+  refreshLabels();
   tick();
   setInterval(tick, 1000);
 })();
