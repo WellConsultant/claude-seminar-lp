@@ -140,6 +140,9 @@
     <div class="links">
       <a href="#problems">こんなお悩み</a>
       <a href="#features">主な機能</a>
+      <a href="#screens">画面で見る</a>
+      <a href="#all-functions">全機能一覧</a>
+      <a href="#flows">業務フロー</a>
       <a href="#scenarios">業種別の使い方</a>
       <a href="#joseikin">助成金との連動</a>
       <a href="#faq">FAQ</a>
@@ -417,6 +420,425 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- ===== 画面で見るTraingo（8画面の実装そのままモック） ===== -->
+<style>
+  .scr-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:20px}
+  @media(max-width:840px){.scr-grid{grid-template-columns:1fr;gap:24px}}
+  .scr-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.05)}
+  .scr-card .scr-label{background:#0f1f33;color:#fff;padding:10px 18px;font-size:13px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+  .scr-card .scr-label .url{color:#94a3b8;font-family:monospace;font-size:11px;font-weight:400}
+  .scr-card .scr-body{background:#f9fafb;padding:26px 22px;min-height:280px}
+  .scr-card .scr-caption{background:#fff;padding:14px 18px;border-top:1px solid #f1f5f9;font-size:13px;color:#475569;line-height:1.75}
+  .scr-card .scr-caption strong{color:#0f1f33}
+  /* モック内共通 */
+  .m-card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:18px;max-width:340px;margin:0 auto}
+  .m-card h5{text-align:center;font-size:14px;color:#0f1f33;margin-bottom:6px}
+  .m-card .m-sub{text-align:center;font-size:11px;color:#6b7280;margin-bottom:14px}
+  .m-card .m-inp{background:#fff;border:1px solid #d1d5db;border-radius:5px;height:30px;margin:4px 0 10px}
+  .m-card .m-label{font-size:11px;color:#374151;margin-top:6px}
+  .m-card .m-btn{background:#1e3a8a;color:#fff;text-align:center;padding:9px 0;border-radius:5px;font-weight:bold;font-size:12px;margin-top:8px}
+  .m-pill{display:inline-block;background:#eff6ff;color:#1e3a8a;font-size:10px;padding:2px 9px;border-radius:99px;font-weight:600;margin:0 2px}
+</style>
+<section class="block alt" id="screens">
+  <div class="container">
+    <h2 class="sec"><span class="sub">SCREENSHOTS</span>画面で見るTraingo（実画面そのまま）</h2>
+    <p class="sec-lead">下のモックは、Traingoの稼働中の実装（HTML/CSS）をそのまま再現したものです。導入後にあなたや受講者・現場担当者が実際に見る画面と、ピクセル単位で同じです。「画像を綺麗に見せるためのデザイン」ではなく、「本物の画面」を見てください。</p>
+
+    <div class="scr-grid">
+
+      <!-- ① 受講者ログイン -->
+      <div class="scr-card">
+        <div class="scr-label"><span>① 受講者ログイン画面</span><span class="url">/login</span></div>
+        <div class="scr-body" style="display:flex;align-items:center;justify-content:center">
+          <div style="width:100%;max-width:340px">
+            <div style="text-align:center;margin-bottom:16px">
+              <p style="font-size:24px;font-weight:900;color:#1e3a8a">Traingo</p>
+              <p style="font-size:11px;color:#6b7280;margin-top:4px">人材開発支援助成金対応 研修管理システム</p>
+              <div style="margin-top:10px"><span class="m-pill">視聴ログ自動記録</span><span class="m-pill">修了判定自動化</span></div>
+            </div>
+            <div class="m-card">
+              <h5>受講者ログイン</h5>
+              <div class="m-sub">配布されたメール/パスワードで認証</div>
+              <div class="m-label">メールアドレス</div><div class="m-inp"></div>
+              <div class="m-label">パスワード</div><div class="m-inp"></div>
+              <div class="m-btn">ログイン</div>
+            </div>
+          </div>
+        </div>
+        <div class="scr-caption"><strong>受講者がアクセスする入口。</strong>会社管理者・システム管理者は物理的にこの画面を通過できない設計（ロール別ガード）。アカウント情報の混入・他社情報閲覧事故を起こさない。</div>
+      </div>
+
+      <!-- ② 管理者ログイン -->
+      <div class="scr-card">
+        <div class="scr-label"><span>② 管理者ログイン画面</span><span class="url">/admin-login</span></div>
+        <div class="scr-body" style="display:flex;align-items:center;justify-content:center">
+          <div style="width:100%;max-width:340px">
+            <div style="text-align:center;margin-bottom:16px">
+              <p style="font-size:24px;font-weight:900;color:#1e3a8a">Traingo</p>
+              <p style="font-size:11px;color:#6b7280;margin-top:4px">システム管理者ポータル</p>
+              <div style="margin-top:10px"><span class="m-pill">受講者一括管理</span><span class="m-pill">監査CSV出力</span></div>
+            </div>
+            <div class="m-card">
+              <h5>管理者ログイン</h5>
+              <div class="m-sub">システム管理者専用ログイン</div>
+              <div class="m-label">メールアドレス</div><div class="m-inp"></div>
+              <div class="m-label">パスワード</div><div class="m-inp"></div>
+              <div class="m-btn">ログイン</div>
+            </div>
+          </div>
+        </div>
+        <div class="scr-caption"><strong>システム管理者専用の入口。</strong>受講者画面・会社管理者画面とはURL・色・権限が完全に分離されており、ロール混在事故を起こさない。会社管理者向けには別途 /company-login が用意されている。</div>
+      </div>
+
+      <!-- ③ 受講者ダッシュボード -->
+      <div class="scr-card">
+        <div class="scr-label"><span>③ 受講者ダッシュボード（ログイン後）</span><span class="url">/dashboard</span></div>
+        <div class="scr-body">
+          <div style="text-align:center;margin-bottom:18px">
+            <h4 style="font-size:15px;color:#1f2937;margin-bottom:4px">おかえりなさい、田中さん</h4>
+            <p style="font-size:11px;color:#6b7280">今日も少し学んでいきましょう。</p>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><h5 style="font-size:12px;color:#1f2937">続きから学ぶ</h5><span style="font-size:10px;color:#9ca3af">1コース</span></div>
+          <div style="background:#fff;border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;margin-bottom:18px;border:1px solid #e5e7eb">
+            <div style="width:46px;height:46px;background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#1e40af;font-weight:bold;font-size:11px">新任</div>
+            <div style="flex:1">
+              <div style="font-size:11px;font-weight:600;color:#1f2937">新任管理職研修2026</div>
+              <div style="font-size:9px;color:#9ca3af;margin:3px 0">6 / 10 本完了</div>
+              <div style="display:flex;align-items:center;gap:8px"><div style="flex:1;background:#f3f4f6;height:5px;border-radius:99px;overflow:hidden"><div style="width:60%;background:#3b82f6;height:100%"></div></div><span style="font-size:9px;font-weight:600;color:#6b7280">60%</span></div>
+            </div>
+            <div style="background:#1d4ed8;color:#fff;padding:6px 12px;border-radius:5px;font-size:10px;font-weight:600">続きから →</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><h5 style="font-size:12px;color:#1f2937">マイライブラリ</h5><span style="font-size:10px;color:#9ca3af">全3コース</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="background:#fff;border-radius:8px;border:1px solid #e5e7eb;overflow:hidden">
+              <div style="height:46px;background:linear-gradient(135deg,#dbeafe,#e0e7ff);display:flex;align-items:center;justify-content:center;color:#1e40af;font-weight:bold;font-size:13px">新任</div>
+              <div style="padding:8px"><div style="display:flex;justify-content:space-between;gap:4px;margin-bottom:4px"><div style="font-size:10px;font-weight:600;color:#1f2937">新任管理職研修</div><span style="font-size:8px;background:#fef3c7;color:#a16207;padding:1px 5px;border-radius:99px;font-weight:600">受講中</span></div><div style="font-size:9px;color:#6b7280">6/10本・60%</div></div>
+            </div>
+            <div style="background:#fff;border-radius:8px;border:1px solid #e5e7eb;overflow:hidden">
+              <div style="height:46px;background:linear-gradient(135deg,#dcfce7,#bbf7d0);display:flex;align-items:center;justify-content:center;color:#065f46;font-weight:bold;font-size:13px">情報</div>
+              <div style="padding:8px"><div style="display:flex;justify-content:space-between;gap:4px;margin-bottom:4px"><div style="font-size:10px;font-weight:600;color:#1f2937">情報セキュリティ</div><span style="font-size:8px;background:#f3f4f6;color:#6b7280;padding:1px 5px;border-radius:99px;font-weight:600">未開始</span></div><div style="font-size:9px;color:#6b7280">0/8本・0%</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="scr-caption"><strong>Teachable風の受講者トップ画面。</strong>複数コース受講時も「続きから学ぶ」「マイライブラリ」で進捗が一目で把握できる。受講者が迷子にならず、「次に何をすればいいか」が常に明確。</div>
+      </div>
+
+      <!-- ④ 管理者ダッシュボード -->
+      <div class="scr-card">
+        <div class="scr-label"><span>④ 管理者画面：受講状況一覧</span><span class="url">/admin/dashboard</span></div>
+        <div class="scr-body">
+          <div style="margin-bottom:12px">
+            <p style="font-size:10px;font-weight:700;color:#1e3a8a;letter-spacing:.05em">TRAINGO</p>
+            <h4 style="font-size:15px;color:#1f2937;margin-top:2px">管理画面</h4>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
+            <div style="background:#fff;border-radius:8px;padding:10px;border:1px solid #e5e7eb"><div style="font-size:9px;color:#6b7280">総受講者数</div><div style="font-size:18px;font-weight:bold;color:#1f2937;margin-top:2px">38<span style="font-size:9px;color:#6b7280;margin-left:2px">名</span></div></div>
+            <div style="background:#fff;border-radius:8px;padding:10px;border:1px solid #e5e7eb"><div style="font-size:9px;color:#6b7280">受講中</div><div style="font-size:18px;font-weight:bold;color:#d97706;margin-top:2px">12<span style="font-size:9px;color:#6b7280;margin-left:2px">名</span></div></div>
+            <div style="background:#fff;border-radius:8px;padding:10px;border:1px solid #e5e7eb"><div style="font-size:9px;color:#6b7280">修了済</div><div style="font-size:18px;font-weight:bold;color:#059669;margin-top:2px">21<span style="font-size:9px;color:#6b7280;margin-left:2px">名</span></div></div>
+            <div style="background:#fff;border-radius:8px;padding:10px;border:1px solid #e5e7eb"><div style="font-size:9px;color:#6b7280">登録企業</div><div style="font-size:18px;font-weight:bold;color:#1e40af;margin-top:2px">4<span style="font-size:9px;color:#6b7280;margin-left:2px">社</span></div></div>
+          </div>
+          <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div><div style="font-size:11px;font-weight:600;color:#1e40af">助成金監査用CSV ダウンロード</div><div style="font-size:9px;color:#1e3a8a;margin-top:1px">視聴開始日時・修了日・進捗率を一括出力</div></div><div style="background:#1e3a8a;color:#fff;padding:6px 12px;border-radius:5px;font-size:10px;font-weight:600">CSVをDL</div></div>
+          <div style="background:#fff;border-radius:8px;padding:10px;border:1px solid #e5e7eb;font-size:10px">
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6"><span style="flex:1;font-weight:600">田中 太郎</span><span style="color:#6b7280">A社</span><span style="background:#dcfce7;color:#065f46;padding:1px 5px;border-radius:99px;font-weight:600;font-size:9px">修了</span><span style="color:#6b7280">10/10</span></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6"><span style="flex:1;font-weight:600">佐藤 花子</span><span style="color:#6b7280">A社</span><span style="background:#fef3c7;color:#a16207;padding:1px 5px;border-radius:99px;font-weight:600;font-size:9px">受講中</span><span style="color:#6b7280">6/10</span></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 0"><span style="flex:1;font-weight:600">山本 次郎</span><span style="color:#6b7280">B社</span><span style="background:#f3f4f6;color:#6b7280;padding:1px 5px;border-radius:99px;font-weight:600;font-size:9px">未開始</span><span style="color:#6b7280">0/10</span></div>
+          </div>
+        </div>
+        <div class="scr-caption"><strong>管理者の全体ダッシュボード。</strong>受講者数・修了者数・企業数のサマリーと、助成金監査用CSV一括ダウンロード動線を1画面に集約。「現状どこまで進んだか」が秒で分かる。</div>
+      </div>
+
+      <!-- ⑤ コース管理 -->
+      <div class="scr-card">
+        <div class="scr-label"><span>⑤ 管理者画面：コース管理（複数会社割当）</span><span class="url">/admin/courses</span></div>
+        <div class="scr-body">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h4 style="font-size:15px;color:#1f2937">コース管理</h4><div style="background:#2563eb;color:#fff;padding:6px 12px;border-radius:5px;font-size:11px;font-weight:600">＋ コース追加</div></div>
+          <div style="background:#fff;border-radius:10px;border:1px solid #e5e7eb;padding:14px;margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;gap:10px">
+              <div style="flex:1">
+                <div style="font-size:13px;font-weight:bold;color:#1f2937">新任管理職研修2026</div>
+                <div style="font-size:10px;color:#6b7280;margin-top:1px">4月入社の新任管理職向け基礎研修コース</div>
+              </div>
+              <div style="text-align:right;font-size:10px;color:#9ca3af">
+                <div>動画 10 本</div>
+                <div>受講者 12 名</div>
+                <div style="margin-top:4px;color:#7e22ce;font-weight:600">割当 5社：A・B・C・D・E社</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:6px;margin-top:10px;padding-top:8px;border-top:1px solid #f3f4f6;flex-wrap:wrap">
+              <div style="background:#4f46e5;color:#fff;padding:5px 10px;border-radius:5px;font-size:10px;font-weight:600">章編集 →</div>
+              <div style="background:#2563eb;color:#fff;padding:5px 10px;border-radius:5px;font-size:10px;font-weight:600">動画追加</div>
+              <div style="background:#d97706;color:#fff;padding:5px 10px;border-radius:5px;font-size:10px;font-weight:600;margin-left:auto">💳 販売リンク発行</div>
+            </div>
+          </div>
+        </div>
+        <div class="scr-caption"><strong>1コースを複数の企業に同時割当できる。</strong>差分管理（追加・解除）はチェックボックスで直感的に。Stripe販売リンク発行ボタンもここから1クリックで生成され、外部告知LPに貼れる。</div>
+      </div>
+
+      <!-- ⑥ スクール管理 -->
+      <div class="scr-card">
+        <div class="scr-label"><span>⑥ 会社管理者画面：スクール管理</span><span class="url">/company/schools</span></div>
+        <div class="scr-body">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:14px">
+            <div>
+              <p style="font-size:10px;font-weight:700;color:#1e3a8a;letter-spacing:.05em">TRAINGO</p>
+              <h4 style="font-size:15px;color:#1f2937;margin-top:1px">スクール管理</h4>
+              <p style="font-size:10px;color:#6b7280;margin-top:3px">1社で複数のスクールを持てます</p>
+            </div>
+            <div style="background:#2563eb;color:#fff;padding:6px 12px;border-radius:5px;font-size:11px;font-weight:600">＋ 新規</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="background:#fff;border-radius:10px;border:1px solid #e5e7eb;border-left:4px solid #2563eb;padding:14px">
+              <div style="display:flex;justify-content:space-between;gap:6px"><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1f2937">営業部研修</div><div style="font-size:9px;color:#9ca3af;margin-top:2px">sales-training</div></div><span style="font-size:9px;background:#dcfce7;color:#065f46;padding:1px 6px;border-radius:99px;font-weight:600">公開中</span></div>
+              <div style="font-size:9px;color:#9ca3af;margin:8px 0">作成日：2026/05/29</div>
+              <div style="display:flex;gap:5px;padding-top:6px;border-top:1px solid #f3f4f6"><div style="flex:1;background:#2563eb;color:#fff;text-align:center;padding:5px;border-radius:5px;font-size:9px;font-weight:600">コース管理</div><div style="flex:1;background:#f3f4f6;color:#374151;text-align:center;padding:5px;border-radius:5px;font-size:9px;font-weight:600">進捗</div></div>
+            </div>
+            <div style="background:#fff;border-radius:10px;border:1px solid #e5e7eb;border-left:4px solid #f97316;padding:14px">
+              <div style="display:flex;justify-content:space-between;gap:6px"><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1f2937">技術部研修</div><div style="font-size:9px;color:#9ca3af;margin-top:2px">tech-training</div></div><span style="font-size:9px;background:#dcfce7;color:#065f46;padding:1px 6px;border-radius:99px;font-weight:600">公開中</span></div>
+              <div style="font-size:9px;color:#9ca3af;margin:8px 0">作成日：2026/05/29</div>
+              <div style="display:flex;gap:5px;padding-top:6px;border-top:1px solid #f3f4f6"><div style="flex:1;background:#2563eb;color:#fff;text-align:center;padding:5px;border-radius:5px;font-size:9px;font-weight:600">コース管理</div><div style="flex:1;background:#f3f4f6;color:#374151;text-align:center;padding:5px;border-radius:5px;font-size:9px;font-weight:600">進捗</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="scr-caption"><strong>1社が複数のスクール（業種別・部門別）を持てる。</strong>営業部・技術部・新人研修など、研修空間を目的別に分離。受講者も部署で分けて整理できるため、運用が混在しない。</div>
+      </div>
+
+      <!-- ⑦ 章とレッスン編集 -->
+      <div class="scr-card">
+        <div class="scr-label"><span>⑦ 会社管理者画面：章とレッスンの編集</span><span class="url">/company/course/[id]/structure</span></div>
+        <div class="scr-body">
+          <div style="margin-bottom:12px"><h4 style="font-size:14px;color:#1f2937">章とレッスンの編集</h4><p style="font-size:10px;color:#6b7280;margin-top:3px">章を作って、レッスン（動画／文章／クイズ）を入れる</p></div>
+          <div style="background:#fff;border-radius:10px;border:1px solid #e5e7eb;margin-bottom:8px;overflow:hidden">
+            <div style="background:#f9fafb;padding:8px 12px;display:flex;justify-content:space-between;border-bottom:1px solid #f3f4f6"><div><span style="font-size:9px;font-family:monospace;color:#9ca3af;margin-right:6px">第1章</span><span style="font-size:11px;font-weight:600;color:#1f2937">事前準備</span></div><div style="font-size:9px;color:#9ca3af">▲▼ 削除</div></div>
+            <div style="padding:8px 12px">
+              <div style="display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid #f9fafb;font-size:10px"><span style="font-family:monospace;color:#9ca3af;width:16px">1.</span><span style="background:#dbeafe;color:#1e40af;padding:1px 5px;border-radius:99px;font-size:9px;font-weight:600">🎬 動画</span><span style="flex:1">ターミナル初期設定ガイド</span></div>
+              <div style="display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid #f9fafb;font-size:10px"><span style="font-family:monospace;color:#9ca3af;width:16px">2.</span><span style="background:#ede9fe;color:#6d28d9;padding:1px 5px;border-radius:99px;font-size:9px;font-weight:600">📄 文章</span><span style="flex:1">受講前の心構え</span></div>
+              <div style="display:flex;align-items:center;gap:6px;padding:4px 0;font-size:10px"><span style="font-family:monospace;color:#9ca3af;width:16px">3.</span><span style="background:#fed7aa;color:#9a3412;padding:1px 5px;border-radius:99px;font-size:9px;font-weight:600">❓ クイズ</span><span style="flex:1">理解度確認テスト（5問）</span></div>
+              <div style="color:#2563eb;font-size:10px;margin-top:8px">＋ レッスンを追加</div>
+            </div>
+          </div>
+          <div style="background:#fff;border-radius:10px;border:1px solid #e5e7eb;padding:10px 12px"><div style="font-size:11px;font-weight:600;color:#1f2937;margin-bottom:6px">＋ 新しい章を追加</div><div style="display:flex;gap:6px"><div style="flex:1;border:1px solid #d1d5db;border-radius:5px;height:24px"></div><div style="background:#2563eb;color:#fff;padding:4px 12px;border-radius:5px;font-size:10px;font-weight:600">追加</div></div></div>
+        </div>
+        <div class="scr-caption"><strong>Teachable風の階層エディタ。</strong>動画／文章／クイズの3種類のレッスンを章に追加可能。修了判定は章内の必須レッスン全完了で自動。会社管理者が自社用に自由に組み替えられる。</div>
+      </div>
+
+      <!-- ⑧ アカウント設定 -->
+      <div class="scr-card">
+        <div class="scr-label"><span>⑧ 受講者画面：アカウント設定</span><span class="url">/settings</span></div>
+        <div class="scr-body">
+          <div style="display:flex;gap:12px">
+            <div style="width:140px;background:#fff;border-radius:8px;border:1px solid #e5e7eb;overflow:hidden;font-size:10px">
+              <div style="background:#eff6ff;color:#1d4ed8;padding:8px 10px;border-left:3px solid #2563eb;font-weight:600">プロフィール編集</div>
+              <div style="padding:8px 10px;color:#374151">購入履歴</div>
+              <div style="padding:8px 10px;color:#374151">管理者に連絡</div>
+              <div style="padding:8px 10px;color:#374151">ログアウト</div>
+            </div>
+            <div style="flex:1;background:#fff;border-radius:8px;border:1px solid #e5e7eb;padding:14px">
+              <h4 style="font-size:14px;color:#1f2937;margin-bottom:12px">プロフィール</h4>
+              <div style="border:1px solid #e5e7eb;border-radius:6px;padding:8px;margin-bottom:6px"><div style="font-size:9px;color:#6b7280">フルネーム</div><div style="font-size:11px;font-weight:500;color:#1f2937;border-bottom:1px solid #e5e7eb;padding-bottom:2px">田中 太郎</div></div>
+              <div style="border:1px solid #e5e7eb;border-radius:6px;padding:8px;margin-bottom:6px"><div style="font-size:9px;color:#6b7280">Email</div><div style="font-size:11px;font-weight:500;color:#1f2937;border-bottom:1px solid #e5e7eb;padding-bottom:2px">tanaka@example.co.jp</div></div>
+              <div style="border:1px solid #e5e7eb;border-radius:6px;padding:8px;margin-bottom:10px"><div style="font-size:9px;color:#6b7280">パスワード（変更時のみ）</div><div style="font-size:11px;color:#9ca3af;border-bottom:1px solid #e5e7eb;padding-bottom:2px">新しいパスワードを入力</div></div>
+              <div style="background:#2563eb;color:#fff;padding:6px 18px;border-radius:5px;font-size:11px;font-weight:600;display:inline-block">保存する</div>
+            </div>
+          </div>
+        </div>
+        <div class="scr-caption"><strong>受講者の自己管理画面。</strong>プロフィール編集・購入履歴・スクール管理者への問い合わせを1画面に集約。Teachable参考の3タブ構成で、受講者からの「これどこ？」を物理的に減らす。</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 全38機能一覧（受講者10/管理者15/企業管理者13） ===== -->
+<style>
+  .fn-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+  @media(max-width:840px){.fn-tabs{grid-template-columns:1fr}}
+  .fn-box{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .fn-box h3{font-size:16px;color:#0f1f33;border-bottom:3px solid #f59e0b;padding-bottom:10px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .fn-box h3 .cnt{background:#f59e0b;color:#fff;font-size:11px;padding:2px 10px;border-radius:99px;font-weight:700}
+  .fn-list{font-size:13px;color:#374151;line-height:1.85}
+  .fn-list .fn-item{padding:8px 0;border-bottom:1px solid #f1f5f9;display:flex;gap:8px}
+  .fn-list .fn-item:last-child{border-bottom:none}
+  .fn-list .fn-item .n{flex-shrink:0;background:#eff6ff;color:#1e40af;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px;height:fit-content;font-family:monospace}
+  .fn-list .fn-item .fn-name{font-weight:700;color:#0f1f33;font-size:13px}
+  .fn-list .fn-item .fn-desc{color:#64748b;font-size:12px;line-height:1.7;margin-top:2px}
+</style>
+<section class="block" id="all-functions">
+  <div class="container">
+    <h2 class="sec"><span class="sub">ALL FUNCTIONS</span>Traingoの全機能（38機能・3ロール）</h2>
+    <p class="sec-lead">「結局このシステムで何ができるのか？」に1分で答えるための機能一覧。受講者・管理者・企業管理者の3ロールそれぞれに専用機能が用意されており、「役割の混在による事故」が物理的に起きない設計です。</p>
+
+    <div class="fn-tabs">
+
+      <div class="fn-box">
+        <h3>受講者向け <span class="cnt">10機能</span></h3>
+        <div class="fn-list">
+          <div class="fn-item"><span class="n">1</span><div><span class="fn-name">受講者ログイン</span><div class="fn-desc">メール+パスワード認証。Supabase Auth による安全な認証基盤。</div></div></div>
+          <div class="fn-item"><span class="n">2</span><div><span class="fn-name">マイダッシュボード</span><div class="fn-desc">受講中コース一覧・進捗・修了状況をひと目で確認。</div></div></div>
+          <div class="fn-item"><span class="n">3</span><div><span class="fn-name">コース一覧・詳細閲覧</span><div class="fn-desc">受講可能なコースの章・動画リストを表示。</div></div></div>
+          <div class="fn-item"><span class="n">4</span><div><span class="fn-name">動画視聴</span><div class="fn-desc">Cloudflare Stream による高画質ストリーミング。署名付きURLで不正アクセス防止。PC/スマホ両対応。</div></div></div>
+          <div class="fn-item"><span class="n">5</span><div><span class="fn-name">視聴進捗の自動記録</span><div class="fn-desc">10秒ごとに視聴秒数を送信。ページ閉じ時も未送信分を sendBeacon で自動送信。</div></div></div>
+          <div class="fn-item"><span class="n">6</span><div><span class="fn-name">進捗バー表示</span><div class="fn-desc">サイドバーに視聴秒数合計／全動画合計秒数で算出した進捗率を表示。</div></div></div>
+          <div class="fn-item"><span class="n">7</span><div><span class="fn-name">修了判定・修了証発行</span><div class="fn-desc">95%以上視聴で完了判定。コース全体修了で修了証発行・ダウンロード可。</div></div></div>
+          <div class="fn-item"><span class="n">8</span><div><span class="fn-name">アカウント設定</span><div class="fn-desc">氏名・メール・パスワード編集。購入履歴確認。</div></div></div>
+          <div class="fn-item"><span class="n">9</span><div><span class="fn-name">Stripe決済による受講申込</span><div class="fn-desc">決済完了で受講者アカウント自動作成・コース自動割当。</div></div></div>
+          <div class="fn-item"><span class="n">10</span><div><span class="fn-name">フィードバック送信</span><div class="fn-desc">右端固定ボタンから不具合・感想を送信→管理者へメール+Chatwork通知。</div></div></div>
+        </div>
+      </div>
+
+      <div class="fn-box">
+        <h3>管理者向け <span class="cnt">15機能</span></h3>
+        <div class="fn-list">
+          <div class="fn-item"><span class="n">11</span><div><span class="fn-name">管理者ログイン</span><div class="fn-desc">/admin-login 専用入口。ロールガード付き。</div></div></div>
+          <div class="fn-item"><span class="n">12</span><div><span class="fn-name">管理者ダッシュボード</span><div class="fn-desc">全体の受講状況・登録コース・会社・受講者を集約表示。</div></div></div>
+          <div class="fn-item"><span class="n">13</span><div><span class="fn-name">動画アップロード</span><div class="fn-desc">TUS（再開可能アップロード）でCloudflare Streamに直接アップ。5MBチャンク・進捗%表示。</div></div></div>
+          <div class="fn-item"><span class="n">14</span><div><span class="fn-name">動画管理</span><div class="fn-desc">一覧・タイトル編集・削除。視聴回数・受講者数を確認。</div></div></div>
+          <div class="fn-item"><span class="n">15</span><div><span class="fn-name">コース作成・管理</span><div class="fn-desc">コース名・説明・スキップ可否設定（助成金要件に合わせデフォルト禁止）。</div></div></div>
+          <div class="fn-item"><span class="n">16</span><div><span class="fn-name">章・レッスン編集</span><div class="fn-desc">章とレッスン（動画/文章/クイズ）の追加・並び替え・削除。</div></div></div>
+          <div class="fn-item"><span class="n">17</span><div><span class="fn-name">コース複数会社割当</span><div class="fn-desc">1コースを複数企業に同時割当。チェックボックスUIで差分管理。</div></div></div>
+          <div class="fn-item"><span class="n">18</span><div><span class="fn-name">Stripe Payment Link 発行</span><div class="fn-desc">コースに対し決済リンクを発行。URLを案内するだけで決済→登録まで自動。</div></div></div>
+          <div class="fn-item"><span class="n">19</span><div><span class="fn-name">受講者管理</span><div class="fn-desc">全受講者の一覧・氏名・メール・所属会社・登録日確認。追加・削除。</div></div></div>
+          <div class="fn-item"><span class="n">20</span><div><span class="fn-name">受講者詳細（視聴ログ）</span><div class="fn-desc">動画ごとの視聴秒数・完了・最終視聴日時。助成金監査エビデンスに直接利用可。</div></div></div>
+          <div class="fn-item"><span class="n">21</span><div><span class="fn-name">受講状況管理</span><div class="fn-desc">コース別の進捗率・完了者数を2ステップで確認。</div></div></div>
+          <div class="fn-item"><span class="n">22</span><div><span class="fn-name">会社管理</span><div class="fn-desc">取引先企業の登録・編集・削除。担当者情報・割当コース一元管理。</div></div></div>
+          <div class="fn-item"><span class="n">23</span><div><span class="fn-name">活動ログ（監査ログ）</span><div class="fn-desc">ログイン・視聴・コース完了などのアクティビティを時系列で確認。</div></div></div>
+          <div class="fn-item"><span class="n">24</span><div><span class="fn-name">Webhook 自動処理</span><div class="fn-desc">Stripe checkout.session.completed で受講者作成・コース受講登録を自動実行。</div></div></div>
+          <div class="fn-item"><span class="n">25</span><div><span class="fn-name">フィードバック通知受信</span><div class="fn-desc">メール+Chatwork で受信。送信者には自動返信メール送付。</div></div></div>
+        </div>
+      </div>
+
+      <div class="fn-box">
+        <h3>企業管理者向け <span class="cnt">13機能</span></h3>
+        <div class="fn-list">
+          <div class="fn-item"><span class="n">26</span><div><span class="fn-name">企業管理者ログイン</span><div class="fn-desc">/company-login 専用入口。ダーク配色で管理者画面と視覚分離。</div></div></div>
+          <div class="fn-item"><span class="n">27</span><div><span class="fn-name">企業管理者ダッシュボード</span><div class="fn-desc">自社割当コース・自社受講者数・進捗概況を表示。</div></div></div>
+          <div class="fn-item"><span class="n">28</span><div><span class="fn-name">コース一覧閲覧</span><div class="fn-desc">自社割当コースの一覧・名称・説明・受講者数を表示。</div></div></div>
+          <div class="fn-item"><span class="n">29</span><div><span class="fn-name">コース新規作成</span><div class="fn-desc">自社用コースを新規作成。コース名・説明文を入力して保存。</div></div></div>
+          <div class="fn-item"><span class="n">30</span><div><span class="fn-name">コース構成編集</span><div class="fn-desc">章とレッスンの追加・編集・削除。動画構成を自社で管理。</div></div></div>
+          <div class="fn-item"><span class="n">31</span><div><span class="fn-name">コース管理（詳細）</span><div class="fn-desc">コース別の受講者一覧・進捗・設定の詳細確認・編集。</div></div></div>
+          <div class="fn-item"><span class="n">32</span><div><span class="fn-name">自社受講者管理</span><div class="fn-desc">自社受講者の登録・一覧。他社データへのアクセスは所有権チェックで遮断。</div></div></div>
+          <div class="fn-item"><span class="n">33</span><div><span class="fn-name">受講者詳細確認</span><div class="fn-desc">自社受講者の動画別視聴ログ・秒数・完了・最終視聴日。</div></div></div>
+          <div class="fn-item"><span class="n">34</span><div><span class="fn-name">スクール管理</span><div class="fn-desc">自社内の研修グループを作成・管理。複数プログラムの受講者を整理。</div></div></div>
+          <div class="fn-item"><span class="n">35</span><div><span class="fn-name">活動ログ確認</span><div class="fn-desc">自社内アクティビティ（視聴・ログイン等）を時系列で確認。</div></div></div>
+          <div class="fn-item"><span class="n">36</span><div><span class="fn-name">会社設定</span><div class="fn-desc">会社情報（会社名・担当者名・メール）の編集。</div></div></div>
+          <div class="fn-item"><span class="n">37</span><div><span class="fn-name">フィードバック送信</span><div class="fn-desc">全画面右端固定ボタン。不具合・要望を管理者へ送信。</div></div></div>
+          <div class="fn-item"><span class="n">38</span><div><span class="fn-name">利用規約確認</span><div class="fn-desc">システム利用規約（第1条〜第24条）をいつでも閲覧。</div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 業務フロー4本 ===== -->
+<style>
+  .flow-block{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:28px 32px;margin-bottom:22px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .flow-block h3{font-size:15px;color:#0f1f33;border-left:5px solid #f59e0b;padding-left:12px;margin-bottom:18px}
+  .flow-row-lp{display:flex;align-items:center;flex-wrap:wrap;gap:0;margin-bottom:8px;justify-content:center}
+  .flow-box-lp{border:2px solid #1a3a5c;background:#fff;color:#1a3a5c;padding:10px 16px;border-radius:6px;font-size:12px;font-weight:700;min-width:120px;text-align:center;line-height:1.5}
+  .flow-box-lp.gray{background:#f1f5f9;border-color:#94a3b8;color:#475569}
+  .flow-arrow-lp{color:#f59e0b;font-size:22px;padding:0 8px;font-weight:bold;line-height:1}
+  @media(max-width:840px){.flow-box-lp{font-size:11px;padding:8px 10px;min-width:90px}.flow-arrow-lp{font-size:18px;padding:0 4px}}
+</style>
+<section class="block alt" id="flows">
+  <div class="container">
+    <h2 class="sec"><span class="sub">WORKFLOWS</span>導入後の業務フロー（4本）</h2>
+    <p class="sec-lead">「実際に運用するとどう動くのか？」を4つの業務フローで完全可視化しました。管理者・企業管理者・受講者・Stripe・サーバーがそれぞれどのタイミングで何をするかが分かるので、社内稟議・現場説明にそのまま使えます。</p>
+
+    <div class="flow-block">
+      <h3>① 研修開始までの全体フロー（管理者 → 企業管理者 → 受講者）</h3>
+      <div class="flow-row-lp">
+        <div class="flow-box-lp gray">管理者<br>ログイン</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">動画<br>アップロード</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">コース作成</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">章・レッスン<br>設定</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">会社に<br>コース割当</div>
+      </div>
+      <div class="flow-row-lp" style="margin-top:10px">
+        <div class="flow-box-lp gray">企業管理者<br>ログイン</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">割当コース<br>確認</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">自社<br>受講者登録</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">受講者へ<br>URL案内</div>
+      </div>
+      <div class="flow-row-lp" style="margin-top:10px">
+        <div class="flow-box-lp gray">受講者<br>ログイン</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">コース選択</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">動画視聴<br>（進捗自動記録）</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">95%達成で<br>完了判定</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">修了証発行</div>
+      </div>
+    </div>
+
+    <div class="flow-block">
+      <h3>② Stripe決済経由の受講登録フロー（完全自動）</h3>
+      <div class="flow-row-lp">
+        <div class="flow-box-lp gray">管理者が<br>Payment Link発行</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">受講希望者へ<br>URL案内</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">Stripeで決済</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">Webhook受信</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">受講者アカウント<br>自動作成</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">コース<br>自動登録</div>
+      </div>
+    </div>
+
+    <div class="flow-block">
+      <h3>③ 視聴進捗の記録フロー（助成金要件対応）</h3>
+      <div class="flow-row-lp">
+        <div class="flow-box-lp gray">受講者が<br>動画を再生</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">10秒ごとに<br>視聴ログ送信</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">Supabaseに<br>記録保存</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">進捗バーを<br>リアルタイム更新</div>
+      </div>
+      <div class="flow-row-lp" style="margin-top:10px">
+        <div class="flow-box-lp gray">ページを<br>閉じる</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">sendBeaconで<br>強制送信</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">最後の視聴分まで<br>記録漏れなし</div>
+      </div>
+    </div>
+
+    <div class="flow-block">
+      <h3>④ フィードバック通知フロー（受講者の声を逃さない）</h3>
+      <div class="flow-row-lp">
+        <div class="flow-box-lp gray">受講者が<br>フィードバック入力</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">APIサーバー<br>受信</div>
+        <div class="flow-arrow-lp">→</div>
+        <div class="flow-box-lp">メール通知<br>（info@fp-1.info）</div>
+        <div class="flow-arrow-lp">＋</div>
+        <div class="flow-box-lp">Chatwork通知<br>（運営ルーム）</div>
+        <div class="flow-arrow-lp">＋</div>
+        <div class="flow-box-lp">送信者へ<br>自動返信メール</div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:32px;color:#475569;font-size:14px;line-height:2;max-width:760px;margin-left:auto;margin-right:auto">
+      上の4本のフローは、Traingo が稼働中の<strong>実装そのままの動作</strong>です。<br>
+      「将来こうしたい」ではなく「導入翌日からこの通りに動く」業務手順として、社内説明資料に転載可能です。
+    </p>
+
   </div>
 </section>
 
