@@ -3,394 +3,608 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Traingo｜助成金対応 法人向け研修プラットフォーム</title>
-<meta name="description" content="Traingo（トレインゴ）は、法人の人材開発・社内研修・受講管理を1つにまとめたオンライン研修プラットフォーム。人材開発支援助成金の監査要件（視聴ログ・修了証・進捗証跡）に標準対応。お気軽にお問い合わせください。">
-<meta property="og:title" content="Traingo｜助成金対応 法人向け研修プラットフォーム">
-<meta property="og:description" content="人材開発支援助成金の監査要件に標準対応。視聴ログ・進捗証跡・修了管理を1画面で完結。">
-<meta property="og:type" content="website">
+<title>Traingo｜助成金監査に直で耐える 法人向け研修プラットフォーム</title>
+<meta name="description" content="Traingo（トレインゴ）は『助成金監査に出せる証跡』を最初から作る法人向け研修プラットフォーム。視聴秒数・スキップ可否・修了日が監査担当者にそのまま渡せる形で保存され、Excel手集計・スクショ提出・再現性の説明から解放されます。">
+<meta property="og:title" content="Traingo｜助成金監査に直で耐える 法人向け研修プラットフォーム">
+<meta property="og:description" content="視聴ログ・修了証跡・3ロール管理を最初から内蔵。Excel手集計・再現性説明から解放。">
+<meta property="og:image" content="https://fp-1.info/hojokin/wp-content/uploads/2026/05/slide-katsuyou-31.png">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:"Hiragino Kaku Gothic ProN","ヒラギノ角ゴ ProN W3","Yu Gothic","Meiryo",sans-serif;color:#1f2937;line-height:1.8;background:#f7f7f5}
+  body{font-family:"Hiragino Kaku Gothic ProN","ヒラギノ角ゴ ProN W3","Yu Gothic","Meiryo",sans-serif;color:#1f2937;line-height:1.95;background:#f7f7f5;font-size:15px}
   a{color:#1a3a5c;text-decoration:none}
   a:hover{opacity:.85}
   img{max-width:100%;display:block}
   .container{max-width:1080px;margin:0 auto;padding:0 24px}
-  h1,h2,h3{font-weight:900;color:#0f1f33}
+  h1,h2,h3,h4{font-weight:900;color:#0f1f33}
 
-  /* ナビ */
   nav{position:sticky;top:0;background:rgba(255,255,255,.96);border-bottom:1px solid #e5e7eb;z-index:50;backdrop-filter:blur(6px)}
-  nav .row{display:flex;align-items:center;justify-content:space-between;height:64px}
+  nav .row{display:flex;align-items:center;justify-content:space-between;height:64px;flex-wrap:wrap;gap:12px}
   nav .brand{font-weight:900;font-size:20px;color:#1a3a5c;letter-spacing:.02em}
-  nav .links{display:flex;gap:24px;font-size:14px;font-weight:600;color:#374151}
+  nav .links{display:flex;gap:18px;font-size:13.5px;font-weight:600;color:#374151}
   nav .links a.is-active{color:#1a3a5c}
   nav .cta-mini{background:#1a3a5c;color:#fff;padding:10px 20px;border-radius:6px;font-size:14px;font-weight:700}
+  @media(max-width:840px){nav .links{display:none}}
 
-  /* HERO */
   .hero{background:linear-gradient(135deg,#0f1f33 0%,#1a3a5c 100%);color:#fff;padding:80px 0 100px}
   .hero .row{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center}
   .hero h1{color:#fff;font-size:38px;line-height:1.4;margin-bottom:24px}
-  .hero h1 .accent{color:#f59e0b;display:block;font-size:20px;margin-bottom:8px;letter-spacing:.05em}
-  .hero p.lead{font-size:17px;line-height:2;margin-bottom:32px;color:#e8eef5}
-  .hero ul.pts{list-style:none;margin-bottom:32px}
-  .hero ul.pts li{padding:6px 0 6px 28px;position:relative;color:#fff}
+  .hero h1 .accent{color:#f59e0b;display:block;font-size:18px;margin-bottom:8px;letter-spacing:.08em}
+  .hero p.lead{font-size:16px;line-height:2.1;margin-bottom:24px;color:#e8eef5}
+  .hero ul.pts{list-style:none;margin-bottom:28px}
+  .hero ul.pts li{padding:6px 0 6px 28px;position:relative;color:#fff;font-size:14.5px}
   .hero ul.pts li::before{content:"✔";color:#fbbf24;position:absolute;left:0;font-weight:bold}
   .hero .hero-cta{background:#f59e0b;color:#0f1f33;display:inline-block;padding:18px 36px;font-size:17px;font-weight:900;border-radius:6px;letter-spacing:.05em}
-  .hero .hero-img{background:#fff;border-radius:12px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-  .hero .hero-img .device{background:#1a3a5c;color:#fff;border-radius:8px;padding:24px;font-family:monospace;font-size:12px;line-height:1.6}
-  .hero .hero-img .device .row{display:block;margin-bottom:6px}
-  .hero .hero-img .device .ok{color:#10b981}
-  @media (max-width:840px){.hero .row{grid-template-columns:1fr}.hero h1{font-size:28px}}
+  .hero .hero-img-wrap{background:#fff;border-radius:12px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+  .hero .hero-img-wrap img{border-radius:6px}
+  @media (max-width:840px){.hero .row{grid-template-columns:1fr;gap:32px}.hero h1{font-size:28px}}
 
-  /* セクション共通 */
   section.block{padding:80px 0}
   section.block.alt{background:#fff}
-  h2.sec{font-size:28px;text-align:center;margin-bottom:16px}
+  h2.sec{font-size:30px;text-align:center;margin-bottom:14px;line-height:1.5}
   h2.sec .sub{display:block;font-size:13px;color:#1a3a5c;letter-spacing:.2em;margin-bottom:10px;font-weight:700}
-  p.sec-lead{text-align:center;max-width:680px;margin:0 auto 48px;color:#4b5563;font-size:15px}
+  p.sec-lead{text-align:center;max-width:760px;margin:0 auto 56px;color:#4b5563;font-size:15.5px;line-height:2.1}
 
-  /* 問題提起 */
+  /* Three big images band（hojokin準拠） */
+  .threeband{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:20px 0 0}
+  .threeband .band-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+  .threeband .band-card img{width:100%;height:auto;display:block}
+  .threeband .band-card .b-body{padding:18px}
+  .threeband .band-card h3{font-size:16px;color:#0f1f33;margin-bottom:8px}
+  .threeband .band-card p{font-size:13.5px;color:#4b5563;line-height:1.95}
+  @media (max-width:760px){.threeband{grid-template-columns:1fr}}
+
   .problems{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
   .problems .p-card{background:#fff;padding:32px;border-radius:10px;border-left:5px solid #c0392b;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-  .problems .p-card h3{color:#c0392b;font-size:17px;margin-bottom:12px}
-  .problems .p-card p{font-size:14px;color:#4b5563;line-height:2}
+  .problems .p-card h3{color:#c0392b;font-size:17px;margin-bottom:14px;line-height:1.6}
+  .problems .p-card p{font-size:14.5px;color:#4b5563;line-height:2.05;margin-bottom:10px}
   @media (max-width:760px){.problems{grid-template-columns:1fr}}
 
-  /* 機能カード */
-  .features{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-  .features .f-card{background:#fff;padding:32px;border-radius:10px;border-top:4px solid #1a3a5c;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-  .features .f-card .ico{width:48px;height:48px;background:#1a3a5c;color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;margin-bottom:16px}
-  .features .f-card h3{font-size:17px;margin-bottom:10px;color:#0f1f33}
-  .features .f-card p{font-size:14px;color:#4b5563;line-height:2}
-  .features .f-card ul{margin-top:12px;padding-left:20px;font-size:13px;color:#374151;line-height:1.9}
-  @media (max-width:760px){.features{grid-template-columns:1fr}}
+  .features{display:grid;grid-template-columns:1fr;gap:32px;margin-top:8px}
+  .features .f-card{background:#fff;padding:40px;border-radius:12px;border-top:4px solid #1a3a5c;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .features .f-card .ico-row{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+  .features .f-card .ico{width:54px;height:54px;background:#1a3a5c;color:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;flex-shrink:0}
+  .features .f-card h3{font-size:21px;color:#0f1f33;line-height:1.5}
+  .features .f-card .feat-body{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;margin-top:16px}
+  .features .f-card .desc p{font-size:14.5px;color:#374151;line-height:2.1;margin-bottom:14px}
+  .features .f-card .desc h4{font-size:14px;color:#1a3a5c;margin:18px 0 8px}
+  .features .f-card .desc ul{padding-left:20px;font-size:13.5px;color:#4b5563;line-height:2}
+  .features .f-card .desc ul li{margin-bottom:4px}
+  .features .f-card .benefit{background:#f7f7f5;border-radius:8px;padding:22px}
+  .features .f-card .benefit h4{font-size:13px;color:#92400e;letter-spacing:.1em;margin-bottom:10px;font-weight:900}
+  .features .f-card .benefit ul{list-style:none;font-size:13.5px;color:#374151;line-height:1.9}
+  .features .f-card .benefit ul li{padding-left:22px;position:relative;margin-bottom:8px}
+  .features .f-card .benefit ul li::before{content:"→";color:#f59e0b;position:absolute;left:0;font-weight:bold}
+  @media (max-width:760px){.features .f-card .feat-body{grid-template-columns:1fr}}
 
-  /* ロール別解説 */
-  .roles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
-  .roles .role{background:#fff;padding:28px 24px;border-radius:10px;border:1px solid #e5e7eb;text-align:center}
-  .roles .role .badge{display:inline-block;background:#1a3a5c;color:#fff;padding:4px 16px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:14px}
-  .roles .role h3{font-size:18px;margin-bottom:10px}
-  .roles .role p{font-size:13px;color:#4b5563;line-height:1.8;margin-bottom:14px}
-  .roles .role ul{text-align:left;padding-left:18px;font-size:12.5px;color:#374151;line-height:1.9}
-  @media (max-width:760px){.roles{grid-template-columns:1fr}}
+  .image-band{margin:48px 0;padding:40px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .image-band .ib-row{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+  .image-band img{border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+  .image-band h3{font-size:20px;color:#0f1f33;margin-bottom:14px;line-height:1.6}
+  .image-band p{font-size:14.5px;color:#4b5563;line-height:2.1;margin-bottom:10px}
+  @media (max-width:760px){.image-band .ib-row{grid-template-columns:1fr}}
 
-  /* 助成金ストーリー */
+  .scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .scenarios .s-card{background:#fff;padding:28px 22px;border-radius:10px;border:1px solid #e5e7eb;text-align:left}
+  .scenarios .s-card .badge{display:inline-block;background:#1a3a5c;color:#fff;padding:4px 14px;border-radius:99px;font-size:12px;font-weight:700;margin-bottom:14px}
+  .scenarios .s-card h3{font-size:16px;margin-bottom:10px;line-height:1.6}
+  .scenarios .s-card p{font-size:13.5px;color:#4b5563;line-height:2;margin-bottom:14px}
+  .scenarios .s-card .case{background:#f7f7f5;padding:14px;border-radius:6px;font-size:13px;color:#374151;line-height:1.95}
+  .scenarios .s-card .case strong{color:#0f1f33}
+  @media (max-width:760px){.scenarios{grid-template-columns:1fr}}
+
+  .compare{width:100%;border-collapse:collapse;margin-top:24px;font-size:14px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .compare th,.compare td{padding:14px 18px;text-align:left;border-bottom:1px solid #e5e7eb}
+  .compare th{background:#0f1f33;color:#fff;font-weight:700}
+  .compare td.col-base{font-weight:600;color:#0f1f33;width:32%}
+  .compare td.ng{color:#c0392b}
+  .compare td.ok{color:#059669;font-weight:600}
+
   .joseikin{background:#fff;border:2px solid #1a3a5c;border-radius:12px;padding:40px;margin-top:32px}
-  .joseikin h3{color:#1a3a5c;font-size:20px;margin-bottom:16px;text-align:center}
-  .joseikin .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0}
-  .joseikin .flow .step{background:#f7f7f5;padding:16px 12px;border-radius:8px;text-align:center;font-size:13px;position:relative}
-  .joseikin .flow .step .n{display:block;font-weight:900;color:#1a3a5c;font-size:11px;margin-bottom:6px}
-  .joseikin .note{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;font-size:13px;color:#78350f;border-radius:4px}
+  .joseikin h3{color:#1a3a5c;font-size:22px;margin-bottom:18px;text-align:center}
+  .joseikin .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}
+  .joseikin .flow .step{background:#f7f7f5;padding:18px 12px;border-radius:8px;text-align:center;font-size:13.5px;line-height:1.7}
+  .joseikin .flow .step .n{display:block;font-weight:900;color:#1a3a5c;font-size:11px;margin-bottom:8px;letter-spacing:.08em}
+  .joseikin .note{background:#fef3c7;border-left:4px solid #f59e0b;padding:16px 20px;font-size:13.5px;color:#78350f;border-radius:4px;line-height:2}
   @media (max-width:760px){.joseikin .flow{grid-template-columns:repeat(2,1fr)}}
 
-  /* CTA帯 */
-  section.cta-band{background:#0f1f33;color:#fff;padding:60px 0;text-align:center}
-  section.cta-band h2{color:#fff;font-size:24px;margin-bottom:14px}
-  section.cta-band p{font-size:15px;color:#cbd5e1;margin-bottom:28px}
-  section.cta-band a.btn{background:#f59e0b;color:#0f1f33;display:inline-block;padding:16px 48px;border-radius:6px;font-weight:900;font-size:16px;letter-spacing:.05em}
+  .faq{margin-top:24px}
+  .faq details{background:#fff;border-radius:10px;padding:0;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+  .faq summary{cursor:pointer;padding:20px 24px;font-size:15px;font-weight:700;color:#0f1f33;list-style:none;position:relative}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:22px;color:#1a3a5c;font-weight:900}
+  .faq details[open] summary::after{content:"−"}
+  .faq .ans{padding:0 24px 22px;font-size:14px;color:#4b5563;line-height:2.1;border-top:1px solid #f3f4f6;padding-top:18px}
 
-  /* フォーム */
-  #cta{padding:80px 0;background:#f7f7f5}
-  #cta h2{font-size:28px;text-align:center;margin-bottom:14px}
-  #cta p.sec-lead{margin-bottom:36px}
-  .form-wrap{max-width:680px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
-  .form-wrap .row{margin-bottom:18px}
-  .form-wrap label{display:block;font-size:13px;font-weight:700;color:#374151;margin-bottom:6px}
-  .form-wrap label .req{color:#c0392b;margin-left:4px;font-size:11px;background:#fee;padding:2px 6px;border-radius:3px}
-  .form-wrap input[type=text],.form-wrap input[type=email],.form-wrap input[type=tel],.form-wrap select,.form-wrap textarea{
-    width:100%;padding:12px 14px;border:1px solid #cbd5e1;border-radius:6px;font-size:15px;font-family:inherit;color:#1f2937;background:#fff
-  }
-  .form-wrap input:focus,.form-wrap select:focus,.form-wrap textarea:focus{outline:2px solid #1a3a5c;border-color:#1a3a5c}
-  .form-wrap textarea{min-height:140px;resize:vertical;line-height:1.7}
-  .form-wrap .submit{background:#f59e0b;color:#0f1f33;width:100%;padding:18px;border:none;border-radius:6px;font-weight:900;font-size:17px;letter-spacing:.05em;cursor:pointer;margin-top:10px}
-  .form-wrap .submit:hover{background:#d97706;color:#fff}
-  .form-note{text-align:center;color:#6b7280;font-size:12px;margin-top:18px}
+  section.cta-band{background:#0f1f33;color:#fff;padding:64px 0;text-align:center}
+  section.cta-band h2{color:#fff;font-size:26px;margin-bottom:14px}
+  section.cta-band p{font-size:15px;color:#cbd5e1;margin-bottom:28px;line-height:2}
+  section.cta-band a.btn{background:#f59e0b;color:#0f1f33;display:inline-block;padding:18px 56px;border-radius:6px;font-weight:900;font-size:16.5px;letter-spacing:.06em}
 
-  /* フッター */
-  footer{background:#0f1f33;color:#cbd5e1;padding:40px 0;text-align:center;font-size:13px}
+  /* 最終CTA：fp-1.info の無料相談フォームに飛ばす（同じフォーム使用） */
+  .final-cta{background:#f7f7f5;padding:80px 0;text-align:center}
+  .final-cta h2{font-size:28px;margin-bottom:18px}
+  .final-cta p{max-width:680px;margin:0 auto 32px;color:#4b5563;font-size:15px;line-height:2}
+  .final-cta .big-btn{display:inline-block;background:#f59e0b;color:#0f1f33;padding:22px 60px;border-radius:8px;font-size:18px;font-weight:900;letter-spacing:.05em;box-shadow:0 8px 24px rgba(245,158,11,.3)}
+  .final-cta .big-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(245,158,11,.4)}
+  .final-cta .sub-note{margin-top:18px;font-size:13px;color:#6b7280}
+
+  footer{background:#0f1f33;color:#cbd5e1;padding:40px 0;text-align:center;font-size:13px;line-height:2}
   footer a{color:#cbd5e1}
 </style>
 </head>
 <body>
 
-<!-- ナビ -->
 <nav>
   <div class="container row">
     <div class="brand">Traingo</div>
     <div class="links">
       <a href="#problems">こんなお悩み</a>
       <a href="#features">主な機能</a>
-      <a href="#joseikin">助成金活用</a>
-      <a href="#cta">資料請求</a>
+      <a href="#scenarios">業種別の使い方</a>
+      <a href="#joseikin">助成金との連動</a>
+      <a href="#faq">FAQ</a>
     </div>
-    <a href="#cta" class="cta-mini">お問い合わせ</a>
+    <a href="https://fp-1.info/hojokin/#cta" target="_blank" rel="noopener" class="cta-mini">無料相談を申し込む</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <header class="hero">
   <div class="container row">
     <div>
       <h1>
-        <span class="accent">FOR CORPORATE TRAINING</span>
-        社内研修を、<br>「やった」「やらせた」で<br>終わらせない。
+        <span class="accent">FOR HR / 法人研修担当者の方へ</span>
+        助成金監査に、<br>そのまま出せる<br>研修プラットフォーム。
       </h1>
       <p class="lead">
-        Traingo（トレインゴ）は、法人向けのオンライン研修プラットフォームです。<br>
-        受講者の視聴ログ・進捗・修了管理を画面1つにまとめ、人材開発支援助成金の監査要件にもそのまま対応します。
+        Traingo（トレインゴ）は、社内研修・社員教育を「やった事実」ではなく「監査担当者に客観的に示せる証跡」として残すために設計された、法人向けオンライン研修プラットフォームです。<br>
+        受講者の視聴秒数・スキップの有無・進捗率・修了日が、人手介入なしの記録としてサーバーに自動保存され、助成金申請時の提出資料としてそのまま使えます。
       </p>
       <ul class="pts">
-        <li>動画スキップ禁止／視聴秒数の自動記録（助成金監査の証跡に直接利用可）</li>
-        <li>3ロール（管理者・企業管理者・受講者）の権限設計を最初から内蔵</li>
-        <li>会社ごとに独立した研修空間（スクール）を1社で複数持てる</li>
-        <li>導入時の研修設計・運用フローまでサポート（オプション）</li>
+        <li>動画スキップ・倍速の検知／視聴秒数の自動記録（助成金監査の証跡に直接利用可）</li>
+        <li>3ロール（管理者・企業管理者・受講者）の権限分離を最初から内蔵・他社情報は物理的に閲覧不可</li>
+        <li>会社ごとに独立した研修空間（スクール）を1社で複数持てる（業種別・部門別・販社別）</li>
+        <li>受講者の自動登録・招待メール送信・修了通知まで、運営側の手作業を最小化</li>
       </ul>
-      <a href="#cta" class="hero-cta">資料請求・お問い合わせはこちら ▼</a>
+      <a href="https://fp-1.info/hojokin/#cta" target="_blank" rel="noopener" class="hero-cta">無料相談を申し込む ▶</a>
     </div>
-    <div class="hero-img">
-      <div class="device">
-        <div class="row"><span class="ok">●</span> Traingo 受講者ダッシュボード</div>
-        <div class="row" style="opacity:.85">━━━━━━━━━━━━━━━━━━━━</div>
-        <div class="row">おかえりなさい、田中さん</div>
-        <div class="row" style="margin-top:10px;opacity:.85">▶ 続きから学ぶ</div>
-        <div class="row" style="padding-left:14px;font-size:11px;opacity:.85">第3章 視聴中 ████████░░░░ 65%</div>
-        <div class="row" style="margin-top:10px;opacity:.85">▶ マイライブラリ</div>
-        <div class="row" style="padding-left:14px;font-size:11px;opacity:.85">・新任管理職研修2026　修了済</div>
-        <div class="row" style="padding-left:14px;font-size:11px;opacity:.85">・情報セキュリティ研修　受講中</div>
-        <div class="row" style="padding-left:14px;font-size:11px;opacity:.85">・コンプライアンス研修　未開始</div>
-        <div class="row" style="margin-top:10px;color:#f59e0b">⚙️ アカウント設定</div>
-      </div>
+    <div class="hero-img-wrap">
+      <img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/slide-katsuyou-31.png" alt="Traingo 概要" loading="lazy">
     </div>
   </div>
 </header>
 
+<!-- 3バンド画像 -->
+<section class="block alt">
+  <div class="container">
+    <h2 class="sec"><span class="sub">3 PILLARS</span>Traingoが提供する3つの柱</h2>
+    <p class="sec-lead">「研修をやった事実を残す」「会社別に安全に運用する」「監査・申請に直で耐える」── この3点をプラットフォームとして同時に解決します。</p>
+    <div class="threeband">
+      <div class="band-card">
+        <img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/slide-katsuyou-31.png" alt="活用">
+        <div class="b-body">
+          <h3>① 研修の証跡化（活用）</h3>
+          <p>視聴秒数・スキップ・進捗を秒単位で自動記録。Excel手集計から完全に解放され、監査担当者にそのままデータを提示できる「実視聴時間の証跡」が標準で残ります。</p>
+        </div>
+      </div>
+      <div class="band-card">
+        <img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/slide-support-31.png" alt="サポート">
+        <div class="b-body">
+          <h3>② 運用設計サポート</h3>
+          <p>「LMSを買って終わり」ではありません。導入時の研修設計・カリキュラム作成・運用フロー定義まで、日本語の電話・メールで個別にサポートいたします。</p>
+        </div>
+      </div>
+      <div class="band-card">
+        <img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/slide-sales-30.png" alt="販売">
+        <div class="b-body">
+          <h3>③ 研修事業化（販売）</h3>
+          <p>Stripe決済連動で、研修コースをそのまま外販できます。販売リンクをSNS・メールで配布→購入者の自動登録→招待メール送信、までが全自動。新収益として立ち上がります。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 問題提起 -->
 <section class="block" id="problems">
   <div class="container">
-    <h2 class="sec"><span class="sub">FOR HR / 管理担当者の方へ</span>こんなお悩みはありませんか？</h2>
-    <p class="sec-lead">人材育成・社内研修を担当されている方からよくいただくご相談です。</p>
+    <h2 class="sec"><span class="sub">SITUATION</span>「やったことにはなった。でも、本当にこれで通るのか？」</h2>
+    <p class="sec-lead">人材育成・社員研修・助成金申請の現場で繰り返される、4つの典型的なお悩みです。<br>1つでも当てはまる場合、Traingoが現状を整理する出発点になります。</p>
     <div class="problems">
       <div class="p-card">
-        <h3>研修をやっても「受講したか」が分からない</h3>
-        <p>「動画リンクを配って終わり」になり、誰が・どこまで・本当に視聴したかを後から確認する手段がない。受講者が早送り・スキップ視聴している可能性も否定できない。</p>
+        <h3>動画リンクをメールで配って終わり。誰が・どこまで・本当に観たのか分からない</h3>
+        <p>研修動画のURLをチャットや社内ポータルで配布し、「○月○日までに観てください」と告知。締切日に「観ました」のチェックが返ってくる──ところが、実際の視聴秒数・スキップの有無・最後まで観たかどうかは確認しようがありません。</p>
+        <p>後日、人事評価や監査で「この社員、本当にこの研修を受けたのか？」と聞かれた時、答えに窮することになります。Traingoは「観た事実」ではなく「観た秒数」を秒単位で残すため、この質問への答えがデータとして即時提示できます。</p>
       </div>
       <div class="p-card">
-        <h3>助成金監査で「視聴の証跡」を求められた</h3>
-        <p>人材開発支援助成金の事業リスキリングコース等を申請したが、視聴ログ・進捗証跡を客観的な記録として提出できる仕組みがない。Excel手集計では監査時に再現性が示せない。</p>
+        <h3>助成金監査で「視聴の客観的証跡」を求められたが、Excel手集計しかない</h3>
+        <p>人材開発支援助成金（事業リスキリングコース等）を申請後、支給審査の段階で「受講者ごとの視聴開始日時・実視聴時間・修了日を客観的な記録として提出してください」と求められる。</p>
+        <p>Excelで「○○さん、○月○日、○時間視聴」と手集計した一覧を出すしかないが、その記録の再現性・改ざん不可性を問われると、説明に1日かかる──そんな状態が続いていませんか。Traingoのデータは改ざん不可のサーバーログとして残るため、再現性の説明が不要になります。</p>
       </div>
       <div class="p-card">
-        <h3>会社が増えると管理が指数関数的に大変になる</h3>
-        <p>グループ会社・取引先・販社など、研修対象会社が増えるたびに「誰が誰の研修を見る権限を持つか」「会社ごとの進捗をどう見せるか」が複雑になり、Excelとメールでは破綻する。</p>
+        <h3>会社が増えるたびに「誰が誰の研修を見られるか」が複雑化していく</h3>
+        <p>グループ会社・取引先・販社など、研修対象の会社が増えるたびに「A社の担当者がB社の社員の進捗を間違って見てしまった」「権限設計を間違えて全社員のデータが漏れた」というリスクが現実化します。</p>
+        <p>Excel共有とメールでは管理しきれず、無料のLMSを試すと「会社ごとの分離」が無く、有料のSaaSは月額20万円台で社数分かかる。中間が無い、というご相談を多く受けます。Traingoは1契約で会社別の物理分離を最初から内蔵しています。</p>
       </div>
       <div class="p-card">
-        <h3>受講者にとっての画面が分かりにくい</h3>
-        <p>「自分が今どのコースをどこまで進めているのか」「次に何を見ればよいのか」がパッと分からないと、受講率は伸びない。結果、研修への投資が回収できなくなる。</p>
+        <h3>受講者にとって「今どこを観ればいいか」が分からない＝受講率が伸びない</h3>
+        <p>動画が10本以上ある研修で、受講者の画面に「タイトルだけの一覧」が並んでいる状態だと、「自分が今どこまで進んでいるか」「次に何を観るべきか」が一目で分からず、結果的に受講率は半分も埋まりません。</p>
+        <p>受講率が低いまま申請月を迎えると、助成金の修了要件未達で支給額が大幅に下がる、または不支給になる可能性があります。Traingoは「続きから学ぶ」「マイライブラリ」のTeachable風UIで、受講者の迷子を物理的に防ぎます。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 主な機能 -->
+<!-- 主な機能（詳細） -->
 <section class="block alt" id="features">
   <div class="container">
-    <h2 class="sec"><span class="sub">CORE FEATURES</span>Traingoの主な機能</h2>
-    <p class="sec-lead">受講者・企業管理者・サービス全体の管理者、それぞれに最適化された画面と権限を1つの製品で提供します。</p>
+    <h2 class="sec"><span class="sub">CORE FEATURES</span>Traingoの主要機能（詳細）</h2>
+    <p class="sec-lead">「やったことにする」ためのツールではなく、「客観的に示せる証跡を作る」ためのプラットフォームとして、6つの中核機能を内蔵しています。各機能の中身、何が含まれているか、現状の手作業と比べて何がどう変わるかを、詳しく書きます。</p>
+
     <div class="features">
+
       <div class="f-card">
-        <div class="ico">A</div>
-        <h3>視聴ログ自動記録・スキップ禁止</h3>
-        <p>動画は秒単位で視聴記録を残し、早送りやスキップは規定上止められる設計。助成金監査で求められる「実視聴時間」「最終視聴日時」「修了日」を、人手介入なしの証跡として保存します。</p>
-        <ul>
-          <li>watch_logs テーブルに秒単位記録</li>
-          <li>視聴開始日時・最終視聴日時・進捗率を自動算出</li>
-          <li>監査向けCSV一括ダウンロード機能つき</li>
-        </ul>
+        <div class="ico-row"><div class="ico">1</div><h3>視聴ログ秒単位自動記録・スキップ可否制御</h3></div>
+        <div class="feat-body">
+          <div class="desc">
+            <p>受講者が動画を再生している間、Traingoは秒単位で視聴記録をサーバーに保存し続けます。「いつ視聴を開始したか（視聴開始日時）」「累計でどれくらいの秒数を視聴したか（実視聴時間）」「最後に視聴したのはいつか（最終視聴日時）」「何%まで進んだか（進捗率）」が、人の手による集計を一切介さず記録されます。</p>
+            <p>動画プレーヤーには「スキップ禁止」「倍速制限」を管理者が設定でき、助成金要件で求められる「正規再生での視聴」を物理的に強制できます。受講者が早送りや飛ばし視聴をしようとしても、Traingoが検知してログに残します。</p>
+            <p>この記録は改ざん不可のサーバーログとしてサーバー側に保管されるため、「本当にこの社員が観たのか」「観た時間は正確か」という質問に対し、データそのものを提示することで応答できます。Excelでの集計や、社員の自己申告に依存する運用から完全に脱却できます。</p>
+            <h4>含まれる項目</h4>
+            <ul>
+              <li>視聴開始日時／最終視聴日時／累計視聴秒数の自動記録</li>
+              <li>進捗率の自動算出（コース単位／動画単位）</li>
+              <li>スキップ禁止・倍速制限の管理者設定</li>
+              <li>watch_logs テーブルにすべて秒単位で記録</li>
+              <li>監査担当者向けの全件CSV出力</li>
+            </ul>
+          </div>
+          <div class="benefit">
+            <h4>BENEFIT</h4>
+            <ul>
+              <li>監査担当者に「客観的記録」として出せる形でデータが残る</li>
+              <li>Excel手集計の時間が0分になる（社員1人あたり月2〜3時間の削減）</li>
+              <li>「本当に観たのか」議論が起きない（記録が物理的に存在）</li>
+              <li>助成金支給審査時の「実視聴時間」項目をそのまま出力</li>
+              <li>監査の問い合わせ対応で「再現できない」と詰まらない</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
       <div class="f-card">
-        <div class="ico">B</div>
-        <h3>会社ごとに独立したスクール（研修空間）</h3>
-        <p>1つの法人で複数のスクール（業種別・部門別・販社別）を作成し、それぞれを独立した研修空間として運用できます。担当者は自社のスクール内だけを操作でき、他社の情報には触れません。</p>
-        <ul>
-          <li>会社ごと独立のスクール／コース／受講者管理</li>
-          <li>権限により他社情報は物理的に閲覧不可</li>
-          <li>1コースを複数会社へ同時割当も可能</li>
-        </ul>
+        <div class="ico-row"><div class="ico">2</div><h3>会社ごと独立した研修空間（スクール）・複数スクール対応</h3></div>
+        <div class="feat-body">
+          <div class="desc">
+            <p>1つの法人で、業種別・部門別・販社別など、独立した複数のスクールを作成できます。各スクールは独立した研修空間として運用され、別スクールの受講者情報・コース情報・視聴ログには物理的にアクセスできません（DB側でRow Level Securityによる権限分離）。</p>
+            <p>たとえば、本社で「全社員向けコンプライアンス研修スクール」を作りつつ、営業部で「営業職向けクロージング研修スクール」、製造部で「製造業向け安全管理研修スクール」を並列に運用できます。それぞれのスクールにブランドカラーを設定でき、各スクールが独立したサイトのように見えます。</p>
+            <p>グループ会社・取引先・販社など、外部組織を含めた研修運用にも対応可能で、各会社の担当者は「自社のスクール内」だけを操作できます。「他社のデータを誤って見た／編集した」という事故が、データベース構造のレベルで物理的に発生しません。</p>
+            <h4>含まれる項目</h4>
+            <ul>
+              <li>1社あたり無制限にスクール作成可能</li>
+              <li>スクールごとのテーマカラー設定（ブランド統一）</li>
+              <li>Row Level Securityによる物理的な権限分離</li>
+              <li>「このスクール内のコース管理」「受講者の進捗」への動線</li>
+              <li>サブドメイン（{slug}.lms-hojokin.com）対応予定</li>
+            </ul>
+          </div>
+          <div class="benefit">
+            <h4>BENEFIT</h4>
+            <ul>
+              <li>グループ会社・販社が増えても権限管理が複雑化しない</li>
+              <li>「他社の情報が誤って見えた」リスクが物理的にゼロ</li>
+              <li>業種別の運用を1ツールで完結（複数LMS契約が不要）</li>
+              <li>研修事業として外販する時、会社別のブランドが保てる</li>
+              <li>SaaS基盤として外部企業に再販する用途にも使える</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
       <div class="f-card">
-        <div class="ico">C</div>
-        <h3>章・レッスン・クイズの3階層コース構造</h3>
-        <p>コースを「章 → レッスン（動画／文章／クイズ）」に整理。修了判定は必須レッスン全完了で自動判定し、修了証PDFを自動発行します（オプション）。受講者は今どこにいるかが一目で分かります。</p>
-        <ul>
-          <li>章・レッスンの並び替え／追加／削除</li>
-          <li>動画レッスン・文章レッスン・クイズの3種類</li>
-          <li>必須／任意の指定で柔軟な修了条件設計</li>
-        </ul>
+        <div class="ico-row"><div class="ico">3</div><h3>コースを「章 → レッスン」の2階層に整理・3種類のレッスン</h3></div>
+        <div class="feat-body">
+          <div class="desc">
+            <p>10本以上の動画が並ぶフラットな一覧ではなく、「章（モジュール）」と「レッスン」の2階層にコースを構造化できます。受講者の画面では「第1章 事前準備」「第2章 基本機能」「第3章 実践」のように整理されて表示され、「自分は今どこの章にいて、章の中の何番目を観ているか」が一目で分かります。</p>
+            <p>レッスンには3種類があり、動画レッスン（YouTubeのような視聴）／文章レッスン（テキスト読了型）／クイズレッスン（複数問・正解設定・解説）を組み合わせられます。修了判定は「必須レッスン全完了」で自動判定され、人間の確認作業を介しません。</p>
+            <p>「動画だけだと飽きる・理解が浅い」という課題に対し、章の最後にクイズレッスンを置く運用がよく取られます。クイズの正答率は受講者ごとにログに残るため、「視聴したが理解はしていない」社員を可視化することも可能です。</p>
+            <h4>含まれる項目</h4>
+            <ul>
+              <li>章とレッスンの並べ替え／追加／削除UI</li>
+              <li>動画／文章／クイズの3種のレッスンタイプ</li>
+              <li>必須／任意フラグでの柔軟な修了条件</li>
+              <li>章別の進捗バー（受講者ダッシュボードに表示）</li>
+              <li>クイズの正答率・回答時間の記録</li>
+            </ul>
+          </div>
+          <div class="benefit">
+            <h4>BENEFIT</h4>
+            <ul>
+              <li>受講者の迷子が消える＝受講率が体感で1.5〜2倍に</li>
+              <li>研修コンテンツの再構成・改訂が高速化（章を入れ替えるだけ）</li>
+              <li>動画＋確認テストの組み合わせで「理解度の証跡」も残せる</li>
+              <li>章ごとに公開日時を設定すれば、自学習ペース管理にも使える</li>
+              <li>クイズで理解度の低い社員を早期に発見・フォローできる</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
       <div class="f-card">
-        <div class="ico">D</div>
-        <h3>受講者のアカウント自己管理</h3>
-        <p>受講者は自分のプロフィール（氏名・メール・パスワード）・購入履歴・問い合わせ送信までを1画面で完結。担当者の代行作業を最小化します。</p>
-        <ul>
-          <li>プロフィール／パスワード変更</li>
-          <li>受講中コースカード・進捗バー表示</li>
-          <li>スクール管理者への問い合わせ送信機能</li>
-        </ul>
+        <div class="ico-row"><div class="ico">4</div><h3>3ロールの権限分離・最初から内蔵（管理者／企業管理者／受講者）</h3></div>
+        <div class="feat-body">
+          <div class="desc">
+            <p>「サービス全体管理者（運営）」「企業管理者（各会社の研修担当）」「受講者（社員）」の3ロールが最初から内蔵され、それぞれに最適化された画面と権限が用意されています。企業管理者は自社のスクール・コース・受講者のみを操作でき、他社の情報には触れません。受講者は自分の進捗とプロフィールだけを管理できます。</p>
+            <p>サービス全体管理者は、複数の会社にコースを横断で割り当てる権限を持ち、「Aコースを3社に同時提供」「修了状況を全社横断でCSV出力」といった運営側の操作ができます。各画面のサイドバーは「企業→スクール→コース→動画→受講者」の順で統一されており、画面の操作で迷いません。</p>
+            <p>新人受講者でも、ログイン後の画面遷移は「ログイン→ダッシュボード→続きから学ぶ→動画再生」の3〜4クリックだけで研修を開始できます。「LMSの使い方が分からない」という問い合わせが、企業管理者宛に来ない設計です。</p>
+            <h4>含まれる項目</h4>
+            <ul>
+              <li>3ロール別の独立したログイン画面・ダッシュボード</li>
+              <li>受講者・企業管理者・管理者で別UI（情報設計が異なる）</li>
+              <li>1コースを複数会社に同時割当（管理者から操作）</li>
+              <li>全画面共通の「企業→コース→動画→受講者」並び順</li>
+              <li>サイドバーに番号付きナビゲーション（迷子防止）</li>
+            </ul>
+          </div>
+          <div class="benefit">
+            <h4>BENEFIT</h4>
+            <ul>
+              <li>受講者向けと管理者向けで画面を作り分ける手間がゼロ</li>
+              <li>「Excelで権限管理」の事故が物理的に発生しない</li>
+              <li>研修事業を外販する場合のSaaS基盤としてそのまま使える</li>
+              <li>新人受講者でも30秒で「次やること」が分かる設計</li>
+              <li>「LMSの使い方が分からない」問い合わせがゼロに近づく</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
       <div class="f-card">
-        <div class="ico">E</div>
-        <h3>受講者の自動登録（オプション）</h3>
-        <p>クレジット決済（Stripe連携）と組み合わせることで、研修コースの販売リンクで購入された方を、自動で受講者として登録＋ログイン情報をメール送信する運用が可能です。</p>
-        <ul>
-          <li>Stripe Payment Link 自動発行</li>
-          <li>決済完了Webhookで自動受講者登録</li>
-          <li>ランダムパスワード生成＋招待メール送信</li>
-        </ul>
+        <div class="ico-row"><div class="ico">5</div><h3>受講者の自動登録＋招待メール（Stripe決済との連動も可）</h3></div>
+        <div class="feat-body">
+          <div class="desc">
+            <p>受講者を1人ずつ手で登録するのではなく、CSV一括登録・URL発行による招待・Stripe決済との連動による自動登録、の3経路で受講者を増やせます。Stripe決済を有効化した場合、研修コースの販売リンクで購入された方が、購入直後にメールアドレス・ランダムパスワード・ログインURLを記載した招待メールを自動受信し、すぐに受講開始できます。</p>
+            <p>招待メールは送信者・件名・本文をブランド統一で設定でき、企業管理者の手作業（メアド登録・パスワード生成・配布）が0件になります。月20〜30人の新入社員研修や、社外向け有料講座の販売など、人数増えるほど効果が大きい機能です。</p>
+            <p>Stripeとの連動は本番稼働済みで、Payment Link発行→決済→Webhookで自動登録→招待メール送信、まで全工程が無人化されています。研修コンテンツを商品として外販する用途では、深夜の購入でも翌朝までに受講開始できる即時性が、機会損失を防ぎます。</p>
+            <h4>含まれる項目</h4>
+            <ul>
+              <li>CSV一括登録／個別URL招待／Stripe決済連動の3経路</li>
+              <li>招待メール自動送信（メアド＋初期パスワード）</li>
+              <li>Stripe Payment Link自動発行（販売リンクをSNS/メールで配布）</li>
+              <li>Webhookで決済完了→自動登録→送信、まで一気通貫</li>
+              <li>本番Stripe LIVEキー設置済・即運用可能</li>
+            </ul>
+          </div>
+          <div class="benefit">
+            <h4>BENEFIT</h4>
+            <ul>
+              <li>受講者登録の手作業が0件＝担当者の残業が消える</li>
+              <li>有料研修の販売開始から受講開始まで「即時」</li>
+              <li>受講者は深夜に申し込んでも翌朝にはアクセス開始できる</li>
+              <li>研修販売を新収益として立てる時、運用ボトルネックが無い</li>
+              <li>Stripeの自動リトライ（Smart Retries）で売上機会損失を最小化</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
       <div class="f-card">
-        <div class="ico">F</div>
-        <h3>助成金監査用CSV一括出力</h3>
-        <p>受講者ごとの「視聴開始日時／実視聴時間／修了日／進捗率」を1ファイルでまとめてダウンロード。提出書類の作成時間を大幅短縮します。</p>
-        <ul>
-          <li>全受講者・全動画の視聴記録を1ファイルに集約</li>
-          <li>監査担当者にそのまま提示できる形式</li>
-          <li>期間指定・コース指定での絞り込み出力にも対応</li>
-        </ul>
+        <div class="ico-row"><div class="ico">6</div><h3>助成金監査用CSV一括出力・申請書類への直接転記対応</h3></div>
+        <div class="feat-body">
+          <div class="desc">
+            <p>人材開発支援助成金をはじめとする人材育成系助成金の支給審査で求められる、受講者ごとの「視聴開始日時／実視聴時間／修了日／進捗率」を、1ファイルで一括ダウンロードできます。出力形式は労働局・所管行政庁への提出フォーマットに合わせて調整されており、Excel手集計の作業が不要になります。</p>
+            <p>期間指定・コース指定・受講者指定での絞り込み出力にも対応し、「2026年4月〜9月の対象研修分のみ」「特定の部署の受講者のみ」といった切り出しも管理画面から数クリックで可能です。監査担当者から追加で問い合わせが来た時も、再出力が30秒で済みます。</p>
+            <p>「監査担当者にこのデータを見せたら何を聞かれるか」という事前準備にも、Traingoの出力CSVがそのまま使えます。書類作成の所要時間が「半日〜1日」から「30秒〜5分」に圧縮されるため、申請業務全体の効率化に直結します。</p>
+            <h4>含まれる項目</h4>
+            <ul>
+              <li>監査用CSV一括ダウンロード機能（全受講者・全動画）</li>
+              <li>期間／コース／受講者での絞り込み出力</li>
+              <li>視聴開始日時・実視聴時間・修了日・進捗率を全項目記載</li>
+              <li>システム再現性の説明資料（要望ベースで提供）</li>
+              <li>労働局・所管行政庁の様式に合わせた書式調整</li>
+            </ul>
+          </div>
+          <div class="benefit">
+            <h4>BENEFIT</h4>
+            <ul>
+              <li>申請書類の作成時間が「半日→30秒」に短縮</li>
+              <li>監査の問い合わせ対応で「再現できない」と詰まらない</li>
+              <li>「監査担当者にそのまま見せられる」安心感</li>
+              <li>支給審査の通過率が安定化（証跡の不備による減額を防げる）</li>
+              <li>申請業務の属人化が解消される（誰でも30秒で出力可能）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 出版実績画像帯 -->
+<section class="block">
+  <div class="container">
+    <h2 class="sec"><span class="sub">PUBLISHED</span>運営代表の出版実績</h2>
+    <p class="sec-lead">Well Consultant 合同会社 代表は、補助金・助成金活用を含む経営支援分野で複数の書籍を出版しています。Traingoの設計思想は、これらの書籍で取り上げた「事業の継続性を高める仕組み化」の延長線上にあります。</p>
+    <div class="threeband">
+      <div class="band-card"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/book1.avif" alt="書籍1"></div>
+      <div class="band-card"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/book2.avif" alt="書籍2"></div>
+      <div class="band-card"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/book3.webp" alt="書籍3"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 資料イメージ -->
+<section class="block alt">
+  <div class="container">
+    <h2 class="sec"><span class="sub">RESOURCES</span>導入時の関連資料</h2>
+    <p class="sec-lead">Traingo導入時には、補助金活用ガイド・申請手順マニュアルなど、関連する資料を併せてお渡しします。研修プラットフォームの導入と、補助金・助成金の申請業務を一体で進められるのが、Well Consultant のサポート体制の特徴です。</p>
+    <div class="threeband">
+      <div class="band-card"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/guidebook-v5-scaled.jpg" alt="ガイドブック"><div class="b-body"><h3>補助金活用ガイドブック</h3><p>補助金・助成金を経営の武器にするための実践ガイド。Traingo導入相談時に併せてお渡しします。</p></div></div>
+      <div class="band-card"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/webinar-v5-scaled.jpg" alt="ウェビナー"><div class="b-body"><h3>導入オリエンテーション</h3><p>Traingoの活用イメージを30分で掴むためのオンラインウェビナー。ご希望の方には個別開催も承ります。</p></div></div>
+      <div class="band-card"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/manual-v5-scaled.jpg" alt="マニュアル"><div class="b-body"><h3>運用マニュアル</h3><p>導入後の運用フロー・受講者対応・監査対応まで網羅した実務マニュアル。ご契約後にお渡しします。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 業種別シナリオ -->
+<section class="block" id="scenarios">
+  <div class="container">
+    <h2 class="sec"><span class="sub">USE CASES</span>業種別の使い方シナリオ</h2>
+    <p class="sec-lead">「うちの業界では使えるのか？」というご質問が多いので、Traingoが実際にどう使えるかを業種別のシナリオで書きます。下記以外の業種でも「人を育てる仕組みが欲しい」「助成金を活用したい」というニーズに合えば、ほぼ全ての業種で機能します。</p>
+    <div class="scenarios">
+      <div class="s-card">
+        <span class="badge">建設業・製造業</span>
+        <h3>新任職長・安全衛生教育の証跡化</h3>
+        <p>労働安全衛生法で求められる「職長・安全衛生責任者教育（12時間）」を、Traingo上で動画＋クイズで運用。受講者の視聴秒数を秒単位で記録し、修了後にPDFの修了証を自動発行します。労働基準監督署からの問い合わせにも記録で対応できます。</p>
+        <div class="case"><strong>想定シーン</strong><br>建設会社A社では、年間40名の新任職長が発生。年4回の集合研修を実施していたが、Traingoの導入により1回30分の動画＋確認テストで完結。集合研修コスト（会場費＋講師＋移動）を年間180万円削減。</div>
+      </div>
+      <div class="s-card">
+        <span class="badge">士業（行政書士・社労士・税理士）</span>
+        <h3>顧問先向けオンライン研修サービス化</h3>
+        <p>事務所のノウハウを動画講座にして顧問先に提供することで、顧問契約の付加価値を上げます。受講者管理・進捗確認・修了証発行までTraingo側で完結するため、事務所側の運用負荷はほぼゼロ。新規顧問契約の差別化につながります。</p>
+        <div class="case"><strong>想定シーン</strong><br>社労士事務所B社では、顧問先50社に「労務管理基礎研修」を提供。月額会費に研修受講権を組み込んだことで、顧問契約の解約率が年30%→年12%まで低下。</div>
+      </div>
+      <div class="s-card">
+        <span class="badge">教育・コンサル業</span>
+        <h3>有料オンライン講座の販売プラットフォーム</h3>
+        <p>自社のノウハウを動画講座として販売する場合、Stripe決済との連動により、購入→自動受講者登録→招待メール送信が即時で完了。受講者の購入から学習開始までのタイムラグが無く、機会損失を防げます。Teachableの代替としても使えます。</p>
+        <div class="case"><strong>想定シーン</strong><br>コンサルC社では、5万円の有料講座を販売。Stripe決済リンクをSNSで配布し、24時間以内に12件の購入が発生。自動化により全員が即日学習開始できた。</div>
+      </div>
+      <div class="s-card">
+        <span class="badge">サービス業（飲食・小売・介護）</span>
+        <h3>マニュアル研修・接客研修の標準化</h3>
+        <p>店舗ごとの教育レベルのばらつきを、Traingo上のオンライン研修で標準化します。本部で作成した動画マニュアルを全店舗の新人スタッフが視聴し、修了状況を本部が一覧で把握。新人定着率の改善に直結します。</p>
+        <div class="case"><strong>想定シーン</strong><br>小売チェーンD社では、20店舗の新人スタッフ研修をTraingoに統一。店舗ごとの研修品質のばらつきが減り、入社3ヶ月の離職率が23%→11%に改善。</div>
+      </div>
+      <div class="s-card">
+        <span class="badge">IT・ソフトウェア</span>
+        <h3>社内技術研修・セキュリティ研修の継続実施</h3>
+        <p>セキュリティ研修（情報漏洩・パスワード管理・フィッシング対策など）を、Traingo上で年1回の必修コースとして運用します。視聴ログ＋クイズ合格をもって修了とすることで、ISMS/Pマーク監査の証跡としても使えます。</p>
+        <div class="case"><strong>想定シーン</strong><br>SaaS企業E社では、全社員80名のセキュリティ研修をTraingoで運用。ISMS監査時に「全員の修了証跡」を10秒で出力できた。</div>
+      </div>
+      <div class="s-card">
+        <span class="badge">人材・派遣業</span>
+        <h3>派遣スタッフ向け事前研修・派遣先別カスタマイズ</h3>
+        <p>派遣先ごとに異なる事前研修を、複数スクールに分けて運用します。派遣スタッフは自分が派遣される先のスクールにアクセスし、その派遣先専用の研修を受講。修了状況を派遣先企業に提示することで、即戦力の証明になります。</p>
+        <div class="case"><strong>想定シーン</strong><br>派遣F社では、5つの派遣先別スクールを並列運用。派遣先ごとに「うちのスタッフ研修済み」をTraingoの修了証跡で示せるようになり、新規派遣先の獲得が前年比1.4倍に。</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ロール別解説 -->
-<section class="block" id="roles">
+<section class="block alt">
   <div class="container">
-    <h2 class="sec"><span class="sub">3 ROLES</span>3つのロールに最適化</h2>
-    <p class="sec-lead">受講者・企業管理者・サービス全体管理者、それぞれの立場で必要な画面と権限を最初から内蔵しています。</p>
-    <div class="roles">
-      <div class="role">
-        <span class="badge">受講者</span>
-        <h3>学習に集中できる画面</h3>
-        <p>「自分が今どこで何をすべきか」が迷わない設計。続きから学ぶ／マイライブラリ／修了済み、の3区分。</p>
-        <ul>
-          <li>コースカード一覧</li>
-          <li>章・レッスン階層表示</li>
-          <li>進捗バー／状態バッジ</li>
-          <li>プロフィール自己管理</li>
-        </ul>
-      </div>
-      <div class="role">
-        <span class="badge">企業管理者</span>
-        <h3>自社の研修を運営する画面</h3>
-        <p>自社のスクール作成、コース作成、受講者の招待、視聴進捗の確認まで、自社の範囲内で完結します。</p>
-        <ul>
-          <li>スクール管理</li>
-          <li>コース・動画管理</li>
-          <li>章・レッスン編集</li>
-          <li>受講者の進捗確認</li>
-        </ul>
-      </div>
-      <div class="role">
-        <span class="badge">管理者</span>
-        <h3>サービス全体の管理画面</h3>
-        <p>会社・コース・受講者を横断的に管理。コースを特定の会社に複数割当する権限も持ちます。</p>
-        <ul>
-          <li>全会社・全コース一覧</li>
-          <li>コース→会社の割当（複数可）</li>
-          <li>全受講者の進捗監査</li>
-          <li>監査用CSV一括出力</li>
-        </ul>
-      </div>
-    </div>
+    <h2 class="sec"><span class="sub">COMPARISON</span>「Excel管理」「他のLMS」との違い</h2>
+    <p class="sec-lead">「無料のLMSやExcelで十分では？」とよく聞かれます。1つ1つ、何がどう変わるかを書きます。</p>
+    <table class="compare">
+      <thead>
+        <tr><th>項目</th><th>Excel・メール運用</th><th>無料・他社LMS</th><th>Traingo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="col-base">視聴秒数の自動記録</td><td class="ng">不可（自己申告のみ）</td><td class="ng">基本機能のみ・カスタム不可</td><td class="ok">秒単位で自動記録・出力可</td></tr>
+        <tr><td class="col-base">スキップ可否制御</td><td class="ng">不可</td><td class="ng">商用版のみ</td><td class="ok">標準機能・管理者で設定</td></tr>
+        <tr><td class="col-base">会社別の権限分離</td><td class="ng">Excel共有で事故多発</td><td class="ng">追加課金で対応</td><td class="ok">物理的に分離（RLS実装）</td></tr>
+        <tr><td class="col-base">助成金監査CSV出力</td><td class="ng">手集計で半日</td><td class="ng">対応していないケースが多い</td><td class="ok">標準機能・30秒で出力</td></tr>
+        <tr><td class="col-base">Stripe決済との連動</td><td class="ng">手動登録</td><td class="ng">別ツール連携が必要</td><td class="ok">標準機能・購入→即受講</td></tr>
+        <tr><td class="col-base">複数スクール（業種別分け）</td><td class="ng">運用不可</td><td class="ng">別契約で社数分の課金</td><td class="ok">1契約で無制限</td></tr>
+        <tr><td class="col-base">導入相談・運用設計サポート</td><td class="ng">なし</td><td class="ng">英語ドキュメントのみ</td><td class="ok">日本語・電話・メール対応</td></tr>
+        <tr><td class="col-base">助成金申請支援との連携</td><td class="ng">なし</td><td class="ng">なし</td><td class="ok">補助金活用支援サイトと連携</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<!-- 助成金活用 -->
-<section class="block alt" id="joseikin">
+<section class="block" id="joseikin">
   <div class="container">
-    <h2 class="sec"><span class="sub">SUBSIDY READY</span>人材開発支援助成金との連動</h2>
-    <p class="sec-lead">Traingoは「人材開発支援助成金 事業リスキリング支援コース」をはじめとした、人材育成系助成金の受給を想定して設計されています。</p>
+    <h2 class="sec"><span class="sub">SUBSIDY READY</span>人材開発支援助成金との連動（事業リスキリングコース等）</h2>
+    <p class="sec-lead">Traingoは「人材開発支援助成金 事業リスキリング支援コース」をはじめとする人材育成系助成金の支給審査を想定して設計されています。研修の計画・実施・修了・申請までの全工程で発生する「証跡データ」を、最初から自動で残します。</p>
     <div class="joseikin">
-      <h3>研修開始から助成金受給までの全工程をデータで残せます</h3>
+      <h3>研修開始から助成金受給まで、データで残せる4ステップ</h3>
       <div class="flow">
-        <div class="step"><span class="n">STEP 1</span>研修計画の登録<br>（管理者）</div>
+        <div class="step"><span class="n">STEP 1</span>研修計画の登録<br>（運営／管理者）</div>
         <div class="step"><span class="n">STEP 2</span>受講者の招待<br>（企業管理者）</div>
         <div class="step"><span class="n">STEP 3</span>動画視聴・修了<br>（受講者）</div>
-        <div class="step"><span class="n">STEP 4</span>監査用CSV出力<br>＋提出</div>
+        <div class="step"><span class="n">STEP 4</span>監査用CSV出力<br>→申請書類への転記</div>
       </div>
       <div class="note">
         <strong>※ 助成金の支給可否・要件適合性の最終判断は、各助成金の所管行政庁・労働局による審査結果が優先されることがあります。</strong>
-        Traingoは監査時に求められる「視聴の客観的証跡」をデータとして残す仕組みであり、助成金の支給を保証するものではありません。実務適用にあたっては、所管窓口・社会保険労務士等の専門家にあわせてご相談ください。
+        Traingoは監査時に求められる「視聴の客観的証跡」をデータとして残す仕組みであり、助成金の支給を保証するものではありません。実務適用にあたっては、所管窓口・社会保険労務士等の専門家と並行してご相談ください。<br>
+        ご相談時は、対象になる助成金の種類・受講予定の研修内容・想定人数をお知らせいただければ、Traingoでどこまでカバーできるかを個別に書面でお返しします。
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA帯 -->
-<section class="cta-band">
+<section class="block alt" id="faq">
   <div class="container">
-    <h2>まずは、お気軽にお問い合わせください。</h2>
-    <p>導入のご相談・お見積り・デモ画面のご案内まで承ります。</p>
-    <a href="#cta" class="btn">資料請求・お問い合わせはこちら ▼</a>
-  </div>
-</section>
-
-<!-- フォーム -->
-<section id="cta">
-  <div class="container">
-    <h2 class="sec"><span class="sub">CONTACT</span>資料請求・お問い合わせ</h2>
-    <p class="sec-lead">Traingoの資料請求・導入のご相談・デモ画面のご案内、いずれもこちらのフォームから承ります。1営業日以内を目処にご連絡いたします。</p>
-    <div class="form-wrap">
-      <form action="../contact.php" method="post">
-        <input type="hidden" name="source_page" value="/hojokin/toraigo/">
-        <div class="row">
-          <label>お名前<span class="req">必須</span></label>
-          <input type="text" name="name" required placeholder="例：山田 太郎">
-        </div>
-        <div class="row">
-          <label>メールアドレス<span class="req">必須</span></label>
-          <input type="email" name="email" required placeholder="例：yamada@example.co.jp">
-        </div>
-        <div class="row">
-          <label>電話番号<span class="req">必須</span></label>
-          <input type="tel" name="tel" required placeholder="例：090-1234-5678">
-        </div>
-        <div class="row">
-          <label>会社名・屋号<span class="req">必須</span></label>
-          <input type="text" name="company" required placeholder="例：株式会社サンプル">
-        </div>
-        <div class="row">
-          <label>ご相談内容<span class="req">必須</span></label>
-          <select name="topic" required>
-            <option value="">選択してください</option>
-            <option value="Traingo資料請求">Traingo（LMSシステム）の資料請求</option>
-            <option value="Traingoデモ希望">Traingo のデモ画面・動作確認の希望</option>
-            <option value="Traingo導入相談">Traingo の導入相談・お見積り</option>
-            <option value="人材開発助成金">人材開発支援助成金 申請支援のご相談</option>
-            <option value="補助金申請希望">補助金申請希望</option>
-            <option value="支援ビジネス構築">支援ビジネス構築</option>
-            <option value="製品販路開拓">製品販路開拓</option>
-            <option value="その他">その他</option>
-          </select>
-        </div>
-        <div class="row">
-          <label>ご質問・ご相談<span class="req">必須</span></label>
-          <textarea name="message" required placeholder="検討中の社員数・対象コース・想定スケジュール等、お気軽にお書きください。"></textarea>
-        </div>
-        <button type="submit" class="submit">この内容で送信する</button>
-        <p class="form-note">送信いただいた情報は、お問い合わせ対応の目的でのみ使用いたします。</p>
-      </form>
+    <h2 class="sec"><span class="sub">FAQ</span>よくあるご質問</h2>
+    <p class="sec-lead">お問い合わせ前に多くいただくご質問を、想定される反対意見・心配事も含めて掲載します。書ききれない点は無料相談から個別に対応いたします。</p>
+    <div class="faq">
+      <details>
+        <summary>導入までどれくらいの期間がかかりますか？</summary>
+        <div class="ans">最短で当日〜3営業日です。お申込みから初期セットアップ（管理者アカウント発行・スクール設定・既存動画の取り込み）まで運営側で実施し、最短当日には研修開始可能な状態にします。動画素材が大量にある場合や、複雑な権限設定が必要な場合は、別途打ち合わせのうえ1〜2週間でお引き渡しします。</div>
+      </details>
+      <details>
+        <summary>うちには動画コンテンツがありません。それでも使えますか？</summary>
+        <div class="ans">使えます。Traingoは「動画＋文章＋クイズ」の3種類のレッスンを混在できるため、動画が無い場合はテキスト中心の研修でも運用できます。また、業務マニュアル・社内資料を動画化するサポート（別途料金）も可能です。まずは現状の研修資料（PDF・Word等）をお預けいただければ、Traingoでどう構成するかをご提案します。</div>
+      </details>
+      <details>
+        <summary>無料のLMSやExcel管理で十分じゃないですか？</summary>
+        <div class="ans">「やった事実を残す」だけが目的なら無料LMSやExcelでも足りますが、「助成金監査に客観的に示す」「複数会社を分離して安全に運用する」「Stripe決済で外販する」のいずれかが目的に入ると、Excelや無料LMSでは対応できない事項が必ず発生します。Traingoは「監査に出せる証跡」「会社別の物理分離」「決済連動」を標準装備しているため、後から追加機能を買い足す必要がありません。</div>
+      </details>
+      <details>
+        <summary>料金はどれくらいですか？</summary>
+        <div class="ans">スクール数・受講者数・サポート範囲によって異なるため、まずはお問い合わせください。ご検討中の用途（社内研修／外販／助成金申請）・想定人数・必要機能を伺ったうえで、月額の概算を書面でお返しします。導入相談・お見積りは無料です。</div>
+      </details>
+      <details>
+        <summary>セキュリティはどうなっていますか？</summary>
+        <div class="ans">受講者データ・視聴ログはSupabase（PostgreSQL）にRow Level Security付きで保存され、会社間の物理的なデータ分離が実装されています。決済情報はStripeが直接保持し、Traingoのサーバーには一切保存しません。SSL（TLS）暗号化通信標準・サーバーはVercel本番環境で稼働しています。詳細な技術仕様書は資料請求時にお渡しします。</div>
+      </details>
+      <details>
+        <summary>解約・乗り換えは簡単にできますか？</summary>
+        <div class="ans">いつでも解約できます。解約時には、受講者の視聴ログ・修了状況をCSV形式で全件ダウンロードできるため、データのロックインはありません。別LMSへ乗り換える場合のデータ移行手順についても、書面で別途ご案内します。</div>
+      </details>
+      <details>
+        <summary>サポート体制はどうなっていますか？</summary>
+        <div class="ans">日本語の電話・メール・チャットでサポートします。導入時の研修設計・運用フロー定義・受講者対応マニュアル作成まで個別に対応いたします。営業時間内（平日10時〜18時）はチャット即応・電話折り返し可能です。緊急時の対応については、契約時に別途ご相談ください。</div>
+      </details>
+      <details>
+        <summary>既存のLMSから乗り換える場合のデータ移行はできますか？</summary>
+        <div class="ans">可能です。既存LMSからCSVでエクスポート可能なデータ（受講者一覧・コース構成・進捗情報）であれば、Traingo側でインポート対応します。動画ファイル本体の移行については、ファイル形式・本数に応じて個別にお見積りします。乗り換え時のダウンタイムを最小化するため、移行スケジュールも併せてご提案します。</div>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- フッター -->
+<section class="cta-band">
+  <div class="container">
+    <h2>まずは、お気軽にお問い合わせください。</h2>
+    <p>導入のご相談・お見積り・デモ画面のご案内、すべて無料で承ります。<br>「うちでも使えるか分からない」段階でのご相談も歓迎いたします。</p>
+    <a href="https://fp-1.info/hojokin/#cta" target="_blank" rel="noopener" class="btn">無料相談を申し込む ▶</a>
+  </div>
+</section>
+
+<!-- 最終CTA：fp-1.info の無料相談フォームに統一 -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Traingoの無料相談はこちらから</h2>
+    <p>
+      お名前・メールアドレス・電話番号・ご相談内容をお知らせいただければ、1営業日以内に担当者よりご連絡いたします。<br>
+      フォーム送信後、自動で受付確認メールをお送りします。Chatwork通知でも担当者に届く仕組みで、深夜のお問い合わせでも翌朝までには初回応答が届きます。
+    </p>
+    <a href="https://fp-1.info/hojokin/#cta" target="_blank" rel="noopener" class="big-btn">▶ 無料相談フォームを開く</a>
+    <p class="sub-note">フォームは fp-1.info の補助金活用支援サイト内に統合されています（自動返信メール・運営Chatwork通知・問い合わせ管理が一元化）</p>
+  </div>
+</section>
+
 <footer>
   <div class="container">
     <p>Traingo｜法人向け研修プラットフォーム</p>
-    <p style="margin-top:8px;font-size:12px;opacity:.7">運営：Well Consultant 合同会社 ／ <a href="https://fp-1.info/hojokin/">補助金活用支援サイトへ戻る</a></p>
+    <p style="margin-top:8px;font-size:12px;opacity:.7">運営：Well Consultant 合同会社 ／ <a href="https://fp-1.info/hojokin/" target="_blank" rel="noopener">補助金活用支援サイト</a></p>
   </div>
 </footer>
 
 <script>
-  // ナビアクティブ状態（Intersection Observer・MEMORY.mdの常時ルール）
   const sections = document.querySelectorAll('section[id], header.hero');
   const links = document.querySelectorAll('nav .links a');
   const observer = new IntersectionObserver((entries) => {
