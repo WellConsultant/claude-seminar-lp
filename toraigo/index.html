@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traingo｜助成金対応 法人向け研修プラットフォーム</title>
+<meta name="description" content="Traingo（トレインゴ）は、法人の人材開発・社内研修・受講管理を1つにまとめたオンライン研修プラットフォーム。人材開発支援助成金の監査要件（視聴ログ・修了証・進捗証跡）に標準対応。お気軽にお問い合わせください。">
+<meta property="og:title" content="Traingo｜助成金対応 法人向け研修プラットフォーム">
+<meta property="og:description" content="人材開発支援助成金の監査要件に標準対応。視聴ログ・進捗証跡・修了管理を1画面で完結。">
+<meta property="og:type" content="website">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hiragino Kaku Gothic ProN","ヒラギノ角ゴ ProN W3","Yu Gothic","Meiryo",sans-serif;color:#1f2937;line-height:1.8;background:#f7f7f5}
+  a{color:#1a3a5c;text-decoration:none}
+  a:hover{opacity:.85}
+  img{max-width:100%;display:block}
+  .container{max-width:1080px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-weight:900;color:#0f1f33}
+
+  /* ナビ */
+  nav{position:sticky;top:0;background:rgba(255,255,255,.96);border-bottom:1px solid #e5e7eb;z-index:50;backdrop-filter:blur(6px)}
+  nav .row{display:flex;align-items:center;justify-content:space-between;height:64px}
+  nav .brand{font-weight:900;font-size:20px;color:#1a3a5c;letter-spacing:.02em}
+  nav .links{display:flex;gap:24px;font-size:14px;font-weight:600;color:#374151}
+  nav .links a.is-active{color:#1a3a5c}
+  nav .cta-mini{background:#1a3a5c;color:#fff;padding:10px 20px;border-radius:6px;font-size:14px;font-weight:700}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,#0f1f33 0%,#1a3a5c 100%);color:#fff;padding:80px 0 100px}
+  .hero .row{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center}
+  .hero h1{color:#fff;font-size:38px;line-height:1.4;margin-bottom:24px}
+  .hero h1 .accent{color:#f59e0b;display:block;font-size:20px;margin-bottom:8px;letter-spacing:.05em}
+  .hero p.lead{font-size:17px;line-height:2;margin-bottom:32px;color:#e8eef5}
+  .hero ul.pts{list-style:none;margin-bottom:32px}
+  .hero ul.pts li{padding:6px 0 6px 28px;position:relative;color:#fff}
+  .hero ul.pts li::before{content:"✔";color:#fbbf24;position:absolute;left:0;font-weight:bold}
+  .hero .hero-cta{background:#f59e0b;color:#0f1f33;display:inline-block;padding:18px 36px;font-size:17px;font-weight:900;border-radius:6px;letter-spacing:.05em}
+  .hero .hero-img{background:#fff;border-radius:12px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+  .hero .hero-img .device{background:#1a3a5c;color:#fff;border-radius:8px;padding:24px;font-family:monospace;font-size:12px;line-height:1.6}
+  .hero .hero-img .device .row{display:block;margin-bottom:6px}
+  .hero .hero-img .device .ok{color:#10b981}
+  @media (max-width:840px){.hero .row{grid-template-columns:1fr}.hero h1{font-size:28px}}
+
+  /* セクション共通 */
+  section.block{padding:80px 0}
+  section.block.alt{background:#fff}
+  h2.sec{font-size:28px;text-align:center;margin-bottom:16px}
+  h2.sec .sub{display:block;font-size:13px;color:#1a3a5c;letter-spacing:.2em;margin-bottom:10px;font-weight:700}
+  p.sec-lead{text-align:center;max-width:680px;margin:0 auto 48px;color:#4b5563;font-size:15px}
+
+  /* 問題提起 */
+  .problems{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .problems .p-card{background:#fff;padding:32px;border-radius:10px;border-left:5px solid #c0392b;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .problems .p-card h3{color:#c0392b;font-size:17px;margin-bottom:12px}
+  .problems .p-card p{font-size:14px;color:#4b5563;line-height:2}
+  @media (max-width:760px){.problems{grid-template-columns:1fr}}
+
+  /* 機能カード */
+  .features{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .features .f-card{background:#fff;padding:32px;border-radius:10px;border-top:4px solid #1a3a5c;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .features .f-card .ico{width:48px;height:48px;background:#1a3a5c;color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;margin-bottom:16px}
+  .features .f-card h3{font-size:17px;margin-bottom:10px;color:#0f1f33}
+  .features .f-card p{font-size:14px;color:#4b5563;line-height:2}
+  .features .f-card ul{margin-top:12px;padding-left:20px;font-size:13px;color:#374151;line-height:1.9}
+  @media (max-width:760px){.features{grid-template-columns:1fr}}
+
+  /* ロール別解説 */
+  .roles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+  .roles .role{background:#fff;padding:28px 24px;border-radius:10px;border:1px solid #e5e7eb;text-align:center}
+  .roles .role .badge{display:inline-block;background:#1a3a5c;color:#fff;padding:4px 16px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:14px}
+  .roles .role h3{font-size:18px;margin-bottom:10px}
+  .roles .role p{font-size:13px;color:#4b5563;line-height:1.8;margin-bottom:14px}
+  .roles .role ul{text-align:left;padding-left:18px;font-size:12.5px;color:#374151;line-height:1.9}
+  @media (max-width:760px){.roles{grid-template-columns:1fr}}
+
+  /* 助成金ストーリー */
+  .joseikin{background:#fff;border:2px solid #1a3a5c;border-radius:12px;padding:40px;margin-top:32px}
+  .joseikin h3{color:#1a3a5c;font-size:20px;margin-bottom:16px;text-align:center}
+  .joseikin .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0}
+  .joseikin .flow .step{background:#f7f7f5;padding:16px 12px;border-radius:8px;text-align:center;font-size:13px;position:relative}
+  .joseikin .flow .step .n{display:block;font-weight:900;color:#1a3a5c;font-size:11px;margin-bottom:6px}
+  .joseikin .note{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;font-size:13px;color:#78350f;border-radius:4px}
+  @media (max-width:760px){.joseikin .flow{grid-template-columns:repeat(2,1fr)}}
+
+  /* CTA帯 */
+  section.cta-band{background:#0f1f33;color:#fff;padding:60px 0;text-align:center}
+  section.cta-band h2{color:#fff;font-size:24px;margin-bottom:14px}
+  section.cta-band p{font-size:15px;color:#cbd5e1;margin-bottom:28px}
+  section.cta-band a.btn{background:#f59e0b;color:#0f1f33;display:inline-block;padding:16px 48px;border-radius:6px;font-weight:900;font-size:16px;letter-spacing:.05em}
+
+  /* フォーム */
+  #cta{padding:80px 0;background:#f7f7f5}
+  #cta h2{font-size:28px;text-align:center;margin-bottom:14px}
+  #cta p.sec-lead{margin-bottom:36px}
+  .form-wrap{max-width:680px;margin:0 auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+  .form-wrap .row{margin-bottom:18px}
+  .form-wrap label{display:block;font-size:13px;font-weight:700;color:#374151;margin-bottom:6px}
+  .form-wrap label .req{color:#c0392b;margin-left:4px;font-size:11px;background:#fee;padding:2px 6px;border-radius:3px}
+  .form-wrap input[type=text],.form-wrap input[type=email],.form-wrap input[type=tel],.form-wrap select,.form-wrap textarea{
+    width:100%;padding:12px 14px;border:1px solid #cbd5e1;border-radius:6px;font-size:15px;font-family:inherit;color:#1f2937;background:#fff
+  }
+  .form-wrap input:focus,.form-wrap select:focus,.form-wrap textarea:focus{outline:2px solid #1a3a5c;border-color:#1a3a5c}
+  .form-wrap textarea{min-height:140px;resize:vertical;line-height:1.7}
+  .form-wrap .submit{background:#f59e0b;color:#0f1f33;width:100%;padding:18px;border:none;border-radius:6px;font-weight:900;font-size:17px;letter-spacing:.05em;cursor:pointer;margin-top:10px}
+  .form-wrap .submit:hover{background:#d97706;color:#fff}
+  .form-note{text-align:center;color:#6b7280;font-size:12px;margin-top:18px}
+
+  /* フッター */
+  footer{background:#0f1f33;color:#cbd5e1;padding:40px 0;text-align:center;font-size:13px}
+  footer a{color:#cbd5e1}
+</style>
+</head>
+<body>
+
+<!-- ナビ -->
+<nav>
+  <div class="container row">
+    <div class="brand">Traingo</div>
+    <div class="links">
+      <a href="#problems">こんなお悩み</a>
+      <a href="#features">主な機能</a>
+      <a href="#joseikin">助成金活用</a>
+      <a href="#cta">資料請求</a>
+    </div>
+    <a href="#cta" class="cta-mini">お問い合わせ</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container row">
+    <div>
+      <h1>
+        <span class="accent">FOR CORPORATE TRAINING</span>
+        社内研修を、<br>「やった」「やらせた」で<br>終わらせない。
+      </h1>
+      <p class="lead">
+        Traingo（トレインゴ）は、法人向けのオンライン研修プラットフォームです。<br>
+        受講者の視聴ログ・進捗・修了管理を画面1つにまとめ、人材開発支援助成金の監査要件にもそのまま対応します。
+      </p>
+      <ul class="pts">
+        <li>動画スキップ禁止／視聴秒数の自動記録（助成金監査の証跡に直接利用可）</li>
+        <li>3ロール（管理者・企業管理者・受講者）の権限設計を最初から内蔵</li>
+        <li>会社ごとに独立した研修空間（スクール）を1社で複数持てる</li>
+        <li>導入時の研修設計・運用フローまでサポート（オプション）</li>
+      </ul>
+      <a href="#cta" class="hero-cta">資料請求・お問い合わせはこちら ▼</a>
+    </div>
+    <div class="hero-img">
+      <div class="device">
+        <div class="row"><span class="ok">●</span> Traingo 受講者ダッシュボード</div>
+        <div class="row" style="opacity:.85">━━━━━━━━━━━━━━━━━━━━</div>
+        <div class="row">おかえりなさい、田中さん</div>
+        <div class="row" style="margin-top:10px;opacity:.85">▶ 続きから学ぶ</div>
+        <div class="row" style="padding-left:14px;font-size:11px;opacity:.85">第3章 視聴中 ████████░░░░ 65%</div>
+        <div class="row" style="margin-top:10px;opacity:.85">▶ マイライブラリ</div>
+        <div class="row" style="padding-left:14px;font-size:11px;opacity:.85">・新任管理職研修2026　修了済</div>
+        <div class="row" style="padding-left:14px;font-size:11px;opacity:.85">・情報セキュリティ研修　受講中</div>
+        <div class="row" style="padding-left:14px;font-size:11px;opacity:.85">・コンプライアンス研修　未開始</div>
+        <div class="row" style="margin-top:10px;color:#f59e0b">⚙️ アカウント設定</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 問題提起 -->
+<section class="block" id="problems">
+  <div class="container">
+    <h2 class="sec"><span class="sub">FOR HR / 管理担当者の方へ</span>こんなお悩みはありませんか？</h2>
+    <p class="sec-lead">人材育成・社内研修を担当されている方からよくいただくご相談です。</p>
+    <div class="problems">
+      <div class="p-card">
+        <h3>研修をやっても「受講したか」が分からない</h3>
+        <p>「動画リンクを配って終わり」になり、誰が・どこまで・本当に視聴したかを後から確認する手段がない。受講者が早送り・スキップ視聴している可能性も否定できない。</p>
+      </div>
+      <div class="p-card">
+        <h3>助成金監査で「視聴の証跡」を求められた</h3>
+        <p>人材開発支援助成金の事業リスキリングコース等を申請したが、視聴ログ・進捗証跡を客観的な記録として提出できる仕組みがない。Excel手集計では監査時に再現性が示せない。</p>
+      </div>
+      <div class="p-card">
+        <h3>会社が増えると管理が指数関数的に大変になる</h3>
+        <p>グループ会社・取引先・販社など、研修対象会社が増えるたびに「誰が誰の研修を見る権限を持つか」「会社ごとの進捗をどう見せるか」が複雑になり、Excelとメールでは破綻する。</p>
+      </div>
+      <div class="p-card">
+        <h3>受講者にとっての画面が分かりにくい</h3>
+        <p>「自分が今どのコースをどこまで進めているのか」「次に何を見ればよいのか」がパッと分からないと、受講率は伸びない。結果、研修への投資が回収できなくなる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 主な機能 -->
+<section class="block alt" id="features">
+  <div class="container">
+    <h2 class="sec"><span class="sub">CORE FEATURES</span>Traingoの主な機能</h2>
+    <p class="sec-lead">受講者・企業管理者・サービス全体の管理者、それぞれに最適化された画面と権限を1つの製品で提供します。</p>
+    <div class="features">
+      <div class="f-card">
+        <div class="ico">A</div>
+        <h3>視聴ログ自動記録・スキップ禁止</h3>
+        <p>動画は秒単位で視聴記録を残し、早送りやスキップは規定上止められる設計。助成金監査で求められる「実視聴時間」「最終視聴日時」「修了日」を、人手介入なしの証跡として保存します。</p>
+        <ul>
+          <li>watch_logs テーブルに秒単位記録</li>
+          <li>視聴開始日時・最終視聴日時・進捗率を自動算出</li>
+          <li>監査向けCSV一括ダウンロード機能つき</li>
+        </ul>
+      </div>
+      <div class="f-card">
+        <div class="ico">B</div>
+        <h3>会社ごとに独立したスクール（研修空間）</h3>
+        <p>1つの法人で複数のスクール（業種別・部門別・販社別）を作成し、それぞれを独立した研修空間として運用できます。担当者は自社のスクール内だけを操作でき、他社の情報には触れません。</p>
+        <ul>
+          <li>会社ごと独立のスクール／コース／受講者管理</li>
+          <li>権限により他社情報は物理的に閲覧不可</li>
+          <li>1コースを複数会社へ同時割当も可能</li>
+        </ul>
+      </div>
+      <div class="f-card">
+        <div class="ico">C</div>
+        <h3>章・レッスン・クイズの3階層コース構造</h3>
+        <p>コースを「章 → レッスン（動画／文章／クイズ）」に整理。修了判定は必須レッスン全完了で自動判定し、修了証PDFを自動発行します（オプション）。受講者は今どこにいるかが一目で分かります。</p>
+        <ul>
+          <li>章・レッスンの並び替え／追加／削除</li>
+          <li>動画レッスン・文章レッスン・クイズの3種類</li>
+          <li>必須／任意の指定で柔軟な修了条件設計</li>
+        </ul>
+      </div>
+      <div class="f-card">
+        <div class="ico">D</div>
+        <h3>受講者のアカウント自己管理</h3>
+        <p>受講者は自分のプロフィール（氏名・メール・パスワード）・購入履歴・問い合わせ送信までを1画面で完結。担当者の代行作業を最小化します。</p>
+        <ul>
+          <li>プロフィール／パスワード変更</li>
+          <li>受講中コースカード・進捗バー表示</li>
+          <li>スクール管理者への問い合わせ送信機能</li>
+        </ul>
+      </div>
+      <div class="f-card">
+        <div class="ico">E</div>
+        <h3>受講者の自動登録（オプション）</h3>
+        <p>クレジット決済（Stripe連携）と組み合わせることで、研修コースの販売リンクで購入された方を、自動で受講者として登録＋ログイン情報をメール送信する運用が可能です。</p>
+        <ul>
+          <li>Stripe Payment Link 自動発行</li>
+          <li>決済完了Webhookで自動受講者登録</li>
+          <li>ランダムパスワード生成＋招待メール送信</li>
+        </ul>
+      </div>
+      <div class="f-card">
+        <div class="ico">F</div>
+        <h3>助成金監査用CSV一括出力</h3>
+        <p>受講者ごとの「視聴開始日時／実視聴時間／修了日／進捗率」を1ファイルでまとめてダウンロード。提出書類の作成時間を大幅短縮します。</p>
+        <ul>
+          <li>全受講者・全動画の視聴記録を1ファイルに集約</li>
+          <li>監査担当者にそのまま提示できる形式</li>
+          <li>期間指定・コース指定での絞り込み出力にも対応</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ロール別解説 -->
+<section class="block" id="roles">
+  <div class="container">
+    <h2 class="sec"><span class="sub">3 ROLES</span>3つのロールに最適化</h2>
+    <p class="sec-lead">受講者・企業管理者・サービス全体管理者、それぞれの立場で必要な画面と権限を最初から内蔵しています。</p>
+    <div class="roles">
+      <div class="role">
+        <span class="badge">受講者</span>
+        <h3>学習に集中できる画面</h3>
+        <p>「自分が今どこで何をすべきか」が迷わない設計。続きから学ぶ／マイライブラリ／修了済み、の3区分。</p>
+        <ul>
+          <li>コースカード一覧</li>
+          <li>章・レッスン階層表示</li>
+          <li>進捗バー／状態バッジ</li>
+          <li>プロフィール自己管理</li>
+        </ul>
+      </div>
+      <div class="role">
+        <span class="badge">企業管理者</span>
+        <h3>自社の研修を運営する画面</h3>
+        <p>自社のスクール作成、コース作成、受講者の招待、視聴進捗の確認まで、自社の範囲内で完結します。</p>
+        <ul>
+          <li>スクール管理</li>
+          <li>コース・動画管理</li>
+          <li>章・レッスン編集</li>
+          <li>受講者の進捗確認</li>
+        </ul>
+      </div>
+      <div class="role">
+        <span class="badge">管理者</span>
+        <h3>サービス全体の管理画面</h3>
+        <p>会社・コース・受講者を横断的に管理。コースを特定の会社に複数割当する権限も持ちます。</p>
+        <ul>
+          <li>全会社・全コース一覧</li>
+          <li>コース→会社の割当（複数可）</li>
+          <li>全受講者の進捗監査</li>
+          <li>監査用CSV一括出力</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 助成金活用 -->
+<section class="block alt" id="joseikin">
+  <div class="container">
+    <h2 class="sec"><span class="sub">SUBSIDY READY</span>人材開発支援助成金との連動</h2>
+    <p class="sec-lead">Traingoは「人材開発支援助成金 事業リスキリング支援コース」をはじめとした、人材育成系助成金の受給を想定して設計されています。</p>
+    <div class="joseikin">
+      <h3>研修開始から助成金受給までの全工程をデータで残せます</h3>
+      <div class="flow">
+        <div class="step"><span class="n">STEP 1</span>研修計画の登録<br>（管理者）</div>
+        <div class="step"><span class="n">STEP 2</span>受講者の招待<br>（企業管理者）</div>
+        <div class="step"><span class="n">STEP 3</span>動画視聴・修了<br>（受講者）</div>
+        <div class="step"><span class="n">STEP 4</span>監査用CSV出力<br>＋提出</div>
+      </div>
+      <div class="note">
+        <strong>※ 助成金の支給可否・要件適合性の最終判断は、各助成金の所管行政庁・労働局による審査結果が優先されることがあります。</strong>
+        Traingoは監査時に求められる「視聴の客観的証跡」をデータとして残す仕組みであり、助成金の支給を保証するものではありません。実務適用にあたっては、所管窓口・社会保険労務士等の専門家にあわせてご相談ください。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA帯 -->
+<section class="cta-band">
+  <div class="container">
+    <h2>まずは、お気軽にお問い合わせください。</h2>
+    <p>導入のご相談・お見積り・デモ画面のご案内まで承ります。</p>
+    <a href="#cta" class="btn">資料請求・お問い合わせはこちら ▼</a>
+  </div>
+</section>
+
+<!-- フォーム -->
+<section id="cta">
+  <div class="container">
+    <h2 class="sec"><span class="sub">CONTACT</span>資料請求・お問い合わせ</h2>
+    <p class="sec-lead">Traingoの資料請求・導入のご相談・デモ画面のご案内、いずれもこちらのフォームから承ります。1営業日以内を目処にご連絡いたします。</p>
+    <div class="form-wrap">
+      <form action="../contact.php" method="post">
+        <input type="hidden" name="source_page" value="/hojokin/toraigo/">
+        <div class="row">
+          <label>お名前<span class="req">必須</span></label>
+          <input type="text" name="name" required placeholder="例：山田 太郎">
+        </div>
+        <div class="row">
+          <label>メールアドレス<span class="req">必須</span></label>
+          <input type="email" name="email" required placeholder="例：yamada@example.co.jp">
+        </div>
+        <div class="row">
+          <label>電話番号<span class="req">必須</span></label>
+          <input type="tel" name="tel" required placeholder="例：090-1234-5678">
+        </div>
+        <div class="row">
+          <label>会社名・屋号<span class="req">必須</span></label>
+          <input type="text" name="company" required placeholder="例：株式会社サンプル">
+        </div>
+        <div class="row">
+          <label>ご相談内容<span class="req">必須</span></label>
+          <select name="topic" required>
+            <option value="">選択してください</option>
+            <option value="Traingo資料請求">Traingo（LMSシステム）の資料請求</option>
+            <option value="Traingoデモ希望">Traingo のデモ画面・動作確認の希望</option>
+            <option value="Traingo導入相談">Traingo の導入相談・お見積り</option>
+            <option value="人材開発助成金">人材開発支援助成金 申請支援のご相談</option>
+            <option value="補助金申請希望">補助金申請希望</option>
+            <option value="支援ビジネス構築">支援ビジネス構築</option>
+            <option value="製品販路開拓">製品販路開拓</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+        <div class="row">
+          <label>ご質問・ご相談<span class="req">必須</span></label>
+          <textarea name="message" required placeholder="検討中の社員数・対象コース・想定スケジュール等、お気軽にお書きください。"></textarea>
+        </div>
+        <button type="submit" class="submit">この内容で送信する</button>
+        <p class="form-note">送信いただいた情報は、お問い合わせ対応の目的でのみ使用いたします。</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="container">
+    <p>Traingo｜法人向け研修プラットフォーム</p>
+    <p style="margin-top:8px;font-size:12px;opacity:.7">運営：Well Consultant 合同会社 ／ <a href="https://fp-1.info/hojokin/">補助金活用支援サイトへ戻る</a></p>
+  </div>
+</footer>
+
+<script>
+  // ナビアクティブ状態（Intersection Observer・MEMORY.mdの常時ルール）
+  const sections = document.querySelectorAll('section[id], header.hero');
+  const links = document.querySelectorAll('nav .links a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const id = e.target.id || 'hero';
+        links.forEach((a) => {
+          a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach((s) => observer.observe(s));
+</script>
+
+</body>
+</html>
