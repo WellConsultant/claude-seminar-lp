@@ -10,7 +10,7 @@
 body {
   font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'Yu Gothic', sans-serif;
   color: #1F2937;
-  background: #F3F4F6;
+  background: #374151;
   font-size: 15px;
   line-height: 1.9;
 }
@@ -21,25 +21,20 @@ body {
   .slide:last-child { page-break-after: avoid; }
 }
 
-@page {
-  size: A4;
-  margin: 15mm;
-}
-
 .slide {
   background: #FFFFFF;
-  max-width: 800px;
-  margin: 0 auto 32px;
-  padding: 52px 56px;
-  box-shadow: 0 4px 24px rgba(0,0,0,.10);
+  width: 1280px;
+  height: 720px;
+  margin: 0 auto 20px;
+  padding: 60px 80px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.3);
   position: relative;
-  min-height: 520px;
+  overflow: hidden;
 }
 
 .slide.cover {
   background: #0F2A4A;
   color: #fff;
-  min-height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -78,7 +73,7 @@ h1.slide-title {
 }
 
 h2.slide-title {
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 900;
   color: #0F2A4A;
   line-height: 1.4;
@@ -98,8 +93,8 @@ h3.sub-heading {
 
 /* 段落 */
 p {
-  font-size: 14.5px;
-  line-height: 2.0;
+  font-size: 16px;
+  line-height: 1.8;
   color: #374151;
   margin-bottom: 14px;
 }
@@ -398,7 +393,6 @@ ul.detail-list li::before {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 580px;
 }
 
 .cta-slide h2 {
@@ -453,7 +447,6 @@ ul.detail-list li::before {
 .section-divider {
   background: #0F2A4A;
   color: #fff;
-  min-height: 380px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -734,7 +727,7 @@ ul.detail-list li::before {
 <section class="slide section-alt">
   <div class="slide-number">04 / 22</div>
   <div class="slide-label">CHALLENGE 02</div>
-  <h2 class="slide-title">「監査で証跡を求められたが、出せなかった」</h2>
+  <h2 class="slide-title">「この人、ほんとうに研修受けたんですか？」と聞かれて、返す言葉がなかった</h2>
 
   <div class="problem-block">
     <div class="voice">
@@ -780,7 +773,7 @@ ul.detail-list li::before {
 <section class="slide">
   <div class="slide-number">05 / 22</div>
   <div class="slide-label">CHALLENGE 03</div>
-  <h2 class="slide-title">「グループ会社が増えると権限管理が複雑になる」</h2>
+  <h2 class="slide-title">「会社が増えるたびに「誰がどこのデータを見ていいか」が、もう管理しきれなくなっている」</h2>
 
   <div class="problem-block">
     <div class="voice">
