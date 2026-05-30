@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    
+  </style>
+</head>
+<body>
+  
+
+
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Traingo｜助成金監査に直で耐える 法人向け研修プラットフォーム</title>
@@ -62,8 +74,6 @@
   .features{display:grid;grid-template-columns:1fr;gap:32px;margin-top:8px}
   .features .f-card{background:#fff;padding:40px;border-radius:12px;border-top:4px solid #1a3a5c;box-shadow:0 2px 8px rgba(0,0,0,.05)}
   .features .f-card .ico-row{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-  .features .f-card .f-img{margin:0 0 20px;border-radius:8px;overflow:hidden;height:200px}
-  .features .f-card .f-img img{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px}
   .features .f-card .ico{width:54px;height:54px;background:#1a3a5c;color:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;flex-shrink:0}
   .features .f-card h3{font-size:21px;color:#0f1f33;line-height:1.5}
   .features .f-card .feat-body{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;margin-top:16px}
@@ -133,8 +143,8 @@
   footer{background:#0f1f33;color:#cbd5e1;padding:40px 0;text-align:center;font-size:13px;line-height:2}
   footer a{color:#cbd5e1}
 </style>
-</head>
-<body>
+
+
 
 <nav>
   <div class="container row">
@@ -185,24 +195,22 @@
     <p class="sec-lead">「研修をやった事実を残す」「会社別に安全に運用する」「監査・申請に直で耐える」── この3点をプラットフォームとして同時に解決します。</p>
     <div class="threeband">
       <div class="band-card">
-        <img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/slide-katsuyou-31.png" alt="活用">
+      
         <div class="b-body">
           <h3>① 研修の証跡化（活用）</h3>
           <p>視聴秒数・スキップ・進捗を秒単位で自動記録。Excel手集計から完全に解放され、監査担当者にそのままデータを提示できる「実視聴時間の証跡」が標準で残ります。</p>
         </div>
       </div>
       <div class="band-card">
-        <img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/slide-support-31.png" alt="サポート">
         <div class="b-body">
           <h3>② 運用設計サポート</h3>
           <p>「LMSを買って終わり」ではありません。導入時の研修設計・カリキュラム作成・運用フロー定義まで、日本語の電話・メールで個別にサポートいたします。</p>
         </div>
       </div>
       <div class="band-card">
-        <img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/slide-sales-30.png" alt="販売">
         <div class="b-body">
           <h3>③ 研修事業化（販売）</h3>
-          <p>Stripe決済連動で、研修コースをそのまま外販できます。販売リンクをSNS・メールで配布→購入者の自動登録→招待メール送信、までが全自動。新収益として立ち上がります。</p>
+          <p class="">Stripe決済連動で、研修コースをそのまま外販できます。販売リンクをSNS・メールで配布→購入者の自動登録→招待メール送信、までが全自動。新収益として立ち上がります。</p>
         </div>
       </div>
     </div>
@@ -212,44 +220,13 @@
 <!-- 問題提起 -->
 <section class="block" id="problems">
   <div class="container">
-    <h2 class="sec"><span class="sub">SITUATION</span>「やったことにはなった。でも、本当にこれで通るのか？」</h2>
-    <p class="sec-lead">人材育成・社員研修・助成金申請の現場で繰り返される、4つの典型的なお悩みです。<br>1つでも当てはまる場合、Traingoが現状を整理する出発点になります。</p>
-    <div class="problems">
-      <div class="p-card">
-        <h3>動画リンクをメールで配って終わり。誰が・どこまで・本当に観たのか分からない</h3>
-        <p>研修動画のURLをチャットや社内ポータルで配布し、「○月○日までに観てください」と告知。締切日に「観ました」のチェックが返ってくる──ところが、実際の視聴秒数・スキップの有無・最後まで観たかどうかは確認しようがありません。</p>
-        <p>後日、人事評価や監査で「この社員、本当にこの研修を受けたのか？」と聞かれた時、答えに窮することになります。Traingoは「観た事実」ではなく「観た秒数」を秒単位で残すため、この質問への答えがデータとして即時提示できます。</p>
-      </div>
-      <div class="p-card">
-        <h3>助成金監査で「視聴の客観的証跡」を求められたが、Excel手集計しかない</h3>
-        <p>人材開発支援助成金（事業リスキリングコース等）を申請後、支給審査の段階で「受講者ごとの視聴開始日時・実視聴時間・修了日を客観的な記録として提出してください」と求められる。</p>
-        <p>Excelで「○○さん、○月○日、○時間視聴」と手集計した一覧を出すしかないが、その記録の再現性・改ざん不可性を問われると、説明に1日かかる──そんな状態が続いていませんか。Traingoのデータは改ざん不可のサーバーログとして残るため、再現性の説明が不要になります。</p>
-      </div>
-      <div class="p-card">
-        <h3>会社が増えるたびに「誰が誰の研修を見られるか」が複雑化していく</h3>
-        <p>グループ会社・取引先・販社など、研修対象の会社が増えるたびに「A社の担当者がB社の社員の進捗を間違って見てしまった」「権限設計を間違えて全社員のデータが漏れた」というリスクが現実化します。</p>
-        <p>Excel共有とメールでは管理しきれず、無料のLMSを試すと「会社ごとの分離」が無く、有料のSaaSは月額20万円台で社数分かかる。中間が無い、というご相談を多く受けます。Traingoは1契約で会社別の物理分離を最初から内蔵しています。</p>
-      </div>
-      <div class="p-card">
-        <h3>受講者にとって「今どこを観ればいいか」が分からない＝受講率が伸びない</h3>
-        <p>動画が10本以上ある研修で、受講者の画面に「タイトルだけの一覧」が並んでいる状態だと、「自分が今どこまで進んでいるか」「次に何を観るべきか」が一目で分からず、結果的に受講率は半分も埋まりません。</p>
-        <p>受講率が低いまま申請月を迎えると、助成金の修了要件未達で支給額が大幅に下がる、または不支給になる可能性があります。Traingoは「続きから学ぶ」「マイライブラリ」のTeachable風UIで、受講者の迷子を物理的に防ぎます。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 主な機能（詳細） -->
-<section class="block alt" id="features">
-  <div class="container">
-    <h2 class="sec"><span class="sub">CORE FEATURES</span>Traingoの主要機能（詳細）</h2>
+  ;">CORE FEATURES</span></span></h2></div></section><section class="block alt" id="features"><div class="container"><h2 class="sec">Traingoの主要機能</h2>
     <p class="sec-lead">「やったことにする」ためのツールではなく、「客観的に示せる証跡を作る」ためのプラットフォームとして、6つの中核機能を内蔵しています。各機能の中身、何が含まれているか、現状の手作業と比べて何がどう変わるかを、詳しく書きます。</p>
 
     <div class="features">
 
       <div class="f-card">
         <div class="ico-row"><div class="ico">1</div><h3>視聴ログ秒単位自動記録・スキップ可否制御</h3></div>
-        <div class="f-img"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/reskilling-scaled.jpg" alt="視聴ログ秒単位自動記録" loading="lazy"></div>
         <div class="feat-body">
           <div class="desc">
             <p>受講者が動画を再生している間、Traingoは秒単位で視聴記録をサーバーに保存し続けます。「いつ視聴を開始したか（視聴開始日時）」「累計でどれくらいの秒数を視聴したか（実視聴時間）」「最後に視聴したのはいつか（最終視聴日時）」「何%まで進んだか（進捗率）」が、人の手による集計を一切介さず記録されます。</p>
@@ -279,7 +256,6 @@
 
       <div class="f-card">
         <div class="ico-row"><div class="ico">2</div><h3>会社ごと独立した研修空間（スクール）・複数スクール対応</h3></div>
-        <div class="f-img"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/slide-katsuyou-31.png" alt="会社ごと独立した研修空間" loading="lazy"></div>
         <div class="feat-body">
           <div class="desc">
             <p>1つの法人で、業種別・部門別・販社別など、独立した複数のスクールを作成できます。各スクールは独立した研修空間として運用され、別スクールの受講者情報・コース情報・視聴ログには物理的にアクセスできません（DB側でRow Level Securityによる権限分離）。</p>
@@ -309,7 +285,6 @@
 
       <div class="f-card">
         <div class="ico-row"><div class="ico">3</div><h3>コースを「章 → レッスン」の2階層に整理・3種類のレッスン</h3></div>
-        <div class="f-img"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/slide-support-31.png" alt="コース章・レッスン構造" loading="lazy"></div>
         <div class="feat-body">
           <div class="desc">
             <p>10本以上の動画が並ぶフラットな一覧ではなく、「章（モジュール）」と「レッスン」の2階層にコースを構造化できます。受講者の画面では「第1章 事前準備」「第2章 基本機能」「第3章 実践」のように整理されて表示され、「自分は今どこの章にいて、章の中の何番目を観ているか」が一目で分かります。</p>
@@ -339,7 +314,6 @@
 
       <div class="f-card">
         <div class="ico-row"><div class="ico">4</div><h3>3ロールの権限分離・最初から内蔵（管理者／企業管理者／受講者）</h3></div>
-        <div class="f-img"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/manual-v5-scaled.jpg" alt="3ロール権限分離" loading="lazy"></div>
         <div class="feat-body">
           <div class="desc">
             <p>「サービス全体管理者（運営）」「企業管理者（各会社の研修担当）」「受講者（社員）」の3ロールが最初から内蔵され、それぞれに最適化された画面と権限が用意されています。企業管理者は自社のスクール・コース・受講者のみを操作でき、他社の情報には触れません。受講者は自分の進捗とプロフィールだけを管理できます。</p>
@@ -369,7 +343,6 @@
 
       <div class="f-card">
         <div class="ico-row"><div class="ico">5</div><h3>受講者の自動登録＋招待メール（Stripe決済との連動も可）</h3></div>
-        <div class="f-img"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/webinar-v5-scaled.jpg" alt="受講者自動登録・招待メール" loading="lazy"></div>
         <div class="feat-body">
           <div class="desc">
             <p>受講者を1人ずつ手で登録するのではなく、CSV一括登録・URL発行による招待・Stripe決済との連動による自動登録、の3経路で受講者を増やせます。Stripe決済を有効化した場合、研修コースの販売リンクで購入された方が、購入直後にメールアドレス・ランダムパスワード・ログインURLを記載した招待メールを自動受信し、すぐに受講開始できます。</p>
@@ -399,7 +372,6 @@
 
       <div class="f-card">
         <div class="ico-row"><div class="ico">6</div><h3>助成金監査用CSV一括出力・申請書類への直接転記対応</h3></div>
-        <div class="f-img"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/guidebook-v5-scaled.jpg" alt="助成金監査用CSV・申請書類対応" loading="lazy"></div>
         <div class="feat-body">
           <div class="desc">
             <p>人材開発支援助成金をはじめとする人材育成系助成金の支給審査で求められる、受講者ごとの「視聴開始日時／実視聴時間／修了日／進捗率」を、1ファイルで一括ダウンロードできます。出力形式は労働局・所管行政庁への提出フォーマットに合わせて調整されており、Excel手集計の作業が不要になります。</p>
@@ -1055,6 +1027,9 @@
   }, { rootMargin: '-30% 0px -60% 0px' });
   sections.forEach((s) => observer.observe(s));
 </script>
+
+
+
 
 </body>
 </html>
