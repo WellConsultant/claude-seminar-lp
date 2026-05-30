@@ -62,6 +62,8 @@
   .features{display:grid;grid-template-columns:1fr;gap:32px;margin-top:8px}
   .features .f-card{background:#fff;padding:40px;border-radius:12px;border-top:4px solid #1a3a5c;box-shadow:0 2px 8px rgba(0,0,0,.05)}
   .features .f-card .ico-row{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+  .features .f-card .f-img{margin:0 0 20px;border-radius:8px;overflow:hidden;height:200px}
+  .features .f-card .f-img img{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px}
   .features .f-card .ico{width:54px;height:54px;background:#1a3a5c;color:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;flex-shrink:0}
   .features .f-card h3{font-size:21px;color:#0f1f33;line-height:1.5}
   .features .f-card .feat-body{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;margin-top:16px}
@@ -247,6 +249,7 @@
 
       <div class="f-card">
         <div class="ico-row"><div class="ico">1</div><h3>視聴ログ秒単位自動記録・スキップ可否制御</h3></div>
+        <div class="f-img"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/reskilling-scaled.jpg" alt="視聴ログ秒単位自動記録" loading="lazy"></div>
         <div class="feat-body">
           <div class="desc">
             <p>受講者が動画を再生している間、Traingoは秒単位で視聴記録をサーバーに保存し続けます。「いつ視聴を開始したか（視聴開始日時）」「累計でどれくらいの秒数を視聴したか（実視聴時間）」「最後に視聴したのはいつか（最終視聴日時）」「何%まで進んだか（進捗率）」が、人の手による集計を一切介さず記録されます。</p>
@@ -276,6 +279,7 @@
 
       <div class="f-card">
         <div class="ico-row"><div class="ico">2</div><h3>会社ごと独立した研修空間（スクール）・複数スクール対応</h3></div>
+        <div class="f-img"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/slide-katsuyou-31.png" alt="会社ごと独立した研修空間" loading="lazy"></div>
         <div class="feat-body">
           <div class="desc">
             <p>1つの法人で、業種別・部門別・販社別など、独立した複数のスクールを作成できます。各スクールは独立した研修空間として運用され、別スクールの受講者情報・コース情報・視聴ログには物理的にアクセスできません（DB側でRow Level Securityによる権限分離）。</p>
@@ -305,6 +309,7 @@
 
       <div class="f-card">
         <div class="ico-row"><div class="ico">3</div><h3>コースを「章 → レッスン」の2階層に整理・3種類のレッスン</h3></div>
+        <div class="f-img"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/slide-support-31.png" alt="コース章・レッスン構造" loading="lazy"></div>
         <div class="feat-body">
           <div class="desc">
             <p>10本以上の動画が並ぶフラットな一覧ではなく、「章（モジュール）」と「レッスン」の2階層にコースを構造化できます。受講者の画面では「第1章 事前準備」「第2章 基本機能」「第3章 実践」のように整理されて表示され、「自分は今どこの章にいて、章の中の何番目を観ているか」が一目で分かります。</p>
@@ -334,6 +339,7 @@
 
       <div class="f-card">
         <div class="ico-row"><div class="ico">4</div><h3>3ロールの権限分離・最初から内蔵（管理者／企業管理者／受講者）</h3></div>
+        <div class="f-img"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/manual-v5-scaled.jpg" alt="3ロール権限分離" loading="lazy"></div>
         <div class="feat-body">
           <div class="desc">
             <p>「サービス全体管理者（運営）」「企業管理者（各会社の研修担当）」「受講者（社員）」の3ロールが最初から内蔵され、それぞれに最適化された画面と権限が用意されています。企業管理者は自社のスクール・コース・受講者のみを操作でき、他社の情報には触れません。受講者は自分の進捗とプロフィールだけを管理できます。</p>
@@ -363,6 +369,7 @@
 
       <div class="f-card">
         <div class="ico-row"><div class="ico">5</div><h3>受講者の自動登録＋招待メール（Stripe決済との連動も可）</h3></div>
+        <div class="f-img"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/webinar-v5-scaled.jpg" alt="受講者自動登録・招待メール" loading="lazy"></div>
         <div class="feat-body">
           <div class="desc">
             <p>受講者を1人ずつ手で登録するのではなく、CSV一括登録・URL発行による招待・Stripe決済との連動による自動登録、の3経路で受講者を増やせます。Stripe決済を有効化した場合、研修コースの販売リンクで購入された方が、購入直後にメールアドレス・ランダムパスワード・ログインURLを記載した招待メールを自動受信し、すぐに受講開始できます。</p>
@@ -392,6 +399,7 @@
 
       <div class="f-card">
         <div class="ico-row"><div class="ico">6</div><h3>助成金監査用CSV一括出力・申請書類への直接転記対応</h3></div>
+        <div class="f-img"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/guidebook-v5-scaled.jpg" alt="助成金監査用CSV・申請書類対応" loading="lazy"></div>
         <div class="feat-body">
           <div class="desc">
             <p>人材開発支援助成金をはじめとする人材育成系助成金の支給審査で求められる、受講者ごとの「視聴開始日時／実視聴時間／修了日／進捗率」を、1ファイルで一括ダウンロードできます。出力形式は労働局・所管行政庁への提出フォーマットに合わせて調整されており、Excel手集計の作業が不要になります。</p>
