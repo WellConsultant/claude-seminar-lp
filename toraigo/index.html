@@ -132,16 +132,44 @@
   section.cta-band p{font-size:15px;color:#cbd5e1;margin-bottom:28px;line-height:2}
   section.cta-band a.btn{background:#f59e0b;color:#0f1f33;display:inline-block;padding:18px 56px;border-radius:6px;font-weight:900;font-size:16.5px;letter-spacing:.06em}
 
-  /* 最終CTA：fp-1.info の無料相談フォームに飛ばす（同じフォーム使用） */
-  .final-cta{background:#f7f7f5;padding:80px 0;text-align:center}
-  .final-cta h2{font-size:28px;margin-bottom:18px}
-  .final-cta p{max-width:680px;margin:0 auto 32px;color:#4b5563;font-size:15px;line-height:2}
-  .final-cta .big-btn{display:inline-block;background:#f59e0b;color:#0f1f33;padding:22px 60px;border-radius:8px;font-size:18px;font-weight:900;letter-spacing:.05em;box-shadow:0 8px 24px rgba(245,158,11,.3)}
-  .final-cta .big-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(245,158,11,.4)}
-  .final-cta .sub-note{margin-top:18px;font-size:13px;color:#6b7280}
+  /* 最終CTA：お問い合わせフォームを直接埋め込み */
+  .final-cta{background:#f7f7f5;padding:80px 0}
+  .final-cta .wrap{max-width:680px;margin:0 auto;padding:0 24px}
+  .final-cta h2{font-size:28px;margin-bottom:18px;text-align:center}
+  .final-cta>.wrap>p{max-width:680px;margin:0 auto 32px;color:#4b5563;font-size:15px;line-height:2;text-align:center}
+  /* お問い合わせフォームスタイル */
+  .tg-cta-form .tg-form-row{margin-bottom:18px}
+  .tg-cta-form .tg-form-label{display:block;font-size:14px;font-weight:700;margin-bottom:6px;color:#333}
+  .tg-cta-form .tg-form-required{display:inline-block;background:#e0392b;color:#fff;font-size:11px;padding:2px 8px;border-radius:3px;margin-left:6px;vertical-align:middle}
+  .tg-cta-form .tg-form-input{width:100%;padding:12px 14px;border:1px solid #ccc;border-radius:6px;font-size:15px;font-family:inherit;background:#fff}
+  .tg-cta-form .tg-form-input:focus{outline:none;border-color:#1a3a5c;box-shadow:0 0 0 3px rgba(26,58,92,.12)}
+  .tg-cta-form textarea.tg-form-input{resize:vertical;min-height:110px}
+  .tg-cta-form .tg-form-submit{width:100%;background:#f59e0b;color:#0f1f33;border:0;border-radius:6px;padding:16px;font-size:17px;font-weight:900;cursor:pointer;letter-spacing:.05em;transition:.15s}
+  .tg-cta-form .tg-form-submit:hover{background:#d97706}
+  .tg-cta-form .tg-form-submit:disabled{opacity:.6;cursor:default}
+  .tg-cta-form .tg-form-privacy{font-size:12px;color:#888;margin-top:12px;text-align:center}
+  #tg-cta-error{display:none;color:#c0392b;font-size:13px;font-weight:bold;margin-bottom:12px;padding:10px 14px;background:#fdf0f0;border-radius:4px;border:1px solid #e8b4b4}
 
   footer{background:#0f1f33;color:#cbd5e1;padding:40px 0;text-align:center;font-size:13px;line-height:2}
   footer a{color:#cbd5e1}
+
+  /* 資料請求フォーム（無料相談と同じ流れ：フォーム→自動返信→通知→サンクス） */
+  .shiryo{background:#fff;padding:80px 0}
+  .shiryo .wrap{max-width:680px;margin:0 auto;padding:0 24px}
+  .shiryo h2.sec{margin-bottom:14px}
+  .shiryo .lead{text-align:center;max-width:600px;margin:0 auto 36px;color:#4b5563;font-size:15px;line-height:2}
+  .shiryo-form{background:#f7f7f5;border:1px solid #e5e7eb;border-radius:12px;padding:36px 32px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .shiryo-form .field{margin-bottom:20px}
+  .shiryo-form label.flabel{display:block;font-size:14px;font-weight:700;color:#0f1f33;margin-bottom:7px}
+  .shiryo-form label.flabel .req{color:#c0392b;font-size:12px;margin-left:6px;font-weight:700}
+  .shiryo-form input[type=text],.shiryo-form input[type=email],.shiryo-form input[type=tel],.shiryo-form textarea{width:100%;border:1px solid #d1d5db;border-radius:6px;padding:12px 14px;font-size:15px;font-family:inherit;background:#fff;color:#1f2937}
+  .shiryo-form input:focus,.shiryo-form textarea:focus{outline:none;border-color:#1a3a5c;box-shadow:0 0 0 3px rgba(26,58,92,.12)}
+  .shiryo-form textarea{min-height:96px;resize:vertical;line-height:1.8}
+  .shiryo-form .field.invalid input,.shiryo-form .field.invalid textarea{border-color:#c0392b;background:#fff5f5}
+  .shiryo-form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .shiryo-form .submit{display:block;width:100%;background:#f59e0b;color:#0f1f33;border:none;border-radius:8px;padding:18px;font-size:17px;font-weight:900;letter-spacing:.04em;cursor:pointer;box-shadow:0 8px 24px rgba(245,158,11,.3);transition:.15s}
+  .shiryo-form .submit:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(245,158,11,.4)}
+  .shiryo-form .note{font-size:12.5px;color:#6b7280;margin-top:16px;text-align:center;line-height:1.9}
 </style>
 
 
@@ -158,6 +186,7 @@
       <a href="#scenarios">業種別の使い方</a>
       <a href="#joseikin">助成金との連動</a>
       <a href="#faq">FAQ</a>
+      <a href="#shiryo">資料請求</a>
     </div>
     <a href="https://fp-1.info/hojokin/#cta" target="_blank" rel="noopener" class="cta-mini">無料相談を申し込む</a>
   </div>
@@ -992,19 +1021,97 @@
   <div class="container">
     <h2>まずは、お気軽にお問い合わせください。</h2>
     <p>導入のご相談・お見積り・デモ画面のご案内、すべて無料で承ります。<br>「うちでも使えるか分からない」段階でのご相談も歓迎いたします。</p>
-    <a href="https://fp-1.info/hojokin/#cta" target="_blank" rel="noopener" class="btn">無料相談を申し込む ▶</a>
+    <a href="#cta" class="btn">無料相談を申し込む ▶</a>
   </div>
 </section>
 
-<!-- 最終CTA：fp-1.info の無料相談フォームに統一 -->
-<section class="final-cta">
-  <div class="container">
-    <h2>Traingoの無料相談はこちらから</h2>
-    <p>
-      お名前・メールアドレス・電話番号・ご相談内容をお知らせいただければ、1営業日以内に担当者よりご連絡いたします。<br>
-      フォーム送信後、自動で受付確認メールをお送りします。Chatwork通知でも担当者に届く仕組みで、深夜のお問い合わせでも翌朝までには初回応答が届きます。
+<!-- ===== 資料請求フォーム（無料相談と同じ流れ：フォーム→自動返信で資料送付→運営通知→サンクスページ） ===== -->
+<section class="shiryo" id="shiryo">
+  <div class="wrap">
+    <h2 class="sec"><span class="sub">DOCUMENT REQUEST</span>Traingo 資料請求（無料）</h2>
+    <p class="lead">
+      Traingoの機能・料金・助成金活用の全体像をまとめた資料を無料でお送りします。<br>
+      フォーム送信後、ご入力いただいたメールアドレス宛に資料のダウンロードリンクを自動返信でお届けします。検討段階での資料収集だけのご利用も歓迎いたします。
     </p>
-    <a href="https://fp-1.info/hojokin/#cta" target="_blank" rel="noopener" class="big-btn">▶ 無料相談フォームを開く</a>
+
+    <form id="shiryoForm" class="shiryo-form" action="https://fp-1.info/toraigo-shiryo-submit.php" method="POST" novalidate>
+      <!-- ハニーポット（人間は入力しない・ボット除け。fp-1.info側で空でなければ破棄） -->
+      <div class="hp"><label>このフィールドは入力しないでください<input type="text" name="company_url" tabindex="-1" autocomplete="off"></label></div>
+
+      <div class="field" data-required>
+        <label class="flabel">お名前<span class="req">必須</span></label>
+        <input type="text" name="お名前" autocomplete="name" placeholder="例：山田 太郎">
+      </div>
+
+      <div class="field" data-required>
+        <label class="flabel">会社名 / 団体名<span class="req">必須</span></label>
+        <input type="text" name="会社名" autocomplete="organization" placeholder="例：株式会社ウェルコンサルタント">
+      </div>
+
+      <div class="field" data-required data-type="email">
+        <label class="flabel">メールアドレス<span class="req">必須</span></label>
+        <input type="email" name="メールアドレス" autocomplete="email" placeholder="example@company.co.jp">
+      </div>
+
+      <div class="field">
+        <label class="flabel">電話番号</label>
+        <input type="tel" name="電話番号" autocomplete="tel" placeholder="09012345678">
+      </div>
+
+      <div class="field">
+        <label class="flabel">ご検討中の用途・ご質問など（任意）</label>
+        <textarea name="ご相談内容" placeholder="例：社内研修での助成金活用を検討中／顧問先への外販を考えている／料金の目安を知りたい など"></textarea>
+      </div>
+
+      <button type="submit" class="submit">資料を無料で受け取る ▶</button>
+      <p class="note">
+        送信いただいたメールアドレス宛に、資料ダウンロードリンクを自動でお送りします。<br>
+        ご入力内容は資料送付・ご連絡のみに利用し、第三者へ提供することはありません。
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- 最終CTA：お問い合わせフォームを直接設置 -->
+<section class="final-cta" id="cta">
+  <div class="wrap">
+    <h2>まずは、お気軽にお問い合わせください。</h2>
+    <p>導入相談・お見積り・デモ案内、すべて無料です。「うちでも使えるか分からない」段階でのご相談も歓迎いたします。内容を確認のうえ、担当より2営業日以内にご連絡いたします。</p>
+    <div id="tg-cta-error">必須項目（お名前・メールアドレス・ご質問）をすべて入力してください。</div>
+    <form id="tgCtaForm" class="tg-cta-form" novalidate autocomplete="off">
+      <div class="tg-form-row">
+        <label class="tg-form-label">お名前 <span class="tg-form-required">必須</span></label>
+        <input type="text" name="name" class="tg-form-input" placeholder="例：山田 太郎" autocomplete="name">
+      </div>
+      <div class="tg-form-row">
+        <label class="tg-form-label">メールアドレス <span class="tg-form-required">必須</span></label>
+        <input type="text" name="email" class="tg-form-input" placeholder="例：info@example.com">
+      </div>
+      <div class="tg-form-row">
+        <label class="tg-form-label">電話番号</label>
+        <input type="text" name="phone" class="tg-form-input" placeholder="例：090-1234-5678">
+      </div>
+      <div class="tg-form-row">
+        <label class="tg-form-label">会社名・屋号</label>
+        <input type="text" name="company" class="tg-form-input" placeholder="例：株式会社○○" autocomplete="organization">
+      </div>
+      <div class="tg-form-row">
+        <label class="tg-form-label">ご相談内容</label>
+        <select name="topic" class="tg-form-input">
+          <option value="">選択してください</option>
+          <option value="lms_intro">研修・LMS（Traingo）の導入について</option>
+          <option value="hr_dev_grant">人材開発支援助成金の活用について</option>
+          <option value="pricing">料金・お見積もりについて</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="tg-form-row">
+        <label class="tg-form-label">ご質問・ご相談 <span class="tg-form-required">必須</span></label>
+        <textarea name="message" rows="4" class="tg-form-input" placeholder="現在のご状況やご相談内容をお書きください"></textarea>
+      </div>
+      <button type="submit" class="tg-form-submit">無料相談を申し込む ▶</button>
+      <p class="tg-form-privacy">お預かりした情報は無料相談・関連情報のご案内のみに使用し、第三者への提供はいたしません。</p>
+    </form>
   </div>
 </section>
 
@@ -1031,8 +1138,83 @@
   sections.forEach((s) => observer.observe(s));
 </script>
 
+<!-- 資料請求フォームのクライアント側バリデーション（無料相談フォームと同じ方式：必須・メール形式チェックのみ。送信本体・自動返信・通知・サンクス転送は fp-1.info の toraigo-shiryo-submit.php が担当） -->
+<script>
+(function(){
+  var form = document.getElementById('shiryoForm');
+  if(!form) return;
+  var fields = form.querySelectorAll('.field[data-required]');
 
+  function validateField(f){
+    var type = f.getAttribute('data-type');
+    var ok = true;
+    if(type === 'email'){
+      var v = f.querySelector('input').value.trim();
+      ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    } else {
+      var el = f.querySelector('input,textarea');
+      ok = el && el.value.trim() !== '';
+    }
+    f.classList.toggle('invalid', !ok);
+    return ok;
+  }
 
+  fields.forEach(function(f){
+    f.addEventListener('input', function(){ if(f.classList.contains('invalid')) validateField(f); });
+  });
+
+  form.addEventListener('submit', function(e){
+    var allOk = true, firstBad = null;
+    fields.forEach(function(f){
+      var ok = validateField(f);
+      if(!ok && !firstBad) firstBad = f;
+      if(!ok) allOk = false;
+    });
+    if(!allOk){
+      e.preventDefault();
+      if(firstBad) firstBad.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  });
+})();
+</script>
+
+<!-- お問い合わせフォーム（#tgCtaForm）の送信処理 -->
+<script>
+(function(){
+  var form = document.getElementById('tgCtaForm');
+  if(!form) return;
+  var err = document.getElementById('tg-cta-error');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = form.querySelector('[name="name"]');
+    var email = form.querySelector('[name="email"]');
+    var message = form.querySelector('[name="message"]');
+    var required = [name, email, message];
+    var ok = true;
+    required.forEach(function(el){
+      if(!el || !el.value.trim()){
+        ok = false;
+        if(el) el.style.borderColor = '#c0392b';
+      } else if(el){
+        el.style.borderColor = '';
+      }
+    });
+    if(!ok){ err.style.display = 'block'; err.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+    err.style.display = 'none';
+    var btn = form.querySelector('.tg-form-submit');
+    if(btn){ btn.disabled = true; btn.textContent = '送信中...'; }
+    var data = new FormData(form);
+    fetch('https://fp-1.info/traingo/wp-json/traingo/v1/contact', {
+      method: 'POST', body: data
+    }).then(function(r){ return r.json(); })
+    .catch(function(){})
+    .finally(function(){
+      window.location.href = 'https://lp.well-c.biz/toraigo/shiryo-thanks.html';
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
