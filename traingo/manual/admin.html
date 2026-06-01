@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traingo 管理者 操作マニュアル</title>
+<style>
+  :root{
+    --navy:#1e2a44; --navy2:#26344f; --navy-deep:#16203a; --navy-soft:#eef1f7;
+    --accent:#2f4368; --line-navy:#cdd5e3;
+    --ink:#1f2734; --sub:#5b6577; --line:#e4e8ef; --bg:#f4f6fa; --card:#fff;
+    --gold:#b08642;
+    --warn-bg:#fbf6ec; --warn-line:#c9a14a; --warn-ink:#7a5a1a;
+    --step:#2f4368;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; font-family:"Hiragino Sans","Yu Gothic UI",Meiryo,sans-serif; color:var(--ink); background:var(--bg); line-height:1.85; font-size:15px;}
+  header{position:sticky; top:0; z-index:60; background:var(--navy); box-shadow:0 2px 10px rgba(20,32,58,.18);}
+  .head-inner{max-width:1180px; margin:0 auto; padding:13px 24px; display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .logo{font-weight:800; font-size:1.25rem; color:#fff; letter-spacing:.5px;}
+  .logo small{display:block; font-size:.62rem; color:#aeb9d0; font-weight:600; letter-spacing:.08em;}
+  .search-wrap{flex:1; min-width:240px; position:relative;}
+  #search{width:100%; padding:11px 14px 11px 40px; font-size:.95rem; border:1.5px solid #3a486a; border-radius:12px; outline:none; background:#fff; color:var(--ink);}
+  #search:focus{border-color:var(--gold);}
+  .search-ic{position:absolute; left:13px; top:50%; transform:translateY(-50%); color:var(--sub); font-size:14px;}
+  #search-count{font-size:.8rem; color:#cdd5e3; white-space:nowrap;}
+  .layout{max-width:1180px; margin:0 auto; display:flex; gap:28px; padding:24px;}
+  nav.toc{width:236px; flex-shrink:0; position:sticky; top:80px; align-self:flex-start; max-height:calc(100vh - 104px); overflow:auto;}
+  nav.toc .toc-title{font-size:.72rem; color:var(--sub); font-weight:700; letter-spacing:.1em; padding:0 12px 8px;}
+  nav.toc a{display:flex; align-items:center; gap:9px; padding:9px 12px; margin:2px 0; border-radius:10px; color:#33415c; text-decoration:none; font-size:.9rem; font-weight:600; transition:background .12s,color .12s;}
+  nav.toc a:hover{background:var(--navy-soft); color:var(--navy);}
+  nav.toc a.is-active{background:var(--navy); color:#fff;}
+  nav.toc a .num{width:24px; height:24px; flex-shrink:0; border-radius:7px; background:var(--navy-soft); color:var(--navy); display:inline-flex; align-items:center; justify-content:center; font-size:.78rem; font-weight:800;}
+  nav.toc a.is-active .num{background:rgba(255,255,255,.22); color:#fff;}
+  main{flex:1; min-width:0;}
+  .intro{background:linear-gradient(120deg,#eef1f7,#f6f3ec); border:1px solid var(--line-navy); border-radius:18px; padding:24px 26px; margin-bottom:28px;}
+  .intro h1{margin:0 0 8px; font-size:1.5rem; color:var(--navy);}
+  .intro p{margin:6px 0; color:#33415c;}
+  .intro .tip{font-size:.88rem; color:var(--sub); margin-top:12px; background:#fff; border:1px solid var(--line); border-radius:10px; padding:10px 14px;}
+  section.card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px 28px; margin-bottom:22px; scroll-margin-top:86px;}
+  section.card > h2{margin:0 0 4px; font-size:1.24rem; color:var(--navy); display:flex; align-items:center; gap:11px;}
+  section.card > h2 .badge{width:32px; height:32px; border-radius:9px; background:var(--navy); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:.98rem; font-weight:800; flex-shrink:0;}
+  .lead{color:var(--sub); margin:2px 0 18px; font-size:.95rem;}
+  h3.block{font-size:1.04rem; color:var(--navy-deep); margin:24px 0 10px; padding-left:12px; border-left:4px solid var(--gold);}
+  .screen-wrap{margin:10px 0 6px;}
+  .screen-cap{font-size:.8rem; color:var(--sub); margin-bottom:6px; display:flex; align-items:center; gap:6px;}
+  .screen-cap b{color:var(--navy);}
+  .screen{border:1px solid var(--line-navy); border-radius:12px; overflow:hidden; box-shadow:0 3px 12px rgba(20,32,58,.08); background:#fff;}
+  .screen-bar{background:#dfe4ee; padding:7px 12px; display:flex; gap:6px; align-items:center;}
+  .screen-bar i{width:11px; height:11px; border-radius:50%; display:inline-block; background:#c2c9d6;}
+  .screen-bar span{margin-left:10px; font-size:.74rem; color:#7a8295; background:#fff; padding:2px 12px; border-radius:6px; border:1px solid #cfd6e2;}
+  .screen-body{display:flex; min-height:150px;}
+  .scr-side{width:150px; background:var(--navy); color:#dfe5f1; padding:12px 0; flex-shrink:0;}
+  .scr-side .brand{color:#fff; font-weight:800; font-size:.86rem; padding:0 14px 10px; border-bottom:1px solid #34425f; margin-bottom:8px;}
+  .scr-side .mi{padding:7px 14px; font-size:.76rem; color:#c2cbde; display:flex; align-items:center; gap:7px;}
+  .scr-side .mi.on{background:#33445f; color:#fff; font-weight:700; border-left:3px solid var(--gold);}
+  .scr-main{flex:1; padding:14px 16px; background:#fafbfd;}
+  .scr-h{font-size:.9rem; font-weight:800; color:var(--navy); margin-bottom:10px;}
+  .scr-row{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:8px 0;}
+  .scr-field{flex:1; min-width:110px; background:#fff; border:1px solid #d4dae6; border-radius:7px; padding:7px 10px; font-size:.74rem; color:#7a8295;}
+  .scr-btn{background:var(--navy); color:#fff; font-size:.74rem; font-weight:700; padding:7px 14px; border-radius:7px; display:inline-block;}
+  .scr-btn.gold{background:var(--gold);}
+  .scr-btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--navy);}
+  .scr-card{background:#fff; border:1px solid #e1e6ef; border-radius:9px; padding:10px 12px; margin:8px 0; font-size:.76rem;}
+  .scr-note{font-size:.74rem; color:#7a8295;}
+  .pin{position:relative;}
+  .pin > .b{position:absolute; top:-9px; left:-9px; width:22px; height:22px; border-radius:50%; background:var(--gold); color:#fff; font-size:.74rem; font-weight:800; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(0,0,0,.25); z-index:2;}
+  ul.can{list-style:none; padding:0; margin:0 0 6px;}
+  ul.can li{position:relative; padding:8px 12px 8px 34px; margin:6px 0; background:#f7f9fc; border-radius:10px; font-size:.93rem;}
+  ul.can li::before{content:"v"; position:absolute; left:12px; top:8px; color:var(--gold); font-weight:800;}
+  ul.can li b{color:var(--navy);}
+  ol.steps{list-style:none; counter-reset:s; padding:0; margin:6px 0;}
+  ol.steps li{position:relative; padding:11px 14px 11px 48px; margin:8px 0; background:#fff; border:1px solid var(--line); border-radius:12px; font-size:.93rem;}
+  ol.steps li::before{counter-increment:s; content:counter(s); position:absolute; left:12px; top:10px; width:26px; height:26px; border-radius:50%; background:var(--step); color:#fff; font-size:.84rem; font-weight:800; display:flex; align-items:center; justify-content:center;}
+  ol.steps li .scr-ref{display:inline-block; background:var(--navy-soft); color:var(--navy); font-size:.74rem; font-weight:700; border-radius:6px; padding:1px 8px; margin-left:4px;}
+  .btn-ex{display:inline-block; background:var(--navy); color:#fff; font-size:.82rem; font-weight:700; padding:2px 10px; border-radius:7px; margin:0 2px; white-space:nowrap;}
+  .btn-ex.gold{background:var(--gold);}
+  .btn-ex.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--navy);}
+  .kbd{background:#eef1f7; border:1px solid #cdd5e3; border-radius:5px; padding:1px 7px; font-size:.85rem; font-family:monospace; color:var(--navy);}
+  table.io{width:100%; border-collapse:collapse; margin:8px 0 4px; font-size:.9rem;}
+  table.io th,table.io td{border:1px solid var(--line); padding:8px 11px; text-align:left; vertical-align:top;}
+  table.io th{background:var(--navy-soft); color:var(--navy); font-size:.82rem; white-space:nowrap;}
+  .req{color:#9a3434; font-weight:700; font-size:.78rem;}
+  .opt{color:var(--sub); font-size:.78rem;}
+  .note{background:var(--warn-bg); border:1px solid var(--warn-line); border-left:5px solid var(--warn-line); border-radius:10px; padding:12px 16px; margin:14px 0 4px; font-size:.9rem; color:var(--warn-ink);}
+  .note .nt{font-weight:800; display:block; margin-bottom:4px; color:var(--warn-ink);}
+  .note ul{margin:4px 0 0; padding-left:20px;} .note li{margin:3px 0;}
+  .faq{background:#f7f9fc; border:1px solid var(--line-navy); border-radius:12px; padding:14px 18px; margin:10px 0;}
+  .faq dt{font-weight:800; color:var(--navy); font-size:.95rem; margin-bottom:6px;}
+  .faq dt::before{content:"Q. "; color:var(--gold);}
+  .faq dd{margin:0; color:var(--ink); font-size:.9rem; padding-left:18px;}
+  #noresult{display:none; text-align:center; color:var(--sub); padding:60px 0; font-size:1rem;}
+  mark{background:#f3e2b8; color:inherit; border-radius:3px; padding:0 2px;}
+  footer{max-width:1180px; margin:0 auto; padding:30px 24px 60px; color:var(--sub); font-size:.82rem;}
+  #fb-tab{position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:70; background:var(--navy); color:#fff; font-size:.8rem; font-weight:700; padding:14px 8px; border:none; border-radius:10px 0 0 10px; box-shadow:0 3px 12px rgba(20,32,58,.3); cursor:pointer; writing-mode:vertical-rl; text-orientation:mixed; letter-spacing:2px;}
+  #fb-tab:hover{background:var(--navy-deep);}
+  #fb-modal{display:none; position:fixed; inset:0; z-index:80; background:rgba(15,20,35,.45); align-items:center; justify-content:center;}
+  #fb-modal.show{display:flex;}
+  .fb-box{background:#fff; border-radius:16px; width:100%; max-width:440px; margin:0 16px; padding:24px;}
+  .fb-box h3{margin:0 0 4px; font-size:1.05rem; color:var(--navy);}
+  .fb-box p.sub{font-size:.82rem; color:var(--sub); margin:0 0 14px;}
+  .fb-box label{display:block; font-size:.8rem; font-weight:700; color:#33415c; margin:10px 0 4px;}
+  .fb-box input,.fb-box textarea{width:100%; border:1.5px solid var(--line-navy); border-radius:9px; padding:9px 11px; font-size:.9rem; font-family:inherit;}
+  .fb-box textarea{resize:vertical; min-height:90px;}
+  .fb-actions{display:flex; justify-content:flex-end; gap:10px; margin-top:16px;}
+  .fb-actions .cancel{background:#fff; border:none; color:var(--sub); font-size:.88rem; cursor:pointer; padding:9px 12px;}
+  .fb-actions .send{background:var(--navy); color:#fff; border:none; font-size:.88rem; font-weight:700; padding:9px 22px; border-radius:9px; cursor:pointer;}
+  @media(max-width:860px){
+    .layout{flex-direction:column; padding:16px;}
+    nav.toc{width:100%; position:static; max-height:none; display:flex; flex-wrap:wrap; gap:6px;}
+    nav.toc .toc-title{width:100%;}
+    nav.toc a{flex:1 1 calc(50% - 6px); margin:0;}
+    .scr-side{width:110px;}
+  }
+  .hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <div class="logo">Traingo<small>管理者（システム管理者）操作マニュアル</small></div>
+    <div class="search-wrap">
+      <span class="search-ic">&#128269;</span>
+      <input id="search" type="text" placeholder="やりたいことで検索（例：企業追加 / コース削除 / 動画 / 受講者 / アフィリエイト）" autocomplete="off">
+    </div>
+    <span id="search-count"></span>
+  </div>
+</header>
+
+<div class="layout">
+
+  <nav class="toc" id="toc">
+    <div class="toc-title">目次</div>
+    <a href="#s0"><span class="num">★</span>画面の全体像</a>
+    <a href="#s1"><span class="num">1</span>ダッシュボード</a>
+    <a href="#s2"><span class="num">2</span>企業管理</a>
+    <a href="#s3"><span class="num">3</span>企業詳細</a>
+    <a href="#s4"><span class="num">4</span>コース管理</a>
+    <a href="#s5"><span class="num">5</span>コース詳細</a>
+    <a href="#s6"><span class="num">6</span>コース別受講者</a>
+    <a href="#s7"><span class="num">7</span>受講者管理</a>
+    <a href="#s8"><span class="num">8</span>受講者詳細</a>
+    <a href="#s9"><span class="num">9</span>動画管理</a>
+    <a href="#s10"><span class="num">10</span>行動履歴</a>
+    <a href="#s11"><span class="num">11</span>アフィリエイト</a>
+    <a href="#s12"><span class="num">AI</span>研修企画書生成</a>
+    <a href="#sfaq"><span class="num">?</span>困ったとき</a>
+  </nav>
+
+  <main id="main">
+
+    <div class="intro" data-nohide>
+      <h1>管理者（システム管理者）向け操作マニュアル</h1>
+      <p>このページは、Traingo の<b>システム管理者</b>が全社の企業・コース・受講者・動画・アフィリエイト・研修企画書生成を操作するためのマニュアルです。</p>
+      <p>管理者は<b>全企業を横断して管理できる最上位権限</b>を持ちます。企業アカウントの作成・削除・slug設定・決済許可フラグなど、会社管理者にはできない操作が含まれています。</p>
+      <p>推奨の順番は <b>&#9312; 企業管理で企業追加 &#8594; &#9313; コース管理でコース作成 &#8594; &#9314; 企業詳細で受講者追加 &#8594; &#9315; ダッシュボードで全社進捗確認</b> です。</p>
+      <p class="tip">上の検索ボックスに言葉を入れると、関係する項目だけに絞り込めます。画面右はしの縦書き「フィードバック」ボタンから不具合・ご意見をいつでも送れます。</p>
+    </div>
+
+    <!-- ======= s0 全体像 ======= -->
+    <section class="card" id="s0" data-keywords="全体像 画面一覧 メニュー サイドバー 使い方 はじめ ログイン トップ ナビ">
+      <h2><span class="badge">★</span>画面の全体像（最初に読む）</h2>
+      <p class="lead">管理者ページは左サイドバーにメニューが並び、右側に作業エリアが表示されます。URLはすべて <span class="kbd">/admin/</span> から始まります。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>管理者ログイン後の基本画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>lms-hojokin.vercel.app/admin/dashboard</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi">&#9312; 企業管理</div>
+              <div class="mi">&#9313; コース管理</div>
+              <div class="mi">&#9314; 動画管理</div>
+              <div class="mi">&#9315; 受講者管理</div>
+              <div class="mi on">&#9316; 受講状況ダッシュボード</div>
+              <div class="mi">&#9317; 行動履歴</div>
+              <div class="mi">&#9318; アフィリエイト管理</div>
+              <div class="mi">&#9319; 研修企画書生成</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">全社受講状況ダッシュボード</div>
+              <div class="scr-row">
+                <div class="scr-card" style="flex:1">総企業数<br><b style="font-size:1.1rem;color:#1e2a44">12</b></div>
+                <div class="scr-card" style="flex:1">総受講者数<br><b style="font-size:1.1rem;color:#1e2a44">148</b></div>
+                <div class="scr-card" style="flex:1">修了者数<br><b style="font-size:1.1rem;color:#1e2a44">73</b></div>
+              </div>
+              <div class="scr-note">全社サマリー・企業別集計がここに出ます</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">左メニューの役割（早見表）</h3>
+      <table class="io">
+        <tr><th>メニュー</th><th>URLパス</th><th>ここで何をする？</th></tr>
+        <tr><td>&#9312; 企業管理</td><td><span class="kbd">/admin/companies</span></td><td>企業一覧の確認・新規企業アカウントの作成</td></tr>
+        <tr><td>&#9313; コース管理</td><td><span class="kbd">/admin/courses</span></td><td>全コースの一覧・新規作成・公開設定・削除</td></tr>
+        <tr><td>&#9314; 動画管理</td><td><span class="kbd">/admin/videos</span></td><td>全動画の一覧・アップロード・削除</td></tr>
+        <tr><td>&#9315; 受講者管理</td><td><span class="kbd">/admin/users</span></td><td>全受講者の一覧・検索・コース変更</td></tr>
+        <tr><td>&#9316; 受講状況ダッシュボード</td><td><span class="kbd">/admin/dashboard</span></td><td>全社の受講状況サマリー・企業別集計グラフ</td></tr>
+        <tr><td>&#9317; 行動履歴</td><td><span class="kbd">/admin/activity</span></td><td>全ユーザーのログイン履歴・操作ログ</td></tr>
+        <tr><td>&#9318; アフィリエイト管理</td><td><span class="kbd">/admin/affiliates</span></td><td>アフィリエイター一覧・成果報酬の管理</td></tr>
+        <tr><td>&#9319; 研修企画書生成</td><td><span class="kbd">/admin/training-plan</span></td><td>AIを使った研修カリキュラムの自動生成</td></tr>
+      </table>
+      <div class="note"><span class="nt">管理者ログインについて</span>管理者ページへのログインURLは <span class="kbd">/admin-login</span> です。一般の受講者ログイン（/login）とは別ページです。ログイン後、ロールが「admin」でないアカウントは自動的に <span class="kbd">/dashboard</span>（会社管理者画面）へリダイレクトされます。</div>
+    </section>
+
+    <!-- ======= s1 ダッシュボード ======= -->
+    <section class="card" id="s1" data-keywords="ダッシュボード 受講状況 全社 集計 企業別 グラフ サマリー 進捗 統計">
+      <h2><span class="badge">1</span>ダッシュボード（全社受講状況サマリー）</h2>
+      <p class="lead">全企業・全受講者の受講進捗を一画面でまとめて確認できる画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>ダッシュボード画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/admin/dashboard</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi on">&#9316; 受講状況ダッシュボード</div>
+              <div class="mi">&#9312; 企業管理</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">全社受講状況ダッシュボード</div>
+              <div class="scr-row">
+                <div class="scr-card" style="flex:1">総企業数<br><b style="color:#1e2a44">12</b></div>
+                <div class="scr-card" style="flex:1">総受講者数<br><b style="color:#1e2a44">148</b></div>
+                <div class="scr-card" style="flex:1">受講中<br><b style="color:#1e2a44">75</b></div>
+                <div class="scr-card" style="flex:1">修了<br><b style="color:#1e2a44">73</b></div>
+              </div>
+              <div class="scr-card" style="margin-top:8px"><b style="color:#1e2a44">企業別集計</b>
+                <div class="scr-row" style="margin-top:6px; font-size:.72rem;">
+                  <span style="width:100px">株式会社A社</span><span>受講者 12名 / 修了 8名</span>
+                </div>
+                <div class="scr-row" style="font-size:.72rem;">
+                  <span style="width:100px">株式会社B社</span><span>受講者 20名 / 修了 15名</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>全社サマリー</b>：総企業数・総受講者数・受講中の人数・修了者数を一目で確認できます。</li>
+        <li><b>企業別集計</b>：契約中の各企業ごとに受講者数・修了者数・修了率を確認できます。</li>
+        <li><b>進捗グラフ</b>：企業別の受講状況が棒グラフ・数値で表示されます。</li>
+      </ul>
+      <h3 class="block">操作手順</h3>
+      <ol class="steps">
+        <li>左メニューの <span class="btn-ex">&#9316; 受講状況ダッシュボード</span> を押します。</li>
+        <li>画面に全社サマリー（総企業数・総受講者数・受講中・修了）が表示されます。</li>
+        <li>企業別の集計表で、各企業の受講者数・修了者数を確認します。</li>
+        <li>特定企業の詳細を見たい場合は「&#9312; 企業管理」から企業を選び、企業詳細画面で受講者一覧を確認します。</li>
+      </ol>
+      <div class="note"><span class="nt">注意</span>この画面は確認専用です。数字の編集・受講者の操作はできません。企業ごとの詳細管理は「企業詳細」画面で行います。</div>
+    </section>
+
+    <!-- ======= s2 企業管理 ======= -->
+    <section class="card" id="s2" data-keywords="企業管理 企業一覧 企業追加 企業アカウント 新規企業 会社 クライアント 追加 登録 作成">
+      <h2><span class="badge">2</span>企業管理（企業一覧・企業アカウント作成）</h2>
+      <p class="lead">Traingo を利用する企業（クライアント）のアカウントを一覧で管理し、新規企業を追加する画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>企業管理の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/admin/companies</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi on">&#9312; 企業管理</div>
+              <div class="mi">&#9313; コース管理</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-row" style="justify-content:space-between"><div class="scr-h">企業管理</div><span class="pin"><span class="b">1</span><span class="scr-btn">+ 新規企業を追加</span></span></div>
+              <div class="scr-card"><div class="scr-row" style="justify-content:space-between"><span><b style="color:#1e2a44">株式会社A社</b> <span class="scr-note">test-company</span></span><span><span class="pin"><span class="b">2</span><span class="scr-btn ghost">詳細</span></span></span></div></div>
+              <div class="scr-card"><div class="scr-row" style="justify-content:space-between"><span><b style="color:#1e2a44">有限会社B社</b> <span class="scr-note">sample-corp</span></span><span><span class="scr-btn ghost">詳細</span></span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>企業一覧を確認</b>：登録済みの全企業が一覧で表示されます。企業名・slug（URLに使う識別子）が確認できます。</li>
+        <li><b>新規企業アカウントを作成</b>：「+ 新規企業を追加」ボタンから新しい企業を登録できます（管理者専用の操作）。</li>
+        <li><b>企業詳細へ移動</b>：「詳細」ボタンから各企業の詳細画面に移り、担当者情報・受講者・決済許可設定ができます。</li>
+      </ul>
+      <h3 class="block">新規企業を追加する手順</h3>
+      <ol class="steps">
+        <li>画面右上の <span class="btn-ex">+ 新規企業を追加</span> を押します。<span class="scr-ref">図の 1</span></li>
+        <li>企業名・担当者メールアドレス・初期パスワードを入力します。</li>
+        <li><span class="btn-ex">企業を作成</span> を押すと、企業アカウントが作成され一覧に追加されます。</li>
+        <li>企業担当者にログインURLとメールアドレス・パスワードを伝えます。</li>
+      </ol>
+      <table class="io">
+        <tr><th>入力欄</th><th>必須/任意</th><th>内容</th></tr>
+        <tr><td>企業名</td><td><span class="req">必須</span></td><td>企業・組織の正式名称</td></tr>
+        <tr><td>担当者メールアドレス</td><td><span class="req">必須</span></td><td>企業管理者のログインID（メールアドレス）</td></tr>
+        <tr><td>初期パスワード</td><td><span class="req">必須</span></td><td>最初にログインするためのパスワード。8文字以上推奨</td></tr>
+        <tr><td>slug</td><td><span class="opt">任意</span></td><td>URLに使う識別子（半角英小文字・数字・ハイフン）。空欄は自動生成</td></tr>
+      </table>
+      <div class="note"><span class="nt">管理者専用操作</span>企業アカウントの作成は管理者のみが行えます。会社管理者ユーザーは自分の企業しか操作できません。企業を削除する場合は、先に受講者データのエクスポート・バックアップを行うことを推奨します。</div>
+    </section>
+
+    <!-- ======= s3 企業詳細 ======= -->
+    <section class="card" id="s3" data-keywords="企業詳細 担当者 メール変更 担当者名 決済リンク 決済許可 slug スラッグ 受講者一覧 受講者追加 企業情報編集">
+      <h2><span class="badge">3</span>企業詳細（企業情報編集・受講者管理）</h2>
+      <p class="lead">特定企業の詳細情報を編集し、その企業に紐づく受講者を確認・追加する画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>企業詳細の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/admin/companies/abc123</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi on">&#9312; 企業管理</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">株式会社A社 ─ 詳細</div>
+              <div class="scr-card">
+                <div class="scr-row"><span class="scr-note" style="width:100px">企業名</span><div class="scr-field">株式会社A社</div></div>
+                <div class="scr-row"><span class="scr-note" style="width:100px">担当者名</span><div class="scr-field">山田 太郎</div></div>
+                <div class="scr-row"><span class="scr-note" style="width:100px">担当者メール</span><div class="scr-field">yamada@a-sha.co.jp</div></div>
+                <div class="scr-row"><span class="scr-note" style="width:100px">slug</span><div class="scr-field">a-sha</div></div>
+                <div class="scr-row"><span class="scr-note" style="width:100px">決済リンク許可</span><span class="scr-btn" style="font-size:.7rem">許可する</span></div>
+              </div>
+              <div class="scr-row" style="margin-top:4px"><span class="scr-btn">保存</span></div>
+              <div class="scr-h" style="margin-top:12px">受講者一覧 <span class="scr-btn" style="font-size:.7rem;margin-left:8px">+ 受講者を追加</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>企業情報の編集</b>：企業名・担当者名・担当者メールアドレスを変更できます。</li>
+        <li><b>決済リンク許可フラグの切替</b>：この企業が受講者向けに決済リンクを使えるかどうかを管理者が制御します（管理者専用の権限）。</li>
+        <li><b>slug の設定・変更</b>：URLに使う識別子を設定します（半角英小文字・数字・ハイフンのみ）。</li>
+        <li><b>受講者一覧の確認</b>：この企業に属する受講者の一覧が表示されます。各受講者の進捗・コース確認も可能です。</li>
+        <li><b>受講者の追加</b>：この企業に受講者を直接追加できます（メールアドレス・パスワード・担当コースを指定）。</li>
+      </ul>
+      <h3 class="block">企業情報を編集する手順</h3>
+      <ol class="steps">
+        <li>「企業管理」一覧で対象企業の <span class="btn-ex ghost">詳細</span> を押します。</li>
+        <li>企業名・担当者名・担当者メールアドレス・slugを必要に応じて書き換えます。</li>
+        <li>決済リンク許可の切替が必要な場合は、該当ボタンを押して状態を変更します。</li>
+        <li><span class="btn-ex">保存</span> を押して変更を確定します。</li>
+      </ol>
+      <h3 class="block">受講者を追加する手順</h3>
+      <ol class="steps">
+        <li>企業詳細画面の「受講者一覧」セクションにある <span class="btn-ex">+ 受講者を追加</span> を押します。</li>
+        <li>氏名・メールアドレス・初期パスワード・担当コースを入力します。</li>
+        <li><span class="btn-ex">追加する</span> を押すと受講者アカウントが作成されます。</li>
+        <li>受講者にログインURL・メールアドレス・パスワードを伝えます。</li>
+      </ol>
+      <table class="io">
+        <tr><th>項目</th><th>説明</th></tr>
+        <tr><td>決済リンク許可フラグ</td><td>管理者のみ変更可。ONにするとこの企業の管理者が受講者向け決済リンクを発行できます</td></tr>
+        <tr><td>slug</td><td>URLに使う識別子。<span class="kbd">a-sha</span> と設定すると <span class="kbd">/company/a-sha/...</span> のURLで企業管理画面にアクセスできます。変更時は既存のリンクが無効になるため注意</td></tr>
+      </table>
+      <div class="note"><span class="nt">slug 変更時の注意</span>slug を変更すると、その企業の管理画面URLおよび受講者のアクセスURLがすべて変わります。変更後は企業担当者に新しいURLを必ず伝えてください。</div>
+    </section>
+
+    <!-- ======= s4 コース管理 ======= -->
+    <section class="card" id="s4" data-keywords="コース管理 コース一覧 コース作成 新規コース 公開 非公開 削除 コース名 カリキュラム">
+      <h2><span class="badge">4</span>コース管理（コース一覧・新規作成・公開設定）</h2>
+      <p class="lead">全コースの一覧確認、新規コースの作成、公開/非公開の切替、コース削除を行う画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>コース管理の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/admin/courses</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi on">&#9313; コース管理</div>
+              <div class="mi">&#9312; 企業管理</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-row" style="justify-content:space-between"><div class="scr-h">コース管理</div><span class="pin"><span class="b">1</span><span class="scr-btn">+ 新規コース作成</span></span></div>
+              <div class="scr-card"><div class="scr-row" style="justify-content:space-between"><span><b style="color:#1e2a44">人材開発支援研修コース</b></span><span><span class="scr-btn" style="font-size:.7rem;background:#2a7a2a">公開中</span> <span class="scr-btn ghost" style="font-size:.7rem">詳細</span> <span class="scr-btn ghost" style="font-size:.7rem;border-color:#9a3434;color:#9a3434">削除</span></span></div></div>
+              <div class="scr-card"><div class="scr-row" style="justify-content:space-between"><span><b style="color:#1e2a44">IT基礎研修</b></span><span><span class="scr-btn" style="font-size:.7rem;background:#7a8295">非公開</span> <span class="scr-btn ghost" style="font-size:.7rem">詳細</span> <span class="scr-btn ghost" style="font-size:.7rem;border-color:#9a3434;color:#9a3434">削除</span></span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>コース一覧の確認</b>：全コースとその公開状態（公開中／非公開）が一覧で表示されます。</li>
+        <li><b>新規コースの作成</b>：「+ 新規コース作成」からコース名・説明を入力して新しいコースを追加します。</li>
+        <li><b>公開/非公開の切替</b>：各コースの「公開中」「非公開」ボタンを押すと状態が切り替わります。非公開のコースは受講者画面に表示されません。</li>
+        <li><b>コースの削除</b>：「削除」ボタンで該当コースを削除できます（確認ダイアログが出ます）。受講者がいるコースを削除するとデータが失われるため、事前に確認が必要です。</li>
+        <li><b>コース詳細へ移動</b>：「詳細」ボタンからコース内容（章・レッスン）の編集画面に移動します。</li>
+      </ul>
+      <h3 class="block">新規コースを作成する手順</h3>
+      <ol class="steps">
+        <li>画面右上の <span class="btn-ex">+ 新規コース作成</span> を押します。<span class="scr-ref">図の 1</span></li>
+        <li>コース名（必須）と説明（任意）を入力します。</li>
+        <li>公開状態を「公開」または「非公開」から選びます（後から変更可能です）。</li>
+        <li><span class="btn-ex">コースを作成</span> を押すと作成完了です。</li>
+        <li>作成後はコース詳細（画面5）から章・レッスンを追加します。</li>
+      </ol>
+      <h3 class="block">コースを削除する手順</h3>
+      <ol class="steps">
+        <li>削除したいコースの <span class="btn-ex ghost" style="border-color:#9a3434;color:#9a3434">削除</span> を押します。</li>
+        <li>「このコースを削除しますか？」という確認ダイアログが表示されます。</li>
+        <li>内容を確認して <span class="btn-ex" style="background:#9a3434">削除する</span> を押すと削除されます。</li>
+      </ol>
+      <div class="note"><span class="nt">削除前の確認</span>コースを削除すると、そのコースに登録されていた受講者のデータ・進捗も削除されます。削除前に必要なデータをCSVなどでエクスポートしてください。削除は元に戻せません。</div>
+    </section>
+
+    <!-- ======= s5 コース詳細 ======= -->
+    <section class="card" id="s5" data-keywords="コース詳細 章 セクション チャプター レッスン 追加 編集 並び替え 動画 文章 テキスト クイズ レッスン追加 章追加">
+      <h2><span class="badge">5</span>コース詳細（章・レッスン管理）</h2>
+      <p class="lead">特定コースの中身（章とレッスン）を追加・編集・並び替えする画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>コース詳細の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/admin/courses/course123</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi on">&#9313; コース管理</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">人材開発支援研修コース ─ 章・レッスン管理</div>
+              <div class="scr-card">
+                <b style="color:#1e2a44">第1章 研修の基礎</b>
+                <div class="scr-note" style="margin-top:4px">レッスン1-1 はじめに（動画） / レッスン1-2 基本概念（文章）</div>
+                <div class="scr-row" style="margin-top:6px"><span class="scr-btn ghost" style="font-size:.7rem">+ レッスン追加</span> <span class="scr-btn ghost" style="font-size:.7rem">章を編集</span> <span class="scr-btn ghost" style="font-size:.7rem;border-color:#9a3434;color:#9a3434">章を削除</span></div>
+              </div>
+              <div class="scr-row" style="margin-top:6px"><span class="scr-btn ghost" style="font-size:.7rem">+ 新しい章を追加</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>章（セクション）の追加・編集・削除</b>：コースを章単位で構成します。章名・公開日時を設定できます。</li>
+        <li><b>レッスンの追加</b>：章の中に動画・文章・クイズの3種類のレッスンを追加できます。</li>
+        <li><b>レッスンの並び替え</b>：ドラッグ操作で章内のレッスン順序を変更できます。</li>
+        <li><b>レッスンの編集・削除</b>：各レッスンの内容・タイトルを編集、または削除できます。</li>
+      </ul>
+      <h3 class="block">章（セクション）を追加する手順</h3>
+      <ol class="steps">
+        <li>画面下部の <span class="btn-ex ghost">+ 新しい章を追加</span> を押します。</li>
+        <li>章の名前（例：「第1章 研修の基礎」）を入力します。</li>
+        <li>公開日時を設定する場合は日時を入力します（空欄にすると即時公開）。</li>
+        <li><span class="btn-ex">章を作成</span> を押します。</li>
+      </ol>
+      <h3 class="block">レッスンを追加する手順</h3>
+      <ol class="steps">
+        <li>追加したい章の <span class="btn-ex ghost">+ レッスン追加</span> を押します。</li>
+        <li>レッスンの種類を「動画」「文章」「クイズ」から選びます。</li>
+        <li>レッスン名を入力し、種類に応じてコンテンツを設定します。<br>
+          動画：動画管理に登録済みの動画を選択するか、YouTubeのURLを入力します。<br>
+          文章：エディタで本文を入力します。<br>
+          クイズ：問題文・選択肢・正解・合格点を設定します。
+        </li>
+        <li><span class="btn-ex">レッスンを保存</span> を押します。</li>
+      </ol>
+      <div class="note"><span class="nt">章・レッスンの削除について</span>削除したレッスンの受講者の進捗データも失われます。受講中の受講者がいる場合は削除前に確認してください。</div>
+    </section>
+
+    <!-- ======= s6 コース別受講者 ======= -->
+    <section class="card" id="s6" data-keywords="コース別受講者 受講者一覧 進捗 コース受講状況 コース別 受講率 修了">
+      <h2><span class="badge">6</span>コース別受講者（受講者一覧・進捗確認）</h2>
+      <p class="lead">特定コースに受講登録されている受講者の一覧と各受講者の進捗を確認する画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>コース別受講者の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/admin/courses/course123/learners</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi on">&#9313; コース管理</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">人材開発支援研修コース ─ 受講者一覧</div>
+              <div class="scr-card">
+                <div class="scr-row" style="font-size:.78rem;justify-content:space-between">
+                  <span><b>山田 太郎</b> yamada@a-sha.co.jp</span>
+                  <span>進捗：<b style="color:#2a7a2a">80%</b> 修了：いいえ</span>
+                </div>
+              </div>
+              <div class="scr-card">
+                <div class="scr-row" style="font-size:.78rem;justify-content:space-between">
+                  <span><b>佐藤 花子</b> sato@a-sha.co.jp</span>
+                  <span>進捗：<b style="color:#2a7a2a">100%</b> 修了：<b style="color:#1e2a44">済</b></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>コース別受講者の一覧確認</b>：このコースに登録されている受講者の名前・メールアドレスが確認できます。</li>
+        <li><b>各受講者の進捗確認</b>：進捗率（%）と修了状況（済／未）が表示されます。</li>
+        <li><b>受講者詳細への移動</b>：受講者名をクリックすると、動画ごとの視聴時間・詳細進捗の画面に移動できます。</li>
+      </ul>
+      <h3 class="block">操作手順</h3>
+      <ol class="steps">
+        <li>「コース管理」一覧で対象コースの <span class="btn-ex ghost">詳細</span> を押します。</li>
+        <li>コース詳細画面の上部または別タブに「受講者一覧」リンクがあります。クリックします。</li>
+        <li>このコースに登録された受講者の一覧と進捗率が表示されます。</li>
+        <li>詳細を確認したい受講者をクリックすると、受講者詳細（監査）画面に移動します。</li>
+      </ol>
+    </section>
+
+    <!-- ======= s7 受講者管理 ======= -->
+    <section class="card" id="s7" data-keywords="受講者管理 受講者一覧 全受講者 検索 コース変更 受講者 メール 名前 検索">
+      <h2><span class="badge">7</span>受講者管理（全受講者一覧・検索・コース変更）</h2>
+      <p class="lead">全企業の受講者を横断して一覧で確認し、名前・メールアドレスで検索、担当コースの変更を行う画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>受講者管理の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/admin/users</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi on">&#9315; 受講者管理</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">全受講者管理</div>
+              <div class="scr-row"><span class="pin"><span class="b">1</span><div class="scr-field" style="min-width:160px">山田・yamada など名前やメールで絞り込み</div></span></div>
+              <div class="scr-card">
+                <div class="scr-row" style="justify-content:space-between; font-size:.78rem;">
+                  <span><b>山田 太郎</b> yamada@a-sha.co.jp</span>
+                  <span><span class="scr-note">株式会社A社</span> <span class="pin"><span class="b">2</span><span class="scr-btn ghost" style="font-size:.7rem">コース変更</span></span></span>
+                </div>
+              </div>
+              <div class="scr-card">
+                <div class="scr-row" style="justify-content:space-between; font-size:.78rem;">
+                  <span><b>佐藤 花子</b> sato@b-sha.co.jp</span>
+                  <span><span class="scr-note">有限会社B社</span> <span class="scr-btn ghost" style="font-size:.7rem">コース変更</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>全受講者の横断一覧</b>：全企業の受講者が一覧で表示されます。所属企業名も合わせて確認できます。</li>
+        <li><b>名前・メールアドレスで検索</b>：検索ボックスにキーワードを入力すると絞り込み表示されます。</li>
+        <li><b>担当コースの変更</b>：受講者が受けるコースを変更できます（コースの移動・追加・削除）。</li>
+      </ul>
+      <h3 class="block">受講者を検索する手順</h3>
+      <ol class="steps">
+        <li>画面上部の検索ボックスに名前またはメールアドレスの一部を入力します。<span class="scr-ref">図の 1</span></li>
+        <li>入力と同時に一覧がフィルタリングされます（エンターキーは不要です）。</li>
+        <li>対象の受講者を見つけたら、行をクリックして詳細画面に移動します。</li>
+      </ol>
+      <h3 class="block">担当コースを変更する手順</h3>
+      <ol class="steps">
+        <li>対象受講者の行にある <span class="btn-ex ghost">コース変更</span> を押します。<span class="scr-ref">図の 2</span></li>
+        <li>変更後のコースを選択します。</li>
+        <li><span class="btn-ex">変更を保存</span> を押します。</li>
+      </ol>
+      <div class="note"><span class="nt">コース変更時の注意</span>コースを変更すると、元のコースでの進捗データは引き継がれません。変更前に進捗状況を確認してください。</div>
+    </section>
+
+    <!-- ======= s8 受講者詳細（監査） ======= -->
+    <section class="card" id="s8" data-keywords="受講者詳細 監査 視聴時間 動画ごと 進捗 修了日 ログ 視聴履歴 詳細 受講ログ">
+      <h2><span class="badge">8</span>受講者詳細（監査）</h2>
+      <p class="lead">特定受講者の動画ごとの視聴時間・学習進捗・修了日を詳細に確認できる監査用の画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>受講者詳細（監査）の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/admin/learner/user456</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi on">&#9315; 受講者管理</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">山田 太郎 ─ 受講詳細（監査）</div>
+              <div class="scr-card">
+                <b style="color:#1e2a44; font-size:.82rem">人材開発支援研修コース</b>
+                <div class="scr-row" style="margin-top:6px; font-size:.74rem; justify-content:space-between">
+                  <span>第1章 L1-1 はじめに</span><span>視聴時間：<b>12分 34秒</b> 完了：済</span>
+                </div>
+                <div class="scr-row" style="font-size:.74rem; justify-content:space-between">
+                  <span>第1章 L1-2 基本概念</span><span>視聴時間：<b>8分 15秒</b> 完了：未</span>
+                </div>
+                <div class="scr-row" style="font-size:.74rem">
+                  <span>修了日：</span><span><b>2026-05-28</b></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>動画ごとの視聴時間確認</b>：各レッスン（動画）を何分何秒視聴したかが記録・表示されます。助成金申請の証跡として利用できます。</li>
+        <li><b>進捗の詳細確認</b>：各レッスンの完了状況（済／未）を一覧で確認できます。</li>
+        <li><b>修了日の確認</b>：コース修了日（全レッスン完了日）が表示されます。</li>
+        <li><b>受講履歴の監査</b>：誰が・いつ・どのレッスンを・どれだけ見たかを記録として確認できます。</li>
+      </ul>
+      <h3 class="block">受講者詳細を確認する手順</h3>
+      <ol class="steps">
+        <li>「受講者管理」一覧で対象受講者を選ぶか、「コース別受講者」から受講者名をクリックします。</li>
+        <li>受講者詳細（監査）画面が表示されます。</li>
+        <li>複数コース受講者の場合はコースごとのタブを切り替えて確認します。</li>
+        <li>各レッスンの行に「視聴時間」「完了状況」が表示されています。</li>
+      </ol>
+      <div class="note"><span class="nt">助成金証跡として使う場合</span>人材開発支援助成金の証跡として視聴ログを提出する場合は、画面を印刷またはスクリーンショットで保存してください。</div>
+    </section>
+
+    <!-- ======= s9 動画管理 ======= -->
+    <section class="card" id="s9" data-keywords="動画管理 動画一覧 動画アップロード アップロード 動画削除 MP4 MOV 動画 ビデオ ファイル">
+      <h2><span class="badge">9</span>動画管理（動画一覧・アップロード・削除）</h2>
+      <p class="lead">システム全体の動画ファイルを一元管理する画面です。動画をアップロードして、コース内のレッスンで使用します。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>動画管理の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/admin/videos</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi on">&#9314; 動画管理</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-row" style="justify-content:space-between"><div class="scr-h">動画管理</div><span class="pin"><span class="b">1</span><span class="scr-btn">+ 動画をアップロード</span></span></div>
+              <div class="scr-card">
+                <div class="scr-row" style="justify-content:space-between; font-size:.78rem;">
+                  <span><b>L1-1_はじめに.mp4</b> <span class="scr-note">15.2 MB</span></span>
+                  <span><span class="scr-btn ghost" style="font-size:.7rem;border-color:#9a3434;color:#9a3434">削除</span></span>
+                </div>
+              </div>
+              <div class="scr-card">
+                <div class="scr-row" style="justify-content:space-between; font-size:.78rem;">
+                  <span><b>L1-2_基本概念.mp4</b> <span class="scr-note">22.8 MB</span></span>
+                  <span><span class="scr-btn ghost" style="font-size:.7rem;border-color:#9a3434;color:#9a3434">削除</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>動画の一覧確認</b>：アップロード済みの全動画がファイル名・サイズとともに一覧で表示されます。</li>
+        <li><b>動画のアップロード</b>：MP4・MOVなどの動画ファイルをドラッグ操作またはファイル選択でアップロードできます。</li>
+        <li><b>動画の削除</b>：使わなくなった動画をシステムから削除できます。</li>
+      </ul>
+      <h3 class="block">動画をアップロードする手順</h3>
+      <ol class="steps">
+        <li>画面右上の <span class="btn-ex">+ 動画をアップロード</span> を押します。<span class="scr-ref">図の 1</span></li>
+        <li>アップロードダイアログが開きます。動画ファイルをドラッグするか「ファイルを選択」を押します。</li>
+        <li>動画のタイトル（レッスン内での表示名）を入力します。</li>
+        <li><span class="btn-ex">アップロード開始</span> を押します。ファイルサイズによっては数分かかります。</li>
+        <li>「アップロード完了」と表示されたら一覧に追加されています。</li>
+        <li>コース詳細画面でレッスンを追加するとき、アップロードした動画を選択して使用します。</li>
+      </ol>
+      <h3 class="block">動画を削除する手順</h3>
+      <ol class="steps">
+        <li>削除したい動画の <span class="btn-ex ghost" style="border-color:#9a3434;color:#9a3434">削除</span> を押します。</li>
+        <li>確認ダイアログで <span class="btn-ex" style="background:#9a3434">削除する</span> を押します。</li>
+      </ol>
+      <table class="io">
+        <tr><th>対応形式</th><th>目安のファイルサイズ</th></tr>
+        <tr><td>MP4（推奨）、MOV、AVI</td><td>1本あたり 500MB 以内を推奨。それ以上はアップロードに時間がかかります</td></tr>
+      </table>
+      <div class="note"><span class="nt">動画削除時の注意</span>削除した動画がコースのレッスンに使われていた場合、そのレッスンの動画が表示されなくなります。削除前に「コース詳細」でその動画を使っているレッスンを確認してください。</div>
+    </section>
+
+    <!-- ======= s10 行動履歴 ======= -->
+    <section class="card" id="s10" data-keywords="行動履歴 ログイン履歴 操作ログ アクティビティ ログ 履歴 監査ログ アクセス">
+      <h2><span class="badge">10</span>行動履歴（ログイン履歴・操作ログ）</h2>
+      <p class="lead">全ユーザー（管理者・会社管理者・受講者）のログイン履歴と操作ログを確認できる画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>行動履歴の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/admin/activity</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi on">&#9317; 行動履歴</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">行動履歴</div>
+              <div class="scr-card">
+                <div class="scr-row" style="font-size:.74rem; justify-content:space-between;">
+                  <span>2026-06-01 09:12</span>
+                  <span><b>山田 太郎</b>（受講者）</span>
+                  <span>ログイン</span>
+                </div>
+              </div>
+              <div class="scr-card">
+                <div class="scr-row" style="font-size:.74rem; justify-content:space-between;">
+                  <span>2026-06-01 08:55</span>
+                  <span><b>鈴木 管理</b>（会社管理者）</span>
+                  <span>受講者追加</span>
+                </div>
+              </div>
+              <div class="scr-card">
+                <div class="scr-row" style="font-size:.74rem; justify-content:space-between;">
+                  <span>2026-05-31 18:03</span>
+                  <span><b>admin</b>（システム管理者）</span>
+                  <span>コース作成</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>ログイン履歴の確認</b>：誰がいつログインしたかをタイムスタンプとともに確認できます。</li>
+        <li><b>操作ログの確認</b>：受講者の追加・コースの作成・動画のアップロードなど、管理操作の記録が残ります。</li>
+        <li><b>不正アクセスの確認</b>：不審なログインがあった場合に履歴から確認できます。</li>
+      </ul>
+      <h3 class="block">操作手順</h3>
+      <ol class="steps">
+        <li>左メニューの <span class="btn-ex">&#9317; 行動履歴</span> を押します。</li>
+        <li>最新の行動履歴が新しい順に一覧で表示されます。</li>
+        <li>日付・ユーザー名・操作内容が確認できます。</li>
+      </ol>
+      <div class="note"><span class="nt">注意</span>行動履歴は確認専用の画面です。履歴を編集・削除することはできません。</div>
+    </section>
+
+    <!-- ======= s11 アフィリエイト管理 ======= -->
+    <section class="card" id="s11" data-keywords="アフィリエイト 紹介 成果報酬 アフィリエイター 紹介報酬 アフィリ 報酬 紹介者 コミッション">
+      <h2><span class="badge">11</span>アフィリエイト管理（アフィリエイター一覧・成果報酬）</h2>
+      <p class="lead">Traingo の受講者を紹介したアフィリエイター（紹介者）の一覧と成果報酬を管理する画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>アフィリエイト管理の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/admin/affiliates</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi on">&#9318; アフィリエイト管理</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">アフィリエイト管理</div>
+              <div class="scr-card">
+                <div class="scr-row" style="justify-content:space-between; font-size:.78rem;">
+                  <span><b>田中 紹介</b> tanaka@aff.jp</span>
+                  <span>成果：<b>3件</b> 報酬合計：<b style="color:#2a7a2a">15,000円</b></span>
+                </div>
+              </div>
+              <div class="scr-card">
+                <div class="scr-row" style="justify-content:space-between; font-size:.78rem;">
+                  <span><b>伊藤 代理</b> ito@aff.jp</span>
+                  <span>成果：<b>1件</b> 報酬合計：<b style="color:#2a7a2a">5,000円</b></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>アフィリエイター一覧の確認</b>：登録されているアフィリエイター（紹介者）の一覧が表示されます。</li>
+        <li><b>成果件数の確認</b>：各アフィリエイターが紹介した成果（受講者登録・購入）の件数が確認できます。</li>
+        <li><b>報酬合計の確認</b>：成果に応じた報酬の累計金額が確認できます。</li>
+      </ul>
+      <h3 class="block">操作手順</h3>
+      <ol class="steps">
+        <li>左メニューの <span class="btn-ex">&#9318; アフィリエイト管理</span> を押します。</li>
+        <li>アフィリエイター一覧が表示されます。</li>
+        <li>各アフィリエイターの成果件数・報酬合計を確認します。</li>
+        <li>詳細確認や報酬支払処理が必要な場合は、該当アフィリエイターをクリックして詳細画面に移動します。</li>
+      </ol>
+    </section>
+
+    <!-- ======= s12 研修企画書生成 ======= -->
+    <section class="card" id="s12" data-keywords="研修企画書 AI ChatGPT Gemini カリキュラム 自動生成 企画書 研修計画 AI生成">
+      <h2><span class="badge">AI</span>研修企画書生成（AI自動生成）</h2>
+      <p class="lead">ChatGPT または Gemini の AI を使って、研修のカリキュラム企画書を自動で生成するツールです。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>研修企画書生成の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/admin/training-plan</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo<br><span style="font-size:.68rem;color:#aeb9d0;font-weight:400">管理者パネル</span></div>
+              <div class="mi on">&#9319; 研修企画書生成</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">AI 研修企画書生成</div>
+              <div class="scr-card">
+                <div class="scr-row"><span class="scr-note" style="width:100px">使用AI</span><span class="scr-btn" style="font-size:.7rem">ChatGPT</span> <span class="scr-btn ghost" style="font-size:.7rem">Gemini</span></div>
+                <div class="scr-row"><span class="scr-note" style="width:100px">研修テーマ</span><div class="scr-field">DXリスキリング研修（中堅社員向け）</div></div>
+                <div class="scr-row"><span class="scr-note" style="width:100px">対象者</span><div class="scr-field">製造業・管理職・50名</div></div>
+                <div class="scr-row"><span class="scr-note" style="width:100px">研修時間</span><div class="scr-field">全8時間（4回 × 2時間）</div></div>
+              </div>
+              <div class="scr-row" style="margin-top:4px"><span class="scr-btn gold">企画書を生成する</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>AI でカリキュラムを自動生成</b>：研修テーマ・対象者・時間を入力するだけで、AIがカリキュラム骨子・目標・進行スケジュールを自動で提案します。</li>
+        <li><b>ChatGPT と Gemini を選択</b>：生成に使うAIエンジンをChatGPTまたはGeminiから選べます。</li>
+        <li><b>生成結果の確認・コピー</b>：生成された企画書テキストをそのまま使用、またはコピーして資料に貼り付けられます。</li>
+      </ul>
+      <h3 class="block">企画書を生成する手順</h3>
+      <ol class="steps">
+        <li>左メニューの <span class="btn-ex">&#9319; 研修企画書生成</span> を押します。</li>
+        <li>使用するAIを「ChatGPT」または「Gemini」から選びます。</li>
+        <li>研修テーマを入力します。（例：「DXリスキリング研修（中堅社員向け）」）</li>
+        <li>対象者の情報を入力します。（例：「製造業・管理職・50名」）</li>
+        <li>研修時間・回数を入力します。（例：「全8時間・4回」）</li>
+        <li><span class="btn-ex gold">企画書を生成する</span> を押します。</li>
+        <li>数秒〜30秒ほどでAIが企画書を生成します。生成された内容を確認します。</li>
+        <li>必要に応じてコピーし、WordやメールなどのソフトウェアやアプリケーションもしくはWebサービスに貼り付けて使用します。</li>
+      </ol>
+      <table class="io">
+        <tr><th>入力欄</th><th>必須/任意</th><th>入力のヒント</th></tr>
+        <tr><td>研修テーマ</td><td><span class="req">必須</span></td><td>具体的なほど精度が高い企画書が生成されます</td></tr>
+        <tr><td>対象者</td><td><span class="req">必須</span></td><td>業種・職種・人数・経験年数など</td></tr>
+        <tr><td>研修時間</td><td><span class="opt">任意</span></td><td>時間・回数・1回あたりの長さなど</td></tr>
+      </table>
+      <div class="note"><span class="nt">AIの出力について</span>AIが生成した企画書はあくまで参考案です。法令・助成金要件・自社状況に合わせて内容を確認・修正してからご使用ください。生成結果はシステムに保存されません。必要な場合は手動でコピー・保存してください。</div>
+    </section>
+
+    <!-- ======= sfaq 困ったとき ======= -->
+    <section class="card" id="sfaq" data-keywords="困った FAQ よくある質問 エラー 問題 ログインできない トラブル 不具合 問い合わせ">
+      <h2><span class="badge">?</span>困ったとき（FAQ・お問い合わせ）</h2>
+      <p class="lead">よくある質問と対処方法をまとめています。解決しない場合は画面右のフィードバックボタンからご連絡ください。</p>
+
+      <h3 class="block">よくある質問（FAQ）</h3>
+
+      <dl class="faq">
+        <dt>管理者ログイン画面のURLがわからない</dt>
+        <dd>管理者ログインのURLは <span class="kbd">/admin-login</span> です。一般受講者のログイン（/login）とは別ページです。URLを忘れた場合はシステム担当者に確認してください。</dd>
+      </dl>
+      <dl class="faq">
+        <dt>企業を追加したが、企業担当者がログインできないと言っている</dt>
+        <dd>企業追加時に設定したメールアドレスとパスワードが正しく伝わっているか確認してください。ログインURLは <span class="kbd">/login</span>（受講者・企業管理者共通）です。パスワードを忘れた場合は「企業詳細」画面から担当者のパスワードを再設定できます。</dd>
+      </dl>
+      <dl class="faq">
+        <dt>コースを公開にしたのに受講者画面に表示されない</dt>
+        <dd>コースの公開状態が「公開中」になっているか再確認してください。また受講者がそのコースに紐づけられているか「受講者管理」で確認してください。コースと受講者が紐づいていないと受講者画面には表示されません。</dd>
+      </dl>
+      <dl class="faq">
+        <dt>動画をアップロードしたがレッスンで選択できない</dt>
+        <dd>アップロード完了後、コース詳細画面でレッスン追加を行う際に「動画を選択」からアップロード済み動画を選べます。アップロード直後は一覧に反映されるまで数秒かかることがあります。ページを再読み込みして再度確認してください。</dd>
+      </dl>
+      <dl class="faq">
+        <dt>受講者の視聴時間が 0 のまま記録されない</dt>
+        <dd>受講者が動画を再生した際にネットワーク接続が不安定だった可能性があります。受講者に「再生中はネットワーク接続を切らないようにする」よう案内してください。また動画の再生が一定時間（通常30秒以上）続かないとログが記録されない場合があります。</dd>
+      </dl>
+      <dl class="faq">
+        <dt>slug を変更したら企業管理者から「ページが見つからない」と連絡があった</dt>
+        <dd>slug を変更すると企業管理者のアクセスURLが変わります。変更後の新しいURLを企業担当者に必ず伝えてください。ブラウザのブックマークも更新が必要です。</dd>
+      </dl>
+      <dl class="faq">
+        <dt>削除したコースのデータを元に戻したい</dt>
+        <dd>削除したコース・レッスン・受講データは元に戻せません。重要なデータは削除前に必ずエクスポート・スクリーンショットなどで保存しておいてください。</dd>
+      </dl>
+      <dl class="faq">
+        <dt>研修企画書生成の「企画書を生成する」を押してもエラーになる</dt>
+        <dd>AI の APIキーが設定されていないか、API利用制限に達している可能性があります。システム担当者に連絡してAPIの状態を確認してもらってください。</dd>
+      </dl>
+
+      <h3 class="block">解決しない場合のお問い合わせ先</h3>
+      <table class="io">
+        <tr><th>連絡方法</th><th>対応内容</th></tr>
+        <tr><td>画面右のフィードバックボタン</td><td>操作上の不具合・改善要望・質問をシステム担当者に直接送れます</td></tr>
+        <tr><td>メール：info@fp-1.info</td><td>緊急の障害・システム停止・データ消失などの重大な問題</td></tr>
+      </table>
+    </section>
+
+    <div id="noresult">検索にマッチする項目が見つかりませんでした。</div>
+
+  </main>
+</div>
+
+<footer>
+  Traingo 管理者 操作マニュアル V1 | 2026-06-01 発行 | 運営：Well Consultant合同会社（info@fp-1.info）
+</footer>
+
+<button id="fb-tab" onclick="document.getElementById('fb-modal').classList.add('show')">フィードバック</button>
+
+<div id="fb-modal">
+  <div class="fb-box">
+    <h3>フィードバックを送る</h3>
+    <p class="sub">操作に困ったこと・不具合・改善提案をお知らせください。</p>
+    <label>お名前（任意）</label>
+    <input type="text" id="fb-name" value="">
+    <label>内容</label>
+    <textarea id="fb-body"></textarea>
+    <div class="fb-actions">
+      <button class="cancel" onclick="document.getElementById('fb-modal').classList.remove('show')">キャンセル</button>
+      <button class="send" onclick="sendFb()">送信</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var search=document.getElementById('search'),cards=document.querySelectorAll('section.card'),noResult=document.getElementById('noresult'),countEl=document.getElementById('search-count');
+function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+function highlightNode(node,re){
+  if(node.nodeType===3){var m=node.textContent.match(re);if(m){var sp=document.createElement('span');sp.innerHTML=node.textContent.replace(re,'<mark>$&</mark>');node.parentNode.replaceChild(sp,node);}}
+  else if(node.nodeType===1&&!['SCRIPT','STYLE','MARK'].includes(node.tagName))node.childNodes.forEach(function(c){highlightNode(c,re);});
+}
+function clearMarks(node){node.querySelectorAll('mark').forEach(function(m){var t=document.createTextNode(m.textContent);m.parentNode.replaceChild(t,m);});}
+search.addEventListener('input',function(){
+  var q=this.value.trim();var shown=0;
+  cards.forEach(function(c){
+    clearMarks(c);
+    if(!q){c.classList.remove('hidden');shown++;}
+    else{
+      var kw=(c.dataset.keywords||'');
+      var txt=c.textContent+' '+kw;
+      var match=q.split(/\s+/).every(function(w){return txt.toLowerCase().includes(w.toLowerCase());});
+      if(match){c.classList.remove('hidden');highlightNode(c,new RegExp(escRe(q),'gi'));shown++;}
+      else c.classList.add('hidden');
+    }
+  });
+  noResult.style.display=(q&&shown===0)?'block':'none';
+  countEl.textContent=q?'（'+shown+'件）':'';
+});
+
+var tocLinks=document.querySelectorAll('nav.toc a');
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      tocLinks.forEach(function(a){a.classList.remove('is-active');});
+      var id=e.target.id;
+      var a=document.querySelector('nav.toc a[href="#'+id+'"]');
+      if(a)a.classList.add('is-active');
+    }
+  });
+},{rootMargin:'-20% 0px -60% 0px'});
+document.querySelectorAll('section.card[id]').forEach(function(s){obs.observe(s);});
+
+function sendFb(){
+  var name=document.getElementById('fb-name').value;
+  var body=document.getElementById('fb-body').value;
+  if(!body.trim()){alert('内容を入力してください');return;}
+  fetch('/api/feedback',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:name,message:body,sourcePage:'管理者マニュアル'})
+  }).then(function(){
+    alert('送信しました。ありがとうございます。');
+    document.getElementById('fb-modal').classList.remove('show');
+    document.getElementById('fb-name').value='';
+    document.getElementById('fb-body').value='';
+  }).catch(function(){
+    alert('送信に失敗しました。メール（info@fp-1.info）でご連絡ください。');
+  });
+}
+</script>
+</body>
+</html>

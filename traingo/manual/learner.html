@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traingo 受講者 操作マニュアル</title>
+<style>
+  :root{
+    --navy:#1e2a44; --navy2:#26344f; --navy-deep:#16203a; --navy-soft:#eef1f7;
+    --accent:#2f4368; --line-navy:#cdd5e3;
+    --ink:#1f2734; --sub:#5b6577; --line:#e4e8ef; --bg:#f4f6fa; --card:#fff;
+    --gold:#b08642;
+    --warn-bg:#fbf6ec; --warn-line:#c9a14a; --warn-ink:#7a5a1a;
+    --step:#2f4368;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; font-family:"Hiragino Sans","Yu Gothic UI",Meiryo,sans-serif; color:var(--ink); background:var(--bg); line-height:1.85; font-size:15px;}
+  header{position:sticky; top:0; z-index:60; background:var(--navy); box-shadow:0 2px 10px rgba(20,32,58,.18);}
+  .head-inner{max-width:1180px; margin:0 auto; padding:13px 24px; display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .logo{font-weight:800; font-size:1.25rem; color:#fff; letter-spacing:.5px;}
+  .logo small{display:block; font-size:.62rem; color:#aeb9d0; font-weight:600; letter-spacing:.08em;}
+  .search-wrap{flex:1; min-width:240px; position:relative;}
+  #search{width:100%; padding:11px 14px 11px 40px; font-size:.95rem; border:1.5px solid #3a486a; border-radius:12px; outline:none; background:#fff; color:var(--ink);}
+  #search:focus{border-color:var(--gold);}
+  .search-ic{position:absolute; left:13px; top:50%; transform:translateY(-50%); color:var(--sub);}
+  #search-count{font-size:.8rem; color:#cdd5e3; white-space:nowrap;}
+  .layout{max-width:1180px; margin:0 auto; display:flex; gap:28px; padding:24px;}
+  nav.toc{width:236px; flex-shrink:0; position:sticky; top:80px; align-self:flex-start; max-height:calc(100vh - 104px); overflow:auto;}
+  nav.toc .toc-title{font-size:.72rem; color:var(--sub); font-weight:700; letter-spacing:.1em; padding:0 12px 8px;}
+  nav.toc a{display:flex; align-items:center; gap:9px; padding:9px 12px; margin:2px 0; border-radius:10px; color:#33415c; text-decoration:none; font-size:.9rem; font-weight:600; transition:background .12s,color .12s;}
+  nav.toc a:hover{background:var(--navy-soft); color:var(--navy);}
+  nav.toc a.is-active{background:var(--navy); color:#fff;}
+  nav.toc a .num{width:24px; height:24px; flex-shrink:0; border-radius:7px; background:var(--navy-soft); color:var(--navy); display:inline-flex; align-items:center; justify-content:center; font-size:.78rem; font-weight:800;}
+  nav.toc a.is-active .num{background:rgba(255,255,255,.22); color:#fff;}
+  main{flex:1; min-width:0;}
+  .intro{background:linear-gradient(120deg,#eef1f7,#f6f3ec); border:1px solid var(--line-navy); border-radius:18px; padding:24px 26px; margin-bottom:28px;}
+  .intro h1{margin:0 0 8px; font-size:1.5rem; color:var(--navy);}
+  .intro p{margin:6px 0; color:#33415c;}
+  .intro .tip{font-size:.88rem; color:var(--sub); margin-top:12px; background:#fff; border:1px solid var(--line); border-radius:10px; padding:10px 14px;}
+  section.card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px 28px; margin-bottom:22px; scroll-margin-top:86px;}
+  section.card > h2{margin:0 0 4px; font-size:1.24rem; color:var(--navy); display:flex; align-items:center; gap:11px;}
+  section.card > h2 .badge{width:32px; height:32px; border-radius:9px; background:var(--navy); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:.98rem; font-weight:800; flex-shrink:0;}
+  .lead{color:var(--sub); margin:2px 0 18px; font-size:.95rem;}
+  h3.block{font-size:1.04rem; color:var(--navy-deep); margin:24px 0 10px; padding-left:12px; border-left:4px solid var(--gold);}
+  .screen-wrap{margin:10px 0 6px;}
+  .screen-cap{font-size:.8rem; color:var(--sub); margin-bottom:6px; display:flex; align-items:center; gap:6px;}
+  .screen-cap b{color:var(--navy);}
+  .screen{border:1px solid var(--line-navy); border-radius:12px; overflow:hidden; box-shadow:0 3px 12px rgba(20,32,58,.08); background:#fff;}
+  .screen-bar{background:#dfe4ee; padding:7px 12px; display:flex; gap:6px; align-items:center;}
+  .screen-bar i{width:11px; height:11px; border-radius:50%; display:inline-block; background:#c2c9d6;}
+  .screen-bar span{margin-left:10px; font-size:.74rem; color:#7a8295; background:#fff; padding:2px 12px; border-radius:6px; border:1px solid #cfd6e2;}
+  .screen-body{display:flex; min-height:150px;}
+  .scr-side{width:150px; background:var(--navy); color:#dfe5f1; padding:12px 0; flex-shrink:0;}
+  .scr-side .brand{color:#fff; font-weight:800; font-size:.86rem; padding:0 14px 10px; border-bottom:1px solid #34425f; margin-bottom:8px;}
+  .scr-side .mi{padding:7px 14px; font-size:.76rem; color:#c2cbde; display:flex; align-items:center; gap:7px;}
+  .scr-side .mi.on{background:#33445f; color:#fff; font-weight:700; border-left:3px solid var(--gold);}
+  .scr-main{flex:1; padding:14px 16px; background:#fafbfd;}
+  .scr-h{font-size:.9rem; font-weight:800; color:var(--navy); margin-bottom:10px;}
+  .scr-row{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:8px 0;}
+  .scr-field{flex:1; min-width:110px; background:#fff; border:1px solid #d4dae6; border-radius:7px; padding:7px 10px; font-size:.74rem; color:#7a8295;}
+  .scr-btn{background:var(--navy); color:#fff; font-size:.74rem; font-weight:700; padding:7px 14px; border-radius:7px; display:inline-block;}
+  .scr-btn.gold{background:var(--gold);}
+  .scr-btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--navy);}
+  .scr-card{background:#fff; border:1px solid #e1e6ef; border-radius:9px; padding:10px 12px; margin:8px 0; font-size:.76rem;}
+  .scr-note{font-size:.74rem; color:#7a8295;}
+  .progress-bar-wrap{background:#e8edf5; border-radius:6px; height:8px; width:100%; margin:4px 0;}
+  .progress-bar-fill{height:8px; border-radius:6px; background:var(--gold);}
+  ul.can{list-style:none; padding:0; margin:0 0 6px;}
+  ul.can li{position:relative; padding:8px 12px 8px 34px; margin:6px 0; background:#f7f9fc; border-radius:10px; font-size:.93rem;}
+  ul.can li::before{content:"\2713"; position:absolute; left:12px; top:8px; color:var(--gold); font-weight:800;}
+  ul.can li b{color:var(--navy);}
+  ol.steps{list-style:none; counter-reset:s; padding:0; margin:6px 0;}
+  ol.steps li{position:relative; padding:11px 14px 11px 48px; margin:8px 0; background:#fff; border:1px solid var(--line); border-radius:12px; font-size:.93rem;}
+  ol.steps li::before{counter-increment:s; content:counter(s); position:absolute; left:12px; top:10px; width:26px; height:26px; border-radius:50%; background:var(--step); color:#fff; font-size:.84rem; font-weight:800; display:flex; align-items:center; justify-content:center;}
+  ol.steps li .scr-ref{display:inline-block; background:var(--navy-soft); color:var(--navy); font-size:.74rem; font-weight:700; border-radius:6px; padding:1px 8px; margin-left:4px;}
+  .btn-ex{display:inline-block; background:var(--navy); color:#fff; font-size:.82rem; font-weight:700; padding:2px 10px; border-radius:7px; margin:0 2px; white-space:nowrap;}
+  .btn-ex.gold{background:var(--gold);}
+  .btn-ex.green{background:#15803d;}
+  .btn-ex.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--navy);}
+  .kbd{background:#eef1f7; border:1px solid #cdd5e3; border-radius:5px; padding:1px 7px; font-size:.85rem; font-family:monospace; color:var(--navy);}
+  table.io{width:100%; border-collapse:collapse; margin:8px 0 4px; font-size:.9rem;}
+  table.io th,table.io td{border:1px solid var(--line); padding:8px 11px; text-align:left; vertical-align:top;}
+  table.io th{background:var(--navy-soft); color:var(--navy); font-size:.82rem; white-space:nowrap;}
+  .note{background:var(--warn-bg); border:1px solid var(--warn-line); border-left:5px solid var(--warn-line); border-radius:10px; padding:12px 16px; margin:14px 0 4px; font-size:.9rem; color:var(--warn-ink);}
+  .note .nt{font-weight:800; display:block; margin-bottom:4px; color:var(--warn-ink);}
+  .note ul{margin:4px 0 0; padding-left:20px;} .note li{margin:3px 0;}
+  .info{background:#f0f4ff; border:1px solid #b0c0e8; border-left:5px solid #7a9be0; border-radius:10px; padding:12px 16px; margin:14px 0 4px; font-size:.9rem; color:#1e2a44;}
+  .info .nt{font-weight:800; display:block; margin-bottom:4px;}
+  #noresult{display:none; text-align:center; color:var(--sub); padding:60px 0; font-size:1rem;}
+  mark{background:#f3e2b8; color:inherit; border-radius:3px; padding:0 2px;}
+  footer{max-width:1180px; margin:0 auto; padding:30px 24px 60px; color:var(--sub); font-size:.82rem;}
+  #fb-tab{position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:70; background:var(--navy); color:#fff; font-size:.8rem; font-weight:700; padding:14px 8px; border:none; border-radius:10px 0 0 10px; box-shadow:0 3px 12px rgba(20,32,58,.3); cursor:pointer; writing-mode:vertical-rl; text-orientation:mixed; letter-spacing:2px;}
+  #fb-tab:hover{background:var(--navy-deep);}
+  #fb-modal{display:none; position:fixed; inset:0; z-index:80; background:rgba(15,20,35,.45); align-items:center; justify-content:center;}
+  #fb-modal.show{display:flex;}
+  .fb-box{background:#fff; border-radius:16px; width:100%; max-width:440px; margin:0 16px; padding:24px;}
+  .fb-box h3{margin:0 0 4px; font-size:1.05rem; color:var(--navy);}
+  .fb-box p.sub{font-size:.82rem; color:var(--sub); margin:0 0 14px;}
+  .fb-box label{display:block; font-size:.8rem; font-weight:700; color:#33415c; margin:10px 0 4px;}
+  .fb-box input,.fb-box textarea{width:100%; border:1.5px solid var(--line-navy); border-radius:9px; padding:9px 11px; font-size:.9rem; font-family:inherit;}
+  .fb-box textarea{resize:vertical; min-height:90px;}
+  .fb-actions{display:flex; justify-content:flex-end; gap:10px; margin-top:16px;}
+  .fb-actions .cancel{background:#fff; border:none; color:var(--sub); font-size:.88rem; cursor:pointer; padding:9px 12px;}
+  .fb-actions .send{background:var(--navy); color:#fff; border:none; font-size:.88rem; font-weight:700; padding:9px 22px; border-radius:9px; cursor:pointer;}
+  @media(max-width:860px){
+    .layout{flex-direction:column; padding:16px;}
+    nav.toc{width:100%; position:static; max-height:none; display:flex; flex-wrap:wrap; gap:6px;}
+    nav.toc .toc-title{width:100%;}
+    nav.toc a{flex:1 1 calc(50% - 6px); margin:0;}
+    .scr-side{width:110px;}
+  }
+  .hidden{display:none !important;}
+  .faq-q{font-weight:800; color:var(--navy); margin:16px 0 4px; font-size:.98rem;}
+  .faq-q::before{content:"Q. "; color:var(--gold);}
+  .faq-a{margin:0 0 14px; padding-left:22px; color:var(--ink); font-size:.93rem;}
+  .faq-a::before{content:"A. "; font-weight:800; color:var(--sub);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <div class="logo">Traingo<small>受講者 操作マニュアル</small></div>
+    <div class="search-wrap">
+      <span class="search-ic">&#128269;</span>
+      <input id="search" type="text" placeholder="知りたいことで検索（例：動画　修了証　パスワード　クイズ）" autocomplete="off">
+    </div>
+    <span id="search-count"></span>
+  </div>
+</header>
+
+<button id="fb-tab" onclick="document.getElementById('fb-modal').classList.add('show')">フィードバック</button>
+
+<div id="fb-modal" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="fb-box">
+    <h3>マニュアルへのご意見・ご不明点</h3>
+    <p class="sub">分かりにくい箇所や不具合があればお知らせください。内容を確認の上、改善します。</p>
+    <label>お名前（任意）</label>
+    <input id="fb-name" type="text" placeholder="例：山田 太郎">
+    <label>ご意見・ご不明点</label>
+    <textarea id="fb-body" placeholder="例：動画を最後まで見たのに完了にならない"></textarea>
+    <div class="fb-actions">
+      <button class="cancel" onclick="document.getElementById('fb-modal').classList.remove('show')">閉じる</button>
+      <button class="send" onclick="sendFeedback()">送信する</button>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+
+  <nav class="toc" id="toc">
+    <div class="toc-title">メニュー</div>
+    <a href="#s0"><span class="num">&#9733;</span>画面の全体像</a>
+    <a href="#s1"><span class="num">1</span>ダッシュボード</a>
+    <a href="#s2"><span class="num">2</span>コース・動画を見る</a>
+    <a href="#s3"><span class="num">3</span>レッスン・クイズ</a>
+    <a href="#s4"><span class="num">4</span>設定</a>
+    <a href="#s5"><span class="num">5</span>修了証</a>
+    <a href="#sfaq"><span class="num">&#65311;</span>よくある質問</a>
+  </nav>
+
+  <main id="main">
+
+    <div class="intro" data-nohide>
+      <h1>Traingo 受講者 操作マニュアル</h1>
+      <p>このマニュアルは、Traingo（研修システム）を使って研修を受講するための操作案内です。ログインからコース修了・修了証の取得まで、すべての操作手順を省略なく掲載しています。</p>
+      <p>はじめての方は <b>&#9733; 画面の全体像</b> から読み進めてください。特定の操作を調べたい場合は左のメニューを押すか、上の検索ボックスにキーワードを入力してください。</p>
+      <p class="tip">&#128161; 各セクションの「画面イメージ」はブラウザの表示を模した図です。自分の画面と見比べながら操作してください。右はしの <b>フィードバック</b> ボタンから、マニュアルへのご意見をいつでも送れます。</p>
+    </div>
+
+    <!-- ===== SECTION 0: 画面の全体像 ===== -->
+    <section class="card" id="s0" data-keywords="メニュー 全体 使い方 はじめ ログイン 画面 トップ ダッシュボード ナビ">
+      <h2><span class="badge">&#9733;</span>画面の全体像（最初に読む）</h2>
+      <p class="lead">ログインすると、上部にメニューバー、中央に各画面のコンテンツが表示されます。どの画面にも共通のナビゲーションメニューから各ページへ移動できます。</p>
+
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>ログイン後の基本画面</b>（上部ナビ + 中央コンテンツ）</div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>lms-hojokin.vercel.app/dashboard</span></div>
+          <div class="screen-body" style="flex-direction:column;">
+            <div style="background:var(--navy); padding:10px 18px; display:flex; gap:20px; align-items:center;">
+              <span style="color:#fff; font-weight:800; font-size:.86rem;">Traingo</span>
+              <span style="color:#c2cbde; font-size:.76rem; padding:4px 10px; border-radius:6px; background:#33445f;">ダッシュボード</span>
+              <span style="color:#c2cbde; font-size:.76rem; padding:4px 10px;">コース一覧</span>
+              <span style="color:#c2cbde; font-size:.76rem; padding:4px 10px;">設定</span>
+              <span style="color:#c2cbde; font-size:.76rem; padding:4px 10px;">修了証</span>
+              <span style="color:#c2cbde; font-size:.76rem; padding:4px 10px;">マニュアル</span>
+            </div>
+            <div class="scr-main" style="padding:16px;">
+              <div class="scr-h">ダッシュボード</div>
+              <div class="scr-row">
+                <div class="scr-card" style="flex:1">受講中コース<br><b style="font-size:1.1rem;color:#1e2a44">3</b></div>
+                <div class="scr-card" style="flex:1">完了レッスン<br><b style="font-size:1.1rem;color:#1e2a44">12</b></div>
+                <div class="scr-card" style="flex:1">修了済みコース<br><b style="font-size:1.1rem;color:#1e2a44">1</b></div>
+              </div>
+              <div class="scr-note">&#8593; 自分の受講状況がここに表示されます</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="block">ナビゲーションメニューの役割（早見表）</h3>
+      <table class="io">
+        <tr><th>メニュー名</th><th>ここで何ができる？</th><th>URL</th></tr>
+        <tr><td><b>ダッシュボード</b></td><td>受講中のコース一覧・全体の進捗をまとめて確認できる</td><td>/dashboard</td></tr>
+        <tr><td><b>コース一覧</b></td><td>受講可能なすべてのコースを一覧で見る・コースを選んで受講を始める</td><td>/course</td></tr>
+        <tr><td><b>設定</b></td><td>名前・メールアドレス・パスワードの変更、購入履歴の確認、管理者への連絡</td><td>/settings</td></tr>
+        <tr><td><b>修了証</b></td><td>修了したコースの修了証一覧を見る・個別の修了証を印刷・保存する</td><td>/certificates</td></tr>
+        <tr><td><b>マニュアル</b></td><td>このマニュアルを開く（今いるページ）</td><td>/manual</td></tr>
+      </table>
+      <div class="note">
+        <span class="nt">パスワードを忘れた場合</span>
+        ログインページの「パスワードをお忘れの方」から再設定できます。メールアドレスを入力すると再設定リンクが届きます。届かない場合は、担当者（会社の管理者）にお問い合わせください。
+      </div>
+    </section>
+
+    <!-- ===== SECTION 1: ダッシュボード ===== -->
+    <section class="card" id="s1" data-keywords="ダッシュボード トップ 進捗 受講中 続き コース 一覧 開始">
+      <h2><span class="badge">1</span>ダッシュボード</h2>
+      <p class="lead">ログイン後に最初に表示される画面です。受講中のすべてのコースの進捗が一目で確認できます。</p>
+
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>受講中コースの一覧表示</b>：割り当てられているすべてのコースがカード形式で並ぶ</li>
+        <li><b>進捗率の確認</b>：各コースカードにパーセント表示と進捗バーが出る</li>
+        <li><b>続きから受講</b>：コースカードを押すと前回の続きから受講できる</li>
+        <li><b>全体統計の確認</b>：受講中コース数・完了レッスン数・修了済みコース数を一目で把握できる</li>
+      </ul>
+
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>ダッシュボード画面</b>（コースカード一覧）</div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>lms-hojokin.vercel.app/dashboard</span></div>
+          <div class="screen-body" style="flex-direction:column; padding:14px 16px; gap:10px;">
+            <div class="scr-h">あなたの受講コース</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <div class="scr-card" style="flex:1; min-width:180px;">
+                <div style="font-weight:800; font-size:.8rem; color:var(--navy); margin-bottom:4px;">ITリテラシー基礎コース</div>
+                <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:65%"></div></div>
+                <div style="font-size:.74rem; color:var(--sub); margin-top:4px;">65% 完了 (13/20 レッスン)</div>
+                <div class="scr-btn" style="display:inline-block; margin-top:6px; font-size:.72rem; padding:4px 10px;">続きから受講</div>
+              </div>
+              <div class="scr-card" style="flex:1; min-width:180px;">
+                <div style="font-weight:800; font-size:.8rem; color:var(--navy); margin-bottom:4px;">コンプライアンス研修</div>
+                <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:100%"></div></div>
+                <div style="font-size:.74rem; color:#15803d; margin-top:4px; font-weight:700;">&#10003; 修了済み</div>
+                <div class="scr-btn gold" style="display:inline-block; margin-top:6px; font-size:.72rem; padding:4px 10px;">修了証を見る</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="block">操作手順（コースを開いて受講を続ける）</h3>
+      <ol class="steps">
+        <li>ログイン後、自動的にダッシュボード画面が開く</li>
+        <li>受講したいコースのカードを見つける</li>
+        <li>カードをクリック（またはタップ）するとコース詳細画面が開く</li>
+        <li>コース詳細画面から受講を続けるレッスンまたは動画を選んで開始する</li>
+      </ol>
+      <div class="info">
+        <span class="nt">進捗バーについて</span>
+        進捗バーはコース内の全レッスン・動画・クイズのうち、完了した数の割合を示します。すべて完了すると 100% になり、修了証が発行されます。
+      </div>
+    </section>
+
+    <!-- ===== SECTION 2: コース・動画を見る ===== -->
+    <section class="card" id="s2" data-keywords="コース 動画 視聴 再生 スキップ 早送り 完了 進捗 YouTube Vimeo 章 レッスン 開始 コース一覧 コース詳細">
+      <h2><span class="badge">2</span>コース・動画を見る</h2>
+      <p class="lead">コース一覧でコースを選び、コース詳細画面から各章・動画を開いて視聴します。動画を最後まで見ると進捗が自動的に記録されます。</p>
+
+      <h3 class="block">コース一覧画面（/course）でできること</h3>
+      <ul class="can">
+        <li><b>受講可能なコースを一覧表示</b>：割り当てられたすべてのコースが並ぶ</li>
+        <li><b>コースの概要確認</b>：コース名・説明・レッスン数・受講者数・進捗バーが表示される</li>
+        <li><b>コースを選んで詳細を開く</b>：クリックするとコース詳細ページに進む</li>
+      </ul>
+
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>コース一覧画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>lms-hojokin.vercel.app/course</span></div>
+          <div class="screen-body" style="flex-direction:column; padding:14px 16px; gap:10px;">
+            <div class="scr-h">受講可能なコース</div>
+            <div class="scr-card">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <div style="font-weight:800; font-size:.82rem; color:var(--navy);">ITリテラシー基礎コース</div>
+                  <div style="font-size:.74rem; color:var(--sub); margin-top:2px;">全20レッスン・5章構成</div>
+                </div>
+                <div class="scr-btn" style="font-size:.72rem; padding:4px 10px;">コースを開く</div>
+              </div>
+              <div class="progress-bar-wrap" style="margin-top:8px;"><div class="progress-bar-fill" style="width:65%"></div></div>
+              <div style="font-size:.72rem; color:var(--sub);">65% 完了</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="block">コース詳細画面（/course/[コースID]）でできること</h3>
+      <ul class="can">
+        <li><b>コースの説明を読む</b>：コースの目的・概要・学習内容が書かれている</li>
+        <li><b>章・レッスンの構成を確認</b>：どの章にどのレッスン・動画があるかを一覧で見る</li>
+        <li><b>各レッスン・動画を選んで開く</b>：完了済みのものはチェックマークで分かる</li>
+      </ul>
+
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>コース詳細画面</b>（章・レッスン一覧）</div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>lms-hojokin.vercel.app/course/xxxxx</span></div>
+          <div class="screen-body" style="flex-direction:column; padding:14px 16px; gap:8px;">
+            <div class="scr-h">ITリテラシー基礎コース</div>
+            <div style="font-size:.8rem; color:var(--sub); margin-bottom:6px;">このコースではPCの基礎操作からビジネスメールまでを学びます。</div>
+            <div class="scr-card">
+              <div style="font-weight:800; font-size:.78rem; color:var(--navy); margin-bottom:4px;">第1章：PCの基礎</div>
+              <div style="font-size:.76rem; color:var(--ink); padding:3px 0;">&#10003; 動画：PCの起動と操作方法（5分）</div>
+              <div style="font-size:.76rem; color:var(--ink); padding:3px 0;">&#10003; 動画：キーボードショートカット（8分）</div>
+              <div style="font-size:.76rem; color:#7a8295; padding:3px 0;">&#9679; 動画：ファイルの管理方法（6分）</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="block">動画視聴画面（/video/[動画ID]）でできること</h3>
+      <ul class="can">
+        <li><b>動画を再生・一時停止</b>：動画プレイヤーを操作して視聴する</li>
+        <li><b>進捗の自動記録</b>：動画を最後まで視聴すると自動的に「完了」として記録される</li>
+        <li><b>コメント・質問の投稿</b>：動画ページ下部のコメント欄から管理者に質問できる</li>
+        <li><b>次のレッスンへ移動</b>：完了後に次のレッスン・動画へ進むボタンが表示される</li>
+      </ul>
+
+      <h3 class="block">操作手順（コース開始から動画視聴まで）</h3>
+      <ol class="steps">
+        <li>上部メニューの <span class="btn-ex">コース一覧</span> をクリックする</li>
+        <li>受講したいコースのカードをクリックしてコース詳細画面を開く</li>
+        <li>受講する章の中から見たい動画またはレッスンをクリックする</li>
+        <li>動画プレイヤーが開いたら再生ボタン（&#9654;）を押して視聴を開始する</li>
+        <li>動画を最後まで視聴すると、自動的に「完了」として進捗が記録される</li>
+        <li>画面下部の <span class="btn-ex">次のレッスンへ</span> をクリックして次に進む</li>
+      </ol>
+
+      <div class="note">
+        <span class="nt">スキップ・早送りについて</span>
+        助成金要件により、一部のコースは動画のスキップや途中飛ばしが制限されています。動画は最初から最後まで視聴してください。スキップできない場合は仕様のため、焦らずそのままご覧ください。
+      </div>
+      <div class="info">
+        <span class="nt">途中で画面を閉じた場合</span>
+        動画を途中で止めてページを閉じても、次回ログイン時に続きから再生できます。進捗は定期的に自動保存されています。
+      </div>
+      <div class="info">
+        <span class="nt">YouTube / Vimeo の動画の場合</span>
+        一部のコースでは YouTube または Vimeo の動画が埋め込まれています。視聴後に <span class="btn-ex green">完了にする</span> ボタンを手動で押して完了を記録してください（自動記録されません）。
+      </div>
+    </section>
+
+    <!-- ===== SECTION 3: レッスン・クイズ ===== -->
+    <section class="card" id="s3" data-keywords="レッスン 文章 クイズ 問題 回答 合格 不合格 読了 完了 テスト 再挑戦">
+      <h2><span class="badge">3</span>レッスン（文章・クイズ）</h2>
+      <p class="lead">コースには動画以外に、文章を読むレッスンや問題に答えるクイズが含まれることがあります。それぞれ完了の記録方法が異なります。</p>
+
+      <h3 class="block">文章レッスン画面（/lesson/[レッスンID]）</h3>
+      <ul class="can">
+        <li><b>テキストと画像で構成された学習コンテンツ</b>を読む</li>
+        <li>読み終えたら <span class="btn-ex green">読み終えた</span> ボタンを押す（ページ末尾にある）</li>
+        <li>ボタンを押した時点で「完了」として進捗に記録される</li>
+      </ul>
+
+      <h3 class="block">文章レッスンの操作手順</h3>
+      <ol class="steps">
+        <li>コース詳細画面からレッスンをクリックして開く</li>
+        <li>ページに表示されているテキストと画像を上から順に読む</li>
+        <li>一番下までスクロールして <span class="btn-ex green">読み終えた</span> ボタンを押す</li>
+        <li>進捗バーが更新されていることを確認する</li>
+      </ol>
+
+      <div class="note">
+        <span class="nt">注意</span>
+        <span class="btn-ex green">読み終えた</span> ボタンを押さないと完了として記録されません。スクロールするだけでは記録されないので、必ずボタンを押してください。
+      </div>
+
+      <h3 class="block">クイズ画面（/lesson/[レッスンID]）</h3>
+      <ul class="can">
+        <li><b>選択肢形式または記述形式の問題</b>に答える</li>
+        <li>回答後、その場で正解・不正解と解説が表示される</li>
+        <li>全問回答して <span class="btn-ex">提出する</span> ボタンを押すと完了が記録される</li>
+        <li>合格・不合格に関係なく、提出すると「完了」として記録される</li>
+        <li>何度でも再挑戦できる（再挑戦しても進捗記録は上書き更新される）</li>
+      </ul>
+
+      <h3 class="block">クイズの操作手順</h3>
+      <ol class="steps">
+        <li>コース詳細画面からクイズをクリックして開く</li>
+        <li>問題文を読み、選択肢をクリックして回答する</li>
+        <li>すべての問題に回答したら <span class="btn-ex">提出する</span> ボタンを押す</li>
+        <li>合否と正解・解説が画面に表示される</li>
+        <li>再挑戦したい場合は <span class="btn-ex ghost">もう一度挑戦する</span> ボタンを押す</li>
+      </ol>
+
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>クイズ画面のイメージ</b>（回答後の正解・解説表示）</div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>lms-hojokin.vercel.app/lesson/xxxxx</span></div>
+          <div class="screen-body" style="flex-direction:column; padding:14px 16px; gap:8px;">
+            <div class="scr-h">クイズ：ITリテラシー確認テスト</div>
+            <div class="scr-card">
+              <div style="font-size:.8rem; font-weight:700; color:var(--navy); margin-bottom:6px;">問1：ファイルをコピーするショートカットキーは？</div>
+              <div style="font-size:.76rem; padding:4px 8px; background:#e8fce8; border-radius:6px; color:#155724; margin-bottom:4px;">&#10003; Ctrl + C （正解）</div>
+              <div style="font-size:.76rem; padding:4px 8px; background:#f7f9fc; border-radius:6px; color:var(--sub);">Ctrl + V</div>
+              <div style="font-size:.74rem; color:#155724; margin-top:8px; padding:6px; background:#f0fff0; border-radius:6px;">解説：Ctrl+Cでコピー、Ctrl+Vで貼り付けです。</div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:4px;">
+              <div class="scr-btn ghost" style="font-size:.72rem; padding:4px 10px;">もう一度</div>
+              <div class="scr-btn" style="font-size:.72rem; padding:4px 10px;">次のレッスンへ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 4: 設定 ===== -->
+    <section class="card" id="s4" data-keywords="設定 プロフィール パスワード メールアドレス 変更 購入履歴 問い合わせ 連絡 管理者">
+      <h2><span class="badge">4</span>設定（プロフィール・購入履歴・管理者への連絡）</h2>
+      <p class="lead">上部メニューの「設定」ページでは、自分の登録情報の変更・購入履歴の確認・管理者への連絡ができます。</p>
+
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>プロフィール編集</b>：氏名・メールアドレスを変更する</li>
+        <li><b>パスワード変更</b>：新しいパスワードを設定する</li>
+        <li><b>購入履歴の確認</b>：過去にコースを購入した場合の履歴を確認する</li>
+        <li><b>スクール管理者への連絡</b>：担当者にメッセージを送る</li>
+      </ul>
+
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>設定画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>lms-hojokin.vercel.app/settings</span></div>
+          <div class="screen-body" style="flex-direction:column; padding:14px 16px; gap:10px;">
+            <div class="scr-h">設定</div>
+            <div class="scr-card">
+              <div style="font-size:.78rem; font-weight:700; color:var(--navy); margin-bottom:8px;">プロフィール情報</div>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div style="font-size:.76rem; color:var(--sub);">氏名</div>
+                <div class="scr-field" style="min-width:0;">山田 太郎</div>
+                <div style="font-size:.76rem; color:var(--sub);">メールアドレス</div>
+                <div class="scr-field" style="min-width:0;">yamada@example.com</div>
+              </div>
+              <div class="scr-btn" style="display:inline-block; margin-top:10px; font-size:.72rem; padding:4px 10px;">保存する</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="block">プロフィール（氏名・メールアドレス）を変更する手順</h3>
+      <ol class="steps">
+        <li>上部メニューの <span class="btn-ex">設定</span> をクリックする</li>
+        <li>「プロフィール情報」欄の氏名またはメールアドレスの入力欄をクリックして新しい内容を入力する</li>
+        <li><span class="btn-ex">保存する</span> ボタンをクリックする</li>
+        <li>「保存しました」と表示されたら完了</li>
+      </ol>
+
+      <h3 class="block">パスワードを変更する手順</h3>
+      <ol class="steps">
+        <li>設定ページを開く</li>
+        <li>「パスワード変更」欄に現在のパスワードを入力する</li>
+        <li>新しいパスワードを「新しいパスワード」欄と「確認用」欄に同じ内容で入力する</li>
+        <li><span class="btn-ex">パスワードを変更する</span> ボタンをクリックする</li>
+        <li>「パスワードを変更しました」と表示されたら完了</li>
+      </ol>
+
+      <div class="note">
+        <span class="nt">パスワードの条件</span>
+        パスワードは8文字以上で設定してください。他のサービスと同じパスワードの使い回しは避け、英字・数字を組み合わせたものにすることをお勧めします。
+      </div>
+
+      <h3 class="block">購入履歴を確認する手順</h3>
+      <ol class="steps">
+        <li>設定ページを開く</li>
+        <li>「購入履歴」タブ（または該当セクション）をクリックする</li>
+        <li>購入したコース名・日付・金額の一覧が表示される</li>
+      </ol>
+
+      <div class="info">
+        <span class="nt">会社経由で受講している場合</span>
+        会社（スクール）の管理者が費用を負担している場合、購入履歴は表示されないことがあります。領収書等が必要な場合は管理者にお問い合わせください。
+      </div>
+
+      <h3 class="block">スクール管理者（担当者）に連絡する手順</h3>
+      <ol class="steps">
+        <li>設定ページを開く</li>
+        <li>「管理者への連絡」欄にメッセージを入力する</li>
+        <li><span class="btn-ex">送信する</span> ボタンをクリックする</li>
+        <li>「送信しました」と表示されたら管理者に届いた状態になる</li>
+      </ol>
+
+      <div class="info">
+        <span class="nt">返信について</span>
+        管理者からの返信は管理者側の画面で行われます。返信があった場合は、次回ログイン時に連絡内容のやり取りを確認してください。
+      </div>
+    </section>
+
+    <!-- ===== SECTION 5: 修了証 ===== -->
+    <section class="card" id="s5" data-keywords="修了証 証明書 PDF 印刷 ダウンロード 助成金 完了 100% 発行">
+      <h2><span class="badge">5</span>修了証</h2>
+      <p class="lead">コース内のすべてのレッスン・動画・クイズを完了すると修了証が発行されます。修了証一覧ページで確認・印刷・保存ができます。</p>
+
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>修了証一覧の確認</b>：修了したすべてのコースの修了証が並ぶ（/certificates）</li>
+        <li><b>個別の修了証を開く</b>：コース名をクリックすると個別の修了証ページが開く（/certificate）</li>
+        <li><b>修了証の印刷・保存</b>：ブラウザの印刷機能でPDFとして保存・印刷ができる</li>
+      </ul>
+
+      <div class="screen-wrap">
+        <div class="screen-cap"><b>修了証一覧ページ（/certificates）</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>lms-hojokin.vercel.app/certificates</span></div>
+          <div class="screen-body" style="flex-direction:column; padding:14px 16px; gap:8px;">
+            <div class="scr-h">修了証一覧</div>
+            <div class="scr-card" style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-weight:800; font-size:.8rem; color:var(--navy);">コンプライアンス研修</div>
+                <div style="font-size:.74rem; color:var(--sub); margin-top:2px;">修了日：2025年6月1日</div>
+              </div>
+              <div class="scr-btn gold" style="font-size:.72rem; padding:4px 10px;">修了証を開く</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="block">修了証を確認・印刷する手順</h3>
+      <ol class="steps">
+        <li>上部メニューの <span class="btn-ex">修了証</span> をクリックして一覧ページを開く</li>
+        <li>印刷・確認したい修了証のコース名をクリックする（または <span class="btn-ex gold">修了証を開く</span> ボタンを押す）</li>
+        <li>個別の修了証ページが開き、氏名・コース名・修了日が表示される</li>
+        <li>印刷したい場合はブラウザのメニューから「印刷」を選ぶ（Windowsは <span class="kbd">Ctrl</span> + <span class="kbd">P</span>、Macは <span class="kbd">Command</span> + <span class="kbd">P</span>）</li>
+        <li>印刷ダイアログで「PDFに保存」を選ぶとPDFファイルとして保存できる</li>
+      </ol>
+
+      <div class="note">
+        <span class="nt">修了証が一覧に出てこない場合</span>
+        <ul>
+          <li>コース内にまだ完了していないレッスン・動画・クイズが残っている可能性があります</li>
+          <li>コース詳細画面を開いて、すべての項目にチェックマークがついているか確認してください</li>
+          <li>動画を最後まで見たあとに「完了」ボタンを押し忘れた場合は、その動画を再度開いてボタンを押してください</li>
+        </ul>
+      </div>
+      <div class="info">
+        <span class="nt">助成金申請への使用について</span>
+        修了証には氏名・コース名・修了日が記載されています。人材開発支援助成金（事業展開等リスキリング支援コース）の申請書類として提出する場合は、担当者の指示に従って提出してください。
+      </div>
+    </section>
+
+    <!-- ===== SECTION FAQ ===== -->
+    <section class="card" id="sfaq" data-keywords="困った トラブル よくある質問 FAQ ログインできない 動画 再生 エラー 進捗 更新 パスワード 忘れた リセット">
+      <h2><span class="badge">&#65311;</span>よくある質問</h2>
+      <p class="lead">操作中に困ったときは、まず以下の質問と回答を確認してください。それでも解決しない場合は「設定」ページから管理者に連絡してください。</p>
+
+      <p class="faq-q">ログインできません。パスワードを忘れました。</p>
+      <p class="faq-a">ログインページの「パスワードをお忘れの方」リンクをクリックしてください。登録しているメールアドレスを入力すると、パスワード再設定のメールが届きます。メールが届かない場合は、迷惑メールフォルダも確認してください。それでも届かない場合は、会社の管理者（担当者）に連絡してパスワードのリセットを依頼してください。</p>
+
+      <p class="faq-q">動画が再生されません。</p>
+      <p class="faq-a">まずページを再読み込み（Windowsは <span class="kbd">F5</span>、Macは <span class="kbd">Command</span> + <span class="kbd">R</span>）してください。それでも再生されない場合は、別のブラウザ（Chrome、Edge、Safariなど）で試してください。ネットワーク接続が不安定な場合も再生が止まることがあります。Wi-Fiや有線接続の状態を確認してください。</p>
+
+      <p class="faq-q">動画を最後まで見たのに「完了」として記録されません。</p>
+      <p class="faq-a">YouTube / Vimeo 埋め込み動画の場合は、視聴後に <span class="btn-ex green">完了にする</span> ボタンを手動で押す必要があります。ボタンがない場合は一度ページを再読み込みして、動画を最後まで再生し直してみてください。</p>
+
+      <p class="faq-q">進捗率が更新されません。</p>
+      <p class="faq-a">ページを再読み込みすると最新の状態が反映されます。数分待っても変わらない場合は、コース詳細画面で未完了のレッスン・動画がないかを確認してください。</p>
+
+      <p class="faq-q">クイズで不合格になりました。もう一度受けることはできますか？</p>
+      <p class="faq-a">はい、何度でも再挑戦できます。クイズ結果画面の <span class="btn-ex ghost">もう一度挑戦する</span> ボタンを押してください。再挑戦後の結果で進捗が更新されます。不合格でも「提出」した時点で完了として記録されます。</p>
+
+      <p class="faq-q">修了証が発行されません。</p>
+      <p class="faq-a">コース内のすべてのレッスン・動画・クイズを完了しているか確認してください。コース詳細画面を開いて、すべての項目にチェックマークがついていれば修了証が発行されているはずです。それでも表示されない場合は、ページを再読み込みしてから修了証ページ（/certificates）を開いてください。</p>
+
+      <p class="faq-q">自分の名前やメールアドレスが違います。変更できますか？</p>
+      <p class="faq-a">はい、設定ページ（/settings）のプロフィール欄から変更できます。変更後は <span class="btn-ex">保存する</span> ボタンを押してください。メールアドレスを変更すると、次回ログイン時は新しいメールアドレスでログインすることになります。</p>
+
+      <p class="faq-q">動画を途中で閉じてしまいましたが、続きから見られますか？</p>
+      <p class="faq-a">はい、次回ログイン後に同じ動画を開くと続きから再生できます。進捗は定期的に自動保存されています。</p>
+
+      <p class="faq-q">スマートフォンやタブレットでも使えますか？</p>
+      <p class="faq-a">はい、スマートフォン・タブレットのブラウザからも受講できます。ただし、動画再生は安定したWi-Fi環境での利用を推奨します。</p>
+
+      <div class="note" style="margin-top:20px;">
+        <span class="nt">上記で解決しない場合</span>
+        「設定」ページの「管理者への連絡」欄から、状況を詳しく書いてメッセージを送ってください。可能であれば、エラーが出ている場合は画面のスクリーンショットも添付すると、より早く対応できます。
+      </div>
+    </section>
+
+    <div id="noresult">検索に一致する項目が見つかりませんでした。<br>別のキーワードを試してください。</div>
+
+  </main>
+</div>
+
+<footer>
+  <p>Traingo 受講者 操作マニュアル &mdash; ご不明点はページ右はしの「フィードバック」ボタンからご連絡ください。</p>
+</footer>
+
+<script>
+(function(){
+  // ---- フィードバック送信 ----
+  window.sendFeedback = function(){
+    var name = document.getElementById('fb-name').value.trim();
+    var body = document.getElementById('fb-body').value.trim();
+    if(!body){alert('内容を入力してください。'); return;}
+    var btn = document.querySelector('.fb-actions .send');
+    btn.disabled = true; btn.textContent = '送信中...';
+    fetch('/api/feedback',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:name, message:body, sourcePage:'受講者マニュアル'})
+    }).then(function(r){
+      if(r.ok){
+        btn.textContent = '送信完了';
+        setTimeout(function(){
+          document.getElementById('fb-modal').classList.remove('show');
+          document.getElementById('fb-name').value='';
+          document.getElementById('fb-body').value='';
+          btn.disabled=false; btn.textContent='送信する';
+        }, 1200);
+      } else {
+        alert('送信に失敗しました。もう一度お試しください。');
+        btn.disabled=false; btn.textContent='送信する';
+      }
+    }).catch(function(){
+      alert('送信に失敗しました。もう一度お試しください。');
+      btn.disabled=false; btn.textContent='送信する';
+    });
+  };
+
+  // ---- キーワード検索 ----
+  var search = document.getElementById('search');
+  var count  = document.getElementById('search-count');
+  var cards  = document.querySelectorAll('section.card[id]');
+  var nores  = document.getElementById('noresult');
+
+  search.addEventListener('input', function(){
+    var q = this.value.trim().toLowerCase();
+    if(!q){
+      cards.forEach(function(c){c.classList.remove('hidden');});
+      nores.style.display='none';
+      count.textContent='';
+      return;
+    }
+    var hit = 0;
+    cards.forEach(function(c){
+      var kw = (c.getAttribute('data-keywords')||'').toLowerCase();
+      var tx = c.textContent.toLowerCase();
+      if(c.getAttribute('data-nohide')){c.classList.remove('hidden'); return;}
+      if(kw.indexOf(q)>=0 || tx.indexOf(q)>=0){
+        c.classList.remove('hidden'); hit++;
+        // ハイライト（テキストノードのみ対象）
+      } else {
+        c.classList.add('hidden');
+      }
+    });
+    nores.style.display = (hit===0 ? 'block' : 'none');
+    count.textContent = hit ? hit+'件' : '';
+  });
+
+  // ---- TOC アクティブ状態（スクロール連動）----
+  var sections = document.querySelectorAll('section[id]');
+  var links    = document.querySelectorAll('nav.toc a[href^="#"]');
+  function onScroll(){
+    var cur = '';
+    sections.forEach(function(s){
+      if(window.scrollY >= s.offsetTop - 110) cur = s.id;
+    });
+    links.forEach(function(a){
+      a.classList.toggle('is-active', a.getAttribute('href') === '#'+cur);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>

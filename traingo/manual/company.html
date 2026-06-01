@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traingo 会社管理者 操作マニュアル</title>
+<style>
+  :root{
+    --navy:#1e2a44; --navy2:#26344f; --navy-deep:#16203a; --navy-soft:#eef1f7;
+    --accent:#2f4368; --line-navy:#cdd5e3;
+    --ink:#1f2734; --sub:#5b6577; --line:#e4e8ef; --bg:#f4f6fa; --card:#fff;
+    --gold:#b08642;
+    --warn-bg:#fbf6ec; --warn-line:#c9a14a; --warn-ink:#7a5a1a;
+    --step:#2f4368;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; font-family:"Hiragino Sans","Yu Gothic UI",Meiryo,sans-serif; color:var(--ink); background:var(--bg); line-height:1.85; font-size:15px;}
+  header{position:sticky; top:0; z-index:60; background:var(--navy); box-shadow:0 2px 10px rgba(20,32,58,.18);}
+  .head-inner{max-width:1180px; margin:0 auto; padding:13px 24px; display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .logo{font-weight:800; font-size:1.25rem; color:#fff; letter-spacing:.5px;}
+  .logo small{display:block; font-size:.62rem; color:#aeb9d0; font-weight:600; letter-spacing:.08em;}
+  .search-wrap{flex:1; min-width:240px; position:relative;}
+  #search{width:100%; padding:11px 14px 11px 40px; font-size:.95rem; border:1.5px solid #3a486a; border-radius:12px; outline:none; background:#fff; color:var(--ink);}
+  #search:focus{border-color:var(--gold);}
+  .search-ic{position:absolute; left:13px; top:50%; transform:translateY(-50%); color:var(--sub);}
+  #search-count{font-size:.8rem; color:#cdd5e3; white-space:nowrap;}
+  .layout{max-width:1180px; margin:0 auto; display:flex; gap:28px; padding:24px;}
+  nav.toc{width:236px; flex-shrink:0; position:sticky; top:80px; align-self:flex-start; max-height:calc(100vh - 104px); overflow:auto;}
+  nav.toc .toc-title{font-size:.72rem; color:var(--sub); font-weight:700; letter-spacing:.1em; padding:0 12px 8px;}
+  nav.toc a{display:flex; align-items:center; gap:9px; padding:9px 12px; margin:2px 0; border-radius:10px; color:#33415c; text-decoration:none; font-size:.9rem; font-weight:600; transition:background .12s,color .12s;}
+  nav.toc a:hover{background:var(--navy-soft); color:var(--navy);}
+  nav.toc a.is-active{background:var(--navy); color:#fff;}
+  nav.toc a .num{width:24px; height:24px; flex-shrink:0; border-radius:7px; background:var(--navy-soft); color:var(--navy); display:inline-flex; align-items:center; justify-content:center; font-size:.78rem; font-weight:800;}
+  nav.toc a.is-active .num{background:rgba(255,255,255,.22); color:#fff;}
+  main{flex:1; min-width:0;}
+  .intro{background:linear-gradient(120deg,#eef1f7,#f6f3ec); border:1px solid var(--line-navy); border-radius:18px; padding:24px 26px; margin-bottom:28px;}
+  .intro h1{margin:0 0 8px; font-size:1.5rem; color:var(--navy);}
+  .intro p{margin:6px 0; color:#33415c;}
+  .intro .tip{font-size:.88rem; color:var(--sub); margin-top:12px; background:#fff; border:1px solid var(--line); border-radius:10px; padding:10px 14px;}
+  section.card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px 28px; margin-bottom:22px; scroll-margin-top:86px;}
+  section.card > h2{margin:0 0 4px; font-size:1.24rem; color:var(--navy); display:flex; align-items:center; gap:11px;}
+  section.card > h2 .badge{width:32px; height:32px; border-radius:9px; background:var(--navy); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:.98rem; font-weight:800; flex-shrink:0;}
+  .lead{color:var(--sub); margin:2px 0 18px; font-size:.95rem;}
+  h3.block{font-size:1.04rem; color:var(--navy-deep); margin:24px 0 10px; padding-left:12px; border-left:4px solid var(--gold);}
+  .screen-wrap{margin:10px 0 6px;}
+  .screen-cap{font-size:.8rem; color:var(--sub); margin-bottom:6px; display:flex; align-items:center; gap:6px;}
+  .screen-cap b{color:var(--navy);}
+  .screen{border:1px solid var(--line-navy); border-radius:12px; overflow:hidden; box-shadow:0 3px 12px rgba(20,32,58,.08); background:#fff;}
+  .screen-bar{background:#dfe4ee; padding:7px 12px; display:flex; gap:6px; align-items:center;}
+  .screen-bar i{width:11px; height:11px; border-radius:50%; display:inline-block; background:#c2c9d6;}
+  .screen-bar span{margin-left:10px; font-size:.74rem; color:#7a8295; background:#fff; padding:2px 12px; border-radius:6px; border:1px solid #cfd6e2;}
+  .screen-body{display:flex; min-height:150px;}
+  .scr-side{width:150px; background:var(--navy); color:#dfe5f1; padding:12px 0; flex-shrink:0;}
+  .scr-side .brand{color:#fff; font-weight:800; font-size:.86rem; padding:0 14px 10px; border-bottom:1px solid #34425f; margin-bottom:8px;}
+  .scr-side .mi{padding:7px 14px; font-size:.76rem; color:#c2cbde; display:flex; align-items:center; gap:7px;}
+  .scr-side .mi.on{background:#33445f; color:#fff; font-weight:700; border-left:3px solid var(--gold);}
+  .scr-main{flex:1; padding:14px 16px; background:#fafbfd;}
+  .scr-h{font-size:.9rem; font-weight:800; color:var(--navy); margin-bottom:10px;}
+  .scr-row{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:8px 0;}
+  .scr-field{flex:1; min-width:110px; background:#fff; border:1px solid #d4dae6; border-radius:7px; padding:7px 10px; font-size:.74rem; color:#7a8295;}
+  .scr-btn{background:var(--navy); color:#fff; font-size:.74rem; font-weight:700; padding:7px 14px; border-radius:7px; display:inline-block;}
+  .scr-btn.gold{background:var(--gold);}
+  .scr-btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--navy);}
+  .scr-card{background:#fff; border:1px solid #e1e6ef; border-radius:9px; padding:10px 12px; margin:8px 0; font-size:.76rem;}
+  .scr-note{font-size:.74rem; color:#7a8295;}
+  .pin{position:relative;}
+  .pin > .b{position:absolute; top:-9px; left:-9px; width:22px; height:22px; border-radius:50%; background:var(--gold); color:#fff; font-size:.74rem; font-weight:800; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(0,0,0,.25); z-index:2;}
+  ul.can{list-style:none; padding:0; margin:0 0 6px;}
+  ul.can li{position:relative; padding:8px 12px 8px 34px; margin:6px 0; background:#f7f9fc; border-radius:10px; font-size:.93rem;}
+  ul.can li::before{content:"✓"; position:absolute; left:12px; top:8px; color:var(--gold); font-weight:800;}
+  ul.can li b{color:var(--navy);}
+  ol.steps{list-style:none; counter-reset:s; padding:0; margin:6px 0;}
+  ol.steps li{position:relative; padding:11px 14px 11px 48px; margin:8px 0; background:#fff; border:1px solid var(--line); border-radius:12px; font-size:.93rem;}
+  ol.steps li::before{counter-increment:s; content:counter(s); position:absolute; left:12px; top:10px; width:26px; height:26px; border-radius:50%; background:var(--step); color:#fff; font-size:.84rem; font-weight:800; display:flex; align-items:center; justify-content:center;}
+  ol.steps li .scr-ref{display:inline-block; background:var(--navy-soft); color:var(--navy); font-size:.74rem; font-weight:700; border-radius:6px; padding:1px 8px; margin-left:4px;}
+  .btn-ex{display:inline-block; background:var(--navy); color:#fff; font-size:.82rem; font-weight:700; padding:2px 10px; border-radius:7px; margin:0 2px; white-space:nowrap;}
+  .btn-ex.gold{background:var(--gold);}
+  .btn-ex.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--navy);}
+  .kbd{background:#eef1f7; border:1px solid #cdd5e3; border-radius:5px; padding:1px 7px; font-size:.85rem; font-family:monospace; color:var(--navy);}
+  table.io{width:100%; border-collapse:collapse; margin:8px 0 4px; font-size:.9rem;}
+  table.io th,table.io td{border:1px solid var(--line); padding:8px 11px; text-align:left; vertical-align:top;}
+  table.io th{background:var(--navy-soft); color:var(--navy); font-size:.82rem; white-space:nowrap;}
+  .req{color:#9a3434; font-weight:700; font-size:.78rem;}
+  .opt{color:var(--sub); font-size:.78rem;}
+  .note{background:var(--warn-bg); border:1px solid var(--warn-line); border-left:5px solid var(--warn-line); border-radius:10px; padding:12px 16px; margin:14px 0 4px; font-size:.9rem; color:var(--warn-ink);}
+  .note .nt{font-weight:800; display:block; margin-bottom:4px; color:var(--warn-ink);}
+  .note ul{margin:4px 0 0; padding-left:20px;} .note li{margin:3px 0;}
+  #noresult{display:none; text-align:center; color:var(--sub); padding:60px 0; font-size:1rem;}
+  mark{background:#f3e2b8; color:inherit; border-radius:3px; padding:0 2px;}
+  footer{max-width:1180px; margin:0 auto; padding:30px 24px 60px; color:var(--sub); font-size:.82rem;}
+  #fb-tab{position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:70; background:var(--navy); color:#fff; font-size:.8rem; font-weight:700; padding:14px 8px; border:none; border-radius:10px 0 0 10px; box-shadow:0 3px 12px rgba(20,32,58,.3); cursor:pointer; writing-mode:vertical-rl; text-orientation:mixed; letter-spacing:2px;}
+  #fb-tab:hover{background:var(--navy-deep);}
+  #fb-modal{display:none; position:fixed; inset:0; z-index:80; background:rgba(15,20,35,.45); align-items:center; justify-content:center;}
+  #fb-modal.show{display:flex;}
+  .fb-box{background:#fff; border-radius:16px; width:100%; max-width:440px; margin:0 16px; padding:24px;}
+  .fb-box h3{margin:0 0 4px; font-size:1.05rem; color:var(--navy);}
+  .fb-box p.sub{font-size:.82rem; color:var(--sub); margin:0 0 14px;}
+  .fb-box label{display:block; font-size:.8rem; font-weight:700; color:#33415c; margin:10px 0 4px;}
+  .fb-box input,.fb-box textarea{width:100%; border:1.5px solid var(--line-navy); border-radius:9px; padding:9px 11px; font-size:.9rem; font-family:inherit;}
+  .fb-box textarea{resize:vertical; min-height:90px;}
+  .fb-actions{display:flex; justify-content:flex-end; gap:10px; margin-top:16px;}
+  .fb-actions .cancel{background:#fff; border:none; color:var(--sub); font-size:.88rem; cursor:pointer; padding:9px 12px;}
+  .fb-actions .send{background:var(--navy); color:#fff; border:none; font-size:.88rem; font-weight:700; padding:9px 22px; border-radius:9px; cursor:pointer;}
+  @media(max-width:860px){
+    .layout{flex-direction:column; padding:16px;}
+    nav.toc{width:100%; position:static; max-height:none; display:flex; flex-wrap:wrap; gap:6px;}
+    nav.toc .toc-title{width:100%;}
+    nav.toc a{flex:1 1 calc(50% - 6px); margin:0;}
+    .scr-side{width:110px;}
+  }
+  .hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <div class="logo">Traingo<small>会社管理者 操作マニュアル</small></div>
+    <div class="search-wrap">
+      <span class="search-ic">🔍</span>
+      <input id="search" type="text" placeholder="やりたいことで検索（例：受講者を追加 / 動画 / メール / スクール / 決済）" autocomplete="off">
+    </div>
+    <span id="search-count"></span>
+  </div>
+</header>
+
+<div class="layout">
+
+  <nav class="toc" id="toc">
+    <div class="toc-title">メニュー</div>
+    <a href="#s0"><span class="num">★</span>画面の全体像</a>
+    <a href="#s1"><span class="num">1</span>企業情報</a>
+    <a href="#s2"><span class="num">2</span>スクール管理</a>
+    <a href="#s3"><span class="num">3</span>コース・動画管理</a>
+    <a href="#s4"><span class="num">4</span>受講状況の確認</a>
+    <a href="#s5"><span class="num">＋</span>受講者を追加</a>
+    <a href="#s5b"><span class="num">詳</span>受講者詳細</a>
+    <a href="#s6"><span class="num">5</span>行動履歴</a>
+    <a href="#s7"><span class="num">6</span>コメント・質問</a>
+    <a href="#s9"><span class="num">AI</span>研修企画書生成</a>
+    <a href="#s8"><span class="num">？</span>困ったとき</a>
+  </nav>
+
+  <main id="main">
+
+    <div class="intro" data-nohide>
+      <h1>はじめての方へ</h1>
+      <p>このページは、Traingo（研修システム）の<b>会社管理者</b>が自社の研修を運営するための操作マニュアルです。左のメニュー番号と、このマニュアルの番号は同じ並びです。</p>
+      <p>研修を始めるおすすめの順番は <b>①企業情報 → ②スクール → ③コース・動画 → ＋受講者を追加 → ④受講状況の確認</b> です。</p>
+      <p class="tip">💡 各項目には「画面イメージ図」を付けています。<b>ご自分の画面と見比べながら</b>、図の中の <span style="display:inline-block;width:18px;height:18px;background:#b08642;color:#fff;border-radius:50%;text-align:center;line-height:18px;font-size:.72rem;font-weight:800;">1</span> の番号と、下の手順の番号を合わせてご覧ください。上の検索ボックスに言葉を入れると、関係する項目だけに絞り込めます。</p>
+    </div>
+
+    <section class="card" id="s0" data-keywords="メニュー 全体 使い方 はじめ ログイン 画面 トップ ダッシュボード">
+      <h2><span class="badge">★</span>画面の全体像（最初に読む）</h2>
+      <p class="lead">ログインすると、左に「メニュー」、右に「作業エリア」が表示されます。左メニューを押すと、右側の内容が切り替わります。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap">📱 <b>ログイン後の基本画面</b>（左がメニュー・右が作業エリア）</div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>lms-hojokin.vercel.app/company/dashboard</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo</div>
+              <div class="mi">1 企業情報</div>
+              <div class="mi">2 スクール管理</div>
+              <div class="mi">3 コース・動画管理</div>
+              <div class="mi on">4 受講者管理</div>
+              <div class="mi">＋ 受講者を追加</div>
+              <div class="mi">5 行動履歴</div>
+              <div class="mi">6 コメント・質問</div>
+              <div class="mi">AI 研修企画書生成</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">受講状況管理</div>
+              <div class="scr-row">
+                <div class="scr-card" style="flex:1">受講者数<br><b style="font-size:1.1rem;color:#1e2a44">12</b></div>
+                <div class="scr-card" style="flex:1">受講中<br><b style="font-size:1.1rem;color:#1e2a44">8</b></div>
+                <div class="scr-card" style="flex:1">修了<br><b style="font-size:1.1rem;color:#1e2a44">4</b></div>
+              </div>
+              <div class="scr-note">↑ 数字・グラフ・受講者一覧がここに出ます</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">左メニューの役割（早見表）</h3>
+      <table class="io">
+        <tr><th>メニュー</th><th>ここで何をする？</th></tr>
+        <tr><td>1 企業情報</td><td>会社名・ロゴ・色・自分のログイン情報・担当者・決済の設定</td></tr>
+        <tr><td>2 スクール管理</td><td>研修を入れる「箱（スクール）」を作る（1社1つ）</td></tr>
+        <tr><td>3 コース・動画管理</td><td>コースを作り、動画・章・レッスン・クイズを組み立てる</td></tr>
+        <tr><td>4 受講者管理</td><td>受講の進み具合を数字・グラフ・一覧で見る／CSV出力</td></tr>
+        <tr><td>＋ 受講者を追加</td><td>研修を受ける人を1人ずつ／CSVでまとめて登録</td></tr>
+        <tr><td>5 行動履歴</td><td>誰がいつログインしたかの記録を見る（見るだけ）</td></tr>
+        <tr><td>6 コメント・質問</td><td>受講者からの質問に返信する（赤い数字＝未返信の数）</td></tr>
+        <tr><td>AI 研修企画書生成</td><td>AIが研修カリキュラムの企画書を自動で作ってくれるツール</td></tr>
+      </table>
+      <div class="note"><span class="nt">右はしの「フィードバック」ボタンについて</span>画面の右はしに縦書きの <b>フィードバック</b> ボタンがあります。不具合・ご意見はいつでもここから運営に送れます（このマニュアルの右はしにも同じボタンを置いています）。</div>
+    </section>
+
+    <section class="card" id="s1" data-keywords="会社情報 企業情報 会社名 ロゴ 色 ブランドカラー 決済 Stripe ストライプ 自動返信メール お礼メール 担当者 担当者追加 パスワード変更 メール変更 アカウント ログインID">
+      <h2><span class="badge">1</span>企業情報（会社情報・アカウント設定）</h2>
+      <p class="lead">会社名・ロゴ・ボタンの色・自分のログイン情報・決済・担当者を設定する画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap">📱 <b>企業情報の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/company/settings</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo</div>
+              <div class="mi on">1 企業情報</div>
+              <div class="mi">2 スクール管理</div>
+              <div class="mi">3 コース・動画管理</div>
+              <div class="mi">4 受講者管理</div>
+              <div class="mi">6 コメント・質問</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">会社情報・アカウント設定</div>
+              <div class="scr-row"><span class="scr-note" style="width:80px">会社名</span><div class="scr-field">Well Consultant合同会社</div></div>
+              <div class="scr-row"><span class="scr-note" style="width:80px">ロゴURL</span><div class="scr-field">https://…/logo.png</div></div>
+              <div class="scr-row"><span class="scr-note" style="width:80px">ブランド色</span><div class="scr-field" style="flex:0 0 60px;background:#1e2a44"></div><span class="scr-note">受講者のボタン色</span></div>
+              <div class="scr-row" style="margin-top:6px"><span class="pin"><span class="b">1</span><span class="scr-btn">保存する</span></span></div>
+              <div class="scr-card" style="margin-top:10px"><b style="color:#1e2a44">担当者管理</b><div class="scr-row" style="margin-top:6px"><div class="scr-field">メール</div><div class="scr-field">初期パスワード</div><span class="pin"><span class="b">2</span><span class="scr-btn">担当者を追加する</span></span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>会社情報</b>：会社名、ロゴ画像のURL（https:// の画像URL。入れるとすぐ右に小さなプレビューが出ます）、ブランドカラー（受講者が見るボタンの色。色見本・コード入力・「標準の色に戻す」が選べます）。</li>
+        <li><b>決済（Stripe）の連携</b>：自社で受講料を受け取るための連携。未連携なら <span class="btn-ex">Stripeと連携する</span>、連携済みなら「Stripe連携済み」と出ます。</li>
+        <li><b>決済完了メール</b>：支払いが終わった人へ自動で送るお礼メールの件名・本文。</li>
+        <li><b>自分のアカウント</b>：自分の氏名・メールアドレス（ログインID）・パスワード。</li>
+        <li><b>担当者管理</b>：自社の管理画面にログインできる担当者の追加・削除（最大2名）。</li>
+      </ul>
+      <h3 class="block">会社情報を保存する手順</h3>
+      <ol class="steps">
+        <li>会社名・ロゴURL・ブランドカラーなど、変えたい欄を入力します。ロゴURLを入れると、その場でプレビュー画像が表示されます。</li>
+        <li>画面の一番下にある <span class="btn-ex">保存する</span> を押します。<span class="scr-ref">図の 1</span></li>
+        <li>「保存しました」と出れば完了です（何も変えていない場合は「変更点がありません」と出ます）。</li>
+      </ol>
+      <h3 class="block">決済完了メールの差し込み文字</h3>
+      <p>本文に下の文字を入れると、送るときに各受講者の情報へ自動で置き換わります。空欄なら標準メールが送られます。</p>
+      <table class="io">
+        <tr><th>差し込み文字</th><th>置き換わる内容</th></tr>
+        <tr><td><span class="kbd">{{name}}</span></td><td>受講者の氏名</td></tr>
+        <tr><td><span class="kbd">{{email}}</span></td><td>受講者のメールアドレス</td></tr>
+        <tr><td><span class="kbd">{{password}}</span></td><td>初回ログイン用パスワード</td></tr>
+        <tr><td><span class="kbd">{{login_url}}</span></td><td>ログインページのURL</td></tr>
+      </table>
+      <h3 class="block">担当者を追加・削除する手順</h3>
+      <ol class="steps">
+        <li>画面下の「担当者管理」で、氏名（任意）・メールアドレス・初期パスワードを入力します。</li>
+        <li><span class="btn-ex">担当者を追加する</span> を押します。<span class="scr-ref">図の 2</span>その人にログイン案内メールが届きます。</li>
+        <li>削除する場合は、各担当者の行の <span class="btn-ex ghost">削除</span> を押します（確認画面が出ます）。</li>
+      </ol>
+      <table class="io">
+        <tr><th>入力欄</th><th>必須/任意</th><th>内容</th></tr>
+        <tr><td>メールアドレス</td><td><span class="req">必須</span></td><td>担当者のログインID</td></tr>
+        <tr><td>初期パスワード</td><td><span class="req">必須</span></td><td>最初にログインするためのパスワード</td></tr>
+        <tr><td>氏名</td><td><span class="opt">任意</span></td><td>担当者の名前</td></tr>
+      </table>
+      <div class="note"><span class="nt">注意：担当者は2名まで</span>2名になると追加欄が消え、「担当者は2名までです。3人目以降の追加は運営（info@fp-1.info）へお問い合わせください」と表示されます。3人目以降が必要なときは運営にご連絡ください。</div>
+    </section>
+
+    <section class="card" id="s2" data-keywords="スクール 箱 スクール作成 スクール追加 開設">
+      <h2><span class="badge">2</span>スクール管理</h2>
+      <p class="lead">研修を入れる「箱（スクール）」を作る画面です。スクールは1社につき1つです。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap">📱 <b>スクール管理の画面</b>（まだ無いとき）</div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/company/schools</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo</div>
+              <div class="mi">1 企業情報</div>
+              <div class="mi on">2 スクール管理</div>
+              <div class="mi">3 コース・動画管理</div>
+              <div class="mi">4 受講者管理</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-row" style="justify-content:space-between"><div class="scr-h">スクール管理</div><span class="pin"><span class="b">1</span><span class="scr-btn">＋ スクールを作る</span></span></div>
+              <div class="scr-note">スクールは1社につき1つです。</div>
+              <div class="scr-card" style="text-align:center;color:#7a8295;margin-top:14px">まだスクールがありません<br><span class="scr-btn ghost" style="margin-top:8px">最初のスクールを作る</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">スクールを作る手順</h3>
+      <ol class="steps">
+        <li>右上の <span class="btn-ex">＋ スクールを作る</span>（または中央の「最初のスクールを作る」）を押します。<span class="scr-ref">図の 1</span></li>
+        <li>スクール名、スラッグ（URLに使う英字。半角の英小文字・数字・ハイフンのみ）、テーマカラーを入力します。</li>
+        <li><span class="btn-ex">スクールを作成</span> を押すと、一覧に戻ります。</li>
+      </ol>
+      <table class="io">
+        <tr><th>入力欄</th><th>必須/任意</th><th>内容</th></tr>
+        <tr><td>スクール名</td><td><span class="req">必須</span></td><td>研修の場の名前</td></tr>
+        <tr><td>スラッグ</td><td><span class="req">必須</span></td><td>半角英小文字・数字・ハイフンのみ（将来 〇〇.lms-hojokin.com として独立公開できます）</td></tr>
+        <tr><td>テーマカラー</td><td><span class="opt">任意</span></td><td>スクールの基調色</td></tr>
+      </table>
+      <div class="note"><span class="nt">注意</span>
+        <ul>
+          <li><b>スクールは1社につき1つまで</b>です。すでに1つあると、ボタンが「＋ 2つ目以降は運営へ問い合わせ」に変わります。2つ目が必要なときは運営（info@fp-1.info）へご連絡ください。</li>
+          <li>スラッグが他と重なると「このスラッグは既に使用されています」と出ます。別の文字に変えてください。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card" id="s3" data-keywords="コース 動画 ビデオ アップロード YouTube ユーチューブ Vimeo 章 チャプター セクション レッスン 文章 テキスト クイズ テスト 問題 合格点 スキップ 早送り シーク 決済リンク 販売 一括払い サブスク サブスクリプション 月払い 年払い 定期課金 お試し 無料期間 コース削除 コース作成 編集 並び替え">
+      <h2><span class="badge">3</span>コース・動画管理</h2>
+      <p class="lead">研修の中身（コース・動画・章・レッスン・クイズ）を作る、運営の中心になる画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap">📱 <b>コース編集の画面</b>（動画ライブラリ＋章＋レッスン）</div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/company/course/…/manage</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo</div>
+              <div class="mi">1 企業情報</div>
+              <div class="mi">2 スクール管理</div>
+              <div class="mi on">3 コース・動画管理</div>
+              <div class="mi">4 受講者管理</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">2026オンラインコースの作り方</div>
+              <div class="scr-row"><span class="pin"><span class="b">1</span><span class="scr-btn ghost">＋ 動画をアップロード</span></span><span class="pin"><span class="b">2</span><span class="scr-btn ghost">YouTube/Vimeoで追加</span></span></div>
+              <div class="scr-card"><b style="color:#1e2a44">第1章 はじめに</b> <span class="scr-note">（5本）</span>
+                <div class="scr-note" style="margin-top:6px">動画 0-1 コースの全体像 ・ 動画 0-2 … <span class="pin" style="margin-left:6px"><span class="b">3</span><span class="scr-btn" style="font-size:.68rem;padding:3px 8px">レッスン追加</span></span></div>
+              </div>
+              <div class="scr-row"><span class="scr-btn ghost" style="font-size:.7rem">＋ 新しい章を追加</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">コースを新しく作る手順</h3>
+      <ol class="steps">
+        <li>コース一覧画面で <span class="btn-ex">＋ 新しいコースを作る</span> を押します。</li>
+        <li>コース名（必須）と説明（任意）を入力します。</li>
+        <li><span class="btn-ex">コースを作成</span> を押すと作成され、受講状況の画面に移ります。</li>
+      </ol>
+      <div class="note"><span class="nt">補足</span>スクールを先に作っておくと、コースは自動でそのスクールに追加されます。スクールが無くてもコースは作れますが、先にスクールを作るのがおすすめです。</div>
+      <h3 class="block">コースを編集する（動画・章・レッスン）</h3>
+      <p>コース一覧で <span class="btn-ex">章とレッスンの編集</span> または <span class="btn-ex">動画・セクション管理</span> を押すと、上の編集画面が開きます。</p>
+      <ul class="can">
+        <li><b>動画をアップロード</b>：「＋ 動画をアップロード」<span class="scr-ref">図の 1</span>を押し、動画ファイル（MP4・MOVなど）をドラッグ＆ドロップまたはクリックで選び、タイトルを付けて「○本のアップロード開始」を押します（途中キャンセルも可）。</li>
+        <li><b>YouTube・Vimeoで追加</b>：動画タイトルとURLを入れて <span class="btn-ex">追加</span><span class="scr-ref">図の 2</span>。アップロード不要で登録できます。</li>
+        <li><b>章（チャプター）を作る</b>：一番下の「＋ 新しい章を追加」で章名を入れて追加。各章は編集・削除・並び替え、章名を押すと開閉します。章ごとに公開日時も設定できます（未設定ならすぐ公開）。</li>
+        <li><b>レッスンを追加</b>：章を開いて「レッスン追加」<span class="scr-ref">図の 3</span>。種類は<b>動画 / 文章 / クイズ</b>から選べます。</li>
+        <li><b>シーク・スキップを許可する</b>：チェックを外すと、受講者は早送り・飛ばし見ができなくなります。</li>
+      </ul>
+      <h3 class="block">レッスンの3つの種類</h3>
+      <table class="io">
+        <tr><th>種類</th><th>内容</th></tr>
+        <tr><td>動画</td><td>ライブラリの動画から選ぶか、その場でアップロード。チェックを付けて「選択した○本を一括追加」もできます。</td></tr>
+        <tr><td>文章</td><td>本文を書けます。見出し・太字・箇条書き・画像が使えます（左で入力、右でプレビュー）。</td></tr>
+        <tr><td>クイズ</td><td>合格点（%）を決め、問題文・選択肢4つ・正解・解説を作れます。問題は追加・削除・並び替えできます。</td></tr>
+      </table>
+      <div class="note"><span class="nt">注意</span>
+        <ul>
+          <li>アップロードできるのは動画ファイルだけです。</li>
+          <li>動画を削除すると、その動画を使っていたレッスンは「動画未割当」に戻ります。</li>
+          <li>クイズは、問題文・選択肢4つ・正解・合格点（0〜100）がそろっていないと保存できません。</li>
+        </ul>
+      </div>
+
+      <h3 class="block">決済リンクの発行（権限がある会社のみ）</h3>
+      <p>受講料を受け取る決済リンクを発行できます。コース一覧で <span class="btn-ex gold">決済リンクを発行</span> を押すとモーダルが開き、<b>一括払い（買い切り）</b> と <b>サブスクリプション（定期課金）</b> を切り替えて設定できます。支払いが完了した人は受講者として自動登録されます。</p>
+
+      <div class="screen-wrap">
+        <div class="screen-cap">📱 <b>決済リンク発行モーダル</b>（一括払いとサブスクリプションの切り替え）</div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/company/courses → 決済リンクを発行</span></div>
+          <div class="screen-body" style="flex-direction:column; padding:14px 16px; background:#fafbfd;">
+            <div class="scr-h">決済リンクを発行</div>
+            <div class="scr-row">
+              <span class="pin"><span class="b">1</span><span class="scr-btn" style="padding:6px 16px">一括払い</span></span>
+              <span class="scr-btn ghost" style="padding:6px 16px">サブスクリプション</span>
+            </div>
+            <div class="scr-row"><span class="scr-note" style="width:100px">商品名</span><div class="scr-field">〇〇研修コース</div></div>
+            <div class="scr-row"><span class="scr-note" style="width:100px">価格（円・税込）</span><div class="scr-field">10000</div><span class="scr-note">50円以上</span></div>
+            <div class="scr-row"><span class="pin"><span class="b">2</span><span class="scr-btn gold">決済リンクを生成</span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="block">一括払い（買い切り）で発行する手順</h3>
+      <ol class="steps">
+        <li>コース一覧画面で対象のコースの <span class="btn-ex gold">決済リンクを発行</span> を押します。モーダルが開きます。</li>
+        <li>切り替えボタンで <span class="btn-ex">一括払い</span> を選択します（初期状態は「一括払い」です）。<span class="scr-ref">図の 1</span></li>
+        <li>「商品名」にリンクに表示される商品の名前を入力します。</li>
+        <li>「価格」に税込価格を半角数字で入力します（50円以上が必須です）。</li>
+        <li><span class="btn-ex gold">決済リンクを生成</span> を押します。<span class="scr-ref">図の 2</span></li>
+        <li>Stripe Payment Link の URL が表示されます。このURLを受講候補者に案内してください。支払いが完了した方は自動で受講者登録されます。</li>
+      </ol>
+
+      <h3 class="block">サブスクリプション（定期課金）で発行する手順</h3>
+      <div class="screen-wrap">
+        <div class="screen-cap">📱 <b>サブスクリプション選択時の追加入力欄</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/company/courses → 決済リンクを発行</span></div>
+          <div class="screen-body" style="flex-direction:column; padding:14px 16px; background:#fafbfd;">
+            <div class="scr-h">決済リンクを発行</div>
+            <div class="scr-row">
+              <span class="scr-btn ghost" style="padding:6px 16px">一括払い</span>
+              <span class="pin"><span class="b">1</span><span class="scr-btn" style="padding:6px 16px">サブスクリプション</span></span>
+            </div>
+            <div class="scr-row"><span class="scr-note" style="width:100px">商品名</span><div class="scr-field">〇〇研修コース</div></div>
+            <div class="scr-row"><span class="scr-note" style="width:100px">価格（円・税込）</span><div class="scr-field">3000</div><span class="scr-note">50円以上</span></div>
+            <div class="scr-row">
+              <span class="pin"><span class="b">2</span><span class="scr-note" style="width:100px">請求間隔</span></span>
+              <span class="scr-btn ghost" style="padding:4px 12px;font-size:.72rem">月次（毎月）</span>
+              <span class="scr-btn ghost" style="padding:4px 12px;font-size:.72rem">年次（毎年）</span>
+            </div>
+            <div class="scr-row">
+              <span class="pin"><span class="b">3</span><span class="scr-note" style="width:120px">無料お試し日数</span></span>
+              <div class="scr-field" style="max-width:80px">7</div>
+              <span class="scr-note">0なら即課金</span>
+            </div>
+            <div class="scr-row"><span class="scr-btn gold">決済リンクを生成</span></div>
+          </div>
+        </div>
+      </div>
+      <ol class="steps">
+        <li>コース一覧画面で対象のコースの <span class="btn-ex gold">決済リンクを発行</span> を押します。</li>
+        <li>切り替えボタンで <span class="btn-ex">サブスクリプション</span> を選択します。<span class="scr-ref">図の 1</span>「請求間隔」と「無料お試し日数」の入力欄が追加されます。</li>
+        <li>「商品名」と「価格（円・税込、50円以上）」を入力します。</li>
+        <li>「請求間隔」で <span class="btn-ex ghost">月次（毎月）</span> または <span class="btn-ex ghost">年次（毎年）</span> を選びます。<span class="scr-ref">図の 2</span></li>
+        <li>「無料お試し日数」を入力します。<span class="scr-ref">図の 3</span>「0」にすると申し込み後すぐに課金が始まります。「7」にすると7日間は無料でその後から毎月（または毎年）自動課金されます。</li>
+        <li><span class="btn-ex gold">決済リンクを生成</span> を押します。Stripe Payment Link の URL が表示されます。</li>
+      </ol>
+
+      <h3 class="block">決済リンクの入力項目まとめ</h3>
+      <table class="io">
+        <tr><th>項目</th><th>必須/任意</th><th>内容</th><th>適用</th></tr>
+        <tr><td>課金方式</td><td><span class="req">必須</span></td><td>一括払い / サブスクリプション</td><td>両方</td></tr>
+        <tr><td>商品名</td><td><span class="req">必須</span></td><td>決済ページに表示される名前</td><td>両方</td></tr>
+        <tr><td>価格（円・税込）</td><td><span class="req">必須</span></td><td>50円以上の整数</td><td>両方</td></tr>
+        <tr><td>請求間隔</td><td><span class="req">必須</span></td><td>月次（毎月）または年次（毎年）</td><td>サブスクのみ</td></tr>
+        <tr><td>無料お試し日数</td><td><span class="opt">任意</span></td><td>0〜365日。0なら即課金</td><td>サブスクのみ</td></tr>
+      </table>
+      <div class="note"><span class="nt">注意</span>
+        <ul>
+          <li>決済リンクは、運営が利用を許可した会社だけに表示されます。表示されない場合は運営（info@fp-1.info）へお問い合わせください。</li>
+          <li>決済リンクを使うには、あらかじめ「1 企業情報」でStripeと連携しておく必要があります。</li>
+          <li>発行したURLは変更できません。価格や商品名を変えたい場合は、新しいリンクを発行してください。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card" id="s4" data-keywords="受講状況 受講者管理 進捗 グラフ CSV エクセル ダウンロード 出力 修了 完了 受講記録 助成金 レポート 一覧">
+      <h2><span class="badge">4</span>受講状況の確認（受講者管理）</h2>
+      <p class="lead">会社全体の受講の進み具合を、数字・グラフ・一覧で確認する画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap">📱 <b>受講状況管理の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/company/dashboard</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo</div>
+              <div class="mi">1 企業情報</div>
+              <div class="mi">3 コース・動画管理</div>
+              <div class="mi on">4 受講者管理</div>
+              <div class="mi">＋ 受講者を追加</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-row" style="justify-content:space-between"><div class="scr-h">受講状況管理</div><span class="pin"><span class="b">1</span><span class="scr-btn ghost">CSVをダウンロード</span></span></div>
+              <div class="scr-row"><div class="scr-card" style="flex:1">受講者数<br><b>12</b></div><div class="scr-card" style="flex:1">受講中<br><b>8</b></div><div class="scr-card" style="flex:1">修了<br><b>4</b></div><div class="scr-card" style="flex:1">平均進捗<br><b>62%</b></div></div>
+              <div class="scr-card">コース：2026オンラインコース　受講者8名　<span class="pin"><span class="b">2</span><span class="scr-btn" style="font-size:.68rem;padding:3px 8px">受講者を見る</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この画面でできること</h3>
+      <ul class="can">
+        <li><b>全体サマリー</b>：受講者数 / 受講中 / 修了 / 平均進捗率 の4つの数字。</li>
+        <li><b>グラフ</b>：過去30日の新規登録の推移、コース別の修了率。</li>
+        <li><b>CSVダウンロード</b>：<span class="btn-ex ghost">CSVをダウンロード</span><span class="scr-ref">図の 1</span>で、自社受講者の視聴開始日・修了日・進捗率を一括で書き出せます（助成金の記録などに使えます）。</li>
+        <li><b>コース別の確認</b>：コースカードの <span class="btn-ex">受講者を見る</span><span class="scr-ref">図の 2</span>で、そのコースの受講者一覧（進捗・修了状況）を確認できます。</li>
+        <li><b>個人別の確認</b>：受講者一覧の「詳細」で、その人の動画ごとの視聴状況を確認でき、<span class="btn-ex ghost">印刷</span>で記録を印刷できます。</li>
+      </ul>
+      <div class="note"><span class="nt">注意</span>表示されるのは自社の受講者だけです。他社の受講者は見えません。</div>
+    </section>
+
+    <section class="card" id="s5" data-keywords="受講者追加 受講者登録 ユーザー追加 メンバー追加 招待 招待メール CSV エクセル 一括登録 一括追加 まとめて登録 パスワード 自動生成">
+      <h2><span class="badge">＋</span>受講者を追加</h2>
+      <p class="lead">研修を受ける人を登録する画面です。1人ずつ、またはCSV・Excelでまとめて追加できます。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap">📱 <b>受講者を追加の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/company/learners/new</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo</div>
+              <div class="mi">4 受講者管理</div>
+              <div class="mi on">＋ 受講者を追加</div>
+              <div class="mi">5 行動履歴</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">受講者を追加</div>
+              <div class="scr-row"><div class="scr-field">氏名</div><div class="scr-field">メールアドレス</div></div>
+              <div class="scr-row"><div class="scr-field">初期パスワード</div><span class="scr-btn ghost" style="font-size:.68rem">自動生成</span></div>
+              <div class="scr-row"><span class="pin"><span class="b">1</span><span class="scr-btn">受講者を追加して招待メールを送信</span></span></div>
+              <div class="scr-card" style="margin-top:8px"><b style="color:#1e2a44">CSV/Excelで一括追加</b><div class="scr-row" style="margin-top:6px"><span class="scr-btn ghost" style="font-size:.66rem">テンプレートをダウンロード</span><span class="pin"><span class="b">2</span><span class="scr-btn" style="font-size:.68rem;padding:3px 8px">一括登録する</span></span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">1人ずつ追加する手順</h3>
+      <ol class="steps">
+        <li>氏名・メールアドレス・初期パスワードを入力します（パスワードは「自動生成」ボタンで作れます）。</li>
+        <li>割り当てるコースを選びます（後で割り当てることもできます）。</li>
+        <li><span class="btn-ex">受講者を追加して招待メールを送信</span> を押します。<span class="scr-ref">図の 1</span>その人に招待メールが届きます。</li>
+      </ol>
+      <table class="io">
+        <tr><th>入力欄</th><th>必須/任意</th><th>内容</th></tr>
+        <tr><td>氏名</td><td><span class="req">必須</span></td><td>受講者の名前</td></tr>
+        <tr><td>メールアドレス</td><td><span class="req">必須</span></td><td>受講者のログインID</td></tr>
+        <tr><td>初期パスワード</td><td><span class="req">必須</span></td><td>最初のログイン用（半角英数字10文字以上が目安）</td></tr>
+        <tr><td>割り当てコース</td><td><span class="opt">任意</span></td><td>最初に受けるコース</td></tr>
+      </table>
+      <h3 class="block">CSV・Excelでまとめて追加する手順</h3>
+      <ol class="steps">
+        <li><span class="btn-ex ghost">CSVテンプレートをダウンロード</span> または <span class="btn-ex ghost">Excelテンプレートをダウンロード</span> で雛形を入手します。</li>
+        <li>雛形の「氏名」「メールアドレス」「初期パスワード」「コース名」の列に入力して保存します。</li>
+        <li>ファイルを選び <span class="btn-ex">一括登録する</span> を押します。<span class="scr-ref">図の 2</span></li>
+        <li>「○名 登録に成功」と表示されます。登録できなかった人がいる場合は理由も表示されます。</li>
+      </ol>
+      <div class="note"><span class="nt">注意</span>登録すると、それぞれの受講者に招待メールが自動で送られます。会社は自動で自社に設定されるので、雛形に会社名を書く必要はありません。</div>
+    </section>
+
+    <section class="card" id="s5b" data-keywords="受講者詳細 個人別 視聴状況 修了 進捗 印刷 動画 レッスン 個人 受講記録 助成金証明">
+      <h2><span class="badge">詳</span>受講者詳細ページ</h2>
+      <p class="lead">受講者1人ひとりの動画ごとの視聴状況・修了状況を確認する画面です。助成金申請の記録として印刷することもできます。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap">📱 <b>受講者詳細の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/company/learner/[受講者ID]</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo</div>
+              <div class="mi">4 受講者管理</div>
+              <div class="mi on" style="font-size:.68rem">受講者詳細</div>
+              <div class="mi">＋ 受講者を追加</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">山田 太郎さんの受講状況</div>
+              <div class="scr-row" style="justify-content:space-between">
+                <div class="scr-card" style="flex:1">全体進捗<br><b style="color:#1e2a44">68%</b></div>
+                <div class="scr-card" style="flex:1">修了レッスン<br><b style="color:#1e2a44">17 / 25</b></div>
+                <span class="pin"><span class="b">1</span><span class="scr-btn ghost" style="font-size:.68rem">印刷</span></span>
+              </div>
+              <div class="scr-card">
+                <b style="color:#1e2a44">第1章 はじめに</b>
+                <div class="scr-note" style="margin-top:6px">
+                  レッスン 1-1 コースの全体像 ・ <span style="background:#2a7a3a;color:#fff;border-radius:5px;padding:1px 7px;font-size:.68rem">修了</span><br>
+                  レッスン 1-2 準備するもの ・ <span style="background:#2f4368;color:#fff;border-radius:5px;padding:1px 7px;font-size:.68rem">視聴中</span><br>
+                  レッスン 1-3 最初の設定 ・ <span style="background:#9a8a6a;color:#fff;border-radius:5px;padding:1px 7px;font-size:.68rem">未視聴</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">受講者詳細を開く手順</h3>
+      <ol class="steps">
+        <li>「4 受講者管理」（ダッシュボード）の画面を開きます。</li>
+        <li>コース別カードの <span class="btn-ex">受講者を見る</span> を押すと、そのコースの受講者一覧が出ます。</li>
+        <li>一覧の中から確認したい受講者の行にある <span class="btn-ex ghost">詳細</span> を押します。</li>
+        <li>その受講者の全レッスンの視聴状況（修了 / 視聴中 / 未視聴）と進捗率が確認できます。</li>
+      </ol>
+      <h3 class="block">この画面で確認できること</h3>
+      <ul class="can">
+        <li><b>全体進捗率</b>：受講者が全レッスンのうち何%を修了しているか。</li>
+        <li><b>修了レッスン数</b>：「17 / 25」のように修了済みと全レッスン数が表示されます。</li>
+        <li><b>章・レッスン別の状態</b>：章ごとに各レッスンが「修了」「視聴中」「未視聴」のどの状態かを一覧で確認できます。</li>
+        <li><b>視聴開始日・修了日</b>：各レッスンをいつ始めていつ終えたかが記録されています。</li>
+        <li><b>印刷</b>：<span class="btn-ex ghost">印刷</span> ボタン<span class="scr-ref">図の 1</span>を押すと、この受講者の進捗記録を印刷用ページで出力できます（助成金申請の受講証明書としても使えます）。</li>
+      </ul>
+      <div class="note"><span class="nt">活用ヒント：助成金申請の記録として</span>人材開発支援助成金などの申請では、受講者が実際に研修を受けたことの記録が必要です。この詳細ページを「印刷」すると、受講者ごとの視聴開始日・修了日・進捗率が含まれた記録が出力されます。必要に応じてPDFとして保存しておくと便利です。</div>
+    </section>
+
+    <section class="card" id="s6" data-keywords="行動履歴 ログイン履歴 操作ログ 履歴 アクセス IP 記録">
+      <h2><span class="badge">5</span>行動履歴</h2>
+      <p class="lead">誰がいつログインしたかなどの記録を確認する、見るだけの画面です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap">📱 <b>行動履歴の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/company/activity</span></div>
+          <div class="screen-body">
+            <div class="scr-side"><div class="brand">Traingo</div><div class="mi">4 受講者管理</div><div class="mi on">5 行動履歴</div><div class="mi">6 コメント・質問</div></div>
+            <div class="scr-main">
+              <div class="scr-h">行動履歴</div>
+              <div class="scr-card"><b style="color:#1e2a44">ログイン履歴</b><div class="scr-note" style="margin-top:4px">5/31 8:00 ・ 阿久津和宏 ・ info@… ・ 192.168.…</div></div>
+              <div class="scr-card"><b style="color:#1e2a44">操作ログ</b><div class="scr-note" style="margin-top:4px">5/31 8:02 ・ 阿久津和宏 ・ 担当者追加</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="can">
+        <li><b>ログイン履歴（直近300件）</b>：日時・氏名・メールアドレス・IPアドレス。</li>
+        <li><b>操作ログ（直近300件）</b>：日時・氏名・操作内容・対象。</li>
+      </ul>
+      <div class="note"><span class="nt">注意</span>この画面はボタンや入力欄はなく、確認するだけです。記録が無いときは「○○がありません」と表示されます。</div>
+    </section>
+
+    <section class="card" id="s7" data-keywords="コメント 質問 返信 問い合わせ 通知 メッセージ やりとり">
+      <h2><span class="badge">6</span>コメント・質問</h2>
+      <p class="lead">受講者から動画に届いた質問を確認し、返信する画面です。左メニューの赤い数字が「まだ返信していない質問の数」です。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap">📱 <b>コメント・質問の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/company/comments</span></div>
+          <div class="screen-body">
+            <div class="scr-side"><div class="brand">Traingo</div><div class="mi">4 受講者管理</div><div class="mi">5 行動履歴</div><div class="mi on">6 コメント・質問 <span style="background:#9a3434;color:#fff;border-radius:10px;padding:0 6px;font-size:.66rem">2</span></div></div>
+            <div class="scr-main">
+              <div class="scr-row"><span class="scr-btn ghost" style="font-size:.68rem">すべて(5)</span><span class="pin"><span class="b">1</span><span class="scr-btn" style="font-size:.68rem;padding:3px 8px">未返信のみ(2)</span></span></div>
+              <div class="scr-card">動画：0-1 コースの全体像 <span style="background:#9a3434;color:#fff;border-radius:8px;padding:0 6px;font-size:.64rem">未返信</span><div class="scr-note" style="margin-top:4px">受講者：コメントテスト</div><div class="scr-row" style="margin-top:6px"><div class="scr-field">返信を書く…</div><span class="pin"><span class="b">2</span><span class="scr-btn" style="font-size:.68rem;padding:3px 8px">返信を送信</span></span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">返信の手順</h3>
+      <ol class="steps">
+        <li>上部で <span class="btn-ex ghost">すべて</span> / <span class="btn-ex ghost">未返信のみ</span> を切り替えます（それぞれ件数付き）。<span class="scr-ref">図の 1</span></li>
+        <li>質問の下の入力欄に返信内容を書きます。</li>
+        <li><span class="btn-ex">返信を送信</span> を押します。<span class="scr-ref">図の 2</span>受講者にメールで通知されます。</li>
+      </ol>
+      <div class="note"><span class="nt">ヒント：通知メールから直接ここへ</span>受講者から質問が届くと、メールが届きます。そのメールの中の「コメント・質問を確認する」ボタンを押すと、この画面に直接来られます。</div>
+      <div class="note"><span class="nt">注意</span>
+        <ul>
+          <li>返信を送ると受講者へメール通知が届きます。</li>
+          <li>未読の質問があると、左メニューの「6 コメント・質問」に赤い数字が表示されます（自動で更新されます）。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card" id="s9" data-keywords="研修企画書 AI 企画書 カリキュラム 自動生成 ChatGPT Gemini 研修計画 研修設計 AI生成 カリキュラム設計">
+      <h2><span class="badge">AI</span>研修企画書生成（AIで研修カリキュラムを自動作成）</h2>
+      <p class="lead">AIを使って研修カリキュラムの企画書を自動で作成できるツールです。ChatGPTやGeminiなどのAIに質問内容を入力するだけで、研修設計の叩き台が数分でできあがります。</p>
+      <div class="screen-wrap">
+        <div class="screen-cap">📱 <b>研修企画書生成の画面</b></div>
+        <div class="screen">
+          <div class="screen-bar"><i></i><i></i><i></i><span>/company/training-plan</span></div>
+          <div class="screen-body">
+            <div class="scr-side">
+              <div class="brand">Traingo</div>
+              <div class="mi">4 受講者管理</div>
+              <div class="mi">6 コメント・質問</div>
+              <div class="mi on">AI 研修企画書生成</div>
+            </div>
+            <div class="scr-main">
+              <div class="scr-h">研修企画書生成ツール</div>
+              <div class="scr-card" style="background:#f4f6fa; border:1px solid #cdd5e3;">
+                <div class="scr-note">AIチャット画面が表示されます</div>
+                <div style="margin-top:8px; padding:8px; background:#fff; border-radius:6px; border:1px solid #e1e6ef;">
+                  <div style="font-size:.72rem; color:#2f4368; font-weight:700; margin-bottom:4px">AI（ChatGPT / Gemini）</div>
+                  <div class="scr-note">「御社の業種や研修の目的を教えてください」</div>
+                </div>
+                <div style="margin-top:6px; display:flex; gap:6px; align-items:center;">
+                  <div class="scr-field" style="font-size:.7rem">IT系の会社で新入社員向けにDXリテラシー研修を…</div>
+                  <span class="scr-btn" style="font-size:.68rem;padding:5px 12px">送信</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="block">この機能でできること</h3>
+      <ul class="can">
+        <li><b>研修カリキュラムの自動設計</b>：業種・受講者の属性・研修の目的を伝えるだけで、AIがカリキュラム構成・章立て・学習目標を自動で提案します。</li>
+        <li><b>企画書の叩き台作成</b>：AIが出した提案をそのまま、または修正してコース作成の設計書として使えます。</li>
+        <li><b>複数AIに対応</b>：ChatGPT・Geminiなど複数のAIチャットツールを利用できます。ページ内に埋め込まれたiframeで操作するため、別のタブを開く必要はありません。</li>
+      </ul>
+      <h3 class="block">研修企画書を生成する手順</h3>
+      <ol class="steps">
+        <li>左メニューの「AI 研修企画書生成」を押します。ページ内にAIチャット画面が表示されます。</li>
+        <li>チャット欄に研修の内容を入力します。入力のコツは、<b>①業種・会社の特徴</b>・<b>②受講者の属性（新入社員/中堅/管理職など）</b>・<b>③研修の目的（DX推進/安全教育/コンプライアンスなど）</b>・<b>④研修にかけられる時間（合計○時間など）</b> の4点を含めると、より具体的な企画書が生成されます。</li>
+        <li>送信ボタンを押すと、AIがカリキュラム案を返答します。内容を確認して「もっと詳しく」「章を増やして」などと続けて入力すると、企画書を詳しくしていけます。</li>
+        <li>完成した企画書の内容を参考に、「3 コース・動画管理」でコース・章・レッスンを作成します。</li>
+      </ol>
+      <h3 class="block">入力のヒント（例文）</h3>
+      <table class="io">
+        <tr><th>場面</th><th>入力例</th></tr>
+        <tr><td>新入社員向け研修</td><td>IT系の会社で新入社員20名向けにDXリテラシー研修を設計したいです。研修期間は2週間、1日2時間程度。Excelやクラウドサービスの基本を学ばせたいです。カリキュラムの章立てと各章の内容を提案してください。</td></tr>
+        <tr><td>管理職向け研修</td><td>製造業の管理職15名を対象にしたハラスメント防止研修を設計してください。全体で4時間程度、事例演習を含めた構成にしたいです。</td></tr>
+        <tr><td>助成金対応の研修</td><td>人材開発支援助成金（事業展開等リスキリングコース）を活用した研修を設計したいです。対象は正社員10名、業種は建設業です。IT活用スキルの向上を目的にした研修内容を提案してください。</td></tr>
+      </table>
+      <div class="note"><span class="nt">注意</span>
+        <ul>
+          <li>AIが生成する内容はあくまで参考案です。実際の研修に使う場合は、必ず内容をご確認のうえ必要に応じて修正してください。</li>
+          <li>このツールはAIサービスのiframe埋め込みを使用しています。AIサービス側の仕様変更により、表示に不具合が生じることがあります。その場合は運営（info@fp-1.info）へご連絡ください。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card" id="s8" data-keywords="よくある質問 FAQ 困った トラブル わからない できない エラー ヘルプ 質問">
+      <h2><span class="badge">？</span>よくある質問（FAQ）</h2>
+      <p class="lead">実際に質問の多い項目をまとめました。上の検索ボックスにキーワードを入れると、この中もまとめて絞り込めます。</p>
+
+      <h3 class="block">ログイン・アカウント</h3>
+      <table class="io">
+        <tr><th>質問</th><th>回答</th></tr>
+        <tr><td>パスワードを忘れました</td><td>ログイン画面の「パスワードを忘れた方」から、メールアドレスを入れて再設定できます。</td></tr>
+        <tr><td>受講者がログインできないと言っています</td><td>招待メールに記載のメールアドレスと初期パスワードで合っているかご確認ください。分からない場合は、その受講者のパスワードを再設定できます。</td></tr>
+        <tr><td>自分のログインID（メール）やパスワードを変えたい</td><td>「① 企業情報」の自分のアカウント欄で変更し「保存する」を押します。メールを変えると次回からのログインIDが変わります。</td></tr>
+        <tr><td>担当者を増やしたい（3人目）</td><td>担当者は2名までです。3人目以降は運営（info@fp-1.info）へご連絡ください。</td></tr>
+      </table>
+
+      <h3 class="block">受講者の登録</h3>
+      <table class="io">
+        <tr><th>質問</th><th>回答</th></tr>
+        <tr><td>受講者を登録したい</td><td>「＋ 受講者を追加」で、1人ずつ、またはCSV・Excelテンプレートでまとめて登録できます。登録すると招待メールが自動で届きます。</td></tr>
+        <tr><td>招待メールが届きません</td><td>迷惑メールフォルダをご確認ください。メールアドレスの打ち間違いがないかも確認のうえ、必要なら登録し直してください。</td></tr>
+        <tr><td>あとからコースを割り当てたい</td><td>受講者の追加時にコースを選べます。後からでも割り当てできます。</td></tr>
+        <tr><td>一括登録で一部が登録できなかった</td><td>登録できなかった人とその理由が画面に表示されます。メール重複や必須項目の空欄が主な原因です。直して再度アップロードしてください。</td></tr>
+      </table>
+
+      <h3 class="block">コース・動画・章</h3>
+      <table class="io">
+        <tr><th>質問</th><th>回答</th></tr>
+        <tr><td>動画を追加したい</td><td>コース編集画面で、パソコンの動画ファイルをアップロードするか、YouTube・VimeoのURLで追加できます。</td></tr>
+        <tr><td>文章レッスンが追加できない</td><td>レッスン名が空でも、本文の先頭から自動でタイトルが付いて追加されます。本文も空のときだけ追加できません。</td></tr>
+        <tr><td>章（チャプター）の順番を変えたい</td><td>章は左の「⠿」をつかんでドラッグして並び替えられます。▲▼でも移動でき、押すとすぐ反映されます。</td></tr>
+        <tr><td>コースを削除したい</td><td>「③ コース・動画管理」のコース一覧で各コースの「削除」を押します（章・レッスン・受講記録も一緒に消えます。元に戻せません）。</td></tr>
+        <tr><td>早送り（スキップ）を禁止したい</td><td>コース編集画面の「シーク・スキップを許可する」のチェックを外すと、受講者は飛ばし見できなくなります（助成金要件で必要な場合に）。</td></tr>
+        <tr><td>クイズの合格点を変えたい</td><td>クイズ編集画面で合格点（%）を設定できます。</td></tr>
+      </table>
+
+      <h3 class="block">受講状況・記録</h3>
+      <table class="io">
+        <tr><th>質問</th><th>回答</th></tr>
+        <tr><td>受講の進み具合を確認したい</td><td>「④ 受講者管理」で、全体の数字・グラフ・コース別/個人別の進捗を確認できます。</td></tr>
+        <tr><td>助成金用に受講記録を出したい</td><td>「④ 受講者管理」の「CSVをダウンロード」で、視聴開始日・修了日・進捗率を一括で書き出せます。個人別は「受講者詳細」の「印刷」ボタンからも出力できます。</td></tr>
+        <tr><td>受講者ごとに何のレッスンを視聴したか確認したい</td><td>「④ 受講者管理」→「受講者を見る」→「詳細」を押すと、その受講者の全レッスンの視聴状況（修了/視聴中/未視聴）を確認できます。</td></tr>
+        <tr><td>受講者からの質問に答えたい</td><td>「⑥ コメント・質問」で返信できます。質問が届くとメールが届き、そのメールから直接この画面に来られます。</td></tr>
+      </table>
+
+      <h3 class="block">決済・その他</h3>
+      <table class="io">
+        <tr><th>質問</th><th>回答</th></tr>
+        <tr><td>決済リンクのボタンが出ない</td><td>決済リンクは運営が利用を許可した会社のみ表示されます。運営（info@fp-1.info）へご連絡ください。</td></tr>
+        <tr><td>一括払いとサブスクリプション、どちらを選べばよいですか</td><td>買い切りで販売するなら「一括払い」、毎月または毎年の継続契約にするなら「サブスクリプション」を選択してください。サブスクの場合は請求間隔（月次/年次）と無料お試し日数も設定できます。</td></tr>
+        <tr><td>サブスクリプションの無料お試しを設定したい</td><td>決済リンク発行モーダルで「サブスクリプション」を選ぶと「無料お試し日数」欄が出ます。日数を入力してください（0なら即課金）。</td></tr>
+        <tr><td>スクールを2つ作りたい</td><td>スクールは1社につき1つです。2つ目以降は運営（info@fp-1.info）へご連絡ください。</td></tr>
+        <tr><td>受講者画面のボタンの色を自社の色にしたい</td><td>「① 企業情報」のブランドカラーで設定できます。受講者画面のボタン色に反映されます。</td></tr>
+        <tr><td>保存ボタンを押しても「変更点がありません」と出る</td><td>どこかの欄を変更してから保存してください。何も変えていないと保存されません。</td></tr>
+        <tr><td>研修企画書生成ツールのAI画面が表示されない</td><td>AIサービス側の仕様変更により表示できないことがあります。時間をおいて再度お試しいただくか、運営（info@fp-1.info）へご連絡ください。</td></tr>
+        <tr><td>上記で解決しない</td><td>右はしの <b>ご質問やご要望はこちら</b> ボタン、または info@fp-1.info までご連絡ください。</td></tr>
+      </table>
+      <div class="note"><span class="nt">ご質問・ご要望のご連絡</span>画面の右はしにある縦書きの <b>ご質問やご要望はこちら</b> ボタンから、いつでも運営にご連絡いただけます。</div>
+    </section>
+
+  </main>
+</div>
+
+<div id="noresult">該当する項目が見つかりませんでした。別の言葉でお試しください。</div>
+
+<footer>Traingo 会社管理者 操作マニュアル V3 ／ 最終更新：2026-06-01 ／ ご不明な点は運営（info@fp-1.info）まで。</footer>
+
+<button id="fb-tab" aria-label="ご質問やご要望はこちら">ご質問やご要望はこちら</button>
+<div id="fb-modal">
+  <div class="fb-box">
+    <h3>フィードバック</h3>
+    <p class="sub">不具合・ご意見・ご感想などをお気軽にお送りください。</p>
+    <form id="fb-form">
+      <label>お名前 <span style="color:#9a3434">*</span></label>
+      <input id="fb-name" type="text" placeholder="山田 太郎" required>
+      <label>メールアドレス <span style="color:#9a3434">*</span></label>
+      <input id="fb-email" type="email" placeholder="example@email.com" required>
+      <label>フィードバック（不具合や感想など） <span style="color:#9a3434">*</span></label>
+      <textarea id="fb-message" placeholder="例：○○ページが表示されないです / とても使いやすいです" required></textarea>
+      <div class="fb-actions">
+        <button type="button" class="cancel" id="fb-cancel">キャンセル</button>
+        <button type="submit" class="send" id="fb-send">送信する</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function(){
+  var input=document.getElementById('search'), countEl=document.getElementById('search-count');
+  var sections=[].slice.call(document.querySelectorAll('section.card'));
+  var noresult=document.getElementById('noresult');
+  var tocLinks=[].slice.call(document.querySelectorAll('nav.toc a'));
+  function normalize(s){ return (s||'').toLowerCase().replace(/[\s　]/g,'').replace(/[をのがにはでとへもや、。・]/g,''); }
+  sections.forEach(function(s){ var kw=s.getAttribute('data-keywords')||''; s.setAttribute('data-text', s.textContent.toLowerCase()); s.setAttribute('data-norm', normalize(s.textContent+' '+kw)); });
+  function clearMarks(el){ el.querySelectorAll('mark').forEach(function(m){ var t=document.createTextNode(m.textContent); m.parentNode.replaceChild(t,m); }); el.normalize(); }
+  function highlight(el,term){ var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),ns=[]; while(w.nextNode()){ns.push(w.currentNode);} var low=term.toLowerCase();
+    ns.forEach(function(n){ var t=n.nodeValue, i=t.toLowerCase().indexOf(low); if(i===-1)return; var sp=document.createElement('span'); sp.appendChild(document.createTextNode(t.slice(0,i))); var mk=document.createElement('mark'); mk.textContent=t.slice(i,i+term.length); sp.appendChild(mk); sp.appendChild(document.createTextNode(t.slice(i+term.length))); n.parentNode.replaceChild(sp,n); }); }
+  function run(){
+    var raw=input.value.trim();
+    var rawTerms=raw.split(/[\s　]+/).filter(Boolean);
+    var terms=rawTerms.map(normalize).filter(Boolean);
+    var hits=0;
+    sections.forEach(function(s){ clearMarks(s);
+      if(terms.length===0){ s.classList.remove('hidden'); return; }
+      var norm=s.getAttribute('data-norm')||'';
+      var ok=terms.every(function(t){ return norm.indexOf(t)!==-1; });
+      if(ok){ s.classList.remove('hidden'); rawTerms.forEach(function(t){ highlight(s,t); }); hits++; }
+      else{ s.classList.add('hidden'); } });
+    if(terms.length===0){ countEl.textContent=''; noresult.style.display='none'; }
+    else{ countEl.textContent=hits+'件ヒット'; noresult.style.display=hits===0?'block':'none'; } }
+  input.addEventListener('input',run);
+  var map={}; tocLinks.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  if('IntersectionObserver' in window){
+    var ob=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ tocLinks.forEach(function(a){a.classList.remove('is-active');}); var l=map[e.target.id]; if(l)l.classList.add('is-active'); } }); }, {rootMargin:'-20% 0px -70% 0px',threshold:0});
+    sections.forEach(function(s){ ob.observe(s); });
+  }
+  var tab=document.getElementById('fb-tab'), modal=document.getElementById('fb-modal'),
+      cancel=document.getElementById('fb-cancel'), form=document.getElementById('fb-form');
+  tab.addEventListener('click',function(){ modal.classList.add('show'); });
+  cancel.addEventListener('click',function(){ modal.classList.remove('show'); });
+  modal.addEventListener('click',function(e){ if(e.target===modal) modal.classList.remove('show'); });
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('fb-name').value,
+        email=document.getElementById('fb-email').value,
+        msg=document.getElementById('fb-message').value;
+    fetch('/api/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, message: msg, sourcePage: '会社管理者マニュアル' })
+    }).then(function(){
+      modal.classList.remove('show');
+      alert('送信しました。ありがとうございます。');
+    }).catch(function(){
+      var body=encodeURIComponent('お名前：'+name+'\nメール：'+email+'\n\n'+msg);
+      var subj=encodeURIComponent('【Traingo操作マニュアル】フィードバック');
+      window.location.href='mailto:info@fp-1.info?subject='+subj+'&body='+body;
+      modal.classList.remove('show');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
