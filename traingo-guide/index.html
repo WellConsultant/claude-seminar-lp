@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traingo活用ガイド（無料）｜研修の内製化・eラーニング化の進め方</title>
+<meta name="description" content="社内研修・eラーニングの内製化の進め方をまとめた実務ガイドを無料配布。研修を記録として残す設計、受講管理の自動化、外注コストの下げ方まで、導入前に知っておきたい要点を1冊に（補助金・助成金の活用にも対応）。">
+<link rel="canonical" href="https://fp-1.info/traingo/guide/">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP','Meiryo',sans-serif;font-size:16px;line-height:1.85;color:#222;background:#f7f7f5;}
+a{color:#2563eb;}
+.blog-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:#0f1f33;}
+.blog-nav .nav-inner{max-width:1160px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:62px;}
+.blog-nav .nav-logo{color:#fff;font-weight:800;font-size:16px;text-decoration:none;letter-spacing:.02em;}
+.blog-nav .nav-logo span{color:#f59e0b;}
+.blog-nav .nav-links{display:flex;align-items:center;gap:24px;}
+.blog-nav .nav-links a{color:#fff;font-size:13px;text-decoration:none;transition:color .2s;}
+.blog-nav .nav-links a:hover{color:#f59e0b;}
+.blog-nav .nav-cta{background:#f59e0b;color:#fff !important;padding:8px 20px;border-radius:4px;font-weight:bold;font-size:13px;}
+.blog-nav .nav-cta:hover{background:#d98a06 !important;}
+.blog-nav-spacer{height:62px;}
+.breadcrumb{background:#e8edf3;padding:10px 0;font-size:13px;}
+.breadcrumb ol{list-style:none;display:flex;flex-wrap:wrap;gap:4px;max-width:1160px;margin:0 auto;padding:0 20px;}
+.breadcrumb li+li::before{content:'>';margin-right:4px;color:#888;}
+.breadcrumb a{color:#1a3a5c;text-decoration:none;}
+.page-layout{display:flex;flex-direction:row;gap:32px;max-width:1160px;margin:0 auto;padding:32px 20px 60px;align-items:flex-start;}
+.main-wrap{flex:1;min-width:0;max-width:820px;}
+.blog-sidebar{width:300px;flex-shrink:0;position:sticky;top:78px;align-self:flex-start;}
+.article-thumb{width:100%;height:auto;border-radius:8px;display:block;margin-bottom:28px;}
+.article-header{margin-bottom:28px;}
+.article-cat{display:inline-block;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:3px;margin-bottom:12px;}
+.article-title{font-size:28px;font-weight:900;color:#0f1f33;line-height:1.4;margin-bottom:12px;}
+.article-meta{font-size:13px;color:#6b7280;display:flex;gap:16px;flex-wrap:wrap;}
+.article-meta time{color:#1a3a5c;}
+.article-body{color:#333;}
+.article-body p{margin-bottom:1.4em;}
+.article-body h2{font-size:22px;font-weight:900;color:#0f1f33;border-left:5px solid #f59e0b;padding:6px 0 6px 14px;margin:48px 0 20px;line-height:1.4;}
+.article-body h3{font-size:18px;font-weight:700;color:#1a3a5c;border-bottom:2px solid #c8d8e8;padding-bottom:6px;margin:32px 0 16px;}
+.article-body ul,.article-body ol{margin:0 0 1.4em 1.4em;}
+.article-body li{margin-bottom:8px;}
+.article-body strong{color:#0f1f33;}
+.lead-box{background:#eef3fb;border-left:4px solid #2563eb;padding:20px 24px;border-radius:4px;margin-bottom:32px;}
+.lead-box p{margin-bottom:0;color:#0f1f33;font-weight:500;}
+.point-box{background:#fff8ed;border:2px solid #f59e0b;border-radius:6px;padding:20px 24px;margin:24px 0;}
+.point-box .point-box-title{font-size:14px;font-weight:700;color:#c47f06;margin-bottom:10px;}
+.point-box ul{padding-left:1.4em;margin:0;}
+.point-box li{margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px;}
+table thead tr{background:#1a3a5c;color:#fff;}
+table th{padding:12px 14px;text-align:left;font-weight:700;}
+table td{padding:12px 14px;border-bottom:1px solid #d0dcea;vertical-align:top;}
+table tr:nth-child(even) td{background:#f0f5fa;}
+.inline-fig{display:block;margin:28px auto;width:100%;}
+.inline-fig img{width:100%;max-width:760px;height:auto;border-radius:8px;display:block;margin:0 auto;}
+.inline-fig figcaption{font-size:13px;color:#6b7280;text-align:center;margin-top:8px;}
+.source-box{background:#f9fafc;border:1px dashed #aabbcc;padding:16px 20px;margin:32px 0;font-size:13px;color:#555;border-radius:4px;}
+.source-box strong{color:#1a3a5c;display:block;margin-bottom:6px;}
+.source-box ul{padding-left:1.4em;margin:0;}
+.source-box a{color:#2563eb;word-break:break-all;}
+.faq-section{margin:40px 0;}
+.faq-item{border:1px solid #c8d8e8;border-radius:6px;margin-bottom:12px;overflow:hidden;}
+.faq-q{background:#1a3a5c;color:#fff;padding:14px 18px;font-weight:700;font-size:15px;display:flex;gap:10px;align-items:flex-start;}
+.faq-q .faq-icon{flex-shrink:0;color:#f59e0b;font-size:18px;font-weight:900;}
+.faq-a{padding:16px 18px;background:#fff;font-size:15px;display:flex;gap:10px;align-items:flex-start;}
+.faq-a .faq-icon{flex-shrink:0;color:#1a3a5c;font-size:18px;font-weight:900;}
+.faq-a p{margin-bottom:0;}
+.supervisor-box{display:flex;gap:20px;align-items:flex-start;border:1px solid #c8d8e8;border-radius:8px;padding:24px;margin:40px 0;background:#f5f8fc;}
+.supervisor-avatar{flex-shrink:0;width:72px;height:72px;border-radius:50%;background:#1a3a5c;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;}
+.supervisor-info{flex:1;}
+.supervisor-label{font-size:11px;color:#888;font-weight:700;letter-spacing:.08em;margin-bottom:4px;}
+.supervisor-name{font-size:18px;font-weight:900;color:#0f1f33;margin-bottom:4px;}
+.supervisor-title{font-size:13px;color:#555;margin-bottom:10px;}
+.supervisor-bio{font-size:14px;color:#444;line-height:1.7;}
+.cta-box{background:linear-gradient(135deg,#0f1f33,#1a3a5c);color:#fff;border-radius:8px;padding:36px 32px;text-align:center;margin:40px 0;}
+.cta-box h2{font-size:22px;font-weight:900;margin-bottom:12px;border:none;padding:0;color:#fff;}
+.cta-box p{font-size:15px;margin-bottom:24px;color:#cddbe8;}
+.cta-btn{display:inline-block;background:#f59e0b;color:#fff;font-size:17px;font-weight:700;padding:16px 40px;border-radius:4px;text-decoration:none;}
+.cta-btn:hover{background:#d98a06;}
+.related-section{margin:48px 0 32px;}
+.related-section h2{font-size:20px;font-weight:900;color:#0f1f33;border-left:5px solid #f59e0b;padding:4px 0 4px 14px;margin-bottom:20px;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.related-card{border:1px solid #c8d8e8;border-radius:6px;overflow:hidden;text-decoration:none;color:inherit;background:#fff;display:block;}
+.related-card:hover{box-shadow:0 4px 16px rgba(15,31,51,.12);}
+.related-card-img{width:100%;height:120px;background:#1a3a5c;display:flex;align-items:center;justify-content:center;}
+.related-card-img span{color:#fff;font-size:13px;font-weight:700;text-align:center;padding:8px;line-height:1.5;}
+.related-card-body{padding:14px 16px;}
+.related-card-cat{font-size:11px;color:#f59e0b;font-weight:700;margin-bottom:6px;}
+.related-card-title{font-size:15px;font-weight:700;color:#1a3a5c;line-height:1.4;}
+.genre-nav{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:22px 24px;margin-bottom:36px;}
+.genre-nav-title{font-size:15px;font-weight:800;color:#0f1f33;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid #f59e0b;}
+.genre-chips{display:flex;flex-wrap:wrap;gap:10px;}
+.genre-chip{display:inline-flex;align-items:center;gap:8px;background:#eef3fb;color:#1a3a5c;text-decoration:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:22px;transition:all .2s;}
+.genre-chip span{background:#f59e0b;color:#fff;border-radius:10px;padding:1px 9px;font-size:12px;}
+.genre-chip:hover{background:#1a3a5c;color:#fff;}
+.genre-count{font-size:13px;font-weight:700;color:#f59e0b;margin-left:12px;}
+.sidebar-box{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:20px;margin-bottom:20px;}
+.sidebar-title{font-size:14px;font-weight:800;color:#0f1f33;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #f59e0b;}
+.sidebar-cluster a{display:block;font-size:14px;color:#1a3a5c;text-decoration:none;padding:8px 0;border-bottom:1px solid #eef1f5;}
+.sidebar-cluster a:hover{color:#f59e0b;}
+.sidebar-consult{background:linear-gradient(135deg,#0f1f33,#1a3a5c);color:#fff;border-radius:8px;padding:22px;text-align:center;}
+.sidebar-consult p{font-size:13px;color:#cddbe8;margin-bottom:14px;}
+.sidebar-consult .sb-btn{display:block;background:#f59e0b;color:#fff;text-decoration:none;font-weight:700;padding:12px;border-radius:4px;font-size:14px;}
+.sidebar-guide{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:8px;padding:22px;margin-bottom:20px;text-align:center;box-shadow:0 4px 14px rgba(217,119,6,.25);}
+.sidebar-guide-badge{display:inline-block;background:rgba(255,255,255,.22);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;padding:4px 12px;border-radius:99px;margin-bottom:12px;}
+.sidebar-guide-title{font-size:18px;font-weight:900;margin-bottom:10px;line-height:1.4;}
+.sidebar-guide-desc{font-size:13px;line-height:1.7;color:#fff8ee;margin-bottom:16px;text-align:left;}
+.sidebar-guide-btn{display:block;background:#fff;color:#0f1f33;text-decoration:none;font-weight:800;padding:13px;border-radius:5px;font-size:14px;transition:transform .15s;}
+.sidebar-guide-btn:hover{transform:translateY(-2px);}
+.sidebar-guide-img{width:100%;border-radius:8px;margin-bottom:14px;display:block;}
+.guide-hero{background:linear-gradient(135deg,#0f1f33,#1a3a5c);color:#fff;border-radius:12px;padding:36px 30px;margin-bottom:28px;display:flex;gap:28px;align-items:center;}
+.guide-hero-text{flex:1;}
+.guide-hero-img{width:38%;max-width:280px;border-radius:10px;display:block;box-shadow:0 8px 24px rgba(0,0,0,.25);}
+@media (max-width:680px){.guide-hero{flex-direction:column;}.guide-hero-img{width:70%;max-width:240px;}}
+.guide-hero .gbadge{display:inline-block;background:#f59e0b;color:#fff;font-size:12px;font-weight:800;letter-spacing:.06em;padding:5px 14px;border-radius:99px;margin-bottom:14px;}
+.guide-hero h1{font-size:26px;font-weight:900;line-height:1.5;margin:0 0 14px;color:#fff;}
+.guide-hero p{font-size:15px;line-height:1.85;color:#dbe6f1;margin:0;}
+.guide-check{list-style:none;padding:0;margin:0 0 10px;}
+.guide-check li{position:relative;padding:12px 0 12px 34px;border-bottom:1px solid #eef1f5;font-size:15px;line-height:1.7;color:#1a3a5c;}
+.guide-check li::before{content:"✓";position:absolute;left:2px;top:11px;width:22px;height:22px;background:#f59e0b;color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;}
+.guide-form-box{background:#fff;border:2px solid #f59e0b;border-radius:12px;padding:30px;margin:28px 0;box-shadow:0 6px 22px rgba(15,31,51,.08);}
+.guide-form-box h2{margin-top:0;border:none;padding:0;font-size:21px;}
+.guide-form .grow{margin-bottom:16px;}
+.guide-form label{display:block;font-size:14px;font-weight:700;color:#0f1f33;margin-bottom:6px;}
+.guide-form .req{color:#dc2626;font-size:11px;margin-left:6px;}
+.guide-form input,.guide-form select,.guide-form textarea{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:6px;font-size:15px;box-sizing:border-box;font-family:inherit;}
+.guide-form .gsubmit{width:100%;background:#f59e0b;color:#fff;border:none;padding:15px;border-radius:6px;font-size:16px;font-weight:800;cursor:pointer;margin-top:6px;}
+.guide-form .gnote{font-size:12px;color:#6b7280;margin-top:12px;text-align:center;}
+.custom-footer{background:#1f2937;color:#fff;padding:44px 24px 24px;margin-top:40px;}
+.footer-inner{max-width:880px;margin:0 auto;text-align:center;}
+.footer-nav{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px;justify-content:center;}
+.footer-nav a{font-size:13px;color:#fff;text-decoration:none;}
+.footer-nav a:hover{color:#f59e0b;}
+.footer-copy{font-size:12px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;color:#aaa;}
+#wpadminbar{display:none!important;}html{margin-top:0!important;}
+@media (max-width:980px){.page-layout{flex-direction:column;}.blog-sidebar{width:100%;}.main-wrap{max-width:100%;}}
+@media (max-width:880px){.blog-nav .nav-links a:not(.nav-cta){display:none!important;}.article-title{font-size:22px;}.related-grid{grid-template-columns:1fr;}.supervisor-box{flex-direction:column;}table{font-size:13px;}table th,table td{padding:10px;}}
+</style>
+</head><body>
+<nav class="blog-nav"><div class="nav-inner">
+<a class="nav-logo" href="https://fp-1.info/traingo/">Train<span>go</span></a>
+<div class="nav-links">
+<a href="https://fp-1.info/traingo/">Traingoとは</a>
+<a href="https://fp-1.info/traingo/blog/">Traingoブログ</a>
+<a href="https://fp-1.info/traingo/optguide1/">Traingo活用ガイド</a>
+<a href="https://fp-1.info/hojokin/#about" target="_blank" rel="noopener">会社紹介</a>
+<a href="https://fp-1.info/traingo/contact/">お問い合わせ</a>
+<a href="https://fp-1.info/hojokin/" target="_blank" rel="noopener">補助金活用型経営</a>
+<a href="https://fp-1.info/traingo/contact/" class="nav-cta">無料相談・資料請求</a>
+</div></div></nav><div class="blog-nav-spacer"></div>
+<nav class="breadcrumb" aria-label="パンくずリスト"><ol>
+<li><a href="https://fp-1.info/traingo/">Traingo</a></li><li>Traingo活用ガイド</li>
+</ol></nav>
+<div class="page-layout">
+<main class="main-wrap">
+<div class="guide-hero">
+<div class="guide-hero-text">
+<span class="gbadge">無料ダウンロード</span>
+<h1>Traingo活用ガイド<br>研修の内製化・eラーニング化の進め方</h1>
+<p>「研修を始めたいが何から手をつければいいか分からない」「外注に頼りきりの研修を、自社で回せるようにしたい」——そんな経営者・ご担当者のための実務ガイドです。研修を記録として残す設計から、Traingoでの受講管理・運営の手間を減らす方法まで、導入前に押さえておきたい要点をまとめました（補助金・助成金の活用にも対応しています）。</p>
+</div>
+<img src="https://fp-1.info/traingo/wp-content/uploads/2026/06/guide-cover.png" alt="Traingo活用ガイド" class="guide-hero-img">
+</div>
+<div class="article-body">
+<h2>このガイドで分かること</h2>
+<ul class="guide-check"><li>社内研修・eラーニングを「やった事実」で終わらせず、記録として残す設計</li><li>動画研修・eラーニングを内製化し、外注に頼りすぎずコストを下げる進め方</li><li>Traingoで受講状況・修了を自動で記録し、運営の手間を減らす方法</li><li>研修の効果を見える化し、社内で改善を回していく考え方</li><li>補助金・助成金（人材開発支援助成金など）を活用する場合の対応ポイント</li></ul>
+<h2>こんな方におすすめです</h2>
+<ul class="guide-check"><li>社員研修を始めたい・見直したいが、何から手をつければよいか迷っている経営者・人事のご担当者</li><li>研修にかかる外注コストを抑え、内製で回せる仕組みを作りたい中小企業の方</li><li>研修はあるものの、受講状況や修了の記録が紙・Excelで限界を感じている方</li></ul>
+<div class="guide-form-box">
+<h2>無料ガイドを受け取る</h2>
+<p style="font-size:14px;color:#6b7280;margin:0 0 20px;line-height:1.7;">下記フォームにご記入いただくと、ご入力のメールアドレスにガイドのURLをお送りします。記入は1分ほどで完了します。</p>
+<form class="guide-form" id="tgGuideForm" novalidate>
+<input type="hidden" name="source_page" value="/traingo/guide/">
+<input type="hidden" name="topic" value="Traingo活用ガイド請求">
+<div class="grow"><label>お名前<span class="req">必須</span></label>
+<input type="text" name="name" required placeholder="例：山田 太郎"></div>
+<div class="grow"><label>会社名・屋号<span class="req">必須</span></label>
+<input type="text" name="company" required placeholder="例：株式会社サンプル"></div>
+<div class="grow"><label>メールアドレス<span class="req">必須</span></label>
+<input type="email" name="email" required placeholder="例：yamada@example.co.jp"></div>
+<div class="grow"><label>電話番号</label>
+<input type="tel" name="phone" placeholder="例：090-1234-5678（任意）"></div>
+<div class="grow"><label>ご相談・ご質問</label>
+<textarea name="message" rows="3" placeholder="検討中の社員数・対象テーマ・想定スケジュールなど、あればお書きください（任意）"></textarea></div>
+<div id="tg-guide-error" style="display:none;color:#dc2626;font-size:13px;margin-bottom:12px;font-weight:700;">お名前・会社名・メールアドレスをご入力ください。</div>
+<button type="submit" class="gsubmit">この内容でガイドを受け取る</button>
+<p class="gnote">ご記入いただいた情報は、ガイドの送付およびご連絡の目的でのみ使用いたします。</p>
+</form>
+<script>
+document.getElementById('tgGuideForm').addEventListener('submit',function(e){e.preventDefault();var f=this;var req=[f.name,f.company,f.email];var err=document.getElementById('tg-guide-error');var ok=true;req.forEach(function(el){if(!el||!el.value.trim())ok=false;});if(!ok){err.style.display='block';return;}err.style.display='none';var b=f.querySelector('.gsubmit');if(b){b.disabled=true;b.textContent='送信中...';}var fd=new FormData(f);fetch('https://fp-1.info/traingo/wp-json/traingo/v1/contact',{method:'POST',body:fd}).then(function(r){return r.json();}).catch(function(){}).finally(function(){window.location.href='https://fp-1.info/traingo/contact-thanks/';});});
+</script></div>
+</div>
+<div class="supervisor-box" id="supervisor">
+<div class="supervisor-avatar"><img src="https://fp-1.info/hojokin/wp-content/uploads/2026/05/akutsu-portrait.jpg" alt="阿久津 和宏" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></div>
+<div class="supervisor-info">
+<div class="supervisor-label">監修・執筆</div>
+<div class="supervisor-name">阿久津 和宏</div>
+<div class="supervisor-title">人材育成・補助金活用コンサルタント</div>
+<div class="supervisor-bio">Well Consultant合同会社代表。中小企業の研修内製化・eラーニング導入・人材開発支援助成金の活用を支援。研修プラットフォーム「Traingo」を企画・運営。</div>
+</div></div>
+</main>
+<aside class="blog-sidebar">
+<div class="sidebar-guide">
+<img src="https://fp-1.info/traingo/wp-content/uploads/2026/06/guide-cover.png" alt="Traingo活用ガイド" class="sidebar-guide-img">
+<div class="sidebar-guide-badge">無料ダウンロード</div>
+<div class="sidebar-guide-title">Traingo活用ガイド</div>
+<div class="sidebar-guide-desc">研修の内製化・eラーニング化の進め方を1冊に。導入前に押さえたい実務のポイントを無料でお渡しします（補助金・助成金の活用にも対応）。</div>
+<a class="sidebar-guide-btn" href="https://fp-1.info/traingo/optguide1/">ガイドを受け取る →</a>
+</div>
+<div class="sidebar-box"><div class="sidebar-title">記事カテゴリ</div>
+<div class="sidebar-cluster"><a href="https://fp-1.info/traingo/blog/#tsukuru">研修を作る・仕組み化する</a><a href="https://fp-1.info/traingo/blog/#lms-value">ツール（LMS）としての価値</a><a href="https://fp-1.info/traingo/blog/#hikaku">比較・選び方</a><a href="https://fp-1.info/traingo/blog/#keiei">人材育成の経営的効果</a><a href="https://fp-1.info/traingo/blog/#shueki">研修の収益化・事業化</a><a href="https://fp-1.info/traingo/blog/#jirei">事例・信頼</a><a href="https://fp-1.info/traingo/blog/#josei">助成金（活用例）</a></div></div>
+<div class="sidebar-box"><div class="sidebar-title">ヘルプ・使い方</div>
+<div class="sidebar-cluster">
+<a href="https://fp-1.info/traingo/help/">ツール活用ヘルプ（目次）</a>
+<a href="https://fp-1.info/traingo/manual-company/">会社管理者の使い方</a>
+<a href="https://fp-1.info/traingo/manual-learner/">受講者の使い方</a>
+</div></div>
+<div class="sidebar-consult">
+<p>研修の内製化・eラーニング化・人材開発支援助成金の活用をご相談ください。</p>
+<a class="sb-btn" href="https://fp-1.info/traingo/contact/">無料相談・資料請求 →</a>
+</div></aside>
+</div>
+<footer class="custom-footer"><div class="footer-inner">
+<nav class="footer-nav">
+<a href="https://fp-1.info/traingo/">Traingoとは</a>
+<a href="https://fp-1.info/traingo/blog/">Traingoブログ</a>
+<a href="https://fp-1.info/traingo/optguide1/">Traingo活用ガイド</a>
+<a href="https://fp-1.info/traingo/help/">ヘルプ・使い方</a>
+<a href="https://fp-1.info/hojokin/#about" target="_blank" rel="noopener">会社紹介</a>
+<a href="https://fp-1.info/traingo/contact/">お問い合わせ</a>
+<a href="https://fp-1.info/hojokin/" target="_blank" rel="noopener">補助金活用型経営</a>
+</nav>
+<div class="footer-copy">© Well Consultant合同会社　Traingo（トレインゴ）｜法人向け研修プラットフォーム</div>
+</div></footer>
+</body></html>
