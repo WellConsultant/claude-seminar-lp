@@ -50,6 +50,19 @@ img{max-width:100%;height:auto;display:block}
   mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='white' d='M9.55 17.4 4.2 12.05l1.4-1.4 3.95 3.95 8.5-8.5 1.4 1.4z'/></svg>") center/16px no-repeat}
 .benefit-list li .em{color:var(--red);font-weight:900}
 
+/* 収録ラインナップ グリッド */
+.lineup h2{font-size:25px;font-weight:900;color:var(--navy);text-align:center;line-height:1.5;margin:52px 0 14px}
+.lineup .lineup-lead{font-size:15.5px;color:var(--ink-2);text-align:center;line-height:2;max-width:720px;margin:0 auto 30px}
+.lineup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.lineup-card{background:#fff;border:1px solid #d6dfeb;border-radius:10px;padding:18px;box-shadow:0 4px 14px rgba(30,58,95,.06);border-top:4px solid var(--blue);display:flex;flex-direction:column;gap:8px;min-height:108px}
+.lineup-card .lc-date{font-size:12px;font-weight:900;color:var(--blue);letter-spacing:.06em}
+.lineup-card .lc-title{font-size:14.5px;font-weight:700;color:var(--navy-deep);line-height:1.6}
+.lineup-card.more{border-top-color:var(--gold);background:linear-gradient(135deg,#fffdf5,#fff8e3);justify-content:center;align-items:center;text-align:center}
+.lineup-card.more .lc-more{font-size:22px;font-weight:900;color:var(--orange-deep)}
+.lineup-card.more .lc-title{color:var(--orange-deep)}
+.lineup-note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:16px;line-height:1.8}
+@media(max-width:720px){.lineup-grid{grid-template-columns:1fr 1fr;gap:10px}.lineup h2{font-size:20px}.lineup-card{min-height:96px;padding:14px}.lineup-card .lc-title{font-size:13px}}
+
 /* 価格＋CTA */
 .offer{margin:40px 0 0;text-align:center}
 .offer-price{background:linear-gradient(135deg,#1e3a5f 0%,#152a47 100%);color:#fff;border-radius:14px;padding:40px 36px;box-shadow:0 14px 34px rgba(21,42,71,.25)}
@@ -126,6 +139,23 @@ footer .small{opacity:.6;font-size:11.5px;margin-top:12px}
         <li>3回分の個別相談（<span class="em">15万円相当</span>）→ 無料</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<!-- 収録ラインナップ -->
+<section class="lineup">
+  <div class="wrap">
+    <h2>これまでの勉強会も、すべて見放題</h2>
+    <p class="lineup-lead">年払いプランなら、過去に開催したこれらの勉強会アーカイブに加え、<strong>毎週新しく追加される回</strong>もすべて視聴できます。</p>
+    <div class="lineup-grid">
+      <div class="lineup-card"><span class="lc-date">2026.04.24</span><span class="lc-title">デジタル化・AI導入補助金 攻略勉強会</span></div>
+      <div class="lineup-card"><span class="lc-date">2026.04.30</span><span class="lc-title">勉強会マーケティングシステム習得勉強会</span></div>
+      <div class="lineup-card"><span class="lc-date">2026.05.08</span><span class="lc-title">集客できる次世代型HPの作り方勉強会</span></div>
+      <div class="lineup-card"><span class="lc-date">2026.05.22</span><span class="lc-title">国が本気の制度を攻略する勉強会 ─ 本制度編</span></div>
+      <div class="lineup-card"><span class="lc-date">2026.06.05</span><span class="lc-title">助成金で企業研修を作る（講師になる）勉強会</span></div>
+      <div class="lineup-card more"><span class="lc-more">＋毎週</span><span class="lc-title">新しい勉強会を追加中</span></div>
+    </div>
+    <p class="lineup-note">補助金・マーケティング・AIなど、毎週テーマを変えて開催しています。<br>あなたのリクエストテーマでの開催もできます。</p>
   </div>
 </section>
 
