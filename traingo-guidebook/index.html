@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traingo活用ガイド｜研修内製化・eラーニング化の進め方</title>
+<meta name="description" content="Traingoを使った研修内製化・eラーニング化の手順をまとめたガイドです。3ステップで研修を設計・制作・配信する方法から、人材開発支援助成金との組み合わせ、よくある質問まで詳しく解説します。">
+<link rel="canonical" href="https://lp.well-c.biz/traingo-guidebook/">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP','Meiryo',sans-serif;font-size:16px;line-height:1.85;color:#222;background:#f7f7f5;}
+a{color:#2563eb;}
+/* ナビバー */
+.blog-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:#0f1f33;}
+.blog-nav .nav-inner{max-width:1160px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:62px;}
+.blog-nav .nav-logo{color:#fff;font-weight:800;font-size:18px;text-decoration:none;letter-spacing:.02em;}
+.blog-nav .nav-logo span{color:#f59e0b;}
+.blog-nav .nav-links{display:flex;align-items:center;gap:24px;}
+.blog-nav .nav-links a{color:#fff;font-size:13px;text-decoration:none;transition:color .2s;}
+.blog-nav .nav-links a:hover{color:#f59e0b;}
+.blog-nav .nav-cta{background:#f59e0b;color:#fff !important;padding:8px 20px;border-radius:4px;font-weight:bold;font-size:13px;}
+.blog-nav .nav-cta:hover{background:#d98a06 !important;}
+.blog-nav-spacer{height:62px;}
+/* ヒーロー */
+.guide-hero{background:linear-gradient(135deg,#0f1f33,#1a3a5c);color:#fff;padding:60px 24px 56px;}
+.guide-hero-inner{max-width:860px;margin:0 auto;text-align:center;}
+.guide-hero .gbadge{display:inline-block;background:#f59e0b;color:#fff;font-size:12px;font-weight:800;letter-spacing:.08em;padding:5px 18px;border-radius:99px;margin-bottom:20px;}
+.guide-hero h1{font-size:36px;font-weight:900;line-height:1.45;margin-bottom:20px;color:#fff;}
+.guide-hero h1 span{display:block;font-size:22px;font-weight:700;color:#a8c4de;margin-top:8px;}
+.guide-hero p{font-size:16px;line-height:1.9;color:#cddbe8;max-width:700px;margin:0 auto;}
+/* 本文ラッパー */
+.content-wrap{max-width:860px;margin:0 auto;padding:52px 24px 80px;}
+/* セクション共通 */
+.section{margin-bottom:64px;}
+.section h2{font-size:24px;font-weight:900;color:#0f1f33;border-left:5px solid #f59e0b;padding:6px 0 6px 16px;margin-bottom:28px;line-height:1.4;}
+.section p{margin-bottom:1.4em;color:#333;}
+/* about ボックス */
+.about-box{background:#eef3fb;border-left:4px solid #2563eb;padding:22px 26px;border-radius:4px;}
+.about-box p{margin-bottom:0;color:#0f1f33;font-weight:500;}
+/* ステップ */
+.steps{display:flex;flex-direction:column;gap:28px;}
+.step-card{background:#fff;border:1px solid #c8d8e8;border-radius:10px;padding:28px 30px;position:relative;padding-left:88px;}
+.step-num{position:absolute;left:24px;top:24px;width:48px;height:48px;background:#0f1f33;color:#f59e0b;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;line-height:1.2;text-align:center;}
+.step-card h3{font-size:18px;font-weight:800;color:#0f1f33;margin-bottom:12px;}
+.step-card p{margin-bottom:.8em;color:#333;font-size:15px;}
+.step-card p:last-child{margin-bottom:0;}
+/* 機能リスト表 */
+.func-table{width:100%;border-collapse:collapse;margin:8px 0;}
+.func-table thead tr{background:#0f1f33;color:#fff;}
+.func-table th{padding:13px 16px;text-align:left;font-weight:700;font-size:15px;}
+.func-table td{padding:13px 16px;border-bottom:1px solid #d0dcea;vertical-align:top;font-size:15px;}
+.func-table tr:nth-child(even) td{background:#f0f5fa;}
+.func-badge{display:inline-block;background:#f59e0b;color:#fff;font-size:12px;font-weight:800;padding:3px 10px;border-radius:99px;}
+/* 助成金ボックス */
+.subsidy-box{background:#fff8ed;border:2px solid #f59e0b;border-radius:8px;padding:26px 28px;}
+.subsidy-box .subsidy-title{font-size:15px;font-weight:800;color:#c47f06;margin-bottom:14px;}
+.subsidy-list{list-style:none;padding:0;margin:0;}
+.subsidy-list li{position:relative;padding:10px 0 10px 32px;border-bottom:1px solid #f5dfa0;font-size:15px;color:#333;}
+.subsidy-list li:last-child{border-bottom:none;}
+.subsidy-list li::before{content:"";position:absolute;left:0;top:14px;width:20px;height:20px;background:#f59e0b;border-radius:50%;}
+.subsidy-list li::after{content:"✓";position:absolute;left:3px;top:13px;font-size:12px;font-weight:900;color:#fff;}
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:14px;}
+.faq-item{border:1px solid #c8d8e8;border-radius:8px;overflow:hidden;}
+.faq-q{background:#1a3a5c;color:#fff;padding:15px 20px;font-weight:700;font-size:15px;display:flex;gap:12px;align-items:flex-start;}
+.faq-q .fq-icon{flex-shrink:0;background:#f59e0b;color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;margin-top:1px;}
+.faq-a{padding:16px 20px;background:#fff;font-size:15px;display:flex;gap:12px;align-items:flex-start;}
+.faq-a .fa-icon{flex-shrink:0;background:#eef3fb;color:#1a3a5c;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;margin-top:1px;}
+.faq-a p{margin-bottom:0;color:#333;}
+/* CTAセクション */
+.cta-section{background:linear-gradient(135deg,#0f1f33,#1a3a5c);border-radius:10px;padding:44px 32px;text-align:center;margin-bottom:0;}
+.cta-section h2{font-size:22px;font-weight:900;color:#fff;margin-bottom:12px;border:none;padding:0;}
+.cta-section p{font-size:15px;color:#cddbe8;margin-bottom:28px;}
+.cta-btn{display:inline-block;background:#f59e0b;color:#fff;font-size:17px;font-weight:800;padding:17px 48px;border-radius:5px;text-decoration:none;transition:background .2s;}
+.cta-btn:hover{background:#d98a06;}
+/* フッター */
+.custom-footer{background:#1f2937;color:#fff;padding:44px 24px 24px;margin-top:60px;}
+.footer-inner{max-width:860px;margin:0 auto;text-align:center;}
+.footer-nav{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px;justify-content:center;}
+.footer-nav a{font-size:13px;color:#fff;text-decoration:none;}
+.footer-nav a:hover{color:#f59e0b;}
+.footer-copy{font-size:12px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;color:#aaa;}
+/* レスポンシブ */
+@media (max-width:680px){
+  .guide-hero h1{font-size:26px;}
+  .guide-hero h1 span{font-size:17px;}
+  .content-wrap{padding:40px 16px 60px;}
+  .step-card{padding:24px 20px 24px 76px;}
+  .step-num{left:16px;top:20px;}
+  .cta-section{padding:32px 20px;}
+  .cta-btn{padding:15px 28px;font-size:15px;}
+  .blog-nav .nav-links a:not(.nav-cta){display:none!important;}
+  .func-table th,.func-table td{padding:10px 12px;font-size:13px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ナビバー -->
+<nav class="blog-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://fp-1.info/traingo/" target="_blank" rel="noopener">Train<span>go</span></a>
+    <div class="nav-links">
+      <a href="https://fp-1.info/traingo/" target="_blank" rel="noopener">Traingoとは</a>
+      <a href="https://fp-1.info/traingo/blog/" target="_blank" rel="noopener">Traingoブログ</a>
+      <a href="https://fp-1.info/traingo/contact/" target="_blank" rel="noopener">お問い合わせ</a>
+      <a href="https://fp-1.info/traingo/contact/" class="nav-cta" target="_blank" rel="noopener">無料相談・お問い合わせ</a>
+    </div>
+  </div>
+</nav>
+<div class="blog-nav-spacer"></div>
+
+<!-- ヒーローセクション -->
+<section class="guide-hero">
+  <div class="guide-hero-inner">
+    <span class="gbadge">申し込みありがとうございます</span>
+    <h1>Traingo活用ガイド
+      <span>研修内製化・eラーニング化の進め方</span>
+    </h1>
+    <p>このガイドでは、Traingoを活用して社内研修を内製化・eラーニング化するための具体的な手順を解説します。「何から始めれば良いか分からない」という段階から、受講管理・助成金活用まで、実務に即した流れでまとめています。</p>
+  </div>
+</section>
+
+<!-- 本文 -->
+<div class="content-wrap">
+
+  <!-- このガイドについて -->
+  <section class="section">
+    <h2>このガイドについて</h2>
+    <div class="about-box">
+      <p>このガイドは、Traingoを使って社内研修を内製化・eラーニング化したい経営者・ご担当者のために作成しました。外部委託に頼っていた研修を自社で設計・配信・管理できる状態に持っていくまでの3ステップを中心に、Traingoの主な機能、人材開発支援助成金との連携方法、よくある質問をまとめています。ガイドの内容を参考に、まず1本目のコース作りから始めてみてください。</p>
+    </div>
+  </section>
+
+  <!-- 研修内製化の3ステップ -->
+  <section class="section">
+    <h2>研修内製化の3ステップ</h2>
+    <div class="steps">
+
+      <div class="step-card">
+        <div class="step-num">STEP<br>1</div>
+        <h3>研修の目的・対象・頻度を決める</h3>
+        <p>まず「この研修で何を変えたいのか」を明確にします。業務課題（新人の立ち上がりが遅い、クレーム対応のばらつきが大きいなど）を起点に、研修のゴールを1文で定義してください。</p>
+        <p>次に対象者を絞ります。全社向けか部署限定か、役職・入社年次での区分があるかを決めると、コース設計が一気に具体化します。対象が絞られるほど、教材の内容も的確になります。</p>
+        <p>頻度・タイミングは「入社時に1回だけ」「四半期ごとに更新」「資格取得前の自習」など、運用イメージを先に決めておくと、コースの量や難易度設計が変わります。最初は1〜3コースから始めて、実績を見ながら増やしていく進め方が定着しやすいです。</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">STEP<br>2</div>
+        <h3>動画・スライドで教材を作る</h3>
+        <p>教材の形式は「動画」「スライドPDF」「テキストページ」の3種類が中心です。Traingoはこれらを組み合わせた1コースとしてまとめて配信できます。最初から完璧な動画を目指す必要はありません。まず既存の社内マニュアルや研修資料をスライド化・PDF化するだけでも、コースとして成立します。</p>
+        <p>動画は「スマートフォン＋三脚」で録った5〜10分の解説動画から始める企業が多いです。編集ソフトなしでも十分伝わる内容が作れます。「教える内容を1トピック1動画」に分けると、受講者が必要な箇所だけ繰り返し見やすくなり、理解度が上がります。</p>
+        <p>教材が完成したらTraingoにアップロードし、コースとして設定します。テスト（確認問題）や修了証の設定も同じ画面で行えます。最初に一度設定してしまえば、その後は受講者を招待するだけで運用が回ります。</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">STEP<br>3</div>
+        <h3>LMSで配信・受講管理する</h3>
+        <p>TraingoはLMS（学習管理システム）として、受講者ごとの進捗・修了状況をリアルタイムで管理します。管理者は誰がどこまで受講しているかをダッシュボードで確認でき、未受講者へのリマインドも一括で送ることができます。紙やExcelで管理していた受講記録の手間が大幅に減ります。</p>
+        <p>受講者はスマートフォン・タブレット・PCのいずれからでもアクセス可能です。隙間時間に少しずつ進められるため、店舗スタッフや外回りの営業担当など、パソコンを常時使わない層にも対応しやすいのが特徴です。</p>
+        <p>受講記録データはCSV形式でエクスポートできます。人材開発支援助成金を申請する際の「訓練実施記録」としてそのまま活用できるため、申請書類の作成工数を抑えられます。修了証は受講者が自分でダウンロードできる形式で自動発行されます。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Traingoでできること -->
+  <section class="section">
+    <h2>Traingoでできること</h2>
+    <p>Traingoが提供する主な機能は以下のとおりです。研修の設計から受講管理・助成金対応まで、一つのシステムで完結できます。</p>
+    <table class="func-table">
+      <thead>
+        <tr>
+          <th>機能</th>
+          <th>内容</th>
+          <th>助成金申請との関連</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>コース配信</strong></td>
+          <td>動画・PDF・テキストを組み合わせたコースを作成し、対象者に配信できます。公開範囲・公開期間の設定も可能です。</td>
+          <td><span class="func-badge">対象外</span></td>
+        </tr>
+        <tr>
+          <td><strong>受講管理</strong></td>
+          <td>受講者ごとの進捗・完了状況をリアルタイムで確認できます。未受講者への一括リマインドも管理画面から行えます。</td>
+          <td><span class="func-badge">活用可</span></td>
+        </tr>
+        <tr>
+          <td><strong>修了証の発行</strong></td>
+          <td>コース修了時に修了証を自動発行します。受講者が自分でダウンロードできるため、管理担当者の手間が省けます。</td>
+          <td><span class="func-badge">活用可</span></td>
+        </tr>
+        <tr>
+          <td><strong>受講記録エクスポート</strong></td>
+          <td>受講者・コース・受講日時・修了状況をCSV形式でダウンロードできます。助成金申請書類の根拠資料として使用できます。</td>
+          <td><span class="func-badge">直接活用</span></td>
+        </tr>
+        <tr>
+          <td><strong>進捗確認</strong></td>
+          <td>管理者ダッシュボードで全受講者の進捗を一覧表示します。部署・コース・期間でのフィルタリングが可能です。</td>
+          <td><span class="func-badge">活用可</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 人材開発支援助成金との組み合わせ -->
+  <section class="section">
+    <h2>人材開発支援助成金との組み合わせ</h2>
+    <p>厚生労働省が所管する「人材開発支援助成金（事業展開等リスキリング支援コース）」は、eラーニングによる訓練も対象となることがあります。Traingoで配信するコースをこの助成金と組み合わせることで、研修コストの一部を助成金で賄えることがあります。</p>
+    <div class="subsidy-box">
+      <div class="subsidy-title">Traingoと助成金を組み合わせる主なポイント</div>
+      <ul class="subsidy-list">
+        <li>eラーニング形式の訓練も助成金の対象となることがあります（訓練計画の事前申請が必要）</li>
+        <li>助成率は中小企業で最大75%となることがあります（企業規模・コース内容により異なります）</li>
+        <li>Traingoの受講記録エクスポート機能で、訓練実施状況の証明書類を出力できます</li>
+        <li>修了証は受講者ごとに自動発行されるため、修了の証跡として活用できます</li>
+        <li>助成金の申請条件・対象コースの要件は年度・改定により変わることがあります。事前に管轄の労働局またはハローワークへご確認ください</li>
+      </ul>
+    </div>
+    <p style="margin-top:20px;font-size:14px;color:#555;">助成金の申請手続きやTraingoとの連携についてご不明な点は、お気軽にお問い合わせください。</p>
+  </section>
+
+  <!-- よくある質問 -->
+  <section class="section">
+    <h2>よくある質問（FAQ）</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="fq-icon">Q</div>
+          <div>Traingoを始めるのに、特別なITの知識は必要ですか？</div>
+        </div>
+        <div class="faq-a">
+          <div class="fa-icon">A</div>
+          <p>特別な技術知識は不要です。管理画面はブラウザで操作でき、コースの作成・受講者の招待・進捗確認まで直感的に行えます。設定に不明な点があればサポートにお問い合わせください。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="fq-icon">Q</div>
+          <div>既存の社内資料（PowerPoint・Word・PDFなど）はそのまま使えますか？</div>
+        </div>
+        <div class="faq-a">
+          <div class="fa-icon">A</div>
+          <p>PDF形式でアップロードして教材として使用できます。PowerPointはPDF化してから登録する方法が最もスムーズです。動画と組み合わせてコースを構成することもできます。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="fq-icon">Q</div>
+          <div>受講者はスマートフォンからでも受講できますか？</div>
+        </div>
+        <div class="faq-a">
+          <div class="fa-icon">A</div>
+          <p>はい。Traingoはスマートフォン・タブレット・PCいずれのブラウザからでも受講できます。専用アプリのインストールは不要です。店舗スタッフや現場作業員など、PCを常時使わない環境でも活用いただけます。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="fq-icon">Q</div>
+          <div>助成金申請に必要な受講記録はどのように取得しますか？</div>
+        </div>
+        <div class="faq-a">
+          <div class="fa-icon">A</div>
+          <p>管理画面の「受講記録エクスポート」から、受講者名・コース名・受講日時・修了状況のデータをCSVでダウンロードできます。助成金申請の際に求められる訓練実施記録の根拠資料として使用できます。詳細な書式要件は申請先の労働局にご確認ください。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="fq-icon">Q</div>
+          <div>導入後に操作方法が分からなくなったときのサポートはありますか？</div>
+        </div>
+        <div class="faq-a">
+          <div class="fa-icon">A</div>
+          <p>お問い合わせフォームよりサポートを受け付けています。コースの作成方法や受講管理の設定、助成金との連携に関するご質問など、お気軽にご連絡ください。</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTAセクション -->
+  <section class="cta-section">
+    <h2>Traingoに関するご相談は</h2>
+    <p>コース設計の進め方・助成金との連携・導入後の運用など、ご不明な点はお気軽にお問い合わせください。</p>
+    <a href="https://fp-1.info/traingo/contact/" class="cta-btn" target="_blank" rel="noopener">お問い合わせ・無料相談はこちら</a>
+  </section>
+
+</div>
+
+<!-- フッター -->
+<footer class="custom-footer">
+  <div class="footer-inner">
+    <nav class="footer-nav">
+      <a href="https://fp-1.info/traingo/" target="_blank" rel="noopener">Traingo トップ</a>
+      <a href="https://fp-1.info/traingo/blog/" target="_blank" rel="noopener">Traingoブログ</a>
+      <a href="https://fp-1.info/traingo/contact/" target="_blank" rel="noopener">お問い合わせ</a>
+      <a href="https://fp-1.info/hojokin/" target="_blank" rel="noopener">補助金活用型経営</a>
+      <a href="https://fp-1.info/" target="_blank" rel="noopener">fp-1.info トップ</a>
+    </nav>
+    <div class="footer-copy">&copy; 2024 fp-1.info All Rights Reserved.</div>
+  </div>
+</footer>
+
+<!-- JSON-LD (Article schema) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Traingo活用ガイド｜研修内製化・eラーニング化の進め方",
+  "description": "Traingoを使って社内研修を内製化・eラーニング化するための3ステップと、主な機能、人材開発支援助成金との組み合わせ方を解説したガイドです。",
+  "url": "https://lp.well-c.biz/traingo-guidebook/",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Traingo",
+    "url": "https://fp-1.info/traingo/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://lp.well-c.biz/traingo-guidebook/"
+  }
+}
+</script>
+
+</body>
+</html>
