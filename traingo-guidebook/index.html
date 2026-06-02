@@ -1,335 +1,1048 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Traingo活用ガイド｜研修内製化・eラーニング化の進め方</title>
-<meta name="description" content="Traingoを使った研修内製化・eラーニング化の手順をまとめたガイドです。3ステップで研修を設計・制作・配信する方法から、人材開発支援助成金との組み合わせ、よくある質問まで詳しく解説します。">
-<link rel="canonical" href="https://lp.well-c.biz/traingo-guidebook/">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP','Meiryo',sans-serif;font-size:16px;line-height:1.85;color:#222;background:#f7f7f5;}
-a{color:#2563eb;}
-/* ナビバー */
-.blog-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:#0f1f33;}
-.blog-nav .nav-inner{max-width:1160px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:62px;}
-.blog-nav .nav-logo{color:#fff;font-weight:800;font-size:18px;text-decoration:none;letter-spacing:.02em;}
-.blog-nav .nav-logo span{color:#f59e0b;}
-.blog-nav .nav-links{display:flex;align-items:center;gap:24px;}
-.blog-nav .nav-links a{color:#fff;font-size:13px;text-decoration:none;transition:color .2s;}
-.blog-nav .nav-links a:hover{color:#f59e0b;}
-.blog-nav .nav-cta{background:#f59e0b;color:#fff !important;padding:8px 20px;border-radius:4px;font-weight:bold;font-size:13px;}
-.blog-nav .nav-cta:hover{background:#d98a06 !important;}
-.blog-nav-spacer{height:62px;}
-/* ヒーロー */
-.guide-hero{background:linear-gradient(135deg,#0f1f33,#1a3a5c);color:#fff;padding:60px 24px 56px;}
-.guide-hero-inner{max-width:860px;margin:0 auto;text-align:center;}
-.guide-hero .gbadge{display:inline-block;background:#f59e0b;color:#fff;font-size:12px;font-weight:800;letter-spacing:.08em;padding:5px 18px;border-radius:99px;margin-bottom:20px;}
-.guide-hero h1{font-size:36px;font-weight:900;line-height:1.45;margin-bottom:20px;color:#fff;}
-.guide-hero h1 span{display:block;font-size:22px;font-weight:700;color:#a8c4de;margin-top:8px;}
-.guide-hero p{font-size:16px;line-height:1.9;color:#cddbe8;max-width:700px;margin:0 auto;}
-/* 本文ラッパー */
-.content-wrap{max-width:860px;margin:0 auto;padding:52px 24px 80px;}
-/* セクション共通 */
-.section{margin-bottom:64px;}
-.section h2{font-size:24px;font-weight:900;color:#0f1f33;border-left:5px solid #f59e0b;padding:6px 0 6px 16px;margin-bottom:28px;line-height:1.4;}
-.section p{margin-bottom:1.4em;color:#333;}
-/* about ボックス */
-.about-box{background:#eef3fb;border-left:4px solid #2563eb;padding:22px 26px;border-radius:4px;}
-.about-box p{margin-bottom:0;color:#0f1f33;font-weight:500;}
-/* ステップ */
-.steps{display:flex;flex-direction:column;gap:28px;}
-.step-card{background:#fff;border:1px solid #c8d8e8;border-radius:10px;padding:28px 30px;position:relative;padding-left:88px;}
-.step-num{position:absolute;left:24px;top:24px;width:48px;height:48px;background:#0f1f33;color:#f59e0b;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;line-height:1.2;text-align:center;}
-.step-card h3{font-size:18px;font-weight:800;color:#0f1f33;margin-bottom:12px;}
-.step-card p{margin-bottom:.8em;color:#333;font-size:15px;}
-.step-card p:last-child{margin-bottom:0;}
-/* 機能リスト表 */
-.func-table{width:100%;border-collapse:collapse;margin:8px 0;}
-.func-table thead tr{background:#0f1f33;color:#fff;}
-.func-table th{padding:13px 16px;text-align:left;font-weight:700;font-size:15px;}
-.func-table td{padding:13px 16px;border-bottom:1px solid #d0dcea;vertical-align:top;font-size:15px;}
-.func-table tr:nth-child(even) td{background:#f0f5fa;}
-.func-badge{display:inline-block;background:#f59e0b;color:#fff;font-size:12px;font-weight:800;padding:3px 10px;border-radius:99px;}
-/* 助成金ボックス */
-.subsidy-box{background:#fff8ed;border:2px solid #f59e0b;border-radius:8px;padding:26px 28px;}
-.subsidy-box .subsidy-title{font-size:15px;font-weight:800;color:#c47f06;margin-bottom:14px;}
-.subsidy-list{list-style:none;padding:0;margin:0;}
-.subsidy-list li{position:relative;padding:10px 0 10px 32px;border-bottom:1px solid #f5dfa0;font-size:15px;color:#333;}
-.subsidy-list li:last-child{border-bottom:none;}
-.subsidy-list li::before{content:"";position:absolute;left:0;top:14px;width:20px;height:20px;background:#f59e0b;border-radius:50%;}
-.subsidy-list li::after{content:"✓";position:absolute;left:3px;top:13px;font-size:12px;font-weight:900;color:#fff;}
-/* FAQ */
-.faq-list{display:flex;flex-direction:column;gap:14px;}
-.faq-item{border:1px solid #c8d8e8;border-radius:8px;overflow:hidden;}
-.faq-q{background:#1a3a5c;color:#fff;padding:15px 20px;font-weight:700;font-size:15px;display:flex;gap:12px;align-items:flex-start;}
-.faq-q .fq-icon{flex-shrink:0;background:#f59e0b;color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;margin-top:1px;}
-.faq-a{padding:16px 20px;background:#fff;font-size:15px;display:flex;gap:12px;align-items:flex-start;}
-.faq-a .fa-icon{flex-shrink:0;background:#eef3fb;color:#1a3a5c;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;margin-top:1px;}
-.faq-a p{margin-bottom:0;color:#333;}
-/* CTAセクション */
-.cta-section{background:linear-gradient(135deg,#0f1f33,#1a3a5c);border-radius:10px;padding:44px 32px;text-align:center;margin-bottom:0;}
-.cta-section h2{font-size:22px;font-weight:900;color:#fff;margin-bottom:12px;border:none;padding:0;}
-.cta-section p{font-size:15px;color:#cddbe8;margin-bottom:28px;}
-.cta-btn{display:inline-block;background:#f59e0b;color:#fff;font-size:17px;font-weight:800;padding:17px 48px;border-radius:5px;text-decoration:none;transition:background .2s;}
-.cta-btn:hover{background:#d98a06;}
-/* フッター */
-.custom-footer{background:#1f2937;color:#fff;padding:44px 24px 24px;margin-top:60px;}
-.footer-inner{max-width:860px;margin:0 auto;text-align:center;}
-.footer-nav{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px;justify-content:center;}
-.footer-nav a{font-size:13px;color:#fff;text-decoration:none;}
-.footer-nav a:hover{color:#f59e0b;}
-.footer-copy{font-size:12px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;color:#aaa;}
-/* レスポンシブ */
-@media (max-width:680px){
-  .guide-hero h1{font-size:26px;}
-  .guide-hero h1 span{font-size:17px;}
-  .content-wrap{padding:40px 16px 60px;}
-  .step-card{padding:24px 20px 24px 76px;}
-  .step-num{left:16px;top:20px;}
-  .cta-section{padding:32px 20px;}
-  .cta-btn{padding:15px 28px;font-size:15px;}
-  .blog-nav .nav-links a:not(.nav-cta){display:none!important;}
-  .func-table th,.func-table td{padding:10px 12px;font-size:13px;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    
+  </style>
 </head>
 <body>
+  
 
-<!-- ナビバー -->
-<nav class="blog-nav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="https://fp-1.info/traingo/" target="_blank" rel="noopener">Train<span>go</span></a>
-    <div class="nav-links">
-      <a href="https://fp-1.info/traingo/" target="_blank" rel="noopener">Traingoとは</a>
-      <a href="https://fp-1.info/traingo/blog/" target="_blank" rel="noopener">Traingoブログ</a>
-      <a href="https://fp-1.info/traingo/contact/" target="_blank" rel="noopener">お問い合わせ</a>
-      <a href="https://fp-1.info/traingo/contact/" class="nav-cta" target="_blank" rel="noopener">無料相談・お問い合わせ</a>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>オンラインコースの作り方 ― 1本目を作って公開する完全実践ガイド</title>
+<style>
+@media print {
+  .no-print{display:none}
+  body{font-size:10pt;color:#000}
+  h1{font-size:20pt}h2{font-size:15pt}h3{font-size:12pt}
+  .step-card,.stat-card,.point-card{box-shadow:none;border:1px solid #ccc}
+  .hero,.traingo-hero,.cta-section{background:#1a3a8f!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{page-break-inside:avoid}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;color:#1a1a2e;line-height:1.85;font-size:16px}
+:root{
+  --blue:#1a3a8f;--sky:#0ea5e9;--amber:#f59e0b;--green:#10b981;
+  --bg:#f0f4ff;--white:#fff;--dark:#1a1a2e;--mid:#374151;--light:#6b7280;
+  --border:#e5e7eb
+}
+.container{max-width:900px;margin:0 auto;padding:0 28px}
+
+/* ===== HERO ===== */
+.hero{background:linear-gradient(135deg,#0f2460 0%,#1a3a8f 60%,#0ea5e9 100%);color:#fff;padding:80px 0 64px;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-tag{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:6px 20px;border-radius:99px;font-size:13px;margin-bottom:20px;letter-spacing:.1em;position:relative;z-index:1}
+.hero h1{font-size:clamp(22px,4vw,42px);font-weight:900;margin-bottom:16px;line-height:1.4;position:relative;z-index:1}
+.hero-accent{color:#f59e0b}
+.hero-sub{font-size:17px;opacity:.9;margin-bottom:28px;position:relative;z-index:1}
+.hero-author{font-size:14px;opacity:.75;position:relative;z-index:1}
+.hero-badges{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px;position:relative;z-index:1}
+.hero-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:700}
+
+/* ===== SECTION COMMON ===== */
+section{padding:64px 0}
+.section-tag{display:inline-block;background:var(--bg);color:var(--blue);font-size:12px;font-weight:700;padding:4px 14px;border-radius:4px;letter-spacing:.08em;margin-bottom:12px}
+.section-title{font-size:clamp(20px,3vw,30px);font-weight:800;color:var(--dark);margin-bottom:12px;line-height:1.4}
+.section-desc{color:var(--mid);font-size:16px;margin-bottom:40px;line-height:1.8}
+.bg-light{background:var(--bg)}
+.bg-dark{background:var(--blue);color:#fff}
+.bg-dark .section-title{color:#fff}
+.bg-dark .section-desc{color:rgba(255,255,255,.85)}
+
+/* ===== STATS GRID ===== */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;margin:40px 0}
+.stat-card{background:#fff;border-radius:14px;padding:24px 16px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.07);border-top:4px solid var(--blue)}
+.stat-number{font-size:38px;font-weight:900;color:var(--blue);line-height:1;margin-bottom:6px}
+.stat-unit{font-size:17px;font-weight:700}
+.stat-label{font-size:13px;color:var(--light);margin-top:6px;line-height:1.5}
+.stat-source{font-size:11px;color:#9ca3af;margin-top:8px}
+
+/* ===== STEPS ===== */
+.steps{display:flex;flex-direction:column;gap:28px}
+.step-card{background:#fff;border-radius:16px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,.07);display:grid;grid-template-columns:72px 1fr;gap:24px;align-items:start;border-left:5px solid var(--blue);transition:box-shadow .2s}
+.step-card:hover{box-shadow:0 8px 32px rgba(26,58,143,.13)}
+.step-number{width:56px;height:56px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;flex-shrink:0}
+.step-content h3{font-size:20px;font-weight:800;margin-bottom:12px}
+.step-content p{color:var(--mid);margin-bottom:12px;font-size:15px}
+.step-ul{list-style:none;padding:0}
+.step-ul li{padding:5px 0 5px 26px;position:relative;color:var(--mid);font-size:15px}
+.step-ul li::before{content:'✓';color:var(--green);font-weight:900;position:absolute;left:0}
+
+/* ===== BOX TYPES ===== */
+.highlight-box{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:2px solid var(--blue);border-radius:12px;padding:24px;margin:24px 0}
+.highlight-box p{color:var(--blue);font-weight:700;font-size:17px;line-height:1.7}
+.warning-box{background:#fffbeb;border:2px solid var(--amber);border-radius:12px;padding:20px 24px;margin:20px 0}
+.warning-box p{color:#92400e;font-size:15px}
+.success-box{background:#ecfdf5;border:2px solid var(--green);border-radius:12px;padding:20px 24px;margin:20px 0}
+.success-box p{color:#065f46;font-size:15px;font-weight:600}
+.point-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;margin:16px 0}
+.point-card h4{font-size:16px;font-weight:800;color:var(--dark);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.point-icon{width:34px;height:34px;background:var(--blue);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.point-card p{color:var(--mid);font-size:15px;line-height:1.8}
+
+/* ===== SVG AREA ===== */
+.svg-area{background:#fff;border-radius:16px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,.07);margin:32px 0}
+.svg-title{font-size:16px;font-weight:800;color:var(--dark);margin-bottom:20px;text-align:center}
+svg text{font-family:'Hiragino Sans','Noto Sans JP',sans-serif}
+
+/* ===== 2-COL GRID ===== */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px 0}
+@media(max-width:640px){.two-col{grid-template-columns:1fr}.step-card{grid-template-columns:1fr}}
+
+/* ===== FAQ ===== */
+.faq-list{display:flex;flex-direction:column;gap:16px}
+.faq-item{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.faq-q{background:var(--bg);padding:18px 24px;font-weight:700;color:var(--blue);font-size:15px;display:flex;align-items:center;gap:12px}
+.faq-badge{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0}
+.faq-badge-q{background:var(--blue);color:#fff}
+.faq-badge-a{background:var(--green);color:#fff}
+.faq-a{padding:18px 24px;color:var(--mid);font-size:15px;line-height:1.8;display:flex;align-items:flex-start;gap:12px}
+
+/* ===== TABLE ===== */
+table{width:100%;border-collapse:collapse;margin:24px 0;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+th{background:var(--blue);color:#fff;padding:14px 20px;text-align:left;font-size:14px;font-weight:700}
+td{padding:13px 20px;border-bottom:1px solid var(--border);font-size:14px;color:var(--mid)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#f8faff}
+
+/* ===== TRAINGO ===== */
+.traingo-divider{height:6px;background:linear-gradient(90deg,var(--blue),var(--sky),var(--amber));margin:0}
+.traingo-hero{background:linear-gradient(135deg,#0a1f5c 0%,#1a3a8f 50%,#0369a1 100%);color:#fff;padding:80px 0;text-align:center}
+.traingo-logo{font-size:52px;font-weight:900;letter-spacing:.05em;margin-bottom:16px;line-height:1}
+.traingo-logo .t-accent{color:#f59e0b}
+.traingo-tagline{font-size:20px;opacity:.9;margin-bottom:8px;font-weight:600}
+.traingo-sub{font-size:15px;opacity:.75}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin:32px 0}
+.feature-card{background:#fff;border-radius:16px;padding:28px 24px;box-shadow:0 4px 16px rgba(0,0,0,.07);text-align:center;border-top:4px solid var(--sky)}
+.feature-card .f-icon{font-size:42px;margin-bottom:14px;line-height:1}
+.feature-card h4{font-size:17px;font-weight:800;color:var(--dark);margin-bottom:10px}
+.feature-card p{font-size:14px;color:var(--mid);line-height:1.7}
+.scene-card{background:#fff;border-radius:14px;padding:24px;box-shadow:0 2px 10px rgba(0,0,0,.06);border-left:4px solid var(--sky)}
+.scene-card h4{font-size:15px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.scene-card p{font-size:14px;color:var(--mid);line-height:1.7}
+
+/* ===== CTA ===== */
+.cta-section{background:linear-gradient(135deg,#1a3a8f,#0ea5e9);color:#fff;padding:72px 0;text-align:center}
+.cta-section h2{font-size:28px;font-weight:800;margin-bottom:16px;line-height:1.4}
+.cta-section p{font-size:16px;opacity:.9;margin-bottom:36px}
+.btn-cta{display:inline-block;background:var(--amber);color:#1a1a2e;font-weight:800;font-size:18px;padding:18px 52px;border-radius:99px;text-decoration:none;box-shadow:0 4px 20px rgba(245,158,11,.4);transition:transform .2s,box-shadow .2s}
+.btn-cta:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(245,158,11,.5)}
+
+/* ===== HR ===== */
+.section-hr{height:1px;background:var(--border);border:none;margin:0}
+
+/* ===== STEP FLOW SVG container ===== */
+.flow-svg-wrap{overflow-x:auto;padding:8px 0}
+
+/* ===== NUMBER LIST ===== */
+.num-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:14px;margin:20px 0}
+.num-list li{display:flex;align-items:flex-start;gap:14px;font-size:15px;color:var(--mid);line-height:1.7}
+.num-list li .n{width:28px;height:28px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;margin-top:2px}
+</style>
+
+
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-tag">実践ガイド ― 副業・独立・起業・社内研修に対応</div>
+    <h1 class="">オンラインコースの作り方<br><span class="hero-accent">1本目を作って公開するための完全実践ガイド</span></h1>
+    <p class="hero-sub">まず「公開」にたどり着く。それがすべてのスタートライン。</p>
+    <p class="hero-author">著 / 監修：阿久津 和宏（経営革新等支援機関認定・行政書士）</p>
+    <div class="hero-badges">
+      <span class="hero-badge">副業・独立を目指す方</span>
+      <span class="hero-badge">専門知識をマネタイズしたい方</span>
+      <span class="hero-badge">社内研修のオンライン化を推進したい方</span>
+      <span class="hero-badge">安定収益を確保したい事業主</span>
     </div>
   </div>
-</nav>
-<div class="blog-nav-spacer"></div>
+</header>
 
-<!-- ヒーローセクション -->
-<section class="guide-hero">
-  <div class="guide-hero-inner">
-    <span class="gbadge">申し込みありがとうございます</span>
-    <h1>Traingo活用ガイド
-      <span>研修内製化・eラーニング化の進め方</span>
-    </h1>
-    <p>このガイドでは、Traingoを活用して社内研修を内製化・eラーニング化するための具体的な手順を解説します。「何から始めれば良いか分からない」という段階から、受講管理・助成金活用まで、実務に即した流れでまとめています。</p>
+<!-- ===== なぜ今オンラインコース・研修なのか ===== -->
+<section class="bg-light">
+  <div class="container">
+    <span class="section-tag">WHY NOW</span>
+    <h2 class="section-title">なぜ今、オンラインコース・研修が求められているのか</h2>
+    <p class="section-desc">「オンラインコースや研修を作りたい」と思っている方は増えています。でも、実際に動いている方はまだ少ない。だからこそ、今がチャンスなんです。学び方も教え方も、この10年で根本から変わりました。動画配信技術の普及、スマートフォンの普及、リモートワークの定着、そして国のリスキリング支援の強化。これらが重なって、オンラインで学ぶ・教えるという行為が、当たり前のものになりつつあります。</p>
+    <p class="section-desc" style="margin-top:-20px">以下の数字を見てください。これは「なんとなくそういう時代になってきた」という感覚的な話ではなく、実際にグローバルで起きている市場の変化を数字で示したものです。日本の感覚で見ると「海外の話でしょ？」と思うかもしれませんが、日本でも同様の流れが確実に来ています。</p>
+
+    <!-- 統計カード -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">8,576<span class="stat-unit">億</span></div>
+        <div class="stat-label">2030年グローバルeラーニング市場規模（USD）</div>
+        <div class="stat-source">出典：Grand View Research 2023</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">17.5<span class="stat-unit">%</span></div>
+        <div class="stat-label">eラーニング市場の年平均成長率（CAGR）</div>
+        <div class="stat-source">出典：Grand View Research 2023</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">94<span class="stat-unit">%</span></div>
+        <div class="stat-label">「スキルアップ機会のある会社に長く勤めたい」と答えた従業員の割合</div>
+        <div class="stat-source">出典：LinkedIn Learning Report 2019</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">40〜60<span class="stat-unit">%</span></div>
+        <div class="stat-label">オンライン研修による研修時間の削減効果（対面比）</div>
+        <div class="stat-source">出典：IBM Research</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1<span class="stat-unit">兆円</span></div>
+        <div class="stat-label">政府が2022年に表明したリスキリング支援の規模（5年間）</div>
+        <div class="stat-source">出典：内閣官房・経済産業省</div>
+      </div>
+    </div>
+
+    <!-- SVG グラフ：eラーニング市場規模 -->
+    <div class="svg-area">
+      <div class="svg-title">グローバルeラーニング市場規模の推移と予測（単位：億ドル）</div>
+      <svg viewBox="0 0 780 260" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="eラーニング市場規模グラフ">
+        <defs>
+          <linearGradient id="bar1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a3a8f"></stop><stop offset="100%" stop-color="#0ea5e9"></stop></linearGradient>
+          <linearGradient id="bar2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0ea5e9" stop-opacity=".7"></stop><stop offset="100%" stop-color="#1a3a8f" stop-opacity=".5"></stop></linearGradient>
+        </defs>
+        <!-- 背景グリッド -->
+        <line x1="70" y1="20" x2="70" y2="210" stroke="#e5e7eb" stroke-width="1"></line>
+        <line x1="70" y1="210" x2="750" y2="210" stroke="#e5e7eb" stroke-width="1"></line>
+        <line x1="70" y1="170" x2="750" y2="170" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"></line>
+        <line x1="70" y1="130" x2="750" y2="130" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"></line>
+        <line x1="70" y1="90" x2="750" y2="90" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"></line>
+        <line x1="70" y1="50" x2="750" y2="50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"></line>
+        <!-- Y軸ラベル -->
+        <text x="60" y="214" text-anchor="end" font-size="11" fill="#6b7280">0</text>
+        <text x="60" y="174" text-anchor="end" font-size="11" fill="#6b7280">2,000</text>
+        <text x="60" y="134" text-anchor="end" font-size="11" fill="#6b7280">4,000</text>
+        <text x="60" y="94" text-anchor="end" font-size="11" fill="#6b7280">6,000</text>
+        <text x="60" y="54" text-anchor="end" font-size="11" fill="#6b7280">8,000</text>
+        <!-- 棒グラフ -->
+        <!-- 2019: 1,070 → height=26.7 -->
+        <rect x="100" y="183" width="80" height="27" rx="4" fill="url(#bar1)"></rect>
+        <text x="140" y="178" text-anchor="middle" font-size="11" font-weight="700" fill="#1a3a8f">1,070億</text>
+        <text x="140" y="225" text-anchor="middle" font-size="12" fill="#374151" font-weight="600">2019年</text>
+        <!-- 2022: 2,100 → height=52.5 -->
+        <rect x="230" y="157" width="80" height="53" rx="4" fill="url(#bar1)"></rect>
+        <text x="270" y="152" text-anchor="middle" font-size="11" font-weight="700" fill="#1a3a8f">2,100億</text>
+        <text x="270" y="225" text-anchor="middle" font-size="12" fill="#374151" font-weight="600">2022年</text>
+        <!-- 2025予測: 3,250 → height=81.25 -->
+        <rect x="360" y="128" width="80" height="82" rx="4" fill="url(#bar2)"></rect>
+        <text x="400" y="123" text-anchor="middle" font-size="11" font-weight="700" fill="#0ea5e9">3,250億</text>
+        <text x="400" y="225" text-anchor="middle" font-size="12" fill="#374151" font-weight="600">2025年（予測）</text>
+        <!-- 2028予測: 6,000 → height=150 -->
+        <rect x="490" y="60" width="80" height="150" rx="4" fill="url(#bar2)"></rect>
+        <text x="530" y="55" text-anchor="middle" font-size="11" font-weight="700" fill="#0ea5e9">6,000億</text>
+        <text x="530" y="225" text-anchor="middle" font-size="12" fill="#374151" font-weight="600">2028年（予測）</text>
+        <!-- 2030予測: 8,576 → height=214 -->
+        <rect x="620" y="24" width="80" height="186" rx="4" fill="url(#bar2)"></rect>
+        <text x="660" y="19" text-anchor="middle" font-size="11" font-weight="700" fill="#0ea5e9">8,576億</text>
+        <text x="660" y="225" text-anchor="middle" font-size="12" fill="#374151" font-weight="600">2030年（予測）</text>
+        <!-- 凡例 -->
+        <rect x="200" y="242" width="14" height="10" rx="2" fill="url(#bar1)"></rect>
+        <text x="218" y="252" font-size="11" fill="#374151">実績値</text>
+        <rect x="290" y="242" width="14" height="10" rx="2" fill="url(#bar2)"></rect>
+        <text x="308" y="252" font-size="11" fill="#374151">予測値</text>
+      </svg>
+      <p style="font-size:12px;color:#9ca3af;text-align:center;margin-top:8px">出典：Grand View Research "E-Learning Market Size, Share &amp; Trends Analysis Report, 2023-2030"</p>
+    </div>
+
+    <p style="color:var(--mid);font-size:15px;line-height:1.9;margin-bottom:24px">このグラフを見て「海外の話だから関係ない」と感じる方もいるかもしれません。でも、実は日本市場でも同じ傾向が起きています。日本のeラーニング市場は2023年時点で約2,500〜3,000億円規模と推計されており、今後も拡大が続く見込みです。さらに重要なのは、Udemyで「オンラインコース」と日本語で検索すると約1,900件のコースが表示されますが、英語で同じ検索をすると1万件以上が表示されるという事実です。つまり、日本語のオンラインコース市場はまだまだ競合が少なく、先行参入できるチャンスが残っています。</p>
+    <p style="color:var(--mid);font-size:15px;line-height:1.9;margin-bottom:24px">また、「94%の従業員がスキルアップ機会のある会社に長く勤めたい」という数字も非常に重要です。採用コスト・育成コストが上昇している現代において、従業員の定着率は会社の収益に直結します。つまり研修・教育への投資は、コストではなく「採用・離職コストを下げるための投資」として捉えることができます。さらに「オンライン研修は対面研修と比べて研修時間を40〜60%削減できる」という数字も、忙しい社員を抱える中小企業にとって、非常に魅力的なメリットです。</p>
+
+    <!-- なぜ求められているのか：4つの背景 -->
+    <div class="two-col">
+      <div class="point-card">
+        <h4><span class="point-icon">①</span>学習ニーズの多様化・個別化</h4>
+        <p>「自分のペースで、必要な知識だけ学びたい」というニーズが急増しています。インターネットが普及して情報は溢れていますが、反対に「どの情報を信じればいいかわからない」という状況にもなっています。そういった中で、体系的に整理された動画コースへの需要は非常に高まっています。YouTubeのような短い動画は手軽ですが、「何かをゼロから体系的に学ぶ」には向いていません。オンラインコースは、まさにそのギャップを埋める存在です。</p>
+        <p style="margin-top:10px">また、動画は文章や音声と比べて情報の吸収率が高いことが知られています。「動画で学ぶ」という習慣が社会全体に広がっていることも、オンラインコース市場が急拡大している大きな理由のひとつです。</p>
+      </div>
+      <div class="point-card">
+        <h4><span class="point-icon">②</span>働き方の変化・リモート研修需要</h4>
+        <p>コロナ禍をきっかけに、テレワークやハイブリッド勤務が一気に普及しました。それにともなって、「全員が同じ場所・同じ時間に集まる対面研修」の実施が難しくなりました。地方や在宅勤務の社員が参加しやすい研修形式として、オンライン研修は決定的な優位性を持つようになっています。</p>
+        <p style="margin-top:10px">特に、採用のエリアを広げて全国から人材を採用するようになった企業では、物理的に一箇所に集まって研修することがそもそも難しい状況になっています。オンラインコースであれば、北海道の社員も沖縄の社員も、同じタイミングで同じ品質の研修を受けることができます。</p>
+      </div>
+      <div class="point-card">
+        <h4><span class="point-icon">③</span>国が後押しするリスキリング需要</h4>
+        <p>政府は2022年に、5年間で1兆円規模のリスキリング（学び直し）支援を行うことを表明しました。「これからの時代に必要なスキルを、働きながら身につける」という流れを国全体で後押しする方向性が明確になっています。人材開発支援助成金をはじめとして、企業が従業員の教育訓練に投資することを支援する制度も複数あります。</p>
+        <p style="margin-top:10px">つまり、「研修に投資したいけどコストが心配」という会社さんにとって、今は助成金を使ってコストを抑えながら研修を充実させるチャンスでもあります。こうした制度を活用するためにも、受講記録をきちんと残せるシステムの必要性が高まっています。</p>
+      </div>
+      <div class="point-card">
+        <h4><span class="point-icon">④</span>知識資産のストック化・収益化</h4>
+        <p>専門知識や仕事のノウハウを動画コースにすることで、「一度作ったら何度でも使える資産」に変わります。対面の仕事や個別コンサルティングは、時間を切り売りするモデルなので、一日に対応できる人数に上限があります。でもオンラインコースは違います。一度作ったら、何人でも、何度でも、時間を問わず提供できます。</p>
+        <p style="margin-top:10px">私自身も、動画コンテンツの力を体感したことが、このガイドを書くひとつのきっかけになっています。既存のお客様に対して、商談後に動画でフォローアップを送ったところ、「整理された動画には説得力がある」と言われて成約につながった経験があります。動画は信頼をつくる力を持っているんです。</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p>「整理された動画には、説得力がある」――これは私が実際にお客様から言われた言葉です。私が独立直後に行き詰まっていた時期、既存のお客様のところを訪問して相談を受け、その内容を動画にまとめて送ったところ、月額10万円のコンサルティングサービスと金融商品を同時に契約してくれたことがありました。「なぜ買ってくれたのか」と聞いたら、「整理された動画には説得力がある」という言葉が返ってきました。それが私のオンラインコース・動画コンテンツへの確信の原点です。</p>
+    </div>
   </div>
 </section>
 
-<!-- 本文 -->
-<div class="content-wrap">
+<!-- ===== このガイドでわかること ===== -->
+<section>
+  <div class="container">
+    <span class="section-tag">OVERVIEW</span>
+    <h2 class="section-title">このガイドでできること ― 全体像と7つのステップ</h2>
+    <p class="section-desc">このガイドの目的は明確です。「1本目のオンラインコースを作って公開する」こと、ただその一点に絞っています。ハイクオリティな映像制作技術を身につけることでも、プロ並みのセールスライティングを習得することでも、完璧なWebマーケティングを学ぶことでもありません。</p>
+    <p class="section-desc" style="margin-top:-20px">なぜ「1本目を出す」ことだけにフォーカスしているかというと、オンラインコースを作ろうとする多くの方が、最初の1本を出せないまま止まってしまうからです。「もっと勉強してから」「環境が整ったら」「もう少し内容を充実させたら」。そういって手を止めているうちに、半年・1年が経ってしまいます。でも実際には、最初の1本を出してみないと分からないことがたくさんあります。受講者はどんな言葉に反応するのか、どの部分の説明が足りないのか、どんな改善要望が来るのか。これは出してみないと絶対に分かりません。だから「まず出す」が最優先なんです。</p>
+    <p class="section-desc" style="margin-top:-20px">このガイドでは、アイデアを決めるところから、カリキュラムを作り、台本とスライドを用意し、収録・編集して、Udemyに公開し、受講生を増やし、さらにマネタイズしていくまでの7つのステップを、順番に解説していきます。それぞれのステップで「やること」と「なぜそれをやるのか」を丁寧に説明しているので、初めての方でも手順に沿って進めれば1本目のコースを完成させることができます。</p>
 
-  <!-- このガイドについて -->
-  <section class="section">
-    <h2>このガイドについて</h2>
-    <div class="about-box">
-      <p>このガイドは、Traingoを使って社内研修を内製化・eラーニング化したい経営者・ご担当者のために作成しました。外部委託に頼っていた研修を自社で設計・配信・管理できる状態に持っていくまでの3ステップを中心に、Traingoの主な機能、人材開発支援助成金との連携方法、よくある質問をまとめています。ガイドの内容を参考に、まず1本目のコース作りから始めてみてください。</p>
+    <!-- 7ステップ フロー SVG -->
+    <div class="svg-area">
+      <div class="svg-title">オンラインコース作成 7つのステップ</div>
+      <div class="flow-svg-wrap">
+      <svg viewBox="0 0 760 120" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="7ステップフロー図">
+        <defs>
+          <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#1a3a8f"></path>
+          </marker>
+        </defs>
+        <!-- Step boxes -->
+        <!-- S1 -->
+        <rect x="10" y="30" width="85" height="60" rx="10" fill="#1a3a8f"></rect>
+        <text x="52" y="56" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.7)">STEP 1</text>
+        <text x="52" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">アイデア</text>
+        <text x="52" y="85" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.8)">を決める</text>
+        <!-- arrow -->
+        <line x1="96" y1="60" x2="108" y2="60" stroke="#1a3a8f" stroke-width="2" marker-end="url(#arr)"></line>
+        <!-- S2 -->
+        <rect x="110" y="30" width="85" height="60" rx="10" fill="#1a5fb4"></rect>
+        <text x="152" y="56" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.7)">STEP 2</text>
+        <text x="152" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">カリキュラム</text>
+        <text x="152" y="85" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.8)">を作る</text>
+        <line x1="196" y1="60" x2="208" y2="60" stroke="#1a3a8f" stroke-width="2" marker-end="url(#arr)"></line>
+        <!-- S3 -->
+        <rect x="210" y="30" width="85" height="60" rx="10" fill="#0ea5e9"></rect>
+        <text x="252" y="56" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.7)">STEP 3</text>
+        <text x="252" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">台本・スライド</text>
+        <text x="252" y="85" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.8)">を作る</text>
+        <line x1="296" y1="60" x2="308" y2="60" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arr)"></line>
+        <!-- S4 -->
+        <rect x="310" y="30" width="85" height="60" rx="10" fill="#0284c7"></rect>
+        <text x="352" y="56" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.7)">STEP 4</text>
+        <text x="352" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">収録・編集</text>
+        <text x="352" y="85" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.8)">する</text>
+        <line x1="396" y1="60" x2="408" y2="60" stroke="#0284c7" stroke-width="2" marker-end="url(#arr)"></line>
+        <!-- S5 -->
+        <rect x="410" y="30" width="85" height="60" rx="10" fill="#10b981"></rect>
+        <text x="452" y="56" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.7)">STEP 5</text>
+        <text x="452" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Udemyに</text>
+        <text x="452" y="85" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.8)">公開する</text>
+        <line x1="496" y1="60" x2="508" y2="60" stroke="#10b981" stroke-width="2" marker-end="url(#arr)"></line>
+        <!-- S6 -->
+        <rect x="510" y="30" width="85" height="60" rx="10" fill="#f59e0b"></rect>
+        <text x="552" y="56" text-anchor="middle" font-size="10" fill="rgba(0,0,0,.6)">STEP 6</text>
+        <text x="552" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">受講生を</text>
+        <text x="552" y="85" text-anchor="middle" font-size="10" fill="rgba(0,0,0,.7)">増やす</text>
+        <line x1="596" y1="60" x2="608" y2="60" stroke="#f59e0b" stroke-width="2" marker-end="url(#arr)"></line>
+        <!-- S7 -->
+        <rect x="610" y="30" width="140" height="60" rx="10" fill="#ef4444"></rect>
+        <text x="680" y="56" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.7)">STEP 7</text>
+        <text x="680" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">マネタイズ</text>
+        <text x="680" y="85" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.8)">・事業展開</text>
+      </svg>
+      </div>
     </div>
-  </section>
 
-  <!-- 研修内製化の3ステップ -->
-  <section class="section">
-    <h2>研修内製化の3ステップ</h2>
-    <div class="steps">
-
-      <div class="step-card">
-        <div class="step-num">STEP<br>1</div>
-        <h3>研修の目的・対象・頻度を決める</h3>
-        <p>まず「この研修で何を変えたいのか」を明確にします。業務課題（新人の立ち上がりが遅い、クレーム対応のばらつきが大きいなど）を起点に、研修のゴールを1文で定義してください。</p>
-        <p>次に対象者を絞ります。全社向けか部署限定か、役職・入社年次での区分があるかを決めると、コース設計が一気に具体化します。対象が絞られるほど、教材の内容も的確になります。</p>
-        <p>頻度・タイミングは「入社時に1回だけ」「四半期ごとに更新」「資格取得前の自習」など、運用イメージを先に決めておくと、コースの量や難易度設計が変わります。最初は1〜3コースから始めて、実績を見ながら増やしていく進め方が定着しやすいです。</p>
-      </div>
-
-      <div class="step-card">
-        <div class="step-num">STEP<br>2</div>
-        <h3>動画・スライドで教材を作る</h3>
-        <p>教材の形式は「動画」「スライドPDF」「テキストページ」の3種類が中心です。Traingoはこれらを組み合わせた1コースとしてまとめて配信できます。最初から完璧な動画を目指す必要はありません。まず既存の社内マニュアルや研修資料をスライド化・PDF化するだけでも、コースとして成立します。</p>
-        <p>動画は「スマートフォン＋三脚」で録った5〜10分の解説動画から始める企業が多いです。編集ソフトなしでも十分伝わる内容が作れます。「教える内容を1トピック1動画」に分けると、受講者が必要な箇所だけ繰り返し見やすくなり、理解度が上がります。</p>
-        <p>教材が完成したらTraingoにアップロードし、コースとして設定します。テスト（確認問題）や修了証の設定も同じ画面で行えます。最初に一度設定してしまえば、その後は受講者を招待するだけで運用が回ります。</p>
-      </div>
-
-      <div class="step-card">
-        <div class="step-num">STEP<br>3</div>
-        <h3>LMSで配信・受講管理する</h3>
-        <p>TraingoはLMS（学習管理システム）として、受講者ごとの進捗・修了状況をリアルタイムで管理します。管理者は誰がどこまで受講しているかをダッシュボードで確認でき、未受講者へのリマインドも一括で送ることができます。紙やExcelで管理していた受講記録の手間が大幅に減ります。</p>
-        <p>受講者はスマートフォン・タブレット・PCのいずれからでもアクセス可能です。隙間時間に少しずつ進められるため、店舗スタッフや外回りの営業担当など、パソコンを常時使わない層にも対応しやすいのが特徴です。</p>
-        <p>受講記録データはCSV形式でエクスポートできます。人材開発支援助成金を申請する際の「訓練実施記録」としてそのまま活用できるため、申請書類の作成工数を抑えられます。修了証は受講者が自分でダウンロードできる形式で自動発行されます。</p>
-      </div>
-
+    <div class="warning-box">
+      <p><strong>本ガイドの大前提：</strong>完璧なコースを作ろうとしないでください。多くの方がここで止まります。「もう少し内容を充実させてから」「音質が改善されたら」「スライドのデザインがよくなったら」。そうやって「もう少し」を繰り返しているうちに、半年・1年が過ぎてしまいます。今持っているものを最大限に整理して公開する。それが最初の一歩です。クレームや改善要望は、公開後に受け取ればいい。まず世に出すことが、すべてのスタートラインです。</p>
     </div>
-  </section>
-
-  <!-- Traingoでできること -->
-  <section class="section">
-    <h2>Traingoでできること</h2>
-    <p>Traingoが提供する主な機能は以下のとおりです。研修の設計から受講管理・助成金対応まで、一つのシステムで完結できます。</p>
-    <table class="func-table">
-      <thead>
-        <tr>
-          <th>機能</th>
-          <th>内容</th>
-          <th>助成金申請との関連</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>コース配信</strong></td>
-          <td>動画・PDF・テキストを組み合わせたコースを作成し、対象者に配信できます。公開範囲・公開期間の設定も可能です。</td>
-          <td><span class="func-badge">対象外</span></td>
-        </tr>
-        <tr>
-          <td><strong>受講管理</strong></td>
-          <td>受講者ごとの進捗・完了状況をリアルタイムで確認できます。未受講者への一括リマインドも管理画面から行えます。</td>
-          <td><span class="func-badge">活用可</span></td>
-        </tr>
-        <tr>
-          <td><strong>修了証の発行</strong></td>
-          <td>コース修了時に修了証を自動発行します。受講者が自分でダウンロードできるため、管理担当者の手間が省けます。</td>
-          <td><span class="func-badge">活用可</span></td>
-        </tr>
-        <tr>
-          <td><strong>受講記録エクスポート</strong></td>
-          <td>受講者・コース・受講日時・修了状況をCSV形式でダウンロードできます。助成金申請書類の根拠資料として使用できます。</td>
-          <td><span class="func-badge">直接活用</span></td>
-        </tr>
-        <tr>
-          <td><strong>進捗確認</strong></td>
-          <td>管理者ダッシュボードで全受講者の進捗を一覧表示します。部署・コース・期間でのフィルタリングが可能です。</td>
-          <td><span class="func-badge">活用可</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- 人材開発支援助成金との組み合わせ -->
-  <section class="section">
-    <h2>人材開発支援助成金との組み合わせ</h2>
-    <p>厚生労働省が所管する「人材開発支援助成金（事業展開等リスキリング支援コース）」は、eラーニングによる訓練も対象となることがあります。Traingoで配信するコースをこの助成金と組み合わせることで、研修コストの一部を助成金で賄えることがあります。</p>
-    <div class="subsidy-box">
-      <div class="subsidy-title">Traingoと助成金を組み合わせる主なポイント</div>
-      <ul class="subsidy-list">
-        <li>eラーニング形式の訓練も助成金の対象となることがあります（訓練計画の事前申請が必要）</li>
-        <li>助成率は中小企業で最大75%となることがあります（企業規模・コース内容により異なります）</li>
-        <li>Traingoの受講記録エクスポート機能で、訓練実施状況の証明書類を出力できます</li>
-        <li>修了証は受講者ごとに自動発行されるため、修了の証跡として活用できます</li>
-        <li>助成金の申請条件・対象コースの要件は年度・改定により変わることがあります。事前に管轄の労働局またはハローワークへご確認ください</li>
-      </ul>
-    </div>
-    <p style="margin-top:20px;font-size:14px;color:#555;">助成金の申請手続きやTraingoとの連携についてご不明な点は、お気軽にお問い合わせください。</p>
-  </section>
-
-  <!-- よくある質問 -->
-  <section class="section">
-    <h2>よくある質問（FAQ）</h2>
-    <div class="faq-list">
-
-      <div class="faq-item">
-        <div class="faq-q">
-          <div class="fq-icon">Q</div>
-          <div>Traingoを始めるのに、特別なITの知識は必要ですか？</div>
-        </div>
-        <div class="faq-a">
-          <div class="fa-icon">A</div>
-          <p>特別な技術知識は不要です。管理画面はブラウザで操作でき、コースの作成・受講者の招待・進捗確認まで直感的に行えます。設定に不明な点があればサポートにお問い合わせください。</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q">
-          <div class="fq-icon">Q</div>
-          <div>既存の社内資料（PowerPoint・Word・PDFなど）はそのまま使えますか？</div>
-        </div>
-        <div class="faq-a">
-          <div class="fa-icon">A</div>
-          <p>PDF形式でアップロードして教材として使用できます。PowerPointはPDF化してから登録する方法が最もスムーズです。動画と組み合わせてコースを構成することもできます。</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q">
-          <div class="fq-icon">Q</div>
-          <div>受講者はスマートフォンからでも受講できますか？</div>
-        </div>
-        <div class="faq-a">
-          <div class="fa-icon">A</div>
-          <p>はい。Traingoはスマートフォン・タブレット・PCいずれのブラウザからでも受講できます。専用アプリのインストールは不要です。店舗スタッフや現場作業員など、PCを常時使わない環境でも活用いただけます。</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q">
-          <div class="fq-icon">Q</div>
-          <div>助成金申請に必要な受講記録はどのように取得しますか？</div>
-        </div>
-        <div class="faq-a">
-          <div class="fa-icon">A</div>
-          <p>管理画面の「受講記録エクスポート」から、受講者名・コース名・受講日時・修了状況のデータをCSVでダウンロードできます。助成金申請の際に求められる訓練実施記録の根拠資料として使用できます。詳細な書式要件は申請先の労働局にご確認ください。</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q">
-          <div class="fq-icon">Q</div>
-          <div>導入後に操作方法が分からなくなったときのサポートはありますか？</div>
-        </div>
-        <div class="faq-a">
-          <div class="fa-icon">A</div>
-          <p>お問い合わせフォームよりサポートを受け付けています。コースの作成方法や受講管理の設定、助成金との連携に関するご質問など、お気軽にご連絡ください。</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CTAセクション -->
-  <section class="cta-section">
-    <h2>Traingoに関するご相談は</h2>
-    <p>コース設計の進め方・助成金との連携・導入後の運用など、ご不明な点はお気軽にお問い合わせください。</p>
-    <a href="https://fp-1.info/traingo/contact/" class="cta-btn" target="_blank" rel="noopener">お問い合わせ・無料相談はこちら</a>
-  </section>
-
-</div>
-
-<!-- フッター -->
-<footer class="custom-footer">
-  <div class="footer-inner">
-    <nav class="footer-nav">
-      <a href="https://fp-1.info/traingo/" target="_blank" rel="noopener">Traingo トップ</a>
-      <a href="https://fp-1.info/traingo/blog/" target="_blank" rel="noopener">Traingoブログ</a>
-      <a href="https://fp-1.info/traingo/contact/" target="_blank" rel="noopener">お問い合わせ</a>
-      <a href="https://fp-1.info/hojokin/" target="_blank" rel="noopener">補助金活用型経営</a>
-      <a href="https://fp-1.info/" target="_blank" rel="noopener">fp-1.info トップ</a>
-    </nav>
-    <div class="footer-copy">&copy; 2024 fp-1.info All Rights Reserved.</div>
   </div>
+</section>
+
+<!-- ===== 著者の実体験ストーリー ===== -->
+<section>
+  <div class="container">
+    <span class="section-tag">STORY</span>
+    <h2 class="section-title">なぜ私がオンラインコース・動画コンテンツをすすめるのか ― 実体験の話</h2>
+    <p class="section-desc">このガイドを書いている私（阿久津）が、なぜオンラインコースや動画コンテンツをすすめるのか。それには、私自身が独立後に経験した失敗と、そこから学んだことが深く関係しています。少し長くなりますが、この話を読んでいただくと、動画コンテンツがなぜこれほど重要なのかを理解してもらえると思います。</p>
+
+    <div class="step-card" style="border-left-color:var(--sky)">
+      <div class="step-number" style="background:var(--sky);font-size:14px">第1章</div>
+      <div class="step-content">
+        <h3>独立直後は順調だった――でも半年後に異変が起きた</h3>
+        <p>私が独立したのは2013年、今から10年以上前のことです。当時はFP（ファイナンシャルプランナー）として、保険代理店の仕事からスタートしました。独立当初は、これまでの知り合いや前職のお客様が応援してくれて、最初の半年間はびっくりするくらい順調でした。「このまま行けるかも」と思っていました。</p>
+        <p style="margin-top:10px">でも半年が経ったあたりで、異変を感じ始めました。そして1年後には「行くところがない」という状況になっていました。要するに、集客できなくなっていたんです。新規のお客様を獲得する手段がなく、既存のお客様のところを訪問し続けるしかない。100社ほどいた既存客も、1ヶ月で全員回ってしまうくらいの数しかいませんでした。</p>
+        <p style="margin-top:10px">毎日、ネットカフェに入り浸っては「集客方法」「保険営業 見込み客発見」などで検索して、無料コンテンツを読みあさる。テレアポをしては留守番電話に切られ、飛び込み営業をしては相手にされない。そんな毎日を送っていました。</p>
+      </div>
+    </div>
+
+    <div class="step-card" style="border-left-color:var(--green);margin-top:20px">
+      <div class="step-number" style="background:var(--green);font-size:14px">第2章</div>
+      <div class="step-content">
+        <h3>「整理された動画には、説得力がある」という発見</h3>
+        <p>そんなある日、既存のお客様のところを訪問した際に、ある質問を受けました。私はその場で答えましたが、少しわかりにくかったかなと思ったので、帰宅後にその内容を補足した動画を作ってYouTubeに限定公開でアップし、お客様に送りました。</p>
+        <p style="margin-top:10px">するとそのお客様が、月額10万円のコンサルティングサービスと金融商品（保険）を同時に契約してくれたんです。驚いて「なぜ買ってくれたのか」と聞くと、「整理された動画には説得力がある。わかりやすかったし、シンプルだったからこの方法を選んだ」と言ってくれました。</p>
+        <p style="margin-top:10px">次の日も別のお客様のところに行き、資金繰りの相談を受けました。その内容も動画にまとめて送ったところ、「この間言ってた解決策、あれで行きたい」とオファーしてくれました。理由を聞いたら「整理された動画には説得力があるね」と。2人のお客様が、全く同じ言葉を使ってくれたんです。</p>
+        <p style="margin-top:10px">これが私の、動画コンテンツへの確信の原点です。「整理された動画には説得力がある」――この言葉は、今でも私の活動の根幹にあります。</p>
+      </div>
+    </div>
+
+    <div class="step-card" style="border-left-color:var(--amber);margin-top:20px">
+      <div class="step-number" style="background:var(--amber);color:#1a1a2e;font-size:14px">第3章</div>
+      <div class="step-content">
+        <h3>プラットフォームの力を借りることの発見</h3>
+        <p>動画の効果を実感してから、私は次のステップとして「ここなら（ coconala）」というプラットフォームに出品することを始めました。「社長の社会保険料を削減する方法 診断・個別相談」という商品を6,000円で出したところ、毎月4〜5本売れるようになりました。金額にすると3万円程度ですが、重要なのはそれだけではありませんでした。</p>
+        <p style="margin-top:10px">その診断を受けてくれた人に対して、動画でフォローアップをするという同じ方法を続けたところ、10万円〜30万円のコンサルティングサービスが売れるようになっていったんです。プラットフォームが見込み客を集めてくれて、動画が信頼を作ってくれる。この仕組みが機能し始めました。</p>
+        <p style="margin-top:10px">その後、Udemyというプラットフォームも同じ仕組みで動いています。学びたい人が集まっているプラットフォームで、整理されたコンテンツを提供する。プラットフォームの認知度が上がれば上がるほど、さらに多くの人が集まってくる。この発想は、10年以上前の私が取った発想と全く同じです。そして今でもその仕組みは機能しています。</p>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:24px">
+      <p>「整理された動画には、説得力がある」。これが、私がオンラインコースや動画コンテンツをすすめる理由のすべてです。あなたにも、この体験をしてほしいと思っています。最初の1本を出した瞬間から、何かが変わり始めます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STEP 1 アイデア ===== -->
+<section class="bg-light">
+  <div class="container">
+    <span class="section-tag">STEP 1</span>
+    <h2 class="section-title">アイデアを決める ― 売れるコースと売れないコースの分岐点</h2>
+    <p class="section-desc">オンラインコースを作る上で、最初のステップであり、実は最も重要なステップがこの「アイデアを決める」という段階です。どんなに丁寧に作られたコースでも、需要のないジャンルで出してしまえば誰にも届きません。逆に、そこそこのクオリティのコースでも、需要の高いジャンルで出せば売れることがあります。アイデア選びはコースの成否を大きく左右するため、焦らずしっかり取り組んでください。</p>
+    <p class="section-desc" style="margin-top:-20px">ただし、「完璧なアイデアを見つけてから」と言っていると、いつまでも動けません。このステップの目標は「完璧なアイデアを見つけること」ではなく、「まず1本作るのに十分なアイデアを見つけること」です。この違いを頭に入れておいてください。</p>
+
+    <div class="highlight-box">
+      <p>売れるコースと売れないコースの最大の違いは、「見込み客が求めているジャンルかどうか」にほぼ集約されます。あなた自身が得意・好きと思っていても、その分野に需要がなければ届きません。反対に、需要のあるジャンルで自分なりの切り口を持てれば、それだけで大きな強みになります。</p>
+    </div>
+
+    <!-- Udemy需要確認SVG -->
+    <div class="svg-area">
+      <div class="svg-title">アイデア選定プロセス ― ニーズと自分の強みの交差点を見つける</div>
+      <svg viewBox="0 0 700 200" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <!-- 左円：あなたの強み -->
+        <circle cx="240" cy="100" r="90" fill="#1a3a8f" fill-opacity=".12" stroke="#1a3a8f" stroke-width="2"></circle>
+        <text x="185" y="85" font-size="14" font-weight="700" fill="#1a3a8f">あなたの</text>
+        <text x="185" y="103" font-size="14" font-weight="700" fill="#1a3a8f">強み・知識</text>
+        <text x="190" y="125" font-size="11" fill="#374151">好きなこと</text>
+        <text x="190" y="140" font-size="11" fill="#374151">趣味・得意</text>
+        <text x="190" y="155" font-size="11" fill="#374151">成功体験</text>
+        <!-- 右円：市場ニーズ -->
+        <circle cx="460" cy="100" r="90" fill="#0ea5e9" fill-opacity=".12" stroke="#0ea5e9" stroke-width="2"></circle>
+        <text x="488" y="85" font-size="14" font-weight="700" fill="#0ea5e9">市場の</text>
+        <text x="472" y="103" font-size="14" font-weight="700" fill="#0ea5e9">ニーズ・需要</text>
+        <text x="480" y="125" font-size="11" fill="#374151">Udemy検索</text>
+        <text x="476" y="140" font-size="11" fill="#374151">Googleトレンド</text>
+        <text x="478" y="155" font-size="11" fill="#374151">Amazon書籍</text>
+        <!-- 中央：交差点 -->
+        <circle cx="350" cy="100" r="50" fill="#f59e0b" fill-opacity=".2" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,3"></circle>
+        <text x="350" y="95" text-anchor="middle" font-size="13" font-weight="800" fill="#92400e">ここが</text>
+        <text x="350" y="112" text-anchor="middle" font-size="13" font-weight="800" fill="#92400e">勝ち筋</text>
+        <!-- ラベル -->
+        <text x="350" y="185" text-anchor="middle" font-size="12" fill="#6b7280">強みと需要が重なる領域 ＝ 売れるコースのテーマ</text>
+      </svg>
+    </div>
+
+    <h3 style="font-size:18px;font-weight:800;margin:32px 0 16px;color:var(--dark)">4タイプ別 ― あなたはどのタイプ？</h3>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-number">A</div>
+        <div class="step-content">
+          <h3>仕事を楽にしたい（先生・代行業の方）</h3>
+          <p>先生と呼ばれる立場の方や、何かを代行する仕事をしている方によく見られるパターンです。忙しくて時間が取れないのに、さらに仕事を増やしたい。でもどうやって増やせばいいのかわからない。そういう状況で行き詰まっている方に、オンラインコースは非常に有効な手段になります。</p>
+          <p style="margin-top:10px">過去の仕事の中に、コースの素材はすでに揃っています。何年も同じ質問をお客様から受けてきたなら、その答えをまとめればコースになります。同じ手順を何十回も繰り返してきたなら、その手順を動画にすればコースになります。ゼロから考える必要はなくて、これまでやってきたことを「整理して動画にする」だけでいいんです。</p>
+          <ul class="step-ul">
+            <li>創業融資を500万円獲得した経験 → 「創業融資の流れと書類作成ガイドブック」コース</li>
+            <li>ホームページ制作代行をしている → 「自分でできるHP構築マニュアル」コース</li>
+            <li>許認可申請を多数手がけている → 「○○許可 自分で申請するためのマニュアル」コース</li>
+            <li>コンサルティングで使っているテンプレート → そのままコース教材に転用</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">B</div>
+        <div class="step-content">
+          <h3>成約率を上げたい（個別相談・コンサル系）</h3>
+          <p>個別相談を経て契約する仕事をしている方は、「断られる理由」をコース化することで成約率を上げることができます。なぜ断られるかというと、多くの場合は「情報不足」が原因です。あなたのことをよく知らない、サービスの内容がイメージできない、費用対効果が見えない。こういったモヤモヤを、個別相談の前にコースで解消しておくことができます。</p>
+          <p style="margin-top:10px">個別相談に来てくれた時点で、すでにコースを見てくれていれば、ある程度の信頼関係ができた状態でスタートできます。「あなたの話を聞きたいから来た」という状態になるわけです。これは成約率に大きく影響します。また、こういったコースを作ると、意外な副産物があります。ターゲットが顧客だったのに、同業者も受講者になることがあるんです。私自身も、補助金の情報を提供するコンテンツを出していたら、受講者の3割近くが同業者だったという経験があります。それがパートナー獲得の入口になったこともあります。</p>
+          <ul class="step-ul">
+            <li>本命サービスの一部をコース化して「理解を深める」ステップを作る</li>
+            <li>自社で活用しているテンプレートや手順を解説するコース → 信頼の醸成</li>
+            <li>成約後に「必ず知ってほしいこと」をまとめたコース → 事前教育でクレーム減少</li>
+          </ul>
+          <div class="success-box" style="margin-top:12px">
+            <p>同業者も受講者になる可能性があります。ターゲットを集めていたら、実は同業者が3割いた――というケースも。パートナー獲得の入口にもなります。</p>
+          </div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">C</div>
+        <div class="step-content">
+          <h3>認知度を上げたい（開業・新規事業）</h3>
+          <p>開業したての方や新規事業を始める方にとって、最初に直面する壁は「誰にも知られていない」ということです。良い商品・サービスを持っていても、知られていなければ売れません。そこで多くの方がSNS発信やブログ運営を始めますが、それだけでは認知度がなかなか上がらないという現実があります。</p>
+          <p style="margin-top:10px">オンラインコースをUdemyのようなプラットフォームで出すと、プラットフォーム側がすでに学びたい人を集めてくれています。あなたは「良いコース」を作れば、プラットフォームが見込み客を運んできてくれるわけです。これは認知度ゼロからでもスタートできるという意味で、非常に強力な仕組みです。また、動画という媒体の特性上、テキストや音声よりも信頼関係が築きやすいです。「動画を見て知り合いみたいな感覚になった」という経験をした方は多いと思います。オンラインコースは、その信頼醸成を体系的にできる場所です。</p>
+          <ul class="step-ul">
+            <li>人が商品を買うために必要な要素（信頼・内容理解・価格感）を動画でまるごと提供できる</li>
+            <li>コースを見た時点で「この人から買いたい」という状態を作ることができる</li>
+            <li>業種を問わず活用可能（製造業・建設業・飲食業・士業など）</li>
+            <li>YouTubeより体系的に学べるため、受講者の満足度が高く、口コミが生まれやすい</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">D</div>
+        <div class="step-content">
+          <h3>ゼロスタート（完全はじめて・アイデアがない方）</h3>
+          <p>「自分には教えられることなんて何もない」と思っている方は非常に多いです。でも、それは本当でしょうか？あなたが当たり前にできることを、できない人はたくさんいます。あなたが過去に苦労して身につけたことを、今まさに同じ状況で困っている人がいます。「教えられることがない」のではなく、「自分の知識の価値に気づいていない」だけのことがほとんどです。</p>
+          <p style="margin-top:10px">以下の切り口で、思いつくものを付箋やメモ帳に書き出してみてください。1項目につき5〜10個ずつ書き出すと、必ず何かしら「これは話せそう」というものが見えてきます。まず書き出すことから始めてください。選ぶのはその後でいいです。</p>
+          <table>
+            <tbody><tr><th>切り口</th><th>具体例</th></tr>
+            <tr><td>好きなこと・趣味</td><td>料理・DIY・写真・音楽・ゲームなど</td></tr>
+            <tr><td>得意分野・専門知識</td><td>資格・業務経験・ノウハウ・業界知識</td></tr>
+            <tr><td>成功体験</td><td>節約・副業・転職・資格取得・起業・ダイエットなど</td></tr>
+            <tr><td>○○の作り方</td><td>Excel活用術・プレゼン資料・企画書・動画編集</td></tr>
+            <tr><td>○○の使い方</td><td>ChatGPT・Notion・デザインツール・スマホアプリ</td></tr>
+            <tr><td>最新版アップデート</td><td>旧コースの画面が変わったものを新版として作成</td></tr>
+          </tbody></table>
+          <p style="margin-top:12px">「完璧なテーマを選ばなければ」と考える必要はありません。まず1本作ってみることが最優先です。作ってみて初めてわかることが、必ずあります。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="svg-area" style="margin-top:32px">
+      <div class="svg-title">Udemyでの需要確認フロー</div>
+      <svg viewBox="0 0 700 110" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+            <path d="M0,0 L0,7 L7,3.5 z" fill="#0ea5e9"></path>
+          </marker>
+        </defs>
+        <rect x="10" y="25" width="130" height="60" rx="10" fill="#eff6ff" stroke="#1a3a8f" stroke-width="1.5"></rect>
+        <text x="75" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#1a3a8f">①キーワードで</text>
+        <text x="75" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#1a3a8f">Udemy検索</text>
+        <line x1="141" y1="55" x2="155" y2="55" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arr2)"></line>
+        <rect x="157" y="25" width="130" height="60" rx="10" fill="#eff6ff" stroke="#1a3a8f" stroke-width="1.5"></rect>
+        <text x="222" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#1a3a8f">②件数・ベストセラー</text>
+        <text x="222" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#1a3a8f">バッジを確認</text>
+        <line x1="288" y1="55" x2="302" y2="55" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arr2)"></line>
+        <rect x="304" y="25" width="130" height="60" rx="10" fill="#eff6ff" stroke="#1a3a8f" stroke-width="1.5"></rect>
+        <text x="369" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#1a3a8f">③レビューで</text>
+        <text x="369" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#1a3a8f">不満・ニーズを確認</text>
+        <line x1="435" y1="55" x2="449" y2="55" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arr2)"></line>
+        <rect x="451" y="25" width="130" height="60" rx="10" fill="#eff6ff" stroke="#1a3a8f" stroke-width="1.5"></rect>
+        <text x="516" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#1a3a8f">④差別化ポイントを</text>
+        <text x="516" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#1a3a8f">メモして絞り込む</text>
+        <line x1="582" y1="55" x2="596" y2="55" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arr2)"></line>
+        <rect x="598" y="20" width="94" height="70" rx="10" fill="#10b981"></rect>
+        <text x="645" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">テーマ</text>
+        <text x="645" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">確定！</text>
+      </svg>
+    </div>
+
+    <h3 style="font-size:18px;font-weight:800;margin:32px 0 16px;color:var(--dark)">需要確認で特に大切なこと ― レビューを読む</h3>
+    <p style="color:var(--mid);font-size:15px;line-height:1.9;margin-bottom:16px">Udemyでの需要確認において、検索結果の件数や受講者数を確認するだけでなく、実際のレビューを読むことが非常に重要です。同じジャンルのコースのレビューを読むと、受講者が何を求めていて、何に満足していて、何に不満を感じているのかが直接わかります。</p>
+    <p style="color:var(--mid);font-size:15px;line-height:1.9;margin-bottom:16px">星5つのレビューには「ここが良かった」という情報が、星1〜2つのレビューには「ここが物足りなかった」「ここがわからなかった」という情報が詰まっています。星1〜2つのレビューは、あなたのコースが解決すべき課題のリストとして読むことができます。「カリキュラムの作り方のところが曖昧でした」というレビューがあれば、あなたはカリキュラム作りを詳しく解説することで差別化できます。「具体的な事例がもっと欲しかった」というレビューがあれば、具体的な事例を豊富に入れることで評価を高められます。</p>
+    <p style="color:var(--mid);font-size:15px;line-height:1.9;margin-bottom:16px">また、Udemyだけでなく、Amazon（書籍のレビュー）・Instagram・YouTube・X（旧Twitter）のコメントなども、受講者・読者が何を求めているかを知るための情報源になります。複数のプラットフォームで同じようなニーズが見えてくれば、そこに確かな需要があると判断できます。</p>
+    <div class="warning-box">
+      <p><strong>注意点：</strong>需要調査にはまりすぎないようにしてください。調査すればするほど完璧なアイデアを求めたくなりますが、答えは実際に出してみないとわかりません。調査は「大きな方向性を確認する」ための作業です。大きく外れていなければ、まず1本出してみることが最優先です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STEP 2 カリキュラム ===== -->
+<section>
+  <div class="container">
+    <span class="section-tag">STEP 2</span>
+    <h2 class="section-title">カリキュラムを作る ― 「見てもらえる」構成の作り方</h2>
+    <p class="section-desc">アイデアが決まったら、次は「何を、どの順番で話すか」を組み立てる段階です。これがカリキュラムです。カリキュラム作りは単なる「目次作り」ではありません。受講者が最後まで見てくれるかどうかを大きく左右する、非常に重要な設計作業です。</p>
+    <p class="section-desc" style="margin-top:-20px">オンラインコース運営には不都合な真実があります。それは「買ってくれたのに、見てくれない」という現象が、必ず一定数発生するということです。本を買ったけど読んでいない、という経験はどなたでもあるはずです。オンラインコースでも全く同じことが起きます。しかも、これはやる気の問題ではなく、カリキュラムの設計と、受講者との「動機のつなぎとめ方」の問題であることがほとんどです。この問題に対応するカリキュラムを作れるかどうかが、コースの将来を大きく左右します。</p>
+
+    <div class="warning-box">
+      <p><strong>知っておくべき現実：</strong>無料のオンラインセミナーでも、参加登録者のうち実際に参加するのは60〜70%程度と言われています。場合によっては半分を下回ることもあります。有料のコースを購入してくれた方でも、同様の離脱は必ず起きます。「買ってもらえた＝見てもらえる」ではないということを前提に、カリキュラムを設計する必要があります。「ログインしたくなる」「見続けたくなる」仕掛けをカリキュラムの中に意図的に組み込むことが、完走率を上げるための核心です。</p>
+    </div>
+
+    <h3 style="font-size:18px;font-weight:800;margin:32px 0 16px">受講者の頭の中にある6つのハテナを取り除く</h3>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>なぜこのコースが自分に必要なのかを、何度もリマインドする</h3>
+          <p>人間は忘れる生き物です。コースを購入した瞬間は「これを学んで○○したい」という明確な動機があったはずですが、1週間後には購入したことすら忘れてしまうことがあります。これはやる気がないのではなく、忙しい日常に埋もれてしまうだけです。だからこそ、カリキュラムの随所に「このコースで何が得られるか」「なぜあなたにとってこれが重要なのか」を繰り返し伝える必要があります。</p>
+          <p style="margin-top:10px">特に「はじめに」のセクションがこの役割の核心を担います。単なる自己紹介で終わらせてはいけません。「このコースを受講することで、あなたのどんな課題がどう解決されるのか」「受講後にあなたの生活・仕事はどう変わるのか」を具体的に伝えることが、最後まで受講してもらうための最大の鍵です。</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>受講者が「知りたい順番」でカリキュラムを組む</h3>
+          <p>教える側が「論理的に正しい順番」と思う順番と、受講者が「知りたい順番」は必ずしも一致しません。例えば、「全体の理論を先に理解してから実践」という順番は、教える側からすると論理的です。でも多くの受講者は「早く実際にやってみたい」という気持ちを持っています。理論だけが続くと、途中で「これ、自分には難しすぎる」「いつになったら実践できるのか」という感覚になってしまいます。</p>
+          <p style="margin-top:10px">ポイントは「受講者が今一番知りたいことを先に出す」ということです。最初の数本のレクチャーで「おお、なるほど」という感覚を持ってもらえれば、続きを見てくれる可能性が大幅に上がります。また、各レクチャーの冒頭で「このパートでは○○がわかるようになります」と宣言することで、受講者は目的を持って視聴できます。</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>音質・画質の環境品質を最低限確保する</h3>
+          <p>音が悪いと、どんなに内容が良くても離脱されます。これは本当に重要なポイントです。私が実際に経験したことがあります。5万円のセミナーに参加したのですが、オンラインとオフラインのハイブリッド形式で、オンライン参加者への音声が会議室の反響音でひどい状態でした。内容は価値があったはずなのに、音が聞き取りにくすぎて途中で退出してしまいました。その後、その会社からは何も買いませんでした。音質が悪いだけで、受講者との関係が完全に切れてしまうんです。</p>
+          <p style="margin-top:10px">カメラは最初はスマートフォンで大丈夫です。でもマイクだけは、3,000〜5,000円の投資をしてください。USB接続で使えるコンデンサーマイクなど、安価なものでもスマートフォンの内蔵マイクとは全く違う音質で収録できます。この投資だけで、受講者の体験が劇的に改善します。</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>一つずつ達成感が生まれる「ベビーステップ」で設計する</h3>
+          <p>受講者の本当の目的は「情報を得ること」ではなく「結果を出すこと」です。「このコースを見終えた後に何かが変わった」「自分でできるようになった」という体験が、リピートや口コミにつながります。そのためには、各レクチャーを「この動画を見れば一つ前進できる」という単位で設計することが重要です。</p>
+          <p style="margin-top:10px">1本のレクチャーが長すぎると、「まだ終わらない」という感覚になって離脱につながります。目安は5〜15分程度です。それよりも長くなる場合は、複数のレクチャーに分割することをおすすめします。「短い動画を1本見終えた」という小さな達成感の積み重ねが、最後まで受講してもらうための仕組みです。初心者の方は特に、「わからない」と感じた瞬間に止まってしまいます。専門用語はできるだけ避けて、ひとつのことを説明したら次に進む設計を心がけてください。</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px;font-weight:800;margin:32px 0 16px">カリキュラムの基本テンプレート</h3>
+    <table>
+      <tbody><tr><th>パート</th><th>内容</th><th>役割</th></tr>
+      <tr><td><strong>セクション0：はじめに</strong></td><td>このコースの目的・誰向けか・なぜあなたが教えるのか・ストーリー</td><td>動機づけ・期待感の醸成</td></tr>
+      <tr><td><strong>セクション1〜N：本編</strong></td><td>ステップ1→ステップ2→…の順に構成。各ステップは短く・具体的に</td><td>知識・スキルの習得</td></tr>
+      <tr><td><strong>各ステップの冒頭</strong></td><td>「このパートで何ができるようになるか」を必ず明示</td><td>期待感の維持・離脱防止</td></tr>
+      <tr><td><strong>ボーナスレクチャー</strong></td><td>応用・次のステップへの案内・おすすめリソース</td><td>アップセル・リピート促進</td></tr>
+    </tbody></table>
+
+    <div class="highlight-box" style="margin-top:24px">
+      <p>カリキュラムを作るとき、私が特に大切にしているのは「はじめに」のセクションです。オンラインコースでは、この最初のセクションで受講者の心をつかめるかどうかが、最後まで見てもらえるかどうかを大きく左右します。「はじめに」は単なる自己紹介の場ではなく、「なぜこのコースを受講すべきなのか」「このコースを受講することで自分はどう変わるのか」を伝える、最も重要なパートです。ここでしっかり動機づけができれば、受講者は続きを見たくなります。</p>
+    </div>
+
+    <p style="color:var(--mid);font-size:15px;line-height:1.9;margin-top:24px">また、カリキュラムは一度作ったら変えられないものではありません。実際に公開してみて、受講者から「ここがわからなかった」「この順番では理解しにくかった」という声が来たら、どんどん改善していけばいいんです。最初から完璧なカリキュラムを作ろうとするより、まず出してみてフィードバックをもらいながら育てていく方が、結果的に良いコースができあがります。</p>
+  </div>
+</section>
+
+<!-- ===== STEP 3〜5 ===== -->
+<section class="bg-light">
+  <div class="container">
+    <span class="section-tag">STEP 3 〜 5</span>
+    <h2 class="section-title">台本・スライド・収録・公開 ― 実行フェーズのポイント</h2>
+    <p class="section-desc">カリキュラムが決まったら、いよいよ実際にコンテンツを作る段階に入ります。ここで多くの方がつまずくのが「完璧にしようとして手が止まる」という状況です。台本も、スライドも、収録環境も、最初から完璧にする必要はありません。まず形にして出す。そのマインドを持つことが、この段階を乗り越える最大の鍵です。</p>
+
+    <div class="two-col">
+      <div class="point-card">
+        <h4><span class="point-icon">3</span>台本・スライドの作り方</h4>
+        <p>台本は、話す内容を事前に整理したものです。完璧な原稿を書こうとすると、書くことに時間がかかりすぎて前に進めません。箇条書きレベルのメモと、スライドに書いたキーワードで十分です。実際に話しながら収録してみると、思ったよりも自然に話せることが多いです。</p>
+        <p style="margin-top:10px">スライドはシンプルに作るのが正解です。1枚のスライドに情報を詰め込みすぎると、受講者は「どこを見ればいいかわからない」という状態になります。1スライドに1つのメッセージだけを伝える、という原則を守るだけで、格段にわかりやすいスライドになります。ツールはPowerPoint・Keynote・Canvaのどれでも構いません。慣れているものを使ってください。</p>
+        <ul class="step-ul" style="margin-top:12px">
+          <li>スライド作成はPowerPoint・Keynote・Canvaで十分（慣れているものを使う）</li>
+          <li>1スライド＝1メッセージ（情報を詰め込まない）</li>
+          <li>難しい専門用語はできるだけ避け、初心者でもわかる言葉で説明する</li>
+          <li>背景は白か薄い色、文字は大きめが読みやすい</li>
+        </ul>
+      </div>
+      <div class="point-card">
+        <h4><span class="point-icon">4</span>収録・編集の現実的なアプローチ</h4>
+        <p>収録環境への投資は最小限でスタートして大丈夫です。カメラは最初はスマートフォンで十分です。ただし、マイクだけは少し投資することをおすすめします。音が悪いと、受講者はどんなに内容が良くても離脱してしまいます。3,000円〜5,000円台のUSBマイクでも、スマートフォンの内蔵マイクとは全く違う音質で収録できます。これは本当に効果がある投資です。</p>
+        <p style="margin-top:10px">編集については、最初から凝った編集をしようとするとものすごく時間がかかります。まずはカット編集（余計な間や言い間違いを切る）だけで十分です。テロップや効果音は、コースが軌道に乗ってから追加していけばいい話です。初心者向けの画面収録・編集ツール（CamtasiaやScreenFlowなど）を使えば、動画編集未経験でも30分〜1時間程度で1本仕上げることができます。</p>
+        <ul class="step-ul" style="margin-top:12px">
+          <li>カメラはスマートフォンで十分・マイクは3,000〜5,000円台のものに投資</li>
+          <li>カット編集のみで最初は十分（テロップ・BGM・効果音は後から追加）</li>
+          <li>画質より音質を優先（音が悪いと離脱確率が急上昇する）</li>
+          <li>Camtasia・ScreenFlowなど初心者向けツールで時間を大幅に短縮できる</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="point-card" style="margin-top:8px">
+      <h4><span class="point-icon">5</span>Udemyへの公開 ― 審査のポイントと紹介ページの作り込み</h4>
+      <p style="margin-bottom:12px">コースができたら、いよいよUdemyへの公開です。Udemyでは公開前に審査があります。審査に落ちるのは、ほとんどの場合が「音質・画質が基準以下」か「コースの内容説明が不十分」のどちらかです。以下のポイントを押さえておけば、審査で詰まることはほとんどありません。</p>
+      <p style="margin-bottom:16px">また、公開後に受講生を増やすためには、コース紹介ページの作り込みが非常に重要です。受講生はコース一覧の中からあなたのコースを選ぶわけですが、その時に判断材料になるのが紹介ページです。タイトル・説明文・プロフィール・レビュー数が揃っているほど、クリックしてもらいやすくなります。</p>
+      <div class="two-col">
+        <div>
+          <p style="font-weight:700;color:var(--blue);margin-bottom:8px;font-size:14px">審査通過のポイント</p>
+          <ul class="step-ul">
+            <li>プロモーション動画（コース紹介動画・2分程度）を必ず作成する</li>
+            <li>各レクチャーは5〜15分程度が理想（長すぎると離脱される）</li>
+            <li>音質・画質がUdemyの最低基準を超えていること</li>
+            <li>コースの目的・対象者・受講前の前提条件が明確に記載されていること</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:700;color:var(--blue);margin-bottom:8px;font-size:14px">紹介ページの作り込みポイント</p>
+          <ul class="step-ul">
+            <li>タイトルに受講者が検索するキーワードを含める</li>
+            <li>「このコースで何ができるようになるか」を箇条書きで5〜8項目明示する</li>
+            <li>対象者・前提知識・取得できるスキルを具体的に書く</li>
+            <li>プロフィール写真・講師の実績・ストーリーを充実させて信頼感を出す</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== マネタイズ・継続 ===== -->
+<section>
+  <div class="container">
+    <span class="section-tag">STEP 6 〜 7</span>
+    <h2 class="section-title">公開後のマネタイズ ― コースを作り続けて資産を積み上げる</h2>
+    <p class="section-desc">1本目を公開したら、そこからがスタートです。コースは公開した瞬間から「資産」として動き始めます。受講生の声を集め、改善を重ね、関連コースを追加していくことで、コースの価値はどんどん高まっていきます。ここでは、公開後にどのようにコースを育て、マネタイズしていくかをお伝えします。</p>
+
+    <div class="steps">
+      <div class="step-card" style="border-left-color:var(--amber)">
+        <div class="step-number" style="background:var(--amber);color:#1a1a2e">拡</div>
+        <div class="step-content">
+          <h3>受講生の声を集めてコースを育てる</h3>
+          <p>コースを公開すると、受講生からさまざまな声が届くようになります。「ここの説明がわかりにくかった」「この部分をもっと詳しく知りたい」「こんなケースにも対応してほしい」。最初のうちはこういった声が少し辛く感じることもあるかもしれませんが、実はこれが非常に貴重な情報です。</p>
+          <p style="margin-top:10px">受講生の声をもとに追加レクチャーを加えたり、説明が不足している部分を補ったりすることで、コースの品質がどんどん上がっていきます。0からコースを作るより、既存のコースに追加する方がはるかに簡単です。また、「ツールの画面が変わって古くなった」という場合も、最新版として更新・再公開することができます。最新版として再公開すると、新しいお客さんに見つけてもらいやすくなることもあります。</p>
+          <ul class="step-ul">
+            <li>受講生のレビューや質問から、次に追加すべき内容のヒントを拾う</li>
+            <li>「ツールの最新版に対応してほしい」→ 最新版として更新・再公開</li>
+            <li>関連テーマのコースを横展開して、コースシリーズを作る</li>
+            <li>受講者数・レビュー数が増えるほど、新しい受講者が集まりやすくなる</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-card" style="border-left-color:var(--green)">
+        <div class="step-number" style="background:var(--green)">活</div>
+        <div class="step-content">
+          <h3>コースを本業・既存事業につなげてマネタイズする</h3>
+          <p>オンラインコースは、Udemyで売れたら終わりではありません。むしろ、既存の事業に組み合わせることで、さらに大きな効果を発揮することができます。作ったコースを「集客の入口」として使う方法と、「成約率を上げるツール」として使う方法の両方があります。</p>
+          <p style="margin-top:10px">集客の面では、Udemyというプラットフォームが学びたい人を集めてくれているので、認知度ゼロの状態でも見込み客と接点を作ることができます。コースを受講してくれた人が「もっと深く学びたい」「個別でサポートしてほしい」と思ったときに、あなたの本命サービスに誘導する動線を作っておくことができます。成約率の面では、コースを事前に見てくれた人は、あなたの話し方・考え方・人柄をある程度理解した状態で来てくれます。対面したときには「知り合い」に近い感覚で話せるので、信頼関係の構築が非常に早くなります。</p>
+          <div class="two-col" style="margin-top:16px">
+            <div style="background:var(--bg);border-radius:10px;padding:16px">
+              <p style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:8px">集客への活用パターン</p>
+              <p style="font-size:14px;color:var(--mid)">プラットフォームが見込み客を集めてくれる。コース経由で本命サービスへの問い合わせにつなげる動線を設計する。</p>
+            </div>
+            <div style="background:var(--bg);border-radius:10px;padding:16px">
+              <p style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:8px">成約率向上への活用パターン</p>
+              <p style="font-size:14px;color:var(--mid)">断りの理由を事前にコースで解消する。個別相談に来た時点では「知り合い」状態になっており、成約率が大幅に上がる。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:32px">
+      <p>海外（英語圏）では同ジャンルのUdemyコースが日本の10倍以上売れているケースも珍しくありません。日本語コースはまだ競合が少ない今が、先に参入するチャンスです。まず1本出す。それだけで、何もしていない人との間に大きな差がつきます。</p>
+    </div>
+
+    <h3 style="font-size:18px;font-weight:800;margin:40px 0 16px;color:var(--dark)">コースを作り続けるための4つの戦略</h3>
+    <p style="color:var(--mid);font-size:15px;line-height:1.9;margin-bottom:20px">1本目のコースを出したら、次は2本目、3本目と作り続けていくことがコース資産を積み上げる鍵です。でも「次は何を作ればいいのか」と悩む方も多いです。以下の4つの視点で考えると、次のコースのアイデアが自然と浮かんでくるようになります。</p>
+
+    <div class="steps">
+      <div class="step-card" style="border-left-color:var(--sky)">
+        <div class="step-number" style="background:var(--sky)">拡</div>
+        <div class="step-content">
+          <h3>受講者の要望から「追加コース」を作る</h3>
+          <p>1本目のコースを公開すると、受講者からさまざまな質問や要望が届くようになります。「このツールの使い方も教えてほしい」「このトピックについてもっと詳しく知りたい」などの声は、そのまま次のコースのテーマになります。0から考える必要がなく、しかも需要が確認済みの状態でコースを作れるので、2本目以降は1本目より格段に楽に作ることができます。また、1本目のコース受講者は、関連した2本目のコースにも興味を持つ可能性が高いため、販売しやすいという利点もあります。</p>
+        </div>
+      </div>
+      <div class="step-card" style="border-left-color:var(--sky)">
+        <div class="step-number" style="background:var(--sky)">更</div>
+        <div class="step-content">
+          <h3>「最新版」として既存コースをアップデートする</h3>
+          <p>ツールやサービスの画面・機能は頻繁に変わります。Teachable（オンラインコース作成ツール）やCanva、ChatGPTなど、毎年のように大きなアップデートがあります。古いコースは「画面が違う」という理由でレビューが下がったり、新しい受講者が購入を躊躇することがあります。そこで「2024年最新版」「2025年対応版」として同じテーマで新しいコースを出すと、既に競合がいるジャンルでも「最新情報を提供できる」という差別化が生まれます。古いコースのレビューを見て「画面が違ってわかりにくかった」という声があれば、最新版を出すタイミングです。</p>
+        </div>
+      </div>
+      <div class="step-card" style="border-left-color:var(--sky)">
+        <div class="step-number" style="background:var(--sky)">横</div>
+        <div class="step-content">
+          <h3>関連ツールや補完テーマで横展開する</h3>
+          <p>1本目のコースと関連する別のテーマや、使用するツールの使い方をコース化することができます。例えば、「オンラインコースの作り方」というコースを出したなら、「Camtasiaの使い方」「PowerPointでスライドを作る方法」「UdemyのSEO対策」など、関連するテーマのコースを横展開できます。これらのコースは互いに関連しているため、一つを受講した人が別のコースも受講してくれやすいという特性があります。コースシリーズ化することで、一人の受講者から複数回の購入が期待できるようになります。</p>
+        </div>
+      </div>
+      <div class="step-card" style="border-left-color:var(--sky)">
+        <div class="step-number" style="background:var(--sky)">海</div>
+        <div class="step-content">
+          <h3>海外の人気コースを参考にする</h3>
+          <p>UdemyのUIを英語に切り替えて、自分のジャンルで検索してみてください。日本語では1,900件だったコースが、英語では1万件以上になることがあります。海外で人気のコースには、日本ではまだ需要が満たされていないテーマが含まれていることがあります。英語のコースタイトルや内容を参考に、「これは日本語版が作れないか」という視点で見ていくと、新しいコースのアイデアが見つかることがあります。海外で大きな需要があるのに日本語版がほぼない、というジャンルがまだまだ存在します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== よくある不安 ===== -->
+<section class="bg-light">
+  <div class="container">
+    <span class="section-tag">FAQ</span>
+    <h2 class="section-title">コースを作る前の不安 ― よくある質問と答え</h2>
+    <p class="section-desc">「自分にできるのか」「売れるのか」「批判が怖い」。オンラインコースを初めて作ろうとしたとき、こういった不安を感じるのはごく自然なことです。私もそうでしたし、私がサポートしてきた多くの方が同じ不安を抱えていました。ここでは、よくある不安とその解消法を具体的にお伝えします。</p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-badge faq-badge-q">Q</span>自分の知識は大したことないのでは？教えられることなんてない気がする</div>
+        <div class="faq-a"><span class="faq-badge faq-badge-a">A</span>これはほとんどの方が最初に感じる不安です。でも考えてみてください。あなたの知識を必要としている人は、必ず「あなたよりも初心者な人」です。あなたが当たり前にできることが、できない人のために価値になります。10年の専門知識がなくても、半年前の自分が知りたかったことを教えれば、それで十分価値になります。実際に、Udemyで人気のコースをいくつか見ると、講師が業界のトップエキスパートでなくても高い評価を得ているものがたくさんあります。「完璧に知っている人が教える」よりも、「少し先を行く人が教える」方がわかりやすいと感じる受講者も多いんです。重要なのは、知識の深さよりも「受講者に伝えられるかどうか」です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-badge faq-badge-q">Q</span>人気講師が既にいるジャンルでは勝てない気がする</div>
+        <div class="faq-a"><span class="faq-badge faq-badge-a">A</span>人気講師と全く同じジャンルで、全く同じ内容で、全く同じ切り口で戦う必要はありません。少し視点を変えるだけで、全く別の市場を切り開くことができます。例えば、「プログラミング入門」というジャンルに人気講師がいたとしても、「40代からのプログラミング入門」「副業に使うプログラミング」「ゲーム開発に特化したプログラミング」など、ターゲットや切り口を変えるだけで全く違うコースになります。また、人気講師のコースのレビューをよく見ると、「ここが物足りなかった」「もっとこういう内容が欲しかった」という声が必ずあります。そこがあなたのコースで補える部分です。最初から完璧なポジション分析をしようとしなくていいです。まず1本作る、それが何より先決です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-badge faq-badge-q">Q</span>低評価やクレームが来たらどうしよう、傷つきそうで怖い</div>
+        <div class="faq-a"><span class="faq-badge faq-badge-a">A</span>Udemyのレビューを見ていると、確かにきついコメントもあります。「こんなのはコースに値しない」「当たり前のことしか言っていない」など、傷つく内容もゼロではありません。でも、そういったコメントをよく見ると、実はその人がそもそもターゲットではなかった、ということがほとんどです。「当たり前のことしか言っていない」というコメントは、ターゲットより上の知識レベルの人が受講してしまったサインです。一方で、「説明が足りない」「この部分の解説をもっと詳しくしてほしい」というコメントは、次のアップデートで反映できる貴重な情報です。クレームは「改善の設計図」と考えてください。今の時点で持っているものを最大限整理して出す。その後、声を聞きながら育てていく。これがオンラインコースの正しい育て方です。最初から完璧なコースを作ろうとするより、早く出して早くフィードバックをもらう方がずっと価値があります。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-badge faq-badge-q">Q</span>動画の編集や収録が難しそう、技術がないとできない気がする</div>
+        <div class="faq-a"><span class="faq-badge faq-badge-a">A</span>収録と編集に対して高い壁を感じている方は非常に多いですが、実際にやってみると思ったより簡単です。まず収録環境ですが、カメラはスマートフォンで十分です。マイクだけ3,000〜5,000円のものを用意してください。音質が劇的に変わります。次に編集ですが、CamtasiaやScreenFlowなどの初心者向けツールを使えば、動画編集の経験がなくても基本的な編集ができます。最初は「カット編集」（余計な間や言い間違いを切る）だけでも十分です。テロップや効果音は後から追加していけばいい話です。素材（収録した動画）さえあれば、最初の1本は数時間で形にすることができます。「完璧な編集ができるようになってから公開する」と思っていると、いつまでも公開できません。まず出す、それから磨いていくのが正しいリズムです。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-badge faq-badge-q">Q</span>一生懸命作っても売れなかったらどうするのか、時間の無駄にならないか</div>
+        <div class="faq-a"><span class="faq-badge faq-badge-a">A</span>「売れなかったらどうしよう」という不安はよくわかります。でも少し視点を変えてみてください。オンラインコースを作ることは、Udemyで売れるかどうかにかかわらず、必ず何かしらの価値を生み出します。例えば、個別相談・コンサルティングをしている方なら、コースを事前に見てもらうことで成約率が上がります。自分のサービスや商品を売っている方なら、コースが「信頼醸成のコンテンツ」として機能します。社内研修に使いたいなら、社員教育のコンテンツになります。メルマガ読者やSNSフォロワーへの特典として提供することもできます。つまり、コースは一度作れば複数の用途に使い回せる「汎用性の高いコンテンツ資産」になります。Udemyでの販売はあくまでその一つの出口に過ぎません。作ったコンテンツは必ず何かの価値を持ちます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRAINGO DIVIDER ===== -->
+<div class="traingo-divider"></div>
+
+<!-- ===== TRAINGO HERO ===== -->
+<section class="traingo-hero" style="padding:80px 0">
+  <div class="container">
+    <div class="hero-tag">オンライン研修をもっと本格的に運営したいなら</div>
+    <div class="traingo-logo" style="margin:20px 0">Train<span class="t-accent">go</span></div>
+    <p class="traingo-tagline" style="font-size:17px;line-height:1.7;max-width:640px;margin:0 auto 16px">社内研修をオンライン化したい、でも何からやればいいかわからない。助成金を使いたいけど申請が難しそう。そういった声に応えるために作りました。</p>
+    <p class="traingo-sub" style="font-size:14px;opacity:.8;line-height:1.8;max-width:540px;margin:0 auto">人材開発支援助成金（事業主コース）に対応した研修管理システムです。<br>研修の作成から受講管理、助成金申請に必要なデータ出力まで、Traingoひとつで完結します。</p>
+  </div>
+</section>
+
+<!-- ===== Traingoとは ===== -->
+<section>
+  <div class="container">
+    <span class="section-tag">ABOUT</span>
+    <h2 class="section-title">Traingoとは</h2>
+    <p class="section-desc">Traingoは、オンライン研修の作成・配信・受講管理・助成金申請サポートまでをワンストップで提供する研修管理システム（LMS）です。「自社ブランドで研修を運営したい」「助成金を使いながらコストを抑えたい」「受講状況をきちんと管理したい」という中小企業の3つの課題を同時に解決するために開発しました。UdemyやTeachableのようなプラットフォームは集客力がありますが、受講者管理は自分ではできないし、手数料も高い。かといって高額なLMSを導入するコストはない。Traingoはそのギャップを埋めるために生まれたシステムです。</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="f-icon">📚</div>
+        <h4>コース作成・管理</h4>
+        <p>動画・テキスト・確認テストを組み合わせたコースを、ドラッグ＆ドロップで直感的に作成できます。章（モジュール）とレッスンの階層構造で、体系的なカリキュラムをそのまま再現できます。一度作ったコースは何度でも使い回せますし、内容の追加・修正も簡単にできます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">👥</div>
+        <h4>受講者管理</h4>
+        <p>社員・受講者ごとの進捗・完了率・テスト結果を管理画面から一括で確認できます。「誰がどのレッスンで止まっているか」「未受講者は誰か」が一目でわかるので、フォローが必要な社員にすぐに声をかけることができます。未受講者への自動リマインドメール送信も設定できます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">📊</div>
+        <h4>受講データ分析</h4>
+        <p>受講率・完了率・テスト正答率など、研修の効果を測るのに必要なデータをリアルタイムで把握できます。「研修をやったのに効果があったのかわからない」という状況を解消します。データは CSV でエクスポートもできるので、社内報告や助成金申請時の資料作成にも活用できます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">💰</div>
+        <h4>助成金申請サポート</h4>
+        <p>人材開発支援助成金（事業主コース）の申請には、誰がいつ何時間受講したかという詳細な記録が必要になります。Traingoはその記録を自動で管理し、申請に使えるデータ形式で出力できます。「助成金を使いたいけど申請書類が複雑で諦めた」という会社さんに、まず試してほしい機能です。</p>
+      </div>
+    </div>
+
+    <!-- 対比表 -->
+    <table>
+      <tbody><tr><th>項目</th><th>一般的なUdemy等</th><th>Traingo</th></tr>
+      <tr><td>自社ブランド</td><td>プラットフォームのブランド</td><td><strong>完全自社ブランドで運営</strong></td></tr>
+      <tr><td>受講者管理</td><td>プラットフォーム任せ</td><td><strong>自社で一括管理</strong></td></tr>
+      <tr><td>助成金対応</td><td>対応していない</td><td><strong>人材開発支援助成金に対応</strong></td></tr>
+      <tr><td>手数料</td><td>売上の30〜50%</td><td><strong>固定料金（売上に比例しない）</strong></td></tr>
+      <tr><td>コンテンツ権利</td><td>プラットフォーム依存</td><td><strong>完全に自社保有</strong></td></tr>
+    </tbody></table>
+
+    <p style="color:var(--mid);font-size:15px;line-height:1.9;margin-top:24px">この表を見ると、UdemyなどのプラットフォームとTraingoの役割が全く違うことがわかります。Udemyは「集客力があるプラットフォームに乗せてもらう」というモデルで、認知度ゼロから始める副業・独立向けには非常に有効です。一方Traingoは「自社で研修環境を構築・運営する」というモデルで、既に従業員・顧客を持っている企業や、自社ブランドで研修を提供したい方に向いています。この2つは対立するものではなく、使い分けるものです。まずUdemyで副収入を得ながら、ある程度規模が大きくなったらTraingoで自社研修環境を構築する、というステップを踏む方も多くいます。</p>
+  </div>
+</section>
+
+<!-- ===== なぜTraingoを作ったのか ===== -->
+<section class="bg-light">
+  <div class="container">
+    <span class="section-tag">WHY TRAINGO</span>
+    <h2 class="section-title">なぜTraingoを作ったのか</h2>
+    <p class="section-desc">私（阿久津）は、補助金コンサルタントとして10年以上にわたって中小企業の支援をしてきました。資金調達のサポート、経営計画の作成支援、行政書士として書類のサポートなど、さまざまな形で中小企業の経営者と関わってきています。その中で、ずっと気になっていたことがありました。それが「人材育成（研修）」と「助成金」の組み合わせが、ほとんどの会社でうまく機能していないという現実です。</p>
+
+    <div class="steps">
+      <div class="step-card" style="border-left-color:var(--sky)">
+        <div class="step-number" style="background:var(--sky)">課</div>
+        <div class="step-content">
+          <h3>課題1：中小企業の研修環境が整っていない</h3>
+          <p>支援先の中小企業さんと話すと、研修についての悩みは非常に多いです。「新入社員に毎年同じことを教えている」「ベテランが辞めたら誰もやり方を知らない状態になる」「マニュアルは作ったけど誰も読んでいない」。こういった話を、本当に何度も聞いてきました。</p>
+          <p style="margin-top:10px">一方で、「じゃあLMSを導入しよう」となると、大手が提供するシステムは月額何十万円という費用がかかるものが多く、中小企業にはとても手が届かない。無料のツールもあるけれど、助成金申請に必要なデータが出力できなかったり、カスタマイズができなかったり。どれも「惜しい」という感じで、ぴったり合うものがないんです。そのギャップを埋めるために、Traingoは生まれました。</p>
+        </div>
+      </div>
+      <div class="step-card" style="border-left-color:var(--sky)">
+        <div class="step-number" style="background:var(--sky)">課</div>
+        <div class="step-content">
+          <h3 class="">課題2：補助金・助成金の報告に対応したツールが少ない</h3>
+          <p>人材開発支援助成金という制度があります。従業員の教育訓練にかかった費用の一部を国が補助してくれる制度で、うまく使えば研修コストを大幅に削減できます。私は補助金コンサルタントとして、この制度を何十社と支援してきましたが、「こんな制度があったのか」と驚く経営者さんが本当に多いんです。</p>
+          <p style="margin-top:10px">しかも、申請するには受講時間の記録・受講者ごとの実績・訓練計画の作成など、細かい書類が必要になります。これが面倒で諦めてしまう会社さんもいます。Traingoは、その書類作成に必要なデータをシステムが自動で管理するように設計しています。「助成金を使いたいけど申請が大変そう」という壁を、できるだけ低くしたいと思っています。</p>
+        </div>
+      </div>
+      <div class="step-card" style="border-left-color:var(--sky)">
+        <div class="step-number" style="background:var(--sky)">解</div>
+        <div class="step-content">
+          <h3 class="">既存研修作成ツールへの不満...無駄が多い、使いにくい、重い...</h3>
+          <p>「研修をオンライン化したい」と「助成金を使いたい」という2つのニーズを、同時に解決できるシステムを作ろうと思いました。高すぎず、使いやすく、助成金申請にも対応できる。そういうものが世の中にないなら、自分で作るしかない、と。</p>
+          <p style="margin-top:10px">Traingoを使えば、研修コンテンツの作成・配信・受講管理から、助成金申請に必要なデータの出力まで、ひとつのシステムで完結します。「何からやればいいかわからない」という経営者さんも、まずTraingoを触ってみることから始めてほしいと思っています。私たちが一緒にサポートします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Traingoの使い方 ===== -->
+<section>
+  <div class="container">
+    <span class="section-tag">HOW TO USE</span>
+    <h2 class="section-title">Traingoの使い方 ― 研修開始まで3ステップ</h2>
+    <p class="section-desc">「こういうシステムって、最初の設定が大変そう」と思っている方は多いのですが、Traingoはできるだけシンプルに使い始められるように設計しています。難しいコードを書く必要もなく、サーバーの知識も不要です。アカウントを作って、動画をアップして、社員に共有する。基本的にはこれだけで研修が始められます。</p>
+
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>アカウント登録・環境設定</h3>
+          <p>まずはアカウントを作成します。会社名・ロゴ・ブランドカラーを設定するだけで、「自社の研修システム」という見た目の環境が完成します。「うちの会社がやっている研修です」という雰囲気が出るのが大事で、Udemyのように「他のプラットフォームで勉強している感」にならないのが自社ブランド運営のメリットです。</p>
+          <ul class="step-ul">
+            <li>会社情報・ロゴを登録（基本設定は5〜10分で完了）</li>
+            <li>受講者（社員）のアカウントをCSVで一括登録できる</li>
+            <li>コース一覧ページが自動生成され、すぐに運用開始できる状態になる</li>
+            <li>管理者・受講者それぞれの権限設定が可能</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>コースを作成・アップロード</h3>
+          <p>研修コンテンツを作成してTraingoにアップロードします。すでに動画がある場合はそのまま使えます。Udemyで作った動画も、スマートフォンで撮影した動画も、MP4形式であれば基本的にアップロードできます。動画だけでなく、PDFの資料やテキスト説明文も一緒にコースに含めることができるので、「動画を見た後に資料で復習できる」という構成が作れます。</p>
+          <ul class="step-ul">
+            <li>動画（MP4等）・PDF・テキストをアップロードしてコースを構成</li>
+            <li>章（モジュール）とレッスンの階層構造で体系的なカリキュラムを再現</li>
+            <li>確認テスト（クイズ）を設定して理解度チェックができる</li>
+            <li>修了証の自動発行を設定して、完了した社員に証明書を渡せる</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>受講者に配信・進捗を管理する</h3>
+          <p>コースができたら、受講者（社員）に通知します。システムがメールで受講開始のお知らせを送ってくれるので、担当者が一人ひとりに連絡する手間は不要です。受講者はスマートフォンでもパソコンでも、自分のアカウントにログインして研修を受講できます。管理者側は管理画面からリアルタイムに受講状況を確認できます。誰がどのレッスンまで進んでいて、誰がまだ手をつけていないか、ひと目でわかります。</p>
+          <ul class="step-ul">
+            <li>受講者ごとの進捗・完了状況を管理画面で一覧確認</li>
+            <li>未受講者への自動リマインドメール送信の設定が可能</li>
+            <li>テスト結果・受講時間など助成金申請用のデータを自動で記録・出力</li>
+            <li>修了証発行・受講記録のダウンロードが管理画面から操作できる</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 活用シーン ===== -->
+<section class="bg-light">
+  <div class="container">
+    <span class="section-tag">USE CASES</span>
+    <h2 class="section-title">Traingoの活用シーン</h2>
+    <p class="section-desc">Traingoを導入している企業さんを見ていると、使い方は本当に多岐にわたります。業種も規模もバラバラで、「こんな使い方があったのか」と気づかされることも少なくありません。ここでは代表的な6つの活用シーンを、できるだけ具体的にご紹介します。どれかひとつでも「うちの会社でもできそう」と感じてもらえたら、それがスタートラインです。</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:32px">
+      <div class="scene-card">
+        <h4>新入社員研修のオンライン化</h4>
+        <p>毎年4月になると、新入社員に同じことを何度も説明しなければならない。そういう状況って、多くの会社でありますよね。ベテランの先輩社員が1週間〜2週間ほど張りついて、マンツーマンで教える。でも実は、その内容の8割は毎年まったく同じだったりするわけです。</p>
+        <p style="margin-top:10px">Traingoでその研修内容を動画にまとめておけば、新入社員は入社初日から自分のペースで視聴できます。先輩は「動画を見ておいて」と伝えるだけでよくなるので、指導にかかる時間が大幅に減ります。実際、Traingoを導入した企業で先輩社員の指導時間が従来比70%近く削減できたというケースもあります。それだけの時間が本来の業務に使えるようになるわけですから、会社全体の生産性にも大きな影響が出てきます。動画は何度でも繰り返し見られるので、新人さんが「あれ、どうだったっけ」と思ったときにすぐ確認できるのも大きなメリットです。</p>
+      </div>
+      <div class="scene-card">
+        <h4>技術・スキル研修の標準化</h4>
+        <p>「あのベテランが退職したら、あの技術が会社から消える」という話、聞いたことありませんか。長年の経験で培ってきたノウハウや技術は、その人の頭の中にしかなくて、引き継ぎができないまま定年や転職を迎えてしまう。これは本当に多くの中小企業が直面している問題です。</p>
+        <p style="margin-top:10px">Traingoでは、そのベテランの技術を動画として記録し、社内で共有する仕組みを作ることができます。担当者が変わっても、動画さえあれば同じクオリティで業務を引き継ぐことができるようになります。しかも、新しく入った人が「この工程はなぜこうやるのか」という理由まで理解できるように丁寧に説明した動画を残しておけば、属人化の問題を根本から解消することができます。「やり方」だけでなく「理由」まで伝えられるのが、マニュアルではなく動画コースの強みです。</p>
+      </div>
+      <div class="scene-card">
+        <h4>コンプライアンス・規程研修</h4>
+        <p>就業規則の説明、ハラスメント防止研修、情報セキュリティ研修――こういった義務的な研修って、毎年やらなければいけないのに、毎回日程を調整して全員を集めて、同じ説明を繰り返す。担当者の方にとっては本当に手間のかかる作業です。また、「参加できなかった人に後でどう説明するか」という問題も発生しがちです。</p>
+        <p style="margin-top:10px">Traingoでこれらの研修を動画化してしまえば、日程調整は不要になります。社員それぞれが自分の都合に合わせて受講でき、受講記録もシステムが自動で保存します。「誰が受講して、誰がまだ受講していないか」を一覧で確認できるので、管理担当者の負担も大幅に減ります。また、法改正などで内容を更新する必要が生じたときも、動画を差し替えるだけで全社員への周知が完了するという手軽さも魅力です。</p>
+      </div>
+      <div class="scene-card">
+        <h4>資格取得支援・スキルアップ研修</h4>
+        <p>「社員に資格を取得させたいが、外部の研修講座はコストが高い」という声は、中小企業の経営者さんからよく聞きます。かといって、資格なしで業務をこなし続けても、社員のモチベーションは上がらないし、会社としての競争力にも影響が出てくる。このジレンマで悩んでいる会社さんは非常に多いです。</p>
+        <p style="margin-top:10px">Traingoを使えば、業界資格の試験対策コースや、業務スキルを体系的に学べるコースを自社で作成・配信することができます。外部講師に頼らなくても、社内の知識をまとめて動画コース化することで、実務に直結した内容でスキルアップを支援できます。また、こうした従業員のスキルアップ研修に対して、人材開発支援助成金の対象になるケースも多数ありますので、コストを大幅に抑えながら研修を実施できる可能性があります。助成金の活用方法についてもTraingoではサポートしています。</p>
+      </div>
+      <div class="scene-card">
+        <h4>外部向けオンライン講座販売</h4>
+        <p>社内研修のために作ったコンテンツが、実は外部向けの商品にもなり得るということを、多くの会社さんはまだ気づいていません。例えば、自社の業務プロセスを体系的にまとめた動画コースは、同業他社の社員研修としても価値がある場合があります。あるいは、特定の専門知識をわかりやすく解説したコースは、その業界に新規参入しようとしている人たちに向けて販売できることもあります。</p>
+        <p style="margin-top:10px">Traingoでは、社内向けに作ったコースを外部向けに公開・販売する機能も備えています。追加コストほぼゼロで新たな収益柱を作ることができるわけです。「自社の知識を商品化する」という発想は、特に専門性の高い業種ほど効果が大きくなります。同業者向けの研修コースとして販売するパターン、顧客向けの活用ガイドとして提供するパターン、業界未経験者向けの入門コースとして販売するパターンなど、展開の仕方はさまざまです。</p>
+      </div>
+      <div class="scene-card">
+        <h4>フランチャイズ・加盟店研修</h4>
+        <p>フランチャイズ本部や複数拠点を持つ企業にとって、「全拠点で同じ品質のサービスを提供する」というのは永遠の課題です。本部でどんなに良いマニュアルを作っても、各店舗・各拠点での理解度にばらつきが出てしまうことはよくあります。特に新しくオーナーや店長が変わったときに、研修のやり直しが毎回発生するのは非効率でもあります。</p>
+        <p style="margin-top:10px">Traingoを使えば、本部が一度コースを作っておくだけで、全加盟店・全拠点の従業員が同じ内容を、同じクオリティで学ぶことができます。新しく加盟した店舗もすぐにシステムに招待するだけで、研修をスタートできます。また、本部側では各加盟店の受講状況を一覧で確認できるので、「あの加盟店はまだ研修が終わっていない」というリスク管理もしやすくなります。ブランドの統一と品質の維持を、システムの力でサポートします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== よくある質問 (Traingo) ===== -->
+<section>
+  <div class="container">
+    <span class="section-tag">FAQ</span>
+    <h2 class="section-title">よくある質問</h2>
+    <p class="section-desc">Traingoを検討されている方から実際によくいただく質問をまとめました。導入前の疑問や不安を、できるだけ具体的にお答えしています。ここに書いていないことがあれば、気軽にお問い合わせください。</p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-badge faq-badge-q">Q</span>ITに詳しくなくても使えますか？</div>
+        <div class="faq-a"><span class="faq-badge faq-badge-a">A</span>はい、まったく問題ありません。Traingoは「ITが苦手な方でも使えること」を前提に設計しています。動画ファイルをアップロードしてタイトルをつけるだけでコースができあがりますし、受講者の管理もクリック操作で完結します。「パソコンはメールとExcelくらいしか使わない」という方でも十分に使いこなせます。導入時には操作方法のサポートもありますし、基本的な使い方は一度覚えれば迷うことはほとんどありません。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-badge faq-badge-q">Q</span>人材開発支援助成金は必ず受給できますか？</div>
+        <div class="faq-a"><span class="faq-badge faq-badge-a">A</span>助成金には審査がありますので、必ず受給できるとは言い切れません。ただ、Traingoが提供しているのは「助成金申請に必要なデータをきちんと揃える」という部分です。受講時間の記録、誰がいつ何を受講したかの証跡、修了証の発行など、申請書類に必要な情報をシステムが自動で管理します。申請自体の手続きは別途サポートも行っていますので、「申請したいけどどこから手をつければいいかわからない」という方もまずご相談ください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-badge faq-badge-q">Q</span>既に作ったUdemyのコース素材は使えますか？</div>
+        <div class="faq-a"><span class="faq-badge faq-badge-a">A</span>はい、使えます。MP4形式の動画ファイル、PDF資料、テキストコンテンツは、そのままTraingoにアップロードして使えます。Udemyで作ったコースをTraingoに移行することで、プラットフォームへの手数料を払わずに済むようになりますし、受講者管理も自社で完全にコントロールできるようになります。「Udemyで作ってみたけど、社内研修としても使いたい」「外部には売らずに自社内だけで使いたい」という方にも適しています。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-badge faq-badge-q">Q</span>何人まで受講者を登録できますか？</div>
+        <div class="faq-a"><span class="faq-badge faq-badge-a">A</span>プランによって上限が異なります。小規模のチームや部署向けの少人数プランから、数百名規模の会社でも対応できるプランまで用意しています。現在の社員数や今後の採用計画に合わせて最適なプランを選べますので、まず規模感を教えていただければ、合ったプランをご案内します。人数が増えた場合のプランアップグレードも柔軟に対応しています。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="faq-badge faq-badge-q">Q</span>無料で試すことはできますか？</div>
+        <div class="faq-a"><span class="faq-badge faq-badge-a">A</span>トライアル環境をご用意しています。「使ってみないと導入を決められない」という気持ちはよく分かります。実際の画面を触ってみて、操作感や機能を確かめてから判断していただければ大丈夫です。まずはお問い合わせフォームからご連絡ください。ご連絡いただいたあとに、トライアルの手順をご案内します。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== まとめ ===== -->
+<section class="bg-light">
+  <div class="container">
+    <span class="section-tag">SUMMARY</span>
+    <h2 class="section-title">まとめ ― 今日から動き始めるための要点</h2>
+    <p class="section-desc">このガイドを通じてお伝えしたかったことは、ひとつのことに集約されます。それは「まず動くこと」です。完璧なコースを作ろうとして動けないでいる間も、時間は流れていきます。知識を持っているあなたを必要としている人は、今この瞬間もどこかにいます。完璧じゃなくていい。まず1本出して、それから育てていく。そういうサイクルを回すことが、オンラインコースを資産に変える唯一の方法です。</p>
+
+    <ul class="num-list">
+      <li><span class="n">1</span><div><strong>完璧を目指さず、まず1本目を公開すること。</strong>完璧なコースを目指すあまり、いつまでも公開できない。そういう方を本当にたくさん見てきました。今持っているものを最大限整理して出す。クレームが来たら直す。それが正しいリズムです。最初から100点のコースを作ろうとしなくていいんです。</div></li>
+      <li><span class="n">2</span><div><strong>需要のあるジャンルを選ぶこと。</strong>Udemyで検索して、件数・レビューの件数・ベストセラーバッジがついているかを確認するだけで、そのジャンルに需要があるかどうかが見えてきます。全くコースが出てこないジャンルは需要が薄い可能性が高いですし、たくさん出てくるジャンルは競合は多いけれど需要があるということです。まずはリサーチから始めましょう。</div></li>
+      <li><span class="n">3</span><div><strong>受講者が「知りたい順番」でカリキュラムを設計すること。</strong>教える側の都合でカリキュラムを作ると、受講者は途中で離脱してしまいます。「この人は今どんなことが気になっているか」を常に考えながら、知りたい順番に合わせて構成する。それだけで完走率が大きく変わります。</div></li>
+      <li><span class="n">4</span><div><strong>音質に最低限投資すること。</strong>カメラが安くてもある程度は大丈夫ですが、音が悪いと視聴者はすぐに離脱します。3,000円〜5,000円台のマイクを一本買うだけで、収録クオリティが劇的に変わります。画質より音質を優先してください。これは絶対に後悔しない投資です。</div></li>
+      <li><span class="n">5</span><div><strong>コースは一度作ったら資産になること。</strong>対面の仕事は、時間を切り売りするモデルです。でもオンラインコースは違います。一度作れば、寝ている間も、別の仕事をしている間も、コースが自動で売れ続けます。成約率向上・社内研修・外部向け販売など、複数の用途に転用もできます。これが「知識を資産化する」ということの本質です。</div></li>
+      <li><span class="n">6</span><div><strong>本格的に研修を運営するなら、Traingoを使うのが一番早い。</strong>自社ブランドで研修環境を作れて、受講者管理も助成金対応も全部ワンストップで揃っています。「何から始めればいいかわからない」という方こそ、まずお問い合わせから始めてください。一緒に考えます。</div></li>
+    </ul>
+
+    <div class="highlight-box" style="margin-top:32px">
+      <p>「整理された動画には、説得力がある」――この一言が、すべてを表しています。あなたの知識を動画にして整理する。それだけで、見込み客・社員・同業者の信頼が変わります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="container">
+    <h2>今すぐお問い合わせください</h2>
+    <p>Traingoの詳細・料金プラン・トライアルのご相談は<br>下記フォームからお気軽にどうぞ。<br>オンライン研修の導入から助成金申請まで、まとめてサポートします。</p>
+    <a href="https://fp-1.info/optguide-traigo" target="_blank" rel="noopener" class="btn-cta">無料で相談する</a>
+    <p style="margin-top:24px;font-size:13px;opacity:.7">Traingo（トレインゴー）は fp-1.info が提供する研修管理システムです</p>
+  </div>
+</section>
+
+<footer style="background:#0f2460;color:rgba(255,255,255,.6);text-align:center;padding:24px;font-size:13px">
+  <p>© 2026 Traingo / fp-1.info ― 監修：阿久津 和宏（経営革新等支援機関・行政書士）</p>
 </footer>
 
-<!-- JSON-LD (Article schema) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Traingo活用ガイド｜研修内製化・eラーニング化の進め方",
-  "description": "Traingoを使って社内研修を内製化・eラーニング化するための3ステップと、主な機能、人材開発支援助成金との組み合わせ方を解説したガイドです。",
-  "url": "https://lp.well-c.biz/traingo-guidebook/",
-  "datePublished": "2026-06-02",
-  "dateModified": "2026-06-02",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Traingo",
-    "url": "https://fp-1.info/traingo/"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://lp.well-c.biz/traingo-guidebook/"
-  }
-}
-</script>
+
+
 
 </body>
 </html>
