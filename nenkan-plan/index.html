@@ -53,15 +53,17 @@ img{max-width:100%;height:auto;display:block}
 /* 収録ラインナップ グリッド */
 .lineup h2{font-size:25px;font-weight:900;color:var(--navy);text-align:center;line-height:1.5;margin:52px 0 14px}
 .lineup .lineup-lead{font-size:15.5px;color:var(--ink-2);text-align:center;line-height:2;max-width:720px;margin:0 auto 30px}
-.lineup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.lineup-card{background:#fff;border:1px solid #d6dfeb;border-radius:10px;padding:18px;box-shadow:0 4px 14px rgba(30,58,95,.06);border-top:4px solid var(--blue);display:flex;flex-direction:column;gap:8px;min-height:108px}
-.lineup-card .lc-date{font-size:12px;font-weight:900;color:var(--blue);letter-spacing:.06em}
-.lineup-card .lc-title{font-size:14.5px;font-weight:700;color:var(--navy-deep);line-height:1.6}
-.lineup-card.more{border-top-color:var(--gold);background:linear-gradient(135deg,#fffdf5,#fff8e3);justify-content:center;align-items:center;text-align:center}
-.lineup-card.more .lc-more{font-size:22px;font-weight:900;color:var(--orange-deep)}
-.lineup-card.more .lc-title{color:var(--orange-deep)}
-.lineup-note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:16px;line-height:1.8}
-@media(max-width:720px){.lineup-grid{grid-template-columns:1fr 1fr;gap:10px}.lineup h2{font-size:20px}.lineup-card{min-height:96px;padding:14px}.lineup-card .lc-title{font-size:13px}}
+.lineup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.lineup-card{background:#fff;border:1px solid #d6dfeb;border-radius:12px;box-shadow:0 4px 14px rgba(30,58,95,.07);overflow:hidden;display:flex;flex-direction:column}
+.lineup-card .lc-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#eef2f7}
+.lineup-card .lc-body{padding:13px 15px 16px;display:flex;flex-direction:column;gap:7px;flex:1}
+.lineup-card .lc-genre{align-self:flex-start;font-size:11px;font-weight:900;color:#fff;background:var(--blue);border-radius:999px;padding:3px 11px;letter-spacing:.04em}
+.lineup-card .lc-title{font-size:14px;font-weight:700;color:var(--navy-deep);line-height:1.55}
+.lineup-card.more{border:2px dashed var(--gold);background:linear-gradient(135deg,#fffdf5,#fff8e3);justify-content:center;align-items:center;text-align:center;padding:28px 16px}
+.lineup-card.more .lc-more{font-size:26px;font-weight:900;color:var(--orange-deep)}
+.lineup-card.more .lc-title{color:var(--orange-deep);text-align:center}
+.lineup-note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:18px;line-height:1.8}
+@media(max-width:720px){.lineup-grid{grid-template-columns:1fr 1fr;gap:11px}.lineup h2{font-size:20px}.lineup-card .lc-title{font-size:12.5px}.lineup-card .lc-body{padding:11px 12px 13px}}
 
 /* 価格＋CTA */
 .offer{margin:40px 0 0;text-align:center}
@@ -146,16 +148,29 @@ footer .small{opacity:.6;font-size:11.5px;margin-top:12px}
 <section class="lineup">
   <div class="wrap">
     <h2>これまでの勉強会も、すべて見放題</h2>
-    <p class="lineup-lead">年払いプランなら、過去に開催したこれらの勉強会アーカイブに加え、<strong>毎週新しく追加される回</strong>もすべて視聴できます。</p>
+    <p class="lineup-lead">年払いプランなら、すでに収録済みの<strong>18本以上の勉強会アーカイブ</strong>に加え、<strong>毎週新しく追加される回</strong>もすべて視聴できます。</p>
     <div class="lineup-grid">
-      <div class="lineup-card"><span class="lc-date">2026.04.24</span><span class="lc-title">デジタル化・AI導入補助金 攻略勉強会</span></div>
-      <div class="lineup-card"><span class="lc-date">2026.04.30</span><span class="lc-title">勉強会マーケティングシステム習得勉強会</span></div>
-      <div class="lineup-card"><span class="lc-date">2026.05.08</span><span class="lc-title">集客できる次世代型HPの作り方勉強会</span></div>
-      <div class="lineup-card"><span class="lc-date">2026.05.22</span><span class="lc-title">国が本気の制度を攻略する勉強会 ─ 本制度編</span></div>
-      <div class="lineup-card"><span class="lc-date">2026.06.05</span><span class="lc-title">助成金で企業研修を作る（講師になる）勉強会</span></div>
-      <div class="lineup-card more"><span class="lc-more">＋毎週</span><span class="lc-title">新しい勉強会を追加中</span></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-01.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">資金調達</span><span class="lc-title">一般社団法人で1,800万円を引き出すセミナー</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-02.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">AI活用</span><span class="lc-title">AI活用型コース制作勉強会</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-03.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">資金調達</span><span class="lc-title">銀行に断られた経営者のための資金調達勉強会</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-04.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">経営改善</span><span class="lc-title">早期経営改善計画 活用勉強会</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-05.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">補助金</span><span class="lc-title">補助金活用型 事業スケール勉強会</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-06.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">経営</span><span class="lc-title">手取り最大化セミナー</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-07.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">AI活用</span><span class="lc-title">漫画AI制作勉強会</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-08.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">トレンド</span><span class="lc-title">2026年の3つのトレンド習得勉強会</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-09.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">集客</span><span class="lc-title">勉強会マーケティングシステム習得勉強会</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-10.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">補助金</span><span class="lc-title">持続化補助金 活用型コンサルタント養成講座</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-11.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">法改正</span><span class="lc-title">行政書士法改正セミナー</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-12.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">ウェビナー</span><span class="lc-title">究極のウェビナー戦略習得講座</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-13.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">補助金</span><span class="lc-title">中小企業省力化投資補助金 申請完全ガイド</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-14.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">AI活用</span><span class="lc-title">Claude Code 導入勉強会</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-15.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">補助金</span><span class="lc-title">デジタル化・AI導入補助金 攻略勉強会</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-16.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">Web集客</span><span class="lc-title">集客できる次世代型HPの作り方勉強会</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-17.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">補助金</span><span class="lc-title">国が本気の制度を攻略する勉強会 ─ 本制度編</span></div></div>
+      <div class="lineup-card"><img class="lc-thumb" src="assets/img/seminar-18.jpg" alt="" loading="lazy"><div class="lc-body"><span class="lc-genre">助成金</span><span class="lc-title">助成金で企業研修を作る（講師になる）勉強会</span></div></div>
+      <div class="lineup-card more"><span class="lc-more">＋毎週</span><span class="lc-title">新しい勉強会を<br>追加中</span></div>
     </div>
-    <p class="lineup-note">補助金・マーケティング・AIなど、毎週テーマを変えて開催しています。<br>あなたのリクエストテーマでの開催もできます。</p>
+    <p class="lineup-note">補助金・資金調達・AI活用・集客・ウェビナーなど、毎週テーマを変えて開催しています。<br>あなたのリクエストテーマでの開催もできます。</p>
   </div>
 </section>
 
