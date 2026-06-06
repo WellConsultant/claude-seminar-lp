@@ -216,6 +216,12 @@ p{letter-spacing:.01em}
 /* footer */
 footer{padding:42px 20px;background:#061124;color:#b8c4d7;text-align:center;font-size:12px;line-height:2}
 footer a{color:var(--gold-light);text-decoration:underline}
+.footer-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 20px;margin-bottom:14px}
+.footer-nav a{color:#b8c4d7;text-decoration:none;font-size:12px}
+.footer-nav a:hover{color:var(--gold-light)}
+.footer-legal{display:flex;justify-content:center;gap:20px;margin-bottom:12px}
+.footer-legal a{font-size:11px;color:#7a8fa8;text-decoration:underline}
+.footer-copy{font-size:11px;color:#5a6b7e;margin-top:6px}
 .sticky{display:none}
 
 @media(max-width:760px){
@@ -565,8 +571,16 @@ footer a{color:var(--gold-light);text-decoration:underline}
 </section>
 
 <footer>
-  <div>©︎ ワンモアピース共創協会 / 阿久津 和宏</div>
-  <div style="margin-top:6px"><a href="https://easywebinar.link/C45bseH86G" target="_blank" rel="noopener">参加登録はこちら</a></div>
+  <nav class="footer-nav">
+    <a href="#">トップ</a>
+    <a href="#apply">参加登録</a>
+    <a href="#faq">よくある質問</a>
+  </nav>
+  <div class="footer-legal">
+    <a href="https://fp-1.info/hojokin/privacy/" target="_blank" rel="noopener">プライバシーポリシー</a>
+    <a href="https://fp-1.info/hojokin/tokusho/" target="_blank" rel="noopener">特定商取引法に基づく表記</a>
+  </div>
+  <p class="footer-copy">© 2026 Well Consultant. All rights reserved.</p>
 </footer>
 
 <div class="sticky">
