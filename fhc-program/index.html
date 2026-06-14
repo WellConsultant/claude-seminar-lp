@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ファネルハブ クリエイター養成講座 ｜ オンライン動画コース</title>
+  <meta property="og:title" content="ファネルハブ クリエイター養成講座">
+  <meta property="og:description" content="ウェブサイトでもファネルでもない第三の存在「ファネルハブ」を、自分の手でつくれるようになる養成講座。アーカイブ視聴つき・30日返金保証。">
+  <meta property="og:type" content="website">
+  <style>
+    
+  </style>
+</head>
+<body>
+  
+
+
+<style>
+  :root{
+    --navy:#16263F; --navy-d:#0E1B2E; --ink:#16263F;
+    --text:#33414F; --mut:#6E7A8A; --line:#E2E6EC;
+    --bg:#FFFFFF; --gray:#F4F6F9; --tint:#EDF1F6;
+    --gold:#C8A33B; --gold-d:#B0892A; --green:#2E7D46; --red:#C0392B;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.9;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 22px;}
+  .narrow{max-width:760px;margin:0 auto;}
+  section{padding:clamp(54px,9vw,92px) 0;}
+  .sec-gray{background:var(--gray);}
+  .sec-tint{background:var(--tint);}
+  h2.head{font-size:clamp(22px,5vw,33px);font-weight:800;color:var(--ink);line-height:1.4;
+    margin:0 0 10px;letter-spacing:.01em;}
+  .head-rule{width:50px;height:3px;background:var(--navy);margin:0 0 26px;}
+  .lead{font-size:clamp(15.5px,3.6vw,17.5px);line-height:2.0;margin:0 0 18px;}
+  .lead b,p b{color:var(--navy);font-weight:700;}
+  p{font-size:16px;line-height:2.0;}
+
+  /* ヒーロー */
+  .hero{background:linear-gradient(180deg,#16263F,#0E1B2E);color:#fff;padding:clamp(64px,12vw,120px) 0 clamp(56px,10vw,96px);}
+  .hero .ey{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.18em;
+    color:#CBB36A;border:1px solid rgba(203,179,106,.5);border-radius:3px;padding:6px 14px;margin:0 0 22px;}
+  .hero h1{font-size:clamp(28px,6.6vw,50px);font-weight:800;line-height:1.32;margin:0 0 20px;letter-spacing:.01em;}
+  .hero h1 .mk{color:#F2C75A;}
+  .hero .sub{font-size:clamp(15px,3.8vw,19px);color:#D6DEEA;line-height:1.95;margin:0 0 18px;max-width:680px;}
+  .hero .meta{font-size:13.5px;color:#9FB0C6;margin:0 0 30px;}
+  .hero .meta b{color:#fff;}
+
+  /* ボタン */
+  .cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    min-height:60px;padding:0 38px;border-radius:4px;font-weight:800;font-size:clamp(16px,4.2vw,19px);
+    text-decoration:none;letter-spacing:.02em;cursor:pointer;border:0;line-height:1.3;text-align:center;}
+  .cta-gold{background:var(--gold);color:#1c1407;}
+  .cta-gold:hover{background:var(--gold-d);}
+  .cta-navy{background:var(--navy);color:#fff;}
+  .cta-navy:hover{background:var(--navy-d);}
+  .cta svg{flex:0 0 auto;}
+  .cta-note{font-size:13px;color:#9FB0C6;margin:14px 0 0;}
+
+  /* 2カラムカード */
+  .cards2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px 24px;}
+  .card.dead{border-top:4px solid #9aa6b4;}
+  .card.hub{border-top:4px solid var(--navy);}
+  .card h3{margin:0 0 10px;font-size:17px;font-weight:800;color:var(--ink);}
+  .card p{margin:0;font-size:14.5px;line-height:1.9;color:var(--text);}
+
+  /* チェックリスト */
+  .checks{list-style:none;margin:18px 0 0;padding:0;}
+  .checks li{display:flex;gap:12px;align-items:flex-start;text-align:left;
+    padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px;line-height:1.8;}
+  .checks li:first-child{border-top:1px solid var(--line);}
+  .ic{flex:0 0 auto;width:22px;height:22px;margin-top:3px;}
+
+  /* カリキュラム（レッスン） */
+  .lessons{display:flex;flex-direction:column;gap:0;margin-top:8px;border-top:1px solid var(--line);}
+  .lesson{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);}
+  .lesson .no{flex:0 0 auto;width:42px;height:42px;border-radius:3px;background:var(--navy);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;}
+  .lesson .tx h3{margin:0 0 4px;font-size:16px;font-weight:800;color:var(--ink);line-height:1.5;}
+  .lesson .tx p{margin:0;font-size:14.5px;color:var(--text);line-height:1.85;}
+
+  /* 受講生の声 */
+  .voice-grid{display:flex;flex-direction:column;gap:16px;margin-top:8px;}
+  .voice{background:#fff;border:1px solid var(--line);border-left:5px solid var(--navy);border-radius:4px;padding:22px 24px;}
+  .vhead{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .sil{flex:0 0 auto;width:42px;height:42px;}
+  .sil svg{width:42px;height:42px;display:block;}
+  .stars{color:var(--gold);font-size:17px;letter-spacing:3px;margin:0;}
+  .voice p{margin:0 0 10px;font-size:14.5px;line-height:1.9;color:#3A4654;}
+  .voice p:last-child{margin-bottom:0;}
+
+  /* バリュースタック */
+  .stack{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);max-width:760px;}
+  .stack li{display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+    padding:13px 2px;border-bottom:1px solid var(--line);text-align:left;}
+  .stack .nm{font-size:15px;color:var(--ink);font-weight:600;line-height:1.6;}
+  .stack .vl{flex:0 0 auto;font-size:13.5px;color:var(--mut);font-weight:700;white-space:nowrap;}
+  .bonus-tag{display:inline-block;font-size:11px;font-weight:800;color:#1c1407;background:var(--gold);
+    border-radius:2px;padding:1px 8px;margin-right:8px;}
+
+  /* 2つの道 */
+  .paths{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px;}
+  .path{border-radius:4px;padding:24px;text-align:center;color:#fff;}
+  .path.alone{background:#9AA6B4;}
+  .path.together{background:var(--navy);}
+  .path h3{margin:0 0 14px;font-size:18px;font-weight:800;}
+  .path .time{font-size:clamp(22px,6vw,30px);font-weight:800;line-height:1.1;}
+  .path .timelabel{font-size:13px;opacity:.85;margin-top:4px;}
+  .path .cost{margin-top:12px;font-size:15px;font-weight:700;}
+
+  /* 価格 */
+  .price-box{background:var(--navy);color:#fff;border-radius:6px;padding:clamp(28px,5vw,40px);text-align:center;}
+  .price-box .was{font-size:clamp(18px,4vw,22px);text-decoration:line-through;opacity:.6;}
+  .price-box .now{font-size:clamp(40px,11vw,64px);font-weight:800;color:#F2C75A;line-height:1.05;margin:6px 0 2px;}
+  .price-box .now small{font-size:18px;font-weight:700;}
+  .price-box .terms{font-size:13.5px;color:#AEBDD0;margin-top:10px;}
+
+  /* 保証 */
+  .guarantee{background:#EEF3EE;border:1px solid #CFE0CF;border-left:5px solid var(--green);
+    border-radius:4px;padding:24px 26px;}
+  .guarantee h3{margin:0 0 8px;color:#256138;font-size:18px;font-weight:800;}
+  .guarantee p{margin:0;font-size:15px;line-height:1.9;color:#39434F;}
+
+  /* 構築代行ステップ */
+  .steps{list-style:none;margin:14px 0 0;padding:0;counter-reset:s;}
+  .steps li{display:flex;gap:14px;align-items:flex-start;padding:10px 0;text-align:left;border-bottom:1px dashed var(--line);}
+  .steps .mn{flex:0 0 auto;font-size:13px;font-weight:800;color:#fff;background:var(--navy);
+    border-radius:3px;padding:3px 9px;white-space:nowrap;}
+  .steps .ds{font-size:15px;line-height:1.7;}
+
+  /* たった一つでも */
+  .grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px;}
+  .g6{background:#fff;border:1px solid var(--line);border-radius:4px;padding:16px;text-align:center;font-weight:700;
+    font-size:14.5px;color:var(--ink);line-height:1.6;}
+
+  /* CTAセクション */
+  .cta-sec{background:linear-gradient(180deg,#16263F,#0E1B2E);color:#fff;text-align:center;}
+  .cta-sec h2{font-size:clamp(24px,6vw,38px);font-weight:800;margin:0 0 14px;line-height:1.35;}
+  .cta-sec .scar{color:#F2C75A;font-weight:800;font-size:clamp(15px,4vw,18px);margin:0 0 26px;}
+  .cta-sec .lead2{color:#D6DEEA;font-size:15.5px;margin:0 auto 24px;max-width:620px;}
+  .cta-url{font-size:13.5px;color:#9FB0C6;margin:16px 0 0;word-break:break-all;}
+
+  footer{background:#0B1422;color:#9FB0C6;text-align:center;padding:34px 22px;font-size:13px;}
+  footer .nm{color:#fff;font-weight:800;letter-spacing:.04em;margin-bottom:4px;}
+
+  @media(max-width:680px){
+    .cards2,.paths{grid-template-columns:1fr;}
+    .grid6{grid-template-columns:1fr 1fr;}
+  }
+</style>
+
+
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="wrap">
+    <span class="ey">オンライン動画コース ＆ 今なら、実践サポート</span><h1 class="">ファネルハブクリエイター養成講座</h1>
+    <p class="sub">ウェブサイトでもファネルでもない“第三の存在”――<b style="color:#fff">ファネルハブ</b>を、自分の手でつくれるようになる養成講座です。「ホームページはあるのに問い合わせが来ない」「発信はしているのに見込み客につながらない」。もしそう感じてきたなら、足りなかったのはデザインの良し悪しではなく、入り口の設計でした。この講座を通じて、集客が少しずつ自動で回り出し、同時に、同じやり方をそのままクライアントへの支援メニューとしても届けられるようになっていくでしょう。</p>
+    <p class="meta">講師：阿久津 和宏 ／ <b class="">アーカイブ視聴つき</b>（当日参加できなくても、何度でも見返せます）</p>
+  </div>
+</header>
+
+<!-- ============================================================
+     「ファネルハブクリエイター養成講座とは？」セクション（貼り付け用・単体HTML）
+     <section data-ast-id="12" data-ast-id="12" data-ast-id="12" class="fh-about"> ～ </section> をそのまま貼る。
+     CSSは .fh-about 配下にスコープ済み。
+     ============================================================ -->
+<section class="fh-about" aria-label="ファネルハブクリエイター養成講座とは">
+  <style>
+    .fh-about{
+      --navy:#16263F; --navy-d:#0E1B2E; --ink:#16263F;
+      --text:#33414F; --mut:#6E7A8A; --line:#E2E6EC;
+      box-sizing:border-box;max-width:760px;margin:0 auto;
+      padding:clamp(44px,8vw,84px) clamp(18px,5vw,40px);
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+      color:var(--text);line-height:2;-webkit-font-smoothing:antialiased;
+    }
+    .fh-about *,.fh-about *::before,.fh-about *::after{box-sizing:border-box;}
+    .fh-about .head{font-size:clamp(22px,5vw,33px);font-weight:800;color:var(--ink);line-height:1.4;margin:0 0 10px;}
+    .fh-about .rule{width:50px;height:3px;background:var(--navy);margin:0 0 26px;}
+    .fh-about p{font-size:clamp(15.5px,3.6vw,17px);line-height:2.0;margin:0 0 20px;}
+    .fh-about p b{color:var(--navy);font-weight:700;}
+    .fh-about .subhead{font-size:clamp(18px,4vw,22px);font-weight:800;color:var(--ink);
+      margin:40px 0 14px;padding-left:14px;border-left:5px solid var(--navy);line-height:1.5;}
+    .fh-about .cards2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px;}
+    .fh-about .card{background:#fff;border:1px solid var(--line);border-radius:4px;padding:24px;}
+    .fh-about .card.dead{border-top:4px solid #9aa6b4;}
+    .fh-about .card.hub{border-top:4px solid var(--navy);}
+    .fh-about .card h3{margin:0 0 10px;font-size:17px;font-weight:800;color:var(--ink);}
+    .fh-about .card p{margin:0;font-size:14.5px;line-height:1.9;color:var(--text);}
+    @media(max-width:680px){.fh-about .cards2{grid-template-columns:1fr;}}
+  </style>
+
+  <h2 class="head">ファネルハブクリエイター養成講座とは？</h2>
+  <div class="rule"></div>
+
+  <p>きれいなホームページをつくったのに、問い合わせが来ない。そんな声をよく聞きます。多くのサイトは“何でも屋”になってしまい、あれもこれもと載せた結果、訪問者を迷わせ、結局なにも売れていません。必要なのは、見た目の作り直しではなく、<b>役割そのものの作り直し</b>です。</p>
+
+  <p>「ウェブサイトはもう古い」と言われることもありますが、本当に終わったのは、ただ会社案内を並べただけの“静的なページ”の方です。これからは、訪れた人を受け止めて、その人の状況に合った次の一歩へ案内していく“動く拠点”が求められます。その拠点こそが、ファネルハブです。この講座では、その考え方と、つくり方の両方を、順番に身につけていきます。</p>
+
+  <h3 class="subhead">なぜ、僕がこの講座をあなたに案内しているのか</h3>
+
+  <p>このスキルは、僕がふだんやっている仕事――ホームページの相談、事業計画書の作成サポート、マーケティング支援、人材の支援――その<b>すべての根幹</b>になっているものです。なんなら、ファネルハブの考え方そのものは万能だと言ってもいいでしょう。どの場面でも、いちばん土台のところで効いてきます。</p>
+
+  <p>そして正直にお話しすると、これは<b>僕たち自身の仕事の流れそのもの</b>でもあります。クライアントと事業計画を立てていくと、その計画にはたいてい、ファネルハブが必要になります。だったら、それを一緒に提供していけたら――。あなたにこの講座を案内しているのは、できればこの先、一緒にやったり、ときにはこちらからお願いしたり、そんな関係をつくれたらいいなと思っているからです。</p>
+
+  <p>クライアントの相談に乗り、事業計画や補助金申請をサポートして、だいたい30万〜50万円。そこにファネルハブを提供できれば、さらにもう一段、ご一緒できる幅が広がっていくはずです。この流れを知っているだけでも、十分に仕事になっていくでしょう。</p>
+
+  <div class="cards2">
+    <div class="card dead">
+      <h3>これまでのウェブサイト</h3>
+      <p>訪問者を出口のない迷路に追い込み、「何でも屋」であるがゆえに、結局なにも売れない静的なページ。見た目を整えても、どこへ進めばいいのかが伝わらず、せっかくのアクセスが素通りしていきます。</p>
+    </div>
+    <div class="card hub">
+      <h3>ファネルハブ（戦略的な拠点）</h3>
+      <p>見た目はウェブサイト。中身は、すべてのアクセスを受け止め、それぞれの温度に合ったファネルへ案内していく“動く拠点”。来た人をその場で終わらせず、次の関係へとつないでいきます。</p>
+    </div>
+  </div>
+</section>
+<!-- ============================================================ -->
+
+<!-- ===== ファネルハブとは ===== -->
+<section class="sec-gray">
+  <div class="wrap narrow">
+    <h2 class="head">あなただけの統一ブランド</h2>
+    <div class="head-rule"></div>
+    <p class="lead">ファネルハブは、あなたの全ビジネスを覆う<b>統一ブランド</b>です。「誰の、何の問題を、どう解決するのか」――この一行が決まると、商品も特典も発信も、一本の傘の下に整列していきます。バラバラだった事業やドメインが一つにまとまり、<b>見込み客が増え続ける入り口</b>になっていくでしょう。</p>
+    <p class="lead">「お問い合わせはこちら」だけのページをやめて、まずメールアドレスをもらう導線へ。一度つながってしまえば、こちらから何度でも価値を届けられます。ここから、集客が“仕組み”に変わっていきます。</p>
+    <p class="lead">大切なのは、立派なロゴや肩書きではありません。「あなたは誰の、どんな悩みを、どうやって解決する人なのか」を、一行で言い切れること。それが定まると、これまでバラバラに見えていた商品・実績・発信が、一本の線でつながって見えてくるはずです。お客さんから見ても、「この人に頼めばいい」と迷わず選べる入り口になっていくでしょう。</p>
+  </div>
+</section>
+
+<!-- ===== カリキュラム ===== -->
+<section>
+  <div class="wrap narrow">
+    <h2 class="head">講座でつくっていくもの</h2>
+    <div class="head-rule"></div>
+    <p class="lead">この講座は、聞いて終わりではありません。手を動かしながら、3つのファネルを一つずつ設計し、最後にそれらを束ねるファネルハブまで、自分の手で形にしていきます。順番に進めていけば、「何から手をつければいいのか分からない」という状態から、「今日はここをつくる」と言える状態へ変わっていくはずです。</p>
+    <div class="lessons">
+      <div class="lesson"><span class="no">01</span><div class="tx"><h3>Bookファネル</h3><p>書籍（PDF）を起点に、専門家としての信頼を一冊で積み重ね、見込み客を集める入り口をつくります。無料〜低価格で受け取ってもらいながら、自然にメールリストへとつないでいきます。</p></div></div>
+      <div class="lesson"><span class="no">02</span><div class="tx"><h3>ウェビナーファネル</h3><p>パーフェクト・ウェビナーの設計図に沿って、集客から教育、そして販売までの流れを一本に組み立てます。話す順番が決まっているので、はじめてでも、冒頭から締めまで自分の言葉で書き出せるようになるでしょう。</p></div></div>
+      <div class="lesson"><span class="no">03</span><div class="tx"><h3>勉強会マーケティングファネル</h3><p>勉強会を起点に、参加者との信頼を少しずつ構築し、特典つきのオファー、フォローアップと、段階的に本命商品へつないでいきます。いきなり売り込むのではなく、関係を温めてから案内していく流れです。</p></div></div>
+      <div class="lesson"><span class="no">04</span><div class="tx"><h3>ファネルハブ設計図</h3><p>書籍・ウェビナー・勉強会・SNS・広告といった複数の集客ファネルを、ハブで一元管理し、それぞれの見込み客を最適な収益化ラインへ振り分ける全体像を完成させます。バラバラだった集客が、一つの地図の上でつながって見えてくるはずです。</p></div></div>
+      <div class="lesson"><span class="no">05</span><div class="tx"><h3>AIで形にする・テストし続ける</h3><p>スライドとワークシートをAIに読み込ませ、HTMLの“箱”をその日のうちに公開できるところまで落とし込みます。まず形にしてしまえば、「ここにこれも足したい」と次が見えてくるもの。完璧を待たず、出してから、テストで磨いていきます。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 何が手に入るか ===== -->
+<section class="sec-gray">
+  <div class="wrap narrow">
+    <h2 class="head">あなたが手に入れるものは？</h2>
+    <div class="head-rule"></div>
+    <p class="lead">受け終えたとき、手元に残るのは知識だけではありません。明日からの仕事の進め方そのものが、少しずつ変わっていくはずです。</p>
+    <ul class="checks">
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#16263F"></circle><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>「差別化」「独自性」「他との違い」を、自然と言葉にできるようになっていくでしょう。</span></li>
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#16263F"></circle><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>放っておいても見込み客が流れ込む“入り口”を、自分の手で持てるようになるはずです。</span></li>
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#16263F"></circle><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>同じ工程を、そのままクライアントへの支援メニューとして提供できるようになっていくでしょう。</span></li>
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#16263F"></circle><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>本当の問題を言葉にできる人になり、提案や面談が一段通りやすくなっていくはずです。</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== オンライン動画コース ===== -->
+<section>
+  <div class="wrap narrow">
+    <h2 class="head">すべて、オンラインの動画コースで</h2>
+    <div class="head-rule"></div>
+    <p class="lead">本編は、<b>オンラインで受けられる動画コース</b>です。LIVE開催に加えて、<b>すべてアーカイブ（録画）が残ります</b>ので、当日参加できなくても、あなたのタイミングで何度でも見返しながら進めていけます。一度で理解しきれなくても、必要なところだけ繰り返し見られるのは、動画コースならではの強みでしょう。</p>
+    <p class="lead">さらに、グループコンサルと30日間のチャットサポートも付いています。手が止まったとき、迷ったときに質問できる場所があるので、一人で抱え込まずに進めていけます。つまずいても、置いていかれません。</p>
+  </div>
+</section>
+
+<!-- ===== 受講生の声 ===== -->
+<section class="sec-tint">
+  <div class="wrap narrow">
+    <h2 class="head">受講生の声</h2>
+    <div class="head-rule"></div>
+    <p class="lead">実際にこのワークに取り組んでくださった方々の声です。</p>
+    <div class="voice-grid">
+      <figure class="voice"><div class="vhead"><span class="sil"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#D7DFEA"></circle><circle cx="20" cy="16.5" r="6.2" fill="#16263F"></circle><path d="M9 32c1.4-5.8 5.6-8.8 11-8.8s9.6 3 11 8.8z" fill="#16263F"></path></svg></span><div class="stars">★★★★★</div></div>
+        <p>正直なところ、ここまで頭を使うとは思っていませんでした。最初はホームページや集客導線を整えるためのワークだと思っていましたが、実際には事業そのものを見直す作業に近かったです。</p>
+        <p>誰に向けているのか、何を提供しているのか、なぜそれをやっているのか。他社との違いは何なのか。今まで何となく説明していた部分を、一つひとつ言葉にしなければならず、自分自身が理解しているつもりで理解できていなかったことにも気付かされました。</p>
+        <p>大変ではありましたが、その分だけ得られたものも大きかったです。今後、お客様の事業計画やホームページ、集客導線の相談を受けた際にも、より深く考えられるようになったと思います。</p>
+      </figure>
+      <figure class="voice"><div class="vhead"><span class="sil"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#D7DFEA"></circle><circle cx="20" cy="16.5" r="6.2" fill="#16263F"></circle><path d="M9 32c1.4-5.8 5.6-8.8 11-8.8s9.6 3 11 8.8z" fill="#16263F"></path></svg></span><div class="stars">★★★★★</div></div>
+        <p>今回一番印象に残ったのは、自分の頭の中にあるものを言葉にする難しさでした。</p>
+        <p>普段仕事をしていると当たり前になっていることでも、「なぜそうなのか」「他と何が違うのか」と聞かれると意外と説明できません。わかっているつもりだったのですが、実際に書き出してみると曖昧な部分がたくさんありました。</p>
+        <p>ただ、その曖昧だった部分が少しずつ整理されていく感覚がありました。お客様に説明する時も、自分の考えを伝える時も、結局は言葉にできなければ伝わりません。</p>
+        <p>かなり頭を使いましたが、その分今後の提案や面談でも活かせそうです。</p>
+      </figure>
+      <figure class="voice"><div class="vhead"><span class="sil"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#D7DFEA"></circle><circle cx="20" cy="16.5" r="6.2" fill="#16263F"></circle><path d="M9 32c1.4-5.8 5.6-8.8 11-8.8s9.6 3 11 8.8z" fill="#16263F"></path></svg></span><div class="stars">★★★★★</div></div>
+        <p>これまで集客やホームページというと、どうしても見た目やテクニックの部分ばかり考えていました。</p>
+        <p>ですが今回学んだ内容は、それ以前の「そもそも誰に何を伝えるのか」という部分でした。そこが決まっていない状態でホームページを作っても、なかなか成果にはつながらないのだろうと感じました。</p>
+        <p>実際にワークを進めながら、自分がお客様目線ではなく、自分目線で考えていた部分も多かったことに気付かされました。</p>
+        <p>遠回りに見えて、実は一番大事な部分を学べたように思います。</p>
+      </figure>
+      <figure class="voice"><div class="vhead"><span class="sil"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#D7DFEA"></circle><circle cx="20" cy="16.5" r="6.2" fill="#16263F"></circle><path d="M9 32c1.4-5.8 5.6-8.8 11-8.8s9.6 3 11 8.8z" fill="#16263F"></path></svg></span><div class="stars">★★★★★</div></div>
+        <p>想像以上に考えることが多く、正直かなり疲れました。</p>
+        <p>ただ、単に知識を学ぶだけではなく、自分の事業に置き換えて考える時間が多かったので、終わった後の充実感は大きかったです。</p>
+        <p>特に印象的だったのは、今やっている仕事や商品、発信内容がバラバラではなく、一つの流れとして整理できたことです。</p>
+        <p>普段は目の前の業務をこなすことが多いですが、たまには立ち止まって全体を整理する時間も必要だと改めて感じました。</p>
+      </figure>
+      <figure class="voice"><div class="vhead"><span class="sil"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#D7DFEA"></circle><circle cx="20" cy="16.5" r="6.2" fill="#16263F"></circle><path d="M9 32c1.4-5.8 5.6-8.8 11-8.8s9.6 3 11 8.8z" fill="#16263F"></path></svg></span><div class="stars">★★★★★</div></div>
+        <p>今回学んだ内容は、聞いて終わりでは意味がない内容だと思いました。</p>
+        <p>実際に作ってみて、出してみて、お客様の反応を見ながら改善していく。その繰り返しが大事なのだと思います。</p>
+        <p>完璧にしてから始めようと思うと、いつまでも前に進めません。まずは形にしてみること、その上で修正していくことの重要性を改めて感じました。</p>
+        <p>考え方だけでなく、実際に行動につなげるきっかけにもなったので、とても有意義な時間でした。</p>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 動画コース カリキュラム（目次） ===== -->
+<section class="sec-gray">
+<section class="fhub-toc" aria-label="動画コースのカリキュラム">
+  <style>
+    .fhub-toc{
+      --acc:#16263F;        /* アクセント（オレンジ） */
+      --acc-d:#0E1B2E;      /* アクセント濃 */
+      --ink:#16263F;        /* 見出し（ネイビー） */
+      --text:#3A4453;       /* 本文 */
+      --mut:#6B7689;        /* 補足 */
+      --line:#D7DCE3;       /* 罫線 */
+      --card:#FFFFFF;       /* カード背景 */
+      --bg:#FFFFFF;         /* セクション背景（温かみのある白） */
+      --pill:#EDF1F6;       /* コラム用の淡いオレンジ */
+      box-sizing:border-box;
+      max-width:820px;
+      margin:0 auto;
+      padding:clamp(28px,6vw,64px) clamp(16px,5vw,40px);
+      background:var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",
+                  "Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      line-height:1.8;
+      border-radius:3px;
+    }
+    .fhub-toc *,.fhub-toc *::before,.fhub-toc *::after{box-sizing:border-box;}
+
+    /* ヘッダー */
+    .fhub-eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:13px;font-weight:700;letter-spacing:.12em;
+      color:var(--acc-d);background:var(--pill);
+      padding:7px 14px;border-radius:3px;margin:0 0 18px;
+    }
+    .fhub-eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--acc);}
+    .fhub-title{
+      margin:0 0 6px;color:var(--ink);font-weight:800;
+      font-size:clamp(24px,5.5vw,38px);line-height:1.35;letter-spacing:.01em;
+    }
+    .fhub-sub{
+      margin:0 0 14px;color:var(--mut);font-size:clamp(14px,3.4vw,16px);font-weight:600;
+    }
+    .fhub-rule{height:4px;width:64px;background:var(--acc);border-radius:4px;margin:0 0 14px;}
+    .fhub-lead{margin:0 0 28px;color:var(--text);font-size:clamp(15px,3.6vw,16.5px);}
+    .fhub-lead b{color:var(--ink);}
+
+    /* 章リスト */
+    .fhub-list{display:flex;flex-direction:column;gap:10px;}
+    .fhub-item{
+      background:var(--card);border:1px solid var(--line);border-radius:3px;
+      overflow:hidden;transition:border-color .2s ease,box-shadow .2s ease;
+    }
+    .fhub-item[open]{border-color:#D7DFEA;box-shadow:0 6px 22px rgba(200,84,10,.07);}
+
+    .fhub-head{
+      list-style:none;cursor:pointer;
+      display:flex;align-items:center;gap:14px;
+      min-height:60px;padding:14px 16px;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .fhub-head::-webkit-details-marker{display:none;}
+    .fhub-badge{
+      flex:0 0 auto;width:42px;height:42px;border-radius:3px;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--ink);color:#fff;font-weight:800;
+      font-size:16px;letter-spacing:.02em;
+    }
+    .fhub-item[open] .fhub-badge,
+    .fhub-head:hover .fhub-badge{background:var(--acc);}
+    .fhub-badge.is-edge{background:var(--acc);}    /* 序章・終章 */
+    .fhub-headtext{flex:1 1 auto;min-width:0;}
+    .fhub-kicker{display:block;font-size:12px;font-weight:700;color:var(--mut);letter-spacing:.08em;margin-bottom:1px;}
+    .fhub-name{display:block;color:var(--ink);font-weight:800;font-size:clamp(15.5px,3.9vw,18px);line-height:1.5;}
+    .fhub-meta{flex:0 0 auto;display:flex;align-items:center;gap:10px;}
+    .fhub-count{display:none;font-size:12px;color:var(--mut);font-weight:700;white-space:nowrap;}
+    @media(min-width:560px){.fhub-count{display:inline;}}
+    .fhub-chev{flex:0 0 auto;width:22px;height:22px;color:var(--acc);transition:transform .25s ease;}
+    .fhub-item[open] .fhub-chev{transform:rotate(180deg);}
+
+    /* 開いた中身 */
+    .fhub-body{padding:2px 16px 18px 72px;}
+    @media(max-width:480px){.fhub-body{padding:2px 16px 18px 18px;}}
+    .fhub-secs{margin:6px 0 0;padding:0;list-style:none;}
+    .fhub-secs li{
+      position:relative;padding:6px 0 6px 18px;
+      color:var(--text);font-size:14.5px;line-height:1.7;border-bottom:1px dashed var(--line);
+    }
+    .fhub-secs li:last-child{border-bottom:none;}
+    .fhub-secs li::before{
+      content:"";position:absolute;left:0;top:14px;
+      width:6px;height:6px;border-radius:50%;background:var(--acc);
+    }
+    .fhub-cols{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+    .fhub-col{
+      display:inline-flex;align-items:center;gap:6px;
+      background:var(--pill);color:var(--acc-d);font-size:12.5px;font-weight:700;
+      padding:6px 11px;border-radius:3px;line-height:1.4;
+    }
+    .fhub-col::before{content:"＋";font-weight:800;}
+
+    /* フッター／CTA */
+    .fhub-foot{
+      margin-top:26px;padding-top:22px;border-top:1px solid var(--line);
+      text-align:center;
+    }
+    .fhub-foot-note{margin:0 0 16px;color:var(--mut);font-size:14px;}
+    .fhub-cta{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:56px;padding:0 30px;border-radius:3px;
+      background:var(--acc);color:#fff;font-weight:800;font-size:clamp(15px,4vw,17px);
+      text-decoration:none;letter-spacing:.02em;
+      box-shadow:0 8px 20px rgba(232,105,15,.28);
+      transition:transform .12s ease,background .2s ease,box-shadow .2s ease;
+    }
+    .fhub-cta:hover{background:var(--acc-d);box-shadow:0 10px 24px rgba(200,84,10,.34);}
+    .fhub-cta:active{transform:translateY(1px);}
+    .fhub-cta:focus-visible{outline:3px solid #D2DBE6;outline-offset:3px;}
+
+    @media(prefers-reduced-motion:reduce){
+      .fhub-chev,.fhub-cta,.fhub-item{transition:none;}
+    }
+  </style>
+
+  <p class="fhub-eyebrow">動画コース・全12レッスン</p>
+  <h2 class="fhub-title">ファネルハブ構築ワークショップ</h2>
+  <p class="fhub-sub">― ウェブサイトでもファネルでもない「第三の存在」のつくり方 ―</p>
+  <div class="fhub-rule"></div>
+  <p class="fhub-lead">差別化・独自性・他との違いを<b>自然と言語化できる</b>骨格を、序章から終章まで体系化しました。各章をタップすると、収録されている節とコラムが開きます。</p>
+
+  <div class="fhub-list">
+
+    <!-- 序章 -->
+    <details class="fhub-item">
+      <summary class="fhub-head">
+        <span class="fhub-badge is-edge">序</span>
+        <span class="fhub-headtext">
+          <span class="fhub-kicker">PROLOGUE</span>
+          <span class="fhub-name">この動画コースで何が手に入るのか</span>
+        </span>
+        <span class="fhub-meta">
+          <span class="fhub-count">6節＋コラム1</span>
+          <svg class="fhub-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </summary>
+      <div class="fhub-body">
+        <ul class="fhub-secs">
+          <li>なぜ私がこの話をしているのか</li>
+          <li>このワークショップは誰のためのものか</li>
+          <li>今日身につく7つのスキル</li>
+          <li>このスキルはどんな場面で生きるのか</li>
+          <li>なぜそんなことが言えるのか ― すべては同じ工程</li>
+          <li>報酬が変わる ― 私たちの仕事の流れそのもの</li>
+        </ul>
+        <div class="fhub-cols"><span class="fhub-col">コラム① AIで量産された資料は、なぜ見抜かれるのか</span></div>
+      </div>
+    </details>
+
+    <!-- 第1章 -->
+    <details class="fhub-item">
+      <summary class="fhub-head">
+        <span class="fhub-badge">1</span>
+        <span class="fhub-headtext">
+          <span class="fhub-kicker">CHAPTER 1</span>
+          <span class="fhub-name">ファネルハブとは何か</span>
+        </span>
+        <span class="fhub-meta">
+          <span class="fhub-count">5節＋コラム1</span>
+          <svg class="fhub-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </summary>
+      <div class="fhub-body">
+        <ul class="fhub-secs">
+          <li>多くの事業者はファネルを知らない</li>
+          <li>バラバラのドメインは意味がない</li>
+          <li>ウェブサイトでもファネルでもない、第三の存在</li>
+          <li>コントロール ― 勝ちパターンから始める</li>
+          <li>ファネルハブを構成する8つのパーツ</li>
+        </ul>
+        <div class="fhub-cols"><span class="fhub-col">コラム② メールリスト化という最強の保険</span></div>
+      </div>
+    </details>
+
+    <!-- 第2章 -->
+    <details class="fhub-item">
+      <summary class="fhub-head">
+        <span class="fhub-badge">2</span>
+        <span class="fhub-headtext">
+          <span class="fhub-kicker">CHAPTER 2</span>
+          <span class="fhub-name">なぜファネルハブが必要なのか ― 96%問題とコントロール</span>
+        </span>
+        <span class="fhub-meta">
+          <span class="fhub-count">4節＋コラム1</span>
+          <svg class="fhub-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </summary>
+      <div class="fhub-body">
+        <ul class="fhub-secs">
+          <li>見落とされてきた96%</li>
+          <li>人は、ほとんどスルーする</li>
+          <li>シャドウセールスファネル</li>
+          <li>1%の改善が、売上を激変させる</li>
+        </ul>
+        <div class="fhub-cols"><span class="fhub-col">コラム③ 『エキスパートシークレッツ』という原典</span></div>
+      </div>
+    </details>
+
+    <!-- 第3章 -->
+    <details class="fhub-item">
+      <summary class="fhub-head">
+        <span class="fhub-badge">3</span>
+        <span class="fhub-headtext">
+          <span class="fhub-kicker">CHAPTER 3</span>
+          <span class="fhub-name">ファネルハブを構成する8つのコアページ</span>
+        </span>
+        <span class="fhub-meta">
+          <span class="fhub-count">8節＋コラム2</span>
+          <svg class="fhub-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </summary>
+      <div class="fhub-body">
+        <ul class="fhub-secs">
+          <li>① ホームページ ― 最重要は「メールリスト化」</li>
+          <li>② About Me ― ついていきたくなる人物像</li>
+          <li>③ ムーブメント ― 参加したくなる部族</li>
+          <li>④ プロダクト ― 改善ではなく「新しい機会」</li>
+          <li>⑤ リードマグネット ― すべての入り口</li>
+          <li>⑥ ストラテジー ― 独自アプローチを語る</li>
+          <li>⑦ コンテンツハブ ― 全発信の集約地</li>
+          <li>⑧ レビュー・実績 ― 証拠で信頼を裏付ける</li>
+        </ul>
+        <div class="fhub-cols">
+          <span class="fhub-col">コラム④ ラッセル・ブランソンのサイトに学ぶ</span>
+          <span class="fhub-col">コラム⑤ 「NHKをぶっ壊す」 ― 旗の立て方</span>
+        </div>
+      </div>
+    </details>
+
+    <!-- 第4章 -->
+    <details class="fhub-item">
+      <summary class="fhub-head">
+        <span class="fhub-badge">4</span>
+        <span class="fhub-headtext">
+          <span class="fhub-kicker">CHAPTER 4</span>
+          <span class="fhub-name">統一ブランドを設計する</span>
+        </span>
+        <span class="fhub-meta">
+          <span class="fhub-count">5節＋コラム4</span>
+          <svg class="fhub-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </summary>
+      <div class="fhub-body">
+        <ul class="fhub-secs">
+          <li>すべての資産を納める「傘」</li>
+          <li>より大きな傘 ― 入れ子構造</li>
+          <li>ワーク：誰の、何の問題を、どのように解決するのか</li>
+          <li>ワーク：傘の下にある資産の棚卸し</li>
+          <li>コアオファーは「お問い合わせ」にしない</li>
+        </ul>
+        <div class="fhub-cols">
+          <span class="fhub-col">コラム⑥ 体験を、狭くしない</span>
+          <span class="fhub-col">コラム⑦ PTAも経営者団体も「発信コンテンツ」である</span>
+          <span class="fhub-col">コラム⑧ 見積もりシミュレーターの注意点</span>
+          <span class="fhub-col">コラム⑨ 29ページのテンプレートを「見せるだけ」</span>
+        </div>
+      </div>
+    </details>
+
+    <!-- 第5章 -->
+    <details class="fhub-item">
+      <summary class="fhub-head">
+        <span class="fhub-badge">5</span>
+        <span class="fhub-headtext">
+          <span class="fhub-kicker">CHAPTER 5</span>
+          <span class="fhub-name">読み手を具体化する ― アクティブとパッシブ</span>
+        </span>
+        <span class="fhub-meta">
+          <span class="fhub-count">3節</span>
+          <svg class="fhub-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </summary>
+      <div class="fhub-body">
+        <ul class="fhub-secs">
+          <li>意識レベルという考え方</li>
+          <li>アクティブは「買う気満々」だが、少ない</li>
+          <li>どのフェーズに、何を置くか</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 第6章 -->
+    <details class="fhub-item">
+      <summary class="fhub-head">
+        <span class="fhub-badge">6</span>
+        <span class="fhub-headtext">
+          <span class="fhub-kicker">CHAPTER 6</span>
+          <span class="fhub-name">折り込む5原則の素材を集める</span>
+        </span>
+        <span class="fhub-meta">
+          <span class="fhub-count">1節＋コラム1</span>
+          <svg class="fhub-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </summary>
+      <div class="fhub-body">
+        <ul class="fhub-secs">
+          <li>5つの原則（実績・キャラクター・ムーブメント・オファー・発信媒体）</li>
+        </ul>
+        <div class="fhub-cols"><span class="fhub-col">コラム⑩ 100冊読んだ ― 実績がないときの実績のつくり方</span></div>
+      </div>
+    </details>
+
+    <!-- 第7章 -->
+    <details class="fhub-item">
+      <summary class="fhub-head">
+        <span class="fhub-badge">7</span>
+        <span class="fhub-headtext">
+          <span class="fhub-kicker">CHAPTER 7</span>
+          <span class="fhub-name">8つのコアページを設計する（前半）</span>
+        </span>
+        <span class="fhub-meta">
+          <span class="fhub-count">4節＋コラム1</span>
+          <svg class="fhub-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </summary>
+      <div class="fhub-body">
+        <ul class="fhub-secs">
+          <li>About Me を設計する ― 主張・理由・証拠</li>
+          <li>ムーブメントを設計する ― 何と決別するのか</li>
+          <li>プロダクトを設計する ― 「新しい機会」になっているか</li>
+          <li>需要があるか、思い込みではないか</li>
+        </ul>
+        <div class="fhub-cols"><span class="fhub-col">コラム⑪ 「自分の収入は、自分で決められる」</span></div>
+      </div>
+    </details>
+
+    <!-- 第8章 -->
+    <details class="fhub-item">
+      <summary class="fhub-head">
+        <span class="fhub-badge">8</span>
+        <span class="fhub-headtext">
+          <span class="fhub-kicker">CHAPTER 8</span>
+          <span class="fhub-name">壊すべき3つの思い込み</span>
+        </span>
+        <span class="fhub-meta">
+          <span class="fhub-count">5節＋コラム1</span>
+          <svg class="fhub-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </summary>
+      <div class="fhub-body">
+        <ul class="fhub-secs">
+          <li>リードマグネットに名前をつける</li>
+          <li>ストラテジー ― ミッションと3つの思い込み</li>
+          <li>「内部」の思い込み ― 社長の行動を止めているもの</li>
+          <li>崩す根拠 ― 新しいビリーフへ</li>
+          <li>「代わりに何をしているか」を見る</li>
+        </ul>
+        <div class="fhub-cols"><span class="fhub-col">コラム⑫ 本当の問題は「立地」ではない</span></div>
+      </div>
+    </details>
+
+    <!-- 第9章 -->
+    <details class="fhub-item">
+      <summary class="fhub-head">
+        <span class="fhub-badge">9</span>
+        <span class="fhub-headtext">
+          <span class="fhub-kicker">CHAPTER 9</span>
+          <span class="fhub-name">コンテンツハブとレビュー ― 証拠で信頼を裏付ける</span>
+        </span>
+        <span class="fhub-meta">
+          <span class="fhub-count">2節＋コラム1</span>
+          <svg class="fhub-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </summary>
+      <div class="fhub-body">
+        <ul class="fhub-secs">
+          <li>コンテンツハブ ― 全発信の集約地</li>
+          <li>レビュー（ケーススタディ） ― 証拠を集める</li>
+        </ul>
+        <div class="fhub-cols"><span class="fhub-col">コラム⑬ お客様の声は、会社名を出したほうがいいか</span></div>
+      </div>
+    </details>
+
+    <!-- 第10章 -->
+    <details class="fhub-item">
+      <summary class="fhub-head">
+        <span class="fhub-badge">10</span>
+        <span class="fhub-headtext">
+          <span class="fhub-kicker">CHAPTER 10</span>
+          <span class="fhub-name">AIでファネルハブを形にする</span>
+        </span>
+        <span class="fhub-meta">
+          <span class="fhub-count">3節</span>
+          <svg class="fhub-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </summary>
+      <div class="fhub-body">
+        <ul class="fhub-secs">
+          <li>まず「箱」を作ってしまう（スライド→ワークシート→HTML生成）</li>
+          <li>リードマグネットを見つけるAIプロンプト</li>
+          <li>仕上げと、その先</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 終章 -->
+    <details class="fhub-item">
+      <summary class="fhub-head">
+        <span class="fhub-badge is-edge">終</span>
+        <span class="fhub-headtext">
+          <span class="fhub-kicker">EPILOGUE</span>
+          <span class="fhub-name">まず箱をつくり、テストし続ける</span></span></summary></details></div>
+</section>
+</section>
+
+<!-- ===== 含まれるもの（バリュースタック） ===== -->
+<section>
+  <div class="wrap narrow">
+    <h2 class="head">講座に含まれるもの</h2>
+    <div class="head-rule"></div>
+    <p class="lead">本編の動画コースに加えて、すぐに使えるテンプレートや制作キット、サポートまで一式が含まれます。</p>
+    <ul class="stack">
+      <li><span class="nm">ファネルハブ養成ワークショップ（動画コース本編）</span><span class="vl">30万円相当</span></li>
+      <li><span class="nm">そのまま使えるCFテンプレート（HTML版）</span><span class="vl">9.8万円相当</span></li>
+      <li><span class="nm">ファネルハブ制作キット</span><span class="vl">30万円相当</span></li>
+      <li><span class="nm">GA4ダッシュボード制作AIパイプライン</span><span class="vl">非売品</span></li>
+      <li><span class="nm">30日間チャットサポート</span><span class="vl">15,000円相当</span></li>
+      <li><span class="nm">Funnel Hub戦略セッション</span><span class="vl">5.5万円相当</span></li>
+      <li><span class="nm">30日間返金保証</span><span class="vl">―</span></li>
+      <li><span class="nm">AIO対策型スキル</span><span class="vl">30万円相当</span></li>
+      <li><span class="nm">グループコンサルティング</span><span class="vl">10万円相当</span></li>
+      <li><span class="nm">Claude Code実装オンライン講座 ＋ 補助金AI</span><span class="vl">179,800円相当</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 2つの道 ===== -->
+<section class="sec-gray">
+  <div class="wrap narrow">
+    <h2 class="head">あなたには、2つの道があります</h2>
+    <div class="head-rule"></div>
+    <p class="lead">同じゴールにたどり着くにも、進み方は2つあります。1人でゼロから試行錯誤すれば、ざっと100時間。時間を投資額に換算すれば、468万円ほどかかる計算になります。一方、僕と一緒に、検証済みの型に沿って進めれば、10〜20時間で形にしていけるでしょう。遠回りを買うか、近道を選ぶか、という違いです。</p>
+    <div class="paths">
+      <div class="path alone"><h3>1人でやる道</h3><div class="time">100時間</div><div class="timelabel">かかる時間</div><div class="cost">投資額 468万円</div></div>
+      <div class="path together"><h3>僕と一緒にやる道</h3><div class="time">10〜20時間</div><div class="timelabel">かかる時間</div><div class="cost">この講座で</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     「この講座の価値は？」パーツ（貼り付け用・単体HTML）
+     文章 → まとめ価格表 → before/after リビール → CTA の流れ。
+     CSSは .fh-value 配下にスコープ済み。決済リンクは .cta の href を差し替え。
+     ============================================================ -->
+<section class="fh-value" aria-label="この講座の価値">
+  <style>
+    .fh-value{
+      --navy:#16263F; --navy-d:#0E1B2E; --gold:#C8A33B; --goldlt:#F2C75A;
+      --ink:#16263F; --text:#33414F; --mut:#6E7A8A; --line:#D7DCE3; --tint:#EDF1F6; --red:#C0392B;
+      box-sizing:border-box;max-width:820px;margin:0 auto;
+      padding:clamp(44px,8vw,84px) clamp(18px,5vw,40px);
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+      color:var(--text);line-height:2;-webkit-font-smoothing:antialiased;
+    }
+    .fh-value *,.fh-value *::before,.fh-value *::after{box-sizing:border-box;}
+    .fh-value .h2-big{font-size:clamp(22px,5vw,34px);font-weight:800;line-height:1.5;color:var(--ink);
+      text-align:center;margin:0 0 14px;letter-spacing:-.01em;}
+    .fh-value .h2-big::after{content:"";display:block;width:72px;height:4px;background:var(--navy);margin:20px auto 0;}
+    .fh-value p{font-size:clamp(15.5px,3.8vw,18px);line-height:2.0;color:var(--ink);margin:0 0 22px;}
+    .fh-value p b{color:var(--navy);font-weight:700;}
+    .fh-value .wait{font-size:clamp(22px,5.5vw,32px);line-height:1.6;color:var(--red);
+      font-weight:800;text-align:center;margin:34px 0 30px;}
+
+    /* まとめ価格表 */
+    .fh-value .sumttl{font-size:clamp(20px,5vw,30px);font-weight:800;color:var(--ink);text-align:center;
+      margin:48px 0 10px;}
+    .fh-value .sumttl::after{content:"";display:block;width:72px;height:4px;background:var(--navy);margin:18px auto 0;}
+    .fh-value .price-table{width:100%;border-collapse:collapse;background:#fff;border:2px solid var(--navy);margin:24px 0;}
+    .fh-value .price-table th,.fh-value .price-table td{padding:16px 18px;border-bottom:1px solid var(--line);
+      font-size:clamp(14px,3.4vw,16.5px);text-align:left;vertical-align:middle;}
+    .fh-value .price-table th{background:var(--tint);font-weight:700;color:var(--ink);}
+    .fh-value .price-table td:last-child{text-align:right;font-weight:700;white-space:nowrap;color:var(--mut);}
+    .fh-value .price-table tr.total td{background:var(--navy);color:var(--goldlt);font-size:clamp(18px,4.5vw,22px);
+      font-weight:800;border-top:2px solid var(--navy);}
+    .fh-value .price-table tr.total td:first-child{color:#fff;}
+
+    /* before / after リビール */
+    .fh-value .price-ba{display:flex;justify-content:center;margin:40px 0 8px;}
+    .fh-value .ba-after{width:100%;max-width:540px;text-align:center;padding:38px 28px 30px;
+      background:var(--navy);border:3px solid var(--gold);border-radius:4px;position:relative;}
+    .fh-value .ba-after::before{content:"限定";position:absolute;top:-15px;left:50%;transform:translateX(-50%);
+      background:var(--gold);color:#1c1407;font-size:13px;font-weight:800;letter-spacing:.2em;padding:5px 20px;border-radius:2px;}
+    .fh-value .ba-was{font-size:clamp(16px,4vw,20px);color:#AEBDD0;font-weight:700;
+      text-decoration:line-through;text-decoration-color:var(--goldlt);text-decoration-thickness:2px;margin-bottom:4px;}
+    .fh-value .ba-arrow{color:#AEBDD0;font-size:14px;letter-spacing:.3em;margin:4px 0;}
+    .fh-value .ba-label{font-size:14px;font-weight:800;letter-spacing:.12em;color:var(--goldlt);margin-bottom:8px;}
+    .fh-value .ba-value{font-size:clamp(46px,13vw,76px);font-weight:800;line-height:1.05;color:var(--goldlt);}
+    .fh-value .ba-value .unit{font-size:clamp(18px,5vw,26px);margin-left:4px;}
+    .fh-value .ba-note{font-size:13.5px;color:#AEBDD0;margin-top:12px;}
+
+    .fh-value .urgency{text-align:center;font-size:clamp(15px,3.8vw,18px);line-height:1.9;color:var(--ink);
+      font-weight:700;margin:24px 0 0;}
+    .fh-value .urgency .em{color:var(--red);font-weight:800;}
+
+    .fh-value .cta-wrap{text-align:center;margin-top:30px;}
+    .fh-value .cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:62px;
+      padding:0 40px;border-radius:4px;background:var(--gold);color:#1c1407;font-weight:800;
+      font-size:clamp(16px,4.4vw,20px);text-decoration:none;letter-spacing:.02em;}
+    .fh-value .cta:hover{background:#fff;color:var(--navy);}
+  </style>
+
+  <h2 class="h2-big">ファネルハブクリエイター養成講座は、<br>あなたにとって、いくらの価値があるでしょうか？</h2>
+
+  <p>さて、気になる価格ですが、その前に少し考えていただきたいことがあります。</p>
+
+  <p>もし、自分の手でファネルハブをつくれないままだと、どうなるでしょうか。「ホームページはあるのに問い合わせが来ない」「発信しても見込み客につながらない」という状態を、これからも抱え続けることになります。ゼロから独学で身につけようとすれば、書籍や動画で数ヶ月。その間にも、本来なら手に入っていたはずの<b>見込み客と売上の機会</b>が、静かに失われ続けていきます。</p>
+
+  <p>ですが、もし“自分の手で回せるファネルハブ”があれば、毎回ゼロから悩む必要はありません。集客が少しずつ仕組みに変わり、同じ工程を、そのまま<b>クライアントへの支援メニュー</b>としても届けられるようになっていくでしょう。</p>
+
+  <p>そんなファネルハブ養成ワークショップ本編に加えて、そのまま使えるテンプレート、制作キット、戦略セッション、30日間のサポートまでの一式を、<b>49,800円（税込）</b>で手に入れていただけます。しかも、やってみて合わなければ<b>30日間の返金保証</b>つきです。そう考えると、この価格がどれだけ控えめか、お分かりいただけるのではないでしょうか。</p>
+
+  <p class="wait">でも、ちょっと待って下さい…</p>
+
+  <p>思い出してください。これを1人でやろうとすれば、ざっと100時間。時間を投資額に換算すれば、<b>468万円</b>ほどかかる道のりでした。それが、僕と一緒なら10〜20時間で形にしていけます。下に並べたものを一つひとつ個別に揃えた場合の相当額と、今回の価格を、並べて見てください。</p>
+
+  <h3 class="sumttl">まとめると…</h3>
+  <table class="price-table">
+    <tbody><tr><th>ファネルハブ養成ワークショップ（動画コース本編）</th><td>300,000円相当</td></tr>
+    <tr><th>そのまま使えるCFテンプレート（HTML版）</th><td>98,000円相当</td></tr>
+    <tr><th>ファネルハブ制作キット</th><td>300,000円相当</td></tr>
+    <tr><th>GA4ダッシュボード制作AIパイプライン</th><td>非売品</td></tr>
+    <tr><th>30日間チャットサポート</th><td>15,000円相当</td></tr>
+    <tr><th>Funnel Hub戦略セッション</th><td>55,000円相当</td></tr>
+    <tr><th>30日間返金保証</th><td>プライスレス</td></tr>
+    <tr><th>AIO対策型スキル</th><td>300,000円相当</td></tr>
+    <tr><th>グループコンサルティング</th><td>100,000円相当</td></tr>
+    <tr><th>Claude Code実装オンライン講座 ＋ 補助金AI</th><td>179,800円相当</td></tr>
+    <tr class="total"><td>合計</td><td>1,047,800円相当</td></tr>
+  </tbody></table>
+
+  <div class="price-ba">
+    <div class="ba-after">
+      <div class="ba-was">通常価格 1,047,800円相当</div>
+      <div class="ba-arrow">▼</div>
+      <div class="ba-label">特別価格</div>
+      <div class="ba-value">49,800<span class="unit">円（税込）</span></div>
+      <div class="ba-note">1ヶ月サポート（サポート・グルコン・LIVE）／オンライン動画コース・アーカイブ視聴つき</div>
+    </div>
+  </div>
+
+  <p class="urgency">これは特別価格です。<span class="em">次回開催の予定はなく、この条件でのご案内は、これが最後になります。</span></p>
+
+  <div class="cta-wrap">
+    <a class="cta" data-cta="" href="https://buy.stripe.com/6oUdRafqJaC517g5J06c001" target="_blank" rel="noopener">動画コースに参加する（49,800円・税込）
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </a>
+  </div>
+</section>
+<!-- ============================================================ -->
+
+
+
+<!-- ===== たった一つでも ===== -->
+<section>
+  <div class="wrap narrow">
+    <h2 class="head">もし、たった一つでも...</h2>
+    <div class="head-rule"></div>
+    <p class="lead">ここで手に入るもののうち、すべてを使い切る必要はありません。どれか一つでも回収できれば十分です。次のどれか一つでもつながれば、それだけで元は取れるはずです。いくつも当たれば、その分だけ積み上がっていきます。</p>
+    <div class="grid6">
+      <div class="g6">HPから<br>安定集客</div>
+      <div class="g6">ファネルから<br>高額案件</div>
+      <div class="g6">ファネルハブで<br>優良取引</div>
+      <div class="g6">うちから<br>依頼</div>
+      <div class="g6">うちの案件を<br>外注で受ける</div>
+      <div class="g6">補助金案件の<br>パートナー</div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     「講師紹介」セクション（貼り付け用・単体HTML）
+     ※ 文字起こし（セミナー冒頭の自己紹介）に沿った内容。
+     <section data-ast-id="523" class="fh-teacher"> ～ </section> をそのまま貼る。
+     CSSは .fh-teacher 配下にスコープ済み。
+     ============================================================ -->
+<section class="fh-teacher" aria-label="講師紹介">
+  <style>
+    .fh-teacher{
+      --navy:#16263F; --navy-d:#0E1B2E; --ink:#16263F; --gold:#C8A33B;
+      --text:#33414F; --mut:#6E7A8A; --line:#E2E6EC;
+      box-sizing:border-box;max-width:760px;margin:0 auto;
+      padding:clamp(44px,8vw,84px) clamp(18px,5vw,40px);
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+      color:var(--text);line-height:2;-webkit-font-smoothing:antialiased;
+    }
+    .fh-teacher *,.fh-teacher *::before,.fh-teacher *::after{box-sizing:border-box;}
+    .fh-teacher .head{font-size:clamp(22px,5vw,33px);font-weight:800;color:var(--ink);line-height:1.4;margin:0 0 10px;}
+    .fh-teacher .rule{width:50px;height:3px;background:var(--navy);margin:0 0 26px;}
+    .fh-teacher .profile{background:#fff;border:1px solid var(--line);border-left:5px solid var(--navy);border-radius:4px;padding:28px 30px;}
+    .fh-teacher .name{margin:0 0 4px;font-size:clamp(20px,5vw,26px);font-weight:800;color:var(--ink);}
+    .fh-teacher .name span{font-size:14px;color:var(--mut);font-weight:600;}
+    .fh-teacher .role{margin:0 0 20px;font-size:14.5px;color:var(--navy);font-weight:700;line-height:1.7;}
+    .fh-teacher p{font-size:15.5px;line-height:1.95;margin:0 0 14px;}
+    .fh-teacher p b{color:var(--navy);font-weight:700;}
+    .fh-teacher .facts{list-style:none;margin:16px 0 0;padding:16px 0 0;border-top:1px solid var(--line);}
+    .fh-teacher .facts li{position:relative;padding-left:18px;margin:0 0 9px;font-size:14.5px;line-height:1.7;text-align:left;}
+    .fh-teacher .facts li:last-child{margin-bottom:0;}
+    .fh-teacher .facts li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--gold);}
+  </style>
+
+  <h2 class="head">講師紹介</h2>
+  <div class="rule"></div>
+
+  <div class="profile">
+    <p class="name">阿久津 和宏 <span>（あくつ かずひろ）</span></p>
+    <p class="role">Well Consultant 代表 ／ 行政書士・認定経営革新等支援機関<br>一般社団法人ワンモアピース共創協会 代表理事</p>
+
+    <p>ふだんは、クライアントの<b>事業計画づくり</b>や<b>補助金申請の支援</b>、そして<b>マーケティングや人材の支援</b>を仕事にしています。その現場でずっと感じてきたのが、多くの事業者さんが「ウェブサイトが欲しい」とは言うものの、ファネルという考え方をほとんど持っていない、ということでした。だから、なんとなくまとめただけの“概要資料”のようなホームページになってしまう。</p>
+
+    <p>いろいろな支援をしてきて分かったのは、ホームページの相談も、事業計画書も、マーケティングも、人材も――その<b>すべての根幹に、このファネルハブの考え方がある</b>ということです。なんなら、ファネルハブの考え方そのものは万能だと言ってもいいくらいで、どの場面でも、いちばん土台のところで効いてきます。</p>
+
+    <p>そして正直にお話しすると、この講座は<b>僕たち自身の仕事の流れそのもの</b>です。クライアントと事業計画を立てると、その計画にはたいていファネルハブが必要になります。相談・事業計画・補助金申請の支援で30万〜50万円、そこにファネルハブを乗せて、さらにご一緒していく。だからこそ、受講してくださる方とは、一緒にやったり、ときに依頼し合えるパートナーになれたら――そんな思いで、この講座をご案内しています。</p>
+
+    <ul class="facts">
+      <li>ふだんの仕事：事業計画づくり／補助金申請の支援／マーケティング支援／人材支援</li>
+      <li>その全ての根幹として、ファネルハブを軸にした集客・販売・アップセルの設計を実践</li>
+      <li>クライアントの「事業の良き理解者であり、伝達者」になることを大切にしている</li>
+      <li>拠点：埼玉県熊谷市</li>
+    </ul>
+  </div>
+</section>
+<!-- ============================================================ -->
+<!-- ===== 価格 ===== -->
+<section class="sec-tint">
+  <div class="wrap narrow">
+    
+
+<!-- ===== 保証 ===== -->
+<section>
+  <div class="wrap narrow">
+    <div class="guarantee">
+      <h3 class="">安心満足保証 ― 30日間返金保証</h3>
+      <p>ワークショップを受けて、やってみたけど成果を出せなかった方は、ご連絡ください。すぐに返金します。（ワーク受講証明と、実践ログのご提出をお願いすることがあります。）</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 構築代行 ===== -->
+<section class="sec-gray">
+  <div class="wrap narrow">
+    <h2 class="head">でも、そんな時間がない...<br>「全部まるっと任せたい」方も...</h2>
+    <div class="head-rule"></div>
+    <p class="lead">「考え方は分かった。でも、自分で全部やる時間はない」。そんな方のために、ファネルハブ構築代行もご用意しています（申込者・ワークプログラム参加者限定）。下記のように、5ヶ月かけてヒアリングから実装・始動までを丸ごとお任せいただけます。購入者限定なので、希望者は、戦略セッションの際に、向いているかどうか確かめてください。</p>
+    <ul class="steps">
+      <li><span class="mn">1ヶ月目</span><span class="ds">ヒアリング・調査</span></li>
+      <li><span class="mn">2ヶ月目</span><span class="ds">ファネル実装 → ファネル始動</span></li>
+      <li><span class="mn">3ヶ月目</span><span class="ds">ミニブログ実装 → ミニブログ始動</span></li>
+      <li><span class="mn">4ヶ月目</span><span class="ds">ファネルハブ実装</span></li>
+      <li><span class="mn">5ヶ月目</span><span class="ds">ファネルハブ始動</span></li>
+    </ul>
+  </div>
+</section>
+
+
+
+<!-- ===== CTA ===== -->
+<section class="cta-sec">
+  <div class="wrap narrow">
+    <h2 class="">動画コースに参加して、<br>一緒に始めませんか？</h2>
+    <p class="scar">特別価格です。次回開催は予定がなく、もうこの条件では開催しません。</p>
+    <p class="lead2">最初の一枚は、完成形ではありません。回し続けるための起点です。完璧を待っていると、いつまでも前に進めません。まず出して、お客さんの反応を見ながらテストで磨いていく。その繰り返しが、自動で集まる集客と、クライアントへの支援の両方を、長く支えていきます。その入り口に、一緒に立ちませんか。</p>
+    <a class="cta cta-gold" href="https://buy.stripe.com/6oUdRafqJaC517g5J06c001" target="_blank" rel="noopener">動画コースに参加する（49,800円・税込）
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </a>
+    <p class="cta-url">受付は6月17日（水）23:59まで</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     「今回はやめておきます。」ボタン（貼り付け用・単体HTML）
+     講座を申し込まない人を、書籍販売へ流すためのサブ導線。
+     ★ href="#" を書籍販売ページのURLに差し替えてください ★
+     主CTA（動画コースに参加する）の下に置くのがおすすめ。
+     CSSは .fh-decline 配下にスコープ済み。
+     ============================================================ -->
+<div class="fh-decline">
+  <style>
+    .fh-decline{
+      --navy:#16263F; --navy-d:#0E1B2E; --mut:#6E7A8A; --line:#C9D2DD;
+      box-sizing:border-box;text-align:center;margin:18px auto 0;max-width:540px;
+      padding:0 16px;
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+    }
+    .fh-decline *,.fh-decline *::before,.fh-decline *::after{box-sizing:border-box;}
+    .fh-decline a{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      min-height:48px;padding:0 26px;border:1px solid var(--line);border-radius:3px;
+      background:transparent;color:var(--mut);font-weight:700;font-size:15px;
+      text-decoration:none;line-height:1.4;letter-spacing:.01em;
+    }
+    .fh-decline a:hover{color:var(--navy-d);border-color:var(--navy);background:#fff;}
+    .fh-decline a svg{flex:0 0 auto;}
+    .fh-decline .note{margin:8px 0 0;font-size:12.5px;color:var(--mut);line-height:1.6;}
+  </style>
+
+  <a href="#" data-book-url="" target="_blank" rel="noopener" class="">
+    今回はやめておきます。講座の書籍版だけ購入したいです。</a><p class="note">まずは書籍で受け取りたい方はこちら</p>
+</div>
+<!-- ============================================================ -->
+
+<footer>
+  <div class="nm">Well Consultant</div>
+  <div>ファネルハブ クリエイター養成講座</div>
+</footer>
+
+
+</div></section>
+</body>
+</html>
