@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>なんでもプロンプト メーカー</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --panel:#ffffff;
+    --panel2:#f5f6f8;
+    --line:#e1e4ea;
+    --txt:#1a1d24;
+    --sub:#6b7280;
+    --accent:#4f7cff;
+    --accent2:#3b63d6;
+    --ok:#34c759;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    background:var(--bg);
+    color:var(--txt);
+    line-height:1.7;
+  }
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:32px 20px 80px;
+  }
+  header h1{
+    font-size:26px;
+    margin:0 0 6px;
+    letter-spacing:.02em;
+  }
+  header p{
+    margin:0 0 28px;
+    color:var(--sub);
+    font-size:14px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  @media (max-width:840px){
+    .grid{grid-template-columns:1fr;}
+  }
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+  }
+  .field{margin-bottom:20px;}
+  .field:last-child{margin-bottom:0;}
+  label{
+    display:block;
+    font-weight:700;
+    font-size:15px;
+    margin-bottom:4px;
+  }
+  label .hint{
+    display:block;
+    font-weight:400;
+    font-size:12px;
+    color:var(--sub);
+    margin-top:2px;
+  }
+  textarea{
+    width:100%;
+    background:var(--panel2);
+    border:1px solid var(--line);
+    border-radius:10px;
+    color:var(--txt);
+    padding:12px 14px;
+    font-size:14px;
+    font-family:inherit;
+    line-height:1.6;
+    resize:vertical;
+    transition:border-color .15s;
+  }
+  textarea:focus{
+    outline:none;
+    border-color:var(--accent);
+  }
+  textarea#f_shiji{min-height:90px;}
+  textarea#f_jouhou{min-height:120px;}
+  textarea#f_format{min-height:120px;}
+  textarea#f_hosoku{min-height:70px;}
+
+  .out-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:14px;
+  }
+  .out-head h2{
+    font-size:16px;
+    margin:0;
+  }
+  .copy-note{
+    margin:0 0 12px;
+    font-size:12px;
+    color:var(--sub);
+  }
+  .btns{display:flex;gap:8px;}
+  button{
+    border:none;
+    border-radius:9px;
+    padding:9px 16px;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+    font-family:inherit;
+    transition:transform .08s, background .15s;
+  }
+  button:active{transform:scale(.97);}
+  .btn-copy{background:var(--accent);color:#fff;}
+  .btn-copy:hover{background:var(--accent2);}
+  .btn-copy.copied{background:var(--ok);}
+  .btn-clear{background:transparent;color:var(--sub);border:1px solid var(--line);}
+  .btn-clear:hover{color:var(--txt);border-color:var(--sub);}
+
+  pre#output{
+    background:var(--panel2);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px;
+    margin:0;
+    white-space:pre-wrap;
+    word-break:break-word;
+    font-family:"SFMono-Regular",Consolas,"Hiragino Kaku Gothic ProN",monospace,sans-serif;
+    font-size:13.5px;
+    line-height:1.75;
+    min-height:300px;
+    color:#dfe4ee;
+  }
+  .ph{color:#5a6273;}
+  footer{
+    margin-top:30px;
+    color:var(--sub);
+    font-size:12px;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>なんでもプロンプト メーカー</h1>
+    <p>4つの枠に入力すると、入力内容が変数として実行命令文に自動で埋め込まれます。右側のプロンプトをコピーしてそのまま使えます。</p>
+  </header>
+
+  <div class="grid">
+    <!-- 入力枠 -->
+    <div class="card">
+      <div class="field">
+        <label>#指示
+          <span class="hint">やって欲しいこと</span>
+        </label>
+        <textarea id="f_shiji" placeholder="例）製造業向けの補助金紹介ブログ記事を書いてください。"></textarea>
+      </div>
+
+      <div class="field">
+        <label>#参考情報
+          <span class="hint">指示を遂行するために必要な情報</span>
+        </label>
+        <textarea id="f_jouhou" placeholder="例）対象は従業員50名以下の中小製造業。補助金名：ものづくり補助金。締切：2026年7月末。"></textarea>
+      </div>
+
+      <div class="field">
+        <label>#参考フォーマット
+          <span class="hint">マネするフォーマット</span>
+        </label>
+        <textarea id="f_format" placeholder="例）①導入の問いかけ ②結論 ③理由3つ ④具体例 ⑤まとめとCTA"></textarea>
+      </div>
+
+      <div class="field">
+        <label>#補足
+          <span class="hint">文字数指示など</span>
+        </label>
+        <textarea id="f_hosoku" placeholder="例）5,000文字以上。専門用語は避け、中学生でも分かる言葉で。"></textarea>
+      </div>
+    </div>
+
+    <!-- 出力枠 -->
+    <div class="card">
+      <div class="out-head">
+        <h2>生成プロンプト</h2>
+        <div class="btns">
+          <button class="btn-clear" id="clearBtn">クリア</button>
+          <button class="btn-copy" id="copyBtn">コピー</button>
+        </div>
+      </div>
+      <p class="copy-note">↑コピーして、これをあなたのAI（ChatGPT・Claude・Geminiなど）に貼り付けてください。</p>
+      <pre id="output"></pre>
+    </div>
+  </div>
+
+  <footer>なんでもプロンプト メーカー — 入力するだけで定型プロンプトが完成します。</footer>
+</div>
+
+<script>
+(function(){
+  var ids = ["f_shiji","f_jouhou","f_format","f_hosoku"];
+  var els = {};
+  ids.forEach(function(id){ els[id] = document.getElementById(id); });
+  var output = document.getElementById("output");
+  var copyBtn = document.getElementById("copyBtn");
+  var clearBtn = document.getElementById("clearBtn");
+
+  function val(id, fallback){
+    var v = els[id].value.trim();
+    return v.length ? v : fallback;
+  }
+
+  // 未入力時にプレースホルダ表示用のラベルを差し込む
+  function build(){
+    var shiji  = val("f_shiji",  "（指示が未入力です）");
+    var jouhou = val("f_jouhou", "（参考情報が未入力です）");
+    var format = val("f_format", "（参考フォーマットが未入力です）");
+    var hosoku = els["f_hosoku"].value.trim();
+
+    var text =
+      "#指示\n" + shiji + "\n\n" +
+      "#参考情報\n" + jouhou + "\n\n" +
+      "#参考フォーマット\n" + format + "\n\n" +
+      "#補足\n" + (hosoku.length ? hosoku : "（特になし）") + "\n\n" +
+      "#実行命令\n" +
+      "上記の【#参考情報】をもとに、【#参考フォーマット】に従って、【#指示】を実行してください。" +
+      (hosoku.length ? "\nなお、【#補足】の内容（" + hosoku + "）を必ず守ってください。" : "");
+
+    return text;
+  }
+
+  function render(){
+    output.textContent = build();
+  }
+
+  ids.forEach(function(id){
+    els[id].addEventListener("input", render);
+  });
+
+  copyBtn.addEventListener("click", function(){
+    var text = build();
+    navigator.clipboard.writeText(text).then(function(){
+      copyBtn.textContent = "コピーしました ✓";
+      copyBtn.classList.add("copied");
+      setTimeout(function(){
+        copyBtn.textContent = "コピー";
+        copyBtn.classList.remove("copied");
+      }, 1600);
+    }).catch(function(){
+      // フォールバック
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      copyBtn.textContent = "コピーしました ✓";
+      copyBtn.classList.add("copied");
+      setTimeout(function(){
+        copyBtn.textContent = "コピー";
+        copyBtn.classList.remove("copied");
+      }, 1600);
+    });
+  });
+
+  clearBtn.addEventListener("click", function(){
+    ids.forEach(function(id){ els[id].value = ""; });
+    render();
+    els["f_shiji"].focus();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
