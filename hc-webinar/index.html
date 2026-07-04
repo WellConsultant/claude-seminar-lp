@@ -68,6 +68,15 @@
   .stat{background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px 12px; text-align:center; box-shadow:0 3px 12px rgba(20,35,63,.06);}
   .stat .sn{font-size:26px; font-weight:800; color:var(--money); line-height:1.15;}
   .stat .sl{font-size:12.5px; color:var(--sub); margin-top:6px; line-height:1.5;}
+  .cases{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .case{background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px 16px; text-align:center; box-shadow:0 3px 12px rgba(20,35,63,.05); display:flex; flex-direction:column; justify-content:space-between;}
+  .case .cf{font-size:12.5px; font-weight:800; color:var(--navy2); background:#eef3fa; border:1px solid #dbe6f4; border-radius:999px; padding:5px 10px; display:inline-block; margin:0 auto 10px; line-height:1.5;}
+  .case .ci{font-size:15px; font-weight:800; color:var(--ink); line-height:1.5; margin:0 0 8px; min-height:44px; display:flex; align-items:center; justify-content:center;}
+  .case .cv{font-size:15px; color:var(--sub);}
+  .case .cv b{font-size:30px; color:var(--money); font-weight:800; vertical-align:-2px;}
+  .case .cs{margin-top:10px; font-size:12px; font-weight:700; color:#fff; background:var(--navy); border-radius:999px; padding:5px 10px; display:inline-block;}
+  @media(max-width:860px){ .cases{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:480px){ .cases{grid-template-columns:1fr;} }
   .prog{list-style:none; padding:0; margin:0; display:grid; gap:16px;}
   .prog > li{background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px 24px; box-shadow:0 3px 12px rgba(20,35,63,.05);}
   .prog .pt{display:flex; gap:14px; align-items:flex-start; margin:0 0 10px;}
@@ -122,12 +131,12 @@
 <!-- top bar -->
 <div class="topbar"><div class="wrap">
   <span class="bl">補助金支援実践プログラム習得講座（認定支援機関・行政書士：阿久津和宏）</span>
-  <a class="q" href="https://traingo.fp-1.info/w/0284ccf0-6ab2-4cd7-a0b6-517b82340dcd" target="_blank" rel="noopener">無料で参加する</a>
+  <a class="q" href="https://traingo.fp-1.info/w/0284ccf0-6ab2-4cd7-a0b6-517b82340dcd" target="_blank" rel="noopener">日程を確認する</a>
 </div></div>
 
 <!-- HERO -->
 <section class="hero"><div class="wrap">
-  <span class="kick">顧客獲得や単価アップに悩む、中小企業診断士・税理士・行政書士などの士業・コンサルタントの方へ</span>
+  <span class="kick">すでに補助金の申請代行・支援に取り組み、“さらに”継続契約と単価アップを実現したい士業・コンサルタントの方へ</span>
   <h1>単発の「申請代行」で消耗するのは、もう終わりにしませんか。<br><span class="mk">僕に、2時間だけ</span>ください。</h1>
   <p class="sub">採択率<span class="mk">93.3％</span>・累計採択総額<span class="mk">30億2,000万円</span>の認定支援機関・行政書士が、フロント集客から採択後の継続提案までを一気通貫でこなす「<strong style="color:#fff;">伴走型補助金コンサルタント</strong>」への具体的なステップと、労働時間を減らしながら手取りを最大化する実戦ツールを、包み隠さずお伝えします。</p>
   <div class="prog-name">
@@ -150,7 +159,7 @@
   <div class="embed-box">
     <iframe src="https://traingo.fp-1.info/w/0284ccf0-6ab2-4cd7-a0b6-517b82340dcd/embed" width="100%" height="500" frameborder="0" style="border:none;border-radius:12px;" title="WEBセミナー申込フォーム"></iframe>
   </div>
-  <a class="cta-btn" href="https://traingo.fp-1.info/w/0284ccf0-6ab2-4cd7-a0b6-517b82340dcd" target="_blank" rel="noopener" style="margin-top:20px;">▶ 今すぐ無料で参加する</a>
+  <a class="cta-btn" href="https://traingo.fp-1.info/w/0284ccf0-6ab2-4cd7-a0b6-517b82340dcd" target="_blank" rel="noopener" style="margin-top:20px;">▶ 日程を確認して申し込む</a>
   <p class="cta-sub">※フォームが表示されない場合は上のボタンから申込ページが開きます。</p>
 </div></section>
 
@@ -189,76 +198,93 @@
   </div>
   <p class="lead" style="text-align:center; margin-top:26px;">これが、私がこの説明会に全力を注いでいる理由です。少しでも共感いただけたなら、ぜひ続きもご覧ください。</p>
 </div></section>
-<!-- のれん分け -->
+<!-- コンセプト（ワンシング） -->
 <section class="sec" style="background:var(--white);"><div class="wrap narrow">
-  <h2 class="h"><span class="en">CONCEPT</span>いわば、補助金実務と<br>活用型プロモーションの“暖簾わけ”です</h2>
+  <h2 class="h"><span class="en">ONE THING</span>この講座が伝える、<br>たった一つのこと</h2>
   <div class="h-line"></div>
-  <p class="lead" style="text-align:center;">私たちのスキルとシステムを、そのまま使い倒してください。補助金の獲得だけでなく、採択後の継続提案までを地続きで語れるパートナーへ。私たちとチームになって、あなたのビジネスに実装していただくためのプログラムです。</p>
+  <div class="letter" style="text-align:center;">
+    <p style="font-size:17px;font-weight:800;color:var(--navy);line-height:1.8;margin:0 0 14px;">補助金は「採択して終わり」ではなく、<span class="key">採択後の継続サポート</span>こそが、高単価な伴走コンサルへの入口です。</p>
+    <p style="font-size:16px;color:#2b3446;margin:0;">明日からそのまま提案できる「採択後の継続サポートメニュー」と、それをノンストップで回す「Traingo一体型システム」。この2つを早期に導入することで、学ぶ時間を最小限に抑えながら、単発の申請代行から抜け出し、労働時間を減らして手取りを最大化できます。本講座は、その型とツールを一気にお渡しします。</p>
+  </div>
 </div></section>
 
-<!-- 実績 -->
+<!-- 成果事例 -->
 <section class="sec"><div class="wrap">
-  <h2 class="h"><span class="en">RESULTS</span>私たちの支援で、<br>こんな成果が出ています</h2>
+  <h2 class="h"><span class="en">CASE STUDY</span>私たちや、このノウハウ・ツールを使って、<br>こんな成果が出ています。</h2>
   <div class="h-line"></div>
-  <p class="lead" style="text-align:center;">自社顧客の申請サポートはもちろん、補助金の専門家支援、補助金をフックにした自社商品の販売、補助金を活用した事業展開の支援まで手がけています。「好きな時に・好きな分だけ・必要なことに費やせる」戦略的活用を実践し、財務体質を改善している会社が数多くあります。</p>
-  <div class="stats">
-    <div class="stat"><div class="sn">93.3%</div><div class="sl">持続化補助金の採択率</div></div>
-    <div class="stat"><div class="sn">30.2億円</div><div class="sl">累計 採択総額</div></div>
-    <div class="stat"><div class="sn">100社+</div><div class="sl">直近1年の支援実績</div></div>
-    <div class="stat"><div class="sn">9割+</div><div class="sl">支援先の売上改善率</div></div>
+  <p class="lead" style="text-align:center;">補助金を「獲得して終わり」にせず、集客・販売・事業展開まで戦略的に活用した事例です。業種の枠を超えて、補助金をフックに売上をつくった実例をご覧ください。</p>
+  <div class="cases">
+    <div class="case"><span class="cf">マーケ会社→システム開発会社</span><div class="ci">マーケティング企画・代行一式</div><div class="cv">売上 <b>350</b>万円</div><span class="cs">小規模事業者持続化補助金</span></div>
+    <div class="case"><span class="cf">足場販売会社→建設業</span><div class="ci">設備</div><div class="cv">売上 <b>300</b>万円</div><span class="cs">小規模事業者持続化補助金</span></div>
+    <div class="case"><span class="cf">設備会社→サロン</span><div class="ci">脱毛機器</div><div class="cv">売上 <b>300</b>万円</div><span class="cs">小規模事業者持続化補助金</span></div>
+    <div class="case"><span class="cf">リフォーム会社→新設コンサル</span><div class="ci">改装工事</div><div class="cv">売上 <b>300</b>万円</div><span class="cs">小規模事業者持続化補助金</span></div>
+    <div class="case"><span class="cf">製造業→製造業</span><div class="ci">設備各種</div><div class="cv">売上 <b>1,000</b>万円</div><span class="cs">ものづくり補助金</span></div>
+    <div class="case"><span class="cf">製造業→製造業</span><div class="ci">設備各種</div><div class="cv">売上 <b>3,000</b>万円</div><span class="cs">ものづくり補助金</span></div>
+    <div class="case"><span class="cf">広告代理店→店舗</span><div class="ci">LP＋広告運用代行 等</div><div class="cv">売上 <b>1,000</b>万円</div><span class="cs">事業再構築補助金</span></div>
+    <div class="case"><span class="cf">コンサル→建設業</span><div class="ci">LP＋広告運用代行 等</div><div class="cv">売上 <b>1,000</b>万円</div><span class="cs">新事業進出補助金</span></div>
+    <div class="case"><span class="cf">コンサル→製造業</span><div class="ci">プレゼン資料・LP制作 等</div><div class="cv">売上 <b>300</b>万円</div><span class="cs">小規模事業者持続化補助金</span></div>
+    <div class="case"><span class="cf">HP制作会社→製造業</span><div class="ci">カタログ・プレゼン資料・HP</div><div class="cv">売上 <b>300</b>万円</div><span class="cs">小規模事業者持続化補助金</span></div>
+    <div class="case"><span class="cf">リフォーム会社→製造業</span><div class="ci">改装工事</div><div class="cv">売上 <b>300</b>万円</div><span class="cs">小規模事業者持続化補助金</span></div>
+    <div class="case"><span class="cf">製造業→リフォーム会社</span><div class="ci">ドローン設備</div><div class="cv">売上 <b>300</b>万円</div><span class="cs">小規模事業者持続化補助金</span></div>
+    <div class="case"><span class="cf">コンサル→福祉事業者</span><div class="ci">顧客管理システム＋研修</div><div class="cv">売上 <b>500</b>万円</div><span class="cs">IT導入補助金</span></div>
+    <div class="case"><span class="cf">コンサル→コンサル</span><div class="ci">事業継続力強化計画策定 など</div><div class="cv">売上 <b>15</b>万円</div><span class="cs">自治体補助金</span></div>
+    <div class="case"><span class="cf">コンサル→福祉事業者</span><div class="ci">採用マーケティングシステム</div><div class="cv">売上 <b>200</b>万円</div><span class="cs">自治体補助金</span></div>
+    <div class="case"><span class="cf">コンサル→スナック</span><div class="ci">生成AI研修</div><div class="cv">売上 <b>20</b>万円</div><span class="cs">自治体補助金</span></div>
+    <div class="case"><span class="cf">コンサル→小売業</span><div class="ci">顧客管理システム＋研修</div><div class="cv">売上 <b>200</b>万円</div><span class="cs">IT導入補助金</span></div>
+    <div class="case"><span class="cf">コンサル→福祉事業</span><div class="ci">ホームページ</div><div class="cv">売上 <b>40</b>万円</div><span class="cs">自治体補助金</span></div>
   </div>
-  <p class="lead" style="text-align:center; margin-top:26px;">さらに、事業計画・申請から交付決定、実績報告、効果状況報告、電子申請の遠隔サポートまで、入金到達まで一貫して伴走してきました。その全ノウハウを、このプログラムでお渡しします。</p>
+  <p class="lead" style="text-align:center; margin-top:24px; font-size:14.5px; color:#8a95a5;">※上記はいずれも実際の支援事例です。成果を保証するものではありません。</p>
 </div></section>
 
 <!-- プログラムで手にするもの -->
 <section class="sec" style="background:var(--white);"><div class="wrap">
   <h2 class="h"><span class="en">PROGRAM</span>プログラムであなたが<br>手にするもの</h2>
   <div class="h-line"></div>
-  <p class="lead" style="text-align:center;">体験説明会のご案内ですが、本編プログラムの中身も少しだけご紹介します。すべてを使う必要はありません。ただ、これらを知ることで経費削減・販売促進・資金繰り改善など、あなたの事業に必ず貢献できる内容にしています。渡す資料やスライドは（今のところ）丸パクリOKです。</p>
+  <p class="lead" style="text-align:center;">「補助金支援実践プログラム習得講座」には、単発の申請代行で終わらせないための実務・商品設計・集客・仕組み化までが含まれます。ここでは、特に特徴的な内容を抜粋してご紹介します（本編は全21セクション）。</p>
   <ul class="prog">
     <li>
-      <div class="pt"><span class="no">01</span><span class="tt">補助金獲得の、書類・事業計画・事務手続き・コンサル技術</span></div>
-      <p class="pd">申請から入金、その後のフォローまで精通した私たちが、書類作成・事業計画・実績報告・各種事業報告のノウハウを体系的にお伝えします。コンサルティング技術やアプローチ方法、Web・オフライン両方の告知方法まで、実践的なスキルをまるごと習得できます。</p>
+      <div class="pt"><span class="no">01</span><span class="tt">相談から入金までの全体像と、“支援者としての立ち位置”</span></div>
+      <p class="pd">相談・制度選定・事業計画・申請・採択・交付・実施・実績報告・入金まで、複数段階の全体像を時系列で整理します。「書類作成者」から「補助事業を前に進める伴走者」へ、立ち位置を変えるための土台です。</p>
     </li>
     <li>
-      <div class="pt"><span class="no">02</span><span class="tt">補助金を使った、手取り最大化の戦略的スキーム</span></div>
-      <p class="pd">「補助金」と「手取りを増やす」に関するノウハウを共有します。今行っていない書類手続きなどを整えるだけで、大きな成果に繋がる可能性があります。クライアント獲得や顧客訪問でも活用でき、売上増加にも貢献します。※法律ギリギリやグレーゾーンの情報は扱いません。</p>
+      <div class="pt"><span class="no">02</span><span class="tt">補助金で通る事業計画書の作り方と、採択を決める3つの要素</span></div>
+      <p class="pd">現状・課題・投資内容・実行計画・成果目標に一貫性を持たせる書き方を学びます。採択を左右する「課題と投資の一貫性・実行可能性・成果の具体性」の3要素を押さえ、通る計画を組み立てます。</p>
     </li>
     <li>
-      <div class="pt"><span class="no">03</span><span class="tt">補助金をフックにした、販売システムの構築方法</span></div>
-      <p class="pd">補助金に詳しいと、それをフックに自社商品の販売やアプローチが有利になります。年商100〜200万円だった事業者が2,000〜3,000万円を超えた例も珍しくありません。専門家の地位を保ちながら、向こうから声をかけられる販売システムの作り方をお伝えします。</p>
+      <div class="pt"><span class="no">03</span><span class="tt">補助金相談を“継続支援”に変える商品設計</span></div>
+      <p class="pd">「相談は受けられるが、その後に何を提案すればいいか分からない」を解消します。販路拡大・集客改善・営業改善・LP/チラシ改善など、あなたにも提供できる支援メニューを整理します。</p>
     </li>
     <li>
-      <div class="pt"><span class="no">04</span><span class="tt">AIコンサルティングシステムの活用（随時バージョンアップ）</span></div>
-      <p class="pd">初心者でも的確な質問ができ、回答をレポート化して事業計画の骨子を作れる仕組みです。従来のヒアリングシートを廃止し、AIで質問リストを活用しながらヒアリングに集中。「事業計画は難しい」と感じる方でも簡単に使えるツールに改良しました。使い方は説明会で解説します。</p>
+      <div class="pt"><span class="no">04</span><span class="tt">対象経費ではなく“経営課題”を聞き出すヒアリング</span></div>
+      <p class="pd">「この経費は対象か」で終わらせず、売上・販路・商品・集客・実行体制の5領域を聞き出すテンプレートを使います。次の支援テーマが自然に見える聞き方が身につきます。</p>
     </li>
     <li>
-      <div class="pt"><span class="no">05</span><span class="tt">申請から入金までの実務の把握（内製化・外注の両対応）</span></div>
-      <p class="pd">自分で行う場合、外注する場合、それぞれのポイントを学びます。お客様に正確なイメージを伝えられ、外注時も意図を正確に伝えて有利に交渉できます。どこを慎重に、どこは簡略化してよいか、作業の優先順位も理解できます。すべてを自分で行う必要はありません。</p>
+      <div class="pt"><span class="no">05</span><span class="tt">気づきから即決につながる提案テンプレート（押し売りゼロ）</span></div>
+      <p class="pd">顧客自身が「補助金だけで終わらせる話ではない」と気づく、説明・質問・整理・提案の順番を型にします。無理に売り込まず、自然に次の相談へ進む流れを作ります。</p>
     </li>
     <li>
-      <div class="pt"><span class="no">06</span><span class="tt">既存ビジネス×AIで作る、補助金専用商品の作り方（個別サポート付）</span></div>
-      <p class="pd">購入者調査・顧客心理・競合分析から最適な商品配置を導く私たちの手法を応用し、補助金専用商品を開発します。生成AIで既存ビジネスに新商品を追加する方法も学べます。個別サポート付きで進めるため、新しい挑戦をしたい方に最適です。</p>
+      <div class="pt"><span class="no">06</span><span class="tt">採択後・交付申請・実績報告までの実務支援</span></div>
+      <p class="pd">採択されても、すぐに入金はされません。交付決定前発注・対象外経費・証憑不備・実績報告期限など、トラブルを防ぐチェックポイントを押さえ、入金まで正しく伴走します。</p>
     </li>
     <li>
-      <div class="pt"><span class="no">07</span><span class="tt">申請・事業実施・実績報告の内製化に向けた共同サポート</span></div>
-      <p class="pd">お客様サポートを通じて、いわば現場でOJTを受けるようにスキルを身につけます。補助金業務は入金まで1〜2年かかることも多く、一度の説明では理解しにくいもの。実践を通して、真の専門家育成を目指します。</p>
+      <div class="pt"><span class="no">07</span><span class="tt">Traingoを使った補助金支援の“仕組み化”</span></div>
+      <p class="pd">説明会ページ・申込フォーム・ステップメール・個別予約・決済・講座提供・AI補助金ツールを、Traingoで一体運用します。見込み客獲得から受講者フォローまでを1つの仕組みで回せます。</p>
     </li>
     <li>
-      <div class="pt"><span class="no">08</span><span class="tt">信頼できるパートナーへ、あなたの専門顧客を優先紹介</span></div>
-      <p class="pd">真剣に取り組んでくださる方には、あなたの専門分野に関連する顧客を優先的にご紹介します。補助金業務は依頼先選びが極めて重要で、目的を理解しない業者だと本来数ヶ月の実績報告が1年以上かかることも。信頼できるパートナーとして、顧客紹介の場としてもご活用いただけます。</p>
+      <div class="pt"><span class="no">08</span><span class="tt">補助金相談を生み出す集客導線と、案件化する説明会・個別相談</span></div>
+      <p class="pd">「相談が来たら対応」ではなく、こちらから入口を作ります。制度説明で終わらせず案件化する説明会（30/60/90分）と、無料相談を有料支援につなげる個別相談の進行台本を用意します。</p>
     </li>
     <li>
-      <div class="pt"><span class="no">09</span><span class="tt">共同集客・共同販売・共同サポートの仕組み提供</span></div>
-      <p class="pd">あなたの既存サービスに少し工夫を加えるだけで、より売れる商品や補助金専用商品として開発できる仕組みを提供します。ご希望があれば、私たちや他の参加者と協力し合える環境を構築し、開発をサポートします。</p>
+      <div class="pt"><span class="no">09</span><span class="tt">補助金活用型マーケティング支援＋外注・提携での体制づくり</span></div>
+      <p class="pd">チラシ・LP・広告導線・営業資料・追客など、補助金と相性の良い支援メニューを作ります。すべて自分で実行する必要はなく、外注・提携先と連携して支援範囲を広げる方法も学びます。</p>
     </li>
     <li>
-      <div class="pt"><span class="no">10</span><span class="tt">目的・目標に合わせて“選べる”3つのコース</span></div>
-      <p class="pd">目指すゴールに合わせて必要なサポート範囲を選べます。基本のオンラインZoom研修は全員参加可能。サポートの密度に違いはありますが、あなたの目的に最適なコースを選んでいただけます。詳細は説明会で。</p>
+      <div class="pt"><span class="no">10</span><span class="tt">価格設計・継続契約化と、契約書・リスク管理</span></div>
+      <p class="pd">低単価の作業代行で終わらせず、価値ごとに整理したメニューで適正価格・継続契約に変えます。採択保証をしない説明や責任範囲の線引きなど、安全に提供するための備えも扱います。</p>
     </li>
     <li class="extra">
-      <div class="pt"><span class="no">＋</span><span class="tt">おまけ：AI活用コース（見放題・随時更新）</span></div>
-      <p class="pd">生成AIのオンラインコースを見放題でご利用いただけます。AI時代は「言葉」が武器。指示も結果も言葉で得る時代です。補助金の戦略的活用と並行して学ぶことで、さらなる売上拡大へ。私たちが50万〜100万円で販売したAIプロンプトやワークフローも一部提供します。</p>
+      <div class="pt"><span class="no">実践</span><span class="tt">ロールプレイ・添削・個別支援で“自社の補助金支援ビジネス”を完成</span></div>
+      <p class="pd">実案件を想定したロールプレイと事例演習、月2回のグループ実践会・月1回の個別相談・添削で落とし込みます。最終的に、対象顧客・メニュー・価格表・提案資料・Traingo運用導線まで完成させ、「補助金相談を継続支援につなげる商品を持った人」になります。</p>
     </li>
   </ul>
 </div></section>
@@ -281,24 +307,19 @@
   </ul>
 </div></section>
 
-<!-- 9特典 -->
-<section class="sec" style="background:var(--white);"><div class="wrap">
-  <h2 class="h"><span class="en">BONUS</span>今だけ、9大参加特典</h2>
+<!-- 参加特典 -->
+<section class="sec" style="background:var(--white);"><div class="wrap narrow">
+  <h2 class="h"><span class="en">BONUS</span>参加特典</h2>
   <div class="h-line"></div>
-  <p class="lead" style="text-align:center;">追加特典も合わせると、50以上のコンテンツを受け取れます（一部、配布済みを含みます）。</p>
-  <div class="bonus-grid">
-    <div class="b"><span class="bn">特典1</span><div class="bt">小規模事業者持続化補助金 勉強会 アーカイブ動画</div></div>
-    <div class="b"><span class="bn">特典2</span><div class="bt">ものづくり補助金 勉強会 アーカイブ動画</div></div>
-    <div class="b"><span class="bn">特典3</span><div class="bt">事業再構築補助金 勉強会 アーカイブ動画</div></div>
-    <div class="b"><span class="bn">特典4</span><div class="bt">補助金活用 勉強会 アーカイブ動画（事業計画）</div></div>
-    <div class="b"><span class="bn">特典5</span><div class="bt">補助金 事前準備 勉強会 アーカイブ動画</div></div>
-    <div class="b"><span class="bn">特典6</span><div class="bt">IT導入補助金 勉強会 アーカイブ動画</div></div>
-    <div class="b"><span class="bn">特典7</span><div class="bt">補助金 申請〜入金 実務マニュアル ＋ AIキット</div></div>
-    <div class="b"><span class="bn">特典8</span><div class="bt">IT導入補助金 手引き 完全解説動画</div></div>
-    <div class="b"><span class="bn">特典9</span><div class="bt">本ウェビナーのレジュメ（復習用）</div></div>
+  <div class="note" style="border:2px solid var(--money);background:#f2fbf4;margin:0 0 16px;">
+    <span style="display:inline-block;background:var(--money);color:#fff;font-size:13px;font-weight:800;border-radius:999px;padding:5px 14px;margin-bottom:10px;">参加者 全員特典</span>
+    <p style="margin:0 0 8px;font-size:17px;font-weight:800;color:var(--navy);line-height:1.6;">『補助金採択後の“継続サポートアイデア＆提案メニュー”完全テンプレート集』</p>
+    <p style="margin:0;color:#3a4a3c;font-size:15px;">明日からそのまま自社のメニューとして提案できる、実戦的なテンプレート集です。採択が決まった瞬間のクライアントに「次はこれを進めましょう」と、高単価な伴走コンサルティングを自信を持って提案できます。</p>
   </div>
-  <div class="note" style="max-width:760px;margin:24px auto 0;">
-    <strong style="color:var(--danger);">【各回 先着5名限定】</strong>さらに「Traingo」一体型システムのアカウント発行と<strong>「初期設定の代行サポート」</strong>、そして<strong>『補助金採択後の“継続サポートアイデア＆提案メニュー”完全テンプレート集』</strong>をお付けします。明日からそのまま自社のメニューとして提案できる、極めて実戦的なテンプレート集です。※初期設定代行に割けるマンパワーには限りがあるため、各日程 先着5名で締め切ります。
+  <div class="note" style="border:2px solid var(--accent);background:#fff7ec;margin:0;">
+    <span style="display:inline-block;background:var(--danger);color:#fff;font-size:13px;font-weight:800;border-radius:999px;padding:5px 14px;margin-bottom:10px;">各回 先着5名限定</span>
+    <p style="margin:0 0 8px;font-size:17px;font-weight:800;color:var(--navy);line-height:1.6;">「Traingo」アカウント発行 ＋ 初期設定の代行サポート</p>
+    <p style="margin:0;color:#6b5a34;font-size:15px;">「設定が難しそう」「自分でやるのは面倒」——そのハードルを、こちらの初期設定代行で一気に解消します。※代行に割けるマンパワーに限りがあるため、各日程 先着5名で締め切ります。</p>
   </div>
 </div></section>
 
@@ -356,16 +377,8 @@
   <div class="embed-box">
     <iframe src="https://traingo.fp-1.info/w/0284ccf0-6ab2-4cd7-a0b6-517b82340dcd/embed" width="100%" height="500" frameborder="0" style="border:none;border-radius:12px;" title="WEBセミナー申込フォーム"></iframe>
   </div>
-  <div style="margin-top:8px;">
-    <p style="color:#dfe7f2;font-weight:700;margin:14px 0 8px;">ご都合の良い日程をお選びください（各回 先着5名 特典付）</p>
-    <ul class="dates" style="max-width:640px;margin:0 auto;">
-      <li><span class="d">2026年7月8日（水）20:00〜22:00</span><span class="tag">先着5名 特典付</span></li>
-      <li><span class="d">2026年7月10日（金）15:00〜17:00</span><span class="tag">先着5名 特典付</span></li>
-      <li><span class="d">2026年7月11日（土）11:00〜13:00</span><span class="tag">先着5名 特典付</span></li>
-      <li><span class="d">2026年7月18日（土）10:00〜12:00</span><span class="tag">先着5名 特典付</span></li>
-    </ul>
-  </div>
-  <a class="cta-btn" href="https://traingo.fp-1.info/w/0284ccf0-6ab2-4cd7-a0b6-517b82340dcd" target="_blank" rel="noopener" style="margin-top:22px;">▶ 今すぐ無料で席を確保する</a>
+  <p style="color:#dfe7f2;margin:14px auto 4px;max-width:640px;">各回 先着5名限定（「Traingo」初期設定の代行つき）。最新の開催日程と空き状況は、下のボタンからご確認ください。</p>
+  <a class="cta-btn" href="https://traingo.fp-1.info/w/0284ccf0-6ab2-4cd7-a0b6-517b82340dcd" target="_blank" rel="noopener" style="margin-top:22px;">▶ 日程を確認して申し込む</a>
   <p class="cta-sub">参加費無料／オンライン(ZOOM)開催</p>
 </div></section>
 
@@ -379,7 +392,7 @@
     <details><summary>Q. 補助金の実務経験が少なくても、伴走コンサルになれますか？</summary><div class="fa">はい、十分に可能です。明日から使える「採択後の継続サポートメニュー」のテンプレートに加え、TraingoのAI補助金ツールが事業計画書の生成や公募要領の解析を強力に支援します。知識を詰め込む時間を最小限に、早期に実践へ移れる設計です。</div></details>
     <details><summary>Q. ITツールの操作や初期設定が不安です。大丈夫ですか？</summary><div class="fa">問題ありません。各回 先着5名限定で「Traingoの初期設定代行サポート」を特典としてお付けします。面倒な部分はこちらで代行しますので、ITが苦手な方でもスムーズに導入いただけます。</div></details>
     <details><summary>Q. 士業以外のコンサルや、民間の経営塾主宰者でも参加できますか？</summary><div class="fa">もちろんご参加いただけます。士業だけでなく、民間の中小企業向けコンサルタントや、顧客獲得・単価アップ・リピート提案の仕組みを作りたいあらゆるBtoBビジネスの方に有効な内容です。</div></details>
-    <details><summary>Q. これから補助金支援を始めます。競合になりますが参加していいですか？</summary><div class="fa">全く問題ありません。ある意味では競合ですが、ある意味では仲間でもあります。私たちも始めた当初は苦労しました。安心してご参加ください。</div></details>
+    <details><summary>Q. すでに補助金支援をしています。さらに単価や継続契約を伸ばせますか？</summary><div class="fa">はい、まさにそのための講座です。申請代行で終わらせず、採択後の継続提案・顧問化・マーケティング支援まで設計できるようになります。すでに支援経験がある方ほど、そのまま自分のメニューに組み込めます。</div></details>
   </div>
 </div></section>
 
