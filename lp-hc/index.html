@@ -1536,7 +1536,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <span style="display:block;font-size:16px;font-weight:800;color:#333;text-decoration:underline;">3011社のオーナー社長が受け取っている</span>
         <span style="display:block;font-size:16px;font-weight:800;color:#333;">10人中9人が合格した事業計画書テンプレート</span>
       </div>
-      <iframe id="traingo-embed" src="https://traingo.fp-1.info/f/form-whou?embed=1" width="100%" frameborder="0" scrolling="no" style="border:0;background:transparent;max-width:560px;display:block;margin:0 auto;height:460px;min-height:0"></iframe>
+      <iframe id="traingo-embed" src="https://traingo.fp-1.info/f/form-whou?embed=1" width="100%" frameborder="0" scrolling="yes" style="border:0;background:#fff;max-width:560px;display:block;margin:0 auto;height:520px;min-height:520px;overflow:auto"></iframe>
       <div style="background:#1667c0;border-radius:8px;padding:14px 18px;margin:4px 0 0;">
         <p style="margin:0 0 10px;text-align:center;color:#fff;font-size:16px;font-weight:800;line-height:1.5;">下記資格者の監修を受けています</p>
         <p style="margin:0 0 7px;color:#fff;font-size:14.5px;font-weight:700;line-height:1.6;"><span style="color:#ffd400;margin-right:6px;">&#10004;</span>経済産業省認定の経営革新等認定支援機関3社</p>
@@ -1568,13 +1568,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   if(document.readyState!=='loading') bind(); else document.addEventListener('DOMContentLoaded', bind);
   setTimeout(bind, 1200);
-  window.addEventListener("message", function (e) {
-    if (e.origin !== "https://traingo.fp-1.info") return;
-    if (e.data && e.data.type === "traingo:resize" && e.data.height) {
-      var el = document.getElementById("traingo-embed");
-      if(el){ el.style.height = e.data.height + "px"; el.style.minHeight = "0"; }
-    }
-  });
+  /* 自動伸縮は無効化：固定高さ＋内部スクロール */
 })();
 </script>
 <style>/* hide-paid-service-notice */#tmp_headline1-57379,#tmp_subheadline-24823,#tmp_subheadline-73923,#tmp_subheadline-90697{display:none !important;}</style>
