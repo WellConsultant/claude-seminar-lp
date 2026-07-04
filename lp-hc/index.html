@@ -1524,4 +1524,44 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
+
+<!-- ===== Traingo申込ポップアップ ===== -->
+<div id="tg-modal-overlay" style="display:none;position:fixed;inset:0;z-index:2147483000;background:rgba(0,0,0,.72);padding:16px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
+  <div style="max-width:600px;margin:32px auto;background:#fff;border-radius:16px;position:relative;padding:46px 14px 18px;box-shadow:0 24px 70px rgba(0,0,0,.45);">
+    <button id="tg-modal-close" type="button" aria-label="閉じる" style="position:absolute;top:10px;right:12px;width:38px;height:38px;border:none;background:#eef1f5;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;color:#333;">&times;</button>
+    <iframe id="traingo-embed" src="https://traingo.fp-1.info/f/form-whou?embed=1" width="100%" frameborder="0" scrolling="no" style="border:0;background:transparent;max-width:560px;display:block;margin:0 auto;height:600px;min-height:600px"></iframe>
+  </div>
+</div>
+<script>
+(function(){
+  var overlay=document.getElementById('tg-modal-overlay');
+  if(!overlay) return;
+  function openModal(e){ if(e){ e.preventDefault(); e.stopPropagation(); } overlay.style.display='block'; document.body.style.overflow='hidden'; }
+  function closeModal(){ overlay.style.display='none'; document.body.style.overflow=''; }
+  document.getElementById('tg-modal-close').addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+  var sel = 'a[href*="jizokuka-opt-a"], a[href*="#open-popup"], a[href*="#submit-form"], [data-imagelink="#submit-form"]';
+  function bind(){
+    document.querySelectorAll(sel).forEach(function(el){
+      if(el.__tgBound) return; el.__tgBound=true;
+      el.addEventListener('click', openModal, true);
+    });
+    document.querySelectorAll('.elBTN').forEach(function(btn){
+      if(btn.__tgBound) return;
+      var a=btn.querySelector('a[href*="jizokuka-opt-a"], a[href*="#open-popup"]');
+      if(a){ btn.__tgBound=true; btn.addEventListener('click', openModal, true); }
+    });
+  }
+  if(document.readyState!=='loading') bind(); else document.addEventListener('DOMContentLoaded', bind);
+  setTimeout(bind, 1200);
+  window.addEventListener("message", function (e) {
+    if (e.origin !== "https://traingo.fp-1.info") return;
+    if (e.data && e.data.type === "traingo:resize" && e.data.height) {
+      var el = document.getElementById("traingo-embed");
+      if(el){ el.style.height = e.data.height + "px"; el.style.minHeight = "0"; }
+    }
+  });
+})();
+</script>
 </body><div class="glasp-extension" style="display: block; width: unset; margin: unset; padding: unset; border: unset; border-radius: unset; outline: unset; background-color: unset; box-shadow: unset; position: fixed; bottom: 16px; right: 16px; z-index: 9999;"><div class="glasp-extension" style="font-family: inherit;"></div></div></html>
