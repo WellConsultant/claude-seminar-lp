@@ -1,0 +1,3 @@
+資料一.pdf  ->  https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/batch-20260716-101531/1_.pdf
+資料二.pdf  ->  https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/batch-20260716-101531/2_.pdf
+資料三.pdf  ->  https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/batch-20260716-101531/3_.pdf
