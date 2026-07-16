@@ -1,0 +1,171 @@
+<div class="cf-custom-html-wrapper">
+<style>
+    /* --- 全体を囲むラッパー --- */
+    .cf-custom-html-wrapper {
+        text-align: left !important;
+    }
+
+    /* --- デザイン全体のコンテナ --- */
+    .cf-custom-html-wrapper .custom-html-card {
+        background-color: #ffffff; /* 背景色: 白 */
+        border: 1px solid #eeeeee; /* 枠線: 薄いグレー */
+        border-radius: 8px; /* 角の丸み */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); /* 影で立体感を出す */
+        padding: 25px 30px; /* 内側の余白 */
+        font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; /* フォント */
+        margin-bottom: 30px; /* カード下の余白を追加 */
+        text-align: left !important; /* 全てのテキストを左寄せに（強制） */
+    }
+
+    /* --- メインタイトルのスタイル --- */
+    .cf-custom-html-wrapper .custom-html-main-title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #1a1a1a;
+        margin-bottom: 25px;
+        text-align: left !important; /* 明示的に左寄せを強制 */
+    }
+
+    /* --- 見出しのスタイル (太字・黒) --- */
+    .cf-custom-html-wrapper .custom-html-card h3 {
+        font-size: 22px; /* 文字サイズ */
+        font-weight: bold; /* 太字 */
+        color: #000000; /* 文字色: 黒 */
+        margin: 0 0 15px 0; /* 上下の余白 */
+        padding-bottom: 15px; /* 見出しの下に空間を作る */
+        border-bottom: 1px solid #e0e0e0; /* 見出しの下線 */
+        text-align: left !important; /* 明示的に左寄せを強制 */
+    }
+
+    /* --- 本文のスタイル --- */
+    .cf-custom-html-wrapper .custom-html-card p {
+        font-size: 16px;
+        color: #333333; /* 文字色: 少し薄い黒 */
+        line-height: 1.7; /* 行間 */
+        margin-bottom: 20px;
+        text-align: left !important; /* 明示的に左寄せを強制 */
+    }
+
+    .cf-custom-html-wrapper .custom-html-card p strong, 
+    .cf-custom-html-wrapper .custom-html-card p b {
+        color: #c0392b; /* 太字を少し目立つ色に */
+    }
+
+    /* --- チェックマーク付き箇条書きのスタイル --- */
+    .cf-custom-html-wrapper .custom-html-card ul {
+        list-style: none;
+        padding-left: 0;
+        text-align: left !important; /* 明示的に左寄せを強制 */
+    }
+
+    .cf-custom-html-wrapper .custom-html-card li {
+        padding-left: 1.4em;
+        margin-bottom: 10px;
+        position: relative;
+        color: #333333;
+        font-size: 16px;
+        line-height: 1.7;
+        text-align: left !important;
+    }
+
+    .cf-custom-html-wrapper .custom-html-card ul li::before {
+        content: '✔'; /* アイコン */
+        color: #3498db; /* アイコンの色（青） */
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+    }
+
+    /* --- 番号付きリストのスタイル --- */
+    .cf-custom-html-wrapper .custom-html-card ol {
+        list-style: decimal;
+        padding-left: 1.5em;
+        text-align: left !important; /* 明示的に左寄せを強制 */
+    }
+
+    .cf-custom-html-wrapper .custom-html-card ol li {
+        padding-left: 0.5em;
+        text-align: left !important;
+    }
+    
+    .cf-custom-html-wrapper .custom-html-card ol li::before {
+        content: ''; /* チェックマークを非表示にする */
+    }
+
+    /* --- 画像のスタイル --- */
+    .cf-custom-html-wrapper .custom-html-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin: 15px 0;
+    }
+</style>
+
+<!-- SEO Meta Info -->
+<div class="custom-html-card">
+    <h3>この解説について</h3>
+    <p><b>タイトル：</b>GitHubやBitBucketのHTMLファイルをブラウザで即座にプレビューする方法：HTMLPreviewツール徹底解説</p>
+    <p><b>ディスクリプション：</b>GitHubやBitBucketなどのリポジトリ上に格納されている生のHTMLファイルを、ダウンロードすることなく直接ブラウザ上でレンダリングしてプレビューできる画期的なツール「HTMLPreview」の仕組みと具体的な活用方法について、ファネルビルディングの専門家が分かりやすく解説します。</p>
+</div>
+
+<!-- Main Title -->
+<h1 class="custom-html-main-title">GitHub &amp; BitBucket HTML Preview 活用ガイド</h1>
+
+<!-- Card 1 -->
+<div class="custom-html-card">
+    <h3>はじめに：リポジトリ上のHTMLコードを直接ブラウザで確認したいという課題</h3>
+    <p>Web制作やオンラインファネルの構築を進める中で、<b>GitHub</b>や<b>BitBucket</b>といったソースコード管理サービスを利用する機会は非常に増えています。しかし、これらのプラットフォームに保存されているHTMLファイルは、標準の画面構成では「コード（テキスト）」としてしか表示されません。</p>
+    <p>開発者やマーケターが、実際のブラウザでどのようにレンダリングされるか（Webページとしての見栄え）を確認するためには、一度手元のローカル環境にファイルをダウンロードするか、別でサーバーを用意してホスティングを行う必要があり、これが大きな手手戻りや作業コストになっていました。この問題を極めてスマートに解決してくれるのが、今回ご紹介する<b>HTMLPreview（HTMLプレビュー）</b>というオンラインツールです。</p>
+</div>
+
+<!-- Card 2 -->
+<div class="custom-html-card">
+    <h3>HTMLPreviewツールとは？</h3>
+    <p><b>HTMLPreview</b>は、GitHubやBitBucketに登録されているパブリック（一般公開）リポジトリのHTMLソースを、リアルタイムに読み込んで通常のWebページとしてプレビュー表示させることができる、非常にシンプルかつ強力なWebサービスです。このツールを使用することで、余計なデプロイ作業を行うことなく、記述したHTMLやCSS、さらにはJavaScriptがブラウザ上で正しく動作しているか瞬時にチェックできます。</p>
+    <p>このツールの特徴は、面倒なアカウント登録や複雑な初期設定が一切不要で、特定のURLスキームを組み合わせるだけで動作する点にあります。チームメンバーやクライアントへの簡易的なデザイン確認の際にも、極めて強力な威力を発揮します。</p>
+</div>
+
+<!-- Card 3 -->
+<div class="custom-html-card">
+    <h3>基本的な使用ステップ</h3>
+    <p>HTMLPreviewを活用して、リポジトリ内のHTMLファイルをプレビューする手順は非常に簡単です。以下のステップに沿って操作を行います。</p>
+    <ol>
+        <li>GitHubやBitBucketに移動し、プレビューしたい対象の<b>HTMLファイル</b>を画面に表示させます。</li>
+        <li>ブラウザのアドレスバーに表示されている<b>ファイルURL</b>をそのままコピーします。</li>
+        <li>HTMLPreviewの公式プレビューページにアクセスし、入力欄にコピーしたURLを貼り付けます。</li>
+        <li><b>「Preview」ボタン</b>をクリックすることで、瞬時にレンダリングされたWebページが表示されます。</li>
+    </ol>
+    <p>URLの入力欄に貼り付けるだけで機能するため、誰でも迷うことなく、直感的にプレビュー環境を作り出すことが可能です。特にファネルの構造を確認したり、静的なモックアップを素早く共有したい場合に最適です。</p>
+</div>
+
+<!-- Card 4 -->
+<div class="custom-html-card">
+    <h3>URLプレフィックスを活用した高速アクセス方法</h3>
+    <p>いちいちHTMLPreviewのサイトを開いてURLを貼り付けるのが面倒だという方には、さらに効率的な<b>ショートカット技</b>が存在します。それは、対象ファイルのURLの先頭に、特定のプレフィックス（接頭辞）を直接書き足す方法です。</p>
+    <p>例えば、プレビューしたいファイルのURLが以下のような形式だったとします。</p>
+    <p><code>https://github.com/user/repo/blob/master/index.html</code></p>
+    <p>このURLの最前部に対して、以下のようにHTMLPreviewの変換URLと「<b>?</b>（クエスチョンマーク）」を挿入して結合します。</p>
+    <p><code><b>https://htmlpreview.github.io/?</b>https://github.com/user/repo/blob/master/index.html</code></p>
+    <p>このように加工したURLをブラウザのアドレスバーに直接入力してエンターキーを押すだけで、ツールサイトを経由することなく、ダイレクトにレンダリングされたプレビュー画面へとアクセスすることができます。頻繁にプレビューを繰り返すWeb開発者や、ファネルデザイナーにとっては必須のテクニックです。</p>
+</div>
+
+<!-- Card 5 -->
+<div class="custom-html-card">
+    <h3>HTMLPreviewの技術的な仕組みと注意点</h3>
+    <p>なぜこのようなことが可能なのでしょうか。通常、GitHubなどのサイトは、セキュリティおよびサーバー負荷防止の観点から、HTMLファイルを単なるテキスト（Content-Type: text/plain）として配信しています。これをブラウザが読み込むと、タグがそのまま画面に出力されてしまいます。</p>
+    <p>HTMLPreviewは、入力されたURLのファイルをプログラム経由で仲介し、適切なレスポンスヘッダー（Content-Type: text/html）を再付与した上で、ブラウザにデータを返却しています。これにより、ブラウザ側が「これはWebページである」と正しく認識し、デザイン通りにレンダリングされます。ただし、利用時には以下の点に注意する必要があります。</p>
+    <ul>
+        <li><b>パブリック（一般公開）リポジトリ限定：</b> ツールが外部から対象ファイルを取得して仲介する仕様であるため、プライベートリポジトリ（非公開設定）のファイルを読み込むことはできません。</li>
+        <li><b>大規模・複雑な動的スクリプトの制限：</b> 簡易的なJavaScriptやローカルCSSは問題なく動作しますが、ドメインに依存するような複雑なAPI通信やセッションを伴う処理はエラーになる可能性があります。</li>
+        <li><b>機密情報の扱いに注意：</b> プレビューしたいHTMLコード内に、パスワード、個人情報、重要なAPIキーなどを記述した状態で一般公開リポジトリにアップロードしないよう、セキュリティ面には十分配慮してください。</li>
+    </ul>
+</div>
+
+<!-- Card 6 -->
+<div class="custom-html-card">
+    <h3>まとめとファネルビルディングへの応用</h3>
+    <p>今回紹介した<b>HTMLPreview</b>は、GitHubやBitBucketを活用した静的コンテンツのプレビューを圧倒的に効率化する極めて便利なソリューションです。これにより、開発中のテンプレートを実際のブラウザで素早く確認し、デザインのズレやコードの崩れを迅速に修正することができます。</p>
+    <p>特に、ClickFunnelsなどのファネルビルディングにおいて、カスタムHTML要素を使った高度なデザインカスタマイズや専用のランディングページを作成する際、コードを一度GitHub等の環境で管理し、それをHTMLPreviewで確認しながらチューニングしていくプロセスは、制作効率の大幅な向上につながります。ぜひ本解説を参考に、スマートなWeb開発およびファネル構築作業にお役立てください。</p>
+</div>
+
+</div>
