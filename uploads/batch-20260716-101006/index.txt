@@ -1,0 +1,2 @@
+test4.png  ->  https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/batch-20260716-101006/test4.png
+test.pdf  ->  https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/batch-20260716-101006/test.pdf
