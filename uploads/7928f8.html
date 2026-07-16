@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>補助金入門テンプレート活用勉強会｜詳細レポート</title>
+<style>
+  :root{
+    --navy:#1E2761; --navy-2:#2A3578; --ice:#CADCFC; --accent:#3D5AFE;
+    --bg:#FFFFFF; --panel:#F0F4FB; --line:#DDE4F0; --text:#2B3040; --muted:#5A6270;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",Meiryo,sans-serif;
+       color:var(--text); background:var(--bg); line-height:1.9; font-size:15.5px;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- hero ---------- */
+  header{background:var(--navy); color:#fff; padding:64px 0 56px;}
+  header .kicker{color:var(--ice); letter-spacing:.35em; font-size:13px; margin-bottom:18px;}
+  header h1{font-size:34px; line-height:1.5; font-weight:700;}
+  header .sub{color:var(--ice); margin-top:14px; font-size:15px;}
+  header .meta{margin-top:30px; border-top:1px solid rgba(255,255,255,.25); padding-top:20px;
+    display:flex; flex-wrap:wrap; gap:8px 36px; font-size:13.5px; color:#E8EEFA;}
+  header .meta b{color:var(--ice); font-weight:700; margin-right:8px;}
+
+  /* ---------- toc ---------- */
+  nav{background:var(--panel); border-bottom:1px solid var(--line); padding:30px 0;}
+  nav h2{font-size:14px; color:var(--navy); letter-spacing:.2em; margin-bottom:14px;}
+  nav ol{list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:6px 32px;}
+  nav a{display:flex; gap:10px; align-items:baseline; color:var(--text); text-decoration:none;
+    padding:5px 8px; border-radius:6px; font-size:14px;}
+  nav a:hover{background:#E2EAF8; color:var(--navy);}
+  nav a .n{color:var(--accent); font-weight:700; font-size:12.5px; min-width:1.6em;}
+
+  /* ---------- sections ---------- */
+  main{padding:26px 0 60px;}
+  section{margin-top:58px;}
+  .sec-head{display:flex; align-items:center; gap:14px; margin-bottom:22px;}
+  .sec-head .badge{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;flex-shrink:0;}
+  .sec-head h2{font-size:24px; color:var(--navy); line-height:1.4;}
+  h3{font-size:17.5px; color:var(--navy); margin:30px 0 12px;}
+  p{margin-bottom:14px;}
+  .lead{color:var(--muted); font-size:14.5px; margin-bottom:20px;}
+  strong{color:var(--navy);}
+
+  /* panels */
+  .panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px 26px; margin:18px 0;}
+  .panel h4{color:var(--navy); font-size:15px; margin-bottom:10px;}
+  .callout{background:var(--navy); color:#fff; border-radius:12px; padding:22px 26px; margin:22px 0;}
+  .callout .tag{color:var(--ice); font-size:12.5px; letter-spacing:.2em; margin-bottom:8px; font-weight:700;}
+  .callout p{margin:0; color:#F2F6FF;}
+  .note{border:1px dashed #B9C6E4; border-radius:10px; padding:14px 20px; margin:16px 0;
+    font-size:13.5px; color:var(--muted); background:#FBFCFF;}
+  .note b{color:var(--navy);}
+
+  ul.list{margin:10px 0 16px; padding-left:0; list-style:none;}
+  ul.list li{padding-left:1.35em; position:relative; margin-bottom:9px;}
+  ul.list li::before{content:""; position:absolute; left:2px; top:.72em; width:7px; height:7px;
+    border-radius:50%; background:var(--accent);}
+  ol.steps{margin:10px 0 16px; padding-left:0; list-style:none; counter-reset:st;}
+  ol.steps li{counter-increment:st; padding-left:2.5em; position:relative; margin-bottom:12px;}
+  ol.steps li::before{content:counter(st); position:absolute; left:0; top:.18em; width:1.7em; height:1.7em;
+    border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:12.5px;
+    display:flex; align-items:center; justify-content:center;}
+
+  /* tables */
+  table{width:100%; border-collapse:collapse; margin:16px 0; font-size:14px;}
+  th{background:var(--navy); color:#fff; text-align:left; padding:10px 14px; font-weight:600;}
+  td{border:1px solid var(--line); padding:10px 14px; vertical-align:top; background:#fff;}
+  tr:nth-child(even) td{background:#F7FAFF;}
+  td.k{background:var(--panel)!important; font-weight:700; color:var(--navy); width:11em;}
+
+  /* flow */
+  .flow{display:flex; flex-wrap:wrap; gap:10px; align-items:stretch; margin:18px 0;}
+  .flow .step{flex:1 1 120px; min-width:120px; background:var(--panel); border:1px solid var(--line);
+    border-radius:10px; padding:12px 14px; text-align:center;}
+  .flow .step .t{font-weight:700; color:var(--navy); font-size:14px;}
+  .flow .step .d{font-size:12px; color:var(--muted); margin-top:4px; line-height:1.6;}
+  .flow .arrow{align-self:center; color:var(--accent); font-weight:700; font-size:18px;}
+
+  /* story chain */
+  .chain{margin:18px 0;}
+  .chain .link{display:flex; gap:14px; margin-bottom:0;}
+  .chain .rail{display:flex; flex-direction:column; align-items:center; width:28px; flex-shrink:0;}
+  .chain .dot{width:14px; height:14px; border-radius:50%; background:var(--accent); margin-top:8px; flex-shrink:0;}
+  .chain .bar{width:2px; flex:1; background:#B9C6E4;}
+  .chain .body{padding-bottom:22px;}
+  .chain .body .t{font-weight:700; color:var(--navy);}
+  .chain .body .d{font-size:13.5px; color:var(--muted); margin-top:2px;}
+
+  /* two col */
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:18px 0;}
+  @media(max-width:720px){ .cols{grid-template-columns:1fr;} nav ol{grid-template-columns:1fr;} }
+
+  /* qa */
+  .qa{border:1px solid var(--line); border-radius:12px; overflow:hidden; margin:18px 0;}
+  .qa .q{background:var(--panel); padding:16px 22px; font-weight:700; color:var(--navy); display:flex; gap:12px;}
+  .qa .a{padding:18px 22px; display:flex; gap:12px;}
+  .qa .mark{flex-shrink:0; width:26px; height:26px; border-radius:50%; color:#fff; font-weight:700;
+    font-size:13px; display:flex; align-items:center; justify-content:center;}
+  .qa .q .mark{background:var(--navy);}
+  .qa .a .mark{background:var(--accent);}
+  .qa .a p{margin-bottom:10px;}
+
+  footer{background:var(--panel); border-top:1px solid var(--line); padding:26px 0 34px;
+    font-size:12.5px; color:var(--muted);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">SEMINAR REPORT</div>
+    <h1>補助金入門テンプレート活用勉強会<br>詳細レポート</h1>
+    <div class="sub">持続化補助金を中心とした「通る事業計画」の作り方 ─ テンプレート活用の正しい手順</div>
+    <div class="meta">
+      <span><b>形式</b>オンライン勉強会（アーカイブ動画より作成）</span>
+      <span><b>主なテーマ</b>小規模事業者持続化補助金の事業計画作成</span>
+      <span><b>対象</b>一人社長・個人事業主・申請サポートを行う士業／FP</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <h2>目次</h2>
+    <ol>
+      <li><a href="#s1"><span class="n">01</span>勉強会の概要と全体像</a></li>
+      <li><a href="#s2"><span class="n">02</span>補助金・助成金の基礎知識</a></li>
+      <li><a href="#s3"><span class="n">03</span>補助金活用の流れと期間</a></li>
+      <li><a href="#s4"><span class="n">04</span>4大補助金の特徴と選び方</a></li>
+      <li><a href="#s5"><span class="n">05</span>テンプレート活用のメリットと落とし穴</a></li>
+      <li><a href="#s6"><span class="n">06</span>最初にやること：ストーリー設計</a></li>
+      <li><a href="#s7"><span class="n">07</span>前半戦：経営計画（様式2前半）の書き方</a></li>
+      <li><a href="#s8"><span class="n">08</span>後半戦：補助事業計画の書き方</a></li>
+      <li><a href="#s9"><span class="n">09</span>質疑応答（Q&amp;A）</a></li>
+      <li><a href="#s10"><span class="n">10</span>他の補助金への応用と実務Tips</a></li>
+    </ol>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+<!-- ============ 01 ============ -->
+<section id="s1">
+  <div class="sec-head"><div class="badge">01</div><h2>勉強会の概要と全体像</h2></div>
+  <p>本勉強会は、小規模事業者持続化補助金を中心に、<strong>「過去に採択された事業計画（テンプレート）」を正しく活用して自分の事業計画を作る方法</strong>を解説するものです。テンプレートを丸写しするのではなく、分解して構成を理解し、自分のストーリーに沿って再構築する──という一貫した方法論が示されました。</p>
+  <div class="panel">
+    <h4>本日のアジェンダ</h4>
+    <ul class="list">
+      <li>事業計画を作る8つのステップ</li>
+      <li>テンプレートを活用するメリット</li>
+      <li>テンプレート活用がうまくいかない理由と、正しい活用法（本編の中心）</li>
+      <li>基礎知識の確認：補助金と助成金の違い、有名な補助金の概要</li>
+    </ul>
+  </div>
+  <div class="callout">
+    <div class="tag">本勉強会の核心メッセージ</div>
+    <p>テンプレートは「構成を真似するもの」であって「中身を真似するもの」ではない。先に一本筋の通ったストーリーを作れば、テンプレートに引きずられず、説得力のある計画書になる。</p>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section id="s2">
+  <div class="sec-head"><div class="badge">02</div><h2>補助金・助成金の基礎知識</h2></div>
+  <p>補助金・助成金はいずれも<strong>社会問題（人手不足・コロナ不況など）の解決予算として各省庁が用意しているもの</strong>です。主に厚生労働省が実施するものが「助成金」、それ以外（経済産業省・その他省庁・自治体）が「補助金」と呼ばれるケースが多いものの、名称の違いに本質的な意味はありません。</p>
+  <table>
+    <tr><th style="width:16%"></th><th>助成金</th><th>補助金</th></tr>
+    <tr><td class="k">受給の仕組み</td><td>要件に当てはまっていれば受給できる（採択率は実質100%）</td><td>事業計画を申請し、採択・不採択の審査がある</td></tr>
+    <tr><td class="k">主な実施主体</td><td>主に厚生労働省</td><td>経済産業省・その他省庁・自治体</td></tr>
+    <tr><td class="k">使いやすさ</td><td>従業員がいない事業者には使いにくい</td><td>会社・個人事業主とも使えるケースが多い</td></tr>
+    <tr><td class="k">採択率の目安</td><td>─</td><td>平均40%程度。持続化補助金は平均で6割前後との見立て</td></tr>
+  </table>
+  <div class="note"><b>補足：</b>持続化給付金・事業復活支援金のような「売上が下がっていればもらえる給付金」は現在ほぼ存在しない。したがって現在の選択肢は助成金か補助金となる。<b>最大の違いは採択率（審査の有無）</b>である。</div>
+  <h3>一人社長の補助金活用方針</h3>
+  <ul class="list">
+    <li>給付金が出た時は必ず申請する</li>
+    <li>持続化補助金は年1回程度申請できるため、定期的に活用する</li>
+    <li>IT導入補助金・ものづくり補助金・事業再構築補助金を絡めながら、できるものを実施していく</li>
+    <li>年間2〜3個程度を並行活用できれば「使いこなせている」と言えるレベル</li>
+  </ul>
+</section>
+
+<!-- ============ 03 ============ -->
+<section id="s3">
+  <div class="sec-head"><div class="badge">03</div><h2>補助金活用の流れと期間</h2></div>
+  <p>補助金は「先にお金を使い、報告後に受け取る」<strong>後払いの制度</strong>です。全体の流れは次のとおりです。</p>
+  <div class="flow">
+    <div class="step"><div class="t">補助金の決定</div><div class="d">申請する補助金を選ぶ</div></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="t">電子申請</div><div class="d">事業計画＋添付書類を準備</div></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="t">採択発表</div><div class="d">約2ヶ月で結果連絡</div></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="t">事業実施</div><div class="d">必要なものを購入</div></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="t">実績報告</div><div class="d">報告書＋添付書類を電子申請</div></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="t">入金</div><div class="d">報告後に補助金受領</div></div>
+  </div>
+  <div class="note"><b>交付申請について：</b>補助金によっては採択後に「交付申請」のステージがあるが、持続化補助金は不備がなければこのステージはない。</div>
+  <h3>期間の目安</h3>
+  <table>
+    <tr><th>フェーズ</th><th>期間の目安</th></tr>
+    <tr><td class="k">申請〜採択</td><td>2〜3ヶ月程度が一般的</td></tr>
+    <tr><td class="k">事業実施期間</td><td>持続化補助金：約半年 ／ ものづくり補助金：約10ヶ月 ／ 事業再構築補助金：2年程度</td></tr>
+    <tr><td class="k">実績報告〜入金</td><td>目安3ヶ月。長いと12ヶ月程度になることも</td></tr>
+  </table>
+  <p>期限が決まっていることはむしろメリットで、<strong>期限までに資金調達し、期限までに事業を完了させる</strong>という会社のスケジュール管理装置として機能します。</p>
+</section>
+
+<!-- ============ 04 ============ -->
+<section id="s4">
+  <div class="sec-head"><div class="badge">04</div><h2>4大補助金の特徴と選び方</h2></div>
+  <p>代表的な4つの補助金のうち、<strong>持続化・ものづくり・事業再構築の3つは「事業計画」が最大の審査ポイント</strong>という共通点があります（IT導入補助金のみ、ツールの使い方が審査の中心）。</p>
+  <table>
+    <tr><th style="width:20%">補助金</th><th>概要・ポイント</th></tr>
+    <tr><td class="k">IT導入補助金</td><td>会計ソフト・CRMツール・ECサイト等の導入に活用。申請できる人はかなり多く、採択率も比較的高い。ただし「IT導入支援事業者」を通す必要があり、誰に依頼すべきか分かりにくいのが難点（講師側で案内可能とのこと）。</td></tr>
+    <tr><td class="k">小規模事業者<br>持続化補助金</td><td>小規模事業者の<strong>販路開拓のための補助金</strong>。インボイス特別枠（免税事業者→課税事業者への転換）で+50万円となり最大250万円。対象が広い一方、Webサイト関連経費は全体の1/4までという上限が設けられた。</td></tr>
+    <tr><td class="k">ものづくり補助金</td><td>設備投資・システム開発・システム導入に活用。ITツールも対象だが、金額が大きくならないならIT導入補助金の方が適するケースもある。</td></tr>
+    <tr><td class="k">事業再構築補助金</td><td>新しい事業・新しい売り方を始める時に申請可能。対象経費の幅が広く、機材・広告費・改装費など関連経費のほとんどが使えるのがメリット。</td></tr>
+  </table>
+  <div class="callout">
+    <div class="tag">選び方が最重要</div>
+    <p>どの対象経費をどの補助金で申請するかの選択を間違えると「いつまでたっても通らない・使えない」状態になる。補助金の選び方そのものが最大のポイントの一つ。</p>
+  </div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section id="s5">
+  <div class="sec-head"><div class="badge">05</div><h2>テンプレート活用のメリットと落とし穴</h2></div>
+  <p>ここでの「テンプレート」とは、<strong>過去に採択された事業計画の実物</strong>を指します。穴埋め式のテンプレート化も試みたものの、個別の考え方が多すぎて実現できなかったため、採択済み計画書そのものを配布しているとのことです。</p>
+  <div class="cols">
+    <div class="panel">
+      <h4>テンプレート活用のメリット</h4>
+      <ul class="list">
+        <li>精神的に楽になり、心の拠り所になる</li>
+        <li>実際に通った計画なので安心して参考にできる</li>
+        <li>大幅な時短になる</li>
+        <li>事業プランのフレームワークとして、新規事業立ち上げにも転用できる</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4>不都合な真実（落とし穴）</h4>
+      <ul class="list">
+        <li>無料テンプレートが乱立し、差がつきにくくなっている</li>
+        <li><strong>テンプレートに引きずられ、「自分の言葉」でなくなる</strong></li>
+        <li>アピールすべき内容が違う方向に行ってしまう（実際の添削事例あり）</li>
+      </ul>
+    </div>
+  </div>
+  <h3>よくある使い方 vs 推奨される使い方</h3>
+  <table>
+    <tr><th>一般的な流れ（NGになりがち）</th><th>推奨される流れ</th></tr>
+    <tr>
+      <td>①テンプレート収集 → ②ダウンロード → ③Wordにコピペ → ④自分用に書き換え → ⑤画像を差し替えて申請</td>
+      <td>①テンプレートを<strong>分解</strong> → ②<strong>構成</strong>を作る → ③ポイントだけ記載 → ④文章化してWordに落とし込む</td>
+    </tr>
+  </table>
+  <p>推奨の流れで作ると<strong>一貫性が出て読みやすくなり、頭も整理される</strong>とのこと。なお絶対条件として、<strong>「補助事業が課題解決の最善策である」こと</strong>が全体を貫いている必要があります。</p>
+  <div class="note"><b>副次効果：</b>テンプレートの使い方を身につけると、補助金・助成金以外の分野でも「お金を受け取る文章」「思っていることの言語化」がしやすくなる。</div>
+</section>
+
+<!-- ============ 06 ============ -->
+<section id="s6">
+  <div class="sec-head"><div class="badge">06</div><h2>最初にやること：ストーリー設計</h2></div>
+  <p>書き始める前に、<strong>一貫性を持って「補助事業が最善策」となるストーリーを1本作る</strong>ことが最初の作業です。補助金の難易度が上がるほどこの戦略が重要になりますが、持続化補助金でも同じです。ストーリーがしっかりしていれば、仮に計画の内容が薄くても通ってしまうことがある一方、これが無いとテンプレートに引きずられます。</p>
+  <div class="chain">
+    <div class="link"><div class="rail"><div class="dot"></div><div class="bar"></div></div>
+      <div class="body"><div class="t">現状</div><div class="d">売上・客数などの数字で現状を把握する</div></div></div>
+    <div class="link"><div class="rail"><div class="dot"></div><div class="bar"></div></div>
+      <div class="body"><div class="t">問題点（外的要因／内的要因）</div><div class="d">外的＝市場や競合の変化、内的＝自社側の要因（仕組み・体制など）</div></div></div>
+    <div class="link"><div class="rail"><div class="dot"></div><div class="bar"></div></div>
+      <div class="body"><div class="t">課題</div><div class="d">問題点を解決するために取り組むべきこと</div></div></div>
+    <div class="link"><div class="rail"><div class="dot"></div></div>
+      <div class="body"><div class="t">解決策 ＝ 補助事業</div><div class="d">「だからこの解決策が必要で、これを補助金で申請します」に着地させる</div></div></div>
+  </div>
+  <div class="panel">
+    <h4>実例：顧客企業のストーリー</h4>
+    <ul class="list">
+      <li><strong>現状：</strong>新規が増えず、市場の伸びと比べて自社売上が低迷</li>
+      <li><strong>外的要因：</strong>競合がオンライン集客に注力し、遠隔地の同業も競合化（マーケットが荒らされている）</li>
+      <li><strong>内的要因：</strong>社長一人のマンパワー集客が中心で、個人の能力頼み。仕組み化できておらず、新規採用しても再現性がない</li>
+      <li><strong>課題：</strong>オンラインでの集客の仕組みを作る</li>
+      <li><strong>解決策（補助事業）：</strong>インバウンドマーケティング手法を用い、CRM（顧客管理システム）を導入して、どんな営業チームでも使える仕組みを構築する</li>
+    </ul>
+  </div>
+  <h3>課題が見つからない時の探し方</h3>
+  <ul class="list">
+    <li><strong>数字を分解する：</strong>売上→客数×客単価、客単価→販売単価×買い上げ点数、利益→粗利率・経費…と細分化すると、どこかに必ず課題が見つかる</li>
+    <li><strong>資料を見る：</strong>ヒアリングが難しい場合は試算表・決算書を確認し、実際に会社・店舗へ足を運ぶと課題が見えてくる</li>
+    <li><strong>市場と比べる：</strong>「市場は伸びているのに自社はダメ」という比較も課題設定として有効</li>
+    <li><strong>人材面：</strong>人材の流出・確保難、「人がやらなくていい仕事をしている」状態も課題になりやすい</li>
+  </ul>
+  <div class="note"><b>ChatGPT活用：</b>考えながら分からなくなったら、箇条書きで書いた内容をChatGPTに入れて整理・表化してもらうと良い。ただし丸投げではなく、自分の言葉のベースを作ってから使うのがポイント。</div>
+</section>
+
+<!-- ============ 07 ============ -->
+<section id="s7">
+  <div class="sec-head"><div class="badge">07</div><h2>前半戦：経営計画（様式2前半）の書き方</h2></div>
+  <p>持続化補助金の様式2には構成があらかじめ決まっており、前半は<strong>①企業概要 ②顧客ニーズと市場の動向 ③自社や自社の提供する商品・サービスの強み ④経営方針</strong>の4項目です。まず「見出しだけ先に作る」ことで格段に書きやすくなります。各項目の目的を理解した上で書くことが重要です。</p>
+
+  <h3>① 企業概要 ＝ 自己紹介</h3>
+  <ul class="list">
+    <li><strong>自社の概要：</strong>会社名・代表者・創業年月日・所在地・事業内容・従業員数など。表形式にすると見やすい（Excelで作ってWordに貼ると綺麗）。営業時間や営業スタイルが差別化要素なら、それも記載する</li>
+    <li><strong>経営状況：</strong>前期の売上・客数・客単価・営業利益など。数字の推移に「なぜそうなったのか」の理由コメント（外的要因・内的要因）を添えると、後の課題提示への伏線になる。売上が伸びていても問題ない（切迫感を出す補足数字を添える手もある）</li>
+    <li><strong>自社のサービスと特徴：</strong>どんなサービスでどんな特徴があるか。一人社長・個人事業主は「本人＝会社」なので、これまでの沿革・歴史を書くとよい</li>
+    <li>冒頭で事業内容と補助事業の内容を<strong>リンクさせておく</strong>のが重要ポイント（持続化補助金は冒頭に事業名を書く欄がないため）</li>
+  </ul>
+
+  <h3>② 顧客ニーズと市場の動向</h3>
+  <ul class="list">
+    <li><strong>市場規模・動向：</strong>「業種名＋市場規模」で検索。日本クリーニング新聞・矢野経済研究所・帝国データバンクなど出所を明記する</li>
+    <li><strong>仮説を持って調べる：</strong>「この市場はこうなっているのでは？」という仮説を立ててから検索・ChatGPT活用する。仮説と違ったら切り口を変える（例：ブルーベリー需要→伸びていなかったため「農園業」で再調査）</li>
+    <li><strong>大→小へセグメント：</strong>コンサル業界→ビジネスコンサル→ITコンサルのように絞り込むと精度が上がる</li>
+    <li><strong>市場の課題も市場動向：</strong>「訪問販売リフォームのクレーム増加」のような業界課題も、補助事業に関連するなら強い材料になる</li>
+    <li><strong>B2Cなら人口統計</strong>も使いやすい。店舗業は<strong>Googleマップで商圏内の競合を抽出</strong>し、HP有無・営業時間などを比較すると差別化を示せる</li>
+    <li><strong>顧客ニーズ：</strong>顧客アンケートが最良。難しければ営業担当へのヒアリング、白書（小規模事業者白書等）やホワイトペーパーのデータを活用。データ＋結論（「だから信頼性の確保が重要」など）をセットで書く</li>
+  </ul>
+  <div class="note"><b>注意：</b>ChatGPTは市場動向のデータに弱く「知ったかぶり」をするため、必ず出所のあるデータで裏取りをする。</div>
+
+  <h3>③ 自社・商品サービスの強み</h3>
+  <ul class="list">
+    <li>持続化補助金ではSWOT分析自体は問われないため、<strong>「強み」と「問題点・課題」が分かればよい</strong></li>
+    <li>精神的な強みに偏りがちなので、<strong>数値化できる強み</strong>を意識する（例：顧客リスト1,000件。既存客への販売は新規の5倍売りやすいという統計もあり、リストは立派な強み）</li>
+    <li>見込み客の集め方、商品・サービスの独自性（他との違い）も強みになる</li>
+    <li>それぞれの強みが<strong>補助事業に活きる形でつながる</strong>ように書く</li>
+  </ul>
+
+  <h3>④ 経営方針</h3>
+  <ul class="list">
+    <li>「社会に貢献したい」等の<strong>精神的な方針だけでなく</strong>、現状の問題点・課題・解決方針をまとめた上での方針を書く</li>
+    <li>経営方針を<strong>補助事業と重なる内容</strong>にしておくと全体に一貫性が出る（前半では補助事業に直接触れる欄がないため、ここが橋渡しになる）</li>
+    <li>数値目標（定性的効果＋定量的効果）を添える。この部分はテンプレートの文字置き換えでも対応可能</li>
+  </ul>
+</section>
+
+<!-- ============ 08 ============ -->
+<section id="s8">
+  <div class="sec-head"><div class="badge">08</div><h2>後半戦：補助事業計画の書き方</h2></div>
+  <p>後半は<strong>①補助事業で行う事業名 ②補助事業の内容 ③業務効率化の取り組み内容 ④補助事業の効果</strong>の4項目。ここが計画書の本番であり、前半はすべてこの後半への「前振り」として機能させます。審査の観点（公募要領に記載）をすべて網羅する構成にします。</p>
+
+  <h3>① 補助事業で行う事業名（30文字以内）</h3>
+  <ul class="list">
+    <li>「老舗呉服店のWeb戦略」のような素直な名前でよく、キャッチーにする必要はない</li>
+    <li>30文字制限は「文字数チェック」ツールで確認。超過が直ちに不採択要因になるわけではなさそうだが、守っておくのが無難</li>
+  </ul>
+
+  <h3>② 補助事業の内容</h3>
+  <p>最低限必要な3点セットは<strong>「内容・目的・行うべき理由」</strong>です。</p>
+  <div class="panel">
+    <h4>記載例（テレビCM出稿の場合）</h4>
+    <ul class="list">
+      <li><strong>目的：</strong>事業存続のための販路開拓と、雇用創出・賃金上昇を軸とした社会貢献</li>
+      <li><strong>内容：</strong>テレビCMの出稿と映像制作</li>
+      <li><strong>行うべき理由：</strong>信頼度が高い／購入意欲が向上する／ターゲット顧客層と視聴者が一致する／実績がある</li>
+    </ul>
+  </div>
+  <p>加えて、審査の観点に対応する以下の要素を盛り込みます。</p>
+  <ul class="list">
+    <li><strong>実現性を高めるための工夫：</strong>審査の観点に明記されているため独立の項目として立てる。例：CMは映像そのものより構成・シナリオが重要なので、外部任せにせず自社でも関与する、など</li>
+    <li><strong>補助事業の詳細：</strong>様式3（経費内訳）の内容をここでも分かるように記載。「ここを読めば何をやるか分かる」状態にする。協力・提携先を書き、体制が整っていることを示す</li>
+    <li><strong>経営方針における本事業の位置付け：</strong>「自社の課題を解決する経営方針を実現するのがこの補助事業」と位置付け、<strong>「必要かつ有効なものである」と明記する</strong>（審査ポイントの言葉をそのまま押さえる）</li>
+    <li><strong>小規模事業者ならではの工夫：</strong>これも審査の観点。小規模の弱み＝リソース不足、強み＝<strong>フレキシブルに対応できること</strong>。顧客と密に連絡が取れる、地域密着、自治会役員などのアイデアを自分の事業に照らして埋め込む</li>
+  </ul>
+
+  <h3>実施体制・スケジュール・収支計画</h3>
+  <ul class="list">
+    <li><strong>実施体制：</strong>誰が・何を・どのようにやるかを社内体制として明記。「人数が少ないのに本当にできるのか」という疑念を払拭する。自社だけで難しい部分は他社との協力体制（構成シナリオ担当・映像制作担当・広告出稿担当など）を書く。嘘はNG</li>
+    <li><strong>実施スケジュール：</strong>月別の項目×矢印などの一般的な形式でよい。いつ頃完了予定かが分かること</li>
+    <li><strong>収支計画（試算）：</strong>補助事業が売上・販路開拓にどうインパクトを与えるかから逆算する。例：CM料金→問い合わせ獲得→これまでの成約率×平均単価→売上増→投資対効果548%。HP型なら「問い合わせ数→個別相談移行率→成約率→単価」の流れで試算し、<strong>前提と根拠を必ず添える</strong></li>
+  </ul>
+
+  <h3>③ 業務効率化（生産性向上）の取り組み内容</h3>
+  <ul class="list">
+    <li>この欄は<strong>任意</strong>。書かないことで採択率が下がることはないだろうというのが講師の見解</li>
+    <li>販路開拓と併せて行う効率化の取り組みがあれば記載（例：問い合わせ→診断→結果報告→クロージングの営業フローを整備し、3回の訪問で成約するスピードをさらに短縮する）</li>
+    <li>実施体制・スケジュールは前項と重複するため「詳細は補助事業の内容にて記載」で構わない</li>
+  </ul>
+
+  <h3>④ 補助事業の効果</h3>
+  <ul class="list">
+    <li>公募要領上は「販路開拓・業務効率化の取り組みを通じて<strong>どのように生産性向上につながるのか</strong>を必ず説明」とされている</li>
+    <li>経営方針で「自社の課題解決＝補助事業」としていれば、<strong>効果の内容は経営方針とほぼ同じでよい</strong>（一貫性が保てる）</li>
+    <li><strong>定性的効果：</strong>売上向上を通じた賃金上昇・雇用増加など</li>
+    <li><strong>定量的効果：</strong>売上・利益の伸び、従業員数の増加などの数値。補助事業をその先の展開につなげる意思も示す</li>
+  </ul>
+  <div class="callout">
+    <div class="tag">補助金の目的との整合</div>
+    <p>公募要領冒頭の「目的」には、販路開拓の取り組みにより地域の産業・雇用を支える小規模事業者の生産性向上と持続的発展を図る、とある。「卒業枠」（小規模事業者からの脱却宣言）が存在するように、雇用・成長への貢献と合致する計画（嘘はNG）を作ることが大前提。</p>
+  </div>
+</section>
+
+<!-- ============ 09 ============ -->
+<section id="s9">
+  <div class="sec-head"><div class="badge">09</div><h2>質疑応答（Q&amp;A）</h2></div>
+
+  <div class="qa">
+    <div class="q"><div class="mark">Q</div><div>申請サポートで関わる場合、申請者自身が考える内容（分析）はどのあたりまでか？</div></div>
+    <div class="a"><div class="mark">A</div><div>
+      <p>基本の流れは、ヒアリングシートを書いてもらい、それを見ながら1時間程度かけて深掘り質問し、その中でストーリーと構成を決めるというもの。<strong>お客さんが言ったこと以外は書けない</strong>のが原則で、サポートする側の役割は「お客さんが言いたいことを言語化すること」。一緒に作っていくイメージ。</p>
+    </div></div>
+  </div>
+
+  <div class="qa">
+    <div class="q"><div class="mark">Q</div><div>数値目標の根拠づけが難しい。希望的観測だと実績報告でダメ出しされないか？</div></div>
+    <div class="a"><div class="mark">A</div><div>
+      <p><strong>実績報告時に「目標未達」を理由にダメ出しされることはほとんどない</strong>（経験上言われたことがない）。</p>
+      <p>根拠の作り方は、①最も分かりやすいのは<strong>現状の数字</strong>（例：現在のHP問い合わせ数・成約率をそのまま使う）。②まったくの新事業なら<strong>競合や先行事業者の数字を借りる</strong>。実例として、呉服店の新規イベント事業で、先行する他県の写真館の数字を教えてもらい、その8掛けで試算したケースがある。③類似事業からの推察や<strong>海外データの引用</strong>も有効。</p>
+      <p>「なんとなく」ではなく「こうこうだからこう」という形になっていれば問題ない。高い目標設定にはそもそも根拠がないものなので、試算としては何かしらの根拠を添える方がよい。</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="s10">
+  <div class="sec-head"><div class="badge">10</div><h2>他の補助金への応用と実務Tips</h2></div>
+  <h3>骨子ができれば他の補助金にも応用できる</h3>
+  <ul class="list">
+    <li>ものづくり補助金も「鉄板の見出し」がほぼ決まっており、<strong>自己紹介→背景→課題と具体的取り組み→全体像→投資内容・詳細→効果→実施体制→市場・将来の展望→収支計画</strong>という流れは持続化補助金と本質的に同じ（説明が長くなるだけ）</li>
+    <li>事業再構築補助金も、書くことが複雑なだけで基本は同じ。持続化→事業再構築と続けて依頼され、一発採択となった実例もある</li>
+    <li>創業2年以内なら<strong>創業融資</strong>の計画書にも同じ骨子が使える</li>
+  </ul>
+  <h3>作成を楽にするツール活用</h3>
+  <table>
+    <tr><th>場面</th><th>ツール・方法</th></tr>
+    <tr><td class="k">文章の整理</td><td>箇条書きで書き出し、ChatGPTにまとめ・表化してもらう（講師自身は表を作る時ぐらいに使用）</td></tr>
+    <tr><td class="k">入力が苦手</td><td>Googleドキュメント等の音声入力機能。ブラウザ拡張機能の追加で利用可能</td></tr>
+    <tr><td class="k">表の作成</td><td>一度Excelで表を作り、Wordに貼り付けると綺麗に仕上がる</td></tr>
+    <tr><td class="k">Wordの整形</td><td>提出書類のWordが乱れているケースが非常に多い。基本操作の解説（動画）を参照して読みやすく整える</td></tr>
+    <tr><td class="k">受給額の目安</td><td>補助金・助成金の受給額診断ツール（講師提供）で事前にチェック可能</td></tr>
+  </table>
+  <div class="callout">
+    <div class="tag">まとめ</div>
+    <p>①ストーリーを作る → ②構成（見出し）を作る → ③ポイントをメモ書きする → ④文章化する → ⑤表などで視覚的に整える。テンプレートは構成の参考として「行ったり来たり」しながら使い、自分の言葉を残すこと。この型が身につけば、持続化に限らずものづくり・事業再構築・創業融資まで応用できる。</p>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    本レポートは「補助金入門テンプレート活用勉強会」アーカイブ動画（YouTube）の文字起こしをもとに作成したものです。文字起こしには認識誤りが含まれる可能性があり、数値・制度内容は開催時点の情報です。最新の公募要領を必ずご確認ください。
+  </div>
+</footer>
+
+</body>
+</html>
