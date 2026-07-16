@@ -1,0 +1,4 @@
+debounce2_A.pdf  ->  https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/batch-20260716-105828/1_debounce2_A.pdf
+debounce2_B.pdf  ->  https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/batch-20260716-105828/2_debounce2_B.pdf
+スキップ（ファイルが見つかりません）: 存在しない.pdf
+test_video.mp4  ->  https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/batch-20260716-105828/3_test_video.mp4
