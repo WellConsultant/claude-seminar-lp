@@ -1,0 +1,2 @@
+batch_a.html  ->  https://htmlpreview.github.io/?https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/b-44fdf0/f5a14f.html
+batch_b.html  ->  https://htmlpreview.github.io/?https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/b-44fdf0/463489.html
