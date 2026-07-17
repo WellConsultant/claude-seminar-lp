@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>会社の手取り最大化診断｜全体概要</title>
+  <style>
+    :root{
+      --bg:#f3f4f6;
+      --card:#ffffff;
+      --text:#111827;
+      --sub:#4b5563;
+      --line:#d1d5db;
+      --navy:#0f172a;
+      --black:#111111;
+      --orange:#f28c28;
+      --orange-soft:#fff4e8;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+      line-height:1.85;
+    }
+    a{color:inherit}
+    .wrap{
+      max-width:1120px;
+      margin:0 auto;
+      padding:28px 18px 80px;
+    }
+    .hero{
+      background:linear-gradient(135deg,var(--navy),var(--black));
+      color:#fff;
+      border-radius:22px;
+      padding:54px 42px;
+      box-shadow:0 18px 50px rgba(0,0,0,.14);
+    }
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:18px;
+      padding:7px 14px;
+      border-radius:999px;
+      background:var(--orange);
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
+    h1{
+      margin:0 0 18px;
+      font-size:clamp(34px,6vw,60px);
+      line-height:1.18;
+    }
+    .hero p{
+      margin:0;
+      max-width:840px;
+      font-size:18px;
+      color:#e5e7eb;
+    }
+    .toc{
+      margin:26px 0;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:24px;
+    }
+    .toc h2{margin-top:0}
+    .toc ol{
+      columns:2;
+      column-gap:36px;
+      margin:0;
+      padding-left:22px;
+    }
+    .toc li{margin:6px 0}
+    section{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:34px;
+      margin-top:22px;
+      box-shadow:0 8px 30px rgba(0,0,0,.04);
+    }
+    h2{
+      margin:0 0 16px;
+      font-size:28px;
+      line-height:1.4;
+    }
+    h3{
+      margin:26px 0 10px;
+      font-size:21px;
+      line-height:1.5;
+    }
+    p{margin:0 0 14px;color:var(--sub)}
+    ul,ol{margin:10px 0 0;padding-left:1.3em}
+    li{margin:7px 0}
+    .lead{
+      font-size:18px;
+      color:#1f2937;
+    }
+    .quote{
+      margin:20px 0 0;
+      padding:20px 22px;
+      background:var(--orange-soft);
+      border-left:5px solid var(--orange);
+      border-radius:12px;
+      color:#5b4633;
+      font-weight:700;
+    }
+    .four{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin-top:20px;
+    }
+    .mini{
+      background:#fafafa;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:20px;
+    }
+    .mini strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:18px;
+      color:var(--navy);
+    }
+    .flow{
+      display:grid;
+      gap:14px;
+      margin-top:18px;
+    }
+    .step{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      padding:18px;
+      background:#fafafa;
+      border:1px solid var(--line);
+      border-radius:14px;
+    }
+    .num{
+      width:38px;
+      height:38px;
+      flex:0 0 38px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--navy);
+      color:#fff;
+      font-weight:800;
+    }
+    .result{
+      background:var(--navy);
+      color:#fff;
+    }
+    .result h2,.result h3{color:#fff}
+    .result p,.result li{color:#e5e7eb}
+    .tag{
+      display:inline-block;
+      margin:3px 6px 3px 0;
+      padding:5px 10px;
+      border-radius:999px;
+      background:#eef2f7;
+      color:#1f2937;
+      font-size:13px;
+      font-weight:700;
+    }
+    .warning{
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+    }
+    footer{
+      text-align:center;
+      color:#6b7280;
+      font-size:13px;
+      padding:26px 0 0;
+    }
+    @media(max-width:850px){
+      .four{grid-template-columns:1fr 1fr}
+      .toc ol{columns:1}
+    }
+    @media(max-width:560px){
+      .wrap{padding:14px 12px 48px}
+      .hero{padding:36px 24px}
+      section{padding:24px 20px}
+      .four{grid-template-columns:1fr}
+      h2{font-size:24px}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <span class="eyebrow">VIDEOASK型 診断ツール企画</span>
+      <h1>会社の手取り最大化診断</h1>
+      <p>補助金・助成金・融資・国保・社保・広告費・固定費などを横断し、会社や事業主の手元に残るお金を増やすための優先順位を整理する診断ツール。</p>
+    </header>
+
+    <nav class="toc">
+      <h2>全体構成</h2>
+      <ol>
+        <li><a href="#sec1">診断ツールの目的</a></li>
+        <li><a href="#sec2">基本コンセプト</a></li>
+        <li><a href="#sec3">4つの基本領域</a></li>
+        <li><a href="#sec4">人の思考回路に合わせた設計</a></li>
+        <li><a href="#sec5">診断全体の構成</a></li>
+        <li><a href="#sec6">診断結果の表示方法</a></li>
+        <li><a href="#sec7">ニーズ喚起の仕組み</a></li>
+        <li><a href="#sec8">VideoAsk型の進行</a></li>
+        <li><a href="#sec9">診断結果からの導線</a></li>
+        <li><a href="#sec10">相談につなげるCTA</a></li>
+        <li><a href="#sec11">スコアリング設計</a></li>
+        <li><a href="#sec12">管理者側に蓄積する情報</a></li>
+        <li><a href="#sec13">診断ツールの全体フロー</a></li>
+        <li><a href="#sec14">サービス全体の見せ方</a></li>
+        <li><a href="#sec15">この診断の最大の特徴</a></li>
+      </ol>
+    </nav>
+
+    <section id="sec1">
+      <h2>1．診断ツールの目的</h2>
+      <p class="lead">この診断ツールは、単に「使える補助金を検索するツール」ではありません。</p>
+      <p>会社や個人事業主が現在支払っている費用、見落としている制度、今後予定している投資などを整理しながら、次の内容を明確にするための診断ツールです。</p>
+      <ul>
+        <li>受け取れる可能性があるお金</li>
+        <li>削減できる可能性がある支出</li>
+        <li>条件を整えることで活用できる制度</li>
+        <li>今すぐ確認すべき項目</li>
+        <li>将来に向けて準備しておく項目</li>
+      </ul>
+      <p>診断を進める過程で、利用者自身に次のような気づきを持ってもらいます。</p>
+      <ul>
+        <li>補助金だけを探していても不十分かもしれない</li>
+        <li>毎月支払っている費用にも見直し余地があるかもしれない</li>
+        <li>制度を知らないことで損をしている可能性がある</li>
+        <li>今すぐ対象でなくても、準備すれば使える制度がある</li>
+      </ul>
+      <div class="quote">最終的なゴールは、制度名を一覧表示することではなく、会社や事業主の手元に残るお金を増やすための改善方針を提示し、個別相談や具体的な支援へつなげること。</div>
+    </section>
+
+    <section id="sec2">
+      <h2>2．ツールの基本コンセプト</h2>
+      <h3>売上を増やす前に、残るお金を確認する</h3>
+      <p>多くの事業者は、利益や資金繰りに悩んだとき、最初に次のように考えます。</p>
+      <ul>
+        <li>売上を増やさなければならない</li>
+        <li>新規顧客を増やさなければならない</li>
+        <li>広告を出さなければならない</li>
+        <li>融資を受けなければならない</li>
+        <li>補助金を探さなければならない</li>
+      </ul>
+      <p>しかし、実際には売上以外にも確認すべき項目があります。</p>
+      <ul>
+        <li>補助金や助成金を受け取れる可能性</li>
+        <li>融資や資金調達の選択肢</li>
+        <li>国民健康保険料の負担状況</li>
+        <li>社会保険料の負担状況</li>
+        <li>広告費や集客費の使い方</li>
+        <li>税金や固定費の支払い方</li>
+        <li>契約しているサービスの重複</li>
+        <li>人材採用や教育にかかる費用</li>
+        <li>設備投資やシステム導入の予定</li>
+        <li>会社と個人のお金の受け取り方</li>
+      </ul>
+      <div class="quote">「売上を増やす」だけではなく、「受け取る・減らす・借りる・残す」の4方向から手取りを見直す。</div>
+    </section>
+
+    <section id="sec3">
+      <h2>3．診断の4つの基本領域</h2>
+      <div class="four">
+        <div class="mini"><strong>① 受け取る</strong>補助金、助成金、給付金、奨励金など、外部制度から受け取れる可能性を確認する。</div>
+        <div class="mini"><strong>② 減らす</strong>国保、社保、広告費、固定費、重複契約など、支出の見直し余地を確認する。</div>
+        <div class="mini"><strong>③ 借りる・備える</strong>融資、資金繰り、つなぎ資金、将来の投資準備を確認する。</div>
+        <div class="mini"><strong>④ 残す・増やす</strong>利益率、広告回収率、固定費、入出金、事業構造を確認する。</div>
+      </div>
+
+      <h3>① 受け取る</h3>
+      <p>国、自治体、各種団体などが実施する制度から、受け取れる可能性のある資金を確認します。</p>
+      <ul>
+        <li>補助金</li><li>助成金</li><li>給付金</li><li>奨励金</li><li>人材採用支援</li>
+        <li>人材育成支援</li><li>設備投資支援</li><li>IT導入支援</li><li>販路開拓支援</li>
+        <li>省力化・省エネ支援</li><li>自治体独自制度</li>
+      </ul>
+      <p>現在対象になる制度だけでなく、これから行う予定から今後の活用可能性も確認します。</p>
+      <ul>
+        <li>これから設備を購入する</li>
+        <li>人を採用する予定がある</li>
+        <li>従業員を研修する</li>
+        <li>新商品を開発する</li>
+        <li>新しい事業を始める</li>
+        <li>ホームページやシステムを導入する</li>
+      </ul>
+
+      <h3>② 減らす</h3>
+      <p>毎月、毎年支払っている費用について、見直しの可能性を確認します。</p>
+      <ul>
+        <li>国民健康保険料</li><li>社会保険料</li><li>広告費</li><li>集客費</li><li>採用費</li>
+        <li>外注費</li><li>ITツール利用料</li><li>通信費</li><li>保険料</li><li>顧問料</li>
+        <li>サブスクリプション</li><li>決済手数料</li><li>固定費</li><li>重複契約</li>
+        <li>利用されていないサービス</li>
+      </ul>
+      <p>保険料などについては単純に「安くする」とは見せず、法令や制度上の要件を守ったうえで、加入状況、役員報酬、働き方、法人・個人の形態などを確認します。</p>
+      <p>診断結果では断定せず、「見直し余地がある可能性」「専門家による確認が必要」「変更による不利益も含めて検討」と表示します。</p>
+
+      <h3>③ 借りる・備える</h3>
+      <p>資金が不足してから融資を探すのではなく、将来の投資や資金繰りを見据えて選択肢を確認します。</p>
+      <ul>
+        <li>日本政策金融公庫</li><li>制度融資</li><li>信用保証協会付き融資</li><li>民間金融機関からの融資</li>
+        <li>創業融資</li><li>設備資金融資</li><li>運転資金融資</li><li>借換え</li><li>追加融資</li>
+        <li>資金繰り改善</li><li>補助金入金までのつなぎ資金</li><li>将来の融資に向けた事前準備</li>
+      </ul>
+      <p>「今すぐお金が必要か」だけでなく、3か月後の資金不足、大型支払い、設備投資、税金・社会保険料の支払い、売掛金の回収期間、補助金の後払いへの対応なども確認します。</p>
+      <div class="quote">融資は困ってから申し込むものではなく、余裕があるうちに準備するもの。</div>
+
+      <h3>④ 残す・増やす</h3>
+      <p>受け取ったお金や削減した費用が、最終的に手元に残る仕組みになっているかを確認します。</p>
+      <ul>
+        <li>利益率</li><li>粗利率</li><li>広告費回収率</li><li>顧客獲得単価</li><li>リピート率</li>
+        <li>契約継続率</li><li>役員報酬</li><li>個人と法人のお金の流れ</li><li>固定費と変動費</li>
+        <li>売上の入金時期</li><li>支払い時期</li><li>不採算商品</li><li>利用されていない契約</li>
+        <li>値引きの多さ</li><li>入金漏れや請求漏れ</li>
+      </ul>
+      <p>補助金が採択されても、広告費を削減しても、収益構造そのものに問題があれば、お金は残りません。</p>
+    </section>
+
+    <section id="sec4">
+      <h2>4．人の思考回路に合わせた診断設計</h2>
+      <p>利用者は、最初から自分の本当の課題を理解しているとは限りません。</p>
+      <p>たとえば「補助金を探している」と答えた人でも、本当の悩みは次のようなものかもしれません。</p>
+      <ul>
+        <li>設備を買うお金が足りない</li><li>新しい事業を始めたい</li><li>売上が減っている</li>
+        <li>広告費が高い</li><li>人を採用できない</li><li>資金繰りが苦しい</li>
+        <li>税金や保険料の負担が重い</li><li>何にお金を使うべきかわからない</li>
+      </ul>
+
+      <div class="flow">
+        <div class="step"><span class="num">1</span><div><h3>自分の状況を選ぶ</h3><p>最初は専門用語ではなく、売上、支払い、設備、人材、資金など、答えやすい悩みから選ばせます。</p></div></div>
+        <div class="step"><span class="num">2</span><div><h3>困っている場面を具体化する</h3><p>必要な投資を先送りしている、毎月の支払いが重い、利益はあるのにお金が残らないなど、現状を具体化します。</p></div></div>
+        <div class="step"><span class="num">3</span><div><h3>すでに行っている対策を確認する</h3><p>補助金検索、税理士・銀行・広告代理店への相談、固定費見直しなど、どこまで動いたかを確認します。</p></div></div>
+        <div class="step"><span class="num">4</span><div><h3>行動できなかった理由を確認する</h3><p>対象かわからない、制度が多すぎる、手続きが難しい、営業されそうで不安など、心理的障壁を確認します。</p></div></div>
+        <div class="step"><span class="num">5</span><div><h3>放置した場合の影響を認識してもらう</h3><p>手元資金の減少、投資の遅れ、競合への遅れ、人手不足、広告費の無駄などを考えてもらいます。</p></div></div>
+        <div class="step"><span class="num">6</span><div><h3>改善後の状態を選んでもらう</h3><p>制度が整理される、支払いが適正になる、資金計画が見える、専門家へまとめて相談できるなど、理想状態を選ばせます。</p></div></div>
+      </div>
+    </section>
+
+    <section id="sec5">
+      <h2>5．診断全体の構成</h2>
+      <h3>STEP1：入口診断</h3>
+      <ul>
+        <li>法人・個人事業主・創業予定</li>
+        <li>現在の主な悩み</li>
+        <li>最も改善したい項目</li>
+      </ul>
+      <p>最初の質問数は3問程度に抑え、離脱を防ぎます。</p>
+
+      <h3>STEP2：経営状況診断</h3>
+      <ul>
+        <li>業種</li><li>所在地</li><li>創業年数</li><li>従業員数</li><li>売上規模</li>
+        <li>法人または個人</li><li>社会保険加入状況</li><li>従業員の雇用状況</li>
+        <li>直近の利益状況</li><li>現在の資金余力</li>
+      </ul>
+      <p>数字は正確な金額入力ではなく、範囲選択式を基本とします。</p>
+
+      <h3>STEP3：予定されている行動の診断</h3>
+      <ul>
+        <li>設備購入</li><li>ITツール導入</li><li>ホームページ制作</li><li>広告出稿</li>
+        <li>店舗改装</li><li>新規事業</li><li>新商品開発</li><li>海外展開</li>
+        <li>人材採用</li><li>正社員化</li><li>賃上げ</li><li>社員研修</li>
+        <li>事業承継</li><li>省エネ設備</li><li>働き方改善</li><li>融資申込み</li>
+      </ul>
+      <p>予定時期は「1か月以内・3か月以内・半年以内・1年以内・未定」などで確認し、緊急度を判定します。</p>
+
+      <h3>STEP4：支出診断</h3>
+      <ul>
+        <li>社会保険料</li><li>国民健康保険料</li><li>広告費</li><li>外注費</li><li>採用費</li>
+        <li>システム利用料</li><li>通信費</li><li>保険料</li><li>顧問料</li><li>家賃</li>
+        <li>借入返済</li><li>リース料</li><li>その他固定費</li>
+      </ul>
+      <p>金額だけでなく、契約内容を理解しているか、長期間見直していないか、重複していないか、効果測定しているかも確認します。</p>
+
+      <h3>STEP5：心理的障壁の診断</h3>
+      <p>
+        <span class="tag">知識不足型</span>
+        <span class="tag">時間不足型</span>
+        <span class="tag">失敗回避型</span>
+        <span class="tag">営業警戒型</span>
+        <span class="tag">自己判断型</span>
+        <span class="tag">先送り型</span>
+      </p>
+      <p>利用者がなぜ行動できていないのかを分類し、診断結果の見せ方や相談導線に反映します。</p>
+    </section>
+
+    <section id="sec6" class="result">
+      <h2>6．診断結果の表示方法</h2>
+      <h3>① 手取り改善タイプ</h3>
+      <ul>
+        <li>制度活用不足タイプ</li>
+        <li>固定費見直しタイプ</li>
+        <li>投資準備不足タイプ</li>
+        <li>資金繰り先送りタイプ</li>
+        <li>広告費改善タイプ</li>
+        <li>人材活用制度不足タイプ</li>
+        <li>総合見直しタイプ</li>
+      </ul>
+
+      <h3>② 現在の状態</h3>
+      <p>回答内容を文章化し、現在どこに見落としや遅れがあるかを示します。</p>
+
+      <h3>③ 見直すべき優先順位</h3>
+      <ul>
+        <li>優先度A：すぐに確認</li>
+        <li>優先度B：条件を整理</li>
+        <li>優先度C：将来準備</li>
+      </ul>
+
+      <h3>④ 活用可能性のある分野</h3>
+      <ul>
+        <li>設備投資系補助金</li>
+        <li>IT導入系補助金</li>
+        <li>人材育成系助成金</li>
+        <li>雇用関係助成金</li>
+        <li>自治体の販路開拓支援</li>
+        <li>公的融資制度</li>
+        <li>広告費・集客構造の見直し</li>
+        <li>社会保険・国民健康保険の加入状況確認</li>
+      </ul>
+
+      <h3>⑤ 次に行うこと</h3>
+      <ol>
+        <li>これから1年間の投資予定を整理する</li>
+        <li>現在支払っている固定費を一覧にする</li>
+        <li>制度活用と費用削減をまとめて専門家に確認する</li>
+      </ol>
+    </section>
+
+    <section id="sec7">
+      <h2>7．ニーズ喚起の仕組み</h2>
+      <p>ニーズ喚起は、恐怖をあおることではありません。利用者が自分の回答を通じて、見落とし、先送り、複数問題のつながり、自己判断の限界、相談価値を理解するように設計します。</p>
+      <ol>
+        <li><strong>共感：</strong>多くの事業者が制度の違いや相談先がわからず、確認を後回しにしている。</li>
+        <li><strong>自己認識：</strong>自社の場合、投資予定に対して制度確認が十分にできていない可能性がある。</li>
+        <li><strong>見落としの提示：</strong>補助金だけでなく、助成金、融資、固定費、広告費なども関係する。</li>
+        <li><strong>放置コスト：</strong>購入や契約後では制度を使えない場合がある。</li>
+        <li><strong>実行可能性：</strong>投資予定と支払いを整理すれば、確認すべき範囲を絞れる。</li>
+        <li><strong>相談の合理化：</strong>制度ごとに別々に相談せず、手元に残るお金という観点から優先順位を整理する。</li>
+      </ol>
+    </section>
+
+    <section id="sec8">
+      <h2>8．動画を使ったVideoAsk型の進行</h2>
+      <p>各セクションの冒頭に、20〜45秒程度の短い動画またはアバター説明を入れます。</p>
+      <h3>動画1：導入</h3>
+      <p>売上を増やしても、支払いが増えれば手元のお金は残りません。この診断では、補助金、助成金、融資、保険料、広告費などを横断して、見直すべきポイントを整理します。</p>
+
+      <h3>動画2：悩みの確認</h3>
+      <p>制度名がわからなくても問題ありません。今困っていることや、これから行いたいことを選ぶだけで進められます。</p>
+
+      <h3>動画3：予定の確認</h3>
+      <p>補助金や助成金は、何をする予定なのかによって使える可能性が変わります。購入や契約をする前に確認することが重要です。</p>
+
+      <h3>動画4：支出の確認</h3>
+      <p>毎月の支払いは、一つひとつは小さくても、年間では大きな金額になります。内容がわからない支払いも含めて確認してください。</p>
+
+      <h3>動画5：結果表示前</h3>
+      <p>ここまでの回答から、受け取る、減らす、借りる、残すという4つの視点で、優先的に確認すべき項目を整理します。</p>
+    </section>
+
+    <section id="sec9">
+      <h2>9．診断結果からの導線</h2>
+      <h3>低関心層</h3>
+      <ul>
+        <li>診断結果をメールで受け取る</li>
+        <li>手取り改善チェックリストを受け取る</li>
+        <li>制度活用の基礎資料を受け取る</li>
+      </ul>
+      <h3>中関心層</h3>
+      <ul>
+        <li>詳細診断へ進む</li>
+        <li>必要書類一覧を確認する</li>
+        <li>費用一覧表を作成する</li>
+        <li>投資予定整理シートを利用する</li>
+      </ul>
+      <h3>高関心層</h3>
+      <ul>
+        <li>無料個別相談を予約する</li>
+        <li>診断結果を専門家に送る</li>
+        <li>補助金・助成金の対象確認を依頼する</li>
+        <li>固定費・広告費・保険料の総合確認を依頼する</li>
+      </ul>
+    </section>
+
+    <section id="sec10">
+      <h2>10．相談につなげるCTA</h2>
+      <h3>診断結果を専門家と確認する</h3>
+      <p>診断では複数の見直し可能性が表示されています。ただし、実際に利用できる制度や削減可能性は、事業内容、所在地、契約状況などによって異なります。診断結果をもとに、優先順位を一緒に整理できます。</p>
+
+      <h3>使える制度を個別に確認する</h3>
+      <p>設備購入や契約の前に確認することで、活用できる制度の選択肢が増える場合があります。</p>
+
+      <h3>支払いをまとめて確認する</h3>
+      <p>社会保険、国民健康保険、広告費、固定費について、単独ではなく全体のお金の流れから確認します。</p>
+    </section>
+
+    <section id="sec11">
+      <h2>11．スコアリングの基本設計</h2>
+      <h3>制度活用可能性スコア</h3>
+      <p>設備投資、IT導入、採用、研修、新規事業、賃上げなどの予定を点数化します。</p>
+
+      <h3>支出見直しスコア</h3>
+      <p>固定費総額、長期間未見直しの契約、効果測定していない広告、重複サービス、内容不明の支払いなどを点数化します。</p>
+
+      <h3>資金調達必要度スコア</h3>
+      <p>手元資金、今後の支払い予定、投資予定額、借入状況、売掛金回収期間などを点数化します。</p>
+
+      <h3>緊急度スコア</h3>
+      <p>実施予定時期、申請期限、契約・購入予定、資金不足の時期、支払い負担などを点数化します。</p>
+
+      <h3>行動障壁スコア</h3>
+      <p>知識不足、時間不足、失敗への不安、専門家への警戒、先送り傾向などを点数化します。</p>
+
+      <div class="quote">可能性 × 金額的重要度 × 緊急度 × 行動障壁を組み合わせて、優先順位を出す。</div>
+    </section>
+
+    <section id="sec12">
+      <h2>12．管理者側に蓄積する情報</h2>
+      <ul>
+        <li>氏名</li><li>会社名</li><li>メールアドレス</li><li>電話番号</li>
+        <li>法人・個人</li><li>業種</li><li>所在地</li><li>従業員数</li><li>売上規模</li>
+        <li>主な悩み</li><li>投資予定</li><li>採用予定</li><li>研修予定</li><li>資金需要</li>
+        <li>支出見直し項目</li><li>心理タイプ</li><li>緊急度</li><li>推奨サービス</li>
+        <li>診断途中の離脱地点</li><li>回答にかかった時間</li><li>相談予約の有無</li>
+      </ul>
+      <p>これにより、面談前に相手の状況、関心、緊急度、心理的な不安を把握できます。</p>
+    </section>
+
+    <section id="sec13">
+      <h2>13．診断ツールの全体フロー</h2>
+      <div class="flow">
+        <div class="step"><span class="num">1</span><div><h3>興味を持たせる</h3><p>あなたの会社には、まだ確認していない手取り改善策がいくつあるでしょうか。</p></div></div>
+        <div class="step"><span class="num">2</span><div><h3>答えやすい質問</h3><p>現在の悩み、会社形態、予定している行動を選択。</p></div></div>
+        <div class="step"><span class="num">3</span><div><h3>問題を具体化</h3><p>支払い状況、投資予定、資金状況を確認。</p></div></div>
+        <div class="step"><span class="num">4</span><div><h3>行動できない理由を確認</h3><p>知識、時間、不安、先送りなどを診断。</p></div></div>
+        <div class="step"><span class="num">5</span><div><h3>見落としを提示</h3><p>補助金以外にも、助成金、融資、固定費、保険料、広告費が関係することを示す。</p></div></div>
+        <div class="step"><span class="num">6</span><div><h3>診断結果</h3><p>手取り改善タイプ、優先順位、確認分野を表示。</p></div></div>
+        <div class="step"><span class="num">7</span><div><h3>情報取得</h3><p>メールアドレスなどを入力して詳細結果を受け取る。</p></div></div>
+        <div class="step"><span class="num">8</span><div><h3>個別相談</h3><p>診断結果をもとに相談予約へ進む。</p></div></div>
+      </div>
+    </section>
+
+    <section id="sec14">
+      <h2>14．サービス全体の見せ方</h2>
+      <p>このツールは「補助金診断」よりも上位概念として見せる必要があります。</p>
+      <h3>名称案</h3>
+      <ul>
+        <li>会社の手取り最大化診断</li>
+        <li>経営のお金総点検</li>
+        <li>手元資金改善診断</li>
+        <li>会社にお金を残す診断</li>
+        <li>経営コスト・制度活用診断</li>
+        <li>受取額・支払額見直し診断</li>
+        <li>利益を残す経営診断</li>
+        <li>経営資金最適化診断</li>
+        <li>お金の見落とし診断</li>
+        <li>会社のお金健康診断</li>
+      </ul>
+      <div class="quote">推奨名称：会社の手取り最大化診断<br>補足文：補助金・助成金・融資・保険料・広告費などを横断して、会社に残るお金を確認。</div>
+    </section>
+
+    <section id="sec15">
+      <h2>15．この診断の最大の特徴</h2>
+      <p>一般的な診断ツールは、最初から一つの商品へ誘導します。本診断は、最初に商品を決めません。</p>
+      <p>利用者の回答から、次のように分類します。</p>
+      <ul>
+        <li>補助金支援が必要な人</li>
+        <li>助成金確認が必要な人</li>
+        <li>融資準備が必要な人</li>
+        <li>固定費確認が必要な人</li>
+        <li>広告改善が必要な人</li>
+        <li>保険料や加入状況の専門確認が必要な人</li>
+        <li>複数分野を横断して確認すべき人</li>
+      </ul>
+      <div class="quote">質問に回答すると商品を紹介される診断ではなく、回答することで自分の会社のお金の問題に気づく診断。</div>
+      <p>最終的には、制度や削減項目を単品で売るのではなく、会社に残るお金を増やすための総合的な改善支援として展開します。</p>
+    </section>
+
+    <section class="warning">
+      <h2>注意事項</h2>
+      <p>国民健康保険、社会保険、融資、税務、法務に関する判定は、診断上で断定しません。制度要件、加入状況、契約内容、法人形態、雇用状況などにより結果が変わるため、必要に応じて専門家による個別確認へつなげます。</p>
+    </section>
+
+    <footer>会社の手取り最大化診断｜全体概要</footer>
+  </main>
+</body>
+</html>
