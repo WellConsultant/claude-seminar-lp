@@ -1,0 +1,1131 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>会社の手取り最大化診断</title>
+  <style>
+    :root{
+      --bg:#f7f7f4;
+      --panel:#ffffff;
+      --text:#171717;
+      --sub:#6b7280;
+      --line:#e5e7eb;
+      --navy:#111827;
+      --orange:#f28c28;
+      --orange-dark:#d97706;
+      --soft:#fff7ed;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;background:var(--bg);color:var(--text)}
+    body{overflow-x:hidden}
+    button,input{font:inherit}
+    .app{
+      min-height:100vh;
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+    }
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:rgba(247,247,244,.94);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width:1100px;
+      margin:auto;
+      padding:16px 20px 10px;
+    }
+    .topline{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+    }
+    .brand{
+      font-weight:800;
+      letter-spacing:.01em;
+    }
+    .progress-text{
+      color:var(--sub);
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .progress{
+      height:5px;
+      background:#e5e7eb;
+      border-radius:999px;
+      overflow:hidden;
+      margin-top:12px;
+    }
+    .progress > div{
+      height:100%;
+      width:0;
+      background:var(--orange);
+      transition:width .25s ease;
+    }
+    .stage{
+      display:grid;
+      place-items:center;
+      padding:24px 36px;
+    }
+    .card{
+      width:min(1180px,100%);
+      min-height:620px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:48px 56px;
+      box-shadow:0 16px 50px rgba(0,0,0,.06);
+      animation:fade .24s ease;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    @keyframes fade{
+      from{opacity:0;transform:translateY(8px)}
+      to{opacity:1;transform:none}
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:14px;
+      color:var(--orange-dark);
+      font-weight:800;
+      margin-bottom:16px;
+    }
+    h1,h2{
+      margin:0;
+      line-height:1.35;
+    }
+    h1{font-size:clamp(32px,5vw,54px)}
+    h2{font-size:clamp(26px,4vw,40px)}
+    .lead{
+      margin:18px 0 0;
+      color:var(--sub);
+      font-size:18px;
+      line-height:1.8;
+    }
+    .answers{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px 16px;
+      margin-top:30px;
+    }
+    .answer{
+      width:100%;
+      min-height:78px;
+      text-align:left;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:14px;
+      padding:16px 18px;
+      cursor:pointer;
+      transition:.18s ease;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .answer:hover{
+      border-color:var(--orange);
+      background:var(--soft);
+      transform:translateY(-1px);
+    }
+    .answer.selected{
+      border-color:var(--orange);
+      background:var(--soft);
+      box-shadow:0 0 0 2px rgba(242,140,40,.12);
+    }
+    .key{
+      flex:0 0 30px;
+      width:30px;
+      height:30px;
+      display:grid;
+      place-items:center;
+      border-radius:8px;
+      background:#f3f4f6;
+      color:#374151;
+      font-weight:800;
+      font-size:13px;
+    }
+    .answer.selected .key{
+      background:var(--orange);
+      color:#fff;
+    }
+    .answer-main{
+      font-weight:700;
+      color:#1f2937;
+      line-height:1.55;
+    }
+    .question-desc{
+      margin:16px 0 0;
+      color:var(--sub);
+      font-size:17px;
+      line-height:1.9;
+      max-width:980px;
+    }
+    .after-note{
+      margin-top:18px;
+      padding:15px 17px;
+      border-radius:12px;
+      background:var(--soft);
+      border-left:4px solid var(--orange);
+      color:#6b4423;
+      font-size:14px;
+      line-height:1.75;
+    }
+    .hint{
+      margin-top:14px;
+      color:var(--sub);
+      font-size:13px;
+    }
+    .input{
+      width:100%;
+      margin-top:26px;
+      border:none;
+      border-bottom:2px solid #d1d5db;
+      background:transparent;
+      padding:14px 2px;
+      font-size:24px;
+      outline:none;
+    }
+    .input:focus{border-bottom-color:var(--orange)}
+    .footer{
+      border-top:1px solid var(--line);
+      background:#fff;
+    }
+    .footer-inner{
+      max-width:1100px;
+      margin:auto;
+      padding:14px 20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .nav-group{display:flex;gap:10px}
+    .btn{
+      border:0;
+      border-radius:12px;
+      padding:12px 18px;
+      cursor:pointer;
+      font-weight:800;
+    }
+    .btn-secondary{
+      background:#f3f4f6;
+      color:#374151;
+    }
+    .btn-primary{
+      background:var(--orange);
+      color:#fff;
+    }
+    .btn:disabled{
+      opacity:.45;
+      cursor:not-allowed;
+    }
+    .start-actions{
+      margin-top:28px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .micro{
+      color:var(--sub);
+      font-size:13px;
+      margin-top:10px;
+    }
+    .result-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin-top:28px;
+    }
+    .result-box{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px;
+      background:#fafafa;
+    }
+    .result-box strong{
+      display:block;
+      margin-bottom:6px;
+      color:var(--navy);
+    }
+    .summary{
+      margin-top:26px;
+      border-top:1px solid var(--line);
+      padding-top:22px;
+    }
+    .summary-row{
+      padding:14px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .summary-q{
+      font-size:13px;
+      color:var(--sub);
+      margin-bottom:5px;
+    }
+    .summary-a{
+      font-weight:700;
+      color:#1f2937;
+    }
+    .complete-actions{
+      margin-top:26px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .report{margin-top:34px;border-top:3px solid var(--orange);padding-top:30px}
+    .report-hero{background:linear-gradient(135deg,#111827,#111);color:#fff;border-radius:20px;padding:32px;margin-bottom:20px}
+    .report-hero h2{font-size:clamp(28px,4vw,42px);margin:0 0 12px}
+    .report-hero p{color:#e5e7eb;margin:0}
+    .report-section{border:1px solid var(--line);border-radius:16px;padding:22px;margin-top:16px;background:#fff}
+    .report-section h3{margin:0 0 12px;font-size:22px}
+    .report-section p{color:var(--sub);line-height:1.85}
+    .report-list{margin:10px 0 0;padding-left:1.25em}
+    .report-list li{margin:7px 0}
+    .priority-grid,.score-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .priority-card,.score-box{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fafafa}
+    .priority-card strong,.score-box strong{display:block;margin-bottom:7px;color:var(--navy)}
+    .score-value{font-size:28px;font-weight:900;color:var(--orange-dark)}
+    .contact-frame{margin-top:18px;padding:18px;background:#f8fafc;border:1px solid var(--line);border-radius:16px}
+    @media(max-width:900px){
+      .stage{padding:20px 16px}
+      .card{
+        min-height:auto;
+        padding:34px 28px;
+      }
+      .answers{grid-template-columns:1fr}
+      .result-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:700px){
+      .stage{padding:16px 10px}
+      .card{padding:28px 20px;border-radius:18px}
+      .footer-inner{padding:12px}
+      .result-grid{grid-template-columns:1fr}
+      .priority-grid,.score-grid{grid-template-columns:1fr}
+      .brand{font-size:14px}
+      .progress-text{font-size:12px}
+      .btn{padding:11px 14px}
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="topline">
+        <div class="brand">会社の手取り最大化診断</div>
+        <div class="progress-text" id="progressText">開始前</div>
+      </div>
+      <div class="progress"><div id="progressBar"></div></div>
+    </div>
+  </header>
+
+  <main class="stage">
+    <section class="card" id="card"></section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="micro" id="footerHint">約3〜5分で完了します</div>
+      <div class="nav-group">
+        <button class="btn btn-secondary" id="backBtn">戻る</button>
+        <button class="btn btn-primary" id="nextBtn">次へ</button>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+const questions = [
+  {
+    id:"q1",
+    title:"まず、現在の立場を教えてください",
+    description:"法人か個人事業主かによって、役員報酬、社会保険、補助金・助成金、融資など、確認すべき内容が大きく変わります。",
+    type:"single",
+    options:["法人を経営している","個人事業主として活動している","これから創業・法人化する予定","会社員・副業として準備している"],
+    after:"現在の立場に合わせて、あなたに関係する可能性だけを絞り込んでいきます。"
+  },
+  {
+    id:"q2",
+    title:"今、一番増やしたいものはどれですか？",
+    description:"制度名ではなく、最終的にどのような変化を得たいかを教えてください。",
+    type:"single",
+    options:[
+      "毎月、自分の手元に残るお金を増やしたい",
+      "会社に残るお金を増やしたい",
+      "設備・システムへの自己負担を減らしたい",
+      "採用・研修・賃上げの負担を減らしたい",
+      "資金を確保して安心して投資したい",
+      "保険料や固定費を見直したい",
+      "広告費を利益につなげたい",
+      "何ができるのか全部確認したい"
+    ],
+    after:"手取りを増やす方法は、給与を増やすことだけではありません。受け取り方・会社負担・制度活用まで含めて確認します。"
+  },
+  {
+    id:"q3",
+    title:"あなたは会社から、どのような形でお金を受け取っていますか？",
+    description:"Excelのシミュレーションでは、役員報酬だけでなく、非課税または実費精算となり得る受け取り方、会社負担へ移せる支出も含めて比較しています。",
+    type:"multi",
+    options:[
+      "役員報酬・給与",
+      "通勤手当",
+      "出張旅費・日当",
+      "会社負担の家賃・社宅",
+      "会社へ貸したお金の返済",
+      "会社へ売却した資産の代金",
+      "配当・その他の受け取り",
+      "役員報酬・給与だけ"
+    ],
+    after:"同じ総額でも、受け取り方によって個人の手取りと会社負担のバランスが変わることがあります。"
+  },
+  {
+    id:"q4",
+    title:"現在の月額役員報酬・給与に近いものを選んでください",
+    description:"正確な金額でなくて大丈夫です。社会保険料、所得税、住民税とのバランスを見るための目安として使います。",
+    type:"single",
+    options:["30万円未満","30万〜50万円","50万〜80万円","80万〜100万円","100万円以上","役員報酬・給与はない"],
+    after:"役員報酬を下げればよいという話ではありません。会社負担、個人の生活費、将来の保障を含めて比較する必要があります。"
+  },
+  {
+    id:"q5",
+    title:"現在の保険料や税金の負担について、近いものを選んでください",
+    description:"国保・社保、所得税、住民税が適正かどうかは、収入だけでなく家族構成や事業形態でも変わります。",
+    type:"multi",
+    options:[
+      "社会保険料が高いと感じる",
+      "国民健康保険料が高いと感じる",
+      "所得税・住民税が高いと感じる",
+      "毎月いくら引かれているか把握していない",
+      "適正かどうか判断できない",
+      "特に気にならない"
+    ],
+    after:"負担額だけではなく、保障、将来の年金、法人側の負担まで含めて確認します。"
+  },
+  {
+    id:"q6",
+    title:"扶養家族や介護保険の状況を教えてください",
+    description:"税金・社会保険の試算に関係するため、当てはまるものを選んでください。",
+    type:"multi",
+    options:[
+      "配偶者を扶養している",
+      "子ども・親族を扶養している",
+      "40歳以上65歳未満で介護保険第2号被保険者に該当する",
+      "扶養家族はいない",
+      "よくわからない"
+    ],
+    after:"家族構成も含めて見ることで、単純な年収比較では見えない負担差を確認できます。"
+  },
+  {
+    id:"q7",
+    title:"年間の出張はどのくらいありますか？",
+    description:"Excelでは、日帰り・遠方・宿泊出張の日数をもとに、出張旅費や日当を試算しています。実態のある出張が対象です。",
+    type:"single",
+    options:["ほとんどない","年間1〜5日","年間6〜20日","年間21〜50日","年間51日以上","日数を把握していない"],
+    after:"出張がある場合、旅費規程や精算方法を整えることで、実費や日当を適正に処理できる可能性があります。"
+  },
+  {
+    id:"q8",
+    title:"会社で旅費規程を整備していますか？",
+    description:"出張旅費や日当は、実態、規程、金額の妥当性、記録が重要です。",
+    type:"single",
+    options:["規程があり運用している","規程はあるが運用できていない","規程がない","わからない","出張がない"],
+    after:"規程を作るだけでは足りません。実際の出張記録と一貫した運用まで確認します。"
+  },
+  {
+    id:"q9",
+    title:"自宅や家賃について、当てはまるものはありますか？",
+    description:"Excelでは、借り上げ社宅による会社負担と自己負担の比較も行っています。適正家賃の計算や契約関係の確認が必要です。",
+    type:"multi",
+    options:[
+      "賃貸住宅に住んでいる",
+      "会社名義で借りられる可能性がある",
+      "すでに借り上げ社宅を利用している",
+      "持ち家に住んでいる",
+      "会社への不動産売却・賃貸を検討したい",
+      "特に該当しない"
+    ],
+    after:"社宅は単純に家賃を会社払いにする制度ではありません。契約、適正な自己負担、税務上の要件を確認します。"
+  },
+  {
+    id:"q10",
+    title:"会社へ貸しているお金や、会社があなたへ返すべきお金はありますか？",
+    description:"役員借入金がある場合、返済は給与とは異なるお金の動きです。Excelでは返済期間ごとの年間返済額を試算しています。",
+    type:"single",
+    options:["役員借入金がある","過去に立替えた経費がある","あるかもしれないが把握していない","ない","わからない"],
+    after:"帳簿上の残高、実際の貸付事実、返済計画が一致しているかを確認する必要があります。"
+  },
+  {
+    id:"q11",
+    title:"生命保険料は、現在どのように支払っていますか？",
+    description:"Excelでは、個人負担している生命保険料を法人契約へ移した場合の個人支出と法人負担を比較しています。",
+    type:"single",
+    options:["個人で支払っている","法人で支払っている","個人と法人の両方","保険に加入していない","契約内容がわからない"],
+    after:"法人契約が必ず有利とは限りません。保障目的、解約返戻金、損金算入、受取人などを含めて比較します。"
+  },
+  {
+    id:"q12",
+    title:"小規模企業共済やその他の所得控除を利用していますか？",
+    description:"手取りは、受取額だけでなく所得控除によっても変わります。",
+    type:"multi",
+    options:[
+      "小規模企業共済",
+      "生命保険料控除",
+      "地震保険料控除",
+      "扶養控除",
+      "その他の所得控除",
+      "利用していない",
+      "把握していない"
+    ],
+    after:"使える控除を確認しつつ、資金拘束や将来の受け取り方も含めて判断します。"
+  },
+  {
+    id:"q13",
+    title:"今後1年以内に予定している投資を選んでください",
+    description:"補助金は会社情報だけではなく、これから何をするかによって対象可能性が変わります。複数選択できます。",
+    type:"multi",
+    options:[
+      "機械・設備の購入",
+      "ITツール・業務システムの導入",
+      "ホームページ・ECサイトの制作",
+      "店舗・事務所の改装",
+      "新商品・新サービスの開発",
+      "新事業への進出",
+      "省力化・省エネ設備の導入",
+      "広告・販路開拓",
+      "特に予定はない"
+    ],
+    after:"投資予定が具体的であるほど、補助制度、融資、自己資金の組み合わせを検討しやすくなります。"
+  },
+  {
+    id:"q14",
+    title:"その投資の実施時期はいつ頃ですか？",
+    description:"補助金は購入・契約・発注前の申請や交付決定が必要な場合があります。",
+    type:"single",
+    options:["1か月以内","3か月以内","半年以内","1年以内","まだ決まっていない","投資予定はない"],
+    after:"時期が近い場合は、制度名を探す前に契約・発注を止めて確認すべきことがあります。"
+  },
+  {
+    id:"q15",
+    title:"投資予定額に近いものを選んでください",
+    description:"制度の規模、自己資金、融資の必要性を判断する目安です。",
+    type:"single",
+    options:["50万円未満","50万〜300万円","300万〜1,000万円","1,000万〜5,000万円","5,000万円以上","まだわからない","投資予定はない"],
+    after:"補助金は後払いが多いため、投資額が大きいほど先に資金計画が必要です。"
+  },
+  {
+    id:"q16",
+    title:"すでに購入・契約・発注していますか？",
+    description:"補助金の可否を左右する重要な質問です。",
+    type:"single",
+    options:["まだ何もしていない","見積もりだけ取得した","申込み・契約・発注済み","支払い・納品済み","投資予定はない"],
+    after:"実施済みでも、今後の投資や自治体制度、融資など別の選択肢は確認できます。"
+  },
+  {
+    id:"q17",
+    title:"従業員に関して、今後予定していることはありますか？",
+    description:"助成金は、採用だけでなく、研修、賃上げ、正社員化、両立支援などにも関係します。",
+    type:"multi",
+    options:[
+      "新しく人を採用する",
+      "非正規社員を正社員化する",
+      "従業員の賃金を上げる",
+      "社員研修・資格取得を行う",
+      "育児・介護との両立支援を行う",
+      "就業規則・働き方を見直す",
+      "従業員はいない",
+      "特に予定はない"
+    ],
+    after:"助成金は、実施前の計画、就業規則、雇用保険、賃金台帳などの整備が重要です。"
+  },
+  {
+    id:"q18",
+    title:"従業員の雇用状況を教えてください",
+    description:"助成金の対象可能性を確認するため、現在の雇用形態に近いものを選んでください。",
+    type:"multi",
+    options:[
+      "正社員がいる",
+      "契約社員・有期雇用社員がいる",
+      "パート・アルバイトがいる",
+      "雇用保険加入者がいる",
+      "業務委託だけ",
+      "従業員はいない",
+      "把握していない"
+    ],
+    after:"業務委託と雇用契約では対象制度が異なります。実際の契約と働き方を確認します。"
+  },
+  {
+    id:"q19",
+    title:"現在の資金状況に近いものを選んでください",
+    description:"補助金を使う場合でも、先に支払う資金が必要です。融資を含めて確認します。",
+    type:"single",
+    options:["半年以上の支払いに対応できる","3か月程度なら対応できる","1〜2か月後が不安","すでに支払いが厳しい","資金繰りを把握していない"],
+    after:"資金に余裕がある段階で準備するほど、融資や投資の選択肢を持ちやすくなります。"
+  },
+  {
+    id:"q20",
+    title:"広告・集客の状況を教えてください",
+    description:"広告費を減らすだけでなく、問い合わせ・契約・利益へつながっているかを確認します。",
+    type:"multi",
+    options:[
+      "Web広告を利用している",
+      "SNS広告を利用している",
+      "ポータルサイト・比較サイトを利用している",
+      "チラシ・DMを利用している",
+      "紹介・口コミが中心",
+      "問い合わせ数と契約数を把握している",
+      "広告効果を把握していない",
+      "広告は利用していない"
+    ],
+    after:"費用ではなく、最終的に残る利益で広告を判断できる状態を目指します。"
+  },
+  {
+    id:"q21",
+    title:"毎月支払っている費用で、見直したいものを選んでください",
+    description:"Excelの手取り試算に加えて、会社全体の固定費も一緒に確認します。",
+    type:"multi",
+    options:[
+      "通信費",
+      "システム・サブスク",
+      "保険料",
+      "顧問料",
+      "外注費",
+      "決済手数料",
+      "家賃・リース料",
+      "借入返済",
+      "何を見直せるかわからない"
+    ],
+    after:"必要な支出を削るのではなく、使っていないもの、重複、今の事業に合わない契約を見つけます。"
+  },
+  {
+    id:"q22",
+    title:"これまで見直しを進められなかった理由は何ですか？",
+    description:"できていないことを責める質問ではありません。次に必要なのが情報、整理、専門家のどれかを確認します。",
+    type:"multi",
+    options:[
+      "自分が対象かわからない",
+      "制度や税金が複雑でわからない",
+      "調べる時間がない",
+      "失敗して費用だけかかるのが怖い",
+      "誰に相談すればよいかわからない",
+      "相談すると営業されそうで不安",
+      "税理士や担当者に任せている",
+      "急ぎではないので後回しにしている"
+    ],
+    after:"止まっていた理由がわかれば、あなたに合う進め方も見つけられます。"
+  },
+  {
+    id:"q23",
+    title:"診断後、どのような状態になっていたいですか？",
+    description:"最終的に得たい結果を選んでください。",
+    type:"multi",
+    options:[
+      "毎月の個人手取りを増やしたい",
+      "会社と個人を合わせた支出を減らしたい",
+      "受け取れる補助金・助成金を知りたい",
+      "融資を含めた資金計画を作りたい",
+      "役員報酬・社保・税金を比較したい",
+      "出張旅費・社宅・保険などを整えたい",
+      "広告費・固定費を見直したい",
+      "全部まとめて優先順位を知りたい"
+    ],
+    after:"ありがとうございます。回答を組み合わせて、あなたに関係する改善策だけをレポートにまとめます。"
+  }
+];
+
+let screen = "start";
+let index = 0;
+const answers = {};
+
+const card = document.getElementById("card");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+const backBtn = document.getElementById("backBtn");
+const nextBtn = document.getElementById("nextBtn");
+const footerHint = document.getElementById("footerHint");
+
+function escapeHtml(text){
+  return String(text).replace(/[&<>"']/g, s => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[s]));
+}
+
+function renderStart(){
+  screen = "start";
+  progressBar.style.width = "0%";
+  progressText.textContent = "開始前";
+  footerHint.textContent = "約3〜5分で完了します";
+  backBtn.style.display = "none";
+  nextBtn.style.display = "none";
+  card.innerHTML = `
+    <div class="kicker">無料・約3〜5分</div>
+    <h1>頑張って売上を増やす前に、<br>今よりお金が残る方法がないか確認しませんか？</h1>
+    <p class="lead">会社のお金が残らない原因は、売上不足だけとは限りません。受け取れる制度を見落としていたり、毎月の支払いがそのままになっていたり、必要な資金準備が後回しになっていることもあります。この診断では、今の状況を一緒に整理しながら、最初に確認すべきポイントを見つけます。</p>
+    <div class="result-grid">
+      <div class="result-box"><strong>受け取れるお金</strong>補助金・助成金など、今後の予定から使える可能性を確認します。</div>
+      <div class="result-box"><strong>減らせる支払い</strong>保険料・広告費・固定費など、長く見直していない支出を整理します。</div>
+      <div class="result-box"><strong>先に備える資金</strong>融資・資金繰り・つなぎ資金など、困る前に準備すべきことを確認します。</div>
+      <div class="result-box"><strong>最後に残るお金</strong>利益が出ても残らない原因や、お金の流れの見落としを整理します。</div>
+    </div>
+    <div class="start-actions">
+      <button class="btn btn-primary" id="startBtn">診断を始める</button>
+    </div>
+    <div class="micro">正確な金額がわからなくても大丈夫です。今の感覚に一番近いものを選んでください。</div>
+  `;
+  document.getElementById("startBtn").onclick = () => {
+    screen = "question";
+    index = 0;
+    renderQuestion();
+  };
+}
+
+function renderQuestion(){
+  screen = "question";
+  const q = questions[index];
+  const progress = ((index + 1) / questions.length) * 100;
+  progressBar.style.width = progress + "%";
+  progressText.textContent = `${index + 1} / ${questions.length}`;
+  footerHint.textContent = q.type === "multi" ? "複数選択できます" : "1つ選んでください";
+  backBtn.style.display = "inline-block";
+  nextBtn.style.display = "inline-block";
+  backBtn.disabled = false;
+  nextBtn.disabled = !answers[q.id] || (Array.isArray(answers[q.id]) && answers[q.id].length === 0);
+  nextBtn.textContent = index === questions.length - 1 ? "診断結果を見る" : "次へ";
+
+  const selected = answers[q.id] || (q.type === "multi" ? [] : "");
+  const optionHtml = q.options.map((opt,i)=>{
+    const isSelected = q.type === "multi" ? selected.includes(opt) : selected === opt;
+    return `
+      <button class="answer ${isSelected ? "selected" : ""}" data-value="${escapeHtml(opt)}">
+        <span class="key">${i+1}</span>
+        <span class="answer-main">${escapeHtml(opt)}</span>
+      </button>
+    `;
+  }).join("");
+
+  card.innerHTML = `
+    <div class="kicker">質問 ${index + 1} / ${questions.length}</div>
+    <h2>${escapeHtml(q.title)}</h2>
+    <p class="question-desc">${escapeHtml(q.description || "")}</p>
+    <div class="answers">${optionHtml}</div>
+    ${answers[q.id] ? `<div class="after-note">${escapeHtml(q.after || "")}</div>` : ""}
+    <div class="hint">${q.type === "multi" ? "複数選択できます。選び終わったら「次へ」を押してください。" : "今の状況に一番近いものを1つ選んでください。"}</div>
+  `;
+
+  [...card.querySelectorAll(".answer")].forEach(btn=>{
+    btn.onclick = ()=>{
+      const value = btn.dataset.value;
+      if(q.type === "multi"){
+        const current = Array.isArray(answers[q.id]) ? [...answers[q.id]] : [];
+        const pos = current.indexOf(value);
+        if(pos >= 0) current.splice(pos,1);
+        else current.push(value);
+        answers[q.id] = current;
+      } else {
+        answers[q.id] = value;
+      }
+      renderQuestion();
+    };
+  });
+}
+
+function buildType(){
+  const main = answers.q2 || "";
+
+  if(main.includes("投資")) return {
+    headline:"おめでとうございます。投資負担を軽くできる可能性があります",
+    intro:"あなたが予定している設備・システムへの投資には、補助金だけでなく、融資や関連制度を組み合わせられる可能性があります。購入や契約の前に確認できれば、自己負担を抑えられる余地があります。",
+    found:"投資前に確認したい制度・資金ルート",
+    first:"購入・契約前に、投資内容・予定時期・見積金額を整理する",
+    money:"補助金・設備資金融資・関連助成制度",
+    cost:"投資後の固定費や運用費も合わせて確認する"
+  };
+
+  if(main.includes("採用")) return {
+    headline:"おめでとうございます。人にかかる費用を軽くできる可能性があります",
+    intro:"あなたが予定している採用・研修・賃上げ・正社員化には、費用負担を軽くできる制度が関係する可能性があります。実施前に確認することで、使える選択肢を残せます。",
+    found:"人材に関する制度活用ルート",
+    first:"採用・研修・賃上げの予定を時系列で整理する",
+    money:"採用・研修・正社員化・賃上げ関連の助成制度",
+    cost:"採用費や教育費の負担も合わせて見直す"
+  };
+
+  if(main.includes("資金")) return {
+    headline:"おめでとうございます。資金の選択肢を増やせる可能性があります",
+    intro:"あなたの回答からは、今のうちに融資・補助金・自己資金の組み合わせを整理することで、資金の選択肢を増やせる可能性があります。",
+    found:"融資・補助金・自己資金の組み合わせ",
+    first:"必要時期・必要額・使い道を整理する",
+    money:"公的融資・制度融資・補助金・つなぎ資金",
+    cost:"毎月の固定費と支払い予定も一緒に確認する"
+  };
+
+  if(main.includes("国保") || main.includes("社保")) return {
+    headline:"おめでとうございます。毎月の負担を見直せる可能性があります",
+    intro:"あなたの現在の加入状況や事業形態によっては、国保・社保の負担を見直せる可能性があります。金額だけでなく、保障や将来への影響も含めて確認します。",
+    found:"保険料・報酬設計の見直し余地",
+    first:"現在の加入状況と報酬・家族構成を整理する",
+    money:"保険料負担・報酬設計・法人化前後の比較",
+    cost:"保障や将来の受給への影響も含めて確認する"
+  };
+
+  if(main.includes("広告")) return {
+    headline:"おめでとうございます。広告費を利益に変えられる可能性があります",
+    intro:"あなたの広告費には、止めるべき費用ではなく、利益につなげ直せる費用が含まれている可能性があります。問い合わせ・契約・利益まで整理し、残す広告と見直す広告を分けます。",
+    found:"広告費を利益へつなげる改善ルート",
+    first:"媒体ごとの問い合わせ数・契約数・利益を整理する",
+    money:"無駄な広告費・低採算媒体・成約率改善",
+    cost:"広告費だけでなく、営業・追客・成約導線も確認する"
+  };
+
+  if(main.includes("固定費")) return {
+    headline:"おめでとうございます。毎月の支払いを減らせる可能性があります",
+    intro:"あなたが毎月支払っている費用の中に、使っていない契約、重複しているサービス、今の事業に合っていない支払いが残っている可能性があります。",
+    found:"固定費の削減・整理ルート",
+    first:"契約一覧を作り、必要・不要・不明に分ける",
+    money:"通信費・サブスク・保険料・顧問料・外注費",
+    cost:"安くするだけでなく、必要なものを残す"
+  };
+
+  return {
+    headline:"おめでとうございます。手取りを増やせる可能性があります",
+    intro:"あなたの回答から、補助金・助成金・融資・保険料・広告費・固定費の中に、まだ確認していない手取り改善の可能性が見つかりました。",
+    found:"複数分野にまたがる手取り改善ルート",
+    first:"今後の予定と毎月の支払いを一覧にする",
+    money:"制度活用・資金調達・支出見直し",
+    cost:"金額と期限から優先順位をつける"
+  };
+}
+
+
+function arr(id){
+  const v = answers[id];
+  return Array.isArray(v) ? v : (v ? [v] : []);
+}
+function has(id, words){
+  const s = arr(id).join(" ");
+  return words.some(w => s.includes(w));
+}
+function scores(){
+  let s={
+    "役員報酬・社保":15,
+    "旅費・日当":5,
+    "社宅・家賃":5,
+    "役員借入金":5,
+    "保険・所得控除":10,
+    "補助金":10,
+    "助成金":10,
+    "融資・資金繰り":10,
+    "広告費":5,
+    "固定費":5
+  };
+
+  if(has("q3",["役員報酬","給与"])) s["役員報酬・社保"]+=20;
+  if(has("q4",["50万","80万","100万円"])) s["役員報酬・社保"]+=25;
+  if(has("q5",["社会保険","国民健康保険","所得税","把握していない","判断できない"])) s["役員報酬・社保"]+=35;
+  if(has("q6",["扶養","介護保険"])) s["役員報酬・社保"]+=10;
+
+  if(has("q7",["6〜20","21〜50","51日","把握していない"])) s["旅費・日当"]+=50;
+  if(has("q8",["規程がない","運用できていない","わからない"])) s["旅費・日当"]+=30;
+
+  if(has("q9",["賃貸","会社名義","借り上げ社宅","不動産売却"])) s["社宅・家賃"]+=65;
+
+  if(has("q10",["役員借入金","立替え","把握していない"])) s["役員借入金"]+=75;
+
+  if(has("q11",["個人で","両方","契約内容がわからない"])) s["保険・所得控除"]+=40;
+  if(has("q12",["利用していない","把握していない"])) s["保険・所得控除"]+=30;
+  if(arr("q12").length>0) s["保険・所得控除"]+=10;
+
+  if(arr("q13").length && !has("q13",["特に予定はない"])) s["補助金"]+=50;
+  if(has("q14",["1か月","3か月","半年"])) s["補助金"]+=15;
+  if(has("q16",["まだ何も","見積もり"])) s["補助金"]+=20;
+  if(has("q15",["300万","1,000万","5,000万円"])) s["補助金"]+=10;
+
+  if(arr("q17").length && !has("q17",["従業員はいない","特に予定はない"])) s["助成金"]+=50;
+  if(has("q18",["正社員","契約社員","パート","雇用保険"])) s["助成金"]+=30;
+
+  if(has("q19",["3か月","1〜2か月","すでに支払い","把握していない"])) s["融資・資金繰り"]+=55;
+  if(has("q15",["300万","1,000万","5,000万円"])) s["融資・資金繰り"]+=20;
+
+  if(has("q20",["Web広告","SNS広告","ポータル","チラシ","把握していない"])) s["広告費"]+=60;
+
+  if(arr("q21").length) s["固定費"]+=40;
+  if(has("q21",["何を見直せるかわからない"])) s["固定費"]+=25;
+
+  Object.keys(s).forEach(k=>s[k]=Math.min(100,s[k]));
+  return s;
+}
+function li(items){return items.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}
+
+function buildPersonalReport(){
+  const s=scores();
+  const ranked=Object.entries(s).sort((a,b)=>b[1]-a[1]);
+  const top=ranked.filter(x=>x[1]>=40).slice(0,6);
+  const plans=arr("q13");
+  const people=arr("q17");
+  const goals=arr("q23");
+
+  const found=[];
+  if(s["役員報酬・社保"]>=45) found.push("役員報酬・給与、社会保険料、所得税・住民税を、個人と法人の両方から比較する余地");
+  if(s["旅費・日当"]>=45) found.push("実態のある出張について、旅費規程・日当・実費精算を整える余地");
+  if(s["社宅・家賃"]>=45) found.push("借り上げ社宅や家賃負担の方法を、適正自己負担額とともに確認する余地");
+  if(s["役員借入金"]>=45) found.push("会社へ貸しているお金や立替金を、帳簿と返済計画に基づいて受け取る余地");
+  if(s["保険・所得控除"]>=45) found.push("個人負担の生命保険、法人契約、小規模企業共済、所得控除を比較する余地");
+  if(s["補助金"]>=45) found.push("設備・IT・新事業・販路開拓・省力化に関係する補助制度");
+  if(s["助成金"]>=45) found.push("採用・研修・賃上げ・正社員化・両立支援に関係する助成制度");
+  if(s["融資・資金繰り"]>=45) found.push("設備資金・運転資金・つなぎ資金を含む融資と資金計画");
+  if(s["広告費"]>=45) found.push("広告ごとの問い合わせ・契約・利益を把握し、低採算費用を見直す余地");
+  if(s["固定費"]>=45) found.push("通信費・サブスク・保険料・顧問料・外注費などの重複・未利用契約");
+  if(!found.length) found.push("会社と個人のお金の流れを一覧化したうえで、改善できる項目を総合確認する余地");
+
+  const cautions=[];
+  if(has("q16",["申込み・契約・発注済み","支払い・納品済み"])) cautions.push("すでに実施済みの投資は補助対象外となる可能性があります。今後の投資、別制度、融資を確認します。");
+  else if(has("q16",["まだ何も","見積もり"])) cautions.push("まだ契約前であれば、補助制度を確認できる選択肢が残っている可能性があります。");
+  if(s["役員報酬・社保"]>=45) cautions.push("役員報酬の変更には時期や手続き上の制約があります。手取りだけでなく法人税、社会保険、将来保障を含めて判断します。");
+  if(s["旅費・日当"]>=45) cautions.push("出張旅費・日当は、実態、規程、金額の妥当性、記録が必要です。形式だけの導入は避けます。");
+  if(s["社宅・家賃"]>=45) cautions.push("借り上げ社宅は適正な自己負担額、契約名義、対象者、社内規程などの確認が必要です。");
+  if(s["役員借入金"]>=45) cautions.push("役員借入金返済は、実際の貸付事実と帳簿残高があることを前提に確認します。");
+  if(s["保険・所得控除"]>=45) cautions.push("生命保険の法人契約は、保障、税務処理、解約返戻金、受取人、資金拘束まで比較します。");
+  if(has("q19",["1〜2か月","すでに支払い"])) cautions.push("資金面の緊急度が高いため、節税や補助金より先に資金繰りと融資相談を優先します。");
+
+  const seven=["会社と個人の年間入出金を一覧にする","役員報酬・保険料・税金の現在額を確認する"];
+  if(s["旅費・日当"]>=45) seven.push("年間出張日数と現在の精算方法を確認する");
+  if(s["社宅・家賃"]>=45) seven.push("家賃、契約名義、会社負担・自己負担を確認する");
+  if(s["役員借入金"]>=45) seven.push("役員借入金・立替金の帳簿残高を確認する");
+  if(s["補助金"]>=45) seven.push("投資内容・時期・金額・契約状況を1枚にまとめる");
+  if(s["助成金"]>=45) seven.push("採用・研修・賃上げの実施時期と雇用保険加入状況を確認する");
+
+  const thirty=["対策前と対策後の個人手取り・法人負担を比較する","金額が大きい項目と期限が近い項目から順番を決める"];
+  if(s["補助金"]>=45) thirty.push("契約前に該当し得る補助制度を確認する");
+  if(s["助成金"]>=45) thirty.push("実施前に必要な助成金手続きと就業規則を確認する");
+  if(s["融資・資金繰り"]>=45) thirty.push("3〜6か月の資金繰り表と必要資金額を作る");
+  if(s["保険・所得控除"]>=45) thirty.push("個人契約・法人契約・共済の比較表を作る");
+
+  const ninety=["採用する対策と採用しない対策を決める","導入した規程・契約・支払い方法を実際の運用へ反映する","増えた手取りと減った法人負担を継続して記録する"];
+
+  return `
+  <div class="report">
+    <div class="report-hero">
+      <div class="kicker">あなた専用の手取り最大化レポート</div>
+      <h2>おめでとうございます。<br>あなたに関係する手取り改善の可能性が見つかりました。</h2>
+      <p>一般的な節税一覧ではなく、今回の回答から関係する項目だけを抽出しています。</p>
+    </div>
+
+    <div class="report-section">
+      <h3>1．今回の回答から見えた状況</h3>
+      <p>現在の目的は「${escapeHtml(answers.q2 || "未回答")}」です。</p>
+      <p>月額役員報酬・給与は「${escapeHtml(answers.q4 || "未回答")}」、現在気になっている負担は「${escapeHtml(arr("q5").join("、") || "特になし")}」です。</p>
+      <p>投資予定は「${escapeHtml(plans.join("、") || "特になし")}」、人材施策は「${escapeHtml(people.join("、") || "特になし")}」です。</p>
+    </div>
+
+    <div class="report-section">
+      <h3>2．あなたに関係する可能性</h3>
+      <ul class="report-list">${li(found)}</ul>
+    </div>
+
+    <div class="report-section">
+      <h3>3．確認優先度</h3>
+      <div class="score-grid">
+        ${ranked.map(([name,val])=>`<div class="score-box"><strong>${escapeHtml(name)}</strong><div class="score-value">${val}</div><div>確認優先度</div></div>`).join("")}
+      </div>
+    </div>
+
+    <div class="report-section">
+      <h3>4．あなたが先に確認したい項目</h3>
+      <div class="priority-grid">
+        ${top.map(([name,val],i)=>`<div class="priority-card"><strong>優先度${String.fromCharCode(65+i)}：${escapeHtml(name)}</strong>回答との関連度は${val}です。必要資料と実施前手続きを確認します。</div>`).join("")}
+      </div>
+    </div>
+
+    <div class="report-section">
+      <h3>5．対策前・対策後で比較する数字</h3>
+      <ul class="report-list">
+        <li>個人の最終手取額</li>
+        <li>月額・年額の社会保険料</li>
+        <li>所得税・住民税</li>
+        <li>法人の年間人件費と福利厚生費</li>
+        <li>旅費手当、社宅会社負担、役員借入金返済などの年間受取額</li>
+        <li>生命保険、小規模企業共済、家賃などの個人支出</li>
+        <li>個人手取増減と法人負担増減を合わせた最終的な経済効果</li>
+      </ul>
+    </div>
+
+    <div class="report-section">
+      <h3>6．確認前に知っておきたい注意点</h3>
+      <ul class="report-list">${li(cautions)}</ul>
+    </div>
+
+    <div class="report-section">
+      <h3>7．7日・30日・90日の行動計画</h3>
+      <div class="priority-grid">
+        <div class="priority-card"><strong>7日以内</strong><ul class="report-list">${li(seven)}</ul></div>
+        <div class="priority-card"><strong>30日以内</strong><ul class="report-list">${li(thirty)}</ul></div>
+        <div class="priority-card"><strong>90日以内</strong><ul class="report-list">${li(ninety)}</ul></div>
+      </div>
+    </div>
+
+    <div class="report-section">
+      <h3>8．あなたが目指している状態</h3>
+      <p>${escapeHtml(goals.join("、") || "個人と法人を合わせて、最もお金が残る形を把握できている状態")}</p>
+    </div>
+
+    <div class="report-section">
+      <h3>9．この結果について相談する</h3>
+      <p>役員報酬、社保、旅費規程、社宅、役員借入金、保険、補助金、助成金、融資のうち、あなたに関係する項目をまとめて確認できます。</p>
+      <div class="contact-frame">
+        <iframe id="traingo-embed" src="https://traingo.fp-1.info/f/form-jq8c?embed=1" width="100%" frameborder="0" scrolling="no" style="border:0;background:transparent;max-width:560px;display:block;margin:0 auto;height:600px;min-height:600px"></iframe>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderResult(){
+  screen = "result";
+  progressBar.style.width = "100%";
+  progressText.textContent = "診断完了";
+  footerHint.textContent = "回答内容はこの端末内だけで保持されています";
+  backBtn.style.display = "inline-block";
+  nextBtn.style.display = "none";
+
+  const result = buildType();
+  const summary = questions.map(q=>{
+    const a = answers[q.id];
+    const text = Array.isArray(a) ? a.join("、") : (a || "未回答");
+    return `
+      <div class="summary-row">
+        <div class="summary-q">${escapeHtml(q.title)}</div>
+        <div class="summary-a">${escapeHtml(text)}</div>
+      </div>
+    `;
+  }).join("");
+
+  card.innerHTML = `
+    <div class="kicker">あなたの診断結果</div>
+    <h1>${escapeHtml(result.headline)}</h1>
+    <p class="lead">${escapeHtml(result.intro)}</p>
+
+    <div class="result-grid">
+      <div class="result-box">
+        <strong>今回見つかった可能性</strong>
+        ${escapeHtml(result.found)}
+      </div>
+      <div class="result-box">
+        <strong>今すぐ確認したいこと</strong>
+        ${escapeHtml(result.first)}
+      </div>
+      <div class="result-box">
+        <strong>受け取る・備えるお金</strong>
+        ${escapeHtml(result.money)}
+      </div>
+      <div class="result-box">
+        <strong>毎月見直せる可能性</strong>
+        ${escapeHtml(result.cost)}
+      </div>
+    </div>
+
+    <div class="after-note" style="margin-top:24px">
+      今回の回答では、あなたに関係する可能性として、制度活用、資金準備、毎月の支払い、広告費、固定費など、複数の見直し候補が見つかっています。全部を一度に進める必要はありません。あなたの場合は、金額が大きいもの、期限が近いもの、実行前に確認が必要なものから順番に整理します。
+    </div>
+
+    <div class="result-box" style="margin-top:16px;background:#fff7ed;border-color:#fdba74">
+      <strong>おめでとうございます。手取りを増やせる可能性が見つかりました。</strong>
+      あなたが選んだ「今後の予定」「支出の状況」「資金の不安」「見直したい項目」をもとに、あなたに関係する内容だけをまとめた専用レポートを作成します。関係のない制度や一般論を並べるのではなく、今のあなたにとって、どこにお金が残る可能性があるのか、何から確認すべきか、どの順番で動けばよいかを整理して表示します。
+    </div>
+
+    <div class="complete-actions">
+      <button class="btn btn-primary" id="copyBtn">診断結果を保存する</button>
+      <button class="btn btn-secondary" id="restartBtn">最初からやり直す</button>
+    </div>
+
+    ${buildPersonalReport()}
+
+    <div class="summary">
+      <h2>回答内容</h2>
+      ${summary}
+    </div>
+  `;
+
+  document.getElementById("restartBtn").onclick = ()=>{
+    Object.keys(answers).forEach(k=>delete answers[k]);
+    renderStart();
+  };
+
+  document.getElementById("copyBtn").onclick = async ()=>{
+    const text = questions.map(q=>{
+      const a = answers[q.id];
+      return `${q.title}\n${Array.isArray(a) ? a.join("、") : (a || "未回答")}`;
+    }).join("\n\n");
+    try{
+      await navigator.clipboard.writeText(text);
+      document.getElementById("copyBtn").textContent = "コピーしました";
+    }catch(e){
+      alert("コピーできませんでした。");
+    }
+  };
+}
+
+backBtn.onclick = ()=>{
+  if(screen === "question"){
+    if(index === 0) renderStart();
+    else{
+      index--;
+      renderQuestion();
+    }
+  }else if(screen === "result"){
+    index = questions.length - 1;
+    renderQuestion();
+  }
+};
+
+nextBtn.onclick = ()=>{
+  if(screen !== "question") return;
+  const q = questions[index];
+  const a = answers[q.id];
+  if(!a || (Array.isArray(a) && a.length === 0)) return;
+  if(index < questions.length - 1){
+    index++;
+    renderQuestion();
+  }else{
+    renderResult();
+  }
+};
+
+document.addEventListener("keydown", e=>{
+  if(screen !== "question") return;
+  const q = questions[index];
+  const n = Number(e.key);
+  if(n >= 1 && n <= q.options.length){
+    const value = q.options[n-1];
+    if(q.type === "multi"){
+      const current = Array.isArray(answers[q.id]) ? [...answers[q.id]] : [];
+      const pos = current.indexOf(value);
+      if(pos >= 0) current.splice(pos,1);
+      else current.push(value);
+      answers[q.id] = current;
+    }else{
+      answers[q.id] = value;
+    }
+    renderQuestion();
+  }
+  if(e.key === "Enter" && !nextBtn.disabled) nextBtn.click();
+});
+
+
+window.addEventListener("message", function (e) {
+  if (e.origin !== "https://traingo.fp-1.info") return;
+  if (e.data && e.data.type === "traingo:resize" && e.data.height) {
+    var el = document.getElementById("traingo-embed");
+    if (!el) return;
+    el.style.height = e.data.height + "px";
+    el.style.minHeight = "0";
+  }
+});
+
+renderStart();
+</script>
+</body>
+</html>
