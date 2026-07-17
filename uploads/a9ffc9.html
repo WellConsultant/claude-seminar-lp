@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>行政書士のための家系図作成支援 詳細実務ガイド</title>
+<meta name="description" content="行政書士が家系図作成支援を行う際の受任、戸籍請求、調査、家系図作成、納品、個人情報管理までをまとめた詳細実務ガイド。">
+<style>
+:root{--bg:#f3f4f6;--paper:#fff;--ink:#17191c;--sub:#5c6470;--line:#d8dde4;--navy:#111827;--orange:#c66a1b;--soft:#f8fafc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;line-height:1.9}
+.top{position:sticky;top:0;z-index:20;background:rgba(17,24,39,.97);color:#fff;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.top strong{font-size:14px}button{border:1px solid #6b7280;background:#fff;color:#111827;border-radius:8px;padding:8px 12px;font-weight:800;cursor:pointer}
+.layout{max-width:1400px;margin:auto;display:grid;grid-template-columns:300px minmax(0,900px);gap:26px;padding:26px 20px 80px;align-items:start}
+nav{position:sticky;top:70px;max-height:calc(100vh - 90px);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:17px;box-shadow:0 8px 25px rgba(0,0,0,.05)}
+nav .title{font-size:18px;font-weight:900;margin-bottom:10px}nav a{display:block;text-decoration:none;color:#343a43;padding:5px 8px;border-left:2px solid transparent;font-size:13px;line-height:1.45}
+nav a:hover{background:#fff7ed;border-left-color:var(--orange)}nav .l2{padding-left:18px}nav .l3{padding-left:30px;font-size:12px}
+main{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:54px 64px;box-shadow:0 10px 35px rgba(0,0,0,.06)}
+h1{font-size:30px;line-height:1.45;margin:70px 0 24px;padding:14px 0 12px;border-bottom:3px solid var(--navy)}h1:first-child{font-size:38px;text-align:center;margin-top:15px;border-bottom:5px solid var(--navy);padding-bottom:28px}
+h2{font-size:21px;line-height:1.55;margin:42px 0 16px;padding-left:14px;border-left:5px solid var(--orange)}h3{font-size:17px;margin:28px 0 10px}
+.anchor{opacity:0;margin-left:8px;color:#9ca3af;text-decoration:none;font-size:.7em}h1:hover .anchor,h2:hover .anchor,h3:hover .anchor{opacity:1}
+p{margin:0 0 16px}ul,ol{margin:0 0 20px;padding-left:28px}li{margin:5px 0}
+.checks{display:grid;gap:6px;margin:12px 0 22px}.checks label{display:flex;gap:10px;align-items:flex-start;border:1px solid #e5e7eb;background:#fafafa;border-radius:8px;padding:8px 10px;cursor:pointer}.checks input{margin-top:7px;transform:scale(1.15)}
+.note{border:1px solid #d6dae0;border-radius:10px;overflow:hidden;margin:24px 0;background:#f8fafc}.note-title{background:#1f2937;color:#fff;font-weight:900;padding:9px 14px}.note-body{padding:15px 17px}.note.warn{background:#fff7ed;border-color:#fdba74}.note.warn .note-title{background:#9a3412}.note.danger{background:#fef2f2;border-color:#fca5a5}.note.danger .note-title{background:#991b1b}
+.table-wrap{overflow:auto;margin:20px 0 28px}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #d6dae0;padding:10px 11px;text-align:left;vertical-align:top}th{background:#1f2937;color:#fff}tr:nth-child(even) td{background:#fafafa}
+.back{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;background:#111827;color:#fff;border:0;font-size:18px}
+@media(max-width:980px){.layout{display:block;padding:12px}nav{position:static;max-height:none;margin-bottom:14px}main{padding:30px 21px}h1:first-child{font-size:28px}h1{font-size:24px}h2{font-size:19px}}
+@media print{body{background:#fff}.top,nav,.back{display:none}.layout{display:block;max-width:none;padding:0}main{border:0;box-shadow:none;padding:0}h1,h2,h3{break-after:avoid}.note,.table-wrap{break-inside:avoid}}
+</style>
+</head>
+<body id="top">
+<header class="top"><strong>行政書士のための家系図作成支援｜詳細実務ガイド</strong><button onclick="window.print()">印刷・PDF保存</button></header>
+<div class="layout">
+<nav><div class="title">目次</div><a class="l1" href="#行政書士のための家系図作成支援-詳細実務ガイド">行政書士のための家系図作成支援　詳細実務ガイド</a><a class="l1" href="#第1章-家系図作成支援の全体像">第1章　家系図作成支援の全体像</a><a class="l2" href="#1-1-家系図作成支援とは">1-1　家系図作成支援とは</a><a class="l2" href="#1-2-行政書士が支援できる範囲">1-2　行政書士が支援できる範囲</a><a class="l2" href="#1-3-このガイドで扱わない業務">1-3　このガイドで扱わない業務</a><a class="l1" href="#第2章-受任前に必ず確認すること">第2章　受任前に必ず確認すること</a><a class="l2" href="#2-1-家系図を作る目的">2-1　家系図を作る目的</a><a class="l2" href="#2-2-誰を起点にするか">2-2　誰を起点にするか</a><a class="l2" href="#2-3-どの系統を調べるか">2-3　どの系統を調べるか</a><a class="l2" href="#2-4-依頼者の請求権を確認する">2-4　依頼者の請求権を確認する</a><a class="l2" href="#2-5-受任を控える案件">2-5　受任を控える案件</a><a class="l1" href="#第3章-契約と見積り">第3章　契約と見積り</a><a class="l2" href="#3-1-契約書に入れる事項">3-1　契約書に入れる事項</a><a class="l2" href="#3-2-料金の設計">3-2　料金の設計</a><a class="l2" href="#3-3-完了保証をしない">3-3　完了保証をしない</a><a class="l1" href="#第4章-お客様から受け取るもの">第4章　お客様から受け取るもの</a><a class="l2" href="#4-1-最初に受け取る情報">4-1　最初に受け取る情報</a><a class="l2" href="#4-2-既存戸籍の受領方法">4-2　既存戸籍の受領方法</a><a class="l2" href="#4-3-家族から聞いた話">4-3　家族から聞いた話</a><a class="l1" href="#第5章-戸籍の基礎知識">第5章　戸籍の基礎知識</a><a class="l2" href="#5-1-現在戸籍">5-1　現在戸籍</a><a class="l2" href="#5-2-除籍">5-2　除籍</a><a class="l2" href="#5-3-改製原戸籍">5-3　改製原戸籍</a><a class="l2" href="#5-4-戸籍の附票">5-4　戸籍の附票</a><a class="l2" href="#5-5-戸籍の読み方">5-5　戸籍の読み方</a><a class="l1" href="#第6章-戸籍を請求する方法">第6章　戸籍を請求する方法</a><a class="l2" href="#6-1-依頼者本人が請求する方法">6-1　依頼者本人が請求する方法</a><a class="l2" href="#6-2-委任状による代理請求">6-2　委任状による代理請求</a><a class="l2" href="#6-3-職務上請求書">6-3　職務上請求書</a><a class="l2" href="#6-4-広域交付">6-4　広域交付</a><a class="l2" href="#6-5-郵送請求">6-5　郵送請求</a><a class="l2" href="#6-6-請求理由の書き方">6-6　請求理由の書き方</a><a class="l1" href="#第7章-戸籍収集の標準手順">第7章　戸籍収集の標準手順</a><a class="l2" href="#7-1-起点戸籍から始める">7-1　起点戸籍から始める</a><a class="l2" href="#7-2-一人ごとの追跡表">7-2　一人ごとの追跡表</a><a class="l2" href="#7-3-戸籍一通ごとの管理番号">7-3　戸籍一通ごとの管理番号</a><a class="l2" href="#7-4-婚姻による分岐">7-4　婚姻による分岐</a><a class="l2" href="#7-5-養子縁組">7-5　養子縁組</a><a class="l2" href="#7-6-認知-非嫡出子-再婚">7-6　認知・非嫡出子・再婚</a><a class="l1" href="#第8章-古い戸籍を読む">第8章　古い戸籍を読む</a><a class="l2" href="#8-1-旧字体-変体仮名">8-1　旧字体・変体仮名</a><a class="l2" href="#8-2-年月日の表記">8-2　年月日の表記</a><a class="l2" href="#8-3-家制度下の戸籍">8-3　家制度下の戸籍</a><a class="l2" href="#8-4-転籍">8-4　転籍</a><a class="l2" href="#8-5-廃棄-滅失">8-5　廃棄・滅失</a><a class="l1" href="#第9章-戸籍以外の資料">第9章　戸籍以外の資料</a><a class="l2" href="#9-1-戸籍の附票">9-1　戸籍の附票</a><a class="l2" href="#9-2-住民票の除票">9-2　住民票の除票</a><a class="l2" href="#9-3-墓碑-過去帳-位牌">9-3　墓碑・過去帳・位牌</a><a class="l2" href="#9-4-土地-建物資料">9-4　土地・建物資料</a><a class="l2" href="#9-5-郷土資料">9-5　郷土資料</a><a class="l2" href="#9-6-家紋">9-6　家紋</a><a class="l1" href="#第10章-家系図の設計">第10章　家系図の設計</a><a class="l2" href="#10-1-縦系図">10-1　縦系図</a><a class="l2" href="#10-2-横系図">10-2　横系図</a><a class="l2" href="#10-3-扇形-放射型">10-3　扇形・放射型</a><a class="l2" href="#10-4-人物に記載する情報">10-4　人物に記載する情報</a><a class="l2" href="#10-5-線のルール">10-5　線のルール</a><a class="l2" href="#10-6-存命者の情報">10-6　存命者の情報</a><a class="l1" href="#第11章-調査結果の整理">第11章　調査結果の整理</a><a class="l2" href="#11-1-事実と推測を分ける">11-1　事実と推測を分ける</a><a class="l2" href="#11-2-矛盾がある場合">11-2　矛盾がある場合</a><a class="l2" href="#11-3-調査不能報告">11-3　調査不能報告</a><a class="l1" href="#第12章-成果物の作成">第12章　成果物の作成</a><a class="l2" href="#12-1-標準納品セット">12-1　標準納品セット</a><a class="l2" href="#12-2-調査報告書の構成">12-2　調査報告書の構成</a><a class="l2" href="#12-3-原本の扱い">12-3　原本の扱い</a><a class="l1" href="#第13章-個人情報と秘密保持">第13章　個人情報と秘密保持</a><a class="l2" href="#13-1-家系図は高度な個人情報の集合">13-1　家系図は高度な個人情報の集合</a><a class="l2" href="#13-2-利用目的">13-2　利用目的</a><a class="l2" href="#13-3-保存方法">13-3　保存方法</a><a class="l2" href="#13-4-家族への開示">13-4　家族への開示</a><a class="l2" href="#13-5-センシティブな結果の報告">13-5　センシティブな結果の報告</a><a class="l1" href="#第14章-職務上請求書の厳格管理">第14章　職務上請求書の厳格管理</a><a class="l2" href="#14-1-使用前の確認">14-1　使用前の確認</a><a class="l2" href="#14-2-記載の原則">14-2　記載の原則</a><a class="l2" href="#14-3-事件簿との一致">14-3　事件簿との一致</a><a class="l2" href="#14-4-用紙の管理">14-4　用紙の管理</a><a class="l1" href="#第15章-よくある失敗">第15章　よくある失敗</a><a class="l1" href="#第16章-ケース別対応">第16章　ケース別対応</a><a class="l2" href="#16-1-父方の姓だけを遡る">16-1　父方の姓だけを遡る</a><a class="l2" href="#16-2-母方も含めて八系統調べる">16-2　母方も含めて八系統調べる</a><a class="l2" href="#16-3-亡くなった兄弟姉妹の子孫を調べたい">16-3　亡くなった兄弟姉妹の子孫を調べたい</a><a class="l2" href="#16-4-相続手続と家系図を同時に依頼された">16-4　相続手続と家系図を同時に依頼された</a><a class="l2" href="#16-5-著名人の子孫だと証明したい">16-5　著名人の子孫だと証明したい</a><a class="l2" href="#16-6-海外へ移住した祖先">16-6　海外へ移住した祖先</a><a class="l1" href="#第17章-標準業務フロー">第17章　標準業務フロー</a><a class="l1" href="#第18章-案件チェックリスト">第18章　案件チェックリスト</a><a class="l2" href="#18-1-受任時">18-1　受任時</a><a class="l2" href="#18-2-請求前">18-2　請求前</a><a class="l2" href="#18-3-調査中">18-3　調査中</a><a class="l2" href="#18-4-納品前">18-4　納品前</a><a class="l1" href="#第19章-そのまま使える案内文">第19章　そのまま使える案内文</a><a class="l2" href="#19-1-最初の必要資料案内">19-1　最初の必要資料案内</a><a class="l2" href="#19-2-委任状返送案内">19-2　委任状返送案内</a><a class="l2" href="#19-3-調査限界の案内">19-3　調査限界の案内</a><a class="l2" href="#19-4-納品案内">19-4　納品案内</a><a class="l1" href="#第20章-事務所内管理">第20章　事務所内管理</a><a class="l2" href="#20-1-フォルダ構成">20-1　フォルダ構成</a><a class="l2" href="#20-2-ファイル名">20-2　ファイル名</a><a class="l2" href="#20-3-ダブルチェック">20-3　ダブルチェック</a><a class="l2" href="#20-4-業務完了">20-4　業務完了</a><a class="l1" href="#参考となる公的確認先">参考となる公的確認先</a>
+<a class="l1" href="#増補編-a-受任判断を深める">増補編A　受任判断を深める</a>
+<a class="l1" href="#増補編-b-戸籍請求書類の詳細">増補編B　戸籍請求書類の詳細</a>
+<a class="l1" href="#増補編-c-戸籍読解の実務例">増補編C　戸籍読解の実務例</a>
+<a class="l1" href="#増補編-d-成果物の詳細仕様">増補編D　成果物の詳細仕様</a>
+<a class="l1" href="#増補編-e-個人情報事故への備え">増補編E　個人情報事故への備え</a>
+<a class="l1" href="#増補編-f-契約条項モデル">増補編F　契約条項モデル</a>
+<a class="l1" href="#増補編-g-質問と回答">増補編G　質問と回答</a>
+<a class="l1" href="#増補編-h-最終監査チェック">増補編H　最終監査チェック</a>
+
+<a class="l1" href="#増補編-i-標準スケジュールと進行管理">増補編I　標準スケジュールと進行管理</a>
+<a class="l1" href="#増補編-j-史料調査の進め方">増補編J　史料調査の進め方</a>
+<a class="l1" href="#増補編-k-家系図の表示ルール集">増補編K　家系図の表示ルール集</a>
+<a class="l1" href="#増補編-l-品質管理と校正">増補編L　品質管理と校正</a>
+<a class="l1" href="#増補編-m-事務所用管理帳票">増補編M　事務所用管理帳票</a>
+<a class="l1" href="#増補編-n-実務上の注意事項総まとめ">増補編N　実務上の注意事項総まとめ</a></nav>
+<main><h1 id="行政書士のための家系図作成支援-詳細実務ガイド">行政書士のための家系図作成支援　詳細実務ガイド<a class="anchor" href="#行政書士のための家系図作成支援-詳細実務ガイド">#</a></h1><p>戸籍の読み取り、必要書類の収集、親族関係の整理、家系図の作成、依頼者への説明、個人情報管理、納品までを一件ごとに安全に進めるための実務手順書</p><aside class="note normal"><div class="note-title">このガイドの到達点</div><div class="note-body">依頼者の希望を確認し、調査範囲を確定し、適法な方法で戸籍・除籍・改製原戸籍等を収集し、記載内容をつなぎ合わせ、根拠資料と対応する家系図を作成し、調査できなかった部分と推測部分を明示して納品できる状態を目指します。</div></aside><aside class="note normal"><div class="note-title">重要な前提</div><div class="note-body">家系図作成だけを理由に、行政書士の職務上請求書を当然に使用できるとは限りません。職務上請求書は、行政書士が受任した具体的な業務を遂行するために戸籍等が必要な場合に、規則と会の取扱いに従って使用するものです。観賞用・記念用の家系図作成では、依頼者本人による請求または委任状による代理請求を基本にし、職務上請求の可否を自己判断で広げないでください。</div></aside><h1 id="第1章-家系図作成支援の全体像">第1章　家系図作成支援の全体像<a class="anchor" href="#第1章-家系図作成支援の全体像">#</a></h1><h2 id="1-1-家系図作成支援とは">1-1　家系図作成支援とは<a class="anchor" href="#1-1-家系図作成支援とは">#</a></h2><p>家系図作成支援は、依頼者やその親族から提供された情報、戸籍全部事項証明書、除籍謄本、改製原戸籍謄本、戸籍の附票、墓碑、位牌、過去帳、写真、手紙、郷土資料などを整理し、親族関係を図表として可視化する業務です。</p><p>戸籍は、日本人の出生、婚姻、離婚、養子縁組、認知、死亡などの身分関係を公証する制度です。ただし、戸籍だけで家系の歴史、職業、居住実態、人物像、家紋、由緒、武家や公家とのつながりまで証明できるわけではありません。家系図の中心となる親子・婚姻関係は戸籍で確認し、戸籍以前の時代や人物史は別の史料で補います。</p><h2 id="1-2-行政書士が支援できる範囲">1-2　行政書士が支援できる範囲<a class="anchor" href="#1-2-行政書士が支援できる範囲">#</a></h2><ul><li>依頼者へのヒアリングと調査範囲の設計</li><li>戸籍請求に必要な委任状・請求書類の作成</li><li>依頼者の代理人としての戸籍等の請求</li><li>適法な行政書士業務に必要な範囲での戸籍調査</li><li>戸籍・除籍・改製原戸籍の読み取り</li><li>親族関係一覧表、系譜表、家系図の作成</li><li>戸籍上確認できた事実と、推測・伝承の区別</li><li>戸籍取得先・請求日・証明書番号等の調査記録作成</li><li>収集した原本・写し・データの整理と納品</li></ul><h2 id="1-3-このガイドで扱わない業務">1-3　このガイドで扱わない業務<a class="anchor" href="#1-3-このガイドで扱わない業務">#</a></h2><ul><li>DNA鑑定や遺伝学的な血縁判定</li><li>歴史上の著名人、武家、公家、皇族等とのつながりの断定</li><li>相続人間で争いがある案件の法律判断</li><li>親子関係、認知、養子縁組等をめぐる紛争代理</li><li>戸籍訂正許可、親子関係不存在確認等の裁判手続代理</li><li>不動産登記、相続登記の代理</li><li>税務申告・相続税計算</li></ul><aside class="note warn"><div class="note-title">他士業へつなぐ場面</div><div class="note-body">相続関係に争いがある、戸籍の記載に異議がある、親子関係そのものを争う、遺産分割や相続放棄の判断が必要、相続登記を行う場合は、弁護士、司法書士、税理士等へ連携します。</div></aside><h1 id="第2章-受任前に必ず確認すること">第2章　受任前に必ず確認すること<a class="anchor" href="#第2章-受任前に必ず確認すること">#</a></h1><h2 id="2-1-家系図を作る目的">2-1　家系図を作る目的<a class="anchor" href="#2-1-家系図を作る目的">#</a></h2><p>目的によって、必要な戸籍の範囲、成果物、説明責任が変わります。最初に目的を一つに決める必要はありませんが、主目的を確認します。</p><div class="checks"><label><input type="checkbox"><span>自分の祖先を知るための記念用・観賞用</span></label><label><input type="checkbox"><span>家族へ残す冊子や贈答品</span></label><label><input type="checkbox"><span>相続関係の整理</span></label><label><input type="checkbox"><span>法定相続情報一覧図の準備</span></label><label><input type="checkbox"><span>墓じまい、改葬、祭祀承継の確認</span></label><label><input type="checkbox"><span>親族への連絡先整理</span></label><label><input type="checkbox"><span>家史・自分史の作成</span></label><label><input type="checkbox"><span>戸籍上の氏名・本籍・親族関係の確認</span></label><label><input type="checkbox"><span>その他の行政手続・契約手続に必要</span></label></div><h2 id="2-2-誰を起点にするか">2-2　誰を起点にするか<a class="anchor" href="#2-2-誰を起点にするか">#</a></h2><p>家系図には必ず起点があります。依頼者本人を起点にするのか、亡くなった父母・祖父母を起点にするのか、特定の姓や本家を起点にするのかを決めます。</p><div class="checks"><label><input type="checkbox"><span>起点となる人の氏名</span></label><label><input type="checkbox"><span>生年月日または死亡年月日</span></label><label><input type="checkbox"><span>現在または最後の本籍</span></label><label><input type="checkbox"><span>筆頭者</span></label><label><input type="checkbox"><span>依頼者との関係</span></label><label><input type="checkbox"><span>旧姓・別名・通称</span></label></div><h2 id="2-3-どの系統を調べるか">2-3　どの系統を調べるか<a class="anchor" href="#2-3-どの系統を調べるか">#</a></h2><div class="table-wrap"><table><thead><tr><th>調査範囲</th><th>内容</th><th>難易度・費用</th></tr></thead><tbody><tr><td>父方直系</td><td>本人→父→父方祖父→曾祖父…</td><td>比較的管理しやすい</td></tr><tr><td>母方直系</td><td>本人→母→母方祖父母→曾祖父母…</td><td>婚姻前戸籍を追う必要</td></tr><tr><td>父母双方の直系</td><td>父方・母方を同時に遡る</td><td>世代ごとに取得数が増える</td></tr><tr><td>全直系尊属</td><td>祖父母4名、曾祖父母8名…を可能な範囲で追う</td><td>指数的に枝が増える</td></tr><tr><td>特定姓・男系</td><td>特定の姓を継いだ系統を追う</td><td>養子・婿養子に注意</td></tr><tr><td>傍系を含む</td><td>兄弟姉妹、叔父叔母、いとこ等</td><td>請求権・必要性の確認が重要</td></tr></tbody></table></div><aside class="note normal"><div class="note-title">範囲を曖昧にしない</div><div class="note-body">『取れるところまで全部』という受任は避けます。父方直系4代、母方直系4代、祖父母8名まで、明治初期の戸籍で確認できる範囲など、成果物の範囲を契約書に書きます。</div></aside><h2 id="2-4-依頼者の請求権を確認する">2-4　依頼者の請求権を確認する<a class="anchor" href="#2-4-依頼者の請求権を確認する">#</a></h2><p>戸籍証明書を請求できる人は、戸籍に記載されている本人、その配偶者、直系尊属、直系卑属などです。兄弟姉妹、叔父叔母、いとこ等は、単に親族だから当然に自由に請求できるわけではありません。第三者請求では、自己の権利行使・義務履行、国や地方公共団体への提出など、具体的な必要性を明らかにする必要があります。</p><p>代理人が請求する場合は、請求権を持つ本人が作成した委任状を提出します。自治体により委任状の記載事項、原本要否、本人確認書類、返送先の取扱いが異なるため、請求先ごとに確認します。</p><h2 id="2-5-受任を控える案件">2-5　受任を控える案件<a class="anchor" href="#2-5-受任を控える案件">#</a></h2><ul><li>依頼者が他人の出生、婚姻、離婚、子の有無を興味本位で調べたい</li><li>交際相手、従業員、取引先、候補者の身元調査を求めている</li><li>差別的な身元調査、出自調査、部落差別につながる目的が疑われる</li><li>委任者本人の意思確認ができない</li><li>職務上請求書を使えば何でも取れると要求される</li><li>家系図を使って相続人を排除したい、親族へ圧力をかけたい</li><li>戸籍上確認できない著名家系とのつながりを断定してほしい</li></ul><aside class="note danger"><div class="note-title">受任拒否</div><div class="note-body">利用目的が不適切、不正取得の疑いがある、本人確認ができない、必要性の説明が矛盾する場合は受任しません。取得後に不適切な目的が判明した場合も業務を停止し、資料の取扱いを検討します。</div></aside><h1 id="第3章-契約と見積り">第3章　契約と見積り<a class="anchor" href="#第3章-契約と見積り">#</a></h1><h2 id="3-1-契約書に入れる事項">3-1　契約書に入れる事項<a class="anchor" href="#3-1-契約書に入れる事項">#</a></h2><div class="checks"><label><input type="checkbox"><span>調査の目的</span></label><label><input type="checkbox"><span>起点となる人物</span></label><label><input type="checkbox"><span>父方・母方・双方など調査する系統</span></label><label><input type="checkbox"><span>予定する世代数</span></label><label><input type="checkbox"><span>直系のみか傍系を含むか</span></label><label><input type="checkbox"><span>戸籍以外の資料調査を含むか</span></label><label><input type="checkbox"><span>成果物の種類</span></label><label><input type="checkbox"><span>行政書士報酬</span></label><label><input type="checkbox"><span>戸籍手数料・郵送料等の実費</span></label><label><input type="checkbox"><span>追加調査の条件</span></label><label><input type="checkbox"><span>調査できなかった場合の取扱い</span></label><label><input type="checkbox"><span>推測や伝承を事実として断定しないこと</span></label><label><input type="checkbox"><span>個人情報の利用目的</span></label><label><input type="checkbox"><span>第三者提供の条件</span></label><label><input type="checkbox"><span>原本返却とデータ保管期間</span></label></div><h2 id="3-2-料金の設計">3-2　料金の設計<a class="anchor" href="#3-2-料金の設計">#</a></h2><p>家系図業務は、取得する戸籍数と調査枝数で作業量が大きく変わります。固定料金だけで受任すると、想定以上に転籍・婚姻・養子縁組が多い家系で赤字になりやすいため、基本料金と追加料金を分けます。</p><div class="table-wrap"><table><thead><tr><th>料金項目</th><th>内容</th></tr></thead><tbody><tr><td>基本調査料</td><td>起点人物から指定した1系統・一定世代まで</td></tr><tr><td>戸籍読解料</td><td>1通または1戸籍単位で設定</td></tr><tr><td>追加系統料</td><td>父方に加え母方、祖母側などを追加</td></tr><tr><td>傍系調査料</td><td>兄弟姉妹、叔父叔母等を追加</td></tr><tr><td>図面作成料</td><td>簡易図、詳細図、冊子、額装用データ等</td></tr><tr><td>史料調査料</td><td>墓碑、過去帳、郷土資料、新聞等</td></tr><tr><td>実費</td><td>証明書交付手数料、定額小為替、郵送料、交通費</td></tr></tbody></table></div><h2 id="3-3-完了保証をしない">3-3　完了保証をしない<a class="anchor" href="#3-3-完了保証をしない">#</a></h2><p>戸籍には保存期間、戦災・災害による滅失、廃棄、判読不能、海外出生、届出漏れなどの限界があります。『必ず江戸時代まで遡れる』『必ず10代前まで分かる』という保証はしません。</p><aside class="note normal"><div class="note-title">契約書の表現例</div><div class="note-body">本業務は、現存する戸籍その他の資料に基づき親族関係を整理するものであり、特定の世代または年代まで遡れること、すべての親族関係が判明すること、伝承上の家系とのつながりが証明されることを保証するものではありません。</div></aside><h1 id="第4章-お客様から受け取るもの">第4章　お客様から受け取るもの<a class="anchor" href="#第4章-お客様から受け取るもの">#</a></h1><h2 id="4-1-最初に受け取る情報">4-1　最初に受け取る情報<a class="anchor" href="#4-1-最初に受け取る情報">#</a></h2><div class="checks"><label><input type="checkbox"><span>依頼者の氏名・住所・生年月日・連絡先</span></label><label><input type="checkbox"><span>本人確認書類</span></label><label><input type="checkbox"><span>起点人物の氏名・生年月日・死亡年月日</span></label><label><input type="checkbox"><span>分かる範囲の本籍・筆頭者</span></label><label><input type="checkbox"><span>父母・祖父母の氏名と旧姓</span></label><label><input type="checkbox"><span>既に取得済みの戸籍一式</span></label><label><input type="checkbox"><span>家族が保有する家系図、過去帳、位牌、写真、手紙</span></label><label><input type="checkbox"><span>調べたい家系・姓・地域</span></label><label><input type="checkbox"><span>希望する世代数</span></label><label><input type="checkbox"><span>成果物の利用目的</span></label></div><h2 id="4-2-既存戸籍の受領方法">4-2　既存戸籍の受領方法<a class="anchor" href="#4-2-既存戸籍の受領方法">#</a></h2><p>紙で受け取る場合は通数を数え、預り証を交付します。PDF・画像の場合は、全ページがあるか、四隅が切れていないか、文字が読める解像度かを確認します。戸籍の余白に鉛筆や付箋で直接書き込まず、別の管理表で整理します。</p><h2 id="4-3-家族から聞いた話">4-3　家族から聞いた話<a class="anchor" href="#4-3-家族から聞いた話">#</a></h2><p>『祖父は養子だった』『先祖は○○藩の武士だった』『本家は別の県にある』といった情報は、調査の手掛かりとして記録します。ただし、戸籍・史料で確認できるまでは、家系図上で確定事実として扱いません。</p><div class="table-wrap"><table><thead><tr><th>情報区分</th><th>表示方法</th></tr></thead><tbody><tr><td>戸籍で確認</td><td>実線・確定表示</td></tr><tr><td>公的資料で確認</td><td>資料名を脚注</td></tr><tr><td>家族の証言のみ</td><td>伝承・未確認と明記</td></tr><tr><td>複数資料が矛盾</td><td>両説を記載し断定しない</td></tr><tr><td>推測</td><td>推定・可能性と明記</td></tr></tbody></table></div><h1 id="第5章-戸籍の基礎知識">第5章　戸籍の基礎知識<a class="anchor" href="#第5章-戸籍の基礎知識">#</a></h1><h2 id="5-1-現在戸籍">5-1　現在戸籍<a class="anchor" href="#5-1-現在戸籍">#</a></h2><p>現在有効な戸籍です。コンピュータ化された戸籍は、戸籍全部事項証明書が従来の戸籍謄本に、戸籍個人事項証明書が戸籍抄本に相当します。家系調査では、同じ戸籍にいる家族全体を確認できる全部事項証明書を使うことが多くなります。</p><h2 id="5-2-除籍">5-2　除籍<a class="anchor" href="#5-2-除籍">#</a></h2><p>戸籍に記載された人が死亡、婚姻、転籍などにより全員除かれた戸籍は除籍となります。除籍謄本には、その戸籍が有効だった期間の身分事項が記録されています。</p><h2 id="5-3-改製原戸籍">5-3　改製原戸籍<a class="anchor" href="#5-3-改製原戸籍">#</a></h2><p>法令改正や戸籍のコンピュータ化によって作り替えられる前の戸籍です。改製後の戸籍には、改製時点で有効な事項だけが移記され、既に除籍されていた子、離婚、過去の身分事項などが移記されないことがあります。家系調査では改製原戸籍の確認が重要です。</p><h2 id="5-4-戸籍の附票">5-4　戸籍の附票<a class="anchor" href="#5-4-戸籍の附票">#</a></h2><p>戸籍の附票には、その戸籍に在籍している間の住所の履歴が記録されます。家系図の親子関係を証明する中心資料ではありませんが、転居先、墓地、旧宅、地域史調査の手掛かりになります。保存状況や記載範囲は時期・自治体により異なります。</p><h2 id="5-5-戸籍の読み方">5-5　戸籍の読み方<a class="anchor" href="#5-5-戸籍の読み方">#</a></h2><ul><li>本籍と筆頭者を確認する</li><li>編製日、改製日、除籍日を確認する</li><li>各人の出生事項を確認する</li><li>父母欄を確認する</li><li>婚姻日、配偶者氏名、従前戸籍を確認する</li><li>養子縁組・離縁・認知・氏変更を確認する</li><li>死亡日と届出人を確認する</li><li>転籍前・婚姻前の本籍と筆頭者を次の請求先として控える</li></ul><aside class="note normal"><div class="note-title">一枚で完結しない</div><div class="note-body">現在戸籍だけでは出生から死亡までの連続した記録にならないことがあります。婚姻、転籍、改製ごとに戸籍が分かれるため、前の戸籍へ順番に遡ります。</div></aside><h1 id="第6章-戸籍を請求する方法">第6章　戸籍を請求する方法<a class="anchor" href="#第6章-戸籍を請求する方法">#</a></h1><h2 id="6-1-依頼者本人が請求する方法">6-1　依頼者本人が請求する方法<a class="anchor" href="#6-1-依頼者本人が請求する方法">#</a></h2><p>最も安全で分かりやすい方法は、請求権を持つ依頼者本人に戸籍を取得してもらうことです。行政書士は、どの本籍の誰を請求するか、請求書へ何を書くか、必要な本人確認書類、郵送物を案内します。</p><h2 id="6-2-委任状による代理請求">6-2　委任状による代理請求<a class="anchor" href="#6-2-委任状による代理請求">#</a></h2><p>依頼者が請求権を持つ戸籍について、行政書士が代理人として請求する場合は、依頼者が作成した委任状を使用します。委任状には、委任者、代理人、請求する証明書、対象者、本籍、筆頭者、通数、使用目的等を記載します。自治体の所定様式がある場合はそれを使用します。</p><div class="checks"><label><input type="checkbox"><span>委任者の氏名・住所・生年月日</span></label><label><input type="checkbox"><span>代理人行政書士の氏名・事務所住所</span></label><label><input type="checkbox"><span>対象戸籍の本籍・筆頭者</span></label><label><input type="checkbox"><span>対象者氏名</span></label><label><input type="checkbox"><span>戸籍、除籍、改製原戸籍、附票の区分</span></label><label><input type="checkbox"><span>出生から死亡まで等の請求範囲</span></label><label><input type="checkbox"><span>使用目的</span></label><label><input type="checkbox"><span>委任日</span></label><label><input type="checkbox"><span>委任者の署名または記名</span></label></div><h2 id="6-3-職務上請求書">6-3　職務上請求書<a class="anchor" href="#6-3-職務上請求書">#</a></h2><p>職務上請求書は、行政書士が受任した業務を遂行するために戸籍等が必要な場合に使用する専用用紙です。依頼者の委任状がなくても請求できる制度ですが、行政書士であれば自由に家系調査へ使えるというものではありません。</p><p>観賞用家系図に関する最高裁判決では、家系図が行政書士法上の独占業務に当たるかが問題となり、無資格者に対する有罪判決が破棄されました。この判決は、行政書士が不正に戸籍を取得してよいという意味ではありません。むしろ、家系図作成だけを根拠として職務上請求書を使うことの適否を慎重に判断する必要があります。</p><aside class="note warn"><div class="note-title">事務所の安全ルール</div><div class="note-body">記念用・観賞用家系図では、依頼者本人請求または委任状による代理請求を原則とします。相続関係説明図、遺産分割協議書、行政機関提出書類など、別の具体的行政書士業務に必要な戸籍を職務上請求する場合は、その受任内容と必要性を請求書・事件簿へ正確に記載し、所属会の規則・研修・最新取扱いを確認します。</div></aside><h2 id="6-4-広域交付">6-4　広域交付<a class="anchor" href="#6-4-広域交付">#</a></h2><p>2024年3月1日から、本人、配偶者、直系尊属、直系卑属は、本籍地以外の市区町村窓口でも、一定の戸籍全部事項証明書・除籍全部事項証明書を請求できる広域交付制度を利用できます。</p><p>ただし、広域交付は代理人による請求ができません。戸籍抄本、個人事項証明書、一部事項証明書、戸籍の附票なども対象外です。依頼者本人が窓口へ行ける場合には有用ですが、行政書士が委任状を持って広域交付を利用することはできません。</p><h2 id="6-5-郵送請求">6-5　郵送請求<a class="anchor" href="#6-5-郵送請求">#</a></h2><div class="checks"><label><input type="checkbox"><span>戸籍証明書等交付請求書</span></label><label><input type="checkbox"><span>委任状原本</span></label><label><input type="checkbox"><span>代理人の本人確認書類の写し</span></label><label><input type="checkbox"><span>行政書士証票等の写しを求められる場合の資料</span></label><label><input type="checkbox"><span>交付手数料分の定額小為替等</span></label><label><input type="checkbox"><span>切手を貼った返信用封筒</span></label><label><input type="checkbox"><span>請求権や親族関係を示す戸籍写し</span></label><label><input type="checkbox"><span>自治体が求める追加資料</span></label></div><p>定額小為替は、郵便局で発行される日付と有効期間に注意します。おつりが出ない自治体、切手や現金書留を認める自治体、オンライン請求に対応する自治体など取扱いが異なります。必ず請求先の最新案内を確認します。</p><h2 id="6-6-請求理由の書き方">6-6　請求理由の書き方<a class="anchor" href="#6-6-請求理由の書き方">#</a></h2><p>『家系図作成のため』だけで交付されるかは、請求者の資格と対象戸籍との関係によります。本人・配偶者・直系親族として請求する場合でも、対象が直系であることを示す戸籍が必要になることがあります。第三者請求では、具体的な権利義務と戸籍記載事項との関係を説明する必要があります。虚偽の請求理由を書いてはいけません。</p><h1 id="第7章-戸籍収集の標準手順">第7章　戸籍収集の標準手順<a class="anchor" href="#第7章-戸籍収集の標準手順">#</a></h1><h2 id="7-1-起点戸籍から始める">7-1　起点戸籍から始める<a class="anchor" href="#7-1-起点戸籍から始める">#</a></h2><ol><li>依頼者または起点人物の現在戸籍を取得する</li><li>出生事項と父母欄を確認する</li><li>従前戸籍、本籍、筆頭者を控える</li><li>婚姻・転籍・改製前の戸籍を取得する</li><li>出生時の戸籍まで連続して遡る</li><li>父母それぞれの出生戸籍へ分岐する</li><li>契約範囲まで同じ作業を繰り返す</li></ol><h2 id="7-2-一人ごとの追跡表">7-2　一人ごとの追跡表<a class="anchor" href="#7-2-一人ごとの追跡表">#</a></h2><div class="table-wrap"><table><thead><tr><th>項目</th><th>記録内容</th></tr></thead><tbody><tr><td>管理番号</td><td>P001など人物固有番号</td></tr><tr><td>氏名</td><td>旧字体・異体字を含め戸籍どおり</td></tr><tr><td>別名・旧姓</td><td>婚姻前氏、通称等</td></tr><tr><td>出生</td><td>年月日、場所、届出人</td></tr><tr><td>父母</td><td>父・母の氏名</td></tr><tr><td>婚姻</td><td>年月日、配偶者、従前戸籍</td></tr><tr><td>養子縁組</td><td>年月日、養親、従前戸籍</td></tr><tr><td>死亡</td><td>年月日、場所</td></tr><tr><td>根拠戸籍</td><td>本籍、筆頭者、証明書種別</td></tr><tr><td>次の請求先</td><td>従前戸籍の本籍・筆頭者</td></tr></tbody></table></div><h2 id="7-3-戸籍一通ごとの管理番号">7-3　戸籍一通ごとの管理番号<a class="anchor" href="#7-3-戸籍一通ごとの管理番号">#</a></h2><p>受領順にK001、K002などの番号を付け、証明書種別、本籍、筆頭者、請求先、取得日、交付手数料、人物番号を記録します。家系図上の各人物に根拠戸籍番号を紐付けることで、後から確認できます。</p><h2 id="7-4-婚姻による分岐">7-4　婚姻による分岐<a class="anchor" href="#7-4-婚姻による分岐">#</a></h2><p>婚姻すると、原則として夫婦の新しい戸籍が編製され、婚姻前の戸籍から除籍されます。母方を遡る場合は、母の婚姻事項に記載された従前戸籍へ移り、母が出生時に在籍していた戸籍まで確認します。</p><h2 id="7-5-養子縁組">7-5　養子縁組<a class="anchor" href="#7-5-養子縁組">#</a></h2><p>家系図を生物学的血縁で作るのか、戸籍上の親子関係で作るのかを契約時に決めます。戸籍上の養親子関係は法的な親子関係です。実父母と養父母の双方を表示する場合は、線の種類や注記を分けます。</p><h2 id="7-6-認知-非嫡出子-再婚">7-6　認知・非嫡出子・再婚<a class="anchor" href="#7-6-認知-非嫡出子-再婚">#</a></h2><p>戸籍には、認知、父母との続柄、再婚、前婚の子など、依頼者が知らない事実が含まれる場合があります。行政書士が先に親族へ連絡したり、依頼者の許可なく第三者へ知らせたりしてはいけません。成果物への表示方法を依頼者と慎重に決めます。</p><aside class="note danger"><div class="note-title">センシティブ情報</div><div class="note-body">家系調査は、婚外子、養子、離婚、認知、国籍、死亡原因に関する周辺情報など、家族が知らなかった事実に触れる可能性があります。調査開始前にその可能性を説明し、報告方法と閲覧者を決めます。</div></aside><h1 id="第8章-古い戸籍を読む">第8章　古い戸籍を読む<a class="anchor" href="#第8章-古い戸籍を読む">#</a></h1><h2 id="8-1-旧字体-変体仮名">8-1　旧字体・変体仮名<a class="anchor" href="#8-1-旧字体-変体仮名">#</a></h2><p>古い戸籍では、旧字体、異体字、手書きの続け字、変体仮名、旧地名が使われます。読めない文字を推測で確定せず、前後の戸籍、同じ人物の別記載、地名辞典、自治体資料で照合します。</p><h2 id="8-2-年月日の表記">8-2　年月日の表記<a class="anchor" href="#8-2-年月日の表記">#</a></h2><p>明治、大正、昭和などの元号表記を西暦へ変換する場合は、原資料の元号表記も残します。旧暦・新暦の問題、届出日と実際の出生・死亡日の違いに注意します。</p><h2 id="8-3-家制度下の戸籍">8-3　家制度下の戸籍<a class="anchor" href="#8-3-家制度下の戸籍">#</a></h2><p>古い戸籍では、戸主、前戸主、家督相続、入夫婚姻、分家、廃家、隠居など、現在の戸籍制度とは異なる用語が現れます。現代の家族関係へ単純に置き換えず、その時代の制度に沿って読みます。</p><h2 id="8-4-転籍">8-4　転籍<a class="anchor" href="#8-4-転籍">#</a></h2><p>転籍は本籍を移す手続です。転籍後戸籍には、転籍時点で必要な事項だけが移記されるため、転籍前戸籍を取得しないと、既に除籍された家族や過去の事項が確認できないことがあります。</p><h2 id="8-5-廃棄-滅失">8-5　廃棄・滅失<a class="anchor" href="#8-5-廃棄-滅失">#</a></h2><p>保存期間経過、戦災、火災、災害などで戸籍が残っていない場合があります。自治体から廃棄済証明や告知書を取得できる場合は、調査停止の根拠資料として保存します。戸籍がない区間を家族の証言だけで確定しません。</p><h1 id="第9章-戸籍以外の資料">第9章　戸籍以外の資料<a class="anchor" href="#第9章-戸籍以外の資料">#</a></h1><h2 id="9-1-戸籍の附票">9-1　戸籍の附票<a class="anchor" href="#9-1-戸籍の附票">#</a></h2><p>住所履歴をたどり、旧宅、菩提寺、墓地、地域資料へつなげる手掛かりとして利用します。ただし、請求権と保存期間を確認します。</p><h2 id="9-2-住民票の除票">9-2　住民票の除票<a class="anchor" href="#9-2-住民票の除票">#</a></h2><p>死亡者や転出者の過去住所を確認できる場合がありますが、請求には正当な理由と関係資料が必要です。家系図作成だけで当然に取得できるものではありません。</p><h2 id="9-3-墓碑-過去帳-位牌">9-3　墓碑・過去帳・位牌<a class="anchor" href="#9-3-墓碑-過去帳-位牌">#</a></h2><p>戒名、没年月日、俗名、続柄が記載されることがあります。寺院の過去帳は公開資料ではなく、寺院の管理方針と遺族の了承が必要です。撮影、転載、公表の許可を確認します。</p><h2 id="9-4-土地-建物資料">9-4　土地・建物資料<a class="anchor" href="#9-4-土地-建物資料">#</a></h2><p>旧宅や本家の所在地を確認するため、閉鎖登記簿、旧土地台帳、公図等が参考になる場合があります。権利関係の判断や登記申請は司法書士・土地家屋調査士の領域に注意します。</p><h2 id="9-5-郷土資料">9-5　郷土資料<a class="anchor" href="#9-5-郷土資料">#</a></h2><ul><li>自治体史・市町村史</li><li>郷土誌</li><li>寺社史</li><li>学校史</li><li>電話帳・商工名鑑</li><li>新聞記事</li><li>古地図</li><li>国立国会図書館等のデジタル資料</li></ul><p>同姓同名や同じ姓の家があるため、地域資料に名前があっても戸籍上の人物と同一人物とは限りません。住所、年齢、配偶者、職業、年代など複数の要素で照合します。</p><h2 id="9-6-家紋">9-6　家紋<a class="anchor" href="#9-6-家紋">#</a></h2><p>同じ姓でも家紋が異なることがあり、同じ家紋でも血縁関係があるとは限りません。墓、仏壇、紋付、古文書などで確認し、『この家紋だから特定の名家の子孫である』と断定しません。</p><h1 id="第10章-家系図の設計">第10章　家系図の設計<a class="anchor" href="#第10章-家系図の設計">#</a></h1><h2 id="10-1-縦系図">10-1　縦系図<a class="anchor" href="#10-1-縦系図">#</a></h2><p>祖先から子孫へ縦方向に配置する形式です。世代の流れが分かりやすく、直系中心の家系図に適しています。</p><h2 id="10-2-横系図">10-2　横系図<a class="anchor" href="#10-2-横系図">#</a></h2><p>同世代を横方向に並べ、兄弟姉妹や婚姻関係を表示します。傍系を含む家族全体の把握に向きますが、人数が増えると横幅が大きくなります。</p><h2 id="10-3-扇形-放射型">10-3　扇形・放射型<a class="anchor" href="#10-3-扇形-放射型">#</a></h2><p>依頼者本人を中心に父母、祖父母、曾祖父母を外側へ広げます。直系尊属の全体像を見せやすい一方、婚姻歴、兄弟姉妹、詳細注記には向きません。</p><h2 id="10-4-人物に記載する情報">10-4　人物に記載する情報<a class="anchor" href="#10-4-人物に記載する情報">#</a></h2><div class="checks"><label><input type="checkbox"><span>戸籍どおりの氏名</span></label><label><input type="checkbox"><span>旧姓</span></label><label><input type="checkbox"><span>生年月日</span></label><label><input type="checkbox"><span>死亡年月日</span></label><label><input type="checkbox"><span>婚姻年月日</span></label><label><input type="checkbox"><span>本籍または出生地</span></label><label><input type="checkbox"><span>養子・実子の区別</span></label><label><input type="checkbox"><span>管理番号</span></label><label><input type="checkbox"><span>根拠資料番号</span></label></div><h2 id="10-5-線のルール">10-5　線のルール<a class="anchor" href="#10-5-線のルール">#</a></h2><div class="table-wrap"><table><thead><tr><th>関係</th><th>表示例</th></tr></thead><tbody><tr><td>婚姻</td><td>二本線または横線</td></tr><tr><td>実親子</td><td>実線</td></tr><tr><td>養親子</td><td>破線</td></tr><tr><td>離婚</td><td>婚姻線へ斜線</td></tr><tr><td>未確認</td><td>点線と注記</td></tr><tr><td>再婚</td><td>婚姻ごとに別線</td></tr></tbody></table></div><h2 id="10-6-存命者の情報">10-6　存命者の情報<a class="anchor" href="#10-6-存命者の情報">#</a></h2><p>家系図を親族へ配布、ウェブ公開、展示する場合、存命者の生年月日、住所、婚姻歴、養子関係などを無断で掲載しないようにします。公開版では、生年だけにする、住所を省略する、存命者を非表示にするなどの加工を行います。</p><h1 id="第11章-調査結果の整理">第11章　調査結果の整理<a class="anchor" href="#第11章-調査結果の整理">#</a></h1><h2 id="11-1-事実と推測を分ける">11-1　事実と推測を分ける<a class="anchor" href="#11-1-事実と推測を分ける">#</a></h2><div class="table-wrap"><table><thead><tr><th>区分</th><th>記載例</th></tr></thead><tbody><tr><td>確認済み</td><td>戸籍K012により父子関係を確認</td></tr><tr><td>高い可能性</td><td>氏名・住所・年代が一致するが直接資料なし</td></tr><tr><td>家族伝承</td><td>依頼者の母からの聞き取り</td></tr><tr><td>不明</td><td>戸籍廃棄のため確認不能</td></tr></tbody></table></div><h2 id="11-2-矛盾がある場合">11-2　矛盾がある場合<a class="anchor" href="#11-2-矛盾がある場合">#</a></h2><p>戸籍と墓碑で生年月日が違う、家族の話と戸籍上の父が違う、旧字体が異なるなどの矛盾があれば、勝手に一つを正しいと決めません。資料ごとの記載を並べ、どの資料を家系図へ採用したかを注記します。</p><h2 id="11-3-調査不能報告">11-3　調査不能報告<a class="anchor" href="#11-3-調査不能報告">#</a></h2><p>取得できなかった戸籍、保存されていない戸籍、請求権がなく取得できない傍系戸籍、判読できない事項を一覧にします。家系図の空白は失敗ではなく、現存資料で確認できる限界です。</p><h1 id="第12章-成果物の作成">第12章　成果物の作成<a class="anchor" href="#第12章-成果物の作成">#</a></h1><h2 id="12-1-標準納品セット">12-1　標準納品セット<a class="anchor" href="#12-1-標準納品セット">#</a></h2><div class="checks"><label><input type="checkbox"><span>家系図本体</span></label><label><input type="checkbox"><span>人物一覧表</span></label><label><input type="checkbox"><span>戸籍取得一覧</span></label><label><input type="checkbox"><span>根拠資料一覧</span></label><label><input type="checkbox"><span>調査経過報告書</span></label><label><input type="checkbox"><span>未確認・調査不能事項一覧</span></label><label><input type="checkbox"><span>戸籍原本または写し</span></label><label><input type="checkbox"><span>閲覧用PDF</span></label><label><input type="checkbox"><span>編集可能データを契約に含む場合のデータ</span></label></div><h2 id="12-2-調査報告書の構成">12-2　調査報告書の構成<a class="anchor" href="#12-2-調査報告書の構成">#</a></h2><ol><li>依頼目的</li><li>調査対象と範囲</li><li>調査期間</li><li>取得した資料</li><li>確認できた系統</li><li>重要な戸籍上の変動</li><li>確認できなかった事項</li><li>家族伝承・推測事項</li><li>個人情報の取扱注意</li></ol><h2 id="12-3-原本の扱い">12-3　原本の扱い<a class="anchor" href="#12-3-原本の扱い">#</a></h2><p>依頼者から預かった戸籍原本は、納品時に通数を照合して返却します。行政書士が取得した戸籍について、原本を依頼者へ渡すか、写しを保存するかは受任契約と事務所規程に従います。不要な複製を残し続けません。</p><h1 id="第13章-個人情報と秘密保持">第13章　個人情報と秘密保持<a class="anchor" href="#第13章-個人情報と秘密保持">#</a></h1><h2 id="13-1-家系図は高度な個人情報の集合">13-1　家系図は高度な個人情報の集合<a class="anchor" href="#13-1-家系図は高度な個人情報の集合">#</a></h2><p>家系図には、氏名、生年月日、婚姻、離婚、養子縁組、認知、死亡、国籍に関する事項、親族関係など、多数の個人情報が集約されます。一枚の図から複数人の関係が分かるため、通常の名簿以上に慎重な管理が必要です。</p><h2 id="13-2-利用目的">13-2　利用目的<a class="anchor" href="#13-2-利用目的">#</a></h2><p>個人情報は、受任した家系図作成支援のためにのみ使用します。取得した戸籍を、営業名簿作成、別商品の販売、研修資料、SNS投稿、実績紹介へ流用しません。事例紹介に使う場合は、個人が特定できない加工と明確な同意が必要です。</p><h2 id="13-3-保存方法">13-3　保存方法<a class="anchor" href="#13-3-保存方法">#</a></h2><div class="checks"><label><input type="checkbox"><span>紙資料は施錠保管</span></label><label><input type="checkbox"><span>電子データはアクセス制限</span></label><label><input type="checkbox"><span>クラウド共有リンクを公開設定にしない</span></label><label><input type="checkbox"><span>メール添付時は送信先を再確認</span></label><label><input type="checkbox"><span>USB等の持出しを記録</span></label><label><input type="checkbox"><span>外注時は秘密保持契約と取扱ルールを設定</span></label><label><input type="checkbox"><span>業務終了後の保存期間を定める</span></label><label><input type="checkbox"><span>保存期間経過後は復元困難な方法で廃棄</span></label></div><h2 id="13-4-家族への開示">13-4　家族への開示<a class="anchor" href="#13-4-家族への開示">#</a></h2><p>依頼者の兄弟姉妹や親族から『自分にも見せてほしい』と連絡があっても、依頼者の許可なく開示しません。戸籍に記載された本人であっても、行政書士が保有する調査ファイル全体を当然に渡すものではありません。</p><h2 id="13-5-センシティブな結果の報告">13-5　センシティブな結果の報告<a class="anchor" href="#13-5-センシティブな結果の報告">#</a></h2><p>依頼者が知らなかった養子、認知、前婚の子などが判明した場合、メール本文へ詳細を書かず、本人確認後の面談または安全な方法で説明します。家族関係に重大な影響があると考えられる場合も、事実を隠したり、逆に必要以上に強調したりせず、戸籍記載を正確に説明します。</p><h1 id="第14章-職務上請求書の厳格管理">第14章　職務上請求書の厳格管理<a class="anchor" href="#第14章-職務上請求書の厳格管理">#</a></h1><h2 id="14-1-使用前の確認">14-1　使用前の確認<a class="anchor" href="#14-1-使用前の確認">#</a></h2><div class="checks"><label><input type="checkbox"><span>行政書士として具体的な受任業務が存在する</span></label><label><input type="checkbox"><span>戸籍がその業務遂行に必要である</span></label><label><input type="checkbox"><span>請求対象と必要範囲が過大でない</span></label><label><input type="checkbox"><span>依頼者・事件・利用目的を記録した</span></label><label><input type="checkbox"><span>所属会の最新規則と研修内容を確認した</span></label><label><input type="checkbox"><span>観賞用家系図だけを理由にしていない</span></label></div><h2 id="14-2-記載の原則">14-2　記載の原則<a class="anchor" href="#14-2-記載の原則">#</a></h2><p>請求書には、抽象的な定型文ではなく、受任業務と戸籍が必要な理由を正確に記載します。事実と異なる相続手続、遺言作成、官公署提出などを名目にしてはいけません。</p><h2 id="14-3-事件簿との一致">14-3　事件簿との一致<a class="anchor" href="#14-3-事件簿との一致">#</a></h2><p>受任日、依頼者、業務内容、請求先、請求対象、使用した請求書番号、取得日、納品日を事件簿等へ記録し、請求書控えと一致させます。</p><h2 id="14-4-用紙の管理">14-4　用紙の管理<a class="anchor" href="#14-4-用紙の管理">#</a></h2><ul><li>未使用用紙を施錠管理する</li><li>第三者へ貸与・譲渡しない</li><li>書損じを規則に従って処理する</li><li>使用状況を定期的に照合する</li><li>事務員へ丸投げしない</li><li>紛失時は直ちに所属会へ報告する</li></ul><aside class="note danger"><div class="note-title">絶対にしないこと</div><div class="note-body">家系図業者、探偵、知人、他事務所等へ職務上請求書を渡す、名義を貸す、実際に受任していない業務名を書く、取得した戸籍を別目的へ転売する行為は行いません。</div></aside><h1 id="第15章-よくある失敗">第15章　よくある失敗<a class="anchor" href="#第15章-よくある失敗">#</a></h1><div class="table-wrap"><table><thead><tr><th>失敗</th><th>防止策</th></tr></thead><tbody><tr><td>調査範囲を決めずに受任</td><td>系統・世代・傍系範囲を契約書へ明記</td></tr><tr><td>現在戸籍だけで家系図を作る</td><td>除籍・改製原戸籍へ連続して遡る</td></tr><tr><td>職務上請求を安易に使用</td><td>本人請求・委任状を基本にし会規則を確認</td></tr><tr><td>広域交付を代理請求しようとする</td><td>広域交付は代理人不可と説明</td></tr><tr><td>同姓同名を同一人物と判断</td><td>住所・年齢・配偶者・親族で照合</td></tr><tr><td>養子関係を実子として表示</td><td>線種と注記を分ける</td></tr><tr><td>伝承を確定事実として記載</td><td>未確認・伝承と明記</td></tr><tr><td>戸籍を親族へ無断共有</td><td>依頼者の承認と公開範囲を確認</td></tr><tr><td>戸籍原本の返却漏れ</td><td>預り証と納品チェックで通数確認</td></tr><tr><td>必ず江戸時代まで遡れると宣伝</td><td>現存資料の限界を説明</td></tr></tbody></table></div><h1 id="第16章-ケース別対応">第16章　ケース別対応<a class="anchor" href="#第16章-ケース別対応">#</a></h1><h2 id="16-1-父方の姓だけを遡る">16-1　父方の姓だけを遡る<a class="anchor" href="#16-1-父方の姓だけを遡る">#</a></h2><p>依頼者本人から父、父方祖父、曾祖父へ遡ります。婚姻や養子縁組により姓の継承と血縁が一致しない場合があるため、『同じ姓を継いだ家系』と『実父母の血縁系統』のどちらを優先するか確認します。</p><h2 id="16-2-母方も含めて八系統調べる">16-2　母方も含めて八系統調べる<a class="anchor" href="#16-2-母方も含めて八系統調べる">#</a></h2><p>曾祖父母8名まで調べると、各人物の出生戸籍を追う必要があり、取得戸籍数が急増します。基本料金の範囲を超えた場合の追加料金と納期を事前に設定します。</p><h2 id="16-3-亡くなった兄弟姉妹の子孫を調べたい">16-3　亡くなった兄弟姉妹の子孫を調べたい<a class="anchor" href="#16-3-亡くなった兄弟姉妹の子孫を調べたい">#</a></h2><p>傍系親族の戸籍は、直系親族と同じ請求権では取得できない場合があります。単なる家系図作成目的で請求できると決めつけず、請求権、委任状、第三者請求の具体的必要性を確認します。連絡先探索を目的とする場合は特に慎重に判断します。</p><h2 id="16-4-相続手続と家系図を同時に依頼された">16-4　相続手続と家系図を同時に依頼された<a class="anchor" href="#16-4-相続手続と家系図を同時に依頼された">#</a></h2><p>相続関係説明図や法定相続情報一覧図の作成に必要な戸籍調査と、記念用家系図の追加調査を分けて管理します。職務上請求で取得した戸籍を、受任範囲を超えた商品作成へ当然に流用しません。追加利用について依頼者の同意と法的根拠を確認します。</p><h2 id="16-5-著名人の子孫だと証明したい">16-5　著名人の子孫だと証明したい<a class="anchor" href="#16-5-著名人の子孫だと証明したい">#</a></h2><p>戸籍が連続してつながり、公的史料で同一人物性が確認できる範囲だけを示します。姓、家紋、居住地域が同じだけでは証明になりません。証明できない場合は、伝承として紹介するにとどめます。</p><h2 id="16-6-海外へ移住した祖先">16-6　海外へ移住した祖先<a class="anchor" href="#16-6-海外へ移住した祖先">#</a></h2><p>日本戸籍に国籍離脱、婚姻、転籍等の記録があっても、移住先での婚姻・子孫関係は外国の記録調査が必要です。外国の戸籍・出生証明・婚姻証明は国ごとに制度が異なり、翻訳・認証も必要になるため、別契約とします。</p><h1 id="第17章-標準業務フロー">第17章　標準業務フロー<a class="anchor" href="#第17章-標準業務フロー">#</a></h1><ol><li>問い合わせを受ける</li><li>目的・起点人物・調査系統・世代数を確認する</li><li>本人確認と不適切目的の有無を確認する</li><li>見積書・契約書・個人情報同意書を交付する</li><li>既存戸籍・家族情報を受領する</li><li>戸籍取得計画を作る</li><li>本人請求、委任状代理、適法な職務上請求を選択する</li><li>現在戸籍から順に遡る</li><li>人物台帳と戸籍台帳へ入力する</li><li>不足戸籍を追加請求する</li><li>戸籍以外の史料を契約範囲で調査する</li><li>親族関係の矛盾を確認する</li><li>家系図初稿を作る</li><li>依頼者へ確認事項を照会する</li><li>確定版家系図と調査報告書を作る</li><li>原本・データ・実費明細を納品する</li><li>受領確認、原本返却、精算を行う</li><li>保存期間経過後に適切に廃棄する</li></ol><h1 id="第18章-案件チェックリスト">第18章　案件チェックリスト<a class="anchor" href="#第18章-案件チェックリスト">#</a></h1><h2 id="18-1-受任時">18-1　受任時<a class="anchor" href="#18-1-受任時">#</a></h2><div class="checks"><label><input type="checkbox"><span>利用目的を確認した</span></label><label><input type="checkbox"><span>起点人物を確定した</span></label><label><input type="checkbox"><span>調査系統を確定した</span></label><label><input type="checkbox"><span>世代数を確定した</span></label><label><input type="checkbox"><span>傍系の有無を確定した</span></label><label><input type="checkbox"><span>本人確認を行った</span></label><label><input type="checkbox"><span>不正・差別的目的でないことを確認した</span></label><label><input type="checkbox"><span>完了保証をしていない</span></label><label><input type="checkbox"><span>報酬・実費・追加料金を説明した</span></label></div><h2 id="18-2-請求前">18-2　請求前<a class="anchor" href="#18-2-請求前">#</a></h2><div class="checks"><label><input type="checkbox"><span>請求権を確認した</span></label><label><input type="checkbox"><span>本人請求・委任状・職務上請求の方法を選定した</span></label><label><input type="checkbox"><span>本籍・筆頭者を確認した</span></label><label><input type="checkbox"><span>必要な証明書種別を確認した</span></label><label><input type="checkbox"><span>請求範囲が過大でない</span></label><label><input type="checkbox"><span>請求理由を正確に記載した</span></label><label><input type="checkbox"><span>本人確認資料を用意した</span></label><label><input type="checkbox"><span>手数料・返信用封筒を用意した</span></label></div><h2 id="18-3-調査中">18-3　調査中<a class="anchor" href="#18-3-調査中">#</a></h2><div class="checks"><label><input type="checkbox"><span>戸籍ごとに管理番号を付けた</span></label><label><input type="checkbox"><span>人物ごとに管理番号を付けた</span></label><label><input type="checkbox"><span>出生から前戸籍へ連続している</span></label><label><input type="checkbox"><span>婚姻・転籍・改製を見落としていない</span></label><label><input type="checkbox"><span>養子・認知・離婚を正しく記録した</span></label><label><input type="checkbox"><span>推測を確定事実にしていない</span></label><label><input type="checkbox"><span>追加調査が契約範囲内か確認した</span></label></div><h2 id="18-4-納品前">18-4　納品前<a class="anchor" href="#18-4-納品前">#</a></h2><div class="checks"><label><input type="checkbox"><span>家系図と戸籍台帳が一致する</span></label><label><input type="checkbox"><span>人物名・日付・続柄を再確認した</span></label><label><input type="checkbox"><span>未確認事項を明記した</span></label><label><input type="checkbox"><span>存命者情報の公開範囲を確認した</span></label><label><input type="checkbox"><span>戸籍原本の通数を確認した</span></label><label><input type="checkbox"><span>調査報告書を添付した</span></label><label><input type="checkbox"><span>実費を精算した</span></label><label><input type="checkbox"><span>受領確認を得た</span></label></div><h1 id="第19章-そのまま使える案内文">第19章　そのまま使える案内文<a class="anchor" href="#第19章-そのまま使える案内文">#</a></h1><h2 id="19-1-最初の必要資料案内">19-1　最初の必要資料案内<a class="anchor" href="#19-1-最初の必要資料案内">#</a></h2><aside class="note normal"><div class="note-title">お客様への案内文</div><div class="note-body">家系図作成のため、まず次の資料をお送りください。<br><br>1．ご依頼者様の本人確認書類<br>2．現在お持ちの戸籍一式<br>3．分かる範囲のご両親・祖父母のお名前と旧姓<br>4．調べたい系統<br>　例：父方のみ、母方のみ、父母双方<br>5．希望する範囲<br>　例：曾祖父母まで、明治時代の戸籍で確認できる範囲まで<br>6．家族が保管している家系図、過去帳、位牌、写真等<br>7．家系図の利用目的<br><br>内容を確認後、必要な戸籍と取得方法、費用、予定する成果物をご案内します。</div></aside><h2 id="19-2-委任状返送案内">19-2　委任状返送案内<a class="anchor" href="#19-2-委任状返送案内">#</a></h2><aside class="note normal"><div class="note-title">お客様への案内文</div><div class="note-body">戸籍取得に使用する委任状をお送りします。<br><br>内容をご確認のうえ、ご本人が署名し、原本をご返送ください。<br>委任状の内容を書き換えたり、対象者を追加したりしないでください。<br><br>返送物<br>・委任状原本<br>・本人確認書類の写し<br>・既に取得済みの戸籍がある場合はその写し<br><br>戸籍の請求先によって追加資料が必要になった場合は、改めてご案内します。</div></aside><h2 id="19-3-調査限界の案内">19-3　調査限界の案内<a class="anchor" href="#19-3-調査限界の案内">#</a></h2><aside class="note normal"><div class="note-title">お客様への案内文</div><div class="note-body">家系調査は、現在残っている戸籍その他の資料に基づいて行います。<br><br>戸籍の保存状況、戦災・災害、旧戸籍の廃棄、記載内容、請求権の範囲等により、希望する年代まで遡れない場合があります。<br>また、ご家族に伝わる由緒や著名人とのつながりについては、資料で連続して確認できない限り、事実として断定することはできません。<br><br>確認できた事実、家族からの伝承、推測、確認不能部分を分けてご報告します。</div></aside><h2 id="19-4-納品案内">19-4　納品案内<a class="anchor" href="#19-4-納品案内">#</a></h2><aside class="note normal"><div class="note-title">お客様への案内文</div><div class="note-body">家系図作成支援が完了しました。<br><br>納品物<br>・家系図<br>・人物一覧<br>・取得戸籍一覧<br>・調査報告書<br>・確認できなかった事項の一覧<br>・お預かりした原本<br><br>家系図には、ご本人以外の親族に関する個人情報が含まれます。<br>親族への配布、インターネット公開、印刷物への掲載を行う場合は、存命者の情報やセンシティブな情報の取扱いに十分ご注意ください。</div></aside><h1 id="第20章-事務所内管理">第20章　事務所内管理<a class="anchor" href="#第20章-事務所内管理">#</a></h1><h2 id="20-1-フォルダ構成">20-1　フォルダ構成<a class="anchor" href="#20-1-フォルダ構成">#</a></h2><ul><li>00_契約・本人確認</li><li>01_依頼者提供資料</li><li>02_戸籍請求</li><li>03_取得戸籍原本</li><li>04_人物台帳</li><li>05_家系図作業データ</li><li>06_調査報告書</li><li>07_納品データ</li><li>08_精算・領収書</li></ul><h2 id="20-2-ファイル名">20-2　ファイル名<a class="anchor" href="#20-2-ファイル名">#</a></h2><p>戸籍は『K001_本籍_筆頭者_現在戸籍_取得日』、人物は『P001_氏名_生年』など、番号と内容が分かる名称にします。単に『戸籍1』『戸籍新』『最終家系図2』としないようにします。</p><h2 id="20-3-ダブルチェック">20-3　ダブルチェック<a class="anchor" href="#20-3-ダブルチェック">#</a></h2><p>家系図の誤りは、別人を親子としてつなぐ重大な結果になります。完成前に、家系図上のすべての親子線を戸籍番号へ戻って確認します。作成者以外が確認できない場合は、時間を空けて人物台帳と戸籍を照合します。</p><h2 id="20-4-業務完了">20-4　業務完了<a class="anchor" href="#20-4-業務完了">#</a></h2><p>家系図データを送っただけでは完了にしません。納品物一覧、原本通数、実費、データの開封確認、依頼者の受領確認を行い、保存・廃棄予定を記録して完了します。</p>
+<h1 id="増補編-a-受任判断を深める">増補編A　受任判断を深める<a class="anchor" href="#増補編-a-受任判断を深める">#</a></h1>
+<h2 id="a-1-記念用家系図と法的手続用資料を分ける">A-1　記念用家系図と法的手続用資料を分ける<a class="anchor" href="#a-1-記念用家系図と法的手続用資料を分ける">#</a></h2>
+<p>同じ戸籍を使う業務でも、記念用の家系図と、相続手続に使用する相続関係説明図や法定相続情報一覧図では、目的、必要範囲、表示方法、正確性の要求が異なります。記念用家系図では、依頼者の希望に応じて直系尊属を広く遡り、家族写真や伝承を加えることがあります。一方、法的手続用の資料では、特定の被相続人について、法定相続人を漏れなく特定し、現在の戸籍までつなげることが中心です。</p>
+<p>一件の依頼で両方を扱う場合は、契約、戸籍取得目的、成果物、保存フォルダを分けます。相続手続のために必要な戸籍と、観賞用家系図を広げるための追加戸籍を混同すると、職務上請求の利用目的や個人情報の利用範囲が不明確になります。</p>
+
+<h2 id="a-2-依頼者以外の親族からの苦情を想定する">A-2　依頼者以外の親族からの苦情を想定する<a class="anchor" href="#a-2-依頼者以外の親族からの苦情を想定する">#</a></h2>
+<p>家系図には、依頼者だけでなく多数の親族が登場します。完成後に親族から「なぜ自分の生年月日が載っているのか」「養子であることを他人へ見せないでほしい」「離婚歴の表示が違う」といった申出が来る可能性があります。行政書士は、依頼者の希望だけで公開範囲を決めず、納品物が誰に配布されるか、存命者の情報をどこまで載せるかを契約時に確認します。</p>
+<p>内部保存用の完全版と、親族配布用の簡略版を分ける方法が有効です。配布版では、存命者の生年月日を年だけにする、婚姻日を省略する、住所を載せない、センシティブな身分事項を非表示にするなどの加工を行います。</p>
+
+<h2 id="a-3-親族へ直接連絡する場合">A-3　親族へ直接連絡する場合<a class="anchor" href="#a-3-親族へ直接連絡する場合">#</a></h2>
+<p>戸籍から判明した親族へ、行政書士が突然電話や手紙を送ることは慎重に行います。依頼者との関係、連絡目的、相手が家系調査を知らない可能性、家族間の事情を確認します。連絡先の探索そのものが受任範囲に含まれるかも明確にします。</p>
+<p>連絡する場合は、依頼者の氏名をどこまで伝えるか、戸籍で住所を知ったことをどう説明するか、回答を強制しないこと、提供された情報の利用目的を明示します。親族が協力を拒否した場合は、それ以上の接触を控えます。</p>
+
+<h2 id="a-4-高齢者からの依頼">A-4　高齢者からの依頼<a class="anchor" href="#a-4-高齢者からの依頼">#</a></h2>
+<p>高齢の依頼者から受任する場合、家系図作成の意思、契約内容、費用、成果物を本人が理解しているかを確認します。家族が同席していても、依頼者本人の意思を確認します。判断能力に疑問がある場合は、家族だけの指示で高額な調査を開始しません。</p>
+<p>家族への贈り物として作る場合でも、誰が契約者で誰が費用を負担するかを明確にします。途中で相続が発生した場合の契約承継、資料返却、成果物の納品先も契約書へ定めておくと安全です。</p>
+
+<h1 id="増補編-b-戸籍請求書類の詳細">増補編B　戸籍請求書類の詳細<a class="anchor" href="#増補編-b-戸籍請求書類の詳細">#</a></h1>
+<h2 id="b-1-委任状の作成例">B-1　委任状の作成例<a class="anchor" href="#b-1-委任状の作成例">#</a></h2>
+<aside class="note normal"><div class="note-title">委任状の基本文例</div><div class="note-body">
+私は、下記代理人に対し、家系調査および親族関係整理のため、私が請求することのできる戸籍全部事項証明書、除籍謄本、改製原戸籍謄本その他必要な戸籍証明書の交付請求および受領に関する権限を委任します。<br><br>
+対象者：○○○○<br>
+本籍：○○県○○市○○<br>
+筆頭者：○○○○<br>
+必要範囲：出生から現在まで／出生から死亡まで／指定する直系尊属の戸籍<br>
+通数：各1通<br><br>
+委任日：令和○年○月○日<br>
+委任者住所：<br>
+委任者氏名：<br>
+委任者生年月日：<br>
+代理人：行政書士○○　事務所所在地
+</div></aside>
+<p>実際には自治体所定の委任状があれば、その様式を優先します。「戸籍一式」「必要なものすべて」とだけ書くと、対象が不明確として補正を求められる場合があります。対象者、本籍、筆頭者、証明書種別、必要範囲を可能な限り具体的に書きます。</p>
+
+<h2 id="b-2-郵送請求書の記載">B-2　郵送請求書の記載<a class="anchor" href="#b-2-郵送請求書の記載">#</a></h2>
+<p>郵送請求書には、請求者・代理人の情報、対象戸籍、本籍、筆頭者、必要通数、請求理由、昼間連絡先を記載します。出生から死亡までの連続戸籍を求める場合は、「対象者○○について、出生から死亡まで連続する戸籍、除籍、改製原戸籍を各1通」と明記します。</p>
+<p>ただし、家系調査では一度の請求で前戸籍がすべて判明するとは限りません。最初の戸籍を取得し、その記載から次の本籍を確認して追加請求する方式が基本です。現在戸籍の本籍だけを手掛かりに、別自治体の旧戸籍まで一括して請求することはできません。</p>
+
+<h2 id="b-3-親族関係を示す資料">B-3　親族関係を示す資料<a class="anchor" href="#b-3-親族関係を示す資料">#</a></h2>
+<p>請求先自治体が、請求者と対象者の直系関係を保有する戸籍だけでは確認できない場合、関係が分かる戸籍の写しを添付します。例えば、依頼者が母方祖父の戸籍を請求する場合、依頼者の戸籍、母の婚姻前戸籍など、依頼者から祖父までつながる資料が必要になることがあります。</p>
+<p>添付した戸籍写しには、必要な関係がどこに記載されているか付箋や別紙で説明すると、自治体の確認が円滑です。ただし、原本へ直接書き込まないようにします。</p>
+
+<h2 id="b-4-返信先">B-4　返信先<a class="anchor" href="#b-4-返信先">#</a></h2>
+<p>郵送請求の返送先は、請求者本人の住民登録地または代理人の事務所所在地などに限定される場合があります。単に依頼者の勤務先、第三者の住所、私書箱を指定できるとは限りません。行政書士事務所へ返送してもらう場合は、行政書士証票、事務所所在地を確認できる資料等を求められることがあります。</p>
+
+<h2 id="b-5-手数料不足">B-5　手数料不足<a class="anchor" href="#b-5-手数料不足">#</a></h2>
+<p>除籍・改製原戸籍が複数通に分かれ、同封した定額小為替が不足することがあります。自治体から連絡を受けたら、追加送付方法を確認します。余分に同封した場合のおつりを定額小為替で返す自治体、切手で返す自治体、返金しない取扱いなどがあり得るため、事前確認します。</p>
+
+<h1 id="増補編-c-戸籍読解の実務例">増補編C　戸籍読解の実務例<a class="anchor" href="#増補編-c-戸籍読解の実務例">#</a></h1>
+<h2 id="c-1-婚姻前戸籍を追う例">C-1　婚姻前戸籍を追う例<a class="anchor" href="#c-1-婚姻前戸籍を追う例">#</a></h2>
+<p>現在戸籍に、母について「平成10年5月1日、○○と婚姻、○○県○○市○番地、筆頭者△△の戸籍から入籍」と記載されている場合、母の出生系統を調べるには、その従前戸籍を請求します。取得した婚姻前戸籍で母の父母と出生事項を確認し、さらに母方祖父母の前戸籍へ遡ります。</p>
+<p>婚姻事項の本籍・筆頭者は、次の請求先を特定する重要情報です。転記時に地番、字名、旧字体を省略すると請求先が戸籍を特定できないことがあるため、戸籍どおりに控えます。</p>
+
+<h2 id="c-2-転籍が繰り返されている例">C-2　転籍が繰り返されている例<a class="anchor" href="#c-2-転籍が繰り返されている例">#</a></h2>
+<p>現在戸籍に転籍前の本籍が記載されている場合、転籍前戸籍を取得します。その戸籍にもさらに転籍事項があれば、もう一つ前を請求します。転籍後戸籍には、転籍前に除籍された兄弟姉妹や過去の身分事項が移記されないことがあるため、各転籍前戸籍を省略しません。</p>
+
+<h2 id="c-3-改製原戸籍の例">C-3　改製原戸籍の例<a class="anchor" href="#c-3-改製原戸籍の例">#</a></h2>
+<p>コンピュータ化後の戸籍に子が二人しか記載されていなくても、改製原戸籍には、改製前に婚姻して除籍された子が記載されている場合があります。兄弟姉妹を含む家族構成を調べる場合は、現在戸籍だけで人数を確定しません。</p>
+
+<h2 id="c-4-養子縁組の例">C-4　養子縁組の例<a class="anchor" href="#c-4-養子縁組の例">#</a></h2>
+<p>戸籍に養子縁組事項がある場合、養親との法的親子関係と実父母との関係を分けて整理します。普通養子縁組では、一般に実親との親族関係も残ります。特別養子縁組では取扱いが異なります。家系図の目的が「戸籍上の家の継承」なのか「出生上の系統」なのかにより表示を変えます。</p>
+<p>行政書士が家族から「養子の事実は載せないでほしい」と言われた場合、内部調査記録は正確に保ちつつ、配布版の表示方法を依頼者と決めます。法的手続用の資料では事実を省略できない場合があります。</p>
+
+<h2 id="c-5-同姓同名">C-5　同姓同名<a class="anchor" href="#c-5-同姓同名">#</a></h2>
+<p>同じ地域に同姓同名の人物がいる場合、生年月日、配偶者、父母、職業、住所、届出人を照合します。墓碑や郷土資料の人物を戸籍人物と結び付ける際も、名前が同じだけでは足りません。確認要素を調査報告書へ書きます。</p>
+
+<h2 id="c-6-戸籍の誤記が疑われる場合">C-6　戸籍の誤記が疑われる場合<a class="anchor" href="#c-6-戸籍の誤記が疑われる場合">#</a></h2>
+<p>複数戸籍で生年月日や氏名の文字が異なる場合、どちらかを勝手に訂正しません。戸籍訂正には別の法的手続が必要となることがあります。家系図には、現在の戸籍表記を採用したこと、旧戸籍では異なる表記があることを注記します。</p>
+
+<h1 id="増補編-d-成果物の詳細仕様">増補編D　成果物の詳細仕様<a class="anchor" href="#増補編-d-成果物の詳細仕様">#</a></h1>
+<h2 id="d-1-簡易家系図">D-1　簡易家系図<a class="anchor" href="#d-1-簡易家系図">#</a></h2>
+<p>A4またはA3一枚で、氏名、生没年、婚姻関係、親子関係を表示します。親族へ配りやすい一方、根拠資料や詳細事項をすべて載せることはできません。別紙の人物一覧と組み合わせます。</p>
+
+<h2 id="d-2-詳細家系図">D-2　詳細家系図<a class="anchor" href="#d-2-詳細家系図">#</a></h2>
+<p>人物ごとに生年月日、死亡年月日、婚姻日、本籍、職業、注記、根拠資料番号を記載します。情報量が多いため、A2、長尺、複数ページ、デジタル閲覧形式などを検討します。</p>
+
+<h2 id="d-3-家系図冊子">D-3　家系図冊子<a class="anchor" href="#d-3-家系図冊子">#</a></h2>
+<p>表紙、調査概要、家系図、人物紹介、戸籍用語解説、地域史、写真、資料一覧をまとめます。写真や古文書を掲載する場合は、所有者、撮影者、著作権、肖像権、寺院等の許可を確認します。</p>
+
+<h2 id="d-4-人物台帳">D-4　人物台帳<a class="anchor" href="#d-4-人物台帳">#</a></h2>
+<div class="table-wrap"><table><thead><tr><th>項目</th><th>記載内容</th></tr></thead><tbody>
+<tr><td>人物番号</td><td>P001から連番</td></tr>
+<tr><td>戸籍上の氏名</td><td>旧字体を含め原資料どおり</td></tr>
+<tr><td>表示名</td><td>家系図で使用する表記</td></tr>
+<tr><td>父母</td><td>人物番号で紐付け</td></tr>
+<tr><td>配偶者</td><td>婚姻ごとに記録</td></tr>
+<tr><td>出生・死亡</td><td>年月日、場所、根拠番号</td></tr>
+<tr><td>身分事項</td><td>婚姻、離婚、養子、認知等</td></tr>
+<tr><td>資料</td><td>戸籍番号、墓碑、写真等</td></tr>
+<tr><td>公開区分</td><td>完全版のみ、配布可、非公開</td></tr>
+</tbody></table></div>
+
+<h2 id="d-5-戸籍台帳">D-5　戸籍台帳<a class="anchor" href="#d-5-戸籍台帳">#</a></h2>
+<div class="table-wrap"><table><thead><tr><th>項目</th><th>記載内容</th></tr></thead><tbody>
+<tr><td>戸籍番号</td><td>K001から連番</td></tr>
+<tr><td>種別</td><td>現在戸籍、除籍、改製原戸籍、附票</td></tr>
+<tr><td>本籍</td><td>原資料どおり</td></tr>
+<tr><td>筆頭者・戸主</td><td>氏名</td></tr>
+<tr><td>編製・改製・除籍</td><td>年月日</td></tr>
+<tr><td>請求先</td><td>自治体名</td></tr>
+<tr><td>取得日</td><td>交付日・受領日</td></tr>
+<tr><td>掲載人物</td><td>人物番号一覧</td></tr>
+<tr><td>次の調査</td><td>前戸籍の本籍等</td></tr>
+</tbody></table></div>
+
+<h2 id="d-6-調査報告書の書き方">D-6　調査報告書の書き方<a class="anchor" href="#d-6-調査報告書の書き方">#</a></h2>
+<p>報告書は、家系図を見れば分かる内容を繰り返すだけでなく、調査の根拠と限界を説明します。どの人物から始め、どの戸籍へ遡り、どの時点で資料が途切れたかを時系列で書きます。</p>
+<aside class="note normal"><div class="note-title">報告文例</div><div class="note-body">
+依頼者本人の現在戸籍から父の出生戸籍へ遡り、父方祖父について明治○年編製の戸籍まで確認しました。それ以前の戸籍については、請求先自治体から廃棄済みとの回答があり、公的戸籍による追加確認はできませんでした。家族から伝えられた○○村出身との情報は、現存戸籍では確認できないため、家族伝承として別記しています。
+</div></aside>
+
+<h1 id="増補編-e-個人情報事故への備え">増補編E　個人情報事故への備え<a class="anchor" href="#増補編-e-個人情報事故への備え">#</a></h1>
+<h2 id="e-1-メール誤送信">E-1　メール誤送信<a class="anchor" href="#e-1-メール誤送信">#</a></h2>
+<p>戸籍PDFや家系図を誤送信した場合、直ちに送信先へ削除を依頼し、事務所責任者へ報告し、影響範囲を確認します。送信取消機能だけに頼らず、相手が開封・保存した可能性を検討します。必要に応じて依頼者、本人、個人情報保護委員会、所属会等への報告を判断します。</p>
+
+<h2 id="e-2-クラウド共有">E-2　クラウド共有<a class="anchor" href="#e-2-クラウド共有">#</a></h2>
+<p>「リンクを知っている全員が閲覧可」の設定を避け、指定アカウントのみ、期限付き、ダウンロード制限等を設定します。共有終了後は権限を削除します。検索エンジンに公開される設定になっていないか確認します。</p>
+
+<h2 id="e-3-生成aiの利用">E-3　生成AIの利用<a class="anchor" href="#e-3-生成aiの利用">#</a></h2>
+<p>戸籍全文、本人確認書類、家系図を、利用条件やデータ保持が不明な生成AIサービスへ入力しません。AIを使って旧字体を読み取る、文章を整理する場合も、氏名、本籍、生年月日等を匿名化し、事務所の利用ルールとサービスの法人向けデータ保護条件を確認します。</p>
+
+<h2 id="e-4-外注">E-4　外注<a class="anchor" href="#e-4-外注">#</a></h2>
+<p>デザイナー、印刷会社、入力作業者へ家系図データを渡す場合は、渡す情報を最小限にします。秘密保持、再委託禁止、保存期間、事故報告、業務終了後の削除を契約で定めます。デザインだけなら、実名を人物番号へ置き換えた仮データを利用する方法もあります。</p>
+
+<h2 id="e-5-紙資料の紛失">E-5　紙資料の紛失<a class="anchor" href="#e-5-紙資料の紛失">#</a></h2>
+<p>戸籍原本を持ち出す場合は、持出日、担当者、目的、返却日を記録します。公共交通機関、車内、飲食店に放置しません。郵送は追跡可能な方法を使い、封筒へ戸籍や家系図と分かる表記をしないようにします。</p>
+
+<h1 id="増補編-f-契約条項モデル">増補編F　契約条項モデル<a class="anchor" href="#増補編-f-契約条項モデル">#</a></h1>
+<h2 id="f-1-業務内容">F-1　業務内容<a class="anchor" href="#f-1-業務内容">#</a></h2>
+<aside class="note normal"><div class="note-title">条項例</div><div class="note-body">
+受任者は、委任者から提供された情報および適法に取得した戸籍その他の資料に基づき、別紙に定める人物を起点として、指定された系統および世代の親族関係を調査し、家系図ならびに調査報告書を作成する。
+</div></aside>
+
+<h2 id="f-2-調査範囲">F-2　調査範囲<a class="anchor" href="#f-2-調査範囲">#</a></h2>
+<aside class="note normal"><div class="note-title">条項例</div><div class="note-body">
+調査範囲は、依頼者本人を起点とする父方直系尊属について、現存する戸籍により確認できる範囲とする。母方、配偶者側、兄弟姉妹その他傍系親族の調査は含まれず、追加する場合は別途協議する。
+</div></aside>
+
+<h2 id="f-3-調査の限界">F-3　調査の限界<a class="anchor" href="#f-3-調査の限界">#</a></h2>
+<aside class="note normal"><div class="note-title">条項例</div><div class="note-body">
+受任者は、戸籍その他の資料の不存在、廃棄、滅失、判読不能、請求権の制限その他の事情により、希望する年代または人物まで調査できない場合があることを、委任者は了承する。受任者は特定の世代数、著名家系との関係その他特定結果を保証しない。
+</div></aside>
+
+<h2 id="f-4-個人情報">F-4　個人情報<a class="anchor" href="#f-4-個人情報">#</a></h2>
+<aside class="note normal"><div class="note-title">条項例</div><div class="note-body">
+受任者は、本業務の遂行に必要な範囲で戸籍その他の個人情報を取り扱い、本業務以外の目的に利用しない。成果物を第三者へ配布または公開する場合の存命者情報の取扱いは、委任者の責任において適切に行う。
+</div></aside>
+
+<h2 id="f-5-追加費用">F-5　追加費用<a class="anchor" href="#f-5-追加費用">#</a></h2>
+<aside class="note normal"><div class="note-title">条項例</div><div class="note-body">
+当初想定を超える転籍、婚姻、養子縁組、系統分岐その他の事情により追加の戸籍取得または調査が必要となった場合、受任者は追加作業の内容および費用を提示し、委任者の承諾を得た後に実施する。
+</div></aside>
+
+<h1 id="増補編-g-質問と回答">増補編G　質問と回答<a class="anchor" href="#増補編-g-質問と回答">#</a></h1>
+<h2 id="g-1-行政書士なら家系図目的で職務上請求できますか">G-1　行政書士なら家系図目的で職務上請求できますか<a class="anchor" href="#g-1-行政書士なら家系図目的で職務上請求できますか">#</a></h2>
+<p>行政書士であることだけを理由に自由に使用できません。受任した具体的業務に戸籍が必要であること、請求対象が必要範囲であること、所属会の規則に適合することが必要です。記念用家系図では本人請求または委任状代理を基本にします。</p>
+
+<h2 id="g-2-依頼者の兄弟の戸籍も取れますか">G-2　依頼者の兄弟の戸籍も取れますか<a class="anchor" href="#g-2-依頼者の兄弟の戸籍も取れますか">#</a></h2>
+<p>兄弟姉妹は直系ではありません。依頼者が当然に自由請求できるとは限らず、委任状、第三者請求の具体的必要性、相続等の別の請求資格を確認します。</p>
+
+<h2 id="g-3-広域交付を行政書士が代理できますか">G-3　広域交付を行政書士が代理できますか<a class="anchor" href="#g-3-広域交付を行政書士が代理できますか">#</a></h2>
+<p>広域交付は代理人による請求ができません。依頼者本人が市区町村窓口で請求します。代理請求は従来どおり本籍地の自治体へ行います。</p>
+
+<h2 id="g-4-江戸時代まで調べられますか">G-4　江戸時代まで調べられますか<a class="anchor" href="#g-4-江戸時代まで調べられますか">#</a></h2>
+<p>戸籍制度は明治期に整備されたため、戸籍だけで江戸時代の親族関係を連続して証明することは通常困難です。宗門人別帳、過去帳、古文書、墓碑等の史料が残っている場合がありますが、別の歴史調査です。</p>
+
+<h2 id="g-5-家紋から先祖が分かりますか">G-5　家紋から先祖が分かりますか<a class="anchor" href="#g-5-家紋から先祖が分かりますか">#</a></h2>
+<p>家紋だけで血縁や特定家系を証明できません。同じ家紋を多数の家が使い、家紋が変化することもあります。家紋は補助資料として扱います。</p>
+
+<h2 id="g-6-戸籍に知らない子が載っていました">G-6　戸籍に知らない子が載っていました<a class="anchor" href="#g-6-戸籍に知らない子が載っていました">#</a></h2>
+<p>依頼者本人へ慎重に説明し、第三者へ無断で知らせません。家系図への掲載方法は目的に応じて決めます。相続関係に影響する場合は司法書士・弁護士等へ連携します。</p>
+
+<h2 id="g-7-戸籍を依頼者へ全部渡してよいですか">G-7　戸籍を依頼者へ全部渡してよいですか<a class="anchor" href="#g-7-戸籍を依頼者へ全部渡してよいですか">#</a></h2>
+<p>取得方法、受任目的、戸籍に含まれる第三者情報、契約内容を確認します。依頼者本人が請求権を持ち、委任状代理で取得した戸籍は通常納品対象になりますが、別業務の職務上請求で取得した資料を観賞用家系図へ無条件で転用・交付しません。</p>
+
+<h2 id="g-8-完成後に誤りが見つかったら">G-8　完成後に誤りが見つかったら<a class="anchor" href="#g-8-完成後に誤りが見つかったら">#</a></h2>
+<p>根拠戸籍へ戻り、入力ミスか資料自体の矛盾かを確認します。行政書士の転記ミスなら速やかに訂正し、配布済み成果物の回収・差替えを相談します。資料間の矛盾なら注記を追加します。</p>
+
+<h1 id="増補編-h-最終監査チェック">増補編H　最終監査チェック<a class="anchor" href="#増補編-h-最終監査チェック">#</a></h1>
+<div class="checks">
+<label><input type="checkbox"><span>全人物に人物番号がある</span></label>
+<label><input type="checkbox"><span>全戸籍に戸籍番号がある</span></label>
+<label><input type="checkbox"><span>すべての親子線に根拠戸籍がある</span></label>
+<label><input type="checkbox"><span>婚姻・離婚・再婚の線が正しい</span></label>
+<label><input type="checkbox"><span>実親子と養親子を区別した</span></label>
+<label><input type="checkbox"><span>旧姓と現在氏を区別した</span></label>
+<label><input type="checkbox"><span>生年月日と死亡年月日を照合した</span></label>
+<label><input type="checkbox"><span>推測・伝承を明示した</span></label>
+<label><input type="checkbox"><span>調査不能理由を記載した</span></label>
+<label><input type="checkbox"><span>存命者情報の公開範囲を確認した</span></label>
+<label><input type="checkbox"><span>依頼者提供資料と行政書士取得資料を分けた</span></label>
+<label><input type="checkbox"><span>職務上請求の利用目的と事件簿が一致する</span></label>
+<label><input type="checkbox"><span>戸籍原本の返却通数が一致する</span></label>
+<label><input type="checkbox"><span>納品データを別端末で開いて確認した</span></label>
+<label><input type="checkbox"><span>受領確認と実費精算を完了した</span></label>
+</div>
+
+<h1 id="増補編-i-標準スケジュールと進行管理">増補編I　標準スケジュールと進行管理<a class="anchor" href="#増補編-i-標準スケジュールと進行管理">#</a></h1>
+<h2 id="i-1-単一系統を調べる標準モデル">I-1　単一系統を調べる標準モデル<a class="anchor" href="#i-1-単一系統を調べる標準モデル">#</a></h2>
+<p>父方直系のみを調べる標準案件では、受任後すぐにすべての自治体へ請求するのではなく、現在戸籍から一つずつ前戸籍を確認します。前戸籍が同じ自治体にある場合は追加請求をまとめられることがありますが、記載を確認せずに推測で請求すると、本籍・筆頭者が違い返戻される可能性があります。</p>
+<ol>
+<li>1週目：相談、本人確認、契約、既存資料受領</li>
+<li>2週目：起点戸籍の請求、人物台帳の作成</li>
+<li>3週目：前戸籍の確認、除籍・改製原戸籍の追加請求</li>
+<li>4週目以降：自治体をまたぐ請求、戸籍読解、分岐確認</li>
+<li>戸籍収集後：家系図初稿、依頼者照会、調査報告書作成</li>
+<li>最終週：校正、公開版作成、原本返却、納品</li>
+</ol>
+<p>郵送請求は自治体の処理日数、休日、追加資料の照会、郵便事情に左右されます。納期は固定日だけで約束せず、「必要戸籍がすべて到着してから○営業日」など、調査資料の到着を基準に設定します。</p>
+
+<h2 id="i-2-複数系統の進行">I-2　複数系統の進行<a class="anchor" href="#i-2-複数系統の進行">#</a></h2>
+<p>父方・母方の双方、祖父母四系統、曾祖父母八系統を調べる場合は、系統ごとに案件枝番号を付けます。例えば、F1を父方祖父系、F2を父方祖母系、M1を母方祖父系、M2を母方祖母系とし、戸籍番号にも枝番号を含めます。こうすることで、同じ姓や同じ自治体が複数系統に現れても混同を防げます。</p>
+<p>各系統の進捗を「未請求」「請求中」「到着」「読解済み」「追加請求」「完了」「調査停止」に分けます。依頼者へ中間報告する場合も、世代数だけではなく、どの系統がどこまで進んでいるかを示します。</p>
+
+<h2 id="i-3-追加調査の承認">I-3　追加調査の承認<a class="anchor" href="#i-3-追加調査の承認">#</a></h2>
+<p>調査中に、予定外の転籍、養子縁組、再婚、複数の本籍、海外移住が判明することがあります。追加請求が基本料金を超える場合は、見つかった事実の概要、追加で必要な戸籍数、見込実費、追加報酬、納期への影響を依頼者へ示します。承認前に有料作業を進めません。</p>
+
+<h2 id="i-4-中間報告">I-4　中間報告<a class="anchor" href="#i-4-中間報告">#</a></h2>
+<aside class="note normal"><div class="note-title">中間報告文例</div><div class="note-body">
+現在、父方祖父の系統について、大正期の改製原戸籍まで確認できています。祖父の父について、婚姻前に別の本籍があることが判明したため、次に○○市へ除籍謄本を請求します。母方については、依頼者様からお預かりした戸籍だけでは婚姻前本籍が確認できないため、現在戸籍の追加取得が必要です。現時点で追加費用は発生しません。
+</div></aside>
+
+<h1 id="増補編-j-史料調査の進め方">増補編J　史料調査の進め方<a class="anchor" href="#増補編-j-史料調査の進め方">#</a></h1>
+<h2 id="j-1-戸籍調査と歴史調査の境界">J-1　戸籍調査と歴史調査の境界<a class="anchor" href="#j-1-戸籍調査と歴史調査の境界">#</a></h2>
+<p>戸籍を遡って明治期の人物まで確認した後、それ以前を調べるには、寺院過去帳、宗門人別帳、分限帳、村方文書、古文書、墓碑、郷土誌などを利用します。これらは戸籍のように全国統一の制度で保存されているものではなく、現存状況、閲覧条件、記載精度が異なります。</p>
+<p>歴史調査を追加する場合は、戸籍調査とは別の見積りにします。現地訪問、図書館・文書館への照会、古文書読解、翻刻、寺院への依頼など、必要な専門性と時間が異なるためです。</p>
+
+<h2 id="j-2-寺院への照会">J-2　寺院への照会<a class="anchor" href="#j-2-寺院への照会">#</a></h2>
+<p>寺院の過去帳は、檀家の死亡、戒名、俗名、没年月日等を記録した資料ですが、個人情報や宗教上の情報を含み、一般公開されているとは限りません。電話で突然閲覧を要求せず、依頼者と故人の関係、調査目的、希望する人物、分かっている墓地・戒名等を整理し、寺院の方針に従います。</p>
+<p>閲覧が認められても、全ページの撮影や第三者情報の転記は避け、対象人物に必要な範囲だけ確認します。冊子やウェブサイトへ掲載する場合は、寺院名、過去帳画像、記載内容の公開許可を別に確認します。</p>
+
+<h2 id="j-3-墓地調査">J-3　墓地調査<a class="anchor" href="#j-3-墓地調査">#</a></h2>
+<p>墓碑には、姓、戒名、没年月日、建立者、家紋等が記載されることがあります。墓地管理者の許可、他家の墓への配慮、撮影ルールを守ります。墓石の風化で読めない文字を画像補正して読む場合も、推定であることを記録します。</p>
+<p>墓碑の没年月日と戸籍が異なる場合、墓碑を誤りと断定せず、建立時の転記ミス、旧暦、供養日、俗名と戒名の混同などの可能性を示します。</p>
+
+<h2 id="j-4-公文書館と図書館">J-4　公文書館と図書館<a class="anchor" href="#j-4-公文書館と図書館">#</a></h2>
+<p>自治体史、旧村誌、地籍資料、学校史、商工名鑑、新聞縮刷版等から、人物の職業や地域での活動が分かる場合があります。閲覧資料の書名、編者、発行年、ページ、所蔵機関を記録し、家系図冊子に引用する場合は出典を明記します。</p>
+
+<h2 id="j-5-古文書の読解">J-5　古文書の読解<a class="anchor" href="#j-5-古文書の読解">#</a></h2>
+<p>くずし字、候文、旧地名、屋号の読解には専門知識が必要です。行政書士として戸籍が読めることと、古文書を正確に翻刻できることは別です。能力を超える資料は、古文書研究者、学芸員、地域史家等へ協力を依頼し、成果の責任範囲を明確にします。</p>
+
+<h1 id="増補編-k-家系図の表示ルール集">増補編K　家系図の表示ルール集<a class="anchor" href="#増補編-k-家系図の表示ルール集">#</a></h1>
+<h2 id="k-1-氏名表記">K-1　氏名表記<a class="anchor" href="#k-1-氏名表記">#</a></h2>
+<p>戸籍上の旧字体をそのまま使う完全版と、一般的な字体へ置き換えた閲覧版を分ける方法があります。置き換える場合は、人物台帳に原表記を残します。婚姻により氏が変わった人は、出生時氏、婚姻後氏、最終氏のどれを主表示にするかを統一します。</p>
+
+<h2 id="k-2-年月日">K-2　年月日<a class="anchor" href="#k-2-年月日">#</a></h2>
+<p>和暦のみ、西暦のみ、併記のいずれかを選びます。古い戸籍の内容を忠実に示す報告書では和暦を残し、一般向け家系図では西暦併記が読みやすくなります。年月日不明の場合は「明治○年頃」「年月日不詳」とし、空欄が入力漏れに見えないようにします。</p>
+
+<h2 id="k-3-婚姻と離婚">K-3　婚姻と離婚<a class="anchor" href="#k-3-婚姻と離婚">#</a></h2>
+<p>婚姻線、離婚記号、再婚順序のルールを凡例に示します。配布版で離婚表示を省略する場合も、子の親子関係が誤解されない配置にします。内縁関係は戸籍上の婚姻と区別し、本人の同意と根拠情報を確認します。</p>
+
+<h2 id="k-4-養子">K-4　養子<a class="anchor" href="#k-4-養子">#</a></h2>
+<p>養子縁組を破線、実親子を実線などで区別します。単に「養子」と大きく記載すると、配布先で不必要な注目を集める可能性があります。凡例だけで示す、完全版のみ表示するなど、目的に合わせます。</p>
+
+<h2 id="k-5-死亡と存命">K-5　死亡と存命<a class="anchor" href="#k-5-死亡と存命">#</a></h2>
+<p>死亡者には生没年、存命者には生年のみ、または情報を省略するルールを決めます。戸籍で死亡記載を確認できない高齢者を、年齢だけで死亡と推定しません。</p>
+
+<h2 id="k-6-不明人物">K-6　不明人物<a class="anchor" href="#k-6-不明人物">#</a></h2>
+<p>父母の一方が戸籍で確認できない、古い戸籍が廃棄されている、文字が判読できない場合は「不詳」「資料欠落」「判読不能」と明記します。空欄へ架空の人物や家族伝承の名前を確定表示しません。</p>
+
+<h2 id="k-7-凡例">K-7　凡例<a class="anchor" href="#k-7-凡例">#</a></h2>
+<p>家系図の隅に、実線、破線、婚姻線、離婚記号、推定表示、戸籍確認済み記号、存命者省略記号などを記載します。専門家には分かる記号でも、依頼者には意味が伝わらないことがあるため、文章でも説明します。</p>
+
+<h1 id="増補編-l-品質管理と校正">増補編L　品質管理と校正<a class="anchor" href="#増補編-l-品質管理と校正">#</a></h1>
+<h2 id="l-1-三段階校正">L-1　三段階校正<a class="anchor" href="#l-1-三段階校正">#</a></h2>
+<ol>
+<li>戸籍転記校正：人物台帳と戸籍原本を照合する</li>
+<li>関係校正：父母、配偶者、子の人物番号を照合する</li>
+<li>表示校正：家系図上の線、配置、氏名、日付を照合する</li>
+</ol>
+<p>同じ画面を見続けると誤りを見落とします。可能なら別担当者が確認し、一人事務所では日を空け、紙へ出力して確認します。</p>
+
+<h2 id="l-2-逆引き確認">L-2　逆引き確認<a class="anchor" href="#l-2-逆引き確認">#</a></h2>
+<p>戸籍から家系図へ転記する順方向確認だけでなく、完成した家系図の人物を一人ずつ選び、その氏名、生年月日、父母、配偶者がどの戸籍に基づくか逆引きします。根拠番号がない人物は、伝承または入力ミスの可能性があります。</p>
+
+<h2 id="l-3-重複人物">L-3　重複人物<a class="anchor" href="#l-3-重複人物">#</a></h2>
+<p>婚姻や養子縁組を複数戸籍から入力すると、同一人物を別人として二重登録することがあります。氏名だけでなく、生年月日、配偶者、父母、本籍を使って重複を確認します。人物番号は途中で再利用しません。</p>
+
+<h2 id="l-4-依頼者確認">L-4　依頼者確認<a class="anchor" href="#l-4-依頼者確認">#</a></h2>
+<p>依頼者へ初稿を見せる際は、「誤りがないか自由に見てください」だけでなく、確認してほしい項目を示します。氏名の読み方、写真の人物、家族内で使用する呼称、公開したくない情報、伝承事項を確認してもらいます。戸籍事実を家族の記憶だけで変更しません。</p>
+
+<h2 id="l-5-修正履歴">L-5　修正履歴<a class="anchor" href="#l-5-修正履歴">#</a></h2>
+<p>初稿、依頼者確認版、最終版を分け、修正日、修正者、修正内容、根拠を記録します。最終版完成後に新資料が見つかった場合は、上書きせず改訂版として管理します。</p>
+
+<h1 id="増補編-m-事務所用管理帳票">増補編M　事務所用管理帳票<a class="anchor" href="#増補編-m-事務所用管理帳票">#</a></h1>
+<h2 id="m-1-案件概要票">M-1　案件概要票<a class="anchor" href="#m-1-案件概要票">#</a></h2>
+<div class="checks">
+<label><input type="checkbox"><span>依頼者氏名・本人確認日</span></label>
+<label><input type="checkbox"><span>主目的</span></label>
+<label><input type="checkbox"><span>起点人物</span></label>
+<label><input type="checkbox"><span>調査系統</span></label>
+<label><input type="checkbox"><span>予定世代数</span></label>
+<label><input type="checkbox"><span>傍系調査の有無</span></label>
+<label><input type="checkbox"><span>戸籍取得方法</span></label>
+<label><input type="checkbox"><span>成果物</span></label>
+<label><input type="checkbox"><span>予定納期</span></label>
+<label><input type="checkbox"><span>報酬・実費預り金</span></label>
+</div>
+
+<h2 id="m-2-戸籍請求管理票">M-2　戸籍請求管理票<a class="anchor" href="#m-2-戸籍請求管理票">#</a></h2>
+<div class="table-wrap"><table><thead><tr><th>請求番号</th><th>自治体</th><th>本籍・筆頭者</th><th>方法</th><th>発送日</th><th>到着日</th><th>実費</th><th>結果</th></tr></thead><tbody>
+<tr><td>R001</td><td></td><td></td><td>委任状／本人／職務上</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>R002</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody></table></div>
+
+<h2 id="m-3-原本預り返却票">M-3　原本預り・返却票<a class="anchor" href="#m-3-原本預り返却票">#</a></h2>
+<p>資料名、通数、受領日、受領方法、保管場所、返却日、受領者を記録します。戸籍だけでなく、古い写真、過去帳の写し、手紙、家系図原本など、代替困難な資料を預かる場合は一件ずつ記載します。</p>
+
+<h2 id="m-4-廃棄記録">M-4　廃棄記録<a class="anchor" href="#m-4-廃棄記録">#</a></h2>
+<p>保存期間経過後、紙は溶解処理または細断、電子データは復元困難な方法で削除します。廃棄対象、廃棄日、方法、担当者を記録します。クラウドのごみ箱、バックアップ、共有先にもデータが残っていないか確認します。</p>
+
+<h1 id="増補編-n-実務上の注意事項総まとめ">増補編N　実務上の注意事項総まとめ<a class="anchor" href="#増補編-n-実務上の注意事項総まとめ">#</a></h1>
+<h2 id="n-1-戸籍に書かれていることと書かれていないこと">N-1　戸籍に書かれていることと書かれていないこと<a class="anchor" href="#n-1-戸籍に書かれていることと書かれていないこと">#</a></h2>
+<p>戸籍には、法律上の身分関係を公証するための事項が記載されます。人物の性格、家族内での呼び名、職歴、財産、宗教、日常の居住実態、家族間の感情、事実上の扶養関係などは、通常の戸籍からは分かりません。家系図冊子で人物紹介を作る場合は、戸籍上の事実と家族からの聞き取りを混ぜず、情報源を分けて記載します。</p>
+<p>出生地と本籍は同じとは限らず、本籍と住所も別の概念です。戸籍に記載された本籍を、その人物が実際に長期間居住した場所と断定しません。居住地を調べるには戸籍の附票、住民票、住所資料、家族の証言等を確認します。</p>
+
+<h2 id="n-2-戸籍用語を依頼者へ説明する">N-2　戸籍用語を依頼者へ説明する<a class="anchor" href="#n-2-戸籍用語を依頼者へ説明する">#</a></h2>
+<p>依頼者は、筆頭者を家族の代表者や世帯主だと誤解することがあります。筆頭者は戸籍の表示上先頭に記載される人であり、住民票上の世帯主や家族内の権限を示すものではありません。筆頭者が死亡しても戸籍の表示は通常そのままです。</p>
+<p>除籍という言葉も、「家族から排除された」という意味ではありません。婚姻、死亡、転籍などにより戸籍から除かれた状態を示します。改製原戸籍は、偽物や原本の控えという意味ではなく、制度改正前の戸籍です。納品時に用語解説を付けると誤解を防げます。</p>
+
+<h2 id="n-3-相続人調査へ発展した場合">N-3　相続人調査へ発展した場合<a class="anchor" href="#n-3-相続人調査へ発展した場合">#</a></h2>
+<p>家系図調査中に、未了の相続、名義変更されていない不動産、連絡を取っていない相続人が判明することがあります。依頼者が相続手続も希望する場合は、記念用家系図業務とは別に受任内容を整理します。被相続人の出生から死亡までの戸籍、相続人の現在戸籍、住所証明等、必要資料が変わります。</p>
+<p>遺産分割に対立がある場合、行政書士が当事者間の法律紛争を代理することはできません。相続登記は司法書士、紛争対応は弁護士、相続税は税理士へつなぎます。家系図上の人物関係が判明したことと、その人が実際に相続権を有するか、相続放棄しているか、廃除されているかは別の確認です。</p>
+
+<h2 id="n-4-外国籍や帰化が関係する場合">N-4　外国籍や帰化が関係する場合<a class="anchor" href="#n-4-外国籍や帰化が関係する場合">#</a></h2>
+<p>日本の戸籍は原則として日本国民について編製されます。外国籍の配偶者は、日本人配偶者の戸籍に身分事項として記載されても、その外国人自身の日本戸籍が作られるわけではありません。外国籍の祖先を遡るには、本国の出生証明、婚姻証明、家族登録等が必要になることがあります。</p>
+<p>帰化した人物について、帰化前の家族関係を調べる場合は、日本戸籍だけでは連続しないことがあります。外国資料の取得権限、翻訳、認証、個人情報保護、現地専門家への依頼を別途検討します。</p>
+
+<h2 id="n-5-依頼者が公開したいと言った場合">N-5　依頼者が公開したいと言った場合<a class="anchor" href="#n-5-依頼者が公開したいと言った場合">#</a></h2>
+<p>ウェブサイト、SNS、書籍、地域展示へ家系図を公開する場合、納品用完全版をそのまま公開しません。存命者の氏名、生年月日、婚姻歴、養子関係、住所、本籍を削除または限定し、公開に必要な情報だけにします。故人の情報であっても、存命親族のプライバシーに影響する場合があります。</p>
+<p>写真、新聞記事、古文書画像、寺院資料、自治体史の転載には、著作権や所蔵機関の利用条件があります。資料を閲覧できたことと、ウェブ公開できることは別です。公開版の作成は別工程として受任し、掲載許可を確認します。</p>
+
+<h2 id="n-6-広告表現">N-6　広告表現<a class="anchor" href="#n-6-広告表現">#</a></h2>
+<p>「戸籍を自由に取得できます」「必ず10代前まで分かります」「あなたが有名武将の子孫か証明します」「行政書士だけが家系図を作れます」といった断定的な広告は避けます。請求権、資料保存、調査範囲に限界があり、観賞用家系図が行政書士の独占業務であると一律に説明することも適切ではありません。</p>
+<p>広告では、戸籍に基づく親族関係整理、適法な取得方法、調査できない場合があること、報酬と実費、個人情報保護を明示します。依頼者の実績例を掲載する場合は、氏名や家系が特定されない加工と同意を徹底します。</p>
+
+<h2 id="n-7-完了後の問い合わせ">N-7　完了後の問い合わせ<a class="anchor" href="#n-7-完了後の問い合わせ">#</a></h2>
+<p>納品後に新しい戸籍や写真が見つかった場合、無料修正の範囲と追加調査の範囲を決めておきます。行政書士の転記ミスは訂正し、依頼者が後から追加した資料による増補は別料金とするなど、契約時に基準を設けます。</p>
+<p>家系図は、婚姻、出生、死亡により更新されます。継続管理サービスを行う場合は、更新依頼者の本人確認、存命者情報の提供権限、旧版の廃棄、版番号を管理します。</p>
+
+<h2 id="n-8-最終的な判断原則">N-8　最終的な判断原則<a class="anchor" href="#n-8-最終的な判断原則">#</a></h2>
+<ul>
+<li>目的が不明な戸籍は請求しない</li>
+<li>必要範囲を超える戸籍は取得しない</li>
+<li>取れない戸籍を職務上請求で無理に取ろうとしない</li>
+<li>読めない文字を推測で確定しない</li>
+<li>戸籍上の事実と家族伝承を混ぜない</li>
+<li>依頼者以外の親族へ無断で開示しない</li>
+<li>能力を超える歴史調査をできると約束しない</li>
+<li>紛争、登記、税務は適切な専門家へつなぐ</li>
+<li>成果物よりも根拠資料と調査記録を重視する</li>
+<li>家系図は個人情報の集合体であることを常に意識する</li>
+</ul>
+<h1 id="参考となる公的確認先">参考となる公的確認先<a class="anchor" href="#参考となる公的確認先">#</a></h1><ul><li>法務省　戸籍証明書の請求・戸籍制度に関する案内</li><li>法務省　戸籍証明書等の広域交付に関する案内</li><li>e-Gov法令検索　戸籍法・行政書士法・個人情報保護法</li><li>日本行政書士会連合会　職務上請求書・家系図関連の注意喚起</li><li>各市区町村　戸籍・除籍・改製原戸籍・附票の請求案内</li></ul><aside class="note normal"><div class="note-title">最終確認</div><div class="note-body">戸籍請求の必要書類、手数料、委任状様式、返送先、本人確認方法は自治体ごとに異なり、制度改正もあります。実際の請求前に、請求先自治体と所属行政書士会の最新情報を確認してください。</div></aside></main>
+</div>
+<button class="back" onclick="location.href='#top'">↑</button>
+<script>
+document.querySelectorAll('.checks input').forEach((box,i)=>{
+ const k='kakeizu-guide-'+i; box.checked=localStorage.getItem(k)==='1';
+ box.addEventListener('change',()=>localStorage.setItem(k,box.checked?'1':'0'));
+});
+</script>
+</body></html>
