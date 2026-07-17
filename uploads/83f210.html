@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>動画からマニュアル生成ツール</title>
+    <!-- Tailwind CSSの読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- アイコンライブラリ(Lucide)の読み込み -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ローディング用のアニメーション */
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .animate-shimmer {
+            animation: shimmer 2s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col print:bg-white">
+
+    <!-- ヘッダー -->
+    <header class="bg-white border-b border-slate-200 px-6 py-3 flex items-center justify-between sticky top-0 z-10 print:hidden">
+        <div class="flex items-center gap-2 text-blue-600 font-bold text-xl cursor-pointer" onclick="resetApp()">
+            <i data-lucide="video" class="w-6 h-6"></i>
+            <span>AutoManual AI</span>
+        </div>
+        
+        <div id="header-actions" class="hidden items-center gap-3">
+            <button onclick="handleHTMLOutput()" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">
+                <i data-lucide="file-down" class="w-4 h-4"></i>
+                HTML出力
+            </button>
+            <button onclick="handlePDFOutput()" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm">
+                <i data-lucide="file-text" class="w-4 h-4"></i>
+                PDF出力
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 flex flex-col items-center p-6 print:p-0 print:block">
+        
+        <!-- === アップロード画面 === -->
+        <div id="screen-upload" class="flex-1 w-full max-w-4xl flex flex-col items-center justify-center pt-20">
+            <h1 class="text-3xl font-bold mb-4 text-slate-900">動画からマニュアルを自動生成</h1>
+            <p class="text-slate-500 mb-10 text-center max-w-xl">
+                操作手順を録画した動画をアップロードするだけで、AIが動画を解析し、ステップごとの画像と説明文付きのマニュアルを自動作成します。
+            </p>
+
+            <div id="drop-zone" class="w-full max-w-2xl bg-white border-2 border-dashed border-slate-300 rounded-2xl p-16 flex flex-col items-center justify-center text-center hover:border-blue-500 hover:bg-blue-50/50 transition-all cursor-pointer relative shadow-sm">
+                <!-- ファイル選択input (透明化して重ねる) -->
+                <input type="file" id="file-input" accept="video/mp4,video/webm" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-6">
+                    <i data-lucide="video" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">クリックまたはドラッグ＆ドロップで動画を選択</h3>
+                <p class="text-slate-400 text-sm">MP4, WebM (最大推奨 5分程度)</p>
+            </div>
+        </div>
+
+        <!-- === 解析中画面 === -->
+        <div id="screen-processing" class="hidden flex-1 w-full flex flex-col items-center justify-center pt-32">
+            <div class="bg-white p-12 rounded-3xl shadow-xl border border-slate-100 flex flex-col items-center w-full max-w-lg transition-all">
+                <i data-lucide="loader-2" class="w-14 h-14 text-blue-600 animate-spin mb-6"></i>
+                <h2 class="text-2xl font-bold mb-4 text-slate-800">動画を解析中...</h2>
+                <p id="processing-msg" class="text-slate-600 font-medium mb-10 text-center h-6"></p>
+                
+                <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden shadow-inner">
+                    <div id="progress-bar" class="bg-blue-600 h-3 rounded-full transition-all duration-300 ease-out relative overflow-hidden" style="width: 0%">
+                        <div class="absolute inset-0 bg-white/20 animate-shimmer -skew-x-12"></div>
+                    </div>
+                </div>
+                <div id="progress-text" class="w-full text-right text-sm font-semibold text-slate-400 mt-3">0%</div>
+            </div>
+        </div>
+
+        <!-- === 編集画面 === -->
+        <div id="screen-edit" class="hidden w-full max-w-5xl mx-auto flex gap-8 items-start print:max-w-none print:m-0 pb-20">
+            <div class="flex-1 flex flex-col gap-8 print:w-full max-w-4xl mx-auto mt-6">
+                
+                <!-- マニュアルタイトルと概要 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 print:shadow-none print:border-none print:p-0">
+                    <h1 class="text-2xl font-bold mb-2 text-slate-900">マニュアル編集</h1>
+                    <p class="text-slate-500 text-sm">自動生成された内容を確認し、必要に応じて修正してください。</p>
+                </div>
+
+                <!-- 印刷用ヘッダー -->
+                <div class="hidden print:block mb-8 border-b pb-4">
+                    <h1 class="text-3xl font-bold mb-2">操作マニュアル</h1>
+                    <p id="print-date" class="text-slate-500 text-sm"></p>
+                </div>
+
+                <!-- ステップリストのコンテナ -->
+                <div id="steps-container"></div>
+
+                <!-- ステップ追加ボタン -->
+                <div class="flex justify-center mt-4">
+                    <button onclick="openAddModal()" class="py-3 px-6 bg-white border border-slate-300 rounded-full text-slate-600 font-medium hover:border-blue-500 hover:text-blue-600 hover:shadow-md transition-all flex items-center justify-center gap-2 print:hidden shadow-sm">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                        新しいステップを追加
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- === フレーム切り出しモーダル === -->
+    <div id="modal-add-step" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 print:hidden">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-4xl overflow-hidden flex flex-col">
+            <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+                <h3 class="font-bold text-lg flex items-center gap-2">
+                    <i data-lucide="video" class="w-5 h-5 text-blue-600"></i>
+                    動画からフレームを切り出し
+                </h3>
+                <button onclick="closeAddModal()" class="p-2 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-200 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 bg-slate-900 flex justify-center items-center">
+                <video id="modal-video" controls class="max-h-[60vh] rounded shadow-lg bg-black" crossorigin="anonymous"></video>
+            </div>
+            
+            <div class="px-6 py-4 border-t border-slate-100 flex items-center justify-between bg-slate-50">
+                <p class="text-sm text-slate-500">
+                    動画を再生・シークして、画像にしたい場面で一時停止してください。
+                </p>
+                <div class="flex gap-3">
+                    <button onclick="closeAddModal()" class="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">
+                        キャンセル
+                    </button>
+                    <button onclick="captureFrame()" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-sm">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        このフレームを使用
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript ロジック -->
+    <script>
+        // --- 状態管理 ---
+        let state = {
+            appState: 'upload', // 'upload', 'processing', 'edit'
+            file: null,
+            steps: [],
+            progress: 0,
+            processingMsg: '',
+            videoUrl: null
+        };
+
+        let progressInterval;
+
+        // アイコンの初期化
+        lucide.createIcons();
+
+        // DOM要素の取得
+        const screens = {
+            upload: document.getElementById('screen-upload'),
+            processing: document.getElementById('screen-processing'),
+            edit: document.getElementById('screen-edit')
+        };
+        const headerActions = document.getElementById('header-actions');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const processingMsgEl = document.getElementById('processing-msg');
+        const stepsContainer = document.getElementById('steps-container');
+        const modal = document.getElementById('modal-add-step');
+        const modalVideo = document.getElementById('modal-video');
+        const printDate = document.getElementById('print-date');
+
+        // --- UIの描画関数 ---
+        function render() {
+            // 画面の切り替え
+            Object.keys(screens).forEach(key => {
+                if (key === state.appState) {
+                    screens[key].classList.remove('hidden');
+                    if(key === 'edit') screens[key].classList.add('flex');
+                } else {
+                    screens[key].classList.add('hidden');
+                    screens[key].classList.remove('flex');
+                }
+            });
+
+            // ヘッダーボタンの表示制御
+            if (state.appState === 'edit') {
+                headerActions.classList.remove('hidden');
+                headerActions.classList.add('flex');
+                printDate.textContent = `自動生成日: ${new Date().toLocaleDateString()}`;
+            } else {
+                headerActions.classList.add('hidden');
+                headerActions.classList.remove('flex');
+            }
+
+            // 解析中の進捗表示
+            if (state.appState === 'processing') {
+                progressBar.style.width = `${state.progress}%`;
+                progressText.textContent = `${Math.round(state.progress)}%`;
+                processingMsgEl.textContent = state.processingMsg;
+            }
+
+            // 編集画面のステップ一覧描画
+            if (state.appState === 'edit') {
+                renderSteps();
+            }
+        }
+
+        function renderSteps() {
+            stepsContainer.innerHTML = ''; // 一旦クリア
+            state.steps.forEach((step, index) => {
+                const stepEl = document.createElement('div');
+                stepEl.className = "bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md print:shadow-none print:border-b print:rounded-none print:pb-8 print:mb-8 print:break-inside-avoid mb-8";
+                
+                stepEl.innerHTML = `
+                    <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">
+                                ${index + 1}
+                            </span>
+                            <h3 class="font-bold text-slate-800">操作手順 ${index + 1}</h3>
+                        </div>
+                        <div class="flex gap-2 print:hidden">
+                            <button onclick="deleteStep(${step.id})" class="text-slate-400 hover:text-red-500 transition-colors p-2 rounded-lg hover:bg-red-50" title="削除">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row p-6 gap-6">
+                        <div class="md:w-1/2 bg-slate-100 flex items-center justify-center rounded-xl overflow-hidden border border-slate-200 print:border-none print:bg-white print:w-1/2">
+                            <img src="${step.image}" alt="手順 ${index + 1}" class="w-full h-auto object-cover" />
+                        </div>
+                        <div class="md:w-1/2 flex flex-col print:w-1/2">
+                            <textarea oninput="updateStepText(${step.id}, this.value)" class="flex-1 w-full resize-none border border-transparent hover:border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 rounded-xl p-4 text-slate-700 transition-all bg-slate-50 hover:bg-white focus:bg-white print:bg-white print:p-0 print:border-none leading-relaxed text-sm" rows="6" placeholder="この手順の説明を入力してください...">${step.text}</textarea>
+                        </div>
+                    </div>
+                `;
+                stepsContainer.appendChild(stepEl);
+            });
+            // 動的に追加したHTMLに対してアイコンを再生成
+            lucide.createIcons(); 
+        }
+
+        // --- 動画処理ロジック ---
+        const extractFrames = async (selectedFile) => {
+            return new Promise((resolve, reject) => {
+                const video = document.createElement('video');
+                video.src = URL.createObjectURL(selectedFile);
+                video.crossOrigin = 'anonymous';
+                video.muted = true;
+
+                video.onloadedmetadata = async () => {
+                    const duration = video.duration;
+                    const frames = [];
+                    // 10%, 50%, 90% の時間位置
+                    const times = [duration * 0.1, duration * 0.5, duration * 0.9]; 
+
+                    for (let i = 0; i < times.length; i++) {
+                        video.currentTime = times[i];
+                        await new Promise(r => { 
+                            video.onseeked = r;
+                            setTimeout(r, 1000); // フォールバック
+                        }); 
+                        
+                        const canvas = document.createElement('canvas');
+                        canvas.width = video.videoWidth || 1280;
+                        canvas.height = video.videoHeight || 720;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                        // JPEG形式のBase64画像として保存
+                        frames.push(canvas.toDataURL('image/jpeg', 0.7));
+                    }
+                    resolve(frames);
+                };
+
+                video.onerror = () => reject(new Error("動画の読み込みに失敗しました"));
+            });
+        };
+
+        const generateDummyText = (index) => {
+            const texts = [
+                "最初に、操作画面のメインメニューから読み込みたい書類をアップロードします。画面中央にある点線の枠内にファイルをドラッグ＆ドロップするか、クリックしてファイルを選択してください。",
+                "書類が画面に表示されたら、右側のサイドパネルにある青いボタンをクリックします。これにより、AIが書類の中から該当項目を自動的に探し出します。解析中は進捗状況が表示されるので、そのまま待機してください。",
+                "解析が終わると「完了」という通知画面が出てくるので、右下の「OK」ボタンを押して進みます。この操作により、AIが見つけた各項目がリスト化され、確認できるようになります。"
+            ];
+            return texts[index % texts.length];
+        };
+
+        // --- イベントハンドラー ---
+        async function handleFileUpload(selectedFile) {
+            if (!selectedFile || !selectedFile.type.startsWith('video/')) {
+                alert('有効な動画ファイル（MP4, WebMなど）を選択してください。');
+                return;
+            }
+
+            state.file = selectedFile;
+            state.appState = 'processing';
+            state.progress = 0;
+            state.processingMsg = '動画から解析用フレームを抽出中...';
+            render();
+
+            // 解析進捗のダミーアニメーション
+            let currentProgress = 0;
+            progressInterval = setInterval(() => {
+                currentProgress += Math.random() * 5 + 2;
+                if (currentProgress > 40 && currentProgress < 45) {
+                    state.processingMsg = 'AIが動画全体の流れから手順と説明文を解析中...';
+                }
+                if (currentProgress > 80 && currentProgress < 85) {
+                    state.processingMsg = 'マニュアル作成完了！';
+                }
+                if (currentProgress >= 90) currentProgress = 90;
+                
+                state.progress = currentProgress;
+                render();
+            }, 400);
+
+            try {
+                // 実際に動画から画像を抽出
+                const frames = await extractFrames(selectedFile);
+                const initialSteps = frames.map((frame, index) => ({
+                    id: Date.now() + index,
+                    image: frame,
+                    text: generateDummyText(index)
+                }));
+                
+                clearInterval(progressInterval);
+                state.progress = 100;
+                state.processingMsg = 'マニュアル作成完了！';
+                render();
+                
+                setTimeout(() => {
+                    state.steps = initialSteps;
+                    state.appState = 'edit';
+                    render();
+                }, 800);
+
+            } catch (err) {
+                console.error(err);
+                clearInterval(progressInterval);
+                alert("動画の解析に失敗しました。ダミーデータを読み込みます。");
+                
+                // エラー時のダミー画像生成
+                const createPlaceholder = (text) => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 800; canvas.height = 450;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#f1f5f9'; ctx.fillRect(0,0,800,450);
+                    ctx.fillStyle = '#94a3b8'; ctx.font = '30px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                    ctx.fillText(text, 400, 225);
+                    return canvas.toDataURL('image/jpeg', 0.8);
+                };
+
+                state.steps = [
+                    { id: 1, image: createPlaceholder('Frame 1'), text: generateDummyText(0) },
+                    { id: 2, image: createPlaceholder('Frame 2'), text: generateDummyText(1) }
+                ];
+                state.appState = 'edit';
+                render();
+            }
+        }
+
+        // ドラッグ＆ドロップのイベントリスナー登録
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+
+        fileInput.addEventListener('change', (e) => {
+            if(e.target.files.length > 0) handleFileUpload(e.target.files[0]);
+        });
+        
+        dropZone.addEventListener('dragover', (e) => e.preventDefault());
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            if(e.dataTransfer.files.length > 0) handleFileUpload(e.dataTransfer.files[0]);
+        });
+
+        // --- ステップ操作 ---
+        function updateStepText(id, newText) {
+            const step = state.steps.find(s => s.id === id);
+            if (step) step.text = newText;
+        }
+
+        function deleteStep(id) {
+            state.steps = state.steps.filter(s => s.id !== id);
+            render();
+        }
+
+        // --- モーダル（動画からキャプチャ）操作 ---
+        function openAddModal() {
+            if (state.file) {
+                if (state.videoUrl) URL.revokeObjectURL(state.videoUrl);
+                state.videoUrl = URL.createObjectURL(state.file);
+                modalVideo.src = state.videoUrl;
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function closeAddModal() {
+            modal.classList.add('hidden');
+            modalVideo.pause();
+        }
+
+        function captureFrame() {
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = modalVideo.videoWidth || 1280;
+                canvas.height = modalVideo.videoHeight || 720;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(modalVideo, 0, 0, canvas.width, canvas.height);
+                const frameData = canvas.toDataURL('image/jpeg', 0.8);
+                
+                state.steps.push({
+                    id: Date.now(),
+                    image: frameData,
+                    text: ""
+                });
+                closeAddModal();
+                render();
+            } catch (err) {
+                alert("フレームの切り出しに失敗しました。");
+                console.error(err);
+            }
+        }
+
+        // --- エクスポート機能 ---
+        function handleHTMLOutput() {
+            let htmlContent = `<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>操作マニュアル</title>
+  <style>
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 40px 20px; background-color: #f8fafc; }
+    h1 { text-align: center; color: #0f172a; margin-bottom: 40px; }
+    .step-container { background: #fff; border-radius: 12px; padding: 30px; margin-bottom: 30px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+    .step-header { display: flex; align-items: center; margin-bottom: 20px; }
+    .step-number { background: #2563eb; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; }
+    .step-title { font-size: 1.25rem; font-weight: 600; margin: 0; color: #1e293b; }
+    .step-image { width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 20px; }
+    .step-text { white-space: pre-wrap; font-size: 1rem; color: #475569; }
+  </style>
+</head>
+<body>
+  <h1>操作マニュアル</h1>
+  <p style="text-align: right; color: #64748b;">自動生成日: ${new Date().toLocaleDateString()}</p>
+`;
+
+            state.steps.forEach((step, index) => {
+                htmlContent += `
+  <div class="step-container">
+    <div class="step-header">
+      <div class="step-number">${index + 1}</div>
+      <h2 class="step-title">手順 ${index + 1}</h2>
+    </div>
+    <img class="step-image" src="${step.image}" alt="手順 ${index + 1}の画像">
+    <div class="step-text">${step.text}</div>
+  </div>
+`;
+            });
+
+            htmlContent += `
+</body>
+</html>`;
+
+            // HTMLファイルをBlobとして生成し、ダウンロードを発火
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `manual_${new Date().getTime()}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function handlePDFOutput() {
+            window.print();
+        }
+
+        // トップ画面に戻る関数
+        function resetApp() {
+            state.appState = 'upload';
+            state.file = null;
+            state.steps = [];
+            render();
+        }
+    </script>
+</body>
+</html>
