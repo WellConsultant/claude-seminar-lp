@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>会社の手取り最大化診断｜質問分岐構成</title>
+  <style>
+    :root{
+      --bg:#f3f4f6;
+      --card:#ffffff;
+      --text:#111827;
+      --sub:#4b5563;
+      --line:#d1d5db;
+      --navy:#0f172a;
+      --black:#111111;
+      --orange:#f28c28;
+      --orange-soft:#fff4e8;
+      --green:#157347;
+      --green-soft:#ecfdf5;
+      --red:#b42318;
+      --red-soft:#fff1f0;
+      --blue-soft:#eff6ff;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+      line-height:1.75;
+    }
+    .page{
+      display:grid;
+      grid-template-columns:290px minmax(0,1fr);
+      gap:24px;
+      max-width:1500px;
+      margin:0 auto;
+      padding:24px 18px 80px;
+    }
+    .sidebar{
+      position:sticky;
+      top:18px;
+      align-self:start;
+      max-height:calc(100vh - 36px);
+      overflow:auto;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:20px;
+      box-shadow:0 8px 30px rgba(0,0,0,.05);
+    }
+    .sidebar h2{
+      margin:0 0 14px;
+      font-size:20px;
+    }
+    .sidebar ol{
+      margin:0;
+      padding-left:20px;
+    }
+    .sidebar li{
+      margin:8px 0;
+      font-size:14px;
+      line-height:1.5;
+    }
+    .sidebar a{
+      color:#374151;
+      text-decoration:none;
+    }
+    .sidebar a:hover{color:var(--orange)}
+    .content{min-width:0}
+    .hero{
+      background:linear-gradient(135deg,var(--navy),var(--black));
+      color:#fff;
+      border-radius:22px;
+      padding:52px 42px;
+      box-shadow:0 18px 50px rgba(0,0,0,.14);
+    }
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:18px;
+      padding:7px 14px;
+      border-radius:999px;
+      background:var(--orange);
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
+    h1{
+      margin:0 0 18px;
+      font-size:clamp(34px,6vw,58px);
+      line-height:1.18;
+    }
+    .hero p{
+      margin:0;
+      max-width:900px;
+      font-size:18px;
+      color:#e5e7eb;
+    }
+    section{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:34px;
+      margin-top:22px;
+      box-shadow:0 8px 30px rgba(0,0,0,.04);
+    }
+    h2{
+      margin:0 0 16px;
+      font-size:28px;
+      line-height:1.4;
+    }
+    h3{
+      margin:28px 0 12px;
+      font-size:21px;
+      line-height:1.5;
+    }
+    h4{
+      margin:0 0 8px;
+      font-size:17px;
+    }
+    p{margin:0 0 14px;color:var(--sub)}
+    ul,ol{margin:10px 0 0;padding-left:1.3em}
+    li{margin:7px 0}
+    .lead{font-size:18px;color:#1f2937}
+    .summary-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin-top:20px;
+    }
+    .summary-card{
+      background:#fafafa;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:18px;
+    }
+    .summary-card strong{
+      display:block;
+      font-size:18px;
+      color:var(--navy);
+      margin-bottom:6px;
+    }
+    .flow{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+    .flow-row{
+      display:grid;
+      grid-template-columns:56px minmax(0,1fr) 210px;
+      gap:14px;
+      align-items:center;
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fafafa;
+    }
+    .flow-num{
+      width:40px;height:40px;
+      display:grid;place-items:center;
+      border-radius:50%;
+      background:var(--navy);
+      color:#fff;
+      font-weight:800;
+    }
+    .flow-next{
+      font-size:13px;
+      color:#374151;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:10px;
+    }
+    .question{
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:hidden;
+      margin-top:18px;
+    }
+    .q-head{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:flex-start;
+      background:var(--navy);
+      color:#fff;
+      padding:18px 20px;
+    }
+    .q-id{
+      display:inline-block;
+      min-width:58px;
+      padding:5px 9px;
+      border-radius:999px;
+      background:var(--orange);
+      color:#fff;
+      font-size:12px;
+      font-weight:800;
+      text-align:center;
+    }
+    .q-title{
+      flex:1;
+      font-size:18px;
+      font-weight:800;
+      line-height:1.5;
+    }
+    .q-body{padding:20px}
+    .options{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      margin-top:12px;
+    }
+    .option{
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:12px 14px;
+      background:#fafafa;
+      color:#1f2937;
+    }
+    .branch{
+      margin-top:14px;
+      padding:14px 16px;
+      background:var(--blue-soft);
+      border-left:5px solid #2563eb;
+      border-radius:10px;
+      color:#1e3a8a;
+    }
+    .intent{
+      margin-top:10px;
+      padding:12px 14px;
+      background:var(--orange-soft);
+      border-radius:10px;
+      color:#5b4633;
+      font-size:14px;
+    }
+    .badge{
+      display:inline-block;
+      margin:3px 5px 3px 0;
+      padding:5px 10px;
+      border-radius:999px;
+      background:#eef2f7;
+      color:#1f2937;
+      font-size:12px;
+      font-weight:700;
+    }
+    .matrix{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:16px;
+      font-size:14px;
+    }
+    .matrix th,.matrix td{
+      border:1px solid var(--line);
+      padding:12px;
+      vertical-align:top;
+      text-align:left;
+    }
+    .matrix th{
+      background:var(--navy);
+      color:#fff;
+    }
+    .matrix tr:nth-child(even) td{background:#fafafa}
+    .result-card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:20px;
+      margin-top:14px;
+      background:#fafafa;
+    }
+    .result-card h3{margin-top:0}
+    .warn{
+      background:var(--red-soft);
+      border:1px solid #fecaca;
+    }
+    .good{
+      background:var(--green-soft);
+      border:1px solid #a7f3d0;
+    }
+    .quote{
+      margin:18px 0 0;
+      padding:18px 20px;
+      background:var(--orange-soft);
+      border-left:5px solid var(--orange);
+      border-radius:12px;
+      color:#5b4633;
+      font-weight:700;
+    }
+    footer{
+      text-align:center;
+      color:#6b7280;
+      font-size:13px;
+      padding:26px 0 0;
+    }
+    @media(max-width:1050px){
+      .page{grid-template-columns:1fr;padding:14px 12px 48px}
+      .sidebar{position:relative;top:auto;max-height:none}
+      .sidebar ol{columns:2;column-gap:28px}
+      .summary-grid{grid-template-columns:1fr 1fr}
+      .flow-row{grid-template-columns:50px minmax(0,1fr)}
+      .flow-next{grid-column:2}
+    }
+    @media(max-width:650px){
+      .hero{padding:36px 24px}
+      section{padding:24px 18px}
+      .summary-grid{grid-template-columns:1fr}
+      .options{grid-template-columns:1fr}
+      .sidebar ol{columns:1}
+      h2{font-size:24px}
+      .q-head{display:block}
+      .q-id{margin-bottom:10px}
+      .matrix{font-size:12px}
+      .matrix th,.matrix td{padding:9px}
+    }
+  </style>
+</head>
+<body>
+<main class="page">
+
+  <aside class="sidebar">
+    <h2>質問分岐構成</h2>
+    <ol>
+      <li><a href="#overview">診断の基本設計</a></li>
+      <li><a href="#fullflow">全体フロー</a></li>
+      <li><a href="#entry">入口質問</a></li>
+      <li><a href="#subsidy">補助金分岐</a></li>
+      <li><a href="#grant">助成金分岐</a></li>
+      <li><a href="#loan">融資分岐</a></li>
+      <li><a href="#insurance">国保・社保分岐</a></li>
+      <li><a href="#ads">広告費分岐</a></li>
+      <li><a href="#cost">固定費分岐</a></li>
+      <li><a href="#psychology">心理・行動障壁</a></li>
+      <li><a href="#priority">優先順位判定</a></li>
+      <li><a href="#results">診断結果タイプ</a></li>
+      <li><a href="#lead">情報取得と相談導線</a></li>
+      <li><a href="#rules">実装ルール</a></li>
+    </ol>
+  </aside>
+
+  <div class="content">
+    <header class="hero">
+      <span class="eyebrow">VIDEOASK型 診断設計</span>
+      <h1>会社の手取り最大化診断<br>質問分岐構成</h1>
+      <p>利用者の悩み、予定、支出、資金状況、心理的な障壁を順番に確認し、必要な質問だけを表示する分岐型診断。補助金・助成金・融資・国保・社保・広告費・固定費を横断して、最優先で確認すべき項目を導き出す。</p>
+    </header>
+
+    <section id="overview">
+      <h2>1．診断の基本設計</h2>
+      <p class="lead">すべての質問を順番に聞くのではなく、最初の回答から関係する分野へ分岐させます。</p>
+      <div class="summary-grid">
+        <div class="summary-card"><strong>想定質問数</strong>利用者1人あたり12〜18問</div>
+        <div class="summary-card"><strong>所要時間</strong>約3〜5分</div>
+        <div class="summary-card"><strong>回答方式</strong>選択式を中心に、一部複数選択</div>
+        <div class="summary-card"><strong>最終出力</strong>優先課題3つと相談テーマ</div>
+      </div>
+      <div class="quote">最初から「補助金が欲しいですか」と聞かない。現在の悩み、これから行うこと、毎月の負担から、利用者自身も気づいていないニーズを見つける。</div>
+    </section>
+
+    <section id="fullflow">
+      <h2>2．全体フロー</h2>
+      <div class="flow">
+        <div class="flow-row"><span class="flow-num">1</span><div><strong>事業者区分を確認</strong><br>法人・個人事業主・創業予定を判定</div><div class="flow-next">全員共通</div></div>
+        <div class="flow-row"><span class="flow-num">2</span><div><strong>最も気になる悩みを選択</strong><br>受け取る・減らす・借りる・残すのどこが入口かを判定</div><div class="flow-next">メイン分岐を決定</div></div>
+        <div class="flow-row"><span class="flow-num">3</span><div><strong>今後の予定を確認</strong><br>設備、IT、人材、広告、新規事業、融資などを確認</div><div class="flow-next">制度活用可能性を判定</div></div>
+        <div class="flow-row"><span class="flow-num">4</span><div><strong>分野別の深掘り</strong><br>補助金、助成金、融資、保険料、広告費、固定費へ分岐</div><div class="flow-next">必要分野だけ表示</div></div>
+        <div class="flow-row"><span class="flow-num">5</span><div><strong>行動できない理由を確認</strong><br>知識不足、時間不足、不安、先送り、営業警戒を判定</div><div class="flow-next">ニーズ喚起文に反映</div></div>
+        <div class="flow-row"><span class="flow-num">6</span><div><strong>緊急度と金額的重要度を確認</strong><br>予定時期、支払額、資金不足時期を確認</div><div class="flow-next">優先順位を決定</div></div>
+        <div class="flow-row"><span class="flow-num">7</span><div><strong>診断結果を表示</strong><br>手取り改善タイプ、見直すべき3項目、次の行動を表示</div><div class="flow-next">メール取得・相談へ</div></div>
+      </div>
+    </section>
+
+    <section id="entry">
+      <h2>3．入口質問</h2>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">Q1</span><div class="q-title">現在の状況を教えてください</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">法人を経営している</div>
+            <div class="option">個人事業主として活動している</div>
+            <div class="option">これから創業・法人化する予定</div>
+            <div class="option">会社員・副業として準備している</div>
+          </div>
+          <div class="branch"><strong>分岐：</strong>法人は社保・助成金・融資を優先。個人事業主は国保・補助金・融資を優先。創業予定は創業融資・創業補助・法人化前後の支出設計へ。</div>
+          <div class="intent">目的：制度の対象条件を大きく分ける最初の判定。</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">Q2</span><div class="q-title">今、最も気になっていることはどれですか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">設備・システム・店舗などへ投資したい</div>
+            <div class="option">人を採用したい、育成したい</div>
+            <div class="option">資金を確保したい、資金繰りが不安</div>
+            <div class="option">国保・社保など毎月の負担が重い</div>
+            <div class="option">広告費を使っているが成果が見えない</div>
+            <div class="option">固定費や契約を全体的に見直したい</div>
+            <div class="option">利益は出ているのにお金が残らない</div>
+            <div class="option">何から確認すればよいかわからない</div>
+          </div>
+          <div class="branch">
+            <strong>分岐：</strong><br>
+            設備・IT・店舗 → 補助金分岐<br>
+            採用・育成 → 助成金分岐<br>
+            資金確保 → 融資分岐<br>
+            国保・社保 → 保険料分岐<br>
+            広告費 → 広告費分岐<br>
+            固定費 → 固定費分岐<br>
+            お金が残らない・不明 → 全分野の簡易確認へ
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">Q3</span><div class="q-title">今後1年以内に予定していることを選んでください</div></div>
+        <div class="q-body">
+          <p>複数選択可</p>
+          <div class="options">
+            <div class="option">設備・機械を購入する</div>
+            <div class="option">ITツールやシステムを導入する</div>
+            <div class="option">ホームページやECサイトを作る</div>
+            <div class="option">店舗・事務所を改装する</div>
+            <div class="option">新商品・新サービスを始める</div>
+            <div class="option">新しい事業へ進出する</div>
+            <div class="option">人を採用する</div>
+            <div class="option">従業員を研修する</div>
+            <div class="option">賃上げ・正社員化を行う</div>
+            <div class="option">広告を増やす、集客を見直す</div>
+            <div class="option">融資を受けたい</div>
+            <div class="option">特に決まっていない</div>
+          </div>
+          <div class="branch"><strong>分岐：</strong>選択された予定ごとに、補助金・助成金・融資・広告費の該当質問を追加表示。</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">Q4</span><div class="q-title">その予定は、いつ頃実行しますか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">1か月以内</div>
+            <div class="option">3か月以内</div>
+            <div class="option">半年以内</div>
+            <div class="option">1年以内</div>
+            <div class="option">まだ決まっていない</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>1か月以内は緊急度「高」。3か月以内は「中〜高」。未定は準備型として判定。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="subsidy">
+      <h2>4．補助金分岐</h2>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">S1</span><div class="q-title">予定している投資はどれですか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">機械・設備</div>
+            <div class="option">システム・ソフトウェア</div>
+            <div class="option">店舗改装・内装</div>
+            <div class="option">広告・販路開拓</div>
+            <div class="option">新商品・試作品開発</div>
+            <div class="option">省エネ・省力化</div>
+          </div>
+          <div class="branch"><strong>分岐：</strong>設備系、IT系、販路開拓系、新事業系、省エネ系の候補カテゴリを付与。</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">S2</span><div class="q-title">すでに購入・契約・発注していますか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">まだ何もしていない</div>
+            <div class="option">見積もりを取っただけ</div>
+            <div class="option">発注・契約済み</div>
+            <div class="option">すでに支払い・購入済み</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>未契約は活用可能性を維持。発注・購入済みは対象外リスクを強く表示し、別制度・今後の投資確認へ。</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">S3</span><div class="q-title">投資予定額に最も近いものはどれですか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">50万円未満</div>
+            <div class="option">50万〜300万円</div>
+            <div class="option">300万〜1,000万円</div>
+            <div class="option">1,000万円以上</div>
+            <div class="option">まだわからない</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>金額的重要度と、想定制度の規模を分類。</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">S4</span><div class="q-title">この投資で、何を改善したいですか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">作業時間を減らしたい</div>
+            <div class="option">人手不足を解消したい</div>
+            <div class="option">売上・受注を増やしたい</div>
+            <div class="option">新しい事業を始めたい</div>
+            <div class="option">コストを下げたい</div>
+            <div class="option">古い設備を更新したい</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>生産性向上、新事業、販路開拓、省力化、更新投資に分類し、結果文へ反映。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="grant">
+      <h2>5．助成金分岐</h2>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">A1</span><div class="q-title">従業員はいますか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">正社員がいる</div>
+            <div class="option">パート・アルバイトがいる</div>
+            <div class="option">業務委託だけ</div>
+            <div class="option">従業員はいない</div>
+          </div>
+          <div class="branch"><strong>分岐：</strong>雇用契約がある場合のみ助成金質問を継続。業務委託のみ・従業員なしは補助金や融資へ戻す。</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">A2</span><div class="q-title">今後予定していることを選んでください</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">新しく人を採用する</div>
+            <div class="option">非正規社員を正社員にする</div>
+            <div class="option">従業員の賃金を上げる</div>
+            <div class="option">研修・資格取得を行う</div>
+            <div class="option">育児・介護との両立支援を行う</div>
+            <div class="option">働き方や就業規則を見直す</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>採用、正社員化、賃上げ、研修、両立支援、職場改善の助成分野へ分類。</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">A3</span><div class="q-title">実施前に制度を確認していますか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">まだ実施前で、確認していない</div>
+            <div class="option">専門家へ相談中</div>
+            <div class="option">すでに実施を始めている</div>
+            <div class="option">実施後に助成金を知った</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>助成金は事前手続きが重要であることを表示。実施済みは対象外リスクを示し、今後の予定へ切り替える。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="loan">
+      <h2>6．融資分岐</h2>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">L1</span><div class="q-title">資金が必要な主な理由は何ですか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">設備・システムを購入したい</div>
+            <div class="option">仕入れ・人件費など運転資金が必要</div>
+            <div class="option">新規事業・創業資金が必要</div>
+            <div class="option">税金・社会保険料などの支払いが不安</div>
+            <div class="option">既存借入を見直したい</div>
+            <div class="option">補助金入金までのつなぎ資金が必要</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">L2</span><div class="q-title">いつ頃、資金が必要ですか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">1か月以内</div>
+            <div class="option">3か月以内</div>
+            <div class="option">半年以内</div>
+            <div class="option">まだ急いでいない</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>1か月以内は緊急相談。3か月以内は資料準備開始。急いでいない場合は事前準備型。</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">L3</span><div class="q-title">現在の資金状況に近いものはどれですか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">半年以上の支払いに対応できる</div>
+            <div class="option">3か月程度なら対応できる</div>
+            <div class="option">1〜2か月後が不安</div>
+            <div class="option">すでに支払いが厳しい</div>
+            <div class="option">把握できていない</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>資金繰り緊急度を高・中・低で判定。「把握できていない」は資金繰り表作成ニーズを付与。</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">L4</span><div class="q-title">直近2期分の決算書や確定申告書は用意できますか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">すぐ用意できる</div>
+            <div class="option">税理士へ依頼すれば用意できる</div>
+            <div class="option">一部しかない</div>
+            <div class="option">創業前・創業直後でまだない</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>通常融資、創業融資、資料整備支援のどこへつなぐかを判断。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="insurance">
+      <h2>7．国保・社保分岐</h2>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">I1</span><div class="q-title">現在加入している保険を教えてください</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">国民健康保険・国民年金</div>
+            <div class="option">法人の社会保険</div>
+            <div class="option">家族の扶養に入っている</div>
+            <div class="option">よくわからない</div>
+          </div>
+          <div class="branch"><strong>分岐：</strong>国保は法人化・所得・家族構成などの確認へ。社保は役員報酬・従業員・加入状況の確認へ。</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">I2</span><div class="q-title">毎月の保険料負担をどの程度に感じていますか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">かなり重い</div>
+            <div class="option">やや重い</div>
+            <div class="option">適正か判断できない</div>
+            <div class="option">特に気にならない</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">I3</span><div class="q-title">現在の形態に当てはまるものを選んでください</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">個人事業主で法人化を検討している</div>
+            <div class="option">法人代表で役員報酬を受け取っている</div>
+            <div class="option">家族従業員・家族役員がいる</div>
+            <div class="option">従業員を雇用している</div>
+            <div class="option">副業・複数収入がある</div>
+            <div class="option">どれにも当てはまらない</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>削減を断定せず、「加入状況・報酬設計・法人化前後の比較を専門家確認」として表示。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ads">
+      <h2>8．広告費分岐</h2>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">M1</span><div class="q-title">現在利用している集客方法を選んでください</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">Google・Yahoo広告</div>
+            <div class="option">SNS広告</div>
+            <div class="option">ポータルサイト・比較サイト</div>
+            <div class="option">チラシ・DM</div>
+            <div class="option">紹介・口コミ</div>
+            <div class="option">広告は使っていない</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">M2</span><div class="q-title">月間の広告・集客費に最も近いものはどれですか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">5万円未満</div>
+            <div class="option">5万〜20万円</div>
+            <div class="option">20万〜50万円</div>
+            <div class="option">50万円以上</div>
+            <div class="option">把握していない</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">M3</span><div class="q-title">広告から何件問い合わせがあり、何件契約したか把握していますか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">問い合わせ数も契約数も把握している</div>
+            <div class="option">問い合わせ数だけ把握している</div>
+            <div class="option">売上だけ見ている</div>
+            <div class="option">ほとんど把握していない</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>把握していない場合は広告削減ではなく、計測設計・顧客獲得単価の確認を優先。</div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">M4</span><div class="q-title">広告費を見直したい理由は何ですか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">問い合わせが少ない</div>
+            <div class="option">問い合わせはあるが契約にならない</div>
+            <div class="option">契約になるが利益が残らない</div>
+            <div class="option">広告会社へ任せきりで内容がわからない</div>
+            <div class="option">費用が高い気がする</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>集客不足、成約率不足、利益率不足、運用不透明、費用不安の5タイプに分類。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cost">
+      <h2>9．固定費分岐</h2>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">C1</span><div class="q-title">見直したい費用を選んでください</div></div>
+        <div class="q-body">
+          <p>複数選択可</p>
+          <div class="options">
+            <div class="option">通信費</div>
+            <div class="option">システム・サブスク</div>
+            <div class="option">保険料</div>
+            <div class="option">顧問料</div>
+            <div class="option">外注費</div>
+            <div class="option">決済手数料</div>
+            <div class="option">家賃・リース料</div>
+            <div class="option">何を見直せるかわからない</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">C2</span><div class="q-title">その契約内容を最後に見直したのはいつですか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">半年以内</div>
+            <div class="option">1年以内</div>
+            <div class="option">2年以上見直していない</div>
+            <div class="option">契約時から一度も見直していない</div>
+            <div class="option">わからない</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">C3</span><div class="q-title">利用状況に近いものを選んでください</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">すべて必要で、十分活用している</div>
+            <div class="option">一部使っていない機能がある</div>
+            <div class="option">似たサービスを複数契約している</div>
+            <div class="option">担当者しか内容を把握していない</div>
+            <div class="option">解約すると困りそうで続けている</div>
+          </div>
+          <div class="branch"><strong>判定：</strong>未利用、重複、属人化、惰性継続のいずれかを見直し候補として表示。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="psychology">
+      <h2>10．心理・行動障壁の診断</h2>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">P1</span><div class="q-title">これまで確認や見直しを進められなかった理由は何ですか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">自分が対象かわからない</div>
+            <div class="option">制度や契約が複雑でわからない</div>
+            <div class="option">調べる時間がない</div>
+            <div class="option">失敗して費用だけかかるのが怖い</div>
+            <div class="option">誰に相談すればよいかわからない</div>
+            <div class="option">相談すると営業されそうで不安</div>
+            <div class="option">急ぎではないので後回しにしている</div>
+            <div class="option">税理士や担当者に任せている</div>
+          </div>
+          <div class="branch">
+            <span class="badge">知識不足型</span>
+            <span class="badge">時間不足型</span>
+            <span class="badge">失敗回避型</span>
+            <span class="badge">相談先不明型</span>
+            <span class="badge">営業警戒型</span>
+            <span class="badge">先送り型</span>
+            <span class="badge">他者依存型</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">P2</span><div class="q-title">1年後、どのような状態になっていたいですか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">使える制度が整理されている</div>
+            <div class="option">毎月の支払いが適正になっている</div>
+            <div class="option">設備投資の資金を確保できている</div>
+            <div class="option">広告費の効果が数字で見えている</div>
+            <div class="option">資金繰りの不安が減っている</div>
+            <div class="option">必要なことをまとめて相談できている</div>
+          </div>
+          <div class="branch"><strong>用途：</strong>診断結果の最後に「あなたが目指している状態」として再表示し、相談の必要性を自然につなげる。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="priority">
+      <h2>11．優先順位判定</h2>
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>判定項目</th>
+            <th>低</th>
+            <th>中</th>
+            <th>高</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>緊急度</td>
+            <td>1年以内・未定</td>
+            <td>半年以内</td>
+            <td>1〜3か月以内、支払いが厳しい</td>
+          </tr>
+          <tr>
+            <td>金額的重要度</td>
+            <td>50万円未満</td>
+            <td>50万〜300万円</td>
+            <td>300万円以上、毎月高額支出</td>
+          </tr>
+          <tr>
+            <td>制度活用可能性</td>
+            <td>予定なし・実施済み</td>
+            <td>予定あり・条件不明</td>
+            <td>実施前・具体的な予定あり</td>
+          </tr>
+          <tr>
+            <td>支出見直し余地</td>
+            <td>見直し済み</td>
+            <td>1年以上未確認</td>
+            <td>重複・未利用・効果不明</td>
+          </tr>
+          <tr>
+            <td>行動障壁</td>
+            <td>自力で進められる</td>
+            <td>一部支援が必要</td>
+            <td>時間不足・不安・先送りが強い</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="quote">優先順位は「対象になりそうか」だけでなく、「金額」「期限」「放置した影響」「自力で進められるか」を合わせて決める。</div>
+    </section>
+
+    <section id="results">
+      <h2>12．診断結果タイプ</h2>
+
+      <div class="result-card">
+        <h3>制度活用不足タイプ</h3>
+        <p>投資や採用予定があるのに、補助金・助成金の確認ができていない。購入・契約・実施前の確認を最優先とする。</p>
+      </div>
+
+      <div class="result-card">
+        <h3>資金繰り準備不足タイプ</h3>
+        <p>今後の支払い・投資予定に対して、融資準備や資金繰りの把握が遅れている。必要時期から逆算して資料を整える。</p>
+      </div>
+
+      <div class="result-card">
+        <h3>保険料・報酬設計確認タイプ</h3>
+        <p>国保・社保の負担感が大きいが、法人形態、役員報酬、家族構成などを含めた確認ができていない。専門家による比較確認が必要。</p>
+      </div>
+
+      <div class="result-card">
+        <h3>広告費ブラックボックスタイプ</h3>
+        <p>広告費は支払っているが、問い合わせ数、契約数、利益との関係が見えていない。削減より先に計測と採算確認を行う。</p>
+      </div>
+
+      <div class="result-card">
+        <h3>固定費放置タイプ</h3>
+        <p>長期間見直していない契約、未利用機能、重複サービスがある可能性が高い。契約一覧の作成と利用状況確認を行う。</p>
+      </div>
+
+      <div class="result-card">
+        <h3>総合見直しタイプ</h3>
+        <p>制度、融資、保険料、広告費、固定費が複数重なっている。一つずつ個別に探すより、全体の優先順位を整理する必要がある。</p>
+      </div>
+    </section>
+
+    <section id="lead">
+      <h2>13．情報取得と相談導線</h2>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">F1</span><div class="q-title">詳細な診断結果をどの方法で受け取りますか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">メールで受け取る</div>
+            <div class="option">LINEで受け取る</div>
+            <div class="option">この画面で確認する</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="q-head"><span class="q-id">F2</span><div class="q-title">診断結果について専門家へ相談しますか？</div></div>
+        <div class="q-body">
+          <div class="options">
+            <div class="option">すぐに相談したい</div>
+            <div class="option">まず結果を見てから考えたい</div>
+            <div class="option">自分で確認できる資料がほしい</div>
+            <div class="option">今回は相談しない</div>
+          </div>
+          <div class="branch">
+            すぐ相談 → 日程予約<br>
+            結果を見てから → メールフォロー<br>
+            資料がほしい → チェックリスト提供<br>
+            相談しない → 診断結果のみ表示
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules">
+      <h2>14．実装ルール</h2>
+      <ul>
+        <li>最初の4問は全員共通。その後は該当分野だけ表示する。</li>
+        <li>一画面につき質問は1問。選択肢は最大6個を基本とする。</li>
+        <li>選択肢が多い場合は2段階に分ける。</li>
+        <li>制度名を最初から並べず、利用者の予定や悩みから入る。</li>
+        <li>回答後に短い一言を表示し、「なぜ次の質問をするのか」を理解させる。</li>
+        <li>国保・社保・税務・融資は断定せず、個別確認が必要と表示する。</li>
+        <li>診断結果は「可能性があります」だけで終わらせず、次に何を準備するかまで表示する。</li>
+        <li>結果は最大3つに絞り、優先度A・B・Cで表示する。</li>
+        <li>離脱地点、回答時間、選択分野を管理画面に保存する。</li>
+      </ul>
+
+      <div class="result-card good">
+        <h3>推奨される利用者体験</h3>
+        <p>「質問に答えたら制度を紹介された」ではなく、「答えているうちに、自分が何を見落としていたか理解できた」と感じる設計にする。</p>
+      </div>
+
+      <div class="result-card warn">
+        <h3>避けるべき設計</h3>
+        <p>最初から個人情報を求める、制度名を大量表示する、すべての質問を全員に聞く、不安だけを強くあおる、削減額や受給額を断定する。</p>
+      </div>
+    </section>
+
+    <footer>会社の手取り最大化診断｜質問分岐構成</footer>
+  </div>
+</main>
+</body>
+</html>
