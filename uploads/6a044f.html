@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>会社の手取り最大化診断｜全体概要</title>
+  <style>
+    :root{
+      --bg:#f5f5f5;
+      --card:#ffffff;
+      --text:#111111;
+      --sub:#555555;
+      --line:#dddddd;
+      --accent:#f28c28;
+      --dark:#0d1b2a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;
+      line-height:1.8;
+    }
+    .wrap{
+      max-width:1040px;
+      margin:auto;
+      padding:40px 20px 72px;
+    }
+    .hero{
+      background:linear-gradient(135deg,#0d1b2a,#111111);
+      color:#fff;
+      border-radius:20px;
+      padding:48px 36px;
+      margin-bottom:28px;
+    }
+    .eyebrow{
+      display:inline-block;
+      background:var(--accent);
+      color:#fff;
+      font-weight:700;
+      font-size:13px;
+      padding:6px 12px;
+      border-radius:999px;
+      margin-bottom:18px;
+    }
+    h1{
+      margin:0 0 16px;
+      font-size:clamp(30px,5vw,54px);
+      line-height:1.25;
+    }
+    .hero p{
+      margin:0;
+      color:#e5e7eb;
+      font-size:18px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:20px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:26px;
+      box-shadow:0 8px 28px rgba(0,0,0,.04);
+    }
+    .wide{grid-column:1/-1}
+    h2{
+      margin:0 0 12px;
+      font-size:24px;
+      line-height:1.4;
+    }
+    h3{
+      margin:0 0 8px;
+      font-size:18px;
+    }
+    p{margin:0;color:var(--sub)}
+    ul{
+      margin:14px 0 0;
+      padding-left:1.2em;
+    }
+    li{margin:6px 0}
+    .four{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+    .mini{
+      background:#fafafa;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:18px;
+    }
+    .mini strong{
+      display:block;
+      color:var(--dark);
+      margin-bottom:6px;
+      font-size:17px;
+    }
+    .flow{
+      display:grid;
+      gap:12px;
+      margin-top:16px;
+    }
+    .step{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:16px;
+      background:#fafafa;
+      border:1px solid var(--line);
+      border-radius:14px;
+    }
+    .num{
+      width:34px;
+      height:34px;
+      flex:0 0 34px;
+      display:grid;
+      place-items:center;
+      background:var(--dark);
+      color:#fff;
+      border-radius:50%;
+      font-weight:700;
+    }
+    .result{
+      background:#111;
+      color:#fff;
+      border:none;
+    }
+    .result p{color:#ddd}
+    .note{
+      border-left:5px solid var(--accent);
+      background:#fff8f0;
+      padding:18px 20px;
+      border-radius:10px;
+      color:#5b4633;
+      margin-top:16px;
+    }
+    footer{
+      margin-top:28px;
+      text-align:center;
+      color:#777;
+      font-size:13px;
+    }
+    @media(max-width:760px){
+      .grid{grid-template-columns:1fr}
+      .four{grid-template-columns:1fr 1fr}
+      .hero{padding:34px 24px}
+    }
+    @media(max-width:480px){
+      .four{grid-template-columns:1fr}
+      .wrap{padding:20px 14px 48px}
+      .card{padding:22px}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <span class="eyebrow">VIDEOASK型 診断ツール企画</span>
+      <h1>会社の手取り最大化診断</h1>
+      <p>補助金・助成金・融資・保険料・広告費などを横断し、会社に残るお金を増やすための優先順位を見つける。</p>
+    </section>
+
+    <section class="grid">
+      <article class="card wide">
+        <h2>この診断の目的</h2>
+        <p>制度名を検索させるのではなく、質問に答える中で利用者自身に「見落としている支援」「減らせる可能性のある支出」「準備すべき資金対策」に気づいてもらい、個別相談へつなげる。</p>
+      </article>
+
+      <article class="card wide">
+        <h2>診断の4つの視点</h2>
+        <div class="four">
+          <div class="mini">
+            <strong>受け取る</strong>
+            補助金、助成金、給付金、奨励金
+          </div>
+          <div class="mini">
+            <strong>減らす</strong>
+            国保、社保、広告費、固定費、重複契約
+          </div>
+          <div class="mini">
+            <strong>借りる・備える</strong>
+            融資、資金繰り、つなぎ資金、将来準備
+          </div>
+          <div class="mini">
+            <strong>残す</strong>
+            利益率、広告回収率、固定費、入出金管理
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>入口で聞くこと</h2>
+        <ul>
+          <li>今、最も気になっていること</li>
+          <li>法人・個人事業主・創業予定</li>
+          <li>今後予定している投資や採用</li>
+          <li>毎月負担に感じている支出</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>診断で見つけること</h2>
+        <ul>
+          <li>活用できる可能性のある制度分野</li>
+          <li>見直し余地のある支出</li>
+          <li>資金調達の必要性と緊急度</li>
+          <li>行動できていない心理的な理由</li>
+        </ul>
+      </article>
+
+      <article class="card wide">
+        <h2>人の思考回路に沿った流れ</h2>
+        <div class="flow">
+          <div class="step"><span class="num">1</span><div><h3>今の悩みを選ぶ</h3><p>専門用語ではなく、売上・支払い・設備・人材・資金などから選択。</p></div></div>
+          <div class="step"><span class="num">2</span><div><h3>困っている状況を具体化</h3><p>投資を先送りしている、利益はあるのにお金が残らないなど。</p></div></div>
+          <div class="step"><span class="num">3</span><div><h3>行動できなかった理由を確認</h3><p>制度が難しい、時間がない、失敗が怖い、営業されそうで不安など。</p></div></div>
+          <div class="step"><span class="num">4</span><div><h3>放置した場合の影響を考える</h3><p>資金減少、投資遅れ、人手不足、広告費の無駄などを自覚してもらう。</p></div></div>
+          <div class="step"><span class="num">5</span><div><h3>理想の状態を選ぶ</h3><p>使える制度が整理される、支払いが適正になる、資金計画が見える。</p></div></div>
+        </div>
+      </article>
+
+      <article class="card result wide">
+        <h2>診断結果で表示する内容</h2>
+        <ul>
+          <li>手取り改善タイプ</li>
+          <li>現在の状態</li>
+          <li>優先して確認すべき3項目</li>
+          <li>活用可能性のある制度・見直し分野</li>
+          <li>次に行うべき具体的な行動</li>
+        </ul>
+      </article>
+
+      <article class="card wide">
+        <h2>相談につなげる考え方</h2>
+        <p>「商品を売る診断」ではなく、「自分の会社のお金の問題に気づく診断」にする。診断結果をもとに、制度活用、固定費、広告費、保険料、融資を横断して優先順位を整理する。</p>
+        <div class="note">※ 国保・社保・融資・税務に関する判定は断定せず、専門家による個別確認が必要であることを明示する。</div>
+      </article>
+    </section>
+
+    <footer>会社の手取り最大化診断｜全体概要</footer>
+  </main>
+</body>
+</html>
