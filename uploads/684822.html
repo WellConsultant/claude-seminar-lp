@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    
+  </style>
+</head>
+<body>
+  
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公募要領リーダー｜Traingo補助金</title>
+<style>
+  :root{--bg:#0f172a;--panel:#1e293b;--card:#ffffff;--line:#dbe4ee;--blue:#1d6fd1;--sky:#4da3ff;--green:#1f8a4c;--gold:#b98a2f;--ink:#22303e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;background:#f1f5f9;color:var(--ink);line-height:1.7;}
+  header{background:linear-gradient(135deg,#0b2540,#1b4d85);color:#fff;padding:34px 20px;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px;}
+  header h1{font-size:24px;letter-spacing:.03em;}
+  header .lead{font-size:13.5px;color:#cfe0f2;margin-top:8px;max-width:760px;}
+  header .lead b{color:#fff;}
+  .flow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+  .flow span{background:rgba(77,163,255,.18);border:1px solid rgba(77,163,255,.5);color:#bfe0ff;font-size:12px;border-radius:99px;padding:4px 12px;}
+  main{padding:26px 0 80px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 16px 18px;padding:20px 22px;max-width:928px;box-shadow:0 2px 10px rgba(15,43,70,.05);}
+  @media(min-width:992px){.card{margin-left:auto;margin-right:auto;}}
+  .card h2{font-size:16px;color:#0f2b46;border-left:5px solid var(--blue);padding-left:10px;margin-bottom:8px;}
+  .card h2 .no{color:var(--blue);margin-right:6px;}
+  .desc{font-size:13px;color:#5a6b7d;margin-bottom:12px;}
+  textarea,input[type=text]{width:100%;border:1px solid #c7d2de;border-radius:9px;padding:10px 12px;font-size:13.5px;background:#f8fafc;}
+  textarea:focus,input:focus{outline:2px solid var(--sky);background:#fff;}
+  label{display:block;font-size:12px;font-weight:700;color:#33506c;margin:10px 0 4px;}
+  .btn{display:inline-block;border:none;cursor:pointer;background:var(--blue);color:#fff;font-size:13.5px;font-weight:800;padding:10px 22px;border-radius:9px;margin-top:12px;}
+  .btn:hover{background:#1559ad;}
+  .btn.gold{background:var(--gold);}
+  .btn.gold:hover{background:#9a7124;}
+  .btn.ghost{background:#fff;color:var(--blue);border:1.5px solid var(--blue);}
+  .copied{color:var(--green);font-size:12.5px;font-weight:700;margin-left:10px;}
+  .note{background:#eef5fd;border:1px solid #cfe1f6;border-radius:9px;padding:10px 14px;font-size:12.5px;color:#33506c;margin-top:12px;}
+  .warn{background:#fdf6ec;border:1px solid #eeddb5;border-radius:9px;padding:10px 14px;font-size:12.5px;color:#6b5314;margin-top:12px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:720px){.grid2{grid-template-columns:1fr;}}
+</style>
+<script>window.__TRAINGO_UID__="e33d5413-e4ea-49fe-b981-54b3a716a464";</script></head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>公募要領リーダー</h1>
+    <p class="lead">補助金の<b>公募要領（PDF）</b>をAIに読み込ませて、<b>要件・加点・対象経費・締切</b>を洗い出し、<b>お客様が狙えるか</b>まで判定させるツールです。このツールはプロンプト（AIへの指示文）を作ります。このツールの利用に、追加のAI利用料はかかりません（お手持ちのChatGPT・Claude・Geminiをそのままお使いいただけます）。</p>
+    <div class="flow"><span>① 公募要領PDFを用意</span><span>② 下のプロンプトをコピー</span><span>③ ChatGPT/Claude/GeminiにPDFと一緒に渡す</span><span>④ 返答を確認</span></div>
+  </div>
+</header>
+
+<main>
+
+  <div class="card">
+    <h2><span class="no">STEP 0</span>公募要領の渡し方（最初に読む）</h2>
+    <p class="desc">ChatGPT・Claude・GeminiはPDFをそのまま添付できます。補助金の公式サイトから公募要領PDFをダウンロードし、<b>プロンプトと一緒に添付</b>してください。添付できない場合は、PDFを開いて全文をコピーし、プロンプトの下に貼り付けても動きます。</p>
+    <div class="warn">注意：AIの読み取りは「下書き」です。金額・締切・要件の最終確認は、必ず公募要領の原文と公式サイトで行ってください（公募回によって内容が変わることがあります）。</div>
+  </div>
+
+  <div class="card">
+    <h2><span class="no">STEP 1</span>まるごと解説（この補助金は何か・日常語で）</h2>
+    <p class="desc">初見の公募要領を3分で把握します。誰向け・何にいくら出る・いつまで・何がポイントかを日常語でまとめさせます。</p>
+    <button class="btn" data-copy="p1">解説プロンプトをコピー</button><span class="copied" id="c-p1"></span>
+  </div>
+
+  <div class="card">
+    <h2><span class="no">STEP 2</span>対象要件チェックリスト</h2>
+    <p class="desc">「そもそも申請できるか」を判定できるチェックリストを作らせます。お客様との面談でそのまま使えます。</p>
+    <button class="btn" data-copy="p2">要件チェックリストのプロンプトをコピー</button><span class="copied" id="c-p2"></span>
+  </div>
+
+  <div class="card">
+    <h2><span class="no">STEP 3</span>加点項目の洗い出し</h2>
+    <p class="desc">採択率を上げる加点項目と、その取り方（賃上げ表明・各種認定など）を一覧にさせます。</p>
+    <button class="btn" data-copy="p3">加点項目のプロンプトをコピー</button><span class="copied" id="c-p3"></span>
+  </div>
+
+  <div class="card">
+    <h2><span class="no">STEP 4</span>対象経費・対象外経費</h2>
+    <p class="desc">「これは補助対象になるか」を即答するための、対象経費と対象外経費（よくある勘所）の一覧を作らせます。</p>
+    <button class="btn" data-copy="p4">対象経費のプロンプトをコピー</button><span class="copied" id="c-p4"></span>
+  </div>
+
+  <div class="card">
+    <h2><span class="no">STEP 5</span>スケジュール（締切・交付決定・実績報告）</h2>
+    <p class="desc">公募締切から実績報告までの日付を時系列で抜き出させます。逆算スケジュールの提案までさせます。</p>
+    <button class="btn" data-copy="p5">スケジュールのプロンプトをコピー</button><span class="copied" id="c-p5"></span>
+  </div>
+
+  <div class="card">
+    <h2><span class="no">STEP 6</span>お客様は狙えるか？（適合判定）</h2>
+    <p class="desc">お客様の情報を入れると、その内容を差し込んだ判定プロンプトができます。「狙えます／条件付きで狙えます／難しいです」を理由付きで答えさせます。</p>
+    <div class="grid2">
+      <div>
+        <label>業種・事業内容</label>
+        <input type="text" id="f-biz" placeholder="例：金属部品の製造業（従業員18名）">
+      </div>
+      <div>
+        <label>所在地（都道府県・市区町村）</label>
+        <input type="text" id="f-area" placeholder="例：埼玉県さいたま市">
+      </div>
+    </div>
+    <label>やりたい投資・取り組み</label>
+    <textarea id="f-plan" rows="3" placeholder="例：多関節ロボットを導入して溶接工程を自動化したい。予算は1,500万円程度。"></textarea>
+    <label>気になっている点（任意）</label>
+    <textarea id="f-concern" rows="2" placeholder="例：創業2年目でも申請できるか。賃上げ要件が達成できるか不安。"></textarea>
+    <button class="btn gold" data-copy="p6">この内容で判定プロンプトをコピー</button><span class="copied" id="c-p6"></span>
+    <div class="note">面談前に使うと「その場で即答できる先生」になれます。判定結果はお客様に見せる前に、原文で裏取りしてください。</div>
+  </div>
+
+  <div class="card">
+    <h2><span class="no">おまけ</span>全部まとめて1回で（時短版）</h2>
+    <p class="desc">STEP1〜5を1つのプロンプトにまとめた時短版です。長い返答になるので、じっくり読むときに使ってください。</p>
+    <button class="btn ghost" data-copy="pall">まとめ版プロンプトをコピー</button><span class="copied" id="c-pall"></span>
+  </div>
+
+</main>
+
+<script>
+const COMMON_HEAD = `あなたは補助金申請支援の実務経験が豊富な行政書士のアシスタントです。添付（または下に貼り付け）した「公募要領」だけを根拠に答えてください。公募要領に書かれていないことは「記載なし」と答え、推測で断定しないでください。ページ番号や章番号など、根拠の場所も添えてください。`;
+
+const PROMPTS = {
+  p1: COMMON_HEAD + `
+
+この公募要領を、補助金にくわしくない経営者にも分かる日常語で解説してください。
+
+【出力形式】
+1. ひとこと要約（この補助金は「誰が・何をすると・いくらもらえる」制度か。3行以内）
+2. 対象者（業種・規模・地域などの条件）
+3. もらえる金額（補助率・上限・下限。類型が複数あれば表で）
+4. 対象になる取り組み・経費の代表例（5つ）
+5. 締切と大まかな流れ
+6. この補助金の「クセ」（審査で重視される点・見落としやすい条件を3つ）
+※専門用語には短い説明を付けてください。`,
+
+  p2: COMMON_HEAD + `
+
+この公募要領から「申請できるかどうか」を判定するためのチェックリストを作ってください。
+
+【出力形式】
+- 必須要件チェックリスト（はい/いいえで答えられる質問形式・10〜20項目）
+- 各項目に「根拠（公募要領の該当箇所）」と「つまずきやすい人の例」を添える
+- 最後に「1つでも『いいえ』があった場合の対処（要件を満たす方法があるか）」をまとめる
+※面談でそのまま読み上げられる言葉づかいにしてください。`,
+
+  p3: COMMON_HEAD + `
+
+この公募要領から「加点項目」（審査で有利になる要素）をすべて洗い出してください。
+
+【出力形式】
+| 加点項目 | 内容 | 取るために必要な手続き・書類 | 準備にかかる期間の目安 |
+の表形式で。表の後に「今から間に合う加点」と「今回は間に合わない可能性が高い加点」を分けてください。加点の記載が無い場合は、審査項目（評価される観点）を代わりに一覧化してください。`,
+
+  p4: COMMON_HEAD + `
+
+この公募要領から「補助対象経費」と「対象外経費」を整理してください。
+
+【出力形式】
+1. 対象経費の一覧（費目ごとに・具体例つき）
+2. 対象外経費の一覧（特に「対象になりそうで対象外のもの」を強調）
+3. よくある質問形式で5つ（例：中古設備は対象か？ 消費税は含めるか？ など、この公募要領の記載に基づいて）
+※判断に迷う経費は「事務局への事前確認を推奨」と明記してください。`,
+
+  p5: COMMON_HEAD + `
+
+この公募要領から日付・期限をすべて抜き出し、時系列で整理してください。
+
+【出力形式】
+1. 時系列表：公募開始→申請締切→採択発表→交付申請→事業実施期間→実績報告期限（日付が明記されていない項目は「記載なし」）
+2. 「今日から申請締切まで」の逆算準備スケジュール（週単位で、書類準備・見積取得・計画書作成の目安）
+3. 注意点：交付決定前の発注・契約・支払いが対象外になる等、時期のルールがあれば必ず明記`,
+
+  pall: COMMON_HEAD + `
+
+この公募要領を次の5部構成で徹底的に解説してください。
+
+第1部：まるごと解説（誰が・何をすると・いくら。日常語で）
+第2部：対象要件チェックリスト（はい/いいえ形式・根拠つき）
+第3部：加点項目一覧（取り方・準備期間つきの表）
+第4部：対象経費と対象外経費（勘どころつき）
+第5部：スケジュール（時系列表＋今日からの逆算準備計画）
+
+各部の間に区切り線を入れ、専門用語には短い説明を付けてください。公募要領に記載のないことは「記載なし」と明記してください。`
+};
+
+function buildP6(){
+  const biz = document.getElementById('f-biz').value.trim() || '（業種・規模を記入）';
+  const area = document.getElementById('f-area').value.trim() || '（所在地を記入）';
+  const plan = document.getElementById('f-plan').value.trim() || '（やりたい投資・取り組みを記入）';
+  const concern = document.getElementById('f-concern').value.trim();
+  return COMMON_HEAD + `
+
+次のお客様が、この公募要領の補助金を「狙えるか」を判定してください。
+
+【お客様の情報】
+- 業種・事業内容：` + biz + `
+- 所在地：` + area + `
+- やりたい投資・取り組み：` + plan + (concern ? `
+- 気になっている点：` + concern : '') + `
+
+【出力形式】
+1. 判定：「狙えます」「条件付きで狙えます」「難しいです」のどれか1つ＋理由（公募要領の根拠つき）
+2. 満たしている要件／満たしていない・確認が必要な要件（表で）
+3. 「条件付き」の場合：満たすために必要なアクションと期間
+4. この案件で取れそうな加点項目
+5. 概算：補助率を当てはめた場合の補助金額の目安（計算式つき。金額はあくまで目安と明記）
+6. 次の一歩：お客様に今日伝えるべきこと3つ
+※断定を避け「公募要領の記載上は〜」という言い方にしてください。最終判断は原文確認が前提です。`;
+}
+
+document.querySelectorAll('[data-copy]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key = btn.getAttribute('data-copy');
+    const text = key === 'p6' ? buildP6() : PROMPTS[key];
+    navigator.clipboard.writeText(text).then(() => {
+      const mark = document.getElementById('c-' + key);
+      if (mark) { mark.textContent = 'コピーしました。AIに公募要領PDFと一緒に貼ってください'; setTimeout(() => { mark.textContent = ''; }, 4000); }
+    });
+  });
+});
+</script>
+</body>
+</html>
+
+</body>
+</html>
