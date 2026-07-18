@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IT導入支援事業者 登録申請・ITツール登録サポート｜HTMLスライド</title>
+<style>
+:root{
+  --navy:#0f172a;
+  --navy2:#111827;
+  --ink:#111827;
+  --muted:#64748b;
+  --line:#e5e7eb;
+  --bg:#f3f4f6;
+  --white:#fff;
+  --orange:#f59e0b;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  height:100%;
+  background:#0b1020;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink);
+}
+.deck{
+  width:100vw;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.slide{
+  display:none;
+  position:relative;
+  width:min(1280px, calc(100vw - 48px));
+  aspect-ratio:16/9;
+  background:var(--white);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.38);
+  padding:58px 66px;
+}
+.slide.active{display:block}
+.slide.dark{
+  background:linear-gradient(135deg,#0f172a,#111827 58%,#1e293b);
+  color:#fff;
+}
+.slide.dark p,.slide.dark li{color:#d1d5db}
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:18px;
+  font-weight:800;
+  color:var(--orange);
+  letter-spacing:.04em;
+  margin-bottom:20px;
+}
+h1,h2{
+  margin:0;
+  letter-spacing:-.05em;
+  line-height:1.08;
+}
+h1{font-size:64px;max-width:980px}
+h2{font-size:50px;max-width:1000px}
+p{
+  font-size:24px;
+  line-height:1.75;
+  color:#475569;
+  margin:24px 0 0;
+  max-width:1000px;
+}
+.small{font-size:20px;color:#64748b}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:42px;
+}
+.cards.two{grid-template-columns:repeat(2,1fr)}
+.cards.four{grid-template-columns:repeat(4,1fr)}
+.card{
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:26px;
+  min-height:160px;
+}
+.dark .card{
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.14);
+}
+.card h3{
+  margin:0 0 12px;
+  font-size:26px;
+  line-height:1.25;
+}
+.card p,.card li{
+  font-size:19px;
+  line-height:1.65;
+  margin:0;
+  color:#475569;
+}
+ul{margin:16px 0 0;padding-left:1.15em}
+li{font-size:24px;line-height:1.65;color:#475569;margin:8px 0}
+.big-num{
+  font-size:92px;
+  font-weight:900;
+  line-height:1;
+  color:var(--orange);
+  letter-spacing:-.07em;
+}
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:44px;
+  align-items:center;
+  height:calc(100% - 10px);
+}
+.panel{
+  border-radius:24px;
+  background:#f8fafc;
+  border:1px solid var(--line);
+  padding:34px;
+}
+.panel.darkpanel{
+  background:#111827;
+  color:#fff;
+  border:0;
+}
+.panel.darkpanel p{color:#d1d5db}
+.flow{
+  margin-top:42px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:14px;
+}
+.flow div{
+  border-radius:18px;
+  background:#f8fafc;
+  border:1px solid var(--line);
+  padding:22px 16px;
+  text-align:center;
+  font-size:22px;
+  font-weight:800;
+}
+.note{
+  position:absolute;
+  left:66px;
+  right:66px;
+  bottom:48px;
+  border-left:8px solid var(--orange);
+  background:#fffbeb;
+  border-radius:16px;
+  padding:20px 24px;
+  font-size:22px;
+  line-height:1.6;
+  color:#78350f;
+}
+.footer{
+  position:absolute;
+  right:38px;
+  bottom:26px;
+  font-size:15px;
+  color:#94a3b8;
+}
+.progress{
+  position:absolute;
+  left:0;
+  bottom:0;
+  height:7px;
+  background:var(--orange);
+  width:0%;
+}
+.controls{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(10px);
+  padding:8px 10px;
+  border-radius:999px;
+  color:#fff;
+  font-size:14px;
+}
+button{
+  border:0;
+  border-radius:999px;
+  background:#fff;
+  color:#111827;
+  padding:8px 14px;
+  font-weight:800;
+  cursor:pointer;
+}
+@media(max-width:900px){
+  .deck{padding:0}
+  .slide{width:100vw;height:100vh;aspect-ratio:auto;border-radius:0;padding:40px 26px;overflow:auto}
+  h1{font-size:42px}
+  h2{font-size:34px}
+  p,li{font-size:19px}
+  .cards,.cards.two,.cards.four,.split,.flow{grid-template-columns:1fr}
+  .note{position:static;margin-top:24px}
+  .controls{bottom:8px}
+}
+@media print{
+  body{background:white}
+  .deck{display:block;height:auto;padding:0}
+  .slide{display:block !important;width:100vw;height:56.25vw;page-break-after:always;border-radius:0;box-shadow:none}
+  .controls{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <section class="slide dark active">
+    <div class="kicker">IT導入支援事業者 登録サポート</div>
+    <h1>登録申請から<br>ITツール登録まで、丸ごと支援。</h1>
+    <p>支援事業者登録だけで終わらせず、最低1件必要となるITツール登録まで一体で支援するサービスです。</p>
+    <div class="cards">
+      <div class="card"><h3>登録申請</h3><p>電子申請入力を整理</p></div>
+      <div class="card"><h3>ITツール登録</h3><p>ソフトウェア・役務を整理</p></div>
+      <div class="card"><h3>不備対応</h3><p>通知内容を読み解き修正</p></div>
+    </div>
+    <div class="footer">1 / 10</div><div class="progress"></div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">なぜ必要か</div>
+    <h2>マニュアルを見れば、入力項目はわかる。<br>でも「通る形」まではわからない。</h2>
+    <p>電子申請マニュアルや入力シートがあっても、実際にはソフトウェアの内容、価格根拠、機能説明、販売実績などを審査側に伝わる資料へ落とし込む必要があります。</p>
+    <div class="note">ここを放置すると、申請入力はできても、ITツール登録で止まりやすくなります。</div>
+    <div class="footer">2 / 10</div><div class="progress"></div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">支援範囲</div>
+    <h2>基本は「丸っとやる」。</h2>
+    <p>登録申請だけ、資料作成だけ、不備対応だけではなく、登録に向けて必要な作業をまとめて支援します。</p>
+    <div class="cards two">
+      <div class="card">
+        <h3>IT導入支援事業者 登録申請</h3>
+        <p>電子申請入力、必要書類の収集、申請内容の整理を支援。</p>
+      </div>
+      <div class="card">
+        <h3>ITツール登録</h3>
+        <p>最低1個必要なツール登録を、ソフトウェア・役務の両面から整理。</p>
+      </div>
+    </div>
+    <div class="footer">3 / 10</div><div class="progress"></div>
+  </section>
+
+  <section class="slide dark">
+    <div class="kicker">目的</div>
+    <h2>ソフトウェアを、確実に登録へ向かわせる。</h2>
+    <p>この支援の中心は、単なる入力代行ではありません。ソフトウェアの機能、価格、提供実績、サポート内容を、登録審査で説明できる形に整えることです。</p>
+    <div class="cards">
+      <div class="card"><h3>機能を説明する</h3><p>何ができるツールなのか</p></div>
+      <div class="card"><h3>価格を説明する</h3><p>なぜその金額なのか</p></div>
+      <div class="card"><h3>提供内容を説明する</h3><p>どこまでが役務なのか</p></div>
+    </div>
+    <div class="footer">4 / 10</div><div class="progress"></div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">具体的な作業</div>
+    <h2>登録に必要な資料を、順番に整える。</h2>
+    <div class="cards three">
+      <div class="card"><h3>電子申請入力サポート</h3><p>入力項目ごとに必要情報を整理。</p></div>
+      <div class="card"><h3>書類収集サポート</h3><p>提出書類の抜け漏れを防ぐ。</p></div>
+      <div class="card"><h3>機能説明資料</h3><p>画面・機能・提供価値を資料化。</p></div>
+      <div class="card"><h3>販売実績一覧</h3><p>過去実績を使える形に整える。</p></div>
+      <div class="card"><h3>価格説明資料</h3><p>料金体系と根拠を見える化。</p></div>
+      <div class="card"><h3>役務価格資料</h3><p>単価・時間・人数から根拠を作る。</p></div>
+    </div>
+    <div class="footer">5 / 10</div><div class="progress"></div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">ツール登録の考え方</div>
+    <h2>ソフトウェアだけでなく、役務も見落とさない。</h2>
+    <div class="split">
+      <div class="panel">
+        <div class="big-num">01</div>
+        <h3>ソフトウェア</h3>
+        <p>機能概要、画面、提供範囲、価格体系、販売実績を整理します。</p>
+      </div>
+      <div class="panel darkpanel">
+        <div class="big-num">02</div>
+        <h3>役務</h3>
+        <p>コンサルティング、導入サポート、運用支援などの価格根拠を整理します。</p>
+      </div>
+    </div>
+    <div class="footer">6 / 10</div><div class="progress"></div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">役務価格資料</div>
+    <h2>初めてだと、ここがかなり面倒。</h2>
+    <p>役務は「サポート一式」では説明が弱くなります。単価、作業時間、担当人数、提供回数などから、価格の根拠を出す必要があります。</p>
+    <ul>
+      <li>誰が対応するのか</li>
+      <li>何時間・何回対応するのか</li>
+      <li>単価はいくらなのか</li>
+      <li>ソフトウェア価格と役務価格をどう分けるのか</li>
+    </ul>
+    <div class="footer">7 / 10</div><div class="progress"></div>
+  </section>
+
+  <section class="slide dark">
+    <div class="kicker">不備通知対応</div>
+    <h2>一番困るのは、通知の意味がわからないこと。</h2>
+    <p>不備通知は、慣れていない人には何を直せばいいのか判断しにくいものです。通知内容を読み解き、申請項目・資料・ソフトウェア説明のどこを直すべきか整理します。</p>
+    <div class="flow">
+      <div>不備通知</div>
+      <div>該当箇所</div>
+      <div>内容照合</div>
+      <div>修正案</div>
+      <div>再申請</div>
+    </div>
+    <div class="footer">8 / 10</div><div class="progress"></div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">AI活用</div>
+    <h2>テンプレートが整っていれば、不備対応はかなり効率化できる。</h2>
+    <p>不備通知、ソフトウェアの内容、不備該当箇所をAIに渡すことで、修正すべき論点を整理しやすくなります。以前は3〜5回のやり取りになることもありましたが、再不備を減らす設計がしやすくなります。</p>
+    <div class="note">ポイントは、AI任せではなく「テンプレート＋該当情報＋不備通知」をセットで渡すこと。</div>
+    <div class="footer">9 / 10</div><div class="progress"></div>
+  </section>
+
+  <section class="slide dark">
+    <div class="kicker">まとめ</div>
+    <h2>登録申請だけでなく、<br>ITツール登録完了まで支援する。</h2>
+    <p>申請入力、書類収集、機能説明資料、販売実績一覧、価格説明資料、役務価格資料、不備通知対応まで。実務上つまずきやすい部分を丸ごと支援します。</p>
+    <div class="cards">
+      <div class="card"><h3>登録申請</h3><p>入力と書類を整える</p></div>
+      <div class="card"><h3>ツール登録</h3><p>ソフトウェア・役務を整理</p></div>
+      <div class="card"><h3>不備対応</h3><p>意味を読み解き修正する</p></div>
+    </div>
+    <div class="footer">10 / 10</div><div class="progress"></div>
+  </section>
+
+</div>
+
+<div class="controls">
+  <button onclick="prevSlide()">← 前へ</button>
+  <span id="counter">1 / 10</span>
+  <button onclick="nextSlide()">次へ →</button>
+</div>
+
+<script>
+const slides = Array.from(document.querySelectorAll('.slide'));
+let current = 0;
+
+function update(){
+  slides.forEach((s,i)=>{
+    s.classList.toggle('active', i===current);
+    const bar = s.querySelector('.progress');
+    if(bar) bar.style.width = ((current+1)/slides.length*100) + '%';
+  });
+  document.getElementById('counter').textContent = (current+1) + ' / ' + slides.length;
+}
+function nextSlide(){ current = Math.min(slides.length-1, current+1); update(); }
+function prevSlide(){ current = Math.max(0, current-1); update(); }
+document.addEventListener('keydown', e=>{
+  if(e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+  if(e.key === 'ArrowLeft') prevSlide();
+});
+update();
+</script>
+</body>
+</html>
