@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IT導入支援事業者 登録申請・ITツール登録サポート</title>
+<style>
+  :root{
+    --navy:#0f172a;
+    --navy2:#172033;
+    --ink:#111827;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+    --bg:#f7f8fa;
+    --white:#ffffff;
+    --orange:#f59e0b;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.75;
+  }
+  .hero{
+    background:linear-gradient(135deg,var(--navy),#111827 60%,#1f2937);
+    color:#fff;
+    padding:76px 20px 70px;
+  }
+  .wrap{max-width:1080px;margin:0 auto}
+  .eyebrow{
+    display:inline-block;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.08em;
+    border:1px solid rgba(255,255,255,.22);
+    padding:6px 11px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  h1{
+    margin:0;
+    font-size:clamp(34px,5vw,64px);
+    line-height:1.12;
+    letter-spacing:-.04em;
+  }
+  .hero p{
+    max-width:820px;
+    font-size:18px;
+    color:#d1d5db;
+    margin:22px 0 0;
+  }
+  .hero-note{
+    margin-top:28px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+  }
+  .hero-note div{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    padding:18px;
+    border-radius:14px;
+    font-weight:700;
+  }
+  section{padding:64px 20px}
+  section.white{background:#fff}
+  h2{
+    font-size:clamp(28px,4vw,44px);
+    line-height:1.2;
+    margin:0 0 18px;
+    letter-spacing:-.03em;
+  }
+  .lead{font-size:18px;color:#4b5563;max-width:850px;margin:0 0 34px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 8px 26px rgba(15,23,42,.05);
+  }
+  .card h3{margin:0 0 10px;font-size:22px}
+  .card p{margin:0;color:#4b5563}
+  .step{
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:18px;
+    align-items:flex-start;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .num{
+    width:54px;height:54px;border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--navy);color:#fff;font-weight:800;font-size:20px;
+  }
+  .step h3{margin:0 0 6px;font-size:22px}
+  .step p{margin:0;color:#4b5563}
+  .accent{
+    border-left:6px solid var(--orange);
+    background:#fffbeb;
+    padding:24px 26px;
+    border-radius:12px;
+    margin-top:30px;
+  }
+  .accent strong{font-size:21px}
+  .two{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  .dark{
+    background:var(--navy);
+    color:#fff;
+    border-radius:18px;
+    padding:30px;
+  }
+  .dark p{color:#cbd5e1}
+  ul{padding-left:1.2em;margin:10px 0 0}
+  li{margin:8px 0}
+  .flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    margin-top:24px;
+  }
+  .flow span{
+    background:#fff;
+    border:1px solid var(--line);
+    padding:12px 16px;
+    border-radius:12px;
+    font-weight:700;
+  }
+  .arrow{color:#9ca3af;font-weight:900}
+  .final{
+    background:#111827;
+    color:#fff;
+    padding:70px 20px;
+  }
+  .final p{color:#d1d5db;max-width:820px}
+  .tag{
+    display:inline-block;
+    margin-top:18px;
+    background:var(--orange);
+    color:#111827;
+    font-weight:800;
+    padding:12px 18px;
+    border-radius:12px;
+  }
+  @media(max-width:760px){
+    .hero{padding:52px 18px}
+    section{padding:48px 18px}
+    .hero-note,.grid,.two{grid-template-columns:1fr}
+    .step{grid-template-columns:52px 1fr;gap:14px}
+    .num{width:46px;height:46px;border-radius:13px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">IT導入支援事業者 登録サポート</div>
+    <h1>登録申請から<br>ITツール登録まで、丸ごと支援。</h1>
+    <p>
+      IT導入支援事業者になるための登録申請だけでなく、
+      採択後に必要となる最低1件のITツール登録までを一体でサポートします。
+      「入力項目はわかる。でも、どう作れば通るのかがわからない」を解消するための支援です。
+    </p>
+    <div class="hero-note">
+      <div>支援事業者登録申請</div>
+      <div>ITツール登録</div>
+      <div>不備通知対応</div>
+    </div>
+  </div>
+</header>
+
+<section class="white">
+  <div class="wrap">
+    <h2>電子申請マニュアルだけでは、実際には進みにくい。</h2>
+    <p class="lead">
+      電子申請マニュアルを見れば、「何を入力するのか」はわかります。
+      電子申請入力シートが配布されているケースもあります。
+      ただし、本当に負担が大きいのは、その先です。
+      自社のソフトウェアやサービスの内容を、審査側が理解しやすい形に整理して資料化する必要があります。
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3>登録申請</h3>
+        <p>IT導入支援事業者として登録するための電子申請入力、必要書類の準備、申請内容の整理を支援します。</p>
+      </div>
+      <div class="card">
+        <h3>ITツール登録</h3>
+        <p>最低1件必要となるITツール登録について、ソフトウェア本体だけでなく、必要に応じて役務まで含めて支援します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>基本方針は「ソフトウェアを確実に登録へ向かわせる」こと。</h2>
+    <p class="lead">
+      単に申請フォームを埋めるのではなく、ツール登録に必要な情報・資料を整え、
+      不備が出た場合も修正しやすい状態まで作ります。
+    </p>
+
+    <div class="step">
+      <div class="num">01</div>
+      <div>
+        <h3>電子申請入力サポート</h3>
+        <p>入力項目ごとに、どの情報をどのように整理して記載するかを支援します。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">02</div>
+      <div>
+        <h3>書類収集サポート</h3>
+        <p>申請に必要となる書類を整理し、抜け漏れが起きにくい状態にします。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">03</div>
+      <div>
+        <h3>機能説明資料の作成支援</h3>
+        <p>ソフトウェアの機能を、審査側が理解できる形で整理し、機能概要・画面・提供内容を資料化します。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">04</div>
+      <div>
+        <h3>販売実績一覧の作成</h3>
+        <p>過去の販売実績を、登録申請に使いやすい形へ整理します。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">05</div>
+      <div>
+        <h3>ソフトウェアの価格説明資料</h3>
+        <p>価格の根拠がわかるように、料金体系・プラン・提供範囲を資料化します。複雑にしすぎず、審査側に伝わることを重視します。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">06</div>
+      <div>
+        <h3>役務の価格説明資料</h3>
+        <p>コンサルティングや導入サポート等について、単価・時間・人数などをもとに価格根拠を作成します。初めて取り組む場合、特に手間がかかりやすい部分です。</p>
+      </div>
+    </div>
+
+    <div class="accent">
+      <strong>ソフトウェアだけでなく、「役務」まで登録設計できる。</strong><br>
+      ITツール登録は、ソフトウェアと、コンサルティング・サポート等の役務に分かれます。
+      必要に応じて、両方を見据えて登録内容を整理します。
+    </div>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap">
+    <h2>実は一番困るのが「不備通知」です。</h2>
+    <p class="lead">
+      不備通知が届いても、何を直せばよいのか、通知文だけでは意味がわからないケースがあります。
+      そこで、不備内容を読み解き、どの申請項目・どの資料を修正すべきかまで整理して対応します。
+    </p>
+
+    <div class="two">
+      <div class="dark">
+        <h3>以前</h3>
+        <p>人が一つずつ内容を確認して修正していたため、3〜5回程度のやり取りになることもありました。</p>
+      </div>
+      <div class="dark">
+        <h3>現在</h3>
+        <p>テンプレートを整備したうえで、不備通知・ソフトウェア情報・該当箇所をAIに整理させることで、再不備を減らしやすくなりました。</p>
+      </div>
+    </div>
+
+    <div class="flow">
+      <span>不備通知</span><span class="arrow">→</span>
+      <span>該当箇所特定</span><span class="arrow">→</span>
+      <span>ソフトウェア情報照合</span><span class="arrow">→</span>
+      <span>修正案作成</span><span class="arrow">→</span>
+      <span>再申請</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>この登録業務は、必要以上に怖がるものではありません。</h2>
+    <p class="lead">
+      実際に取り組むと、申請から不備通知までのレスポンスが比較的早く、
+      長期間だらだら進めるというより、指摘があれば修正して前へ進めていく業務です。
+      また、登録要件に沿って内容を整えれば、必要以上に身構える必要はありません。
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3>テンプレート化しやすい</h3>
+        <p>必要資料や入力項目に一定の型があるため、一度仕組みを作ると対応しやすくなります。</p>
+      </div>
+      <div class="card">
+        <h3>AIと相性が良い</h3>
+        <p>不備通知の読解、該当箇所の特定、修正案の整理などは、情報を正しく渡せばAIを活用しやすい領域です。</p>
+      </div>
+      <div class="card">
+        <h3>スピード感を持って進めやすい</h3>
+        <p>通知後すぐに修正対応する体制を作っておけば、案件を長期間滞留させにくくなります。</p>
+      </div>
+      <div class="card">
+        <h3>丸ごと支援に向いている</h3>
+        <p>申請入力だけでなく、資料作成・ツール登録・不備対応までまとめて提供することで、依頼者の負担を大きく減らせます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="final">
+  <div class="wrap">
+    <h2>「登録申請だけ」ではなく、<br>ITツール登録完了までを支援する。</h2>
+    <p>
+      IT導入支援事業者への登録申請、ITツール登録、必要資料の作成、
+      役務の価格根拠整理、不備通知への対応まで。
+      実務上つまずきやすい部分をテンプレートとAI活用で効率化し、
+      登録に向けて一つずつ進められる支援体制を作ります。
+    </p>
+    <div class="tag">登録申請＋ITツール登録＋不備対応</div>
+  </div>
+</footer>
+
+</body>
+</html>
