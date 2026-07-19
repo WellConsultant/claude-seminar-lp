@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スワイププロンプトメーカー</title>
+
+<!-- PDF文字抽出用（AI不使用） -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
+
+<style>
+  :root{
+    --navy:#0b1633;
+    --navy2:#121f42;
+    --black:#111111;
+    --white:#ffffff;
+    --gray:#f4f5f7;
+    --line:#d9dde5;
+    --orange:#f28c28;
+    --red:#b42318;
+    --green:#027a48;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    background:var(--gray);
+    color:var(--black);
+    line-height:1.7;
+  }
+  .header{
+    background:var(--navy);
+    color:#fff;
+    padding:34px 20px 28px;
+    text-align:center;
+  }
+  .header h1{
+    margin:0 0 8px;
+    font-size:clamp(26px,5vw,42px);
+    line-height:1.25;
+  }
+  .header p{
+    margin:0;
+    opacity:.9;
+    font-size:15px;
+  }
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:24px 16px 50px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:18px;
+    align-items:start;
+  }
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:22px;
+    box-shadow:0 8px 24px rgba(11,22,51,.06);
+  }
+  .card h2{
+    margin:0 0 16px;
+    font-size:21px;
+    color:var(--navy);
+  }
+  .section-title{
+    margin:22px 0 8px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    font-size:17px;
+    color:var(--navy);
+  }
+  label{
+    display:block;
+    font-weight:700;
+    margin:16px 0 7px;
+    font-size:14px;
+  }
+  input, textarea{
+    width:100%;
+    border:1px solid #cfd4dd;
+    border-radius:10px;
+    padding:12px 13px;
+    font:inherit;
+    color:#111;
+    background:#fff;
+    outline:none;
+    transition:.15s;
+  }
+  input:focus, textarea:focus{
+    border-color:var(--navy);
+    box-shadow:0 0 0 3px rgba(11,22,51,.08);
+  }
+  textarea{resize:vertical;min-height:120px}
+  .small{min-height:88px}
+  .large{min-height:250px}
+  .prompt-output{
+    min-height:720px;
+    white-space:pre-wrap;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+    font-size:13px;
+    line-height:1.65;
+  }
+  .row{
+    display:flex;
+    gap:10px;
+    align-items:stretch;
+  }
+  .row input{flex:1}
+  .btns{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:18px;
+  }
+  button, .file-label{
+    border:0;
+    border-radius:10px;
+    padding:13px 18px;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+    text-align:center;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .primary{
+    background:var(--orange);
+    color:#111;
+  }
+  .secondary{
+    background:var(--navy);
+    color:#fff;
+  }
+  .ghost{
+    background:#eceff4;
+    color:#111;
+  }
+  .file-label{
+    background:var(--navy);
+    color:#fff;
+  }
+  .file-input{display:none}
+  .hint{
+    margin-top:6px;
+    color:#667085;
+    font-size:12px;
+  }
+  .notice{
+    background:#f8f9fb;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+    font-size:13px;
+    margin-top:10px;
+  }
+  .status{
+    margin-top:10px;
+    min-height:24px;
+    font-size:13px;
+    font-weight:700;
+  }
+  .status.ok{color:var(--green)}
+  .status.error{color:var(--red)}
+  .divider{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:16px 0 4px;
+    color:#667085;
+    font-size:12px;
+    font-weight:700;
+  }
+  .divider:before,.divider:after{
+    content:"";
+    height:1px;
+    flex:1;
+    background:var(--line);
+  }
+  .footer{
+    text-align:center;
+    color:#667085;
+    font-size:12px;
+    padding:10px 16px 30px;
+  }
+  @media(max-width:860px){
+    .grid{grid-template-columns:1fr}
+    .row{flex-direction:column}
+    .prompt-output{min-height:500px}
+    .card{padding:18px}
+  }
+</style>
+</head>
+<body>
+<header class="header">
+  <h1>スワイププロンプトメーカー</h1>
+  <p>URL・PDF・TXT・Markdownから文章を取り込み、AIで使えるプロンプトを作成します。</p>
+</header>
+
+<main class="wrap">
+  <div class="grid">
+    <section class="card">
+      <h2>1. スワイプコピーを取り込む</h2>
+
+      <label for="urlInput">WebページURL</label>
+      <div class="row">
+        <input id="urlInput" type="url" placeholder="https://example.com/page">
+        <button class="secondary" id="urlLoadBtn" type="button">URLから取得</button>
+      </div>
+      <div class="hint">取得可能なページは本文を自動抽出して下のスワイプコピー欄へ入れます。</div>
+
+      <div class="divider">または</div>
+
+      <label>ファイルをアップロード</label>
+      <div class="btns" style="margin-top:8px">
+        <label class="file-label" for="fileInput">PDF / TXT / MDを選択</label>
+        <input id="fileInput" class="file-input" type="file" accept=".pdf,.txt,.md,text/plain,text/markdown,application/pdf">
+      </div>
+      <div class="hint">文字情報入りPDF、TXT、Markdownに対応。スキャン画像だけのPDFはOCRが必要です。</div>
+
+      <div id="importStatus" class="status"></div>
+
+      <label for="swipe">スワイプコピー</label>
+      <textarea id="swipe" class="large" placeholder="URLやファイルから取得した文章がここに表示されます。直接貼り付けても使えます。"></textarea>
+
+      <h3 class="section-title">2. プロンプト設定</h3>
+
+      <label for="role">役割</label>
+      <input id="role" value="スワイプファイル分析を得意とするセールスライター">
+
+      <label for="steps">実行命令</label>
+      <textarea id="steps" class="large">スワイププロンプト
+STEP１
+このコピーのコンセプトを明記してください
+例）⚫︎⚫︎があなたを◾️◾️に導くなど...
+
+STEP2
+特徴を抽出してください
+
+STEP3
+構成をコピーして、誰でも書けるようにしてください
+
+STEP4
+このコピーを再現するための質問リストを作ってください
+
+STEP5
+STEP4で作った質問リストを使ってユーザーに質問して、基本データを作ってください
+
+STEP6
+基本データをもとに、コピーの構成を作成してください
+
+STEP7
+コピーの構成をもとに、スワイプコピーを参考フォーマットとして、独自のコピーを完成させてください。</textarea>
+
+      <label for="supplement">補足</label>
+      <textarea id="supplement" class="small">- STEPごとにユーザーに確認して進めてください。
+- 出力形式=マークダウン形式
+- 出力方法=コードブロック出力
+- 指示の復唱はしないでください。
+- 自己評価はしないでください。
+- 参考フォーマットから外れた余計な前置き、結論やまとめは書かないでください。</textarea>
+
+      <div class="btns">
+        <button class="primary" id="generateBtn">プロンプトを作成</button>
+        <button class="ghost" id="resetBtn">初期値に戻す</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3. 完成プロンプト</h2>
+      <textarea id="output" class="prompt-output" readonly placeholder="左側でスワイプコピーを取り込み、「プロンプトを作成」を押してください。"></textarea>
+
+      <div class="btns">
+        <button class="secondary" id="copyBtn">プロンプトをコピー</button>
+      </div>
+      <div id="status" class="status"></div>
+
+      <div class="notice">
+        <strong>URL取得について</strong><br>
+        このHTMLを単体で開いた場合、相手サイトのCORS設定によっては取得できないことがあります。
+        その場合でも、PDF・TXT・Markdownのアップロードと直接貼り付けは利用できます。
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="footer">
+  作成したプロンプトは、ChatGPT・Claude・Geminiなどにそのまま貼り付けて利用できます。
+</footer>
+
+<script type="module">
+import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+const defaults = {
+  role: "スワイプファイル分析を得意とするセールスライター",
+  steps: `スワイププロンプト
+STEP１
+このコピーのコンセプトを明記してください
+例）⚫︎⚫︎があなたを◾️◾️に導くなど...
+
+STEP2
+特徴を抽出してください
+
+STEP3
+構成をコピーして、誰でも書けるようにしてください
+
+STEP4
+このコピーを再現するための質問リストを作ってください
+
+STEP5
+STEP4で作った質問リストを使ってユーザーに質問して、基本データを作ってください
+
+STEP6
+基本データをもとに、コピーの構成を作成してください
+
+STEP7
+コピーの構成をもとに、スワイプコピーを参考フォーマットとして、独自のコピーを完成させてください。`,
+  supplement: `- STEPごとにユーザーに確認して進めてください。
+- 出力形式=マークダウン形式
+- 出力方法=コードブロック出力
+- 指示の復唱はしないでください。
+- 自己評価はしないでください。
+- 参考フォーマットから外れた余計な前置き、結論やまとめは書かないでください。`
+};
+
+function setStatus(id, message, type="ok"){
+  const el = document.getElementById(id);
+  el.className = "status " + type;
+  el.textContent = message;
+}
+
+function cleanHtmlToText(html){
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, "text/html");
+
+  doc.querySelectorAll("script,style,noscript,svg,iframe,nav,header,footer,form").forEach(el => el.remove());
+
+  const preferred =
+    doc.querySelector("main") ||
+    doc.querySelector("article") ||
+    doc.querySelector('[role="main"]') ||
+    doc.body;
+
+  let text = preferred.innerText || preferred.textContent || "";
+  text = text
+    .replace(/\u00a0/g, " ")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  return text;
+}
+
+async function loadFromUrl(){
+  const url = document.getElementById("urlInput").value.trim();
+  if(!url){
+    setStatus("importStatus","URLを入力してください。","error");
+    return;
+  }
+
+  setStatus("importStatus","URLから本文を取得しています…","ok");
+
+  try{
+    const res = await fetch(url);
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    const html = await res.text();
+    const text = cleanHtmlToText(html);
+
+    if(!text){
+      throw new Error("本文を抽出できませんでした");
+    }
+
+    document.getElementById("swipe").value = text;
+    setStatus("importStatus","URLから本文を取得しました。","ok");
+  }catch(err){
+    setStatus(
+      "importStatus",
+      "このURLはブラウザの制限（CORS等）で取得できませんでした。ファイルをアップロードするか、本文を直接貼り付けてください。",
+      "error"
+    );
+  }
+}
+
+async function extractPdfText(file){
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
+  let fullText = "";
+
+  for(let i = 1; i <= pdf.numPages; i++){
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    const pageText = content.items.map(item => item.str).join(" ");
+    fullText += `\n\n--- ${i}ページ ---\n${pageText}`;
+  }
+
+  return fullText.trim();
+}
+
+async function handleFile(file){
+  if(!file) return;
+
+  setStatus("importStatus",`${file.name} を読み込んでいます…`,"ok");
+
+  try{
+    const ext = file.name.split(".").pop().toLowerCase();
+    let text = "";
+
+    if(ext === "pdf" || file.type === "application/pdf"){
+      text = await extractPdfText(file);
+      if(!text || text.replace(/--- \d+ページ ---/g,"").trim().length < 10){
+        throw new Error("PDF内に抽出可能な文字が見つかりませんでした。スキャンPDFの可能性があります。");
+      }
+    }else if(["txt","md"].includes(ext) || file.type.startsWith("text/")){
+      text = await file.text();
+    }else{
+      throw new Error("対応していないファイル形式です。");
+    }
+
+    document.getElementById("swipe").value = text.trim();
+    setStatus("importStatus",`${file.name} から文章を読み込みました。`,"ok");
+  }catch(err){
+    setStatus("importStatus",err.message || "ファイルの読み込みに失敗しました。","error");
+  }
+}
+
+function buildPrompt(){
+  const role = document.getElementById("role").value.trim();
+  const steps = document.getElementById("steps").value.trim();
+  const swipe = document.getElementById("swipe").value.trim();
+  const supplement = document.getElementById("supplement").value.trim();
+
+  const prompt = `#役割
+${role}
+
+#実行命令
+${steps}
+
+スワイプコピー="
+${swipe || "ここにテキストファイル、または、マークダウン形式（推奨）で貼り付けてください"}
+"
+
+#補足:
+${supplement}`;
+
+  document.getElementById("output").value = prompt;
+  setStatus("status","プロンプトを作成しました。","ok");
+}
+
+async function copyPrompt(){
+  const output = document.getElementById("output");
+  if(!output.value.trim()){
+    buildPrompt();
+  }
+
+  try{
+    await navigator.clipboard.writeText(output.value);
+    setStatus("status","プロンプトをコピーしました。AIにそのまま貼り付けられます。","ok");
+  }catch(e){
+    output.select();
+    document.execCommand("copy");
+    setStatus("status","プロンプトをコピーしました。","ok");
+  }
+}
+
+function resetForm(){
+  document.getElementById("urlInput").value = "";
+  document.getElementById("fileInput").value = "";
+  document.getElementById("role").value = defaults.role;
+  document.getElementById("steps").value = defaults.steps;
+  document.getElementById("swipe").value = "";
+  document.getElementById("supplement").value = defaults.supplement;
+  document.getElementById("output").value = "";
+  setStatus("status","入力内容を初期値に戻しました。","ok");
+  document.getElementById("importStatus").textContent = "";
+}
+
+document.getElementById("urlLoadBtn").addEventListener("click", loadFromUrl);
+document.getElementById("fileInput").addEventListener("change", (e)=>handleFile(e.target.files[0]));
+document.getElementById("generateBtn").addEventListener("click", buildPrompt);
+document.getElementById("copyBtn").addEventListener("click", copyPrompt);
+document.getElementById("resetBtn").addEventListener("click", resetForm);
+</script>
+</body>
+</html>
