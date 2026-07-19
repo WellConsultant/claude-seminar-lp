@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    
+  </style>
+</head>
+<body>
+  
+
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サンクスページ</title>
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  body { margin: 0; font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif; line-height: 1.6; color: #111827; background: #ffffff; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; }
+  a { color: inherit; }
+  .lp-btn { display:inline-block; padding:16px 40px; font-weight:700; font-size:18px; text-decoration:none; transition: transform .15s, opacity .15s; }
+  .lp-btn:hover { transform: translateY(-2px); opacity: .92; }
+  @media (max-width: 640px) {
+    .lp-section { padding-left: 20px !important; padding-right: 20px !important; }
+    .lp-grid { grid-template-columns: 1fr !important; }
+    h1 { font-size: 30px !important; }
+    h2 { font-size: 26px !important; }
+    .lp-btn { padding: 14px 28px !important; font-size: 16px !important; }
+  }
+</style>
+
+
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スマートプロンプトメーカー</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* カスタムスクロールバー（オプション） */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; 
+        }
+    </style>
+
+
+
+    <!-- ヘッダー -->
+    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="bg-blue-600 p-2 rounded-lg flex items-center justify-center">
+                    <i data-lucide="file-text" class="w-5 h-5 text-white"></i>
+                </div>
+                <h1 class="text-xl font-bold text-gray-900">スマートプロンプトメーカー</h1>
+            </div>
+            <p class="text-sm text-gray-500 hidden md:block">
+                AIへの最適な指示文を簡単に作成
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- 左カラム：入力フォーム -->
+            <div class="space-y-6">
+                <!-- 1. 基本データ -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2 border-b pb-2">
+                        <i data-lucide="database" class="w-5 h-5 text-blue-500"></i>
+                        1. 基本データ（ヒアリング等データ）</h2>
+                    <p class="text-xs text-gray-500 mb-2">会社情報、ターゲット顧客、商品・サービスの特徴など</p>
+                    <textarea id="basicData" class="w-full h-32 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none" placeholder="例：株式会社〇〇、SaaS提供企業。主なターゲットは中小企業の人事担当者。主力商品は勤怠管理システム。"></textarea>
+                </div>
+
+                <!-- 2. 参考資料 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2 border-b pb-2">
+                        <i data-lucide="book-open-text" class="w-5 h-5 text-indigo-500"></i>
+                        2. 参考資料（公募要領・事業計画書参考資料など）</h2>
+                    <p class="text-xs text-gray-500 mb-2">参考にしてほしい文章、事例、既存原稿、資料の内容などを直接貼り付けてください</p>
+                    <textarea id="referenceMaterial" class="w-full h-48 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-y" placeholder="例：参考にしたい文章や資料の内容をここに貼り付けてください。入力した内容は、そのまま完成プロンプトの【参考資料】に反映されます。"></textarea>
+                </div>
+
+                <!-- 3. 参考フォーマット -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2 border-b pb-2">
+                        <i data-lucide="layout-template" class="w-5 h-5 text-emerald-500"></i>
+                        3. 参考フォーマット（テンプレート）</h2>
+                    <p class="text-xs text-gray-500 mb-2">出力してほしい形式や構成の見本</p>
+                    <textarea id="referenceFormat" class="w-full h-32 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none" placeholder="例：
+1. 概要
+2. ターゲット層
+3. 競合優位性
+4. 収益モデル
+という見出し構成で出力してください。"></textarea>
+                </div>
+
+                <!-- 4. ルール -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2 border-b pb-2">
+                        <i data-lucide="shield-alert" class="w-5 h-5 text-amber-500"></i>
+                        4. ルール（審査基準など）</h2>
+                    <p class="text-xs text-gray-500 mb-2">文字数、トーン＆マナー、禁止事項など</p>
+                    <textarea id="rules" class="w-full h-24 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none" placeholder="例：です・ます調で統一する。専門用語は避け、中学生でもわかる言葉を使うこと。"></textarea>
+                </div>
+
+                <!-- 5. 指示内容 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2 border-b pb-2">
+                        <i data-lucide="target" class="w-5 h-5 text-red-500"></i>
+                        5. 指示内容（事業計画書の書き方など）</h2>
+                    <p class="text-xs text-gray-500 mb-2">最終的にAIにやってほしいこと（タスク）</p>
+                    <textarea id="instructions" class="w-full h-24 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none" placeholder="例：添付した市場調査データに基づき、新規事業計画を作成してください。"></textarea>
+                </div>
+            </div>
+
+            <!-- 右カラム：プレビューとコピー -->
+            <div class="lg:sticky lg:top-24 h-fit">
+                <div class="bg-gray-900 rounded-xl shadow-xl overflow-hidden flex flex-col h-[calc(100vh-8rem)] min-h-[500px]">
+                    <div class="bg-gray-800 px-6 py-4 flex items-center justify-between border-b border-gray-700">
+                        <h3 class="text-white font-medium flex items-center gap-2">
+                            <i data-lucide="file-text" class="w-5 h-5 text-gray-400"></i>
+                            完成したプロンプト
+                        </h3>
+                        <button id="copyBtn" class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-white text-gray-900 hover:bg-gray-100">
+                            <i data-lucide="copy" class="w-4 h-4" id="copyIcon"></i>
+                            <span id="copyText">コピーする</span>
+                        </button>
+                    </div>
+                    
+                    <div class="p-6 flex-1 overflow-y-auto bg-gray-900">
+                        <pre id="previewArea" class="text-gray-300 font-mono text-sm whitespace-pre-wrap break-words"></pre>
+                    </div>
+                    
+                    <div class="bg-gray-800 p-4 text-xs text-gray-400 border-t border-gray-700">
+                        💡 使い方: 左側の各項目を入力すると、内容が完成プロンプトへ自動反映されます。「コピーする」を押し、ChatGPTやClaudeのチャット欄に貼り付けてください。
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Lucideアイコンの初期化
+        lucide.createIcons();
+
+        // DOM要素の取得
+        const basicDataInput = document.getElementById('basicData');
+        const referenceMaterialInput = document.getElementById('referenceMaterial');
+        const referenceFormatInput = document.getElementById('referenceFormat');
+        const rulesInput = document.getElementById('rules');
+        const instructionsInput = document.getElementById('instructions');
+        
+        const previewArea = document.getElementById('previewArea');
+        
+        const copyBtn = document.getElementById('copyBtn');
+        const copyIcon = document.getElementById('copyIcon');
+        const copyText = document.getElementById('copyText');
+
+        // 状態
+        let generatedPromptText = '';
+
+        // プロンプトを生成してプレビューを更新する関数
+        function updatePrompt() {
+            const basicData = basicDataInput.value;
+            const referenceMaterial = referenceMaterialInput.value;
+            const referenceFormat = referenceFormatInput.value;
+            const rules = rulesInput.value;
+            const instructions = instructionsInput.value;
+
+            generatedPromptText = `以下の【基本データ】をもとに、【参考情報】と【参考フォーマット】に従い、【ルール】を守って、指定する【指示内容】を遂行してください。
+
+========================================
+【基本データ（会社やお客様・商品などの独自情報）】
+${basicData || '（入力されていません）'}
+
+【参考資料（参考にする文章・事例・既存原稿など）】
+${referenceMaterial || '（入力されていません）'}
+
+【参考フォーマット（見本）】
+${referenceFormat || '（入力されていません）'}
+
+【ルール（制約条件やトーン＆マナー）】
+${rules || '（入力されていません）'}
+
+【指示内容】
+${instructions || '（入力されていません）'}
+========================================`;
+
+            previewArea.textContent = generatedPromptText;
+        }
+
+        // イベントリスナーの登録（入力のたびに更新）
+        [basicDataInput, referenceMaterialInput, referenceFormatInput, rulesInput, instructionsInput].forEach(input => {
+            input.addEventListener('input', updatePrompt);
+        });
+
+        // コピー機能の実装（制限環境対応）
+        copyBtn.addEventListener('click', () => {
+            try {
+                const textArea = document.createElement("textarea");
+                textArea.value = generatedPromptText;
+                textArea.style.position = "absolute";
+                textArea.style.left = "-999999px";
+                document.body.appendChild(textArea);
+                textArea.select();
+                
+                const successful = document.execCommand('copy');
+                textArea.remove();
+
+                if (successful) {
+                    // 成功時のUI変更
+                    copyBtn.className = "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-green-500 text-white";
+                    copyIcon.setAttribute('data-lucide', 'check');
+                    copyText.textContent = "コピーしました";
+                    lucide.createIcons();
+
+                    // 2秒後に元に戻す
+                    setTimeout(() => {
+                        copyBtn.className = "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-white text-gray-900 hover:bg-gray-100";
+                        copyIcon.setAttribute('data-lucide', 'copy');
+                        copyText.textContent = "コピーする";
+                        lucide.createIcons();
+                    }, 2000);
+                } else {
+                    throw new Error('コピーコマンドが失敗しました');
+                }
+            } catch (error) {
+                console.error('Copy failed:', error);
+                
+                // 失敗時のUI変更
+                copyBtn.className = "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-red-500 text-white";
+                copyIcon.setAttribute('data-lucide', 'alert-circle');
+                copyText.textContent = "失敗しました";
+                lucide.createIcons();
+
+                setTimeout(() => {
+                    copyBtn.className = "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-white text-gray-900 hover:bg-gray-100";
+                    copyIcon.setAttribute('data-lucide', 'copy');
+                    copyText.textContent = "コピーする";
+                    lucide.createIcons();
+                }, 3000);
+            }
+        });
+
+        // 初期表示のために一度実行
+        updatePrompt();
+
+    </script>
+
+
+
+<script>(function(){try{
+var CS="d7ed4f33-f24b-4e41-83c7-c9bdb3774dde",PK="draft-81920130-39e5-4c02-a315-a1f6b13710d2-step-mqxl5goa-i43u.html";
+var vid=localStorage.getItem('tg_vid');
+if(!vid){vid=(Date.now().toString(36)+Math.random().toString(36).slice(2,10));localStorage.setItem('tg_vid',vid);}
+function send(ev,meta){try{navigator.sendBeacon('/api/track',new Blob([JSON.stringify({company_seg:CS,page_key:PK,visit_id:vid,event_type:ev,referrer:document.referrer,path:location.pathname,meta:meta||null})],{type:'application/json'}));}catch(e){try{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({company_seg:CS,page_key:PK,visit_id:vid,event_type:ev,referrer:document.referrer,path:location.pathname,meta:meta||null}),keepalive:true});}catch(_){}}}
+send('view');
+// 発リンクに来訪IDを付ける（フォーム・ウェビナーはサイト内、決済はStripeのclient_reference_id）
+function tag(){[].forEach.call(document.querySelectorAll('a[href]'),function(a){
+ if(a.getAttribute('data-tg')==='1')return; a.setAttribute('data-tg','1');
+ var h=a.getAttribute('href')||'';
+ try{
+  if(/^(https?:)?\/\//.test(h)||h.indexOf('/')===0){
+   var u=new URL(h,location.href);
+   var host=u.hostname;
+   if(u.pathname.indexOf('/f/')===0||u.pathname.indexOf('/w/')===0||u.pathname.indexOf('/reserve/')===0||u.pathname.indexOf('/booking/')===0){
+     u.searchParams.set('vid',vid);u.searchParams.set('src',PK);a.setAttribute('href',u.toString());
+   }else if(host.indexOf('stripe.com')>=0||host.indexOf('buy.stripe')>=0){
+     u.searchParams.set('client_reference_id',vid);a.setAttribute('href',u.toString());
+     a.addEventListener('click',function(){send('payment_click');});
+   }
+  }
+ }catch(e){}
+});}
+tag(); setTimeout(tag,1200);
+}catch(e){}})();</script>
+
+</body>
+</html>
