@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スワイプファイル分析プロンプトメーカー</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
+
+<style>
+:root{
+  --navy:#0b1633;
+  --black:#111111;
+  --white:#ffffff;
+  --gray:#f4f5f7;
+  --line:#d9dde5;
+  --orange:#f28c28;
+  --red:#b42318;
+  --green:#027a48;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  background:var(--gray);
+  color:var(--black);
+  line-height:1.7;
+}
+.header{
+  background:var(--navy);
+  color:#fff;
+  padding:34px 20px 28px;
+  text-align:center;
+}
+.header h1{
+  margin:0 0 8px;
+  font-size:clamp(26px,5vw,42px);
+}
+.header p{
+  margin:0;
+  opacity:.9;
+  font-size:15px;
+}
+.wrap{
+  max-width:1220px;
+  margin:0 auto;
+  padding:24px 16px 50px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  gap:18px;
+  align-items:start;
+}
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:22px;
+  box-shadow:0 8px 24px rgba(11,22,51,.06);
+}
+.card h2{
+  margin:0 0 16px;
+  font-size:21px;
+  color:var(--navy);
+}
+.section-title{
+  margin:22px 0 8px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  font-size:17px;
+  color:var(--navy);
+}
+label{
+  display:block;
+  font-weight:700;
+  margin:16px 0 7px;
+  font-size:14px;
+}
+input,textarea,select{
+  width:100%;
+  border:1px solid #cfd4dd;
+  border-radius:10px;
+  padding:12px 13px;
+  font:inherit;
+  color:#111;
+  background:#fff;
+  outline:none;
+}
+textarea{
+  resize:vertical;
+  min-height:120px;
+}
+.large{min-height:330px}
+.medium{min-height:180px}
+.small{min-height:90px}
+.prompt-output{
+  min-height:860px;
+  white-space:pre-wrap;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+  font-size:13px;
+  line-height:1.6;
+}
+.btns{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:16px;
+}
+button,.file-label{
+  border:0;
+  border-radius:10px;
+  padding:13px 18px;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.primary{
+  background:var(--orange);
+  color:#111;
+}
+.secondary{
+  background:var(--navy);
+  color:#fff;
+}
+.ghost{
+  background:#eceff4;
+  color:#111;
+}
+.file-label{
+  background:var(--navy);
+  color:#fff;
+}
+.file-input{display:none}
+.hint{
+  margin-top:6px;
+  color:#667085;
+  font-size:12px;
+}
+.status{
+  margin-top:10px;
+  min-height:24px;
+  font-size:13px;
+  font-weight:700;
+}
+.ok{color:var(--green)}
+.error{color:var(--red)}
+.toggle{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+.toggle button{
+  padding:9px 12px;
+  font-size:13px;
+}
+.active{
+  background:var(--navy)!important;
+  color:#fff!important;
+}
+.notice{
+  margin-top:12px;
+  padding:12px 14px;
+  border-radius:10px;
+  background:#f8f9fb;
+  border:1px solid var(--line);
+  font-size:13px;
+  color:#475467;
+}
+.check-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px 14px;
+  margin-top:10px;
+}
+.check-item{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  font-size:14px;
+}
+.check-item input{
+  width:auto;
+  margin-top:5px;
+}
+@media(max-width:860px){
+  .grid{grid-template-columns:1fr}
+  .prompt-output{min-height:600px}
+  .check-grid{grid-template-columns:1fr}
+  .card{padding:18px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <h1>スワイプファイル分析プロンプトメーカー</h1>
+  <p>参考ファイルを読み込み、構造・レイアウト・デザイン・セールス構成を分析し、第三者へ渡せる仕様書を作るためのプロンプトを生成します。</p>
+</header>
+
+<main class="wrap">
+<div class="grid">
+
+<section class="card">
+
+  <h2>1. スワイプファイルを取り込む</h2>
+
+  <label>ファイルをアップロード</label>
+
+  <div class="btns">
+    <label class="file-label" for="fileInput">
+      HTML / PDF / TXT / MDを選択
+    </label>
+
+    <input
+      id="fileInput"
+      class="file-input"
+      type="file"
+      accept=".html,.htm,.pdf,.txt,.md,text/html,text/plain,text/markdown,application/pdf"
+    >
+
+    <button class="ghost" id="clearBtn" type="button">
+      クリア
+    </button>
+  </div>
+
+  <div class="hint">
+    HTMLは構造・レイアウト分析向きです。PDF・TXT・MDも読み込めます。
+  </div>
+
+  <div id="importStatus" class="status"></div>
+
+  <div class="toggle">
+    <button class="ghost active" id="htmlModeBtn" type="button">
+      HTML表示
+    </button>
+
+    <button class="ghost" id="textModeBtn" type="button">
+      テキスト表示
+    </button>
+  </div>
+
+  <label for="swipe">スワイプデータ</label>
+
+  <textarea
+    id="swipe"
+    class="large"
+    placeholder="ファイルをアップロードするか、HTML・テキストを直接貼り付けてください。"
+  ></textarea>
+
+  <div class="notice">
+    このツール自体はAIを使いません。ここで作ったプロンプトをChatGPT・Claude・Geminiなどに貼り付けて使います。
+  </div>
+
+  <h3 class="section-title">2. 分析の目的を設定</h3>
+
+  <label for="purpose">第三者に何を伝えたいか</label>
+
+  <textarea
+    id="purpose"
+    class="medium"
+  >このスワイプファイルの構造・レイアウト・コピー・デザインルール・CTA配置・情報設計を詳細に分析し、元ファイルを見ていない第三者でも、どのようなページなのかを理解し、同じ考え方で別の商品向けに再構成できる状態にしてください。</textarea>
+
+  <label>分析項目</label>
+
+  <div class="check-grid">
+
+    <label class="check-item">
+      <input type="checkbox" class="analysisCheck" value="ページ全体の目的とコンセプト" checked>
+      ページ全体の目的とコンセプト
+    </label>
+
+    <label class="check-item">
+      <input type="checkbox" class="analysisCheck" value="セクション構成と並び順" checked>
+      セクション構成と並び順
+    </label>
+
+    <label class="check-item">
+      <input type="checkbox" class="analysisCheck" value="見出し階層と情報設計" checked>
+      見出し階層と情報設計
+    </label>
+
+    <label class="check-item">
+      <input type="checkbox" class="analysisCheck" value="レイアウトとカラム構成" checked>
+      レイアウトとカラム構成
+    </label>
+
+    <label class="check-item">
+      <input type="checkbox" class="analysisCheck" value="余白、幅、高さ、配置バランス" checked>
+      余白・幅・高さ・配置
+    </label>
+
+    <label class="check-item">
+      <input type="checkbox" class="analysisCheck" value="色使いと配色ルール" checked>
+      色使い・配色ルール
+    </label>
+
+    <label class="check-item">
+      <input type="checkbox" class="analysisCheck" value="フォントサイズと文字の強弱" checked>
+      フォント・文字の強弱
+    </label>
+
+    <label class="check-item">
+      <input type="checkbox" class="analysisCheck" value="ボタン、CTAの位置と役割" checked>
+      ボタン・CTA
+    </label>
+
+    <label class="check-item">
+      <input type="checkbox" class="analysisCheck" value="コピーライティング構造" checked>
+      コピーライティング構造
+    </label>
+
+    <label class="check-item">
+      <input type="checkbox" class="analysisCheck" value="オファー設計とクロージング" checked>
+      オファー・クロージング
+    </label>
+
+    <label class="check-item">
+      <input type="checkbox" class="analysisCheck" value="FAQ、事例、比較表、保証、プロフィールなどの部品" checked>
+      FAQ・事例・比較表・保証
+    </label>
+
+    <label class="check-item">
+      <input type="checkbox" class="analysisCheck" value="スマホ表示時の構成とレスポンシブ設計" checked>
+      スマホ・レスポンシブ
+    </label>
+
+  </div>
+
+  <label for="handoff">第三者への引き継ぎ形式</label>
+
+  <select id="handoff">
+    <option value="Web制作者向け仕様書">Web制作者向け仕様書</option>
+    <option value="セールスライター向け構成書">セールスライター向け構成書</option>
+    <option value="デザイナー向けデザイン仕様書">デザイナー向けデザイン仕様書</option>
+    <option value="チーム共有用の総合設計書" selected>チーム共有用の総合設計書</option>
+  </select>
+
+  <label for="extra">追加指示</label>
+
+  <textarea
+    id="extra"
+    class="small"
+    placeholder="例：各セクションごとに、目的・使用要素・コピーの役割・デザイン意図を表形式で整理してください。"
+  >元ファイルを見ていない第三者でも再現方針が理解できるように、抽象的な感想ではなく、具体的な配置・順番・役割・意図まで言語化してください。</textarea>
+
+  <div class="btns">
+
+    <button
+      class="primary"
+      id="generateBtn"
+      type="button"
+    >
+      分析プロンプトを作成
+    </button>
+
+    <button
+      class="ghost"
+      id="resetBtn"
+      type="button"
+    >
+      初期値に戻す
+    </button>
+
+  </div>
+
+</section>
+
+<section class="card">
+
+  <h2>3. 完成プロンプト</h2>
+
+  <textarea
+    id="output"
+    class="prompt-output"
+    readonly
+    placeholder="左側でスワイプファイルを読み込み、「分析プロンプトを作成」を押してください。"
+  ></textarea>
+
+  <div class="btns">
+
+    <button
+      class="secondary"
+      id="copyBtn"
+      type="button"
+    >
+      プロンプトをコピー
+    </button>
+
+  </div>
+
+  <div id="status" class="status"></div>
+
+</section>
+
+</div>
+</main>
+
+<script type="module">
+
+import * as pdfjsLib from
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+const $ = id =>
+document.getElementById(id);
+
+let rawHtml = "";
+let plainText = "";
+let mode = "html";
+
+function setStatus(
+  id,
+  message,
+  type = "ok"
+){
+
+  const el = $(id);
+
+  el.className =
+  "status " + type;
+
+  el.textContent =
+  message;
+
+}
+
+function htmlToText(html){
+
+  const parser =
+  new DOMParser();
+
+  const doc =
+  parser.parseFromString(
+    html,
+    "text/html"
+  );
+
+  doc
+  .querySelectorAll(
+    "script,style,noscript,svg,iframe"
+  )
+  .forEach(
+    el => el.remove()
+  );
+
+  return (
+    doc.body.innerText ||
+    doc.body.textContent ||
+    ""
+  )
+  .replace(
+    /\n{3,}/g,
+    "\n\n"
+  )
+  .trim();
+
+}
+
+function refreshMode(){
+
+  $("htmlModeBtn")
+  .classList
+  .toggle(
+    "active",
+    mode === "html"
+  );
+
+  $("textModeBtn")
+  .classList
+  .toggle(
+    "active",
+    mode === "text"
+  );
+
+  $("swipe").value =
+  mode === "html"
+  ? rawHtml
+  : plainText;
+
+}
+
+async function extractPdfText(
+  file
+){
+
+  const buffer =
+  await file.arrayBuffer();
+
+  const pdf =
+  await pdfjsLib
+  .getDocument({
+    data:buffer
+  })
+  .promise;
+
+  let fullText = "";
+
+  for(
+    let i = 1;
+    i <= pdf.numPages;
+    i++
+  ){
+
+    const page =
+    await pdf.getPage(i);
+
+    const content =
+    await page.getTextContent();
+
+    const text =
+    content.items
+    .map(
+      item => item.str
+    )
+    .join(" ");
+
+    fullText +=
+    `\n\n--- ${i}ページ ---\n${text}`;
+
+  }
+
+  return fullText.trim();
+
+}
+
+async function handleFile(
+  file
+){
+
+  if(!file){
+    return;
+  }
+
+  setStatus(
+    "importStatus",
+    file.name +
+    " を読み込んでいます…",
+    "ok"
+  );
+
+  try{
+
+    const ext =
+    file.name
+    .split(".")
+    .pop()
+    .toLowerCase();
+
+    if(
+      ext === "html" ||
+      ext === "htm" ||
+      file.type === "text/html"
+    ){
+
+      rawHtml =
+      await file.text();
+
+      plainText =
+      htmlToText(
+        rawHtml
+      );
+
+      mode =
+      "html";
+
+    }else if(
+      ext === "pdf" ||
+      file.type ===
+      "application/pdf"
+    ){
+
+      plainText =
+      await extractPdfText(
+        file
+      );
+
+      rawHtml =
+      "";
+
+      mode =
+      "text";
+
+    }else if(
+      ext === "txt" ||
+      ext === "md" ||
+      file.type
+      .startsWith(
+        "text/"
+      )
+    ){
+
+      plainText =
+      await file.text();
+
+      rawHtml =
+      "";
+
+      mode =
+      "text";
+
+    }else{
+
+      throw new Error(
+        "対応していないファイル形式です。"
+      );
+
+    }
+
+    refreshMode();
+
+    setStatus(
+      "importStatus",
+      file.name +
+      " を読み込みました。",
+      "ok"
+    );
+
+  }catch(error){
+
+    setStatus(
+      "importStatus",
+      error.message ||
+      "ファイルの読み込みに失敗しました。",
+      "error"
+    );
+
+  }
+
+}
+
+function syncManualInput(){
+
+  if(
+    mode === "html"
+  ){
+
+    rawHtml =
+    $("swipe").value;
+
+    plainText =
+    htmlToText(
+      rawHtml
+    );
+
+  }else{
+
+    plainText =
+    $("swipe").value;
+
+  }
+
+}
+
+function getAnalysisItems(){
+
+  return [
+    ...document.querySelectorAll(
+      ".analysisCheck:checked"
+    )
+  ]
+  .map(
+    el => "- " + el.value
+  )
+  .join("\n");
+
+}
+
+function buildPrompt(){
+
+  syncManualInput();
+
+  const data =
+  $("swipe")
+  .value
+  .trim();
+
+  const sourceLabel =
+  mode === "html"
+  ? "参考HTML"
+  : "参考スワイプデータ";
+
+  const analysisItems =
+  getAnalysisItems();
+
+  const handoff =
+  $("handoff").value;
+
+  const purpose =
+  $("purpose")
+  .value
+  .trim();
+
+  const extra =
+  $("extra")
+  .value
+  .trim();
+
+  $("output").value =
+`#役割
+あなたは、スワイプファイル分析・LP分析・情報設計・セールスコピー・Webデザイン構造分析を得意とする専門家です。
+
+#目的
+${purpose}
+
+#実行命令
+以下の${sourceLabel}を詳細に分析してください。
+
+単なる要約や感想ではなく、
+「このページがどのような意図で、どの順番で、どの要素を、どのように配置しているのか」
+を第三者が理解できる状態まで分解してください。
+
+#分析項目
+${analysisItems}
+
+#分析ルール
+1. ページ全体を上から下まで順番に分解してください。
+2. 各セクションに仮のセクション名を付けてください。
+3. 各セクションについて、以下を明記してください。
+   - セクションの目的
+   - 読者に与える役割
+   - 使用している要素
+   - コピーの役割
+   - レイアウトの特徴
+   - デザイン上の意図
+   - 前後セクションとのつながり
+4. HTMLの場合は、タグ構造やclass名を列挙するだけでなく、実際の見た目や構造として説明してください。
+5. 文章表現だけでなく、余白・視線誘導・強調・CTA位置・情報密度まで分析してください。
+6. 「なぜこの順番なのか」「なぜこの位置にCTAがあるのか」など、設計意図を推測してください。
+7. 推測した内容は、事実と分けて「推測」と明記してください。
+8. 元のスワイプファイルをそのまま複製するためではなく、構造・設計思想・再現可能な型を抽出してください。
+
+#第三者への引き継ぎ形式
+最終的に「${handoff}」としてまとめてください。
+
+以下の順番で出力してください。
+
+## 1. 全体概要
+- このページの目的
+- 想定ターゲット
+- ページ全体のコンセプト
+- 全体のセールスストーリー
+- 最終CTA
+
+## 2. ページ構造一覧
+上から下まで、セクション番号・セクション名・目的を一覧化してください。
+
+## 3. セクション別詳細分析
+各セクションについて、以下を詳細に記載してください。
+- セクション番号
+- セクション名
+- 目的
+- 配置されている要素
+- 見出し
+- 本文
+- 画像や図版の役割
+- CTA
+- レイアウト
+- 背景
+- 色
+- 余白
+- 文字サイズの強弱
+- 視線誘導
+- 前後セクションとの関係
+- 設計意図
+
+## 4. コピーライティング構造
+- 問題提起
+- 共感
+- 欲求喚起
+- 解決策
+- ベネフィット
+- 証拠
+- 権威性
+- 不安解消
+- オファー
+- CTA
+の順に、どこで何を行っているか整理してください。
+
+## 5. デザインルール
+第三者が同じ雰囲気を再現できるように、
+- 色
+- フォント
+- 見出し
+- ボタン
+- カード
+- 枠線
+- 背景
+- 角丸
+- 影
+- 余白
+- 最大幅
+- カラム
+- スマホ時の変化
+を具体的に整理してください。
+
+## 6. CTA設計
+すべてのCTAについて、
+- 配置場所
+- CTA直前の訴求
+- ボタン文言
+- 役割
+- 読者心理
+を整理してください。
+
+## 7. 再現用ワイヤーフレーム
+元の文章を使わず、
+「ここに何を置くか」が分かるテキストワイヤーフレームを上から下まで作成してください。
+
+## 8. 第三者への制作指示書
+このページを見たことがない制作者に渡す前提で、
+具体的な制作指示としてまとめてください。
+
+## 9. 再現テンプレート
+別の商品・サービスでも使えるように、
+このページの構造を汎用テンプレート化してください。
+
+## 10. 不明点・推測部分
+HTMLやテキストだけでは判断できない箇所を明確にしてください。
+
+#追加指示
+${extra}
+
+#重要
+- 抽象的な表現で終わらせないでください。
+- 「シンプル」「見やすい」「訴求力が高い」だけでは不十分です。
+- 何が、どこに、どの順番で、どの程度の情報量で配置されているかまで具体化してください。
+- 元ファイルを見ていない第三者が、この分析結果だけでページ構成を理解できるレベルにしてください。
+- 著作物の文章やデザインをそのまま複製するのではなく、構造・考え方・設計パターンとして抽出してください。
+
+#${sourceLabel}
+\`\`\`
+${data}
+\`\`\``;
+
+  setStatus(
+    "status",
+    "分析プロンプトを作成しました。",
+    "ok"
+  );
+
+}
+
+async function copyPrompt(){
+
+  if(
+    !$("output")
+    .value
+    .trim()
+  ){
+
+    buildPrompt();
+
+  }
+
+  try{
+
+    await navigator
+    .clipboard
+    .writeText(
+      $("output").value
+    );
+
+    setStatus(
+      "status",
+      "プロンプトをコピーしました。",
+      "ok"
+    );
+
+  }catch(error){
+
+    $("output")
+    .select();
+
+    document
+    .execCommand(
+      "copy"
+    );
+
+    setStatus(
+      "status",
+      "プロンプトをコピーしました。",
+      "ok"
+    );
+
+  }
+
+}
+
+function clearAll(){
+
+  rawHtml =
+  "";
+
+  plainText =
+  "";
+
+  $("fileInput").value =
+  "";
+
+  $("swipe").value =
+  "";
+
+  $("importStatus")
+  .textContent =
+  "";
+
+}
+
+$("fileInput")
+.addEventListener(
+  "change",
+  e =>
+  handleFile(
+    e.target.files[0]
+  )
+);
+
+$("htmlModeBtn")
+.addEventListener(
+  "click",
+  ()=>{
+
+    syncManualInput();
+
+    mode =
+    "html";
+
+    refreshMode();
+
+  }
+);
+
+$("textModeBtn")
+.addEventListener(
+  "click",
+  ()=>{
+
+    syncManualInput();
+
+    mode =
+    "text";
+
+    refreshMode();
+
+  }
+);
+
+$("clearBtn")
+.addEventListener(
+  "click",
+  clearAll
+);
+
+$("generateBtn")
+.addEventListener(
+  "click",
+  buildPrompt
+);
+
+$("copyBtn")
+.addEventListener(
+  "click",
+  copyPrompt
+);
+
+$("resetBtn")
+.addEventListener(
+  "click",
+  ()=>location.reload()
+);
+
+</script>
+
+</body>
+</html>
