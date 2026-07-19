@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>リスト収集・フォームDM 操作マニュアル</title>
+<style>
+  :root {
+    --blue: #1d4ed8;
+    --blue-dark: #1e40af;
+    --green: #16a34a;
+    --purple: #7e22ce;
+    --gray-800: #1f2937;
+    --gray-600: #4b5563;
+    --gray-400: #9ca3af;
+    --gray-100: #f3f4f6;
+    --gray-50: #f9fafb;
+    --border: #e5e7eb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: #eef1f5;
+    color: var(--gray-800);
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 32px 20px 80px; }
+  header.page-header {
+    background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  header.page-header h1 { margin: 0 0 8px; font-size: 26px; }
+  header.page-header p { margin: 0; opacity: .9; font-size: 14px; }
+
+  nav.toc {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: -30px auto 32px;
+    max-width: 880px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  }
+  nav.toc h2 { font-size: 15px; margin: 0 0 10px; color: var(--gray-600); }
+  nav.toc ol { margin: 0; padding-left: 20px; columns: 2; }
+  nav.toc li { margin-bottom: 6px; font-size: 14px; }
+  nav.toc a { color: var(--blue); text-decoration: none; }
+  nav.toc a:hover { text-decoration: underline; }
+
+  section.step {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px 28px 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+  }
+  section.step h2 {
+    font-size: 19px;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .step-num {
+    background: var(--blue);
+    color: #fff;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  section.step .lead {
+    color: var(--gray-600);
+    font-size: 14px;
+    margin: 0 0 18px;
+  }
+  .callout {
+    background: #eff6ff;
+    border-left: 4px solid var(--blue);
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #1e40af;
+    margin: 14px 0;
+  }
+  .callout.warn {
+    background: #fff7ed;
+    border-left-color: #ea580c;
+    color: #9a3412;
+  }
+  .callout.tip {
+    background: #f0fdf4;
+    border-left-color: var(--green);
+    color: #166534;
+  }
+
+  /* ---- 画面モックアップ（実UIを再現） ---- */
+  .mock {
+    background: var(--gray-50);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 14px 0;
+    position: relative;
+  }
+  .mock-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .mock-card h3 { font-size: 14px; margin: 0 0 4px; color: var(--gray-800); font-weight: 600; }
+  .mock-card .desc { font-size: 11px; color: var(--gray-400); margin: 0 0 10px; }
+  .mock-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+  .mock-input, .mock-select, .mock-textarea {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 12px;
+    color: var(--gray-600);
+    background: #fff;
+  }
+  .mock-textarea { width: 100%; min-height: 54px; }
+  .mock-btn {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    border: none;
+  }
+  .mock-btn.blue { background: var(--blue); }
+  .mock-btn.purple { background: var(--purple); }
+  .mock-btn.green { background: var(--green); }
+  .mock-btn.gray { background: var(--gray-800); }
+  .mock-btn.ghost { background: #fff; color: var(--gray-600); border: 1px solid var(--border); font-weight: 500; }
+  .mock-pill {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--gray-100);
+    color: var(--gray-600);
+    font-weight: 600;
+  }
+  .mock-pill.active { background: var(--gray-800); color: #fff; }
+  .mock-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .mock-badge.green { background: #ecfdf5; color: #047857; }
+  .mock-badge.gray { background: var(--gray-100); color: var(--gray-600); }
+
+  .num-tag {
+    position: absolute;
+    background: #dc2626;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -8px; left: -8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.3);
+  }
+  .highlight-box {
+    position: relative;
+    border: 2px dashed #dc2626;
+    border-radius: 8px;
+    padding: 10px;
+    display: inline-block;
+  }
+
+  table.field-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  table.field-table th, table.field-table td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+  }
+  table.field-table th { background: var(--gray-50); font-weight: 600; color: var(--gray-600); }
+
+  .flow-diagram {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    margin: 14px 0;
+  }
+  .flow-box {
+    background: var(--gray-100);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 600;
+    color: var(--gray-800);
+  }
+  .flow-arrow { color: var(--gray-400); font-size: 16px; }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray-400);
+    padding: 20px 0 40px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #14161a; color: #e5e7eb; }
+    nav.toc, section.step, .mock-card { background: #1f2229; box-shadow: none; border: 1px solid #2c313a; }
+    .mock { background: #23262d; border-color: #2c313a; }
+    .mock-input, .mock-select, .mock-textarea, .mock-btn.ghost { background: #1a1c22; color: #cbd5e1; border-color: #3a3f4a; }
+    table.field-table th { background: #23262d; }
+    table.field-table th, table.field-table td { border-color: #2c313a; }
+    .flow-box { background: #2c313a; color: #e5e7eb; }
+    .callout { background: #16233d; color: #93c5fd; }
+    .callout.warn { background: #3a2410; color: #fdba74; }
+    .callout.tip { background: #123222; color: #86efac; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>リスト収集・フォームDM 操作マニュアル</h1>
+  <p>会社管理者パネル「/company/lead-dm」の使い方（誰が操作しても迷わないための説明書）</p>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h2>目次</h2>
+  <ol>
+    <li><a href="#step0">この画面がある場所</a></li>
+    <li><a href="#step1">① DM送信設定（差出人・本文）</a></li>
+    <li><a href="#step2">② セグメント（リストの入れ物）</a></li>
+    <li><a href="#step3">③ Web検索で自動収集</a></li>
+    <li><a href="#step4">④ 会社名リストから収集（採択者リスト向け）</a></li>
+    <li><a href="#step5">⑤ CSVで取り込む</a></li>
+    <li><a href="#step6">⑥ タブとセグメント絞り込み</a></li>
+    <li><a href="#step7">⑦ 承認・却下・削除</a></li>
+    <li><a href="#step8">⑧ フォームDM／メールDM送信</a></li>
+    <li><a href="#step9">⑨ 一括操作（まとめて承認・移動）</a></li>
+    <li><a href="#step10">⑩ 送信済み一覧の見方</a></li>
+    <li><a href="#faq">よくある疑問</a></li>
+  </ol>
+</nav>
+
+<section class="step" id="step0">
+  <h2><span class="step-num">0</span>この画面がある場所</h2>
+  <p class="lead">会社管理者としてログイン →左メニューの「リスト収集・フォームDM」→ URLは <code>/company/lead-dm</code></p>
+  <div class="callout">
+    この画面でできること：問い合わせ先候補（企業）の収集 → 内容チェック（承認/却下）→ フォームまたはメールで営業DMを一括送信、の3段階です。
+  </div>
+</section>
+
+<section class="step" id="step1">
+  <h2><span class="step-num">1</span>DM送信設定（差出人・本文テンプレート）</h2>
+  <p class="lead">最初に1回、送信する内容の型を登録します。ここを埋めないと送信ボタンは押せません。</p>
+  <div class="mock">
+    <div class="mock-card">
+      <h3>DM送信設定</h3>
+      <p class="desc">本文中の <code>{company}</code> は送信先の会社名に自動で置き換わります。問い合わせフォームが無い相手にはメールで自動送信します（メール件名も設定してください）。</p>
+      <div class="mock-row">
+        <div class="highlight-box" style="flex:1;min-width:260px">
+          <span class="num-tag">1</span>
+          <input class="mock-input" style="width:100%" placeholder="メールDMの件名（フォームが無い相手向け）" disabled>
+        </div>
+      </div>
+      <div class="mock-row">
+        <input class="mock-input" placeholder="差出人：会社名" disabled>
+        <input class="mock-input" placeholder="差出人：担当者名" disabled>
+        <input class="mock-input" placeholder="差出人：メールアドレス" disabled>
+        <input class="mock-input" placeholder="差出人：電話番号" disabled>
+      </div>
+      <div class="mock-row">
+        <textarea class="mock-textarea" placeholder="本文テンプレート（例：{company} 様、初めまして。◯◯のご案内でご連絡いたしました。）" disabled></textarea>
+      </div>
+      <div class="mock-row">
+        <div class="highlight-box">
+          <span class="num-tag">2</span>
+          <button class="mock-btn gray">設定を保存</button>
+        </div>
+        <button class="mock-btn purple">承認済み全件へ一括送信</button>
+      </div>
+    </div>
+  </div>
+  <ol>
+    <li><strong>①メール件名</strong>：フォームが無い会社にはメールを送るので、その件名を入れます</li>
+    <li>差出人の会社名・担当者名・メール・電話番号、本文テンプレートを入力</li>
+    <li><strong>②「設定を保存」</strong>を押して確定（これを押さないと反映されません）</li>
+  </ol>
+  <div class="callout warn">
+    「承認済み全件へ一括送信」ボタンはこの画面にもありますが、実際に押すのは全部の準備が終わってからにしてください（⑧で詳しく説明します）。
+  </div>
+</section>
+
+<section class="step" id="step2">
+  <h2><span class="step-num">2</span>セグメント（リストの入れ物）</h2>
+  <p class="lead">案件・都道府県ごとにリストを分けて管理したいときに使います（使わなくても動作します）。</p>
+  <div class="mock">
+    <div class="mock-card">
+      <h3>セグメント（リストの入れ物）</h3>
+      <p class="desc">案件・検索条件ごとにリストを分けて管理できます。</p>
+      <div class="mock-row">
+        <div class="highlight-box" style="flex:1;min-width:220px">
+          <span class="num-tag">1</span>
+          <input class="mock-input" style="width:100%" placeholder="新規セグメント名（例：東京都 工務店リスト）" disabled>
+        </div>
+        <button class="mock-btn gray">追加</button>
+      </div>
+      <div class="mock-row">
+        <span class="mock-pill">東京都リスト（12件） ×</span>
+        <span class="mock-pill">大阪府リスト（5件） ×</span>
+      </div>
+    </div>
+  </div>
+  <ol>
+    <li>名前を入れて「追加」→ 一覧にタグとして表示されます</li>
+    <li>作ったセグメントは、この後の収集欄・絞り込みタブで選べるようになります</li>
+  </ol>
+</section>
+
+<section class="step" id="step3">
+  <h2><span class="step-num">3</span>Web検索で企業を自動収集する</h2>
+  <p class="lead">「工務店 東京 会社概要」のようなキーワードで検索し、会社名・電話・メール・問い合わせフォームURLを自動抽出します（最大40件/回）。</p>
+  <div class="mock">
+    <div class="mock-card">
+      <h3>Web検索で企業を自動収集する</h3>
+      <div class="mock-row">
+        <span style="font-size:12px;color:var(--gray-400)">収集先セグメント：</span>
+        <select class="mock-select"><option>未分類のまま</option></select>
+      </div>
+      <div class="mock-row">
+        <div class="highlight-box" style="flex:1;min-width:220px">
+          <span class="num-tag">1</span>
+          <input class="mock-input" style="width:100%" placeholder="例：工務店 東京 会社概要" disabled>
+        </div>
+        <button class="mock-btn blue">自動収集</button>
+      </div>
+    </div>
+  </div>
+  <p>業種・地域で幅広く探したいときに使います。見つかった候補は自動で「レビュー待ち」タブに入ります。</p>
+</section>
+
+<section class="step" id="step4">
+  <h2><span class="step-num">4</span>会社名リストから収集する（会社名＋都道府県）</h2>
+  <p class="lead"><strong>補助金の採択者リストのように、会社名が最初から分かっている場合はこちらを使います。</strong>CSV取り込みとは別の機能で、こちらは自動でWeb検索して情報を抽出します。</p>
+  <div class="mock">
+    <div class="mock-card">
+      <h3>会社名リストから収集する（会社名＋都道府県）</h3>
+      <p class="desc">1行に1社「会社名 都道府県」を入力すると、1社ずつ検索して会社サイト・電話・FAX・メール・問い合わせフォームURLを自動抽出します。</p>
+      <div class="mock-row">
+        <span style="font-size:12px;color:var(--gray-400)">収集先セグメント：</span>
+        <select class="mock-select"><option>未分類のまま</option></select>
+      </div>
+      <div class="highlight-box" style="display:block;margin-bottom:10px">
+        <span class="num-tag">1</span>
+        <textarea class="mock-textarea" style="min-height:70px" disabled>株式会社サンプル 東京都
+合同会社テスト 大阪府</textarea>
+      </div>
+      <div class="mock-row">
+        <div class="highlight-box">
+          <span class="num-tag">2</span>
+          <button class="mock-btn blue">リストから一括収集</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ol>
+    <li>採択者リスト（Excel等）の会社名と都道府県を、1行1社の形でこの欄に貼り付ける</li>
+    <li>「リストから一括収集」を押す（5行ずつ自動で処理が進みます。行数が多いほど時間がかかります）</li>
+    <li>1社ずつサイトを検索 → 会社の公式サイトを見つけたら電話・FAX・メール・問い合わせフォームURLを自動で読み取ります</li>
+    <li>見つかった会社は「レビュー待ち」タブに自動で追加されます</li>
+  </ol>
+  <div class="callout tip">
+    見つからなかった会社名は完了メッセージに「見つからず：◯◯、◯◯」として表示されます。表記ゆれ（法人格の有無など）で見つからない場合は、名前を調整して再度試してください。
+  </div>
+</section>
+
+<section class="step" id="step5">
+  <h2><span class="step-num">5</span>企業リストCSVを取り込む</h2>
+  <p class="lead">こちらは自動収集ではなく、<strong>すでに手元にある情報をそのまま取り込む</strong>機能です。</p>
+  <div class="mock">
+    <div class="mock-card">
+      <h3>企業リストCSVを取り込む</h3>
+      <p class="desc">列：company, url, phone, fax, email, contact_form_url, note（company列のみ必須）</p>
+      <div class="mock-row">
+        <span style="font-size:12px;color:var(--gray-400)">収集先セグメント：</span>
+        <select class="mock-select"><option>未分類のまま</option></select>
+      </div>
+      <div class="mock-row">
+        <button class="mock-btn ghost">ファイルを選択</button>
+        <button class="mock-btn ghost" style="margin-left:auto;background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe">見本CSVをダウンロード</button>
+      </div>
+    </div>
+  </div>
+  <table class="field-table">
+    <tr><th>列名</th><th>内容</th><th>必須</th></tr>
+    <tr><td>company</td><td>会社名</td><td>◯必須</td></tr>
+    <tr><td>url</td><td>会社サイトURL</td><td>任意</td></tr>
+    <tr><td>phone</td><td>電話番号</td><td>任意</td></tr>
+    <tr><td>fax</td><td>FAX番号</td><td>任意</td></tr>
+    <tr><td>email</td><td>メールアドレス</td><td>任意</td></tr>
+    <tr><td>contact_form_url</td><td>問い合わせフォームURL</td><td>任意</td></tr>
+    <tr><td>note</td><td>備考</td><td>任意</td></tr>
+  </table>
+  <div class="callout">
+    ④「会社名リストから収集」とこの⑤「CSV取込」の違い：④は会社名だけ入れれば自動でネット検索して情報を集める。⑤はFAX・メール・フォームURLなど<strong>自分で調べた情報を入れる</strong>だけで検索はしません。
+  </div>
+</section>
+
+<section class="step" id="step6">
+  <h2><span class="step-num">6</span>タブとセグメントで絞り込む</h2>
+  <div class="mock">
+    <div class="mock-row" style="margin-bottom:14px">
+      <span class="mock-pill active">レビュー待ち</span>
+      <span class="mock-pill">承認済み</span>
+      <span class="mock-pill">却下</span>
+      <span class="mock-pill">すべて</span>
+      <span class="mock-pill">送信済み一覧</span>
+    </div>
+    <div class="mock-row">
+      <span style="font-size:11px;color:var(--gray-400)">セグメント絞り込み：</span>
+      <span class="mock-pill active">すべて</span>
+      <span class="mock-pill">未分類（3）</span>
+      <span class="mock-pill">東京都リスト（12）</span>
+    </div>
+  </div>
+  <ol>
+    <li><strong>レビュー待ち</strong>：収集直後の状態。ここで内容を確認して承認/却下する</li>
+    <li><strong>承認済み</strong>：DM送信の対象になる状態</li>
+    <li><strong>却下</strong>：送信対象から除外した会社</li>
+    <li><strong>送信済み一覧</strong>：過去に送信した結果（成功/失敗/スキップ）の記録</li>
+  </ol>
+</section>
+
+<section class="step" id="step7">
+  <h2><span class="step-num">7</span>1件ずつ承認・却下・削除する</h2>
+  <div class="mock">
+    <div class="mock-card">
+      <table style="width:100%;font-size:12px;border-collapse:collapse">
+        <tr style="color:var(--gray-600)">
+          <td style="padding:4px 8px">株式会社サンプル</td>
+          <td style="padding:4px 8px"><span class="mock-badge gray">レビュー待ち</span></td>
+          <td style="padding:4px 8px">
+            <span class="highlight-box" style="padding:4px">
+              <span class="num-tag" style="top:-10px;left:-10px">1</span>
+              <button class="mock-btn blue" style="padding:5px 10px">承認</button>
+            </span>
+            <button class="mock-btn ghost" style="padding:5px 10px">却下</button>
+            <button class="mock-btn ghost" style="padding:5px 10px;color:#dc2626">削除</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <ol>
+    <li>会社名・電話・FAX・メール・問い合わせフォームURLの内容を見て判断</li>
+    <li>営業して良い相手なら「承認」、対象外なら「却下」、そもそも情報が誤りなら「削除」</li>
+  </ol>
+</section>
+
+<section class="step" id="step8">
+  <h2><span class="step-num">8</span>フォームDM／メールDMを送る</h2>
+  <p class="lead">承認済みの会社にだけ送信ボタンが出ます。<strong>問い合わせフォームURLがある会社は「フォームDM送信」、フォームが無くメールアドレスしか無い会社は自動で「メールDM送信」に切り替わります。</strong></p>
+  <div class="flow-diagram">
+    <div class="flow-box">承認済み</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-box">フォームURLあり？</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-box" style="background:#dcfce7;color:#166534">はい：フォームDM送信</div>
+  </div>
+  <div class="flow-diagram">
+    <div class="flow-box" style="visibility:hidden">承認済み</div>
+    <span class="flow-arrow" style="visibility:hidden">→</span>
+    <div class="flow-box" style="visibility:hidden">a</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-box" style="background:#dbeafe;color:#1e40af">いいえ：メールDM送信</div>
+  </div>
+  <div class="mock">
+    <div class="mock-card">
+      <table style="width:100%;font-size:12px;border-collapse:collapse">
+        <tr>
+          <td style="padding:6px 8px">株式会社サンプル</td>
+          <td style="padding:6px 8px"><span class="mock-badge green">承認済み</span></td>
+          <td style="padding:6px 8px">
+            <button class="mock-btn ghost" style="padding:5px 10px">却下</button>
+            <button class="mock-btn ghost" style="padding:5px 10px;color:#dc2626">削除</button>
+            <span class="highlight-box" style="padding:4px">
+              <span class="num-tag" style="top:-10px;left:-10px">1</span>
+              <button class="mock-btn green" style="padding:5px 10px">フォームDM送信</button>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px">合同会社テスト</td>
+          <td style="padding:6px 8px"><span class="mock-badge green">承認済み</span></td>
+          <td style="padding:6px 8px">
+            <button class="mock-btn ghost" style="padding:5px 10px">却下</button>
+            <button class="mock-btn ghost" style="padding:5px 10px;color:#dc2626">削除</button>
+            <span class="highlight-box" style="padding:4px">
+              <span class="num-tag" style="top:-10px;left:-10px">2</span>
+              <button class="mock-btn green" style="padding:5px 10px">メールDM送信</button>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <ol>
+    <li><strong>①フォームDM送信</strong>：問い合わせフォームURLがある会社。フォームに自動で入力・送信</li>
+    <li><strong>②メールDM送信</strong>：フォームが無くメールアドレスしか無い会社。メールで自動送信（配信停止リンク付き）</li>
+  </ol>
+  <div class="callout">
+    まとめて送りたいときは①「DM送信設定」欄の「承認済み全件へ一括送信」ボタンを押します。承認済み・未送信の会社を自動で全部処理し終わるまで進みます（フォーム・メールどちらの相手も自動で振り分けて送ります）。
+  </div>
+  <div class="callout warn">
+    メール送信前には必ず「送らないリスト（配信停止・苦情登録済み）」と自動照合し、該当する場合は送信せず「スキップ」として記録されます。
+  </div>
+</section>
+
+<section class="step" id="step9">
+  <h2><span class="step-num">9</span>複数選択してまとめて操作する</h2>
+  <div class="mock">
+    <div class="mock-card" style="background:#eff6ff;border:1px solid #bfdbfe">
+      <div class="mock-row">
+        <span style="font-size:13px;color:#1d4ed8;font-weight:600">3件選択中</span>
+        <button class="mock-btn blue" style="padding:5px 10px">選択した3件を承認</button>
+        <button class="mock-btn ghost" style="padding:5px 10px">選択した3件を却下</button>
+        <button class="mock-btn ghost" style="padding:5px 10px;color:#7e22ce">選択した3件のフォーム確認</button>
+      </div>
+      <div class="mock-row">
+        <select class="mock-select"><option>移動先セグメントを選ぶ</option></select>
+        <button class="mock-btn" style="background:#059669;padding:5px 10px">選択した3件を移動</button>
+      </div>
+    </div>
+  </div>
+  <p>一覧の左端チェックボックスで複数選び、上に出るバーから「まとめて承認」「まとめて却下」「セグメント移動」ができます。</p>
+</section>
+
+<section class="step" id="step10">
+  <h2><span class="step-num">10</span>送信済み一覧の見方</h2>
+  <div class="mock">
+    <div class="mock-card">
+      <table style="width:100%;font-size:12px;border-collapse:collapse">
+        <tr style="color:var(--gray-600);border-bottom:1px solid var(--border)">
+          <th style="text-align:left;padding:6px 8px">会社名</th>
+          <th style="text-align:left;padding:6px 8px">送信日時</th>
+          <th style="text-align:center;padding:6px 8px">結果</th>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px">株式会社サンプル</td>
+          <td style="padding:6px 8px">2026/07/19 10:00</td>
+          <td style="padding:6px 8px;text-align:center"><span class="mock-badge green">成功</span></td>
+        </tr>
+        <tr>
+          <td style="padding:6px 8px">合同会社テスト</td>
+          <td style="padding:6px 8px">2026/07/19 10:01</td>
+          <td style="padding:6px 8px;text-align:center"><span class="mock-badge gray">スキップ</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p>「成功」「失敗」「スキップ（送らないリスト該当など）」が会社ごとに記録されます。詳細欄でエラー内容も確認できます。</p>
+</section>
+
+<section class="step" id="faq">
+  <h2><span class="step-num">?</span>よくある疑問</h2>
+  <p><strong>Q. フォームDM送信しか出てこない</strong><br>
+  A. 承認済みの会社が全部フォームURL持ちだと、メールDM送信ボタンは出ません。フォームが無くメールしか無い会社が承認済みになると自動でボタンが切り替わります。</p>
+  <p><strong>Q. CSVを取り込めば会社名からFAX・メールを自動で調べてくれる？</strong><br>
+  A. いいえ。CSV取込は自分で用意した情報をそのまま入れるだけです。自動でネット検索して調べたい場合は④「会社名リストから収集する」を使ってください。</p>
+</section>
+
+</div>
+
+<footer>リスト収集・フォームDM操作マニュアル（/company/lead-dm）</footer>
+
+</body>
+</html>
