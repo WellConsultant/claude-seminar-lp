@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>補助金（顧問）パートナーミーティング｜議事録兼企画書</title>
+  <style>
+    :root{--navy:#101c33;--navy2:#182844;--ink:#17191e;--muted:#657080;--paper:#f6f4ef;--white:#fff;--line:#d8dce3;--orange:#e76f18;--soft:#eceff3;--green:#24735b;--shadow:0 18px 60px rgba(10,20,38,.16)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-snap-type:y mandatory;background:#0b1322}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic","YuGothic",Meiryo,sans-serif;color:var(--ink);background:#0b1322;line-height:1.62}
+    button{font:inherit}
+    .deck{width:100%}
+    .slide{position:relative;min-height:100svh;scroll-snap-align:start;display:grid;place-items:center;padding:clamp(18px,3.3vw,54px);overflow:hidden;background:var(--paper)}
+    .slide:nth-child(even){background:#fff}
+    .canvas{width:min(1180px,100%);min-height:min(720px,calc(100svh - 72px));display:flex;flex-direction:column;position:relative;padding:clamp(30px,4vw,62px);background:var(--white);border:1px solid rgba(16,28,51,.1);box-shadow:var(--shadow)}
+    .dark .canvas{color:#fff;background:linear-gradient(135deg,var(--navy),#0b1322 70%);border-color:rgba(255,255,255,.08)}
+    .dark .muted,.dark .kicker{color:#c7cfdb}
+    .dark .rule{background:rgba(255,255,255,.2)}
+    .dark .card{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16)}
+    .dark .card p,.dark .card li{color:#e3e8ef}
+    .kicker{font-size:clamp(12px,1.15vw,16px);font-weight:800;letter-spacing:.12em;color:var(--orange);text-transform:uppercase;margin-bottom:8px}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-size:clamp(38px,5.2vw,70px);line-height:1.12;letter-spacing:-.035em;margin-bottom:24px;max-width:980px}
+    h2{font-size:clamp(27px,3.3vw,46px);line-height:1.22;letter-spacing:-.025em;margin-bottom:14px;color:var(--navy)}
+    .dark h2{color:#fff}
+    h3{font-size:clamp(18px,1.65vw,25px);line-height:1.35;margin-bottom:10px;color:var(--navy)}
+    .dark h3{color:#fff}
+    p,li{font-size:clamp(15px,1.22vw,19px)}
+    p{margin-bottom:12px}
+    ul,ol{margin:6px 0 0;padding-left:1.3em}
+    li+li{margin-top:7px}
+    .lead{font-size:clamp(19px,1.75vw,27px);line-height:1.55;max-width:930px;color:#364052}
+    .dark .lead{color:#e7ebf1}
+    .muted{color:var(--muted)}
+    .rule{width:78px;height:5px;background:var(--orange);margin:4px 0 24px;border-radius:8px}
+    .grid{display:grid;gap:clamp(14px,1.6vw,22px);margin-top:18px}
+    .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .card{padding:clamp(17px,2vw,26px);border:1px solid var(--line);background:#fff;border-radius:14px}
+    .card p,.card li{color:#404958}
+    .card p:last-child{margin-bottom:0}
+    .num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--orange);color:white;font-weight:900;margin-bottom:12px}
+    .tag{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:800;color:var(--navy);margin:0 5px 5px 0}
+    .tag.orange{background:#fff0e6;color:#a84809}
+    .tag.green{background:#e8f4ef;color:var(--green)}
+    .callout{border-left:5px solid var(--orange);padding:14px 18px;background:#fff7f1;margin-top:18px;color:#522407}
+    .dark .callout{background:rgba(231,111,24,.14);color:#fff2e8}
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:stretch;margin-top:24px}
+    .step{position:relative;padding:19px 15px;background:#f3f5f7;border-top:4px solid var(--navy);min-height:138px}
+    .step strong{display:block;color:var(--navy);font-size:17px;margin-bottom:7px}
+    .step small{display:block;color:#525c6a;font-size:14px;line-height:1.5}
+    .step:not(:last-child)::after{content:"→";position:absolute;right:-17px;top:48px;z-index:2;color:var(--orange);font-size:22px;font-weight:900}
+    .matrix{width:100%;border-collapse:collapse;margin-top:18px;font-size:clamp(14px,1.1vw,17px)}
+    .matrix th,.matrix td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .matrix th{background:var(--navy);color:#fff;font-weight:800}
+    .matrix td:first-child{font-weight:800;color:var(--navy);width:22%}
+    .check{list-style:none;padding:0}
+    .check li{position:relative;padding-left:28px}
+    .check li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:900}
+    .warn{list-style:none;padding:0}
+    .warn li{position:relative;padding-left:28px}
+    .warn li::before{content:"!";position:absolute;left:2px;color:var(--orange);font-weight:900}
+    .meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:auto;padding-top:24px;color:#c7cfdb;font-size:14px}
+    .meta b{color:#fff}
+    .quote{font-size:clamp(24px,3vw,42px);line-height:1.42;font-weight:800;max-width:940px;letter-spacing:-.02em}
+    .quote span{color:var(--orange)}
+    .section-no{position:absolute;right:clamp(22px,3vw,42px);top:clamp(20px,3vw,38px);font-size:13px;color:#8a93a1;font-weight:800;letter-spacing:.08em}
+    .footer{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:22px;color:#7a8391;font-size:12px}
+    .dark .footer{color:#aab4c3}
+    .big-no{font-size:clamp(64px,9vw,130px);line-height:.85;font-weight:900;color:rgba(231,111,24,.95);letter-spacing:-.07em}
+    .two-col{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(24px,4vw,64px);align-items:center;flex:1}
+    .decision{border-left:4px solid var(--green);padding-left:15px;margin:10px 0}
+    .decision strong{display:block;color:var(--green)}
+    .nav{position:fixed;right:16px;bottom:16px;z-index:20;display:flex;gap:8px;align-items:center;padding:8px;background:rgba(11,19,34,.86);border-radius:999px;backdrop-filter:blur(10px)}
+    .nav button{width:38px;height:38px;border:0;border-radius:50%;background:#fff;color:var(--navy);font-weight:900;cursor:pointer}
+    .nav button:hover{background:var(--orange);color:#fff}
+    .counter{min-width:64px;color:#fff;text-align:center;font-size:13px;font-weight:800}
+    .progress{position:fixed;left:0;top:0;z-index:30;height:4px;background:var(--orange);width:0;transition:width .2s}
+    .note{font-size:13px;color:#707988;margin-top:12px}
+    @media(max-width:780px){
+      html{scroll-snap-type:none}.slide{padding:10px;min-height:100svh}.canvas{min-height:calc(100svh - 20px);padding:28px 22px}
+      .g2,.g3,.g4,.two-col{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.step{min-height:auto}.step:not(:last-child)::after{content:"↓";right:50%;top:auto;bottom:-24px}
+      .matrix{display:block;overflow-x:auto;white-space:normal}.nav{right:8px;bottom:8px}.meta{gap:8px 16px}
+    }
+    @media print{
+      @page{size:16in 9in;margin:0}.nav,.progress{display:none}.slide{min-height:9in;height:9in;width:16in;padding:.25in;break-after:page;page-break-after:always}.canvas{box-shadow:none;width:100%;height:100%;min-height:0}.slide:last-child{break-after:auto}
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <main class="deck" id="deck">
+    <section class="slide dark" id="s1"><div class="canvas">
+      <div class="kicker">Meeting Minutes × Project Proposal</div>
+      <h1>補助金（顧問）<br>パートナーミーティング</h1>
+      <div class="rule"></div>
+      <p class="lead">認定支援機関の活用から、ITツール登録・AIによる資料作成・Traingo販売まで。会議内容を、実行につながる企画として整理。</p>
+      <div class="meta"><span><b>日時</b> 2026年7月20日</span><span><b>参加者</b> 阿久津和宏／三根早苗様（女性起業家ネットワークわくらく）</span><span><b>形式</b> Google Meet</span></div>
+    </div></section>
+
+    <section class="slide" id="s2"><div class="canvas"><span class="section-no">02 / 20</span>
+      <div class="kicker">EXECUTIVE SUMMARY</div><h2>今回の結論は「資格・ツール・AI」を一つの支援導線にまとめること</h2><div class="rule"></div>
+      <div class="grid g3">
+        <div class="card"><span class="num">1</span><h3>認定支援機関</h3><p>取得後は、早期経営改善計画を入口に、経営改善・資金調達・設備投資・補助金支援へ展開する。</p></div>
+        <div class="card"><span class="num">2</span><h3>ITツール登録</h3><p>Traingo等の既製ツールを、制度要件に沿う表現へ整え、ソフトウェアと役務を分けて登録する。</p></div>
+        <div class="card"><span class="num">3</span><h3>AI活用</h3><p>「基本データ・参考資料・参考フォーマット・指示」を組み合わせ、登録資料や事業計画の作成を効率化する。</p></div>
+      </div>
+      <div class="callout"><b>次の一手：</b> まずTraingoのITツール登録に着手し、並行して早期経営改善計画の資料を確認する。</div>
+      <div class="footer"><span>議事録兼企画書</span><span>結論</span></div>
+    </div></section>
+
+    <section class="slide dark" id="s3"><div class="canvas"><span class="section-no">03 / 20</span>
+      <div class="kicker">MEETING PURPOSE</div><h2>情報を受け取るだけの状態から、実際に使って成果へつなげる段階へ</h2><div class="rule"></div>
+      <div class="two-col"><div><div class="big-no">5</div><p class="lead">今回整理した重点テーマ</p></div>
+      <div class="grid g2">
+        <div class="card"><h3>01 認定支援機関</h3><p>申請準備と取得後の活用</p></div><div class="card"><h3>02 早期経営改善計画</h3><p>対象顧客・流れ・収益機会</p></div>
+        <div class="card"><h3>03 ITツール登録</h3><p>差戻しを減らす資料設計</p></div><div class="card"><h3>04 何でもプロンプト</h3><p>AIを実務へ落とす基本構造</p></div>
+        <div class="card" style="grid-column:1/-1"><h3>05 Traingo</h3><p>自社利用・代理販売・補助金活用を組み合わせた事業化</p></div>
+      </div></div>
+      <div class="footer"><span>会議の目的</span><span>受信 → 選択 → 実行</span></div>
+    </div></section>
+
+    <section class="slide" id="s4"><div class="canvas"><span class="section-no">04 / 20</span>
+      <div class="kicker">CURRENT STATUS</div><h2>認定支援機関の申請準備は、実績が揃う最終段階</h2><div class="rule"></div>
+      <div class="grid g2">
+        <div class="card"><h3>現状</h3><ul class="check"><li>経営力向上計画の実績あり</li><li>経営革新計画の2件目が審査中</li><li>認定後、翌月を目安に認定支援機関へ申請予定</li></ul></div>
+        <div class="card"><h3>会議での確認</h3><ul><li>経済産業省による認定制度</li><li>実績と必要書類が揃えば申請手続へ進める</li><li>取得自体より「取得後に何を提供するか」が重要</li></ul></div>
+      </div>
+      <div class="callout"><b>企画上の論点：</b> 肩書として見せるだけでなく、早期経営改善計画を核に継続支援商品を設計する。</div>
+      <div class="footer"><span>認定支援機関</span><span>取得後の活用設計へ</span></div>
+    </div></section>
+
+    <section class="slide" id="s5"><div class="canvas"><span class="section-no">05 / 20</span>
+      <div class="kicker">SERVICE OPPORTUNITY</div><h2>早期経営改善計画は「経営の健康診断」から継続支援へつなぐ入口</h2><div class="rule"></div>
+      <div class="grid g3">
+        <div class="card"><h3>対象イメージ</h3><p>売上・資金繰り・事業の立て直しに不安があり、真面目に経営を見直したい事業者。</p></div>
+        <div class="card"><h3>提供価値</h3><p>事業計画を作るだけでなく、金融機関と接点を持ちながら、経営課題と改善行動を整理する。</p></div>
+        <div class="card"><h3>次の商品</h3><p>設備投資、販路開拓、補助金活用、定期モニタリングへ連続した支援を設計できる。</p></div>
+      </div>
+      <p class="note">※会議では「一度利用した事業者は再利用できない可能性」「個人・法人、従業員有無を問わない」との説明あり。対象要件は最新の公式資料で確認する。</p>
+      <div class="footer"><span>早期経営改善計画</span><span>単発支援ではなく継続導線</span></div>
+    </div></section>
+
+    <section class="slide dark" id="s6"><div class="canvas"><span class="section-no">06 / 20</span>
+      <div class="kicker">PROCESS</div><h2>金融機関の協力を得てから、計画策定と伴走支援へ進む</h2><div class="rule"></div>
+      <div class="flow">
+        <div class="step"><strong>1. 候補企業</strong><small>経営を見直したい顧客を選定。過去利用の有無も確認。</small></div>
+        <div class="step"><strong>2. 金融機関</strong><small>決済口座のある金融機関へ制度活用を相談し、必要書類を準備。</small></div>
+        <div class="step"><strong>3. 事前申請</strong><small>関係機関へ利用申請。承認後に支援を開始。</small></div>
+        <div class="step"><strong>4. 計画策定</strong><small>現状分析、課題、数値計画、改善行動を整理。</small></div>
+        <div class="step"><strong>5. 伴走支援</strong><small>定期モニタリングと、次の投資・補助金提案へ。</small></div>
+      </div>
+      <div class="callout"><b>重要：</b> 「採択を取る」型ではなく、顧客・認定支援機関・金融機関が一緒に改善を進める型として説明する。</div>
+      <div class="footer"><span>支援フロー</span><span>制度開始前の金融機関確認が起点</span></div>
+    </div></section>
+
+    <section class="slide" id="s7"><div class="canvas"><span class="section-no">07 / 20</span>
+      <div class="kicker">BUSINESS DESIGN</div><h2>「お得な制度」ではなく、本気で経営を見直す顧客に提案する</h2><div class="rule"></div>
+      <table class="matrix"><thead><tr><th>観点</th><th>提案に向く状態</th><th>提案時の伝え方</th></tr></thead><tbody>
+        <tr><td>顧客の温度</td><td>数字・事業・資金繰りを見直す意思がある</td><td>経営の健康診断と改善ロードマップ</td></tr>
+        <tr><td>金融機関</td><td>取引金融機関と相談できる関係がある</td><td>金融機関とも認識を揃えて進める</td></tr>
+        <tr><td>継続性</td><td>改善後の設備投資や販路開拓が見込める</td><td>計画後も実行と検証を伴走する</td></tr>
+        <tr><td>収益設計</td><td>計画策定とモニタリングを役務化できる</td><td>支援範囲・時間・成果物を明示する</td></tr>
+      </tbody></table>
+      <p class="note">※会議中に支援費用・補助上限の言及があったが、発言者自身も資料確認が必要としていたため、本企画書では金額を確定していない。</p>
+      <div class="footer"><span>顧客選定</span><span>制度訴求より経営改善訴求</span></div>
+    </div></section>
+
+    <section class="slide dark" id="s8"><div class="canvas"><span class="section-no">08 / 20</span>
+      <div class="kicker">IT TOOL REGISTRATION</div><h2>過去の差戻しは、ツールの良し悪しより「登録上の見せ方」が原因の可能性</h2><div class="rule"></div>
+      <div class="grid g2">
+        <div class="card"><h3>起きていたこと</h3><ul class="warn"><li>Traingo系ツールを登録しようとしたが、複数回差戻し</li><li>どこが悪いか明確に分からず中断</li><li>相談先でも原因を特定できなかった</li></ul></div>
+        <div class="card"><h3>会議で見えた原因</h3><ul class="check"><li>カスタマイズ前提に見える表現</li><li>制作・販路開拓サービスに見える説明</li><li>手引きの分類・表現に沿っていない可能性</li><li>ソフトウェアと役務の境界が曖昧</li></ul></div>
+      </div>
+      <p class="quote" style="margin-top:auto">登録のポイントは、<span>既製ツールとしての機能</span>を明確にすること。</p>
+      <div class="footer"><span>課題整理</span><span>差戻し理由を構造化</span></div>
+    </div></section>
+
+    <section class="slide" id="s9"><div class="canvas"><span class="section-no">09 / 20</span>
+      <div class="kicker">REVIEW RULES</div><h2>ITツールは「何ができ、どの業務を効率化するか」を制度用語で説明する</h2><div class="rule"></div>
+      <div class="grid g2">
+        <div class="card"><h3>書くべき内容</h3><ul class="check"><li>ツール概要と対象業務</li><li>開発者・提供者情報</li><li>導入・販売実績</li><li>機能一覧と各画面</li><li>機能概要図・業務フロー</li><li>利用方法・活用場面</li></ul></div>
+        <div class="card"><h3>避けたい見せ方</h3><ul class="warn"><li>個社ごとに作り変える前提</li><li>ホームページ制作そのものに見える表現</li><li>販路開拓の代行に見える説明</li><li>機能にないAI機能などの記載</li><li>スクリーンショットの不足</li></ul></div>
+      </div>
+      <div class="callout"><b>言い換え例：</b> 「ホームページを制作」ではなく「ブログ・新着情報の更新業務を効率化」。機能そのものと導入支援を切り分ける。</div>
+      <div class="footer"><span>機能説明資料</span><span>魅力訴求より要件適合</span></div>
+    </div></section>
+
+    <section class="slide" id="s10"><div class="canvas"><span class="section-no">10 / 20</span>
+      <div class="kicker">OFFER STRUCTURE</div><h2>ソフトウェアと役務を分けると、導入後まで収益化できる</h2><div class="rule"></div>
+      <div class="two-col">
+        <div><h3>ソフトウェア</h3><p class="lead">完成済みの共通機能を提供</p><div class="card"><ul><li>標準機能</li><li>利用アカウント</li><li>標準的な初期設定</li><li>利用履歴・管理画面</li></ul></div></div>
+        <div><h3>役務</h3><p class="lead">活用・定着を支援</p><div class="card"><ul><li>保守・サポート</li><li>操作方法の説明</li><li>業務に合わせた使い方の助言</li><li>導入・活用コンサルティング</li><li>研修・運用設計</li></ul></div></div>
+      </div>
+      <div class="callout"><b>境界線：</b> 個別の機能開発や制作ではなく、標準ツールの初期設定と活用支援として設計する。</div>
+      <div class="footer"><span>商品設計</span><span>ツール販売＋継続支援</span></div>
+    </div></section>
+
+    <section class="slide dark" id="s11"><div class="canvas"><span class="section-no">11 / 20</span>
+      <div class="kicker">PRICING & CONTINUITY</div><h2>価格説明・年度更新・利用実績まで、登録後の運用を先に設計する</h2><div class="rule"></div>
+      <div class="grid g3">
+        <div class="card"><h3>価格</h3><p>登録価格と実売価格の整合を保つ。過度な値下げで別商品と見なされないよう、最低販売価格を設定する。</p></div>
+        <div class="card"><h3>役務の根拠</h3><p>時間単価、作業時間、担当人数、具体的な実施内容を明示し、価格の根拠資料を用意する。</p></div>
+        <div class="card"><h3>年度継続</h3><p>前年度から継続登録できる場合は、事前登録を活用。少なくとも1ツールを継続させる運用を検討する。</p></div>
+      </div>
+      <p class="note" style="color:#bec7d3">※価格・年度更新の条件は制度改定の影響を受けるため、申請年度の手引きと事務局回答を優先する。</p>
+      <div class="footer"><span>登録後の運用</span><span>売る前から証拠を残す</span></div>
+    </div></section>
+
+    <section class="slide" id="s12"><div class="canvas"><span class="section-no">12 / 20</span>
+      <div class="kicker">EVIDENCE</div><h2>導入後の利用状況調査に備え、画面上で証拠を残せる設計が必要</h2><div class="rule"></div>
+      <div class="grid g2">
+        <div class="card"><h3>確認され得る情報</h3><ul class="check"><li>登録ツール名</li><li>利用企業・ユーザー情報</li><li>操作・行動履歴</li><li>確認日時が分かる画面</li><li>実際の利用状況を示すスクリーンショット</li></ul></div>
+        <div class="card"><h3>Traingoの対応方向</h3><ul><li>行動履歴を管理画面に表示</li><li>受講・利用状況の確認</li><li>研修助成金で必要な証跡にも応用</li><li>会社管理者と受講者の権限を整理</li></ul></div>
+      </div>
+      <div class="callout"><b>事前確認：</b> 登録するCRM／LMS側で、会社名・ユーザー・日時・利用履歴を一画面または一連の画面で提示できるか確認する。</div>
+      <div class="footer"><span>利用状況調査</span><span>申請資料と実画面を一致</span></div>
+    </div></section>
+
+    <section class="slide dark" id="s13"><div class="canvas"><span class="section-no">13 / 20</span>
+      <div class="kicker">AI WORKFLOW</div><h2>「何でもプロンプト」は、資料作成を4つの材料に分解する</h2><div class="rule"></div>
+      <div class="flow" style="grid-template-columns:repeat(4,1fr)">
+        <div class="step"><strong>1. 基本データ</strong><small>会社固有情報、ヒアリング、決算、顧客、商品、既存資料。</small></div>
+        <div class="step"><strong>2. 参考資料</strong><small>公募要領、手引き、審査観点、制度上のルール。</small></div>
+        <div class="step"><strong>3. 参考フォーマット</strong><small>過去の完成例、提出様式、機能説明資料の型。</small></div>
+        <div class="step"><strong>4. 指示内容</strong><small>何を、誰向けに、どの形式・文字数で作るか。</small></div>
+      </div>
+      <p class="quote" style="margin-top:auto"><span>元データの質</span>が、AIの出力品質を決める。</p>
+      <div class="footer"><span>何でもプロンプト</span><span>入力を構造化して再現性を上げる</span></div>
+    </div></section>
+
+    <section class="slide" id="s14"><div class="canvas"><span class="section-no">14 / 20</span>
+      <div class="kicker">DATA PREPARATION</div><h2>基本データは、ヒアリングだけでなくWeb・決算・顧客情報まで集める</h2><div class="rule"></div>
+      <div class="grid g4">
+        <div class="card"><span class="tag orange">VOICE</span><h3>ヒアリング</h3><p>経営者の発言、背景、課題、目標、強み、計画。</p></div>
+        <div class="card"><span class="tag">WEB</span><h3>ホームページ</h3><p>会社概要、商品、顧客像、実績、ブログ、よくある質問。</p></div>
+        <div class="card"><span class="tag green">FINANCE</span><h3>数値資料</h3><p>決算情報、売上構成、費用、投資額、資金繰り。</p></div>
+        <div class="card"><span class="tag">CUSTOMER</span><h3>顧客・市場</h3><p>対象者、利用理由、競合、選ばれる理由、販売経路。</p></div>
+      </div>
+      <div class="callout"><b>会議で紹介された方法：</b> サイトの内部リンクを抽出し、NotebookLM等へ読み込ませて企業理解を深める。必要に応じて音声対話の文字起こしも基本データ化する。</div>
+      <div class="footer"><span>情報収集</span><span>薄いWeb情報はヒアリングで補完</span></div>
+    </div></section>
+
+    <section class="slide" id="s15"><div class="canvas"><span class="section-no">15 / 20</span>
+      <div class="kicker">DOCUMENT PRODUCTION</div><h2>ITツール登録資料は、AIで下書きし、人が画面証拠と整合性を仕上げる</h2><div class="rule"></div>
+      <div class="flow">
+        <div class="step"><strong>素材整理</strong><small>機能一覧、料金、運用、開発者、実績を集める。</small></div>
+        <div class="step"><strong>手引き照合</strong><small>禁止・除外事項と対象業務を確認。</small></div>
+        <div class="step"><strong>AI下書き</strong><small>参考フォーマットに沿って機能説明を生成。</small></div>
+        <div class="step"><strong>人が補完</strong><small>実画面スクショ、概要図、業務フローを追加。</small></div>
+        <div class="step"><strong>差戻し対応</strong><small>指摘文を次の修正指示にして再生成・再確認。</small></div>
+      </div>
+      <div class="callout"><b>品質基準：</b> 存在しない機能を書かない／実画面と説明を一致させる／制度上の分類に沿う／誤字と価格を最終確認する。</div>
+      <div class="footer"><span>作成手順</span><span>AI任せではなく証拠を人が確定</span></div>
+    </div></section>
+
+    <section class="slide dark" id="s16"><div class="canvas"><span class="section-no">16 / 20</span>
+      <div class="kicker">TRAINGO CONCEPT</div><h2>Traingoは、販売・教育・証跡管理をまとめた支援基盤として提案する</h2><div class="rule"></div>
+      <div class="grid g3">
+        <div class="card"><h3>販売支援</h3><p>リスト収集、フォームDM、メール配信、顧客管理などを一体化。</p></div>
+        <div class="card"><h3>研修提供</h3><p>LMSとして動画・講座・教材を提供し、受講者と会社管理者を分けて管理。</p></div>
+        <div class="card"><h3>証跡管理</h3><p>行動履歴・受講状況を残し、ITツール利用状況や研修助成金の確認に活用。</p></div>
+      </div>
+      <div class="callout"><b>販売モデル：</b> 自社利用に加え、パートナーが仕入れ・販売し、導入支援や活用コンサルティングを付加する。</div>
+      <div class="footer"><span>Traingo</span><span>単体ツールではなく支援基盤</span></div>
+    </div></section>
+
+    <section class="slide" id="s17"><div class="canvas"><span class="section-no">17 / 20</span>
+      <div class="kicker">DECISIONS</div><h2>今回の会議で合意・確認できたこと</h2><div class="rule"></div>
+      <div class="grid g2">
+        <div class="card"><div class="decision"><strong>決定 01</strong>認定支援機関の申請を、実績認定後に進める。</div><div class="decision"><strong>決定 02</strong>共有済みの早期経営改善計画資料を確認する。</div><div class="decision"><strong>決定 03</strong>Traingoを想定したITツール登録を再度進める。</div></div>
+        <div class="card"><div class="decision"><strong>確認 04</strong>機能説明資料は手引きと参考フォーマットに沿って作る。</div><div class="decision"><strong>確認 05</strong>「何でもプロンプト」を資料作成に使用する。</div><div class="decision"><strong>確認 06</strong>不明点はチャットまたは次回ミーティングで確認する。</div></div>
+      </div>
+      <div class="footer"><span>議事録</span><span>決定事項</span></div>
+    </div></section>
+
+    <section class="slide" id="s18"><div class="canvas"><span class="section-no">18 / 20</span>
+      <div class="kicker">ACTION PLAN</div><h2>次回までのアクションを、順番と成果物まで明確にする</h2><div class="rule"></div>
+      <table class="matrix"><thead><tr><th>優先</th><th>担当・アクション</th><th>成果物／完了条件</th></tr></thead><tbody>
+        <tr><td>最優先</td><td>三根様：共有されたITツール登録テンプレートと手引きを確認</td><td>必要資料と不足情報の一覧</td></tr>
+        <tr><td>最優先</td><td>三根様：Traingo／対象CRMの機能・価格・実績・画面を整理</td><td>基本データ一式、主要画面のスクリーンショット</td></tr>
+        <tr><td>次点</td><td>三根様：何でもプロンプトで機能説明資料の初稿を作成</td><td>制度表現に沿った初稿</td></tr>
+        <tr><td>次点</td><td>三根様：早期経営改善計画の共有資料を確認</td><td>候補顧客の有無と質問事項</td></tr>
+        <tr><td>随時</td><td>阿久津：資料・操作・差戻し内容への助言</td><td>修正方針の明確化</td></tr>
+      </tbody></table>
+      <div class="footer"><span>次のアクション</span><span>資料確認 → 基本データ → 初稿</span></div>
+    </div></section>
+
+    <section class="slide dark" id="s19"><div class="canvas"><span class="section-no">19 / 20</span>
+      <div class="kicker">OPEN ITEMS</div><h2>申請前に、制度の最新条件と実画面を確認する</h2><div class="rule"></div>
+      <div class="grid g2">
+        <div class="card"><h3>制度面の確認</h3><ul class="warn"><li>早期経営改善計画の最新の対象要件・費用負担・支援上限</li><li>認定支援機関申請の提出先・必要実績・スケジュール</li><li>ITツール登録年度の価格要件・事前登録・役務区分</li></ul></div>
+        <div class="card"><h3>ツール面の確認</h3><ul class="warn"><li>対象ツールの標準機能と個別対応の境界</li><li>利用企業名・ユーザー名・日時・行動履歴の表示</li><li>料金プラン、最低販売価格、原価・販売条件</li><li>書籍機能など現在確認されている表示不具合</li></ul></div>
+      </div>
+      <div class="callout"><b>議事録上の注意：</b> 自動文字起こしには誤認識が含まれるため、制度名・金額・固有名詞は提出前に原資料で再確認する。</div>
+      <div class="footer"><span>未決事項</span><span>公式情報と実機確認が必要</span></div>
+    </div></section>
+
+    <section class="slide dark" id="s20"><div class="canvas"><span class="section-no">20 / 20</span>
+      <div class="kicker">NEXT MILESTONE</div><h2>次回は「登録できるか」ではなく、提出できる初稿を見ながら詰める</h2><div class="rule"></div>
+      <p class="quote">目標は、<span>TraingoのITツール登録初稿</span>と、<span>早期経営改善計画の候補顧客</span>を持ち寄ること。</p>
+      <div class="grid g3" style="margin-top:34px">
+        <div class="card"><h3>持参 01</h3><p>機能説明資料の初稿</p></div>
+        <div class="card"><h3>持参 02</h3><p>画面スクショ・料金・販売条件</p></div>
+        <div class="card"><h3>持参 03</h3><p>候補顧客と確認したい質問</p></div>
+      </div>
+      <div class="meta"><span><b>作成根拠</b> 2026年7月20日 Google Meet文字起こし</span><span><b>用途</b> 関係者共有・次回会議・実行管理</span></div>
+    </div></section>
+  </main>
+  <nav class="nav" aria-label="スライド操作"><button id="prev" aria-label="前へ">↑</button><span class="counter" id="counter">1 / 20</span><button id="next" aria-label="次へ">↓</button></nav>
+  <script>
+    const slides=[...document.querySelectorAll('.slide')],counter=document.getElementById('counter'),progress=document.getElementById('progress');let current=0;
+    function go(i){current=Math.max(0,Math.min(slides.length-1,i));slides[current].scrollIntoView({behavior:'smooth'});update()}
+    function update(){counter.textContent=`${current+1} / ${slides.length}`;progress.style.width=`${((current+1)/slides.length)*100}%`}
+    document.getElementById('prev').onclick=()=>go(current-1);document.getElementById('next').onclick=()=>go(current+1);
+    addEventListener('keydown',e=>{if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(current+1)}if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(current-1)}if(e.key==='Home')go(0);if(e.key==='End')go(slides.length-1)});
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>.55){current=slides.indexOf(e.target);update()}}),{threshold:[.55]});slides.forEach(s=>io.observe(s));update();
+  </script>
+</body>
+</html>
