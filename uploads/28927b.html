@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>家系図・戸籍取得シミュレーター 完全操作マニュアル</title>
+<style>
+:root{
+  --navy:#0d2340;--navy2:#163d6b;--ink:#18202a;--muted:#667085;--line:#dbe2ea;
+  --bg:#f4f6f8;--card:#fff;--ok:#1f7a4d;--okbg:#edf8f2;--ng:#b64242;--ngbg:#fff1f1;
+  --warn:#a66f08;--warnbg:#fff7df;--orange:#c46a19;--bluebg:#eef4fb;--shadow:0 8px 24px rgba(13,35,64,.08)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;background:var(--bg);color:var(--ink);line-height:1.85}
+.hero{background:linear-gradient(135deg,var(--navy),#07182b);color:#fff;padding:48px 22px}
+.hero-inner{max-width:1240px;margin:auto}
+.hero h1{margin:0;font-size:34px;line-height:1.35}
+.hero p{color:#dbe5ef;margin:10px 0 0}
+.badge{display:inline-block;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 10px;font-size:12px;margin-bottom:12px}
+.layout{max-width:1450px;margin:auto;display:grid;grid-template-columns:280px minmax(0,1fr);gap:18px;padding:18px}
+.toc{position:sticky;top:14px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;max-height:calc(100vh - 28px);overflow:auto;box-shadow:var(--shadow)}
+.toc h2{font-size:15px;margin:0 0 8px;color:var(--navy)}
+.toc a{display:block;padding:5px 7px;border-radius:6px;text-decoration:none;color:#3f4a58;font-size:12px}
+.toc a:hover{background:#f0f4f8;color:var(--navy)}
+.section{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden}
+.section-head{padding:18px 22px;border-bottom:1px solid #e8edf2;background:linear-gradient(#fff,#fbfcfd)}
+.section-head h2{margin:0;color:var(--navy);font-size:23px}
+.section-head p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.section-body{padding:22px}
+h3{color:var(--navy);font-size:18px;margin:26px 0 9px}
+h4{color:#2f4359;font-size:15px;margin:18px 0 6px}
+p{margin:8px 0 14px}
+.note,.warning,.important,.tip{padding:13px 15px;border-radius:10px;margin:14px 0;font-size:14px}
+.note{background:var(--bluebg);border-left:4px solid var(--navy2)}
+.warning{background:var(--warnbg);border-left:4px solid var(--warn)}
+.important{background:var(--ngbg);border-left:4px solid var(--ng)}
+.tip{background:var(--okbg);border-left:4px solid var(--ok)}
+.table{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}
+.table th,.table td{border:1px solid #dfe5eb;padding:8px;vertical-align:top}
+.table th{background:#f3f6f9;color:var(--navy);text-align:left}
+.steps{counter-reset:step;display:grid;gap:10px;margin:12px 0}
+.step{position:relative;padding:14px 14px 14px 55px;border:1px solid #e1e6ec;border-radius:11px;background:#fff}
+.step:before{counter-increment:step;content:counter(step);position:absolute;left:14px;top:13px;width:28px;height:28px;background:var(--navy);color:#fff;border-radius:50%;display:grid;place-items:center;font-weight:800}
+.flow{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:12px 0}
+.flow span{padding:7px 9px;background:#edf3f8;border:1px solid #d6dfe8;border-radius:8px;font-size:12px;font-weight:700}
+.flow i{font-style:normal;color:#7f8a97}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.chip{padding:5px 8px;border-radius:999px;border:1px solid #cfd8e2;font-size:11px;background:#fff}
+.ui-shot{border:1px solid #ccd5df;border-radius:13px;overflow:hidden;background:#f8fafc;margin:16px 0}
+.ui-title{background:var(--navy);color:#fff;padding:11px 13px;font-weight:800;font-size:13px}
+.ui-toolbar{padding:11px;background:#fff;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid #e2e8ee}
+.btn{display:inline-block;padding:6px 9px;border-radius:7px;border:1px solid #ccd5df;background:#fff;color:var(--navy);font-weight:800;font-size:11px}
+.btn.primary{background:var(--navy2);color:#fff}.btn.orange{background:var(--orange);color:#fff;border-color:var(--orange)}.btn.danger{background:#9d3636;color:#fff;border-color:#9d3636}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px}
+.metric{background:#fff;border:1px solid #e0e6ed;border-radius:9px;padding:9px}.metric small{display:block;color:#667085}.metric b{color:var(--navy);font-size:18px}
+.mock-panel{background:#fff;border:1px solid #dfe5ec;border-radius:10px;margin:10px 12px;padding:11px}
+.formgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.field{font-size:10px;font-weight:700;color:#475467}.field div{margin-top:3px;border:1px solid #ccd5df;border-radius:6px;padding:7px;background:#fff;color:#667085;font-weight:400}
+.tree{overflow:auto;border:1px solid #dfe5ec;border-radius:10px;background:#fbfcfd;padding:14px}
+.tree-inner{min-width:900px}
+.gen-row{display:flex;justify-content:center;gap:10px;margin:12px 0;flex-wrap:nowrap}
+.person{width:140px;border:2px solid #a9b7c5;background:#fff;border-radius:9px;padding:7px;text-align:center;font-size:10px}
+.person.self{border-color:var(--navy2)}.person.father{border-color:#1f7a4d}.person.mother{border-color:#a66f08}
+.person strong{display:block;color:var(--navy);font-size:12px}
+.arrow{text-align:center;color:#8b98a7;font-size:18px;line-height:1}
+.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
+.check{padding:8px 10px;background:#f8fafc;border:1px solid #e1e6ec;border-radius:8px;font-size:12px}.check:before{content:"✓";color:var(--ok);font-weight:900;margin-right:6px}
+code{background:#f1f3f5;padding:2px 5px;border-radius:5px}
+.footer{text-align:center;padding:24px;color:#667085;font-size:12px}
+@media(max-width:920px){.layout{grid-template-columns:1fr;padding:10px}.toc{position:static;max-height:none}.metrics{grid-template-columns:repeat(2,1fr)}.formgrid{grid-template-columns:1fr 1fr}.checklist{grid-template-columns:1fr}.hero h1{font-size:26px}}
+@media(max-width:560px){.formgrid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.section-body{padding:15px}.hero{padding:32px 16px}.hero h1{font-size:22px}}
+@media print{.toc{display:none}.layout{display:block;padding:0}.section{box-shadow:none;break-inside:avoid}.hero{background:#fff;color:#111;padding:18px}.hero p{color:#444}}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="hero-inner">
+<div class="badge">完全版・詳細操作説明書</div>
+<h1>家系図・戸籍取得シミュレーター<br>完全操作マニュアル</h1>
+<p>案件ごとの調査範囲設定、人物登録、親子接続、戸籍取得、料金シミュレーター、進捗、保存、バックアップ、復元、印刷まで省略せず説明します。</p>
+</div>
+</header>
+
+<div class="layout">
+<nav class="toc">
+<h2>目次</h2>
+<a href="#overview">1. システム概要</a>
+<a href="#generations">2. 調査範囲は案件ごとに決める</a>
+<a href="#maxpeople">3. 最大人数と家系の広がり</a>
+<a href="#screen">4. 画面全体の見方</a>
+<a href="#flow">5. 最初に行う操作</a>
+<a href="#person">6. 人物情報の登録・編集</a>
+<a href="#add">7. 祖父母以降の追加方法</a>
+<a href="#relation">8. 親子関係の接続</a>
+<a href="#registry">9. 戸籍取得管理</a>
+<a href="#materials">10. その他資料管理</a>
+<a href="#status">11. 調査状態と進捗</a>
+<a href="#tree">12. 家系図の操作</a>
+<a href="#search">13. 検索・並び替え・絞り込み</a>
+<a href="#dashboard">14. ダッシュボードとグラフ</a>
+<a href="#feesim">15. 料金シミュレーター</a>
+<a href="#save">16. 保存・読込</a>
+<a href="#export">17. CSV・JSON・HTML出力</a>
+<a href="#import">18. CSV・JSON読込</a>
+<a href="#print">19. 印刷</a>
+<a href="#reset">20. リセット</a>
+<a href="#mobile">21. スマホ・タブレット操作</a>
+<a href="#trouble">22. よくあるトラブル</a>
+<a href="#practice">23. 実務でのおすすめ運用</a>
+</nav>
+
+<main>
+<section class="section" id="overview">
+<div class="section-head"><h2>1. システム概要</h2><p>何を管理するためのアプリかを確認します。</p></div>
+<div class="section-body">
+<p>本システムは、本人を中心に父方・母方の先祖を家系図形式で登録し、各人物について戸籍取得状況、取得費用、調査状態、その他資料、調査メモを一元管理するためのWebアプリです。</p>
+<div class="checklist">
+<div class="check">案件ごとに1〜5代前から調査範囲を選択</div>
+<div class="check">父方・母方を分けて管理</div>
+<div class="check">人物カードを家系図上で表示</div>
+<div class="check">現在戸籍・除籍・改製原戸籍を管理</div>
+<div class="check">実績費用を自動計算</div>
+<div class="check">今後の費用を料金シミュレーターで試算</div>
+<div class="check">検索・フィルター・並び替え</div>
+<div class="check">LocalStorageへ自動保存</div>
+<div class="check">CSV・JSON・HTMLでバックアップ</div>
+<div class="check">家系図・一覧・費用一覧を印刷</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="generations">
+<div class="section-head"><h2>2. 調査範囲は案件ごとに決める</h2><p>このシステムは最大5代前まで対応しますが、毎回5代前まで調査するわけではありません。</p></div>
+<div class="section-body">
+<div class="important"><strong>重要：調査する世代は案件ごとに異なります。</strong><br>
+本システムの「最大対応範囲」は5代前までですが、実際の案件では依頼内容・目的・予算・取得可能性などに応じて、1代前、2代前、3代前、4代前、5代前のいずれかを今回の調査範囲として設定します。</div>
+<table class="table">
+<tr><th>今回の調査設定</th><th>調査する範囲</th><th>本人を除く理論上の最大先祖人数</th><th>例</th></tr>
+<tr><td>1代前まで</td><td>父・母まで</td><td>2人</td><td>両親までの戸籍関係を確認したい案件</td></tr>
+<tr><td>2代前まで</td><td>祖父母まで</td><td>6人</td><td>父母＋祖父母まで追う案件</td></tr>
+<tr><td>3代前まで</td><td>曾祖父母まで</td><td>14人</td><td>家系調査をさらに遡る案件</td></tr>
+<tr><td>4代前まで</td><td>高祖父母まで</td><td>30人</td><td>比較的深い家系調査</td></tr>
+<tr><td>5代前まで</td><td>5代前の先祖まで</td><td>62人</td><td>本システムで設定できる最大範囲</td></tr>
+</table>
+<div class="note"><strong>人数は理論上の最大値です。</strong>実際には同一人物が複数系統に現れるケース、戸籍で確認できない人物、調査対象から外す人物などがあるため、必ずこの人数になるわけではありません。</div>
+<h3>料金シミュレーターで今回の調査範囲を選ぶ</h3>
+<p>料金シミュレーター上部の「今回の調査範囲（何代前まで）」で、案件ごとに1〜5代前を選択します。この設定はLocalStorageに保存され、JSONバックアップにも含まれます。</p>
+<div class="warning"><strong>「最大5代前まで対応」と「今回5代前まで調査する」は別の意味です。</strong>システムは5代前まで登録できますが、実際の案件でどこまで遡るかはその都度設定してください。</div>
+</div>
+</section>
+
+<section class="section" id="maxpeople">
+<div class="section-head"><h2>3. 最大対応人数と家系の広がり</h2><p>5代前まで設定した場合の最大構造です。実際の案件では選択した調査範囲まで使用します。</p></div>
+<div class="section-body">
+<div class="tree">
+<div class="tree-inner">
+<div class="gen-row"><div class="person self"><strong>本人</strong>1人</div></div>
+<div class="arrow">↓</div>
+<div class="gen-row"><div class="person father"><strong>父</strong>父方</div><div class="person mother"><strong>母</strong>母方</div></div>
+<div class="arrow">↓</div>
+<div class="gen-row">
+<div class="person father"><strong>父方祖父</strong></div><div class="person father"><strong>父方祖母</strong></div>
+<div class="person mother"><strong>母方祖父</strong></div><div class="person mother"><strong>母方祖母</strong></div>
+</div>
+<div class="arrow">↓</div>
+<div class="gen-row">
+<div class="person"><strong>曾祖父母</strong>8人</div><div class="person"><strong>高祖父母</strong>16人</div><div class="person"><strong>5代前</strong>32人</div>
+</div>
+</div>
+</div>
+<div class="warning">すべての人物を最初から登録する必要はありません。また、毎回5代前まで登録する必要もありません。今回設定した調査範囲の中で、戸籍調査により判明した人物を順次追加します。</div>
+</div>
+</section>
+
+<section class="section" id="screen">
+<div class="section-head"><h2>4. 画面全体の見方</h2><p>主な操作エリアを確認します。</p></div>
+<div class="section-body">
+<div class="ui-shot">
+<div class="ui-title">上部操作エリア</div>
+<div class="ui-toolbar">
+<span class="btn orange">人物追加</span><span class="btn">保存</span><span class="btn">読込</span><span class="btn">CSV出力</span><span class="btn">JSON出力</span><span class="btn">HTMLバックアップ</span><span class="btn">CSV読込</span><span class="btn">JSON読込</span><span class="btn">家系図印刷</span><span class="btn">一覧印刷</span><span class="btn">費用一覧印刷</span><span class="btn danger">リセット</span>
+</div>
+<div class="metrics">
+<div class="metric"><small>総費用</small><b>¥0</b></div><div class="metric"><small>取得率</small><b>0%</b></div><div class="metric"><small>戸籍枚数</small><b>0</b></div><div class="metric"><small>残件数</small><b>3</b></div>
+</div>
+</div>
+<table class="table">
+<tr><th>エリア</th><th>役割</th></tr>
+<tr><td>上部操作ボタン</td><td>人物追加、保存、読込、出力、印刷、リセットを行います。</td></tr>
+<tr><td>ダッシュボード</td><td>総費用、取得率、戸籍枚数、残件数などを自動表示します。</td></tr>
+<tr><td>検索・並び替え</td><td>氏名、本籍地、住所、メモから人物を探します。</td></tr>
+<tr><td>グラフ</td><td>取得済、未取得、調査中、父方・母方の進捗を確認します。</td></tr>
+<tr><td>料金シミュレーター</td><td>今後の予定通数から追加費用と最終見込み総額を計算します。</td></tr>
+<tr><td>家系図</td><td>人物カードと親子線を表示します。</td></tr>
+<tr><td>人物一覧</td><td>人物ごとの戸籍通数、費用、合計を表形式で確認します。</td></tr>
+</table>
+</div>
+</section>
+
+<section class="section" id="flow">
+<div class="section-head"><h2>5. 最初に行う操作</h2><p>初回利用時はこの順序がおすすめです。</p></div>
+<div class="section-body">
+<div class="steps">
+<div class="step"><strong>本人を編集</strong><br>初期表示されている「自分」の人物カードを編集します。</div>
+<div class="step"><strong>父を編集</strong><br>氏名、続柄、性別、本籍地、住所などを入力します。</div>
+<div class="step"><strong>母を編集</strong><br>父と同様に入力します。</div>
+<div class="step"><strong>父・母から祖父母を追加</strong><br>各カードの「親を追加」を使うと接続先を間違えにくくなります。</div>
+<div class="step"><strong>今回の調査範囲を決める</strong><br>料金シミュレーターで1〜5代前のどこまで調査する案件かを選びます。</div><div class="step"><strong>判明した人物を必要な世代まで順次追加</strong><br>今回の調査範囲まで、戸籍で判明した人物を追加します。5代前まで追わない案件では途中の世代で終了して構いません。</div>
+<div class="step"><strong>戸籍取得情報を登録</strong><br>取得した通数と状態を入力します。</div>
+<div class="step"><strong>料金シミュレーターに今後の予定を入力</strong><br>まだ取得していない戸籍の予定通数を入力します。</div>
+<div class="step"><strong>JSONバックアップを保存</strong><br>案件終了時・作業終了時に保存します。</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="person">
+<div class="section-head"><h2>6. 人物情報の登録・編集</h2><p>各人物カードから基本情報を入力します。</p></div>
+<div class="section-body">
+<table class="table">
+<tr><th>項目</th><th>説明</th></tr>
+<tr><td>氏名</td><td>人物名。必須項目です。</td></tr>
+<tr><td>続柄</td><td>本人、父、母、祖父、祖母など。必須項目です。</td></tr>
+<tr><td>性別</td><td>男性、女性、その他などから選択します。</td></tr>
+<tr><td>生年月日</td><td>判明している場合に入力します。</td></tr>
+<tr><td>死亡日</td><td>死亡している場合に入力します。</td></tr>
+<tr><td>本籍地</td><td>戸籍上の本籍地を入力します。</td></tr>
+<tr><td>住所</td><td>現住所、最終住所、判明している住所などを入力します。</td></tr>
+<tr><td>メモ</td><td>請求先役所、返送待ち、調査経緯、注意点などを記録します。</td></tr>
+<tr><td>取得済チェック</td><td>人物単位の取得状況を簡易管理します。</td></tr>
+<tr><td>調査状態</td><td>未取得、調査中、取得済を設定します。</td></tr>
+</table>
+<div class="warning">生年月日より死亡日が前になるなど不自然な日付は警告対象です。</div>
+</div>
+</section>
+
+<section class="section" id="add">
+<div class="section-head"><h2>7. 祖父母以降の追加方法</h2><p>今回の案件で設定した調査範囲まで人物を増やします。システム上限は5代前です。</p></div>
+<div class="section-body">
+<h3>おすすめ方法：人物カードの「親を追加」</h3>
+<div class="steps">
+<div class="step">親を追加したい人物カードを表示します。</div>
+<div class="step">カード内の<strong>「親を追加」</strong>を押します。</div>
+<div class="step">新規人物入力画面が開きます。</div>
+<div class="step">氏名、続柄、性別、系統、世代を入力します。</div>
+<div class="step">保存すると、その人物の上の世代として家系図に追加されます。</div>
+</div>
+
+<h3>世代ごとの追加例</h3>
+<table class="table">
+<tr><th>追加したい人物</th><th>どのカードから追加するか</th><th>系統</th><th>世代</th></tr>
+<tr><td>父方祖父</td><td>父</td><td>父方</td><td>祖父母</td></tr>
+<tr><td>父方祖母</td><td>父</td><td>父方</td><td>祖父母</td></tr>
+<tr><td>母方祖父</td><td>母</td><td>母方</td><td>祖父母</td></tr>
+<tr><td>母方祖母</td><td>母</td><td>母方</td><td>祖父母</td></tr>
+<tr><td>父方曾祖父</td><td>父方祖父または祖母</td><td>父方</td><td>曾祖父母</td></tr>
+<tr><td>高祖父母</td><td>対応する曾祖父母</td><td>父方または母方</td><td>高祖父母</td></tr>
+<tr><td>5代前の先祖</td><td>対応する高祖父母</td><td>父方または母方</td><td>5代前</td></tr>
+</table>
+</div>
+</section>
+
+<section class="section" id="relation">
+<div class="section-head"><h2>8. 親子関係の接続</h2><p>家系図の線を正しく表示するために重要です。</p></div>
+<div class="section-body">
+<div class="important"><strong>親子接続先を間違えると家系図の線が誤って表示されます。</strong></div>
+<p>例として父方祖父を登録する場合、その人物の子は「父」です。したがって接続先として「父」を選びます。</p>
+<div class="flow"><span>父方祖父</span><i>→ 子</i><span>父</span><i>→ 子</i><span>本人</span></div>
+<p>母方祖母を登録する場合は、接続先として「母」を選びます。</p>
+<div class="warning">「親子接続なし」を選ぶと人物カードは保存できますが、家系図の線は表示されません。</div>
+</div>
+</section>
+
+<section class="section" id="registry">
+<div class="section-head"><h2>9. 戸籍取得管理</h2><p>人物ごとに戸籍の種類と通数を管理します。</p></div>
+<div class="section-body">
+<table class="table">
+<tr><th>戸籍種類</th><th>単価</th><th>計算式</th></tr>
+<tr><td>現在戸籍</td><td>450円/通</td><td>通数 × 450円</td></tr>
+<tr><td>除籍</td><td>750円/通</td><td>通数 × 750円</td></tr>
+<tr><td>改製原戸籍</td><td>750円/通</td><td>通数 × 750円</td></tr>
+</table>
+<div class="steps">
+<div class="step">人物カードの「編集」を押します。</div>
+<div class="step">「戸籍取得」タブを開きます。</div>
+<div class="step">取得した戸籍のチェックを入れます。</div>
+<div class="step">通数を入力します。</div>
+<div class="step">費用が自動計算されます。</div>
+<div class="step">保存します。</div>
+</div>
+<div class="note">戸籍費用は人物ごとに集計され、父方合計、母方合計、総合計へ反映されます。</div>
+</div>
+</section>
+
+<section class="section" id="materials">
+<div class="section-head"><h2>10. その他資料管理</h2><p>戸籍以外の調査資料も人物単位で管理します。</p></div>
+<div class="section-body">
+<div class="chips"><span class="chip">その他資料</span><span class="chip">過去帳</span><span class="chip">宗門人別帳</span><span class="chip">家系図</span><span class="chip">墓石</span><span class="chip">古文書</span></div>
+<p>各資料について、取得済・未取得、メモ、費用、取得日を記録できます。必要な資料が初期項目にない場合は自由追加できます。</p>
+<div class="note">その他資料費用も人物ごとの合計費用および総費用へ加算されます。</div>
+</div>
+</section>
+
+<section class="section" id="status">
+<div class="section-head"><h2>11. 調査状態と進捗</h2><p>人物カードの色とグラフに反映されます。</p></div>
+<div class="section-body">
+<table class="table">
+<tr><th>状態</th><th>色</th><th>意味</th></tr>
+<tr><td>未取得</td><td>赤</td><td>まだ必要資料が揃っていない、未着手。</td></tr>
+<tr><td>調査中</td><td>黄</td><td>請求中、返送待ち、追加確認中。</td></tr>
+<tr><td>取得済</td><td>緑</td><td>必要な調査・資料取得が完了。</td></tr>
+</table>
+</div>
+</section>
+
+<section class="section" id="tree">
+<div class="section-head"><h2>12. 家系図の操作</h2><p>移動、折りたたみ、展開、削除ができます。</p></div>
+<div class="section-body">
+<h3>ドラッグ移動</h3><p>人物カードをドラッグすると位置を変更できます。移動後の位置は保存されます。</p>
+<h3>折りたたみ</h3><p>人物カードの「折りたたみ」を押すと、その人物より上の先祖を一時非表示にできます。</p>
+<h3>展開</h3><p>折りたたんだカードの「展開」を押すと再表示されます。</p>
+<h3>削除</h3><p>削除ボタンを押すと確認ダイアログが出ます。確認後、その人物と人物に紐づく情報が削除されます。</p>
+</div>
+</section>
+
+<section class="section" id="search">
+<div class="section-head"><h2>13. 検索・並び替え・絞り込み</h2><p>人物数が増えた場合に使います。</p></div>
+<div class="section-body">
+<h3>検索対象</h3>
+<div class="chips"><span class="chip">氏名</span><span class="chip">本籍地</span><span class="chip">住所</span><span class="chip">メモ</span></div>
+<h3>並び替え</h3>
+<div class="chips"><span class="chip">世代順</span><span class="chip">名字順</span><span class="chip">取得状況順</span><span class="chip">費用順</span><span class="chip">昇順</span><span class="chip">降順</span></div>
+<h3>フィルター</h3>
+<div class="chips"><span class="chip">すべて表示</span><span class="chip">未取得のみ</span><span class="chip">取得済のみ</span><span class="chip">父方のみ</span><span class="chip">母方のみ</span></div>
+</div>
+</section>
+
+<section class="section" id="dashboard">
+<div class="section-head"><h2>14. ダッシュボードとグラフ</h2><p>入力内容から自動集計されます。</p></div>
+<div class="section-body">
+<table class="table">
+<tr><th>表示項目</th><th>内容</th></tr>
+<tr><td>総費用</td><td>登録済みの実績費用合計。</td></tr>
+<tr><td>取得率</td><td>取得済件数 ÷ 総対象件数。</td></tr>
+<tr><td>戸籍枚数</td><td>現在戸籍の合計通数。</td></tr>
+<tr><td>除籍枚数</td><td>除籍の合計通数。</td></tr>
+<tr><td>改製原戸籍枚数</td><td>改製原戸籍の合計通数。</td></tr>
+<tr><td>残件数</td><td>未取得または調査中の対象件数。</td></tr>
+<tr><td>調査完了率</td><td>調査完了人物の割合。</td></tr>
+</table>
+</div>
+</section>
+
+<section class="section" id="feesim">
+<div class="section-head"><h2>15. 料金シミュレーター</h2><p>実績費用とは別に、これから必要になる予定費用を試算します。</p></div>
+<div class="section-body">
+<div class="important"><strong>料金シミュレーターは「まだ取得していない今後の予定費用」を計算する機能です。</strong><br>人物ごとの戸籍入力で計算される「実績費用」とは別です。</div>
+<h3>15-0. 最初に「何代前まで調査するか」を選ぶ</h3>
+<p>料金シミュレーターの最上部にある<strong>「今回の調査範囲（何代前まで）」</strong>から、案件ごとの調査範囲を選択します。</p>
+<table class="table"><tr><th>選択肢</th><th>範囲</th><th>理論上の対象先祖人数</th></tr><tr><td>1代前</td><td>父・母まで</td><td>2人</td></tr><tr><td>2代前</td><td>祖父母まで</td><td>6人</td></tr><tr><td>3代前</td><td>曾祖父母まで</td><td>14人</td></tr><tr><td>4代前</td><td>高祖父母まで</td><td>30人</td></tr><tr><td>5代前</td><td>5代前の先祖まで</td><td>62人</td></tr></table>
+<p>選択すると、画面に「今回の設定」と「理論上の対象先祖人数」が表示されます。この人数は上限目安であり、料金を自動的に人数分加算するものではありません。実際の費用見込みは、その案件で取得予定の戸籍通数を父方・母方それぞれ入力して計算します。</p>
+<div class="tip"><strong>例：</strong>今回は祖父母まで追う案件なら「2代前まで」を選択します。曾祖父母まで調べる案件なら「3代前まで」を選択します。依頼内容が変わった場合は途中で変更できます。</div>
+
+<h3>15-1. 料金シミュレーターで表示する金額</h3>
+<table class="table">
+<tr><th>項目</th><th>意味</th></tr>
+<tr><td>現在までの実績費用</td><td>人物ごとに登録済みの現在戸籍、除籍、改製原戸籍、その他資料費用の合計。</td></tr>
+<tr><td>父方追加見込み費用</td><td>父方で今後取得予定の戸籍・資料費用。</td></tr>
+<tr><td>母方追加見込み費用</td><td>母方で今後取得予定の戸籍・資料費用。</td></tr>
+<tr><td>追加取得見込み費用</td><td>父方と母方の追加見込み費用合計。</td></tr>
+<tr><td>最終見込み総額</td><td>実績費用＋追加取得見込み費用。</td></tr>
+</table>
+
+<h3>15-2. 入力項目</h3>
+<div class="ui-shot">
+<div class="ui-title">料金シミュレーター入力イメージ</div>
+<div class="metrics">
+<div class="metric"><small>実績費用</small><b>¥12,350</b></div>
+<div class="metric"><small>父方追加</small><b>¥7,650</b></div>
+<div class="metric"><small>母方追加</small><b>¥4,500</b></div>
+<div class="metric"><small>最終見込み</small><b>¥24,500</b></div>
+</div>
+<div class="mock-panel">
+<div class="formgrid">
+<div class="field">父方 現在戸籍予定<div>2通</div></div>
+<div class="field">父方 除籍予定<div>4通</div></div>
+<div class="field">父方 改製原戸籍予定<div>3通</div></div>
+<div class="field">父方 その他実費<div>1,500円</div></div>
+<div class="field">母方 現在戸籍予定<div>1通</div></div>
+<div class="field">母方 除籍予定<div>2通</div></div>
+<div class="field">母方 改製原戸籍予定<div>3通</div></div>
+<div class="field">母方 その他実費<div>300円</div></div>
+</div>
+</div>
+</div>
+
+<h3>15-3. 計算式</h3>
+<p><strong>父方追加見込み</strong> ＝ 現在戸籍予定通数×450円 ＋ 除籍予定通数×750円 ＋ 改製原戸籍予定通数×750円 ＋ その他実費</p>
+<p><strong>母方追加見込み</strong> ＝ 現在戸籍予定通数×450円 ＋ 除籍予定通数×750円 ＋ 改製原戸籍予定通数×750円 ＋ その他実費</p>
+<p><strong>最終見込み総額</strong> ＝ 現在までの実績費用 ＋ 父方追加見込み ＋ 母方追加見込み</p>
+
+<h3>15-4. 具体例</h3>
+<table class="table">
+<tr><th>系統</th><th>現在戸籍</th><th>除籍</th><th>改製原戸籍</th><th>その他</th><th>追加見込み</th></tr>
+<tr><td>父方</td><td>2通×450円</td><td>4通×750円</td><td>3通×750円</td><td>1,500円</td><td>7,650円</td></tr>
+<tr><td>母方</td><td>1通×450円</td><td>2通×750円</td><td>3通×750円</td><td>300円</td><td>4,500円</td></tr>
+</table>
+<p>実績費用が12,350円の場合、最終見込み総額は<strong>12,350円＋7,650円＋4,500円＝24,500円</strong>です。</p>
+
+<h3>15-5. 操作手順</h3>
+<div class="steps">
+<div class="step">今回の案件で何代前まで調査するかを1〜5代前から選択します。</div><div class="step">人物ごとの実績通数を入力します。</div>
+<div class="step">今後、父方で取得する予定の戸籍通数を入力します。</div>
+<div class="step">父方のその他実費予定を入力します。</div>
+<div class="step">母方も同様に入力します。</div>
+<div class="step">入力直後に見込み費用が自動更新されます。</div>
+<div class="step">最終見込み総額を確認します。</div>
+</div>
+
+<div class="warning"><strong>二重計上に注意：</strong>すでに人物側の戸籍取得欄へ実績として入力した通数は、料金シミュレーターの予定通数には含めないでください。</div>
+<div class="tip"><strong>おすすめ運用：</strong>戸籍を1通取得したら、シミュレーターの予定通数を1減らし、対象人物の実績通数を1増やします。</div>
+</div>
+</section>
+
+<section class="section" id="save">
+<div class="section-head"><h2>16. 保存・読込</h2><p>LocalStorageに自動保存されます。</p></div>
+<div class="section-body">
+<p>人物追加、編集、削除、戸籍変更、ステータス変更、ドラッグ移動、資料追加・削除、料金シミュレーター変更後に保存されます。</p>
+<div class="important">LocalStorageは端末・ブラウザ依存です。業務データは必ずJSONバックアップも保存してください。</div>
+</div>
+</section>
+
+<section class="section" id="export">
+<div class="section-head"><h2>17. CSV・JSON・HTML出力</h2><p>用途に応じて使い分けます。</p></div>
+<div class="section-body">
+<table class="table">
+<tr><th>形式</th><th>用途</th></tr>
+<tr><td>CSV</td><td>Excelで人物情報や戸籍通数を一覧管理。</td></tr>
+<tr><td>JSON</td><td>完全バックアップと再インポート。</td></tr>
+<tr><td>HTML</td><td>ブラウザで確認できる閲覧用バックアップ。</td></tr>
+</table>
+</div>
+</section>
+
+<section class="section" id="import">
+<div class="section-head"><h2>18. CSV・JSON読込</h2><p>既存データを取り込みます。</p></div>
+<div class="section-body">
+<div class="steps">
+<div class="step">CSV読込またはJSON読込を押します。</div>
+<div class="step">対象ファイルを選びます。</div>
+<div class="step">上書きまたは追加を選びます。</div>
+<div class="step">確認後に実行します。</div>
+</div>
+<div class="warning">JSON上書きは現在のデータを置き換えるため、事前にバックアップしてください。</div>
+</div>
+</section>
+
+<section class="section" id="print">
+<div class="section-head"><h2>19. 印刷</h2><p>3種類の印刷モードがあります。</p></div>
+<div class="section-body">
+<table class="table">
+<tr><th>印刷</th><th>内容</th></tr>
+<tr><td>家系図印刷</td><td>家系図を中心に印刷。</td></tr>
+<tr><td>一覧印刷</td><td>人物情報一覧を印刷。</td></tr>
+<tr><td>費用一覧印刷</td><td>人物ごとの取得費用と合計を印刷。</td></tr>
+</table>
+<p>A4を基本に、家系図が横長の場合は横向きを選択してください。</p>
+</div>
+</section>
+
+<section class="section" id="reset">
+<div class="section-head"><h2>20. リセット</h2><p>全データを初期状態に戻します。</p></div>
+<div class="section-body">
+<div class="important">リセットすると登録人物・戸籍・資料・料金シミュレーター情報・今回の調査範囲設定が初期化されます。事前にJSON出力してください。</div>
+</div>
+</section>
+
+<section class="section" id="mobile">
+<div class="section-head"><h2>21. スマートフォン・タブレット操作</h2><p>小さい画面でも利用できます。</p></div>
+<div class="section-body">
+<p>家系図が横に広い場合は横スクロールして確認します。人物編集画面は縦スクロールして入力し、最後に保存します。</p>
+</div>
+</section>
+
+<section class="section" id="trouble">
+<div class="section-head"><h2>22. よくあるトラブル</h2><p>代表的な原因と対処です。</p></div>
+<div class="section-body">
+<h3>人物が線でつながらない</h3><p>親子接続先が未設定の可能性があります。</p>
+<h3>父方・母方の集計がおかしい</h3><p>人物の系統設定を確認してください。</p>
+<h3>費用が増えない</h3><p>戸籍通数が0になっていないか確認してください。</p>
+<h3>料金シミュレーターが高すぎる</h3><p>実績通数を予定通数にも重複入力していないか確認してください。</p>
+<h3>先祖が見えない</h3><p>折りたたみ状態になっていないか確認してください。</p>
+<h3>データが消えた</h3><p>別ブラウザ、閲覧データ削除、プライベートモードなどの可能性があります。JSONバックアップから復元してください。</p>
+</div>
+</section>
+
+<section class="section" id="practice">
+<div class="section-head"><h2>23. 実務でのおすすめ運用</h2><p>行政書士・家系調査業務での使い方です。</p></div>
+<div class="section-body">
+<h3>案件開始時</h3>
+<div class="flow"><span>今回の調査範囲を設定</span><i>→</i><span>本人登録</span><i>→</i><span>父母登録</span><i>→</i><span>必要な世代まで追加</span></div>
+<h3>戸籍取得時</h3>
+<div class="flow"><span>対象人物編集</span><i>→</i><span>実績通数追加</span><i>→</i><span>予定通数減少</span><i>→</i><span>調査状態更新</span></div>
+<h3>1日の終了時</h3>
+<div class="flow"><span>残件確認</span><i>→</i><span>料金見込み確認</span><i>→</i><span>JSONバックアップ</span></div>
+<h3>依頼者説明時</h3>
+<div class="flow"><span>家系図印刷</span><i>＋</i><span>一覧印刷</span><i>＋</i><span>費用一覧印刷</span></div>
+<div class="tip">本籍地や住所だけでなく、「○月○日○○市役所へ請求」「返送待ち」「次は△△戸籍を追う」などをメモに残すと、調査の引き継ぎがしやすくなります。</div>
+</div>
+</section>
+</main>
+</div>
+<footer class="footer">家系図・戸籍取得シミュレーター 完全操作マニュアル</footer>
+</body>
+</html>
