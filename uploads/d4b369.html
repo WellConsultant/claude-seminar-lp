@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リウムスマイル！ 機能説明資料</title>
+<style>
+:root{
+  --navy:#f38c12;--blue:#e07d0c;--sky:#fff8f0;--ink:#243342;--muted:#66788a;
+  --line:#cbd6e2;--soft:#f4f7fa;--white:#fff;--green:#147a62;--gold:#a96b16;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#e9eef3;color:var(--ink);font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;line-height:1.75}
+.document{max-width:1040px;margin:24px auto 80px;background:#fff;box-shadow:0 12px 40px rgba(16,43,70,.12)}
+.page{padding:48px 56px;position:relative;border-bottom:1px solid #dde5ed;min-height:740px}
+.cover{min-height:900px;background:linear-gradient(145deg,#d47a0e 0%,#f38c12 62%,#ffa733 100%);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.cover .eyebrow{font-size:14px;letter-spacing:.18em;color:#fff0db;font-weight:700}
+.cover h1{font-size:46px;line-height:1.25;margin:20px 0 8px;letter-spacing:.06em}
+.cover .subtitle{font-size:20px;color:#fff5ea;max-width:700px}
+.cover .meta{border-top:1px solid rgba(255,255,255,.28);padding-top:22px;font-size:14px;color:#fff5ea}
+.cover .badge{display:inline-block;border:1px solid rgba(255,255,255,.45);border-radius:99px;padding:7px 15px;margin-top:20px;font-size:13px}
+.page-no{position:absolute;right:34px;bottom:22px;font-size:12px;color:#7c8c9d}
+h2{font-size:26px;color:var(--navy);margin:0 0 24px;border-bottom:3px solid var(--blue);padding-bottom:10px}
+h3{font-size:18px;color:var(--navy);margin:28px 0 10px}
+h4{font-size:15px;color:var(--blue);margin:20px 0 8px}
+p{margin:8px 0 14px}.lead{font-size:17px;line-height:1.9}.small{font-size:12.5px;color:var(--muted)}
+.toc{display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;margin-top:18px}.toc a{display:flex;justify-content:space-between;text-decoration:none;color:var(--ink);padding:10px 0;border-bottom:1px dotted var(--line)}
+.summary-grid,.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff}.card strong{display:block;color:var(--navy);font-size:16px;margin-bottom:6px}.card .num{font-size:30px;color:var(--blue);font-weight:800}
+.callout{background:var(--sky);border-left:5px solid var(--blue);padding:16px 18px;margin:18px 0;border-radius:0 10px 10px 0}.notice{background:#fff7e9;border-left-color:#d48a1e}.success{background:#edf8f4;border-left-color:var(--green)}
+table{width:100%;border-collapse:collapse;margin:14px 0 26px;font-size:13px;table-layout:fixed}th{background:var(--navy);color:#fff;text-align:left;padding:10px 11px;border:1px solid var(--navy)}td{padding:10px 11px;border:1px solid var(--line);vertical-align:top;word-break:break-word}tbody tr:nth-child(even){background:#f8fafc}.label{font-weight:700;color:var(--navy)}
+.feature-table th:nth-child(1){width:7%}.feature-table th:nth-child(2){width:10%}.feature-table th:nth-child(3){width:20%}.feature-table th:nth-child(4){width:25%}.feature-table th:nth-child(5){width:19%}.feature-table th:nth-child(6){width:19%}
+.group-row td{background:#fdecd8!important;color:var(--navy);font-weight:800;font-size:14px}.ai{color:#9c5b00;font-weight:800}.done{color:var(--green);font-weight:800}
+.flow{display:flex;align-items:stretch;gap:10px;margin:22px 0;flex-wrap:wrap}.flow .step{flex:1;min-width:145px;background:#fff;border:2px solid #fcd29f;border-radius:12px;padding:14px;text-align:center;position:relative}.flow .step:not(:last-child)::after{content:"→";position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--blue);font-size:22px;font-weight:800}.step .kicker{font-size:11px;color:var(--blue);font-weight:800}.step b{display:block;color:var(--navy);margin:4px 0}
+.legend{display:flex;gap:15px;flex-wrap:wrap;font-size:12px;margin:8px 0 16px}.legend span{padding:4px 10px;border-radius:99px;background:#edf2f7}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px}.checklist{list-style:none;padding:0}.checklist li{padding:8px 0 8px 30px;border-bottom:1px solid #e2e8ee;position:relative}.checklist li::before{content:"✓";position:absolute;left:5px;color:var(--green);font-weight:900}
+.footer-note{font-size:11px;color:#718194;border-top:1px solid var(--line);padding-top:12px;margin-top:30px}
+.shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0 22px}
+.shot-grid.full{grid-template-columns:1fr}
+.shot-card{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.shot-card img{width:100%;display:block}
+.shot-card .cap{padding:8px 12px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+.shot-card .cap b{display:block;color:var(--navy);font-size:13px;margin-bottom:2px}
+@media(max-width:760px){.document{margin:0}.page{padding:28px 20px}.cover h1{font-size:34px}.summary-grid,.cards,.two-col{grid-template-columns:1fr}.toc{grid-template-columns:1fr}.feature-table{font-size:11px}.flow .step:not(:last-child)::after{display:none}}
+@media print{@page{size:A4;margin:12mm}body{background:#fff}.document{max-width:none;margin:0;box-shadow:none}.page{page-break-after:always;min-height:auto;padding:10mm 8mm;border:0}.cover{min-height:270mm;-webkit-print-color-adjust:exact;print-color-adjust:exact}.page:last-child{page-break-after:auto}table{page-break-inside:auto}tr{page-break-inside:avoid}.page-no{bottom:3mm}.card,.callout{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main class="document">
+<!-- 表紙 -->
+<section class="page cover">
+  <div>
+    <div class="eyebrow">スモールサービス向け オールインワンシステム</div>
+    <h1>リウムスマイル！<br>機能説明資料</h1>
+    <p class="subtitle">サロン・スクール・個人事業主の集客とファンづくりに必要なWebサイト・予約・顧客管理・メルマガをまるっと一元化するクラウドシステム</p>
+    <span class="badge">売り込まない集客導線ストーリー完全対応</span>
+  </div>
+  <div class="meta">ITツール名：リウムスマイル！<br>開発・提供：有限会社リウム<br>資料作成日：２０２６年７月</div>
+</section>
+
+<!-- 目次 -->
+<section class="page" id="toc">
+<h2>目次</h2>
+<div class="toc">
+<a href="#product"><span>１．ITツールの正式な製品名</span><b>3</b></a>
+<a href="#plan"><span>２．提供形態・概要</span><b>3</b></a>
+<a href="#maker"><span>３．開発メーカー名・連絡先</span><b>3</b></a>
+<a href="#features"><span>４．機能一覧・生産性向上効果</span><b>4</b></a>
+<a href="#flow"><span>５．売り込まない集客導線フロー</span><b>6</b></a>
+<a href="#usage"><span>６．利用方法・業種別活用案</span><b>7</b></a>
+<a href="#effects"><span>７．導入によって見込まれる効果</span><b>8</b></a>
+<a href="#check"><span>８．導入お問合せ・サポート</span><b>8</b></a>
+</div>
+<div class="callout"><b>資料の位置づけ</b><br>本資料は、リウムスマイル！が提供するスモールサービス向け集客・接客・顧客管理機能、業務効率化効果、および運用の流れを包括的に説明するものです。</div>
+<div class="page-no">2</div>
+</section>
+
+<!-- 製品・メーカー概要 -->
+<section class="page" id="product">
+<h2>１．ITツールの正式な製品名</h2>
+<p class="lead"><b>リウムスマイル！</b></p>
+<div class="callout success"><b>製品概要</b><br>パソコンが苦手な方でもプロ級のホームページを自作・更新でき、予約管理・顧客管理・メルマガ配信・決済までを一つに連携させて「売り込まない集客とファンづくり」を実現するオールインワンWebシステムです。</div>
+
+<h2 id="plan">２．提供形態・概要</h2>
+<table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td class="label">提供形態</td><td>クラウドサービス（Webブラウザで利用）</td></tr>
+<tr><td class="label">対応端末</td><td>パソコン、スマートフォン、タブレット（自動スマホ対応）</td></tr>
+<tr><td class="label">無料お試し</td><td>14日間無料体験可能（作成データをそのまま本契約へ移行可能）</td></tr>
+<tr><td class="label">主な対象者</td><td>セラピスト、ヒーラー、サロン、講師、コンサルタント、整理収納アドバイザー等</td></tr>
+</table>
+
+<h2 id="maker">３．開発メーカー名・連絡先</h2>
+<table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td class="label">開発・提供事業者</td><td>有限会社リウム（rium inc.）</td></tr>
+<tr><td class="label">代表者</td><td>代表 穗口（ホグチ）</td></tr>
+<tr><td class="label">電話番号</td><td>050-5538-4616（平日 9:00〜18:00）</td></tr>
+<tr><td class="label">公式サイト</td><td><a href="https://riumsmile.jp/" target="_blank">https://riumsmile.jp/</a></td></tr>
+</table>
+<div class="page-no">3</div>
+</section>
+
+<!-- 機能一覧 -->
+<section class="page" id="features">
+<h2>４．機能一覧・生産性向上効果</h2>
+<div class="legend"><span>―：標準機能</span><span class="ai">★AI：AI活用支援あり</span></div>
+<table class="feature-table">
+<thead>
+<tr><th>No.</th><th>AI区分</th><th>機能名</th><th>詳細・項目内容</th><th>特徴</th><th>生産性向上効果</th></tr>
+</thead>
+<tbody>
+<tr class="group-row"><td colspan="6">① らしさ伝わる集客機能（自分らしさを丁寧に伝える）</td></tr>
+<tr><td>1-1</td><td>―</td><td>かんたんホームページ自作・更新</td><td>専門知識なしでWebサイトを直感的に作成・更新できるエディタ機能</td><td>パソ苦手でもプロ級デザインが完成</td><td>外部業者への更新依頼コスト・待ち時間をゼロ化</td></tr>
+<tr><td>1-2</td><td>―</td><td>業種別お手本作成</td><td>サロンや講師など業種ごとのテンプレート・構成案を標準搭載</td><td>初期セットアップを3ステップで完了</td><td>ゼロからのサイト構想・デザイン時間を大幅削減</td></tr>
+<tr><td>1-3</td><td>―</td><td>下ごしらえドリル・教材付き</td><td>コンセプト設計や原稿作成のための専用ドリルや完全マニュアルを提供</td><td>文章作成の迷いを解消</td><td>集客メッセージの言語化作業をスムーズに進行</td></tr>
+<tr><td>1-4</td><td>―</td><td>自動スマホ対応</td><td>PCで作成したコンテンツを自動でスマートフォン表示に最適化</td><td>レスポンシブWebデザイン対応</td><td>スマホ専用サイトの個別制作・管理の手間を削除</td></tr>
+<tr><td>1-5</td><td>―</td><td>デザイン着せ替え・カスタマイズ</td><td>テーマの変更やカラーリングの調整でオリジナリティを演出</td><td>自分らしさを手軽に表現</td><td>ブランディング作業の簡略化</td></tr>
+<tr><td>1-6</td><td>―</td><td>ホームページ内ブログ発信</td><td>ドメイン内で直接ブログ記事を執筆・公開できる機能</td><td>SEO効果を高めつつ情報発信</td><td>外部ブログとの二重管理・連携の手間を解消</td></tr>
+
+<tr class="group-row"><td colspan="6">② お客様とつながる接客機能（予約と顧客の自動連携）</td></tr>
+<tr><td>2-1</td><td>―</td><td>カレンダー予約管理</td><td>Web上で空き枠を表示し、24時間予約を自動受付</td><td>カレンダーと予約枠が完全連携</td><td>電話・メールでの日程調整の手間を大幅削減</td></tr>
+<tr><td>2-2</td><td>―</td><td>Zoom連携・オンライン化</td><td>オンライン講座や面談の予約時にZoomのURLを自動発行・案内</td><td>オンラインサービス作成を自動化</td><td>ミーティングURL作成・個別のメール送信作業を削減</td></tr>
+<tr><td>2-3</td><td>―</td><td>WEBフォーム自由作成</td><td>お問合せ、イベント申込、アンケートフォームを自由に作成</td><td>用途に応じたフォームを即時公開</td><td>外部フォームサービスとのデータ移行作業を排除</td></tr>
+</tbody>
+</table>
+<div class="page-no">4</div>
+</section>
+
+<section class="page">
+<h2>４．機能一覧・生産性向上効果（続き）</h2>
+<table class="feature-table">
+<thead>
+<tr><th>No.</th><th>AI区分</th><th>機能名</th><th>詳細・項目内容</th><th>特徴</th><th>生産性向上効果</th></tr>
+</thead>
+<tbody>
+<tr class="group-row"><td colspan="6">③ お客様を大切にフォローする機能（顧客管理と関係構築）</td></tr>
+<tr><td>3-1</td><td>―</td><td>顧客カルテ管理</td><td>顧客基本情報、やりとり履歴、利用履歴を一元的に管理・閲覧</td><td>過去の対応履歴を即座に把握</td><td>顧客対応前の準備時間・確認漏れを削減</td></tr>
+<tr><td>3-2</td><td>―</td><td>メルマガ・ステップメール配信</td><td>登録からの経過日数に応じた自動メール配信や一斉メルマガ配信</td><td>ストーリーに沿った自動フォロー</td><td>手作業によるお礼・リマインドメール送信を自動化</td></tr>
+<tr><td>3-3</td><td>―</td><td>会員限定ページ（オンラインサロン）</td><td>特定の会員だけがログイン・閲覧できる専用コンテンツページの構築</td><td>オンラインコミュニティの運用が可能</td><td>会員専用サイトの個別構築・アクセス制限管理の手間を軽減</td></tr>
+<tr><td>3-4</td><td>―</td><td>イベント告知・受付管理</td><td>単発セミナーやワークショップの告知ページ作成と参加者管理</td><td>受付から定員管理まで自動化</td><td>参加者リスト作成や定員管理のEXCEL作業を撲滅</td></tr>
+
+<tr class="group-row"><td colspan="6">④ 継続と安定のための運用機能</td></tr>
+<tr><td>4-1</td><td>―</td><td>クレカ決済・サブスク対応</td><td>クレジットカード決済（Stripe連携等）や月額継続課金の自動化</td><td>オンライン決済をスムーズに導入</td><td>請求書発行・振り込み確認・未納管理の労力を削減</td></tr>
+<tr><td>4-2</td><td>―</td><td>標準SEO対応</td><td>検索エンジンに最適化された構造とメタ情報設定機能</td><td>検索からの自然流入を促進</td><td>高度なSEO対策の外注費や専門知識学習時間を削減</td></tr>
+<tr><td>4-3</td><td class="ai">★AI</td><td>AI活用リアルシェア会・講習会</td><td>生成AIを活用した発信やホームページ育成の動画・講習を提供</td><td>最新テクノロジーを活用した集客支援</td><td>AIプロンプト作成や発信作業の効率化を実現</td></tr>
+<tr><td>4-4</td><td>―</td><td>まるっとサポート（ホム育）</td><td>質問会、グループコンサルティング、もくもく会などの手厚い運用支援</td><td>一人で悩まず挫折しない体制</td><td>試行錯誤の無駄な時間や運用の立ち消えを防止</td></tr>
+</tbody>
+</table>
+<div class="page-no">5</div>
+</section>
+
+<!-- 業務フロー -->
+<section class="page" id="flow">
+<h2>５．売り込まない集客導線ストーリー</h2>
+<div class="callout"><b>リウムスマイル！が提供する6ステップの集客導線</b><br>単なるWebサイト作成にとどまらず、出会いからファン化、コミュニティ化までのストーリーをシステム全体で一元管理します。</div>
+
+<div class="flow">
+<div class="step"><span class="kicker">STEP 1</span><b>知ってもらう</b>ホームページ・ブログ・SEO</div>
+<div class="step"><span class="kicker">STEP 2</span><b>好きになる</b>コンセプト・動画・メルマガ</div>
+<div class="step"><span class="kicker">STEP 3</span><b>お試し予約</b>WEB予約カレンダー・フォーム</div>
+<div class="step"><span class="kicker">STEP 4</span><b>丁寧な接客</b>Zoom連携・顧客カルテ</div>
+</div>
+<div class="flow">
+<div class="step"><span class="kicker">STEP 5</span><b>寄り添いフォロー</b>ステップメール・イベント</div>
+<div class="step"><span class="kicker">STEP 6</span><b>ファン・コミュニティ化</b>会員限定ページ・サブスク</div>
+</div>
+
+<h3>従来のバラバラなツール運用との比較</h3>
+<table>
+<tr><th>業務領域</th><th>従来の複数ツール運用</th><th>リウムスマイル！導入後</th></tr>
+<tr><td>Webサイト・ブログ</td><td>WordPressや外部ブログサービスで別々管理</td><td>HP内でブログも一括更新、自動スマホ対応</td></tr>
+<tr><td>予約・お問合せ</td><td>予約システム・問い合わせフォームを外部契約</td><td>HPと連携した予約カレンダーで自動受付</td></tr>
+<tr><td>顧客情報管理</td><td>予約データと顧客名簿が別々のEXCELで管理</td><td>予約・イベント申込がそのまま「顧客カルテ」に自動蓄積</td></tr>
+<tr><td>メールフォロー</td><td>手作業でのメール送信や別メルマガツール運用</td><td>顧客カルテと連動したステップメールを自動配信</td></tr>
+<tr><td>決済・コミュニティ</td><td>銀行振込の確認や外部決済リンクの発行</td><td>クレジットカード決済・サブスク・会員限定ページを一体化</td></tr>
+</table>
+<div class="page-no">6</div>
+</section>
+
+<!-- 利用方法・導入効果 -->
+<section class="page" id="usage">
+<h2>６．利用方法・業種別活用案</h2>
+<h3>基本ステップ</h3>
+<ol>
+<li><b>無料お試し登録：</b>14日間無料お試しフォームからアカウントを開設。</li>
+<li><b>お手本セットアップ：</b>自分の業種に近いお手本テンプレートを選択し、数クリックでベースを作成。</li>
+<li><b>コンテンツ入力：</b>ドリルやマニュアルに沿って、自分らしさやサービスメニュー、予約枠を入力。</li>
+<li><b>公開・運用開始：</b>ドメインを公開し、Web予約受付やメルマガ配信を開始。講習会やサポートを活用して育成。</li>
+</ol>
+
+<h3>業種別活用案</h3>
+<div class="two-col">
+<div>
+<h3>サロン・セラピスト</h3>
+<table>
+<tr><th>機能</th><th>活用方法</th></tr>
+<tr><td>予約カレンダー</td><td>施術メニューごとの空き枠表示・24時間自動受付</td></tr>
+<tr><td>顧客カルテ</td><td>施術履歴、お好み、前回の会話内容の記録</td></tr>
+<tr><td>ステップメール</td><td>来店後のアフターフォローメール自動送信</td></tr>
+</table>
+</div>
+<div>
+<h3>講師・コンサルタント</h3>
+<table>
+<tr><th>機能</th><th>活用方法</th></tr>
+<tr><td>Zoom自動連携</td><td>オンライン講座の予約と同時にZoom URLを発行</td></tr>
+<tr><td>イベント管理</td><td>単発セミナーの告知、定員管理、参加者一覧作成</td></tr>
+<tr><td>会員限定ページ</td><td>受講生専用の教材・アーカイブ動画閲覧ページ</td></tr>
+</table>
+</div>
+</div>
+
+<h2 id="effects">７．導入によって見込まれる効果</h2>
+<div class="summary-grid">
+<div class="card"><span class="num">01</span><strong>予約・問合せ対応の自動化</strong>24時間自動受付により、電話対応やメールの往復連絡時間を削減。</div>
+<div class="card"><span class="num">02</span><strong>ツール一元化によるコスト削減</strong>HP、予約、メルマガ、顧客管理を一つにまとめることで月額固定費を圧縮。</div>
+<div class="card"><span class="num">03</span><strong>顧客データの自動蓄積</strong>手入力の転記作業がなくなり、転記ミスや個人情報管理の煩雑さを解消。</div>
+<div class="card"><span class="num">04</span><strong>リピート率の向上</strong>ステップメールや顧客カルテを活用した丁寧なフォローでファン化を促進。</div>
+<div class="card"><span class="num">05</span><strong>Web制作の外注ゼロ化</strong>自分で自由に修正・更新ができるため、外注費用とタイムラグをカット。</div>
+<div class="card"><span class="num">06</span><strong>本業への集中</strong>集客・管理事務が効率化され、施術やレッスンなど価値提供に集中可能。</div>
+</div>
+<div class="page-no">7</div>
+</section>
+
+<!-- セルフチェック・問い合わせ -->
+<section class="page" id="check">
+<h2>８．導入お問合せ・サポート</h2>
+<div class="callout notice">
+<b>安心の「ホム育」サポート体制</b><br>
+システムを提供するだけでなく、ユーザーがWebサイトや集客導線を育てる（ホム育）ための各種無料講習会、チョイ聞き質問会、オンライン面談を実施しています。
+</div>
+
+<table>
+<tr><th>サポート内容</th><th>詳細</th></tr>
+<tr><td>14日間無料体験</td><td>全機能を試せるお試し期間（終了後に自動課金されることはありません）</td></tr>
+<tr><td>基本操作講習会・質問会</td><td>ZOOMによる操作講習会やチョイ聞き質問会を定期開催（無料）</td></tr>
+<tr><td>オンライン無料面談</td><td>代表 穗口による個別オンライン面談のご予約が可能</td></tr>
+<tr><td>ホム育気づきサロン</td><td>月額3,300円で集客・ファンづくりの考え方とノウハウが学べる会員制サロン</td></tr>
+</table>
+
+<div class="footer-note">
+本資料は、「リウムスマイル！」公式サイト（https://riumsmile.jp/）の掲載情報に基づき作成された機能説明資料です。
+</div>
+<div class="page-no">8</div>
+</section>
+
+</main>
+</body>
+</html>
