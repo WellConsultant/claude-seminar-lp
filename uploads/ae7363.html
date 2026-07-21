@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    
+  </style>
+</head>
+<body>
+  
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>静岡県 建設業許可｜書類準備チェックリスト</title>
+  <meta name="description" content="静岡県で建設業許可を申請するための5つの条件と必要書類を整理したチェックリスト">
+  <style>
+    :root{
+      --navy:#0d1b2a;--navy2:#162b44;--ink:#17202a;--muted:#5e6977;
+      --line:#d9dee5;--soft:#f4f6f8;--white:#fff;--orange:#e76819;
+      --orange2:#fff2e9;--red:#a62424;--redbg:#fff1f1;--green:#147a50;
+      --greenbg:#edf9f3;--shadow:0 8px 28px rgba(13,27,42,.09)
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:#eef1f4;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;line-height:1.75}
+    button,input{font:inherit}
+    .hero{background:linear-gradient(135deg,var(--navy),#101f32 68%,#263b52);color:#fff;padding:38px 20px 32px;border-bottom:5px solid var(--orange)}
+    .wrap{width:min(100%,980px);margin:auto}
+    .eyebrow{display:inline-block;margin:0 0 10px;padding:4px 11px;border:1px solid rgba(255,255,255,.35);border-radius:999px;font-weight:700;font-size:13px;letter-spacing:.06em}
+    h1{margin:0;font-size:clamp(27px,5vw,44px);line-height:1.28;letter-spacing:.01em}
+    .lead{margin:13px 0 0;max-width:780px;color:#e8edf3;font-size:clamp(15px,2.2vw,18px)}
+    .lead strong{color:#fff;border-bottom:2px solid var(--orange)}
+    .toolbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);box-shadow:0 3px 14px rgba(0,0,0,.06)}
+    .toolbar-inner{display:flex;align-items:center;gap:14px;padding:10px 20px}
+    .progress-info{min-width:128px;font-weight:800;color:var(--navy)}
+    .progress{flex:1;height:10px;background:#e3e7eb;border-radius:99px;overflow:hidden}
+    .progress-bar{width:0;height:100%;background:var(--orange);transition:width .25s ease}
+    .actions{display:flex;gap:7px}
+    .btn{border:1px solid #bbc3cc;background:#fff;color:var(--navy);padding:7px 12px;border-radius:7px;cursor:pointer;font-weight:700}
+    .btn:hover{background:var(--soft)}
+    main{padding:24px 20px 50px}
+    .nav-card,.card,.strict,.steps,.note{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+    .nav-card{padding:16px 18px;margin-bottom:18px}
+    .nav-card strong{display:block;margin-bottom:8px;color:var(--navy)}
+    .jump{display:flex;gap:7px;flex-wrap:wrap}
+    .jump a{color:var(--navy);background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:5px 9px;text-decoration:none;font-size:13px;font-weight:700}
+    .card{overflow:hidden;margin:16px 0}
+    .card-head{display:grid;grid-template-columns:58px 1fr;align-items:stretch;background:var(--navy);color:#fff}
+    .number{display:grid;place-items:center;background:var(--orange);font-size:26px;font-weight:900}
+    .title{padding:15px 18px}
+    .title h2{font-size:clamp(18px,3vw,23px);line-height:1.4;margin:0}
+    .title p{margin:3px 0 0;color:#dbe2ea;font-size:14px}
+    .card-body{padding:18px}
+    .explain{margin:0 0 14px;color:#354252}
+    .subhead{display:flex;align-items:center;gap:7px;margin:17px 0 8px;color:var(--navy);font-size:16px}
+    .subhead::before{content:"";width:5px;height:20px;background:var(--orange);border-radius:5px}
+    .checks{display:grid;gap:8px}
+    label.check{display:grid;grid-template-columns:25px 1fr;gap:10px;align-items:start;padding:10px 12px;background:var(--soft);border:1px solid #e0e4e9;border-radius:8px;cursor:pointer}
+    label.check:hover{border-color:#aab4c0;background:#f9fafb}
+    label.check:has(input:checked){background:var(--greenbg);border-color:#93ceb2}
+    .check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--green);cursor:pointer}
+    .check span{line-height:1.55}
+    .check small{display:block;margin-top:3px;color:var(--muted);font-size:13px}
+    .indent{margin-left:35px}
+    .choice{padding:12px 14px;border:1px dashed #9ea9b6;border-radius:8px;background:#fafbfc}
+    .choice > p{margin:0 0 8px;font-weight:800;color:var(--navy)}
+    .tip{margin-top:15px;padding:13px 15px;border-left:5px solid var(--orange);background:var(--orange2);border-radius:7px}
+    .tip strong{color:#8b3500}
+    .guide{margin:12px 0 17px;padding:14px 16px;background:#fff;border:1px solid #ccd4dd;border-radius:9px}
+    .guide h3{margin:0 0 8px;color:var(--navy);font-size:16px}
+    .guide p{margin:0 0 8px;color:#354252}
+    .guide p:last-child{margin-bottom:0}
+    .detail-list{margin:7px 0 0;padding-left:1.35em}
+    .detail-list li{margin:5px 0}
+    .detail-list strong{color:var(--navy)}
+    .document-note{display:block;margin-top:6px;padding-top:6px;border-top:1px solid #dce1e6;color:#465262;font-size:13px}
+    .strict{margin:25px 0;overflow:hidden;border-color:#e1aaaa}
+    .strict-head{padding:17px 20px;background:var(--red);color:#fff}
+    .strict-head h2{margin:0;font-size:clamp(19px,3vw,25px)}
+    .strict-head p{margin:4px 0 0;color:#ffe9e9}
+    .rules{display:grid;gap:11px;padding:17px}
+    .rule{display:grid;grid-template-columns:38px 1fr;gap:12px;padding:13px;background:var(--redbg);border:1px solid #efcaca;border-radius:9px}
+    .rule-num{display:grid;place-items:center;width:34px;height:34px;background:var(--red);color:#fff;border-radius:50%;font-weight:900}
+    .rule h3{margin:0 0 4px;font-size:17px;color:#811d1d}
+    .rule p{margin:0}
+    .steps{overflow:hidden;margin-top:25px}
+    .steps-head{padding:17px 20px;background:var(--navy);color:#fff}
+    .steps-head h2{margin:0;font-size:clamp(20px,3vw,25px)}
+    .steps-head p{margin:4px 0 0;color:#dbe2ea}
+    .step-list{padding:17px;display:grid;gap:10px}
+    .step{display:grid;grid-template-columns:74px 1fr;gap:12px;align-items:start;padding:14px;border:1px solid var(--line);border-radius:9px}
+    .step-badge{background:var(--orange);color:#fff;text-align:center;border-radius:6px;padding:4px 6px;font-weight:900}
+    .step p{margin:0}
+    .step q{font-weight:700;color:var(--navy)}
+    .note{margin-top:16px;padding:16px 18px;border-left:5px solid var(--orange)}
+    .note h2{margin:0 0 5px;font-size:18px;color:var(--navy)}
+    .note p{margin:0;color:#465262}
+    footer{padding:20px;text-align:center;color:#66717f;font-size:12px}
+    @media(max-width:650px){
+      .hero{padding:28px 16px 25px}.toolbar-inner{padding:8px 12px;gap:8px;flex-wrap:wrap}.progress-info{min-width:105px;font-size:13px}.progress{min-width:120px}.actions{width:100%}.btn{flex:1;padding:6px 8px;font-size:13px}main{padding:16px 12px 38px}.card-head{grid-template-columns:48px 1fr}.number{font-size:22px}.title{padding:12px}.card-body{padding:13px}.indent{margin-left:12px}.rule{grid-template-columns:32px 1fr;padding:11px}.rule-num{width:30px;height:30px}.step{grid-template-columns:1fr}.step-badge{width:max-content}.nav-card{padding:13px}
+    }
+    @media print{
+      @page{size:A4;margin:11mm}
+      body{background:#fff;font-size:10.5pt;line-height:1.5}.hero{padding:18px 0 15px;background:#fff!important;color:#000;border-bottom:3px solid #000}.hero .wrap{width:100%}.eyebrow{border-color:#555}.lead{color:#222}.lead strong{color:#000}.toolbar,.nav-card,.actions{display:none!important}main{width:100%;padding:12px 0}.card,.strict,.steps,.note{box-shadow:none;break-inside:avoid;margin:10px 0}.card-head,.strict-head,.steps-head{background:#eee!important;color:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.number,.step-badge,.rule-num{background:#333!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.title p,.strict-head p,.steps-head p{color:#333}.card-body{padding:11px}.check{padding:7px!important;background:#fff!important}.rules,.step-list{padding:11px}.rule{padding:9px}.tip{padding:9px}footer{padding:8px 0}
+    }
+  </style>
+  
+
+  <header class="">
+    <div class="wrap"><p class="lead"><font color="#17202a"><span style="font-size: 13px; letter-spacing: 0.78px;"><b>株式会社SAIKEN 齊藤様</b></span></font>許</p></div></header><header class="hero"><div class="wrap"><p class="eyebrow">書類準備用・保存できるチェックリスト</p>
+      <h1>静岡県で建設業許可を取るための完全ガイド</h1>
+      <p class="lead">許可を取るには、<strong>「5つの条件」をすべてクリアしていること</strong>を、書類で証明する必要があります。ご確認いただけませんか？</p>
+    </div>
+  </header>
+
+  <div class="toolbar" aria-label="チェック状況">
+    <div class="wrap toolbar-inner">
+      <div class="progress-info"><span id="doneCount">0</span> / <span id="totalCount">0</span> 完了</div>
+      <div class="progress" role="progressbar" aria-label="準備の進捗" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="actions"><button class="btn" type="button" id="printBtn">印刷・PDF保存</button><button class="btn" type="button" id="resetBtn">チェックをリセット</button></div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <nav class="nav-card" aria-label="ページ内メニュー">
+      <strong>確認したい項目へ移動</strong>
+      <div class="jump"><a href="#condition1">条件1 経営経験</a><a href="#condition2">条件2 実務経験</a><a href="#condition3">条件3 財産要件</a><a href="#condition4">条件4 社会保険</a><a href="#condition5">条件5 欠格要件</a><a href="#office">営業所の実態</a><a href="#strict">静岡県の注意点</a><a href="#first-step">最初の3ステップ</a></div>
+    </nav>
+
+    <section class="card" id="condition1">
+      <div class="card-head"><div class="number">1</div><div class="title"><h2>社長として5年間、建設業をやっていたこと</h2><p>今の会社3年＋個人事業主時代2年＝合計5年間</p></div></div>
+      <div class="card-body">
+        <p class="explain">今の会社と個人事業主時代を合わせて、5年間経営していたことと、その間に工事を続けていたことを証明します。</p>
+        <div class="guide">
+          <h3>この条件で証明すること</h3>
+          <p>確認されるのは、単に会社を5年間持っていたことではありません。建設業について、経営業務を管理する立場にあり、その期間中に実際の建設工事を継続して行っていたことを、期間がつながる資料で示します。</p>
+          <ul class="detail-list">
+            <li><strong>役員・事業主だった期間：</strong>登記事項証明書や確定申告書で確認します。</li>
+            <li><strong>建設業を営んでいた事実：</strong>工事契約書、請求書、入金記録などで確認します。</li>
+            <li><strong>期間のつながり：</strong>個人事業2年と法人3年を合算する場合、開業・廃業・法人設立の時期に不自然な空白がないか整理します。</li>
+          </ul>
+        </div>
+        <h3 class="subhead">集める書類</h3>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-id="c1-1"><span><strong>会社の登記事項証明書（履歴事項全部証明書）</strong><small>法務局の窓口またはオンラインで取得します。現在の会社の設立日、役員への就任日、役員を務めている期間を確認できるものを用意します。</small><span class="document-note">確認箇所：会社成立年月日、役員欄、就任日・重任日。途中で役員変更がある場合は、必要な期間が確認できる閉鎖事項証明書等も検討します。</span></span></label>
+          <label class="check"><input type="checkbox" data-id="c1-2"><span><strong>個人事業主時代2年分の確定申告書</strong><small>第一表・第二表・青色申告決算書または収支内訳書を、年度ごとに一式そろえます。電子申告なら受信通知も保存します。</small><span class="document-note">確認箇所：本人名、住所、屋号、職業・事業内容、対象年、税務署の収受日付印または電子申告日時。控えだけで受付の事実が確認できない場合は、代替資料を申請窓口へ確認します。</span></span></label>
+          <label class="check"><input type="checkbox" data-id="c1-3"><span><strong>法人3年分の確定申告書</strong><small>法人税申告書の別表一と、役員報酬手当等及び人件費の内訳書など、対象年度ごとに必要な部分をそろえます。</small><span class="document-note">確認箇所：法人名、事業年度、代表者名、税務署の受付事実、本人が役員として記載されていること。決算期が経営経験の期間を途切れなくカバーしているか年表にします。</span></span></label>
+          <label class="check"><input type="checkbox" data-id="c1-4"><span><strong>過去5年間の工事実績を示す書類</strong><small>工事契約書がある場合は、工事名・施工場所・工事内容・請負金額・工期・発注者と受注者が読めるページを用意します。</small><span class="document-note">契約書がない場合：請求書と、それに対応する通帳の入金記録を必ずセットにします。通帳コピーには金融機関名、支店名、口座名義、入金日、振込名義、金額が確認できるページを含めます。どの請求書とどの入金が対応するか番号を付けると確認しやすくなります。</span></span></label>
+        </div>
+        <div class="tip"><strong>整理方法：</strong>「年月／事業形態／役職／工事名／工種／証拠書類／入金日」を一覧表にし、個人事業から法人までの5年間が連続して説明できるか確認してください。</div>
+      </div>
+    </section>
+
+    <section class="card" id="condition2">
+      <div class="card-head"><div class="number">2</div><div class="title"><h2>外構工事の経験が10年間あること</h2><p>今の会社5年＋前の会社5年＝合計10年間</p></div></div>
+      <div class="card-body">
+        <p class="explain">外構工事（とび・土工など）の実務経験を、今の会社と前の会社の期間を合わせて証明します。</p>
+        <div class="guide">
+          <h3>この条件で証明すること</h3>
+          <p>本人が、申請する建設業種に該当する工事について、必要な年数の実務経験を持つことを証明します。「建設会社に在籍していた」だけでは足りず、在籍期間と、その会社が該当工事を行っていた事実の両方を組み合わせて示します。</p>
+          <ul class="detail-list">
+            <li><strong>工種の一致：</strong>請求書に「工事一式」などの曖昧な記載しかない場合、外構工事、とび・土工工事等の具体的な内容が分かる内訳書や注文書なども探します。</li>
+            <li><strong>本人の在籍：</strong>前職期間は在籍証明書、年金記録等で、勤務開始・終了時期を確認します。</li>
+            <li><strong>経験期間：</strong>工事資料を暦年ごとに並べるだけでなく、必要な期間が途切れず説明できるか確認します。</li>
+          </ul>
+        </div>
+        <h3 class="subhead">今の会社の5年分</h3>
+        <div class="checks"><label class="check"><input type="checkbox" data-id="c2-1"><span><strong>現在の会社・個人事業期間の確定申告書、工事資料、入金資料</strong><small>条件1で集めた資料を利用します。ただし、経営経験の証明に使える資料が、そのまま申請業種の実務経験も証明できるとは限りません。</small><span class="document-note">請求書・契約書の工事内容を確認し、「外構工事」「造成工事」「コンクリート工事」など、申請する業種との関係が具体的に分かる資料を選びます。曖昧な記載には内訳書や工事内容説明書を付けられるか相談します。</span></span></label></div>
+        <h3 class="subhead">前の会社の5年分</h3>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-id="c2-2"><span><strong>前の会社が施工した工事の契約書等</strong><small>前の会社へ、必要な5年間について該当工種が確認できる契約書、注文書、請求書、入金資料などを相談します。</small><span class="document-note">前の会社の協力が必要になる可能性が高い資料です。会社名、工事内容、期間が読める状態で、原本提示・写し・押印等の扱いを事前に窓口へ確認してください。</span></span></label>
+          <label class="check"><input type="checkbox" data-id="c2-3"><span><strong>前の会社の在籍証明書</strong><small>会社名、所在地、代表者、本人の氏名、在籍期間、職務内容などを記載してもらいます。</small><span class="document-note">単に「在籍していた」とするだけでなく、申請業種の工事に従事していた期間・内容をどこまで記載すべきか、提出前に窓口へ確認します。</span></span></label>
+          <label class="check"><input type="checkbox" data-id="c2-4"><span><strong>年金被保険者記録照会回答票等の在籍期間を確認できる資料</strong><small>前の会社から在籍証明書を得られない場合に、年金事務所等で取得を検討します。</small><span class="document-note">年金記録は勤務先と加入期間の確認には使えますが、担当した工種そのものを証明する資料ではありません。工事実績資料と組み合わせて提出できるか確認してください。</span></span></label>
+        </div>
+        <div class="tip"><strong>重要：学歴を確認してください。</strong><br>高校や大学等で、申請業種に対応する国土交通省令上の指定学科を卒業している場合、必要な実務経験が3年または5年に短縮される可能性があります。「土木」「建築」という名称だけで自動的に決まるわけではないため、学校名、学科名、卒業年月を確認し、卒業証明書や成績証明書を持って申請窓口へ確認してください。短縮後の必要年数を現在の会社だけで満たせれば、前職資料が不要になる可能性があります。<br></div><div class="tip"><b>指定学科<br></b><div class="school-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; color: rgb(34, 40, 49); font-family: -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, &quot;Noto Sans JP&quot;, &quot;Yu Gothic&quot;, Meiryo, sans-serif; background-color: rgb(255, 255, 255);"><div style="background: rgb(246, 247, 248); border-radius: 6px; padding: 9px; font-size: 12px;"><b style="display: block; color: rgb(16, 29, 50); font-size: 13px;">土木工学</b>土木、農業土木、森林土木、砂防、治山、緑地、造園等</div><div style="background: rgb(246, 247, 248); border-radius: 6px; padding: 9px; font-size: 12px;"><b style="display: block; color: rgb(16, 29, 50); font-size: 13px;">建築学</b>建築、住居、建築設備、環境計画等</div><div style="background: rgb(246, 247, 248); border-radius: 6px; padding: 9px; font-size: 12px;"><b style="display: block; color: rgb(16, 29, 50); font-size: 13px;">機械工学</b>機械、自動車、造船、電子機械、産業機械等</div><div style="background: rgb(246, 247, 248); border-radius: 6px; padding: 9px; font-size: 12px;"><b style="display: block; color: rgb(16, 29, 50); font-size: 13px;">電気・電気通信工学</b>電気、電子、通信、情報電子、電波通信等</div><div style="background: rgb(246, 247, 248); border-radius: 6px; padding: 9px; font-size: 12px;"><b style="display: block; color: rgb(16, 29, 50); font-size: 13px;">その他</b>都市工学、衛生工学、交通工学、林学、鉱山学等</div><div style="background: rgb(246, 247, 248); border-radius: 6px; padding: 9px; font-size: 12px;"><b style="display: block; color: rgb(16, 29, 50); font-size: 13px;">学科名が似ている場合</b>卒業証明書・成績証明書・履修科目証明書を準備し、申請先へ事前照会。</div></div><div class="info" style="background: rgb(243, 246, 250); border-left: 4px solid rgb(16, 29, 50); padding: 10px 12px; font-size: 13px; margin: 10px 0px; color: rgb(34, 40, 49); font-family: -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, &quot;Noto Sans JP&quot;, &quot;Yu Gothic&quot;, Meiryo, sans-serif;">指定学科は「学科分類」と「申請業種」の組合せで判定します。近い名称だから自動的に認められるわけではありません。</div></div>
+        <h3 class="subhead">学歴の確認</h3>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-id="c2-5"><span><strong>卒業した学校・学科名・卒業年月を確認した</strong><small>学校の正式名称と学科・課程・コース名を確認し、申請業種に対応する指定学科に該当するか照合します。</small></span></label>
+          <label class="check"><input type="checkbox" data-id="c2-6"><span><strong>卒業証明書・成績証明書等を用意した</strong><small>学校が統廃合・改称されている場合は、証明書の発行窓口を後継校や教育委員会等へ確認します。学科名だけで判断できない場合に備え、履修科目が分かる成績証明書も検討します。</small></span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="condition3">
+      <div class="card-head"><div class="number">3</div><div class="title"><h2>会社に500万円以上の資金力があること</h2><p>次のどちらか1つで証明</p></div></div>
+      <div class="card-body">
+        <p class="explain">工事を最後まで続けられる財産的な基礎があることを証明します。</p>
+        <div class="guide">
+          <h3>確認する数字と取得時期</h3>
+          <p>一般建設業許可では、自己資本の額や資金調達能力などによって財産的基礎を確認します。このチェックリストでは、直近決算の純資産額または500万円以上の預金残高を示す方法を整理しています。</p>
+          <ul class="detail-list">
+            <li><strong>決算書を使う場合：</strong>貸借対照表の「純資産の部」の合計額を確認します。売上高や現預金残高だけを見るのではありません。</li>
+            <li><strong>残高証明書を使う場合：</strong>通帳コピーではなく、金融機関が発行する残高証明書を取得します。証明日、口座名義、金額を確認します。</li>
+            <li><strong>申請日との関係：</strong>有効期間の数え方や複数口座の合算可否を含め、取得前に申請先へ確認します。</li>
+          </ul>
+        </div>
+        <div class="choice">
+          <p>以下のどちらか1つを準備</p>
+          <div class="checks">
+            <label class="check"><input type="checkbox" data-id="c3-1"><span><strong>直近の会社の決算書</strong><small>貸借対照表の純資産合計が500万円以上あるか確認します。申告済みの直近決算一式と数字が一致していることも確認します。</small></span></label>
+            <label class="check"><input type="checkbox" data-id="c3-2"><span><strong>金融機関発行の残高証明書</strong><small>会社名義の口座について、基準額以上の残高が記載された証明書を取得します。口座へ資金を入れる場合は、証明日時点で実際に残高が必要です。</small><span class="document-note">発行から申請までの有効期間に注意します。原本の要否、証明日の指定、ネット銀行の証明書の扱いは金融機関へ依頼する前に確認してください。</span></span></label>
+          </div>
+        </div>
+        <div class="tip"><strong>取得時期に注意：</strong>残高証明書には有効期間があります。申請予定日から逆算して取得してください。</div>
+      </div>
+    </section>
+
+    <section class="card" id="condition4">
+      <div class="card-head"><div class="number">4</div><div class="title"><h2>社会保険に適切に加入していること</h2><p>健康保険・厚生年金・雇用保険の加入状況を確認</p></div></div>
+      <div class="card-body">
+        <div class="guide">
+          <h3>加入の有無だけでなく、会社・営業所との対応を確認</h3>
+          <p>申請時点で加入義務のある健康保険、厚生年金保険、雇用保険に適切に加入しているかを確認します。法人名、事業所所在地、整理番号、対象期間が申請内容と対応している資料を用意します。</p>
+          <ul class="detail-list">
+            <li><strong>健康保険・厚生年金：</strong>保険料の領収証書、納入証明書、標準報酬決定通知書等のうち、申請先が指定する資料を確認します。</li>
+            <li><strong>雇用保険：</strong>労働保険概算・確定保険料申告書と領収済通知書、加入を確認できる書類等を整理します。</li>
+            <li><strong>従業員がいない場合：</strong>適用関係は会社形態や役員・従業員の状況で変わるため、「未加入でよい」と自己判断せず、年金事務所、労働局または申請窓口へ確認します。</li>
+          </ul>
+        </div>
+        <h3 class="subhead">集める書類</h3>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-id="c4-1"><span><strong>健康保険・厚生年金の加入を確認できる書類</strong><small>年金事務所から届く保険料の領収証書・納入告知額通知書など、事業所名と直近の納付状況が分かる資料を確認します。</small><span class="document-note">健康保険組合に加入している場合などは書類が異なることがあります。口座振替の場合も、申請先が求める資料名を確認してから準備してください。</span></span></label>
+          <label class="check"><input type="checkbox" data-id="c4-2"><span><strong>雇用保険の加入を確認できる書類</strong><small>労働保険番号、事業所名、申告年度、納付の事実が分かる申告書・領収済通知書等をそろえます。</small><span class="document-note">従業員を初めて雇用した直後、電子納付、事務組合への委託など、通常の領収書がない場合は代替となる資料を確認します。</span></span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="condition5">
+      <div class="card-head"><div class="number">5</div><div class="title"><h2>欠格要件に該当しないこと</h2><p>過去の処分・犯罪歴など、許可を受けられない事情がないこと</p></div></div>
+      <div class="card-body">
+        <div class="guide">
+          <h3>誰の書類が必要になるかを確認</h3>
+          <p>法人、役員、個人事業主、令第3条の使用人など、申請形態に応じた関係者について、建設業法上の欠格要件に該当しないことを確認します。必要人数分を早めに洗い出してください。</p>
+          <ul class="detail-list">
+            <li><strong>身分証明書：</strong>運転免許証などの本人確認書類とは別物です。本籍地の市区町村が発行する証明書を取得します。</li>
+            <li><strong>登記されていないことの証明書：</strong>成年被後見人・被保佐人として登記されていないこと等を確認する法務局発行の書類です。</li>
+            <li><strong>氏名・本籍の確認：</strong>旧字体、異体字、外国籍、氏名変更等がある場合は、申請書と証明書の表記を照合します。</li>
+          </ul>
+        </div>
+        <h3 class="subhead">集める書類</h3>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-id="c5-1"><span><strong>市区町村発行の身分証明書</strong><small>本人の現住所ではなく、本籍地の市区町村へ請求します。郵送請求の可否、手数料、本人確認書類、委任状の要否を自治体へ確認します。</small><span class="document-note">運転免許証やマイナンバーカードのコピーでは代用できません。必要となる役員等の全員分を洗い出し、発行日から申請日までの有効期間にも注意してください。</span></span></label>
+          <label class="check"><input type="checkbox" data-id="c5-2"><span><strong>登記されていないことの証明書</strong><small>法務局の窓口または郵送で取得します。証明事項、氏名、生年月日、本籍等の記載を申請書と一致させます。</small><span class="document-note">取得できる法務局・請求方法には決まりがあります。代理取得では委任状等が必要になるため、対象者と取得方法を先に整理してください。</span></span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="office">
+      <div class="card-head"><div class="number">＋</div><div class="title"><h2>追加チェック：営業所（事務所）の実態要件</h2><p>住所やポストだけではなく、営業所として使用できる実態が必要</p></div></div>
+      <div class="card-body">
+        <p class="explain">机や電話があり、事務作業や来客対応ができる物理的な空間が必要です。工事実績の書類収集と並行して、現在の事務所が写真や賃貸借契約書の審査をクリアできる状態か確認してください。</p>
+        <div class="guide">
+          <h3>「営業所の実態」とは</h3>
+          <p>建設業の営業所は、請負契約の見積り、入札、契約締結、工事に関する打合せなど、建設業の営業活動を継続して行う拠点です。登記上の所在地、郵便物の受取先、電話転送先だけではなく、そこで実際に業務を行える状態が求められます。</p>
+          <ul class="detail-list">
+            <li><strong>独立性：</strong>他社の事務所や自宅の生活空間と混在せず、事務所として区画・識別できること。</li>
+            <li><strong>設備：</strong>机、椅子、電話、パソコン、書類保管設備など、営業活動に必要な備品があること。</li>
+            <li><strong>来客対応：</strong>発注者や取引先との打合せ、契約手続等を行える場所が確保されていること。</li>
+            <li><strong>表示：</strong>建物外部や入口で会社名・屋号が確認でき、訪問者が営業所を特定できること。</li>
+            <li><strong>使用権原：</strong>所有、賃貸、使用貸借など、その場所を事務所として使用できる法的な根拠があること。</li>
+          </ul>
+        </div>
+
+        <h3 class="subhead">営業所の状態</h3>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-id="office-1"><span><strong>事務専用のスペース・来客用のスペースがある</strong><small>自宅兼事務所の場合は、居間、寝室、台所などの生活空間と区別します。入口から事務所までの動線、部屋の区切り、来客が座れる場所も確認します。</small><span class="document-note">間取り図を用意し、事務所部分を色で囲むと説明しやすくなります。共用玄関や生活空間を通らなければ入れない配置の扱いは、写真撮影前に窓口へ相談してください。</span></span></label>
+          <label class="check"><input type="checkbox" data-id="office-2"><span><strong>看板または表札を掲示している</strong><small>建物外観、集合ポスト、部屋の入口など、訪問者が営業所を特定できる位置に正式な会社名・屋号を表示します。</small><span class="document-note">紙を一時的に貼ったように見える表示ではなく、継続的に営業所として使用していることが分かる状態にします。申請書・登記・賃貸借契約書と名称表記が一致しているか確認します。</span></span></label>
+          <label class="check"><input type="checkbox" data-id="office-3"><span><strong>事務所として使用する正当な権利を証明できる</strong><small>建物の所有者、賃貸借契約の借主、申請者の関係を確認します。代表者個人名義や第三者名義の場合は、会社が使用できる根拠を追加で示す必要があります。</small><span class="document-note">物件の所在地は、申請する営業所所在地と部屋番号まで一致させます。転貸、使用貸借、親族所有、関連会社所有の場合は、必要な承諾書や契約書を窓口へ確認してください。</span></span></label>
+        </div>
+
+        <h3 class="subhead">① 営業所の写真</h3>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-id="office-photo-1"><span><strong>建物全体の外観写真</strong><small>道路や敷地入口から、建物の形状・階数・周囲の状況が分かるように撮影します。建物が画面から切れないようにします。</small><span class="document-note">集合住宅やテナントビルの場合は、建物名が読める写真、入口、案内板なども撮っておくと、部屋までの位置関係を説明しやすくなります。</span></span></label>
+          <label class="check"><input type="checkbox" data-id="office-photo-2"><span><strong>事務所入口の写真</strong><small>入口のドアと看板・表札を同じ写真に収め、会社名・屋号が拡大しなくても読める写真も用意します。</small><span class="document-note">外観から入口までの位置が分かりにくい場合は、「建物外観→共用入口→廊下→事務所入口」の順に複数枚撮影し、写真番号を付けます。</span></span></label>
+          <label class="check"><input type="checkbox" data-id="office-photo-3"><span><strong>事務所内部の写真</strong><small>部屋全体が分かる広角写真に加え、机、椅子、電話、パソコン、書棚・書類保管設備、来客スペースが確認できる方向から撮影します。</small><span class="document-note">一方向だけでなく四隅から撮ると、事務所の独立性と広さを説明しやすくなります。個人情報や機密書類は写り込まないよう整理してから撮影してください。</span></span></label>
+        </div>
+
+        <h3 class="subhead">② 事務所の使用権原を証明する書類</h3>
+        <div class="choice">
+          <p>自己所有の場合</p>
+          <div class="checks">
+            <label class="check"><input type="checkbox" data-id="office-own-1"><span><strong>建物の登記事項証明書または固定資産税関係の証明書など</strong><small>所在地、建物所有者、建物の種類等を確認し、申請者または代表者が所有していることを示します。</small><span class="document-note">土地の登記事項証明書だけでは建物の使用権原を示せない場合があります。会社所有か代表者個人所有かによって追加書類が変わる可能性があるため確認してください。</span></span></label>
+          </div>
+        </div>
+
+        <div class="choice" style="margin-top:10px">
+          <p>賃貸の場合</p>
+          <div class="checks">
+            <label class="check"><input type="checkbox" data-id="office-rent-1"><span><strong>建物の賃貸借契約書</strong><small>物件住所・部屋番号、貸主、借主、契約期間、用途、更新状況、転貸禁止条項などを確認します。</small><span class="document-note">借主が代表者個人で申請者が法人の場合、法人が事務所として使用できることを示す追加資料を求められる可能性があります。契約名義だけで判断せず、窓口へ確認してください。</span></span></label>
+            <label class="check"><input type="checkbox" data-id="office-rent-2"><span><strong>直近3か月分の家賃の支払い実績</strong><small>通帳コピー、振込明細、領収書など、支払日・支払者・受取人・金額が確認できるものを月ごとにそろえます。</small><span class="document-note">複数月分をまとめて払っている、管理費込みで契約額と振込額が異なる、現金払いである場合は、契約書との対応が分かる説明資料や領収書を用意します。</span></span></label>
+            <label class="check"><input type="checkbox" data-id="office-rent-3"><span><strong>利用目的が「事務所使用可」になっていることを確認した</strong><small>契約書が「居住用」「住居専用」等になっている場合は、営業所利用が契約違反にならないか確認します。</small><span class="document-note">必要に応じて、物件所在地、貸主・借主、使用目的、承諾日を記載した使用承諾書等を大家・貸主から取得します。マンション管理規約や管理組合の制限もあわせて確認してください。</span></span></label>
+          </div>
+        </div>
+
+        <div class="tip"><strong>事前確認のポイント：</strong>工事の実績書類（10年分・5年分）を集めるのと同時に、事務所が写真審査と使用権原の審査に対応できる状態か確認しておきます。写真を撮る前に「外観・入口・室内・備品・接客スペース・看板」の撮影一覧を作り、賃貸借契約書の住所・名義・用途と申請内容を照合してください。</div>
+      </div>
+    </section>
+
+    <section class="strict" id="strict">
+      <div class="strict-head"><h2>静岡県で特に注意する3つの確認ポイント</h2><p>書類を集める前に、工事実績のつながりと入金記録を確認してください。</p></div>
+      <div class="rules">
+        <article class="rule"><div class="rule-num">1</div><div><h3>工事実績に1年以上の空白を作らない</h3><p>前の工事から次の工事まで1年以上空くと、その期間が経験として認められない可能性があります。例として、令和3年4月の資料を使う場合、次は遅くとも令和4年3月までの資料を用意する考え方です。請求日、工期、入金日のどの日付を基準に見るかは資料によって変わる可能性があるため、最初に窓口へ確認します。10年分を「古い順」に一覧化し、各資料の間隔を月単位で点検してください。</p></div></article>
+        <article class="rule"><div class="rule-num">2</div><div><h3>請求額と通帳の入金額の関係を説明する</h3><p>請求書100万円に対し、振込手数料を差し引かれて999,340円が入金された場合など、金額が異なる理由を資料上で説明できるようにします。複数請求の合算入金なら対象となる請求書をすべてそろえ、値引き・相殺・分割入金なら計算表を作成します。入金行には資料番号を付け、個人の入出金など関係のない箇所は適切にマスキングします。</p></div></article>
+        <article class="rule"><div class="rule-num">3</div><div><h3>見積書や請求書だけで完結させない</h3><p>見積書は提案段階、請求書は請求した事実を示す資料であり、それだけでは工事の契約成立や代金受領まで確認できません。工事名、工種、当事者、金額、工期等が分かる契約書を優先し、契約書がない場合は請求書と通帳の入金記録を対応させます。注文書、注文請書、工事台帳、内訳書などの補足資料も保管してください。</p></div></article>
+      </div>
+    </section>
+
+    <section class="steps" id="first-step">
+      <div class="steps-head"><h2 class="">確認項目</h2><p class="">まず次の3ステップから始めます。</p></div>
+      <div class="step-list">
+        <article class="step"><div class="step-badge">ステップ1</div><p class=""><strong class="">学歴による実務経験短縮の可能性</strong><br>高校・大学等の学校名、学科名、卒業年月を調べ、卒業証明書・成績証明書を取得できるか学校へ確認します。指定学科に該当するかは自己判断せず、申請予定業種とあわせて窓口へ確認します。</p></article>
+        <article class="step"><div class="step-badge">ステップ2</div><p class=""><strong class="">手元の工事資料を少数だけ対応の準備</strong><br>契約書または請求書を数件選び、それぞれに対応する通帳の入金行を探します。「工事内容が申請業種に該当するか」「請求額と入金額が対応するか」「工事・請求・入金の日付が説明できるか」を確認し、資料番号を付けます。</p></article>
+        <article class="step"><div class="step-badge">ステップ3</div><p class=""><b>できれば事前に確認できると良いです。</b></p><p class="">事前に資料が集まりそうかどうか？これが最も大切で、前職等に確認することをお勧めします。<br>（大体問題はないと思いますが）</p><p class="">そのあと役所は、担当者が？とならないように書類準備することが大事なので、前職の会社への協力依頼は必須です。</p></article>
+      </div>
+    </section>
+
+    <aside class="note">
+      <h2>最後に</h2>
+      <p class="">個別の経歴・会社形態・申請業種・資料の内容により、上記以外の書類や説明資料を求められる場合があります。書類を大量に取得する前に、申請先の窓口へ資料の組み合わせと対象期間を確認してください。</p>
+    </aside>
+  </main>
+
+  <footer class="">静岡県 建設業許可 書類準備チェックリスト<br><br>Well Consultant合同会社　阿久津和宏</footer>
+  <script>
+    (() => {
+      const key = 'shizuoka-construction-license-checklist-v1';
+      const boxes = [...document.querySelectorAll('input[type="checkbox"][data-id]')];
+      const done = document.getElementById('doneCount');
+      const total = document.getElementById('totalCount');
+      const bar = document.getElementById('progressBar');
+      const progress = document.querySelector('.progress');
+
+      function load() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(key) || '{}');
+          boxes.forEach(box => box.checked = Boolean(saved[box.dataset.id]));
+        } catch (_) {}
+        update();
+      }
+      function save() {
+        const state = {};
+        boxes.forEach(box => state[box.dataset.id] = box.checked);
+        try { localStorage.setItem(key, JSON.stringify(state)); } catch (_) {}
+        update();
+      }
+      function update() {
+        const count = boxes.filter(box => box.checked).length;
+        const percent = boxes.length ? Math.round(count / boxes.length * 100) : 0;
+        done.textContent = count;
+        total.textContent = boxes.length;
+        bar.style.width = percent + '%';
+        progress.setAttribute('aria-valuenow', String(percent));
+      }
+      boxes.forEach(box => box.addEventListener('change', save));
+      document.getElementById('printBtn').addEventListener('click', () => window.print());
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        if (!confirm('すべてのチェックを外しますか？')) return;
+        boxes.forEach(box => box.checked = false);
+        save();
+      });
+      load();
+    })();
+  </script>
+
+
+
+</body>
+</html>
