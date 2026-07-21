@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>建設業許可 要件チェックリスト</title>
+  <style>
+    :root{--navy:#101d32;--black:#15171a;--ink:#222831;--muted:#68707c;--line:#d7dbe1;--paper:#fff;--bg:#f3f4f6;--orange:#eb6b21;--green:#18794e;--red:#b42318;--amber:#9a6700}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.65}
+    button,input,select,textarea{font:inherit}.top{background:var(--navy);color:#fff;padding:26px 18px 22px}.top-inner,.wrap{max-width:980px;margin:auto}.eyebrow{font-size:12px;letter-spacing:.12em;font-weight:800;color:#ffc39e}.top h1{font-size:clamp(25px,4vw,40px);line-height:1.25;margin:5px 0 7px}.top p{margin:0;max-width:760px;color:#e7ebf1}.notice{margin:16px auto 0;border-left:5px solid var(--orange);background:#fff6ef;color:#402518;padding:12px 14px;border-radius:5px;max-width:980px;font-size:14px}
+    .wrap{padding:16px 14px 48px}.progress-box{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:0 0 9px 9px;padding:9px 12px;box-shadow:0 3px 14px rgba(0,0,0,.08)}.progress-row{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700}.bar{height:9px;flex:1;background:#e8eaee;border-radius:20px;overflow:hidden}.bar>span{display:block;height:100%;width:0;background:var(--orange);transition:.25s}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:10px;margin:15px 0;padding:18px}.card h2{margin:0 0 4px;color:var(--navy);font-size:21px;line-height:1.35}.lead{margin:0 0 13px;color:var(--muted);font-size:14px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;border:1px solid #bfc5ce;border-radius:6px;padding:10px;background:#fff;color:var(--black)}
+    fieldset{border:0;padding:0;margin:0}.route{border:1px solid var(--line);border-radius:8px;margin:9px 0;padding:0;overflow:hidden}.route label{display:flex;gap:11px;align-items:flex-start;padding:13px;cursor:pointer;font-weight:750}.route label:hover{background:#faf7f4}.route input{width:19px;height:19px;flex:0 0 auto;margin-top:3px;accent-color:var(--orange)}.route small{display:block;font-weight:400;color:var(--muted);margin-top:3px}.route:has(input:checked){border-color:var(--orange);box-shadow:0 0 0 1px var(--orange) inset;background:#fffaf6}
+    .sub{margin:8px 0 0 30px;padding:0 13px 12px;font-size:13px;color:#4f5763}.tag{display:inline-block;border-radius:20px;background:#eceff3;color:var(--navy);font-weight:800;font-size:11px;padding:2px 8px;margin-right:5px}.warning{background:#fff8e5;border:1px solid #edd699;border-radius:7px;padding:10px 12px;font-size:13px;color:#5e4500;margin:10px 0}.info{background:#f3f6fa;border-left:4px solid var(--navy);padding:10px 12px;font-size:13px;margin:10px 0}.fold{border-top:1px dashed var(--line);margin-top:12px;padding-top:10px}.fold summary{font-weight:800;cursor:pointer;color:var(--navy)}.school-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.school-grid div{background:#f6f7f8;border-radius:6px;padding:9px;font-size:12px}.school-grid b{display:block;color:var(--navy);font-size:13px}
+    .actions{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0}.btn{border:0;border-radius:7px;padding:11px 17px;font-weight:850;cursor:pointer}.primary{background:var(--orange);color:#fff}.secondary{background:var(--navy);color:#fff}.ghost{background:#fff;border:1px solid #aeb4bd;color:var(--ink)}
+    #result{display:none;border:2px solid var(--navy);background:#fff;border-radius:10px;padding:18px;margin-top:16px}#result h2{margin:0 0 5px}.status{display:inline-block;border-radius:30px;padding:5px 11px;font-size:13px;font-weight:900}.ok{background:#e9f7f0;color:var(--green)}.ng{background:#fff0ee;color:var(--red)}.hold{background:#fff6d9;color:var(--amber)}.result-list{padding-left:20px;margin:12px 0}.result-list li{margin:6px 0}.next{background:#f2f4f7;border-radius:7px;padding:11px 13px}.sources{font-size:12px;color:var(--muted)}.sources a{color:#344b73}.footer{text-align:center;color:#737b87;font-size:12px;margin-top:20px}
+    @media(max-width:650px){.fields,.school-grid{grid-template-columns:1fr}.top{padding-top:20px}.card{padding:15px}.route label{padding:12px 10px}.wrap{padding-left:9px;padding-right:9px}.progress-box{margin-left:-9px;margin-right:-9px;border-radius:0}.actions .btn{width:100%}}
+    @media print{body{background:#fff}.progress-box,.actions{display:none}.card{break-inside:avoid;box-shadow:none}.top{padding:15px}.notice{border:1px solid #bbb}#result{display:block}.wrap{max-width:none;padding:8px}.route{break-inside:avoid}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="top-inner">
+    <div class="eyebrow">一般建設業・新規申請向け／一次診断</div>
+    <h1>建設業許可 要件チェックリスト</h1>
+    <p>該当するルートを選ぶと、申請可能性と確認が必要な項目を整理できます。静岡県知事許可の「建設業許可の手引 Ver.11.1」を基準に作成しています。</p>
+  </div></header>
+  <div class="notice"><b>重要：</b>これは許可取得を保証するものではありません。経験の内容・証明資料・資格と業種の対応は、申請先行政庁の個別審査で確定します。</div>
+  <main class="wrap">
+    <div class="progress-box"><div class="progress-row"><span>入力状況</span><div class="bar"><span id="bar"></span></div><span id="progress">0%</span></div></div>
+
+    <section class="card">
+      <h2>0. 申請の基本情報</h2><p class="lead">相談時に必要になる基本情報です。未定でも診断できます。</p>
+      <div class="fields">
+        <div class="field"><label for="company">会社名・屋号</label><input id="company" placeholder="例：〇〇建設株式会社"></div>
+        <div class="field"><label for="trade">取得したい業種</label><input id="trade" placeholder="例：内装仕上工事業"></div>
+        <div class="field"><label for="area">申請先</label><select id="area"><option>静岡県知事許可</option><option>他の都道府県知事許可</option><option>国土交通大臣許可</option><option>未定</option></select></div>
+        <div class="field"><label for="permit">許可区分</label><select id="permit"><option value="general">一般建設業</option><option value="special">特定建設業</option><option value="unknown">未定</option></select></div>
+      </div>
+    </section>
+
+    <section class="card" data-required="management">
+      <h2>1. 経営業務の管理体制</h2><p class="lead">次のうち、当てはまるルートを1つ選んでください。</p>
+      <fieldset id="management">
+        <div class="route"><label><input type="radio" name="management" value="direct"><span>建設業で、経営業務の管理責任者として5年以上の経験がある<small>法人役員、個人事業主、支配人、対外的責任を持つ支店長・営業所長等として、建設業経営を総合的に管理した経験。</small></span></label></div>
+        <div class="route"><label><input type="radio" name="management" value="delegated"><span>建設業で、権限委譲を受けた準ずる地位として経営業務を管理した経験が5年以上ある<small>執行役員等。取締役会議事録、組織図、業務分掌規程などによる個別確認が必要です。</small></span></label></div>
+        <div class="route"><label><input type="radio" name="management" value="assist6"><span>建設業で、経営業務の管理責任者を補佐した経験が6年以上ある<small>「準ずる地位」と経験内容の個別認定が必要です。単なる現場経験や一般事務経験では足りません。</small></span></label></div>
+        <div class="route"><label><input type="radio" name="management" value="team1"><span>建設業の役員経験が2年以上あり、役員等または役員等に次ぐ地位での経験が通算5年以上ある<small>役員等に次ぐ地位の経験は、建設業の財務管理・労務管理・業務運営のいずれかを担当したものに限ります。さらに直接補佐者の配置が必要です。</small></span></label></div>
+        <div class="route"><label><input type="radio" name="management" value="team2"><span>役員等の経験が通算5年以上あり、そのうち建設業の役員経験が2年以上ある<small>建設業以外の役員経験も通算対象になり得ます。さらに直接補佐者の配置が必要です。</small></span></label></div>
+        <div class="route"><label><input type="radio" name="management" value="none"><span>どのルートにも該当しない／わからない</span></label></div>
+      </fieldset>
+      <div id="assistantCheck" class="warning" hidden><b>直接補佐者の追加要件：</b>申請会社で、建設業の「財務管理」「労務管理」「業務運営」について各5年以上の経験を持つ人を、常勤役員等の直属として置く必要があります。3業務を1人で兼ねることも可能です。</div>
+      <div class="route"><label><input type="checkbox" id="managementConstant"><span>上記に該当する人を、申請会社の主たる営業所に常勤で置ける</span></label></div>
+    </section>
+
+    <section class="card" data-required="technical">
+      <h2>2. 営業所技術者等（旧：専任技術者）</h2><p class="lead">取得したい業種ごとに、営業所へ常勤配置する技術者のルートを1つ選びます。</p>
+      <fieldset id="technical">
+        <div class="route"><label><input type="radio" name="technical" value="license"><span>申請業種に対応する国家資格・技能資格等がある<small>資格によっては、合格後の実務経験、講習、資格の種別など追加条件があります。「資格があれば前職資料が一切不要」とは限りません。</small></span></label></div>
+        <div class="route"><label><input type="radio" name="technical" value="school3"><span>大学・高等専門学校等で指定学科を修め、卒業後3年以上の該当業種の実務経験を証明できる</span></label></div>
+        <div class="route"><label><input type="radio" name="technical" value="school5"><span>高等学校等で指定学科を修め、卒業後5年以上の該当業種の実務経験を証明できる</span></label></div>
+        <div class="route"><label><input type="radio" name="technical" value="exam"><span>対象の施工管理技術検定に合格後、必要な実務経験を証明できる<small>一定の1級第一次・第二次検定は3年、2級第一次・第二次検定は5年。適用対象外となる業種等があるため個別確認が必要です。</small></span></label></div>
+        <div class="route"><label><input type="radio" name="technical" value="ten"><span>申請業種について10年以上の実務経験を証明できる<small>工事請負契約書、注文書・請書、請求書と入金確認資料などを、申請先が求める年数・件数分そろえます。</small></span></label></div>
+        <div class="route"><label><input type="radio" name="technical" value="twelve"><span>対象業種の12年ルートを使える可能性がある<small>対象業種の経験8年以上と対応する一式工事等を合わせて12年以上など。業種と年数の数え方は必ず個別確認してください。</small></span></label>
+          <div class="sub"><span class="tag">土木一式と合算</span>とび・土工、しゅんせつ、水道施設<br><span class="tag">建築一式と合算</span>大工、屋根、内装仕上、ガラス、防水、熱絶縁<br><span class="tag">相互合算</span>大工と内装仕上</div>
+        </div>
+        <div class="route"><label><input type="radio" name="technical" value="none"><span>どのルートにも該当しない／わからない</span></label></div>
+      </fieldset>
+      <div class="route"><label><input type="checkbox" id="technicalConstant"><span>該当する技術者を、申請する営業所に常勤・専任で置ける<small>静岡県では、著しく遠距離で通勤困難な場合や、正当な理由なく報酬・賃金が著しく低い場合（月額12万円が目安）は、原則として専任と認められません。</small></span></label></div>
+      <details class="fold"><summary>指定学科の主な分類を見る</summary>
+        <div class="school-grid">
+          <div><b>土木工学</b>土木、農業土木、森林土木、砂防、治山、緑地、造園等</div><div><b>建築学</b>建築、住居、建築設備、環境計画等</div>
+          <div><b>機械工学</b>機械、自動車、造船、電子機械、産業機械等</div><div><b>電気・電気通信工学</b>電気、電子、通信、情報電子、電波通信等</div>
+          <div><b>その他</b>都市工学、衛生工学、交通工学、林学、鉱山学等</div><div><b>学科名が似ている場合</b>卒業証明書・成績証明書・履修科目証明書を準備し、申請先へ事前照会。</div>
+        </div>
+        <div class="info">指定学科は「学科分類」と「申請業種」の組合せで判定します。近い名称だから自動的に認められるわけではありません。</div>
+      </details>
+    </section>
+
+    <section class="card" data-required="finance">
+      <h2>3. 財産的基礎・金銭的信用</h2><p class="lead">一般建設業の場合、次のいずれか1つを選びます。</p>
+      <fieldset id="finance">
+        <div class="route"><label><input type="radio" name="finance" value="capital"><span>直前決算で自己資本が500万円以上ある<small>法人は貸借対照表の純資産額で確認します。</small></span></label></div>
+        <div class="route"><label><input type="radio" name="finance" value="balance"><span>金融機関の融資証明書または預金残高証明書で500万円以上を証明できる<small>静岡県では、残高証明書は「残高日」から1か月以内、融資証明書は原則「発行日」から1か月以内です。融資証明書に金融機関指定の有効期間がある場合は、その期間内であれば有効です。</small></span></label></div>
+        <div class="route"><label><input type="radio" name="finance" value="five"><span>許可申請直前の過去5年間、許可を受けて継続営業している<small>5年目の更新申請者は基準適合とみなされます。</small></span></label></div>
+        <div class="route"><label><input type="radio" name="finance" value="none"><span>どれにも該当しない／わからない</span></label></div>
+      </fieldset>
+      <div class="warning"><b>特定建設業は別基準です。</b>欠損比率、流動比率、資本金2,000万円以上、自己資本4,000万円以上など、すべての基準を確認します。</div>
+    </section>
+
+    <section class="card">
+      <h2>4. その他の必須要件</h2><p class="lead">すべて確認してください。「不明」は専門家・申請先への確認項目です。</p>
+      <div class="route"><label><input type="checkbox" class="other" id="honesty"><span>請負契約に関して不正または不誠実な行為をするおそれがない</span></label></div>
+      <div class="route"><label><input type="checkbox" class="other" id="disqualify"><span>法人、役員等、個人事業主等が欠格要件に該当しない</span></label></div>
+      <div class="route"><label><input type="checkbox" class="other" id="insurance"><span>健康保険・厚生年金保険・雇用保険に、適用事業所として適切に加入している</span></label></div>
+      <div class="route"><label><input type="checkbox" class="other" id="office"><span>建設業の営業を行う独立した営業所の実態がある</span></label></div>
+      <details class="fold"><summary>欠格要件の例を見る</summary><div class="info">破産手続開始決定を受け復権していない、一定の許可取消しから5年を経過していない、一定の刑の執行終了等から5年を経過していない、暴力団員等に該当する、重要事項の虚偽記載・記載欠落がある場合など。正式な全項目は申請先手引きで確認します。</div></details>
+    </section>
+
+    <section class="card">
+      <h2>5. 証明資料の準備状況</h2><p class="lead">要件に当てはまっても、客観資料で証明できなければ申請は進みません。</p>
+      <div class="route"><label><input type="checkbox" class="docs" id="managementDocs"><span>経営経験の期間・地位・建設業を証明する資料がある<small>静岡県では、登記事項証明書、確定申告書、契約書、注文書・発注書・発注証明書、請求書と入金資料、過去の許可申請書・許可通知書、組織図・議事録等で確認します。</small></span></label></div>
+      <div class="route"><label><input type="checkbox" class="docs" id="technicalDocs"><span>資格または実務経験を証明する資料がある<small>資格証、卒業証明書、契約書、注文書・発注書・発注証明書、請求書と通帳・預金取引明細票等が候補です。請求書を使う場合は入金が明確に分かる必要があります。</small></span></label></div>
+      <div class="route"><label><input type="checkbox" class="docs" id="constantDocs"><span>常勤性・専任性を証明する資料がある<small>住民票、資格確認書、標準報酬決定通知書、年金被保険者記録照会回答票、雇用保険資料、所得証明書・源泉徴収票、住民税特別徴収税額決定通知書等から該当資料を確認します。</small></span></label></div>
+      <div class="warning"><b>静岡県の経験年数の注意：</b>契約書・注文書・請求書等は工事当時に作成された資料が必要です。原則として、工事資料の日付や工期の間に1年以上の空白がある部分は、連続した経験期間として扱われません。</div>
+    </section>
+
+    <div class="actions">
+      <button class="btn primary" id="diagnose">診断結果を表示</button>
+      <button class="btn secondary" id="print">印刷・PDF保存</button>
+      <button class="btn ghost" id="copy">結果をコピー</button>
+      <button class="btn ghost" id="reset">すべてリセット</button>
+    </div>
+
+    <section id="result" aria-live="polite"><h2>一次診断結果</h2><div id="resultStatus"></div><ul class="result-list" id="resultList"></ul><div class="next" id="next"></div>
+      <div class="notice" style="margin-top:14px">
+        <b>診断結果の送付方法</b><br>
+        上の「結果をコピー」を押し、コピーされた診断結果をメール本文へ貼り付けて、<b>info@fp-1.info</b>へ送付してください。<br>
+        <button type="button" class="btn ghost" id="copyAddress" style="margin-top:8px">メールアドレスをコピー</button>
+      </div>
+    </section>
+
+    <section class="card sources">
+      <b>基準日：2026年7月21日</b><br>
+      主な参照：<a href="https://www.pref.shizuoka.jp/1066349/1066357/1067879/1071964.html" target="_blank" rel="noopener">静岡県「建設業許可の手引 Ver.11.1」</a> ／ <a href="https://www.pref.shizuoka.jp/machizukuri/kokyokoji/kensetsu/1003484/1028867.html" target="_blank" rel="noopener">静岡県「建設業許可」公式案内</a><br>
+      ※添付の「別冊（平成28年12月）」は解体工事業追加時の資料です。現在の一般要件は最新版の手引を優先しています。<br>
+      ※他都道府県知事許可・大臣許可では、確認資料、証明書の有効期間、事前認定手続等が異なる場合があります。静岡県の手引に関する問い合わせ：県庁建設業課 054-221-2507・054-221-3058。
+    </section>
+    <div class="footer">建設業許可の事前確認用チェックリスト</div>
+  </main>
+  <script>
+    const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+    const radios=['management','technical','finance'];
+    function selected(name){return document.querySelector(`input[name="${name}"]:checked`)?.value||''}
+    function updateProgress(){
+      const core=radios.map(selected).filter(Boolean).length;
+      const checks=['managementConstant','technicalConstant','honesty','disqualify','insurance','office'].filter(id=>$('#'+id).checked).length;
+      const pct=Math.round((core+checks)/(radios.length+6)*100); $('#bar').style.width=pct+'%'; $('#progress').textContent=pct+'%';
+      const mg=selected('management'); $('#assistantCheck').hidden=!['team1','team2'].includes(mg);
+    }
+    $$('input,select').forEach(el=>el.addEventListener('change',updateProgress));
+    function diagnose(scroll=true){
+      const issues=[], confirms=[], positives=[];
+      const mg=selected('management'), tech=selected('technical'), fin=selected('finance');
+      if(!mg) issues.push('経営業務の管理体制のルートが未選択です。');
+      else if(mg==='none') issues.push('経営業務の管理体制を満たすルートが未確認です。');
+      else {positives.push('経営業務の管理体制：候補ルートあり'); if(mg!=='direct') confirms.push('経営経験は個別認定・詳細資料の事前確認が必要です。');}
+      if(!$('#managementConstant').checked) issues.push('常勤役員等の常勤配置が未確認です。');
+      if(!tech) issues.push('営業所技術者等のルートが未選択です。');
+      else if(tech==='none') issues.push('営業所技術者等を満たすルートが未確認です。');
+      else {positives.push('営業所技術者等：候補ルートあり'); if(['license','exam','twelve'].includes(tech)) confirms.push('資格・検定・12年ルートと申請業種の対応を確認してください。');}
+      if(!$('#technicalConstant').checked) issues.push('営業所技術者等の常勤配置が未確認です。');
+      if($('#permit').value==='special') confirms.push('特定建設業の財産要件・技術者要件で別途判定が必要です。');
+      else if(!fin) issues.push('財産的基礎のルートが未選択です。');
+      else if(fin==='none') issues.push('財産的基礎を満たすルートが未確認です。'); else positives.push('財産的基礎：候補ルートあり');
+      [['honesty','誠実性'],['disqualify','欠格要件'],['insurance','社会保険加入'],['office','営業所実態']].forEach(([id,label])=>{if(!$('#'+id).checked) issues.push(label+'が未確認です。')});
+      if(!$('#managementDocs').checked) confirms.push('経営経験の証明資料を整理してください。');
+      if(!$('#technicalDocs').checked) confirms.push('資格・実務経験の証明資料を整理してください。');
+      if(!$('#constantDocs').checked) confirms.push('常勤性の証明資料を整理してください。');
+      let cls='ok', title='許可要件を満たす可能性があります';
+      if(issues.length){cls='ng';title='未確認・不足の可能性がある項目があります'} else if(confirms.length){cls='hold';title='候補要件はありますが、資料確認が必要です'}
+      $('#resultStatus').innerHTML=`<span class="status ${cls}">${title}</span>`;
+      const all=[...positives.map(x=>'○ '+x),...issues.map(x=>'要確認：'+x),...confirms.map(x=>'資料確認：'+x)];
+      $('#resultList').innerHTML=all.map(x=>`<li>${x}</li>`).join('');
+      const name=$('#company').value.trim()||'申請者'; const trade=$('#trade').value.trim()||'希望業種';
+      $('#next').innerHTML=`<b>次の行動：</b>${name}の「${trade}」について、該当者の経歴年表と証明資料をそろえ、申請先窓口または行政書士へ事前確認してください。`;
+      $('#result').style.display='block'; if(scroll) $('#result').scrollIntoView({behavior:'smooth',block:'start'}); return {title,all,name,trade};
+    }
+    $('#diagnose').addEventListener('click',()=>diagnose(true));
+    async function copyText(text){
+      if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return}
+      const box=document.createElement('textarea');box.value=text;box.style.position='fixed';box.style.opacity='0';document.body.appendChild(box);box.focus();box.select();
+      const ok=document.execCommand('copy');box.remove();if(!ok)throw new Error('copy failed');
+    }
+    $('#print').addEventListener('click',()=>{diagnose(false);window.print()});
+    $('#copy').addEventListener('click',async()=>{const r=diagnose(false);const text=[`建設業許可 一次診断：${r.title}`,`申請者：${r.name}`,`希望業種：${r.trade}`,`申請先：${$('#area').value}`,`許可区分：${$('#permit').selectedOptions[0].textContent}`,...r.all].join('\n');try{await copyText(text);$('#copy').textContent='コピーしました';setTimeout(()=>$('#copy').textContent='結果をコピー',1600)}catch(e){alert('コピーできませんでした。印刷・PDF保存をご利用ください。')}});
+    $('#copyAddress').addEventListener('click',async()=>{try{await copyText('info@fp-1.info');$('#copyAddress').textContent='コピーしました';setTimeout(()=>$('#copyAddress').textContent='メールアドレスをコピー',1600)}catch(e){alert('メールアドレス：info@fp-1.info')}});
+    $('#reset').addEventListener('click',()=>{if(!confirm('入力内容をすべて消去しますか？'))return;$$('input').forEach(x=>{x.checked=false;if(x.type==='text')x.value=''});$('#permit').value='general';$('#area').selectedIndex=0;$('#result').style.display='none';updateProgress();scrollTo({top:0,behavior:'smooth'})});
+    updateProgress();
+  </script>
+</body>
+</html>
