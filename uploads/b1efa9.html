@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <title>外部経験者を常勤取締役として迎え、建設業許可を目指す方法</title>
+  <meta name="description" content="外部から建設業経験者を常勤取締役として迎える際のターゲット、探し方、待遇、失敗しない進め方をまとめたスライド資料">
+  <style>
+    :root{
+      --navy:#0b1828;--navy2:#142943;--ink:#111820;--muted:#596474;
+      --white:#fff;--soft:#f3f5f7;--line:#d8dde4;--orange:#e76618;
+      --orange-soft:#fff1e7;--red:#9f2323;--red-soft:#fff0f0;
+      --green:#19734e;--green-soft:#edf8f2;--shadow:0 18px 60px rgba(0,0,0,.22)
+    }
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;background:#080f18;color:var(--ink);-webkit-font-smoothing:antialiased}
+    button{font:inherit}
+    .app{width:100%;height:100%;display:grid;grid-template-rows:1fr auto;gap:10px;padding:12px}
+    .viewport{position:relative;min-height:0;display:grid;place-items:center;overflow:hidden}
+    .deck{width:min(calc((100vh - 92px) * 16 / 9),calc(100vw - 24px));aspect-ratio:16/9;position:relative;background:#fff;box-shadow:var(--shadow);overflow:hidden}
+    .track{height:100%;display:flex;transition:transform .42s cubic-bezier(.22,.75,.2,1);will-change:transform}
+    .slide{position:relative;flex:0 0 100%;height:100%;overflow:hidden;background:var(--white);padding:clamp(22px,3.2vw,54px) clamp(28px,4.6vw,76px) clamp(24px,3.2vw,52px);display:flex;flex-direction:column}
+    .slide::after{content:attr(data-page);position:absolute;right:3.4%;bottom:3%;color:#7a8490;font-size:clamp(10px,1vw,15px);font-weight:800}
+    .slide.dark{background:linear-gradient(135deg,var(--navy),#10233a 70%,#263a50);color:#fff}
+    .slide.dark::after{color:#b9c4cf}
+    .slide.warn{background:linear-gradient(145deg,#fff,var(--red-soft))}
+    .orange-bar{position:absolute;left:0;top:0;width:100%;height:clamp(7px,.8vw,12px);background:var(--orange)}
+    .kicker{margin:0 0 clamp(7px,1vw,13px);font-size:clamp(10px,1.15vw,18px);font-weight:900;letter-spacing:.12em;color:var(--orange);text-transform:uppercase}
+    .dark .kicker{color:#ff9d61}
+    h1{font-size:clamp(28px,4.5vw,70px);line-height:1.17;letter-spacing:.01em;margin:0;max-width:94%}
+    h2{font-size:clamp(25px,3.2vw,50px);line-height:1.23;letter-spacing:.01em;margin:0;color:var(--navy)}
+    .dark h2{color:#fff}
+    h3{font-size:clamp(15px,1.65vw,26px);line-height:1.35;margin:0;color:var(--navy)}
+    p{margin:0}
+    .subtitle{font-size:clamp(14px,1.65vw,26px);line-height:1.65;margin-top:clamp(14px,2vw,30px);max-width:92%;color:#d8e0e8}
+    .headline-rule{width:clamp(56px,6vw,92px);height:5px;background:var(--orange);margin:clamp(12px,1.6vw,24px) 0}
+    .content{flex:1;min-height:0;margin-top:clamp(15px,2vw,28px);display:flex;flex-direction:column;gap:clamp(10px,1.4vw,20px)}
+    .lead{font-size:clamp(14px,1.45vw,23px);line-height:1.65;color:#364252}
+    .lead strong{color:var(--navy)}
+    .callout{padding:clamp(12px,1.4vw,21px);border-left:clamp(5px,.6vw,9px) solid var(--orange);background:var(--orange-soft);border-radius:8px;font-size:clamp(13px,1.25vw,20px);line-height:1.55}
+    .callout strong{color:#8d3600}
+    .danger{background:var(--red-soft);border-left-color:var(--red)}
+    .danger strong{color:var(--red)}
+    .success{background:var(--green-soft);border-left-color:var(--green)}
+    .success strong{color:var(--green)}
+    .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.5vw,22px)}
+    .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(9px,1.2vw,18px)}
+    .card{border:1px solid var(--line);border-radius:11px;padding:clamp(12px,1.5vw,22px);background:#fff;box-shadow:0 5px 18px rgba(13,24,40,.06)}
+    .card h3{margin-bottom:clamp(6px,.8vw,11px)}
+    .card p,.card li{font-size:clamp(11px,1.12vw,18px);line-height:1.55;color:#465260}
+    .card.accent{border-top:clamp(5px,.55vw,8px) solid var(--orange)}
+    .card.bad{border-top:clamp(5px,.55vw,8px) solid var(--red)}
+    .card.good{border-top:clamp(5px,.55vw,8px) solid var(--green)}
+    .tag{display:inline-block;padding:3px 9px;border-radius:999px;background:var(--orange);color:#fff;font-size:clamp(9px,.85vw,13px);font-weight:900;margin-bottom:7px}
+    .tag.red{background:var(--red)}
+    .tag.green{background:var(--green)}
+    ul{margin:0;padding-left:1.25em}
+    li{margin:.3em 0}
+    .big-number{font-size:clamp(45px,6vw,94px);line-height:1;color:var(--orange);font-weight:950}
+    .emphasis{font-size:clamp(19px,2.3vw,36px);line-height:1.45;font-weight:900;color:var(--navy)}
+    .steps{display:grid;gap:clamp(7px,1vw,14px)}
+    .step{display:grid;grid-template-columns:clamp(38px,4vw,62px) 1fr;gap:clamp(9px,1.1vw,16px);align-items:start;padding:clamp(8px,1vw,15px);background:var(--soft);border:1px solid var(--line);border-radius:9px}
+    .step-num{display:grid;place-items:center;aspect-ratio:1;border-radius:50%;background:var(--navy);color:#fff;font-size:clamp(13px,1.35vw,21px);font-weight:900}
+    .step h3{font-size:clamp(13px,1.42vw,22px);margin-bottom:3px}
+    .step p{font-size:clamp(10px,1.02vw,16px);line-height:1.48;color:#4c5867}
+    .compare{width:100%;border-collapse:collapse;table-layout:fixed}
+    .compare th,.compare td{border:1px solid var(--line);padding:clamp(8px,1vw,15px);vertical-align:top;text-align:left;font-size:clamp(10px,1.08vw,17px);line-height:1.5}
+    .compare th{background:var(--navy);color:#fff;font-weight:900}
+    .compare td:first-child{font-weight:900;color:var(--navy);width:22%}
+    .quote{font-size:clamp(20px,2.8vw,44px);font-weight:900;line-height:1.4;padding:clamp(18px,2.5vw,38px);border:2px solid rgba(255,255,255,.26);border-radius:14px;background:rgba(255,255,255,.06)}
+    .small-note{font-size:clamp(9px,.88vw,14px);line-height:1.5;color:var(--muted)}
+    .dark .small-note{color:#bcc6d0}
+    .footer-note{margin-top:auto;padding-top:clamp(7px,1vw,13px);border-top:1px solid var(--line);font-size:clamp(8px,.76vw,12px);line-height:1.4;color:#66717e}
+    .controls{display:flex;align-items:center;justify-content:center;gap:9px;color:#fff;min-height:46px;user-select:none}
+    .control-btn{border:1px solid #536071;background:#172434;color:#fff;min-width:43px;height:38px;border-radius:8px;display:grid;place-items:center;cursor:pointer;font-weight:900}
+    .control-btn:hover{background:#24364b}.control-btn:disabled{opacity:.35;cursor:not-allowed}
+    .counter{min-width:88px;text-align:center;font-size:13px;font-weight:800;color:#dce3eb}
+    .dots{display:flex;gap:5px;max-width:min(44vw,480px);overflow:hidden;padding:5px}
+    .dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#566273;cursor:pointer;flex:0 0 auto}
+    .dot.active{background:var(--orange);transform:scale(1.25)}
+    .help{position:absolute;left:3.4%;bottom:3%;font-size:clamp(8px,.75vw,12px);color:#7a8490}
+    .dark .help{color:#b9c4cf}
+    .cover-mark{position:absolute;right:-5%;bottom:-17%;width:42%;aspect-ratio:1;border-radius:50%;border:clamp(20px,3vw,50px) solid rgba(231,102,24,.18)}
+    @media(max-width:720px){.app{padding:7px;gap:6px}.deck{width:min(calc((100vh - 70px) * 16 / 9),calc(100vw - 14px))}.controls{min-height:42px}.dots{display:none}.control-btn{height:35px}.slide{padding:20px 26px 22px}.card p,.card li{line-height:1.45}.content{margin-top:12px}.footer-note{display:none}}
+    @media print{
+      @page{size:landscape;margin:0}
+      html,body{overflow:visible;height:auto;background:#fff}.app{display:block;padding:0}.viewport{display:block;overflow:visible}.deck{width:100%;aspect-ratio:auto;height:auto;box-shadow:none;overflow:visible}.track{display:block;transform:none!important}.slide{width:100vw;height:56.25vw;break-after:page;page-break-after:always}.controls{display:none}.footer-note{display:block}
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <div class="viewport">
+      <div class="deck" id="deck" aria-label="スライド資料">
+        <div class="track" id="track">
+
+          <section class="slide dark" data-page="01 / 15">
+            <div class="orange-bar"></div><div class="cover-mark"></div>
+            <p class="kicker">建設業許可・外部人材活用</p>
+            <h1>外部から経験者を<br>「常勤取締役」として迎え<br>今すぐ許可を目指す方法</h1>
+            <div class="headline-rule"></div>
+            <p class="subtitle">誰を狙うべきか、どう探すか、名義貸しを疑われない体制、そして失敗しない進め方を実務の順番で解説</p>
+            <p class="help">← → キー／画面下のボタン／スワイプで移動</p>
+          </section>
+
+          <section class="slide warn" data-page="02 / 15">
+            <div class="orange-bar"></div><p class="kicker">最初に理解すること</p>
+            <h2>この方法は有効。しかし、順番を間違えると危険</h2>
+            <div class="content">
+              <p class="lead">自社に必要な経営経験が不足している場合、要件を満たす経験者を外部から常勤取締役として迎えることで、許可取得を目指せる可能性があります。ただし、役員に就任した事実だけで要件を満たすわけではありません。</p>
+              <div class="grid3">
+                <article class="card bad"><span class="tag red">失敗例 1</span><h3>経験が証明できない</h3><p>「昔、建設会社の役員だった」という本人の説明だけで進め、登記後に必要年数や工種を証明できないと判明する。</p></article>
+                <article class="card bad"><span class="tag red">失敗例 2</span><h3>常勤性が認められない</h3><p>他社の仕事を続けている、勤務日数が少ない、報酬が極端に低いなど、実態が名前だけの役員に見える。</p></article>
+                <article class="card bad"><span class="tag red">失敗例 3</span><h3>先に登記してしまう</h3><p>要件確認前に取締役登記・社会保険手続きを行い、結局使えず、登記費用・報酬・手続が無駄になる。</p></article>
+              </div>
+              <div class="callout danger"><strong>結論：</strong>候補者を見つけることより先に、「その人の経験を、提出可能な書類で証明できるか」を確認することが重要です。</div>
+            </div>
+          </section>
+
+          <section class="slide" data-page="03 / 15">
+            <div class="orange-bar"></div><p class="kicker">ターゲット選定</p>
+            <h2>誰でもよいわけではない<br>「経験」より「証明可能性」で絞り込む</h2>
+            <div class="content">
+              <p class="lead">候補者を探すときは、「建設業に詳しいか」だけでは不十分です。許可審査で必要となる経験年数、在籍期間、過去の会社の許可状況、現在の勤務状況まで確認します。</p>
+              <table class="compare">
+                <thead><tr><th>確認軸</th><th>確認する内容</th><th>なぜ重要か</th></tr></thead>
+                <tbody>
+                  <tr><td>役員経験</td><td>建設業を営む会社で、必要な期間、取締役等を務めていたか</td><td>登記事項証明書で役員期間を客観的に示すため</td></tr>
+                  <tr><td>許可状況</td><td>その期間、前の会社が建設業許可を受けていたか</td><td>建設業を営んでいた事実を確認しやすくするため</td></tr>
+                  <tr><td>常勤可能性</td><td>他社勤務・他社代表・遠距離居住など、常勤を妨げる事情がないか</td><td>名義だけではなく実際に勤務する必要があるため</td></tr>
+                  <tr><td>資料協力</td><td>本人確認書類、経歴資料、前職資料の取得に協力できるか</td><td>候補者本人の説明だけでは審査資料にならないため</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="slide" data-page="04 / 15">
+            <div class="orange-bar"></div><p class="kicker">最優先ターゲット</p>
+            <h2>過去に建設業許可を持っていた会社の<br>「元・役員」を最優先にする</h2>
+            <div class="content">
+              <div class="grid2">
+                <div><div class="big-number">◎</div><p class="emphasis">すでに引退しており、御社で常勤できる元社長・元取締役</p></div>
+                <article class="card good"><span class="tag green">狙う理由</span><h3>過去の経営経験を証明しやすい</h3><ul><li>役員期間は過去の会社の登記事項証明書で確認できる</li><li>許可業者だった期間は、許可関係資料や行政側の記録等で確認できる可能性がある</li><li>無許可会社に比べ、工事実績資料を一件ずつ積み上げる負担を抑えられる可能性がある</li><li>引退済みなら、他社との常勤性の競合を避けやすい</li></ul></article>
+              </div>
+              <div class="callout"><strong>候補例：</strong>高齢で会社を廃業した元社長、事業承継後に退任した元役員、建設会社を定年・退職した経営幹部など。必要なのは肩書の立派さではなく、対象期間と経験を証明できることです。</div>
+            </div>
+          </section>
+
+          <section class="slide" data-page="05 / 15">
+            <div class="orange-bar"></div><p class="kicker">証明の仕組み</p>
+            <h2>候補者の経験は「2本立て」で証明する</h2>
+            <div class="content">
+              <div class="grid2">
+                <article class="card accent"><span class="tag">証明 1</span><h3>その人が役員だったこと</h3><p>過去の会社の履歴事項全部証明書・閉鎖事項証明書等で、候補者の就任日、重任日、退任日を追い、必要期間を満たすか確認します。</p><ul><li>氏名の表記が本人と一致するか</li><li>期間に空白がないか</li><li>監査役など対象外となる役職ではないか</li></ul></article>
+                <article class="card accent"><span class="tag">証明 2</span><h3>その会社が建設業を行っていたこと</h3><p>建設業許可の許可番号、許可業種、許可期間、更新状況を確認し、候補者の役員期間と重なるかを照合します。</p><ul><li>許可業種が目的の業種とどう関係するか</li><li>新規・更新・廃業の時期</li><li>行政照会や過去資料で確認可能か</li></ul></article>
+              </div>
+              <div class="callout success"><strong>重要：</strong>「役員だった期間」と「会社が建設業を営んでいた期間」を同じ年表に並べ、重複する期間が必要年数に達しているかを確認します。</div>
+            </div>
+          </section>
+
+          <section class="slide warn" data-page="06 / 15">
+            <div class="orange-bar"></div><p class="kicker">避けるべき候補者</p>
+            <h2>他社の「現役代表取締役」は原則避ける</h2>
+            <div class="content">
+              <div class="grid2">
+                <article class="card bad"><span class="tag red">問題</span><h3>常勤性が競合する</h3><p>他社の代表取締役は、通常その会社の経営に常時従事する立場です。同時に御社の常勤取締役として毎日勤務するという説明は不自然になりやすく、実態確認で問題になります。</p></article>
+                <article class="card bad"><span class="tag red">問題</span><h3>名義貸しを疑われる</h3><p>他社の本店所在地と御社営業所が離れている、両社から報酬を得ている、勤務記録がないなどの事情が重なると、名前だけを借りたと判断される危険が高まります。</p></article>
+              </div>
+              <div class="callout danger"><strong>候補から外す前に確認する事項：</strong>他社での役職、勤務時間、報酬、社会保険、居住地、御社営業所までの通勤時間、他の個人事業・法人経営の有無。例外の可否は個別事情を示して申請窓口へ確認します。</div>
+              <p class="small-note">「非常勤取締役として登記できる」ことと、建設業許可上の常勤役員として認められることは別問題です。</p>
+            </div>
+          </section>
+
+          <section class="slide" data-page="07 / 15">
+            <div class="orange-bar"></div><p class="kicker">探し方 1</p>
+            <h2>最初は人脈から探す<br>信頼関係と資料協力を確保しやすい</h2>
+            <div class="content">
+              <div class="grid3">
+                <article class="card accent"><h3>同業者・元請・協力会社</h3><p>廃業した元社長、後継者へ承継して退任した役員、引退予定者の情報がないか相談します。</p></article>
+                <article class="card accent"><h3>経営者仲間・取引先</h3><p>単に「経験者を探している」ではなく、常勤役員として働ける引退済みの元経営者を探していると具体的に伝えます。</p></article>
+                <article class="card accent"><h3>士業・金融機関等</h3><p>税理士、行政書士、司法書士、保険代理店など、廃業・事業承継の相談に接する人へ、守秘に配慮して相談します。</p></article>
+              </div>
+              <div class="callout"><strong>声のかけ方：</strong>「名前だけ貸してほしい」ではなく、「御社の常勤取締役として実際に勤務し、建設業の経営管理を担ってくれる方を探している。過去の役員経験と許可状況を事前確認したい」と説明します。</div>
+              <p class="lead">人脈経由の利点は、人物の信用や勤務姿勢を事前に把握しやすいことです。一方で、知人だから要件確認を省略してよいわけではありません。</p>
+            </div>
+          </section>
+
+          <section class="slide" data-page="08 / 15">
+            <div class="orange-bar"></div><p class="kicker">探し方 2</p>
+            <h2>人材紹介会社を使う場合は<br>「許可要件」と「勤務条件」を先に伝える</h2>
+            <div class="content">
+              <div class="grid2">
+                <article class="card accent"><h3>紹介会社へ伝える条件</h3><ul><li>建設業を営む会社での役員経験年数</li><li>当時の会社の建設業許可の有無と業種</li><li>現在、他社で常勤していないこと</li><li>御社営業所へ常勤できる居住地・通勤条件</li><li>登記・許可資料の事前確認に協力できること</li><li>想定する職務、勤務時間、役員報酬</li></ul></article>
+                <article class="card bad"><h3>費用面で確認すること</h3><ul><li>人材紹介手数料と支払時期</li><li>不採用・要件不適合時の費用</li><li>早期退任時の返金規定</li><li>月々の役員報酬と社会保険料</li><li>登記・許可申請・証明書取得費用</li><li>許可後も継続雇用できる資金計画</li></ul></article>
+              </div>
+              <div class="callout danger"><strong>注意：</strong>「建設業経験者の紹介」と「許可要件を満たす人材の紹介」は同じではありません。紹介会社の言葉だけで判断せず、登記簿・許可歴等を自社側で確認します。</div>
+            </div>
+          </section>
+
+          <section class="slide dark" data-page="09 / 15">
+            <div class="orange-bar"></div><p class="kicker">名義貸し防止</p>
+            <h2>必要なのは「名前」ではなく<br>常勤役員としての勤務実態</h2>
+            <div class="content">
+              <div class="quote">「週に1回だけ来る」<br>「電話があったときだけ対応する」<br>「報酬は名前代として数万円」<br><span style="color:#ff9d61">──このような運用は避ける</span></div>
+              <p class="subtitle">許可取得時だけ形式を整えるのではなく、許可後も継続して、御社の建設業経営を管理する役割を担ってもらう必要があります。</p>
+              <p class="small-note">虚偽申請や名義貸しは、許可取消し等につながる重大な問題です。勤務実態を説明できる体制を最初から作ります。</p>
+            </div>
+          </section>
+
+          <section class="slide" data-page="10 / 15">
+            <div class="orange-bar"></div><p class="kicker">適切な待遇</p>
+            <h2>常勤性を支える「3つの実態」を整える</h2>
+            <div class="content">
+              <div class="grid3">
+                <article class="card good"><span class="tag green">1</span><h3>勤務実態</h3><p>御社の営業所を主な勤務場所とし、所定の勤務日・勤務時間に継続して勤務してもらいます。出勤簿、予定表、業務日報、メール、会議記録など、日常業務の実態も残します。</p></article>
+                <article class="card good"><span class="tag green">2</span><h3>社会保険</h3><p>御社側で健康保険・厚生年金の適用関係を確認し、必要な加入手続きを行います。他社の保険加入状況や二以上事業所勤務の有無も確認します。</p></article>
+                <article class="card good"><span class="tag green">3</span><h3>役員報酬</h3><p>職務内容、勤務時間、責任に見合う役員報酬を設定します。極端に低い報酬は常勤性に疑義が生じるため、報酬決定書類と実際の振込記録を残します。</p></article>
+              </div>
+              <div class="callout"><strong>あわせて整えるもの：</strong>取締役会・株主総会等の議事録、職務分掌、名刺、会社メール、座席、電話、パソコン、社内組織図、給与・報酬台帳。形式だけではなく、実際の業務と一致させます。</div>
+            </div>
+          </section>
+
+          <section class="slide warn" data-page="11 / 15">
+            <div class="orange-bar"></div><p class="kicker">最大の落とし穴</p>
+            <h2>要件確認前に、取締役登記をしてはいけない</h2>
+            <div class="content">
+              <div class="grid2">
+                <article class="card bad"><span class="tag red">先に登記すると</span><ul><li>登録免許税や司法書士費用が発生する</li><li>役員報酬や社会保険料が発生する</li><li>役員変更の社内手続が必要になる</li><li>要件不適合なら退任登記まで必要になる</li><li>候補者との関係悪化や説明責任が生じる</li></ul></article>
+                <article class="card bad"><span class="tag red">後から判明しやすい問題</span><ul><li>役員経験が5年に数か月足りない</li><li>前会社の許可期間と役員期間が重ならない</li><li>必要な許可記録・工事資料が残っていない</li><li>他社役員・勤務との関係で常勤できない</li><li>営業所への通勤が現実的ではない</li></ul></article>
+              </div>
+              <div class="callout danger"><strong>正しい考え方：</strong>「候補者発見→登記→確認」ではありません。「候補者発見→資料収集→行政へ事前確認→条件合意→登記」の順番です。</div>
+            </div>
+          </section>
+
+          <section class="slide" data-page="12 / 15">
+            <div class="orange-bar"></div><p class="kicker">正しい手順 前半</p>
+            <h2>候補者を見つけたら、まず経歴と証拠を調べる</h2>
+            <div class="content">
+              <div class="steps">
+                <div class="step"><div class="step-num">1</div><div><h3>候補者へ詳細ヒアリング</h3><p>過去の勤務先、役職、就任・退任年月、当時の建設業許可番号・業種、現在の勤務・役員・個人事業、居住地、希望報酬を確認します。</p></div></div>
+                <div class="step"><div class="step-num">2</div><div><h3>過去の会社の登記事項証明書を取得</h3><p>候補者が本当に必要期間の役員であったかを確認します。会社の商号変更・本店移転・合併・解散がある場合は履歴を追います。</p></div></div>
+                <div class="step"><div class="step-num">3</div><div><h3>過去の建設業許可状況を確認</h3><p>許可番号、許可行政庁、許可業種、許可期間を確認し、候補者の役員期間と重ねた年表を作成します。</p></div></div>
+                <div class="step"><div class="step-num">4</div><div><h3>証明書類が実際に取得できるか確認</h3><p>「存在するはず」では進めません。行政照会の可否、保存期間、原本・写しの扱い、前会社からの資料提供の可否まで確認します。</p></div></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="slide" data-page="13 / 15">
+            <div class="orange-bar"></div><p class="kicker">正しい手順 後半</p>
+            <h2>行政への事前確認後に、就任手続へ進む</h2>
+            <div class="content">
+              <div class="steps">
+                <div class="step"><div class="step-num">5</div><div><h3>申請予定先へ事前相談</h3><p>候補者の経歴書、役員期間の年表、登記事項証明書、過去の許可資料、現在の勤務状況を提示し、この資料構成で要件確認が可能か相談します。</p></div></div>
+                <div class="step"><div class="step-num">6</div><div><h3>勤務条件と職務を正式に合意</h3><p>常勤開始日、勤務場所、勤務時間、担当職務、役員報酬、社会保険、秘密保持、退任条件を整理します。許可後も継続できる内容にします。</p></div></div>
+                <div class="step"><div class="step-num">7</div><div><h3>取締役就任・登記・社会保険</h3><p>株主総会等の機関決定、就任承諾、役員変更登記、社会保険の資格取得等を順番に実施し、常勤開始の証拠を残します。</p></div></div>
+                <div class="step"><div class="step-num">8</div><div><h3>許可申請と許可後の体制維持</h3><p>申請時だけでなく、許可後も常勤勤務・役員報酬・社会保険・経営管理の実態を維持します。退任時は後任要件を確保するまでの影響を確認します。</p></div></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="slide" data-page="14 / 15">
+            <div class="orange-bar"></div><p class="kicker">事前確認の持参資料</p>
+            <h2>役所・行政書士へ相談するときの資料セット</h2>
+            <div class="content">
+              <div class="grid2">
+                <article class="card accent"><h3>候補者の過去を示す資料</h3><ul><li>候補者の職務経歴書</li><li>過去の会社の登記事項証明書</li><li>役員就任・退任をまとめた年表</li><li>過去の建設業許可番号・許可通知書等</li><li>許可業種と許可期間の一覧</li><li>無許可期間がある場合の工事実績資料</li></ul></article>
+                <article class="card accent"><h3>現在の常勤性を示す計画</h3><ul><li>現在の他社役員・勤務・事業の状況</li><li>居住地と営業所までの通勤方法・時間</li><li>予定する勤務日・勤務時間</li><li>役員として担当する具体的な職務</li><li>予定役員報酬と社会保険の取扱い</li><li>就任予定日と許可申請予定日</li></ul></article>
+              </div>
+              <div class="callout"><strong>質問の仕方：</strong>「この人なら大丈夫ですか」ではなく、「この期間を、この登記簿とこの許可記録で証明したい。常勤開始後はこの勤務・報酬・社会保険体制にする。不足資料と問題点を確認したい」と具体的に聞きます。</div>
+            </div>
+          </section>
+
+          <section class="slide dark" data-page="15 / 15">
+            <div class="orange-bar"></div><p class="kicker">成功の秘訣</p>
+            <h2>事前の要件確認が命</h2>
+            <div class="content">
+              <div class="grid3">
+                <article class="card"><span class="tag">秘訣 1</span><h3>証明しやすい人を狙う</h3><p>許可業者だった会社の元役員を優先し、役員期間と許可期間が重なる人を選ぶ。</p></article>
+                <article class="card"><span class="tag">秘訣 2</span><h3>登記前に裏付ける</h3><p>登記簿・許可記録・工事資料を実際にそろえ、申請予定先へ事前相談する。</p></article>
+                <article class="card"><span class="tag">秘訣 3</span><h3>本当に常勤してもらう</h3><p>勤務、社会保険、報酬、職務、設備を整え、許可後も経営管理の実態を維持する。</p></article>
+              </div>
+              <div class="quote">「人を入れれば許可が取れる」ではない。<br><span style="color:#ff9d61">証明できる人を、適法な常勤体制で迎える。</span></div>
+              <p class="small-note">本資料は一般的な検討手順を整理したものです。認定される経験・常勤性・証明資料は、申請先と個別事情により判断されます。登記・雇用・報酬決定前に、管轄行政庁または建設業許可を扱う行政書士へ確認してください。</p>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+
+    <nav class="controls" aria-label="スライド操作">
+      <button class="control-btn" id="prev" type="button" aria-label="前のスライド">←</button>
+      <div class="counter"><span id="current">1</span> / <span id="total">15</span></div>
+      <div class="dots" id="dots" aria-label="スライド一覧"></div>
+      <button class="control-btn" id="next" type="button" aria-label="次のスライド">→</button>
+      <button class="control-btn" id="fullscreen" type="button" aria-label="全画面表示">⛶</button>
+      <button class="control-btn" id="print" type="button" aria-label="印刷・PDF保存">印</button>
+    </nav>
+  </main>
+
+  <script>
+    (() => {
+      const track = document.getElementById('track');
+      const slides = [...document.querySelectorAll('.slide')];
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
+      const current = document.getElementById('current');
+      const total = document.getElementById('total');
+      const dots = document.getElementById('dots');
+      const deck = document.getElementById('deck');
+      let index = 0;
+      let startX = 0;
+      let startY = 0;
+
+      total.textContent = String(slides.length);
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'dot';
+        dot.setAttribute('aria-label', `${i + 1}枚目へ移動`);
+        dot.addEventListener('click', () => go(i));
+        dots.appendChild(dot);
+      });
+
+      function go(i) {
+        index = Math.max(0, Math.min(slides.length - 1, i));
+        track.style.transform = `translateX(-${index * 100}%)`;
+        current.textContent = String(index + 1);
+        prev.disabled = index === 0;
+        next.disabled = index === slides.length - 1;
+        [...dots.children].forEach((dot, n) => dot.classList.toggle('active', n === index));
+        history.replaceState(null, '', `#slide-${index + 1}`);
+      }
+
+      prev.addEventListener('click', () => go(index - 1));
+      next.addEventListener('click', () => go(index + 1));
+      document.getElementById('print').addEventListener('click', () => window.print());
+      document.getElementById('fullscreen').addEventListener('click', async () => {
+        try {
+          if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+          else await document.exitFullscreen();
+        } catch (_) {}
+      });
+      document.addEventListener('keydown', e => {
+        if (['ArrowRight','PageDown',' '].includes(e.key)) { e.preventDefault(); go(index + 1); }
+        if (['ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); go(index - 1); }
+        if (e.key === 'Home') go(0);
+        if (e.key === 'End') go(slides.length - 1);
+      });
+      deck.addEventListener('touchstart', e => {
+        startX = e.changedTouches[0].clientX;
+        startY = e.changedTouches[0].clientY;
+      }, {passive:true});
+      deck.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - startX;
+        const dy = e.changedTouches[0].clientY - startY;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) go(index + (dx < 0 ? 1 : -1));
+      }, {passive:true});
+      const match = location.hash.match(/slide-(\d+)/);
+      go(match ? Number(match[1]) - 1 : 0);
+    })();
+  </script>
+</body>
+</html>
