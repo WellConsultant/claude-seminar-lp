@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="補助金に採択された事業者向け。交付申請、証憑管理、変更手続、実績報告、確定検査、補助金請求から入金確認まで、行政書士・認定支援機関が支援します。">
+  <title>補助金 採択後・実績報告サポート｜採択を入金までつなげる</title>
+  <style>
+    :root{
+      --navy:#071a35;--navy2:#102c50;--ink:#111827;--muted:#5b6572;
+      --line:#d9dee6;--paper:#fff;--soft:#f4f5f7;--cream:#faf7f0;
+      --orange:#e76519;--orange2:#b94408;--red:#b42318;--red-soft:#fff1ef;
+      --green:#147447;--green-soft:#edf8f2;--gold:#ad8331;--shadow:0 12px 34px rgba(7,26,53,.1);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:#fff;font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.8;-webkit-font-smoothing:antialiased}
+    a{color:inherit}.wrap{width:min(1100px,calc(100% - 40px));margin-inline:auto}.narrow{width:min(820px,calc(100% - 40px));margin-inline:auto}
+    .section{padding:70px 0}.compact{padding:50px 0}.bg-soft{background:var(--soft)}.bg-cream{background:var(--cream)}.bg-navy{background:var(--navy);color:#fff}
+    h1,h2,h3,p{margin-top:0}h1{font-size:clamp(36px,5.5vw,68px);line-height:1.2;letter-spacing:-.04em;margin-bottom:22px}h2{font-size:clamp(28px,3.7vw,44px);line-height:1.38;letter-spacing:-.025em;margin-bottom:18px}h3{font-size:21px;line-height:1.5;margin-bottom:10px}
+    .eyebrow{margin:0 0 11px;color:var(--orange);font-size:13px;font-weight:900;letter-spacing:.12em}.lead{font-size:clamp(17px,2vw,21px);line-height:1.9}.center{text-align:center}.accent{color:var(--orange)}.marker{background:linear-gradient(transparent 63%,rgba(231,101,25,.24) 0);font-weight:900}.muted{color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:62px;padding:15px 34px;border:0;border-radius:8px;background:var(--orange);color:#fff;text-decoration:none;font:inherit;font-size:18px;font-weight:900;cursor:pointer;box-shadow:0 7px 0 var(--orange2),0 14px 28px rgba(231,101,25,.25);transition:.18s transform,.18s box-shadow}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 9px 0 var(--orange2),0 18px 32px rgba(231,101,25,.3)}.btn-sub{display:block;font-size:11px;font-weight:700;opacity:.9}.micro{font-size:12px;color:var(--muted);margin:13px 0 0}.bg-navy .micro{color:#c5cfdb}
+    .top-note{background:#030b16;color:#fff;text-align:center;padding:9px 16px;font-size:13px;font-weight:800;letter-spacing:.02em}
+    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 86% 12%,#1c4779 0,transparent 35%),linear-gradient(135deg,#05152b,#0a2547 70%,#12385f);color:#fff;padding:70px 0 64px}
+    .hero::after{content:"";position:absolute;right:-130px;bottom:-260px;width:560px;height:560px;border-radius:50%;border:1px solid rgba(255,255,255,.13);box-shadow:0 0 0 58px rgba(255,255,255,.035),0 0 0 116px rgba(255,255,255,.02)}
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.16fr .84fr;gap:46px;align-items:center}.badge{display:inline-flex;border:1px solid rgba(255,255,255,.34);border-radius:99px;padding:7px 14px;font-size:13px;font-weight:800}.hero-kicker{margin:18px 0 8px;color:#ffd0ad;font-weight:900;font-size:17px}.hero-copy{font-size:19px;color:#e2e9f2;max-width:720px}.hero-copy strong{color:#fff}.hero-warning{margin:21px 0 0;padding:17px 19px;border-left:5px solid #ff9360;background:rgba(180,35,24,.22);font-size:15px;color:#f8fafc}.hero-warning strong{display:block;margin-bottom:4px;font-size:18px;color:#fff}.hero-pains{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:21px 0 31px}.hero-pain{padding:13px 8px;text-align:center;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.07);border-radius:8px;font-size:13px;font-weight:900;line-height:1.45}
+    .hero-card{background:#fff;color:var(--ink);border-radius:17px;padding:27px;box-shadow:0 28px 65px rgba(0,0,0,.31)}.hero-card-label{color:var(--orange);font-size:12px;font-weight:900;letter-spacing:.1em}.hero-card h2{font-size:27px;margin:7px 0 15px}.hero-route{display:grid}.hero-step{position:relative;padding:12px 12px 12px 45px;background:var(--soft);border-bottom:1px solid #fff;font-size:14px;font-weight:800}.hero-step::before{content:attr(data-n);position:absolute;left:12px;top:10px;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:var(--navy);color:#fff;font-size:11px}.hero-step.danger{background:var(--red-soft);color:#8f1e16;border:2px solid #ef8b82}.hero-step.goal{background:#fff2e8;color:#9a3806;border:2px solid #f09a61}
+    .trustbar{border-bottom:1px solid var(--line);background:#fff}.trustgrid{display:grid;grid-template-columns:repeat(4,1fr)}.trust{padding:19px 10px;text-align:center;border-right:1px solid var(--line);font-size:13px;font-weight:800;line-height:1.45}.trust:last-child{border-right:0}.trust b{display:block;color:var(--navy);font-size:22px}
+    .result-promise{background:var(--orange);color:#fff;padding:34px 0}.result-promise-grid{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}.result-number{min-width:245px;padding-right:28px;border-right:1px solid rgba(255,255,255,.45);text-align:center}.result-number b{display:block;font-size:clamp(48px,7vw,78px);line-height:1;font-weight:900;letter-spacing:-.05em}.result-number span{font-size:14px;font-weight:900}.result-message h2{margin:0 0 5px;color:#fff;font-size:clamp(28px,4vw,43px)}.result-message p{margin:0;color:#fff;font-weight:700}.result-message small{display:block;margin-top:8px;color:#fff4ec;font-size:11px;line-height:1.6}
+    .image-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:32px}.image-slot{overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}.image-slot img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--soft)}.image-slot figcaption{padding:14px 16px;font-size:13px;font-weight:900;color:var(--navy)}.image-slot figcaption small{display:block;margin-top:3px;color:var(--muted);font-size:10px;font-weight:600}.image-guide{margin:12px 0 0;text-align:center;color:var(--muted);font-size:11px}
+    .review-grid{display:grid;grid-template-columns:1fr 72px 1fr;gap:18px;align-items:stretch;margin-top:34px}.review-card{position:relative;background:#fff;border:2px solid var(--line);border-radius:15px;padding:28px;box-shadow:var(--shadow)}.review-card.final{border-color:var(--red)}.review-label{display:inline-block;padding:5px 11px;border-radius:99px;background:var(--navy);color:#fff;font-size:12px;font-weight:900}.review-card.final .review-label{background:var(--red)}.review-card h3{font-size:26px;margin:13px 0 8px}.review-card p{margin:0;color:var(--muted)}.review-card ul{margin:16px 0 0;padding-left:1.2em}.review-card li+li{margin-top:6px}.review-arrow{display:grid;place-items:center;color:var(--orange);font-size:42px;font-weight:900}.review-conclusion{margin-top:24px;padding:24px 28px;background:var(--red-soft);border-left:7px solid var(--red);font-size:20px;font-weight:900}.review-conclusion small{display:block;margin-top:7px;color:var(--muted);font-size:14px;font-weight:700}
+    .amount-case{display:grid;grid-template-columns:.72fr 1.28fr;gap:0;margin-top:26px;border:3px solid var(--red);border-radius:15px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}.amount-visual{display:grid;place-items:center;padding:28px;background:var(--red);color:#fff;text-align:center}.amount-visual span{display:block;font-size:13px;font-weight:900}.amount-visual b{display:block;font-size:clamp(34px,5vw,56px);line-height:1.14}.amount-visual em{display:block;margin:7px 0;font-style:normal;font-size:23px;font-weight:900}.amount-copy{padding:28px}.amount-copy h3{font-size:26px;color:var(--navy)}.amount-copy p{margin-bottom:10px}.amount-copy p:last-child{margin:0;color:var(--muted)}
+    .pain-grid,.risk-grid,.support-grid,.reason-grid,.faq-grid{display:grid;gap:18px}.pain-grid{grid-template-columns:repeat(3,1fr);margin-top:31px}.pain{background:#fff;border-top:6px solid var(--red);padding:25px;border-radius:13px;box-shadow:var(--shadow)}.pain-no{color:var(--red);font-size:12px;font-weight:900;letter-spacing:.1em}.pain h3{font-size:23px}.pain p:last-child{margin:0;color:var(--muted)}
+    .empathy{margin-top:28px;padding:31px;border:2px solid var(--navy);background:#fff;border-radius:14px}.empathy p:last-child{margin-bottom:0}.empathy strong{font-size:21px;color:var(--navy)}
+    .delay-box{margin-top:28px;padding:29px;background:var(--navy);color:#fff;border-radius:14px}.delay-box h3{font-size:28px;color:#fff}.delay-box p{color:#dbe4ef}.delay-box p:last-child{margin-bottom:0}.delay-box strong{color:#ffb37d}
+    .reality-list{display:grid;gap:12px;margin:28px 0 0}.reality-row{display:grid;grid-template-columns:190px 1fr;gap:20px;align-items:start;padding:20px 22px;background:#fff;border:1px solid var(--line);border-radius:11px}.reality-row b{color:var(--red);font-size:17px}.reality-row p{margin:0;color:var(--muted)}
+    .funnel-wrap{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:29px;box-shadow:var(--shadow)}.funnel{display:grid;grid-template-columns:1fr 55px 1fr 55px 1fr;gap:10px;align-items:center}.funnel-box{text-align:center;border-radius:12px;padding:24px 12px;background:var(--soft);border:1px solid var(--line)}.funnel-box b{display:block;color:var(--navy);font-size:clamp(28px,4vw,43px);line-height:1.2}.funnel-box span{font-size:13px;font-weight:800}.funnel-box.adopt{background:#eef2f7}.funnel-box.decision{background:var(--green-soft);border-color:#a7d9bf}.funnel-arrow{text-align:center;color:var(--orange);font-size:30px;font-weight:900}.gap-stat{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;margin-top:24px;padding:21px;background:var(--red-soft);border-left:6px solid var(--red)}.gap-big{color:var(--red);font-size:40px;font-weight:900;white-space:nowrap;line-height:1}.gap-stat p{margin:0}.source-note{font-size:11px;color:var(--muted);margin:15px 0 0;line-height:1.7}
+    .truth{margin-top:27px;background:var(--navy);color:#fff;padding:30px;border-radius:14px;text-align:center}.truth p{margin:0;font-size:clamp(20px,3vw,32px);font-weight:900}.truth small{display:block;margin-top:8px;color:#cbd5e1;font-size:13px}
+    .risk-grid{grid-template-columns:repeat(2,1fr);margin-top:30px}.risk{position:relative;background:#fff;padding:23px 23px 23px 71px;border:1px solid var(--line);border-radius:12px}.risk-num{position:absolute;left:20px;top:22px;width:35px;height:35px;display:grid;place-items:center;border-radius:50%;background:var(--red);color:#fff;font-weight:900}.risk p{margin:0;color:var(--muted)}
+    .correction-box{margin-top:32px;background:#fff;border:2px solid var(--navy);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}.correction-head{padding:27px 29px;background:var(--navy);color:#fff}.correction-head h3{font-size:27px;margin-bottom:7px}.correction-head p{margin:0;color:#d7e0eb}.correction-body{padding:29px}.correction-days{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 23px}.correction-day{padding:15px 9px;text-align:center;background:var(--red-soft);border:1px solid #efb2ac;border-radius:9px}.correction-day b{display:block;color:var(--red);font-size:19px}.correction-day span{font-size:12px;font-weight:800}.correction-points{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.correction-point{position:relative;padding:17px 17px 17px 45px;background:var(--soft);border-radius:9px;font-weight:700}.correction-point::before{content:"!";position:absolute;left:15px;top:16px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:var(--red);color:#fff;font-weight:900}.correction-note{margin:21px 0 0;padding:18px;border-left:5px solid var(--orange);background:#fff8ef}.correction-note strong{display:block;color:var(--navy);font-size:19px}.example-title{margin:30px 0 13px;font-size:24px}.example-intro{color:var(--muted)}.example-list{display:grid;gap:13px;margin-top:20px}.example{border:1px solid var(--line);border-radius:11px;overflow:hidden}.example-question{padding:16px 19px;background:#f1f3f6;color:#303947;font-weight:900}.example-meaning{padding:16px 19px;background:#fff}.example-meaning b{color:var(--orange);display:block;margin-bottom:4px}.example-meaning p{margin:0;color:var(--muted)}
+    .timeline{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:31px}.timeline div{position:relative;padding:15px 8px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:8px;font-size:12px;font-weight:900}.timeline div::after{content:"›";position:absolute;right:-8px;top:50%;transform:translateY(-50%);z-index:2;color:var(--orange);font-size:23px}.timeline div:last-child{background:var(--orange);border-color:var(--orange);color:#fff}.timeline div:last-child::after{display:none}
+    .scope-note{padding:20px 22px;background:#fffaf0;border:1px solid #e6cc99;border-radius:10px;color:#684b18;font-size:13px;margin-top:22px}
+    .case{display:grid;grid-template-columns:170px 1fr;gap:0;background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;margin-top:27px}.case-label{display:grid;place-items:center;background:var(--navy);color:#fff;padding:23px;text-align:center;font-weight:900}.case-body{padding:25px}.case-body p:last-child{margin:0;color:var(--muted)}
+    .support-grid{grid-template-columns:repeat(3,1fr);margin-top:30px}.support{background:#fff;border:1px solid var(--line);border-radius:13px;padding:24px;box-shadow:0 8px 24px rgba(7,26,53,.06)}.support-no{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;margin-bottom:13px}.support p{margin:0;color:var(--muted)}
+    .admin-box{display:grid;grid-template-columns:.85fr 1.15fr;gap:30px;align-items:stretch;margin-top:31px}.admin-title{background:var(--navy);color:#fff;border-radius:14px;padding:29px;display:flex;flex-direction:column;justify-content:center}.admin-title .seal{display:grid;place-items:center;width:74px;height:74px;border-radius:50%;border:2px solid #fff;font-weight:900;font-size:17px;margin-bottom:18px}.admin-title p{margin:0;color:#d6deea}.admin-list{display:grid;gap:10px}.admin-item{position:relative;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:16px 17px 16px 49px;font-weight:800}.admin-item::before{content:"✓";position:absolute;left:16px;top:14px;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:var(--green-soft);color:var(--green);font-weight:900}
+    .rule-strength{margin-top:29px;padding:31px;background:#fff;color:var(--ink);border-radius:15px;border-top:7px solid var(--orange)}.rule-strength h3{font-size:30px;color:var(--navy)}.rule-strength .big-rule{font-size:23px;font-weight:900;line-height:1.65;margin-bottom:12px}.rule-strength p:last-child{margin-bottom:0;color:var(--muted)}
+    .reason-grid{grid-template-columns:repeat(2,1fr);margin-top:29px}.reason{background:#fff;border-left:5px solid var(--orange);padding:24px;box-shadow:var(--shadow)}.reason b{display:block;color:var(--navy);font-size:19px;margin-bottom:7px}.reason p{margin:0;color:var(--muted)}
+    .relief-lead{max-width:880px;margin:0 auto 32px;padding:27px 30px;background:#fff;border:2px solid var(--navy);border-radius:14px;text-align:center;box-shadow:var(--shadow)}.relief-lead strong{display:block;color:var(--navy);font-size:clamp(23px,3vw,34px);line-height:1.5}.relief-lead p{margin:9px 0 0;color:var(--muted)}
+    .benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.benefit{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:14px;padding:29px 25px 25px;box-shadow:var(--shadow)}.benefit::before{content:attr(data-n);position:absolute;right:16px;top:3px;color:#edf0f4;font-size:64px;font-weight:900;line-height:1}.benefit-icon{position:relative;display:grid;place-items:center;width:48px;height:48px;margin-bottom:16px;border-radius:50%;background:var(--navy);color:#fff;font-size:22px;font-weight:900}.benefit h3{position:relative;color:var(--navy);font-size:23px}.benefit p{position:relative;margin:0;color:var(--muted)}.benefit strong{color:var(--ink)}
+    .voice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:31px}.voice{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:27px;box-shadow:var(--shadow)}.voice::before{content:"“";position:absolute;right:18px;top:2px;color:#f0d4c3;font-family:Georgia,serif;font-size:76px;line-height:1}.voice-type{display:inline-block;margin-bottom:14px;padding:5px 10px;border-radius:99px;background:var(--navy);color:#fff;font-size:12px;font-weight:900}.voice h3{position:relative;font-size:22px;color:var(--navy)}.voice p{position:relative;color:var(--muted)}.voice-result{display:block;margin-top:15px;padding-top:13px;border-top:1px solid var(--line);color:var(--orange);font-size:13px;font-weight:900}.voice-note{margin:18px 0 0;text-align:center;color:var(--muted);font-size:11px}
+    .checker{max-width:840px;margin:31px auto 0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px;box-shadow:var(--shadow)}.check-list{display:grid;gap:10px;margin:22px 0}.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px 15px;background:var(--soft);border-radius:8px;cursor:pointer}.check-row input{width:20px;height:20px;margin-top:3px;accent-color:var(--red);flex:0 0 auto}.check-row span{font-weight:700}.checker-result{display:none;padding:20px;border-radius:10px;margin-top:21px}.checker-result.show{display:block}.checker-result.low{background:var(--green-soft);border:1px solid #a7d9bf}.checker-result.mid{background:#fff8e8;border:1px solid #e7c56f}.checker-result.high{background:var(--red-soft);border:1px solid #ef8b82}.checker-result b{display:block;font-size:21px;margin-bottom:5px}
+    .profile{display:grid;grid-template-columns:310px 1fr;gap:40px;align-items:start;margin-top:30px}.profile-card{background:var(--navy);color:#fff;border-radius:15px;padding:28px;text-align:center}.profile-photo{display:block;width:180px;aspect-ratio:1/1;margin:0 auto 17px;border-radius:50%;object-fit:cover;background:#fff;border:6px solid rgba(255,255,255,.18)}.profile-name{font-size:27px;font-weight:900;margin:0}.profile-role{font-size:13px;color:#d2dbe7;margin:3px 0 0}.profile-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px}.profile-stat{background:var(--soft);padding:15px 8px;text-align:center;border-radius:9px}.profile-stat b{display:block;color:var(--navy);font-size:21px}.profile-stat span{font-size:10px;color:var(--muted)}
+    .faq-grid{margin-top:28px}details{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}summary{cursor:pointer;list-style:none;padding:19px 53px 19px 21px;font-weight:900;position:relative}summary::-webkit-details-marker{display:none}summary::after{content:"＋";position:absolute;right:20px;top:14px;color:var(--orange);font-size:25px}details[open] summary::after{content:"−"}.answer{padding:0 21px 19px;color:var(--muted)}
+    .cta-panel{background:linear-gradient(135deg,#0d294d,#071a35);border-radius:19px;padding:43px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.22)}.cta-panel .lead{max-width:760px;margin:0 auto 24px;color:#e3eaf2}.cta-items{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:780px;margin:26px auto}.cta-item{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:9px;padding:16px;font-size:13px}.cta-item b{display:block;color:#ffb37d;margin-bottom:4px}.form-shell{max-width:650px;margin:30px auto 0;padding:26px 20px 14px;border-radius:15px;background:#fff;box-shadow:0 18px 45px rgba(0,0,0,.28);color:var(--ink)}.form-shell h3{margin-bottom:5px;color:var(--navy);font-size:24px}.form-shell>p{margin:0 0 18px;color:var(--muted);font-size:13px}.form-shell iframe{width:100%;max-width:560px;border:0;background:transparent;display:block;margin:0 auto;height:600px;min-height:600px}.form-fallback{margin:11px 0 4px;font-size:12px;color:var(--muted)}.form-fallback a{color:var(--orange2);font-weight:900}
+    .site-footer{background:#030b16;color:#b9c4d1;padding:33px 0;font-size:12px}.footer-inner{width:min(1100px,calc(100% - 40px));margin-inline:auto;text-align:center}.footer-legal{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:12px}.footer-legal a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.38)}.footer-legal a:hover{color:#ffb37d}.footer-copy{margin:0}.floating{display:none}
+    @media(max-width:900px){.hero-grid,.profile,.admin-box,.amount-case{grid-template-columns:1fr}.hero-card{max-width:620px}.trustgrid{grid-template-columns:repeat(2,1fr)}.trust:nth-child(2){border-right:0}.trust:nth-child(-n+2){border-bottom:1px solid var(--line)}.support-grid{grid-template-columns:repeat(2,1fr)}.timeline{grid-template-columns:repeat(4,1fr)}.image-gallery{grid-template-columns:1fr 1fr}.profile-stats{grid-template-columns:repeat(2,1fr)}.voice-grid,.benefit-grid{grid-template-columns:1fr}}
+    @media(max-width:640px){body{padding-bottom:73px}.wrap,.narrow{width:min(100% - 28px,1100px)}.section{padding:52px 0}.hero{padding:44px 0 42px}.hero-grid{gap:29px}.hero-pains,.pain-grid,.risk-grid,.support-grid,.reason-grid,.profile-stats,.cta-items,.correction-days,.correction-points,.review-grid,.image-gallery{grid-template-columns:1fr}.result-promise-grid{grid-template-columns:1fr;gap:17px}.result-number{padding:0 0 17px;border-right:0;border-bottom:1px solid rgba(255,255,255,.45)}.result-message{text-align:center}.review-arrow{transform:rotate(90deg);height:40px}.hero-card{padding:21px}.reality-row{grid-template-columns:1fr;gap:4px}.correction-head,.correction-body{padding:22px 18px}.funnel{grid-template-columns:1fr}.funnel-arrow{transform:rotate(90deg)}.gap-stat{grid-template-columns:1fr}.gap-big{font-size:35px}.timeline{grid-template-columns:1fr}.timeline div::after{content:"⌄";right:auto;left:50%;top:auto;bottom:-20px;transform:translateX(-50%)}.case{grid-template-columns:1fr}.case-label{padding:14px}.checker{padding:22px 17px}.cta-panel{padding:30px 17px}.btn{width:100%;padding-inline:13px;font-size:16px}.footer-grid{display:block}.floating{position:fixed;z-index:99;display:block;left:0;right:0;bottom:0;padding:9px 12px;background:rgba(3,11,22,.95);backdrop-filter:blur(8px)}.floating .btn{min-height:53px;box-shadow:none}h1{font-size:36px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+  </style>
+</head>
+<body>
+  <div class="top-note">ものづくり補助金・持続化補助金など、採択後の実績報告でお困りの事業者様へ</div>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge">採択済み事業者向け｜全国オンライン対応</span>
+        <p class="hero-kicker">採択通知が届いて安心している方へ。</p>
+        <h1>その採択された補助金、<br><span class="accent">受け取れないかもしれません。</span></h1>
+        <p class="hero-copy"><strong>採択は「入金決定」ではありません。</strong>通過したのは、計画を選ぶ「採択審査」です。実際にいくら受け取れるかを決める「確定審査」は、まだ終わっていません。</p>
+        <div class="hero-warning"><strong>設備を買った。代金も払った。事業も終えた。それでも、申請額どおり受け取れるとは限りません。</strong>発注・契約・支払い・変更手続・証拠書類のどこかがルールと合わなければ、「全額不支給」だけでなく、補助対象経費を削られて入金額が大きく減ることがあります。</div>
+        <div class="hero-pains">
+          <div class="hero-pain">採択・交付決定が<br>取り消される</div>
+          <div class="hero-pain">申請時の金額より<br>減らされる</div>
+          <div class="hero-pain">補助金を<br>一切受け取れない</div>
+        </div>
+        <a class="btn" href="#consultation">減額・不支給リスクを無料で確認する</a>
+        <p class="micro">交付決定日・期限・変更の有無・支払状況・証憑を確認し、今すぐ行うべきことを整理します。</p>
+      </div>
+      <aside class="hero-card" aria-label="採択から入金までの流れ">
+        <span class="hero-card-label">IMPORTANT</span>
+        <h2>「採択通知」だけでは、<br>まだ振り込まれません。</h2>
+        <div class="hero-route">
+          <div class="hero-step" data-n="1">採択・補助金交付候補者</div>
+          <div class="hero-step danger" data-n="2">交付申請・内容の再確認</div>
+          <div class="hero-step" data-n="3">交付決定後に発注・契約・実施</div>
+          <div class="hero-step danger" data-n="4">証憑整理・変更手続・実績報告</div>
+          <div class="hero-step" data-n="5">確定検査・補助金額の確定</div>
+          <div class="hero-step goal" data-n="6">請求・入金</div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <div class="trustbar">
+    <div class="wrap trustgrid">
+      <div class="trust"><b>行政書士</b>官公署提出書類の専門家</div>
+      <div class="trust"><b>認定支援機関</b>経営・補助金の実務支援</div>
+      <div class="trust"><b>申請〜入金</b>全工程を見据えた支援</div>
+      <div class="trust"><b>全国対応</b>オンラインで状況確認</div>
+    </div>
+  </div>
+
+  <section class="result-promise" aria-label="入金実績と支援方針">
+    <div class="wrap result-promise-grid">
+      <div class="result-number"><b>入金率<br>100％</b><span>実績報告支援を完了した過去案件</span></div>
+      <div class="result-message">
+        <h2>脱落者は出しません。</h2>
+        <p>採択後の手続で置き去りにせず、確定審査、補助金請求、入金確認まで全て支援します。</p>
+        <small>※当事務所が採択後支援を完了した過去案件の実績です。補助金の交付・金額は事務局が決定するため、将来の入金や満額交付を保証するものではありません。</small>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+        <div class="narrow center">
+          <p class="eyebrow">TWO REVIEWS</p>
+          <h2>補助金の審査は、<br><span class="accent">採択審査だけではありません。</span></h2>
+          <p class="lead">大きく分けると、補助金には最初の「採択審査」と、事業を終えた後の「確定審査」という2つの関門があります。最初の採択が入金の確約ではないのは、その後に確定審査が残っているからです。</p>
+        </div>
+        <div class="review-grid">
+          <article class="review-card">
+            <span class="review-label">第1の審査</span>
+            <h3>採択審査</h3>
+            <p>申請時に提出した事業計画をもとに、「この計画を補助対象候補として選ぶか」を判断する審査です。</p>
+            <ul>
+              <li>事業計画の内容</li>
+              <li>必要性・実現可能性</li>
+              <li>政策目的との整合性</li>
+            </ul>
+          </article>
+          <div class="review-arrow" aria-hidden="true">→</div>
+          <article class="review-card final">
+            <span class="review-label">第2の審査</span>
+            <h3>確定審査</h3>
+            <p>実際に行った事業と支出を確認し、「最終的にいくらを補助対象として認めるか」を判断する審査です。</p>
+            <ul>
+              <li>発注・契約・納品・支払いの時期</li>
+              <li>見積書、請求書、振込記録などの証憑</li>
+              <li>申請内容と実際の事業の一致</li>
+            </ul>
+          </article>
+        </div>
+        <div class="review-conclusion">採択されたのは、「計画が選ばれた」ということです。<br>「申請した金額をそのまま受け取れることが確約された」という意味ではありません。<small>確定審査で対象外経費や証憑不足、手続違反が確認されれば、減額・不支給・取消しとなる可能性があります。</small></div>
+        <div class="amount-case">
+          <div class="amount-visual"><span>実際にあった減額例</span><b>2,000万円</b><em>↓</em><b>800万円</b></div>
+          <div class="amount-copy"><h3>「全額もらえない」より現実に起きやすいのが、想定額より減ることです。</h3><p>実際に、交付決定額2,000万円に対し、確定通知額が800万円となった案件がありました。差額は1,200万円です。</p><p>減額理由や割合は案件ごとに異なります。しかし、交付決定額を前提に設備投資や借入返済を組んでいる場合、確定額の減少はそのまま資金繰りへ響きます。だから、実績報告の直前ではなく、発注・変更・支払いの前から管理する必要があります。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-cream">
+      <div class="wrap">
+        <div class="narrow center">
+          <p class="eyebrow">AFTER ADOPTION</p>
+          <h2>せっかく採択されたのに、<br><span class="accent">ここから失う可能性</span>があります。</h2>
+          <p class="lead">申請書を作り、何度も資料を集め、事業計画を練り、長い審査を待って、ようやく手にした採択です。しかし、採択通知はゴールではありません。採択後の手続を誤ると、これまでの時間も労力も、先に支払った費用も回収できなくなる可能性があります。</p>
+        </div>
+        <div class="pain-grid">
+          <article class="pain"><span class="pain-no">RISK 01</span><h3>採択・交付決定が取り消される</h3><p>事業完了期限に間に合わない、交付決定前に発注した、計画と異なる内容を承認なく進めた。こうしたルール違反があれば、採択後でも取消しに至ることがあります。</p></article>
+          <article class="pain"><span class="pain-no">RISK 02</span><h3>申請時の金額より減らされる</h3><p>対象外経費、証拠書類の不足、支払方法の不備、申請内容との相違が見つかれば、その部分は補助対象として認められず、想定額より少なくなる場合があります。</p></article>
+          <article class="pain"><span class="pain-no">RISK 03</span><h3>一切受け取れない</h3><p>期限までに実績報告を提出できなければ、補助金を支払えないと明記されている制度があります。自社で費用を立て替え、事業を終えていても、報告を完了できなければ入金には進めません。</p></article>
+        </div>
+        <div class="reality-list">
+          <div class="reality-row"><b>「採択されたから大丈夫」</b><p>いいえ。採択は、申請した計画が補助対象候補として認められた段階です。実際の支出が認められ、補助金額が確定したわけではありません。</p></div>
+          <div class="reality-row"><b>「買えば受け取れる」</b><p>いいえ。発注時期、契約内容、支払方法、名義、納品、写真、成果物などが制度の条件に合い、取引の流れを証明できる必要があります。</p></div>
+          <div class="reality-row"><b>「報告書を出せば終わり」</b><p>いいえ。提出後に差戻しや追加資料の依頼が来ることがあります。修正が完了し、額の確定通知を受け、請求手続を終えるまで入金は確定しません。</p></div>
+        </div>
+        <div class="delay-box">
+          <h3>一番危ないのは、「まだ困っていないから」と後回しにすることです。</h3>
+          <p>採択後の手続は、売上が増える仕事のように見えにくく、日々の業務に追われると後回しになりがちです。しかし、<strong>見積書の日付、発注時期、支払名義、変更前の承認、納品期限</strong>は、後から元に戻せないものがあります。</p>
+          <p>問題が起きてから実績報告だけ整えようとしても、すでに行った取引そのものは作り直せません。困ってからではなく、まだ困っていない今の段階で確認することが、入金額を守る最も現実的な対策です。</p>
+        </div>
+        <div class="empathy">
+          <strong>ここまで頑張った補助金を、最後の手続で失わないでください。</strong>
+          <p>補助金は原則として後払いです。自社のお金で先に支払い、事業を完了し、証拠書類を揃え、事務局の確認を受け、認められた金額が確定してから支払われます。だから、採択後こそ慎重な進行管理が必要です。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-cream" aria-label="お客様の声">
+      <div class="wrap">
+        <div class="narrow center">
+          <p class="eyebrow">CUSTOMER VOICES</p>
+          <h2>実績報告を任せた<br><span class="accent">お客様の声</span></h2>
+          <p class="lead">採択後に止まりかけていた手続を整理し、確定通知・補助金請求・入金まで進めた支援事例を、お客様の視点でご紹介します。</p>
+        </div>
+        <div class="voice-grid">
+          <article class="voice"><span class="voice-type">設備導入事業者様</span><h3>「採択されたので安心していましたが、実績報告がこれほど細かいとは思いませんでした」</h3><p>見積書、発注書、納品書、請求書、振込記録を一つずつ確認してもらい、不足書類も取引先へ何を依頼すればよいか明確になりました。事務局への対応も任せられ、最後の入金まで確認してもらえたので安心できました。</p><span class="voice-result">確定通知・補助金請求・入金確認まで支援</span></article>
+          <article class="voice"><span class="voice-type">サービス業者様</span><h3>「事務局の指摘を読んでも、何を直せばよいのか分からず止まっていました」</h3><p>指摘の意味を具体的な修正作業へ置き換えてもらい、必要な資料と回答内容を整理できました。何度か差戻しが続きましたが、その都度対応してもらえたので、自分一人で抱え込まずに済みました。</p><span class="voice-result">差戻しの読み解き・追加資料・再提出を継続支援</span></article>
+          <article class="voice"><span class="voice-type">採択後からのご依頼</span><h3>「申請を手伝ってくれた方の支援が採択までで、その後をどうすればよいか困っていました」</h3><p>申請時の資料を引き継いで現在地と期限を確認し、交付申請後の手続を一つの窓口で進めてもらいました。誰に何を聞けばよいか分からない状態から、入金までの順番が見える状態になりました。</p><span class="voice-result">途中案件を引き継ぎ、入金までの進行を一本化</span></article>
+        </div>
+        <p class="voice-note">※プライバシー保護のため業種のみ掲載し、実際の支援内容をもとに、内容を損なわない範囲で表現を再構成しています。</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="narrow center">
+          <p class="eyebrow">ACTUAL NUMBERS</p>
+          <h2>採択は、<span class="accent">入金までの通過点</span>です。</h2>
+          <p class="lead">ものづくり補助金1次〜22次の集計では、申請98,585件に対し、交付決定まで到達しているのは42,783件です。</p>
+        </div>
+        <div class="funnel-wrap">
+          <div class="funnel" aria-label="申請から交付決定までの件数">
+            <div class="funnel-box"><b>98,585</b><span>申請件数</span></div><div class="funnel-arrow">›</div>
+            <div class="funnel-box adopt"><b>46,335</b><span>採択件数</span></div><div class="funnel-arrow">›</div>
+            <div class="funnel-box decision"><b>42,783</b><span>交付決定数</span></div>
+          </div>
+          <div class="gap-stat">
+            <div class="gap-big">3,552件</div>
+            <p><strong>採択件数と交付決定数の差</strong><br>採択者の7.67％に相当します。採択後にも、交付申請という別の審査・確認工程があることが数字からも分かります。</p>
+          </div>
+          <div class="gap-stat">
+            <div class="gap-big">55,802件<br><span style="font-size:.58em">56.60％</span></div>
+            <p><strong>申請件数と交付決定数の差</strong><br>申請から交付決定までに到達していない差は55,802件、申請件数の56.60％です。これは「採択後だけの脱落率」ではありませんが、申請した全事業者がそのまま交付決定へ進めるわけではない現実を示しています。</p>
+          </div>
+          <p class="source-note">ものづくり補助金1次〜22次の公表数値を集計。申請98,585件、採択46,335件、交付決定42,783件。なお、交付決定数は集計時点の値であり、審査・手続中の案件を含む可能性があります。この差の全件が取消し・断念を意味するものではなく、また実績報告後の最終入金件数を示すデータではありません。</p>
+        </div>
+        <div class="truth"><p>しかも、交付決定の後にも<br>「事業実施」と「実績報告」という関門があります。</p><small>採択 → 交付決定 → 事業完了 → 実績報告 → 額の確定 → 請求 → 入金</small></div>
+        <div class="empathy"><strong>私たちは、あなたを「せっかく採択されたのに、受け取る前に脱落した事業者」にしたくありません。</strong><p>採択までにかけた時間、事業へ投じた費用、集めた書類、待ち続けた期間。そのすべてを無駄にしないために、採択後のルールと期限を一つずつ確認し、確定審査と入金まで進める必要があります。</p></div>
+
+        <div class="image-gallery" aria-label="後から差し替えられる実績画像枠">
+          <!-- 画像差し替え1：下の src のURLを、入金・確定通知等の実績画像URLへ変更してください -->
+          <figure class="image-slot"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20320%20200'%3E%3Crect%20width='320'%20height='200'%20fill='%23071a35'/%3E%3Crect%20x='118'%20y='48'%20width='84'%20height='104'%20rx='6'%20fill='%23fff'%20fill-opacity='.95'/%3E%3Crect%20x='132'%20y='66'%20width='56'%20height='6'%20rx='3'%20fill='%23071a35'/%3E%3Crect%20x='132'%20y='82'%20width='56'%20height='6'%20rx='3'%20fill='%23071a35'/%3E%3Crect%20x='132'%20y='98'%20width='36'%20height='6'%20rx='3'%20fill='%23071a35'/%3E%3Ccircle%20cx='160'%20cy='128'%20r='16'%20fill='%23e76519'/%3E%3Cpath%20d='M152%20128l6%206%2012-13'%20fill='none'%20stroke='%23fff'%20stroke-width='4'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E" alt="入金・確定通知の実績画像を掲載する場所"><figcaption>入金・確定通知の実績<small>個人名・企業名・口座情報などは隠して掲載してください</small></figcaption></figure>
+          <!-- 画像差し替え2：下の src のURLを、差戻し対応前後の画像URLへ変更してください -->
+          <figure class="image-slot"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20320%20200'%3E%3Crect%20width='320'%20height='200'%20fill='%23f4f5f7'/%3E%3Crect%20x='112'%20y='52'%20width='70'%20height='94'%20rx='6'%20fill='%23fff'%20stroke='%23d9dee6'%20stroke-width='2'/%3E%3Crect%20x='124'%20y='68'%20width='46'%20height='5'%20rx='2.5'%20fill='%23b42318'/%3E%3Crect%20x='124'%20y='82'%20width='46'%20height='5'%20rx='2.5'%20fill='%23d9dee6'/%3E%3Crect%20x='124'%20y='96'%20width='30'%20height='5'%20rx='2.5'%20fill='%23d9dee6'/%3E%3Cpath%20d='M198%2070l24%2024-46%2046-28%206%206-28z'%20fill='%23e76519'/%3E%3Cpath%20d='M198%2070l24%2024'%20stroke='%23b94408'%20stroke-width='2'/%3E%3C/svg%3E" alt="事務局の指摘・修正事例画像を掲載する場所"><figcaption>事務局の指摘・修正事例<small>指摘文と、どのように解決したかが分かる画像向けです</small></figcaption></figure>
+          <!-- 画像差し替え3：下の src のURLを、お客様の声や支援風景の画像URLへ変更してください -->
+          <figure class="image-slot"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20320%20200'%3E%3Crect%20width='320'%20height='200'%20fill='%23faf7f0'/%3E%3Crect%20x='90'%20y='58'%20width='140'%20height='84'%20rx='16'%20fill='%23071a35'/%3E%3Cpath%20d='M120%20142l-4%2022%2024-22z'%20fill='%23071a35'/%3E%3Ccircle%20cx='128'%20cy='100'%20r='7'%20fill='%23fff'/%3E%3Ccircle%20cx='160'%20cy='100'%20r='7'%20fill='%23fff'/%3E%3Ccircle%20cx='192'%20cy='100'%20r='7'%20fill='%23fff'/%3E%3C/svg%3E" alt="お客様の声・支援風景の画像を掲載する場所"><figcaption>お客様の声・支援風景<small>入金まで進んだお客様の声や面談風景を掲載できます</small></figcaption></figure>
+        </div>
+        <p class="image-guide">HTML内で「画像差し替え」と検索し、各 img タグの src に画像URLを貼り付けるだけで変更できます。</p>
+      </div>
+    </section>
+
+    <section class="section bg-soft">
+      <div class="wrap">
+        <div class="narrow center">
+          <p class="eyebrow">WHY IT HAPPENS</p>
+          <h2>なぜ、採択されたのに<br><span class="accent">減額・取消し・不支給</span>が起きるのか？</h2>
+          <p class="lead">理由は、審査に通った事業計画と、実際に行った取引・支払い・成果を、決められた証拠で一致させなければならないからです。</p>
+        </div>
+        <div class="risk-grid">
+          <article class="risk"><span class="risk-num">1</span><h3>交付決定前に発注・契約した</h3><p>制度で認められた例外を除き、交付決定前の発注・契約・購入は補助対象外となる可能性があります。</p></article>
+          <article class="risk"><span class="risk-num">2</span><h3>計画を変えたのに手続をしていない</h3><p>機種、金額、発注先、事業内容などの変更に、事前承認や変更手続が必要な場合があります。</p></article>
+          <article class="risk"><span class="risk-num">3</span><h3>証拠書類がつながらない</h3><p>見積、契約・発注、納品、請求、振込、写真などが一連の取引として確認できないと、経費として認められないことがあります。</p></article>
+          <article class="risk"><span class="risk-num">4</span><h3>支払方法・支払時期が合わない</h3><p>現金、手形、相殺、個人カードなどが認められない制度があります。期限内の支払完了も重要です。</p></article>
+          <article class="risk"><span class="risk-num">5</span><h3>納品・事業完了が期限に間に合わない</h3><p>設備の納期遅延や工事の遅れで期限までに事業が完了しなければ、原則として取消しとなる制度があります。</p></article>
+          <article class="risk"><span class="risk-num">6</span><h3>実績報告の提出が遅れる</h3><p>提出期限は「事業完了後30日」などと「最終期限」のいずれか早い日とされることがあり、思っているより短い場合があります。</p></article>
+        </div>
+        <p class="source-note">制度・締切回により要件は異なります。最新の公募要領、交付規程、補助事業の手引き、交付決定通知をご確認ください。</p>
+
+        <div class="correction-box">
+          <div class="correction-head">
+            <h3>そして厄介なのが、事務局から届く「何を直せばよいのか分かりにくい指摘」です。</h3>
+            <p>提出したら終わりではありません。短期間に何度も差戻され、指摘の意図を読み解き、資料を探し、修正して再提出することがあります。</p>
+          </div>
+          <div class="correction-body">
+            <p class="lead"><strong>実際のIT導入補助金の不備修正記録では、わずか3日間に4回の対応記録が残っています。</strong></p>
+            <div class="correction-days" aria-label="不備修正対応の記録">
+              <div class="correction-day"><b>7月30日</b><span>書類不備</span></div>
+              <div class="correction-day"><b>7月31日</b><span>書類不備</span></div>
+              <div class="correction-day"><b>7月31日</b><span>同日2回目</span></div>
+              <div class="correction-day"><b>8月1日</b><span>書類不備</span></div>
+            </div>
+            <div class="correction-points">
+              <div class="correction-point">一度直して提出しても、別の箇所や別の観点から再度修正を求められる</div>
+              <div class="correction-point">指摘文を読んでも、どの資料のどこをどう直すのか判断しにくい</div>
+              <div class="correction-point">複数の商品・役務があると、それぞれについて確認と修正が続く</div>
+              <div class="correction-point">通常業務をしながら、資料探し・事務局確認・再提出を繰り返すことになる</div>
+            </div>
+            <h3 class="example-title">実際に戸惑いやすい、事務局からの指摘例</h3>
+            <p class="example-intro">次のような短い指摘だけでは、どの書類の何を直せばよいのか、すぐには判断できません。指摘の裏側にある確認事項まで読み解く必要があります。</p>
+            <div class="example-list">
+              <article class="example"><div class="example-question">指摘例1「取引の実在性が確認できる資料を提出してください」</div><div class="example-meaning"><b>結局、何を出せばよいのか？</b><p>見積書だけでなく、発注書・契約書・納品書・請求書・振込記録・導入後の写真などを確認し、発注から支払いまで一連の取引がつながる資料を選ぶ必要があります。</p></div></article>
+              <article class="example"><div class="example-question">指摘例2「申請内容と実績内容の整合性を確認してください」</div><div class="example-meaning"><b>どこが合っていないのか書かれていない</b><p>製品名、型番、数量、金額、発注先、導入目的、実施時期などを申請時の内容と照合し、変更があるなら変更手続の要否まで確認します。</p></div></article>
+              <article class="example"><div class="example-question">指摘例3「支払事実および支払完了日を確認できる資料が不足しています」</div><div class="example-meaning"><b>通帳の一部だけでは足りないことがある</b><p>振込依頼書、インターネットバンキングの結果画面、通帳、請求書などから、支払者・支払先・金額・日付が一致する形で証明します。</p></div></article>
+              <article class="example"><div class="example-question">指摘例4「成果物の内容が確認できる資料を追加してください」</div><div class="example-meaning"><b>完成写真だけでよいとは限らない</b><p>設備写真、設置場所、型番、シリアル番号、制作物、画面、納品データ、利用開始の記録など、申請した事業が実際に完了したと分かる資料が必要です。</p></div></article>
+              <article class="example"><div class="example-question">指摘例5「対象経費の内訳が分かる資料を提出してください」</div><div class="example-meaning"><b>請求総額ではなく、補助対象部分の切り分けが必要</b><p>一式表記の見積書・請求書では判断できないため、品目、単価、数量、期間、値引き、対象外費用などが分かる内訳を取引先に再発行してもらう場合があります。</p></div></article>
+            </div>
+            <div class="correction-note"><strong>意味が分からないまま、自己判断で直すのが一番危険です。</strong>指摘された一文だけを見るのではなく、交付申請時の内容、契約、請求、支払い、納品、利用実績など、前後の書類との整合まで確認しなければ、別の不整合を生むことがあります。分からない指摘ほど、期限を確認したうえで事務局へ照会し、回答を記録し、根拠を揃えて修正する必要があります。</div>
+            <p class="source-note">実際の不備修正記録に基づく対応例です。記録上は、その後も複数のITツール・役務について8月から9月まで対応履歴が続いています。個別の指摘内容や必要対応は案件ごとに異なります。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="narrow center">
+          <p class="eyebrow">A COMMON CONSULTATION</p>
+          <h2>「採択までは手伝ってくれた。<br>でも、その後は<span class="accent">対象外</span>だった」</h2>
+          <p class="lead">中小企業診断士、コンサルタント、商工会などに申請を支援してもらい、無事に採択。しかし、採択後に連絡すると「実績報告は対応していません」と言われた、というご相談があります。</p>
+        </div>
+        <div class="case">
+          <div class="case-label">よくある状況</div>
+          <div class="case-body"><h3>申請を支援した人が、そのまま入金まで担当するとは限りません。</h3><p>申請支援と、採択後の交付申請・実績報告支援は、契約上の範囲が別になっていることがあります。実際に、交付決定まで進んだ後に支援が終わり、その後の実績報告が進まず、銀行から経過確認が入った事例もあります。問題は誰かを責めることではなく、担当者不在のまま期限だけが近づくことです。</p></div>
+        </div>
+        <div class="empathy"><strong>社長や従業員さんが、事務局・以前の支援者・取引先・銀行の間を走り回る必要はありません。</strong><p>当事務所が採択後の窓口となり、取引先へ再発行を依頼すべき書類、事務局へ確認すべき内容、社内で揃える証憑、期限までの順番を一本化します。専門外の実績報告を従業員さんへ押し付けたり、指摘が来るたびに社長ご自身が意味を読み解いたりする負担を減らします。</p></div>
+        <div class="timeline" aria-label="採択後から入金まで">
+          <div>採択</div><div>交付申請</div><div>交付決定</div><div>事業実施</div><div>実績報告</div><div>額の確定・請求</div><div>入金</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-cream" aria-label="実績報告を専門家へ任せるメリット">
+      <div class="wrap">
+        <div class="narrow center">
+          <p class="eyebrow">PEACE OF MIND</p>
+          <h2>実績報告のことを、<br><span class="accent">一晩中考え続けていませんか？</span></h2>
+          <p class="lead">「この支払いでよかったのか」「不備と言われたらどうしよう」「従業員に任せたが本当に大丈夫か」。頭の中だけで考え続けても、期限と不安は消えません。必要なのは、状況を見える形にし、次にやることを決めることです。</p>
+        </div>
+        <div class="relief-lead">
+          <strong>書類だけではなく、社長と会社を守る。<br>それが採択後支援の役割です。</strong>
+          <p>何を、誰が、いつまでに行うかを整理し、本業へ戻れる状態をつくります。</p>
+        </div>
+        <div class="benefit-grid">
+          <article class="benefit" data-n="01">
+            <div class="benefit-icon" aria-hidden="true">✓</div>
+            <h3>正当な取引を説明できる状態にし、不正疑惑から守る</h3>
+            <p>書類の数字や日付が食い違っているだけでも、事務局から取引の実在性や経緯を詳しく確認されることがあります。<strong>見積・発注・納品・請求・支払いをつなぎ、変更の理由や確認記録も残す</strong>ことで、正しく行った事業を正しく説明できる状態にします。</p>
+          </article>
+          <article class="benefit" data-n="02">
+            <div class="benefit-icon" aria-hidden="true">人</div>
+            <h3>従業員さんへ、専門外の仕事を押し付けずに済む</h3>
+            <p>担当者へ手引きを渡して「何とかして」と任せると、本来の仕事が止まり、判断の責任まで背負わせることになります。<strong>専門的な判断と提出までの段取りを外へ切り出し、社内には必要な資料だけを明確に依頼</strong>します。</p>
+          </article>
+          <article class="benefit" data-n="03">
+            <div class="benefit-icon" aria-hidden="true">休</div>
+            <h3>夜まで実績報告を考え続けず、本業へ戻れる</h3>
+            <p>不安の正体は、「何が足りないか」「次に何が来るか」が見えないことです。現在地、期限、不足書類、事務局への確認事項を一覧化し、<strong>社長が一人で抱え込まなくても進む状態</strong>をつくります。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-navy">
+      <div class="wrap">
+        <div class="narrow center">
+          <p class="eyebrow">ADMINISTRATIVE SCRIVENER</p>
+          <h2>採択後の書類作成・手続こそ、<br><span class="accent">行政書士の得意分野</span>です。</h2>
+          <p class="lead">行政書士は、他人の依頼を受けて官公署に提出する書類を作成し、制度と手続に応じて提出手続を代理する専門家です。</p>
+        </div>
+        <div class="admin-box">
+          <div class="admin-title"><div class="seal">行政書士</div><h3>判断を投げ返さず、<br>書類と手続まで。</h3><p>「手引きを読んでください」で終わらせません。現在地を確認し、何が不足しているか、誰に何を依頼するか、どの順番で進めるかを整理し、採択後から入金確認まで一つの窓口で支援します。</p></div>
+          <div class="admin-list">
+            <div class="admin-item">交付申請・実績報告に必要な書類の確認</div>
+            <div class="admin-item">見積書・契約書・納品書・請求書・振込記録等の整理</div>
+            <div class="admin-item">変更承認申請、事故等報告など必要手続の確認・書類作成</div>
+            <div class="admin-item">実績報告書、経費明細、成果資料等の作成支援</div>
+            <div class="admin-item">事務局からの修正・追加資料依頼への対応支援</div>
+            <div class="admin-item">補助金請求から入金確認までの進行管理</div>
+          </div>
+        </div>
+        <div class="rule-strength">
+          <h3>当たり前のことを、当たり前に。<br>それが行政書士の強みです。</h3>
+          <p class="big-rule">確定審査を通るために必要なのは、裏技ではありません。決められた期限を守る。指定された様式を使う。必要な証拠書類を揃える。数字と日付を一致させる。変更があれば、勝手に進めず、必要な手続を行う。この「当たり前」を、漏れなく積み重ねることです。</p>
+          <p>そして、複雑なルールを読み解き、必要な書類に落とし込み、期限どおりに官公署への手続を完了させることは、行政書士が日常的に行っている仕事です。補助金の採択後支援でも、公募要領・交付規程・手引き・事務局の指示を確認し、何を、いつまでに、どの形で提出するかを整理します。</p>
+        </div>
+        <div class="scope-note"><strong>誰に頼むかも確認してください。</strong> 2026年1月1日施行の改正行政書士法では、行政書士または行政書士法人でない者が、他人の依頼を受け、名目を問わず報酬を得て官公署提出書類等を作成することへの業務制限が、より明確になりました（他の法律に別段の定めがある場合を除きます）。単なる助言なのか、実績報告書等の作成まで含むのか、依頼前に支援者の資格と契約範囲をご確認ください。</div>
+        <div class="scope-note">重要：代理・代行できる範囲は、補助金制度の規程、電子申請システムの利用条件、依頼内容によって異なります。申請者本人による操作・確認が必要な手続は、ご本人に操作いただきながら支援します。税務・登記・法律事件など他士業の独占業務は行わず、必要に応じて適切な専門家との連携をご案内します。</div>
+      </div>
+    </section>
+
+    <section class="section bg-cream">
+      <div class="wrap">
+        <div class="narrow center">
+          <p class="eyebrow">SUPPORT</p>
+          <h2>採択後から入金確認まで、<br><span class="accent">全て支援します。</span></h2>
+          <p class="lead">状況・期限の確認、証憑の点検、変更手続、実績報告書類の作成、事務局からの差戻し対応、確定審査、補助金請求、入金確認まで。途中で置き去りにせず、最後まで一連の流れを支援します。</p>
+        </div>
+        <div class="support-grid">
+          <article class="support"><span class="support-no">1</span><h3>状況・期限の確認</h3><p>採択通知、交付決定通知、手引き、契約内容、購入・支払状況を確認し、最優先で行うことを整理します。</p></article>
+          <article class="support"><span class="support-no">2</span><h3>証憑の点検・不足整理</h3><p>取引ごとに必要書類を並べ、何が足りないか、内容に矛盾がないかを確認します。</p></article>
+          <article class="support"><span class="support-no">3</span><h3>変更・遅延への対応</h3><p>申請時から変更がある場合や納期が遅れている場合、制度上必要な連絡・手続を確認します。</p></article>
+          <article class="support"><span class="support-no">4</span><h3>実績報告書類の作成</h3><p>経費明細、成果説明、写真、証憑などを、手引きに沿って提出できる形へ整えます。</p></article>
+          <article class="support"><span class="support-no">5</span><h3>事務局照会への対応</h3><p>差戻しや追加資料の依頼内容を読み解き、必要な修正・回答・再提出を支援します。</p></article>
+          <article class="support"><span class="support-no">6</span><h3>確定・請求・入金確認</h3><p>実績報告を出して終わりではなく、額の確定、補助金請求、入金確認まで進捗を管理します。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="narrow center">
+          <p class="eyebrow">WHY NOW</p>
+          <h2>相談は、実績報告の直前ではなく<br><span class="accent">今の段階</span>がよい理由</h2>
+        </div>
+        <div class="reason-grid">
+          <article class="reason"><b>発注前なら、誤りを防げるから</b><p>発注先・品目・金額・契約時期を事前に確認できれば、対象外となる取引を避けられる可能性が高まります。</p></article>
+          <article class="reason"><b>変更前なら、必要な承認を確認できるから</b><p>先に変更してから報告するより、変更前に事務局への確認や変更手続の要否を判断する方が安全です。</p></article>
+          <article class="reason"><b>支払前なら、方法を直せるから</b><p>支払後に振込方法や名義の不備へ気づいても、証拠を作り直せないことがあります。</p></article>
+          <article class="reason"><b>期限前なら、選択肢が残っているから</b><p>納期遅延や書類不足も、早ければ事務局への相談や代替対応を検討できます。期限後では手遅れになることがあります。</p></article>
+          <article class="reason"><b>交付決定額を前提にした資金繰りを守るため</b><p>つなぎ融資や自己資金で先に支払う場合、確定額の減少は返済計画に直接影響します。対象外経費を出さない管理が必要です。</p></article>
+          <article class="reason"><b>事務局対応を社長一人で抱えないため</b><p>差戻しのたびに資料を探し、取引先へ再発行を頼み、支援者へ説明する負担を、早い段階から一本化できます。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-soft" id="self-check">
+      <div class="wrap">
+        <div class="narrow center">
+          <p class="eyebrow">60-SECOND CHECK</p>
+          <h2>採択後の<span class="accent">取りこぼしリスク</span>を確認</h2>
+          <p class="lead">当てはまる項目を選んでください。これは簡易確認であり、最終判断は制度の手引き・事務局確認が必要です。</p>
+        </div>
+        <div class="checker">
+          <div class="check-list">
+            <label class="check-row"><input type="checkbox" name="risk"><span>交付決定前に、発注・契約・支払いをしたものがある</span></label>
+            <label class="check-row"><input type="checkbox" name="risk"><span>申請時から、設備・金額・発注先・事業内容を変更している</span></label>
+            <label class="check-row"><input type="checkbox" name="risk"><span>見積、発注、納品、請求、振込の書類がすべて揃っているか分からない</span></label>
+            <label class="check-row"><input type="checkbox" name="risk"><span>納品または支払いが、事業完了期限に間に合わない可能性がある</span></label>
+            <label class="check-row"><input type="checkbox" name="risk"><span>実績報告の期限を正確に把握していない</span></label>
+            <label class="check-row"><input type="checkbox" name="risk"><span>採択までの支援者が、実績報告には対応してくれない</span></label>
+            <label class="check-row"><input type="checkbox" name="risk"><span>交付決定額を前提に、つなぎ融資や返済計画を組んでいる</span></label>
+            <label class="check-row"><input type="checkbox" name="risk"><span>事務局・取引先・支援者との連絡窓口が複数に分かれている</span></label>
+          </div>
+          <button class="btn" type="button" id="diagnose">選択した内容を確認する</button>
+          <div class="checker-result" id="checkerResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="narrow center">
+          <p class="eyebrow">SUPPORTER</p>
+          <h2>申請書を作って終わりではなく、<br><span class="accent">受け取るところまで</span>見据えます。</h2>
+        </div>
+        <div class="profile">
+          <div class="profile-card">
+            <!-- プロフィール画像差し替え：下の src のURLを阿久津和宏の写真URLへ変更してください -->
+            <img class="profile-photo" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%20200'%3E%3Crect%20width='200'%20height='200'%20fill='%23071a35'/%3E%3Ccircle%20cx='100'%20cy='76'%20r='36'%20fill='%23fff'%20fill-opacity='.95'/%3E%3Cpath%20d='M38%20172c6-46%2042-70%2062-70s56%2024%2062%2070'%20fill='none'%20stroke='%23fff'%20stroke-opacity='.95'%20stroke-width='16'%20stroke-linecap='round'/%3E%3C/svg%3E" alt="阿久津和宏プロフィール写真">
+            <p class="profile-name">阿久津 和宏</p><p class="profile-role">行政書士／認定経営革新等支援機関</p>
+          </div>
+          <div>
+            <h3>Well Consultant合同会社<br>あくつ行政書士事務所</h3>
+            <p>セブン-イレブン・ジャパンで24年間、店舗運営コンサルティングに従事。独立後は補助金申請・事業計画・採択後の実績報告から入金までを支援しています。</p>
+            <p>補助金は「採択されること」ではなく、計画した事業を実行し、適切に報告し、実際に受け取り、事業へ活かして初めて意味があります。今の状況を責めるのではなく、残された期限と書類から、現実的にできる対応を一緒に整理します。</p>
+            <div class="profile-stats">
+              <div class="profile-stat"><b>700社以上</b><span>累計支援社数</span></div>
+              <div class="profile-stat"><b>8割以上</b><span>補助金採択実績</span></div>
+              <div class="profile-stat"><b>入金率100％</b><span>実績報告支援を完了した過去案件</span></div>
+              <div class="profile-stat"><b>全国対応</b><span>オンライン支援</span></div>
+            </div>
+            <p class="source-note">※入金率100％は、当事務所が実績報告支援を完了した過去案件の実績です。将来の採択・交付決定・満額交付・入金を保証するものではありません。案件の状況、制度、期限により対応できない場合があります。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-cream">
+      <div class="narrow">
+        <div class="center"><p class="eyebrow">FAQ</p><h2>よくあるご質問</h2></div>
+        <div class="faq-grid">
+          <details><summary>採択まで支援した人と別の専門家へ依頼しても大丈夫ですか？</summary><div class="answer">まず現在の契約内容をご確認ください。既存の支援者が採択後の手続に対応しない、または契約範囲外である場合は、資料を引き継いで支援できることがあります。初回確認時に、採択通知・交付決定通知・申請書・支援契約書などをご用意ください。</div></details>
+          <details><summary>すでに設備を購入・支払い済みですが、間に合いますか？</summary><div class="answer">購入時期、交付決定日、支払方法、証拠書類、制度の規程により異なります。すでに行った取引を後から変更できないこともあるため、まず事実関係を確認します。対応可能性を確認するため、早めにご相談ください。</div></details>
+          <details><summary>実績報告の期限が迫っています。対応できますか？</summary><div class="answer">残り日数、経費件数、書類の揃い具合、変更の有無により判断します。期限直前はお受けできない場合もありますが、何を優先すべきかの整理だけでもお役に立てる可能性があります。</div></details>
+          <details><summary>どこからどこまで支援してもらえますか？</summary><div class="answer">現在地と期限の確認から、証憑整理、変更手続、実績報告書類の作成、事務局の差戻し対応、額の確定、補助金請求、入金確認まで、採択後の一連の流れを支援します。制度上ご本人の操作・確認が必要な部分は、手順をご案内しながら進めます。</div></details>
+          <details><summary>行政書士が電子申請をすべて代わりに操作できますか？</summary><div class="answer">制度や電子申請システムの利用条件により異なります。本人操作が求められる部分は、画面共有などで手順をご案内し、ご本人に操作いただきます。書類作成・提出手続の代理が認められる範囲は、個別に確認します。</div></details>
+          <details><summary>相談すれば、補助金を必ず満額受け取れますか？</summary><div class="answer">いいえ。補助金の交付・金額を決めるのは事務局であり、結果を保証することはできません。早めに状況を把握し、ルールに沿って不足や不整合へ対応することで、取りこぼしリスクを減らすことを目指します。</div></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-navy" id="consultation">
+      <div class="wrap">
+        <div class="cta-panel">
+          <p class="eyebrow">FREE STATUS CHECK</p>
+          <h2>確定審査で減らされる前に。<br><span class="accent">受け取る予定の補助金を守る確認</span>をしませんか。</h2>
+          <p class="lead">「採択されたから大丈夫」と思っている今が確認のタイミングです。発注・契約・支払い・変更・証憑・期限を確認し、入金までの道筋を一本にします。</p>
+          <div class="cta-items">
+            <div class="cta-item"><b>STEP 1</b>補助金名・締切回・現在の進捗を送る</div>
+            <div class="cta-item"><b>STEP 2</b>期限・書類・変更の有無を確認</div>
+            <div class="cta-item"><b>STEP 3</b>入金までの対応方針と費用をご案内</div>
+          </div>
+          <div class="form-shell">
+            <h3>無料状況確認フォーム</h3>
+            <p>分かる範囲だけで構いません。現在の状況を確認後、ご連絡します。</p>
+            <iframe
+              id="traingo-embed"
+              src="https://lp2.well-c.biz/f/form-jq8c?embed=1"
+              width="100%"
+              frameborder="0"
+              scrolling="no"
+              title="補助金採択後・実績報告サポート お問い合わせフォーム"
+              style="border:0;background:transparent;max-width:560px;display:block;margin:0 auto;height:600px;min-height:600px"
+            ></iframe>
+            <p class="form-fallback">フォームが表示されない場合は、<a href="https://lp2.well-c.biz/f/form-jq8c" target="_blank" rel="noopener">こちらからお問い合わせください</a>。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-legal">
+        <a href="https://fp-1.info/hojokin/privacy/" target="_blank" rel="noopener">プライバシーポリシー</a>
+        <a href="https://fp-1.info/hojokin/tokusho/" target="_blank" rel="noopener">特定商取引法に基づく表記</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Well Consultant合同会社 All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="floating"><a class="btn" href="#consultation">減額・不支給リスクを無料確認</a></div>
+  <script>
+    (function(){
+      window.addEventListener("message",function(e){
+        if(e.origin!=="https://lp2.well-c.biz")return;
+        if(e.data&&e.data.type==="traingo:resize"&&e.data.height){
+          var form=document.getElementById("traingo-embed");
+          if(form){form.style.height=e.data.height+"px";form.style.minHeight="0";}
+        }
+      });
+      var button=document.getElementById('diagnose');
+      var result=document.getElementById('checkerResult');
+      if(!button||!result)return;
+      button.addEventListener('click',function(){
+        var count=document.querySelectorAll('input[name="risk"]:checked').length;
+        result.className='checker-result show '+(count===0?'low':count<=2?'mid':'high');
+        if(count===0){result.innerHTML='<b>現時点で選択項目はありません</b>ただし、期限・対象経費・必要証憑は制度ごとに異なります。交付決定通知と最新の手引きを確認し、書類は取引ごとに整理しておきましょう。';}
+        else if(count<=2){result.innerHTML='<b>'+count+'項目に確認が必要です</b>今の段階なら、事実関係と期限を整理することで対応できる可能性があります。発注・変更・支払いを進める前に、手引きと事務局への確認をおすすめします。';}
+        else{result.innerHTML='<b>'+count+'項目に確認が必要です</b>複数のリスクが重なっています。期限が近づくほど選択肢が減るため、採択通知・交付決定通知・申請書・取引書類を揃え、早めに専門家または事務局へご相談ください。';}
+        result.scrollIntoView({behavior:'smooth',block:'nearest'});
+      });
+    }());
+  </script>
+</body>
+</html>
