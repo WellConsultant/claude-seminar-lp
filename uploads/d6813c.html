@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>曽根様 宅建業免許新規申請 写真確認レポート</title>
+<style>
+  :root{
+    --good:#2e7d32; --good-bg:#e8f5e9; --good-bd:#a5d6a7;
+    --bad:#c62828;  --bad-bg:#fdecea;  --bad-bd:#ef9a9a;
+    --note:#757575; --note-bg:#f5f5f5; --note-bd:#e0e0e0;
+    --evidence:#1565c0; --evidence-bg:#e3f2fd; --evidence-bd:#90caf9;
+    --navy:#1a2a4a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    background:#f4f5f7; color:#222; line-height:1.7;
+  }
+  header{
+    background:linear-gradient(135deg,var(--navy),#2c4270);
+    color:#fff; padding:40px 20px 32px;
+  }
+  header h1{margin:0 0 8px; font-size:1.6rem;}
+  header p{margin:2px 0; opacity:.9; font-size:.92rem;}
+  .wrap{max-width:1000px; margin:0 auto; padding:0 20px 80px;}
+  .summary{
+    display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:-20px 0 32px;
+  }
+  @media(max-width:700px){.summary{grid-template-columns:1fr;}}
+  .sum-card{
+    border-radius:10px; padding:20px 22px; box-shadow:0 2px 10px rgba(0,0,0,.08);
+  }
+  .sum-card.good{background:var(--good-bg); border:1px solid var(--good-bd);}
+  .sum-card.bad{background:var(--bad-bg); border:1px solid var(--bad-bd);}
+  .sum-card h2{margin:0 0 10px; font-size:1.05rem;}
+  .sum-card.good h2{color:var(--good);}
+  .sum-card.bad h2{color:var(--bad);}
+  .sum-card ul{margin:0; padding-left:1.2em;}
+  .sum-card li{margin-bottom:6px; font-size:.92rem;}
+
+  section.block{margin-bottom:44px;}
+  .block-head{
+    display:flex; align-items:baseline; gap:10px; border-bottom:3px solid var(--navy);
+    padding-bottom:8px; margin-bottom:6px;
+  }
+  .block-head h2{margin:0; font-size:1.15rem; color:var(--navy);}
+  .block-desc{font-size:.88rem; color:#555; margin:0 0 18px;}
+
+  .rule-box{
+    background:#eef1f8; border-left:4px solid var(--navy); border-radius:6px;
+    padding:10px 14px; margin:0 0 18px; font-size:.83rem; color:#333;
+  }
+  .rule-box b{color:var(--navy);}
+
+  .idea-box{
+    background:#fff8e1; border:1px dashed #ffca28; border-radius:10px;
+    padding:18px 20px; color:#7a5c00; font-size:.92rem; margin-top:16px;
+  }
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px;}
+  .card{
+    background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.08);
+    display:flex; flex-direction:column;
+  }
+  .card img{width:100%; height:190px; object-fit:cover; display:block; background:#ddd;}
+  .card-body{padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1;}
+  .fname{font-size:.75rem; color:#999; font-family:monospace;}
+  .tag{
+    display:inline-block; font-size:.72rem; font-weight:bold; padding:2px 8px;
+    border-radius:20px; width:fit-content;
+  }
+  .tag.good{background:var(--good-bg); color:var(--good); border:1px solid var(--good-bd);}
+  .tag.bad{background:var(--bad-bg); color:var(--bad); border:1px solid var(--bad-bd);}
+  .tag.note{background:var(--note-bg); color:var(--note); border:1px solid var(--note-bd);}
+  .tag.evidence{background:var(--evidence-bg); color:var(--evidence); border:1px solid var(--evidence-bd);}
+  .card p.desc{margin:0; font-size:.87rem; color:#333;}
+  .card p.judge{margin:0; font-size:.85rem; padding:6px 8px; border-radius:6px;}
+  .card p.judge.ok{background:var(--good-bg); color:var(--good);}
+  .card p.judge.ng{background:var(--bad-bg); color:var(--bad);}
+
+  .missing-box{
+    background:var(--bad-bg); border:1px dashed var(--bad-bd); border-radius:10px;
+    padding:20px; color:var(--bad); font-size:.92rem;
+  }
+
+  .final{
+    background:#fff; border-radius:10px; padding:24px 26px; box-shadow:0 2px 10px rgba(0,0,0,.08);
+    border-left:6px solid var(--navy);
+  }
+  .final h2{margin-top:0; color:var(--navy); font-size:1.15rem;}
+  .final h3{font-size:1rem; margin:18px 0 6px;}
+  .final ol,.final ul{padding-left:1.3em;}
+  .final li{margin-bottom:8px; font-size:.93rem;}
+
+  .count-pill{
+    background:rgba(255,255,255,.15); border-radius:20px; padding:3px 12px;
+    font-size:.8rem; margin-left:auto;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap" style="padding:0;">
+    <h1>宅建業免許新規申請 事務所写真 確認レポート</h1>
+    <p>対象：マンションアクロス 801号室（京華株式会社）／神奈川県「宅地建物取引業法免許申請書等の記載手引」との照合</p>
+    <p>写真データ：iloveimg-converted フォルダ　全58枚を1枚ずつ確認</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="summary">
+    <div class="sum-card good">
+      <h2>✅ 手引きの要件に合致している点</h2>
+      <ul>
+        <li>集合ポスト「801・京華株式会社」の表示写真が複数枚あり、事務所の所在地（号室）を明確に証明できている</li>
+        <li>手引き(5)「電話機、机、椅子を撮影し、執務スペース及び応接スペースが確保できていることがわかるもの」に合致する什器（デスク・パソコン・電話機・FAX・応接テーブル）が揃っている</li>
+        <li>手引き(5)「事務所内のブラインド、カーテン等は開けた状態で撮影してください」に合致。窓のオレンジカーテンは開けた状態で撮影されている</li>
+        <li>手引き(5)「四隅等複数方向から撮影したもの」に合致。曽根様があらゆる角度から数多く撮影してくれており、素材として厚みがある</li>
+        <li>新規申請時点で宅建業を営む旨の表示（商号看板等）を建物外部・入口に出していない＝手引きの「新規申請時は表示禁止」ルールに合致</li>
+      </ul>
+    </div>
+    <div class="sum-card bad">
+      <h2>❌ 手引きの要件に対して不足している点</h2>
+      <ul>
+        <li><b>提出用平面図が未加工</b>（分譲時の基本間取り図は見つかったが、手引き(4)「事務所内の机・いす・棚等のレイアウトがわかるように」＝事務所部分の区画表示・着色・書き込みが未実施）</li>
+        <li>手引きが求める6区分（外観／入口付近／看板／事務所入口／内部／業者票）ごとの仕分けがまだされておらず、どの写真をどの区分の提出用に使うかの整理が必要</li>
+        <li>接客テーブルの椅子配置が、奥の椅子に座るための通過スペースを塞いでいる（下記E区分参照）</li>
+        <li>事務所と無関係な周辺写真（駅前・薬局・クリニック・飲食店等）が11枚混在しており、提出書類として使えない</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- A -->
+  <section class="block">
+    <div class="block-head"><h2>A. 建物全景・外観〔記載手引き区分(1)〕</h2></div>
+    <div class="rule-box"><b>手引き原文：</b>「建物の全体像がわかるように、ビル等の場合は1階から屋上まで撮影してください。」</div>
+    <div class="grid">
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3735.jpg" alt="IMG_3735">
+        <div class="card-body">
+          <span class="fname">IMG_3735.jpg</span>
+          <span class="tag good">合致</span>
+          <p class="judge ok">建物入口上部の「マンションアクロス」名称表示と防犯カメラが確認できる。建物名の裏付けとして区分(1)に使える1枚。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3644.jpg" alt="IMG_3644">
+        <div class="card-body">
+          <span class="fname">IMG_3644.jpg</span>
+          <span class="tag good">合致</span>
+          <p class="judge ok">マンション外観・テナント表示側から撮影。建物の全景把握に使える。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3643.jpg" alt="IMG_3643">
+        <div class="card-body">
+          <span class="fname">IMG_3643.jpg</span>
+          <span class="tag note">補助</span>
+          <p class="desc">建物周辺・外観の関連カット。全景写真の補助資料として利用可。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3637.jpg" alt="IMG_3637">
+        <div class="card-body">
+          <span class="fname">IMG_3637.jpg</span>
+          <span class="tag evidence">区分変更で活用</span>
+          <p class="desc">建物外観ではなく801号室内の廊下（玄関ドアへ続く通路）の撮影のため、区分(1)「建物全景外部」としてはそのまま使えない。ただし事務所などに行くルートそのものを写した写真であり、手引きP10の独立性要件「玄関部分から他の部屋を通らずに事務所に行ける」ことを示す動線写真として、下のB区分（入口〜事務所までの動線）に活用する。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="block">
+    <div class="block-head"><h2>B. 建物入口・事務所までの動線〔記載手引き区分(2)〕</h2></div>
+    <div class="rule-box"><b>手引き原文：</b>「入口周辺の様子がわかるものとして…適度な距離から入口全体が把握できる写真を撮影してください。」「入口から事務所までの動線が把握できる写真を撮影してください。」</div>
+    <div class="grid">
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3734.jpg" alt="IMG_3734">
+        <div class="card-body">
+          <span class="fname">IMG_3734.jpg</span>
+          <span class="tag good">合致</span>
+          <p class="judge ok">マンション入口の自動ドア、ALSOK防犯カメラ・AEDステッカー、管理事務所への案内表示が確認できる。建物入口の写真として適切。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3693.jpg" alt="IMG_3693">
+        <div class="card-body">
+          <span class="fname">IMG_3693.jpg</span>
+          <span class="tag good">合致</span>
+          <p class="judge ok">801号室側の集合玄関入口ドア（暗赤色）とインターホン。集合ポストのクローズアップも同一カットで確認できる。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3637.jpg" alt="IMG_3637（事務所への動線）">
+        <div class="card-body">
+          <span class="fname">IMG_3637.jpg</span>
+          <span class="tag evidence">動線・独立性の証拠</span>
+          <p class="judge ok">801号室内の廊下から玄関ドアへ向かうカット。事務所などに行くルートそのものを写しており、手引き(2)「入口から事務所までの動線が把握できる写真」および手引きP10の独立性要件「①玄関部分から事務所に他の部屋を通らずに行ける」の裏付けとして使える。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3692.jpg" alt="IMG_3692">
+        <div class="card-body">
+          <span class="fname">IMG_3692.jpg</span>
+          <span class="tag note">参考</span>
+          <p class="desc">集合玄関の共用廊下（天井換気扇・掲示板）。事務所そのものではなく共用部の様子。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3674.jpg" alt="IMG_3674">
+        <div class="card-body">
+          <span class="fname">IMG_3674.jpg</span>
+          <span class="tag note">参考</span>
+          <p class="desc">共用廊下・屋上付近の撮影。建物入口付近の補足として利用可能な程度。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3675.jpg" alt="IMG_3675">
+        <div class="card-body">
+          <span class="fname">IMG_3675.jpg</span>
+          <span class="tag note">参考</span>
+          <p class="desc">共用部の撮影カット。区分(2)の補助資料程度。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3676.jpg" alt="IMG_3676">
+        <div class="card-body">
+          <span class="fname">IMG_3676.jpg</span>
+          <span class="tag note">参考</span>
+          <p class="desc">共用部の撮影カット。区分(2)の補助資料程度。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3678.jpg" alt="IMG_3678">
+        <div class="card-body">
+          <span class="fname">IMG_3678.jpg</span>
+          <span class="tag note">参考</span>
+          <p class="desc">共用廊下・屋上付近の撮影カット。区分(2)の補助資料程度。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="block">
+    <div class="block-head"><h2>C. 集合ポスト「801・京華株式会社」の表示〔決定的証拠〕</h2></div>
+    <p class="block-desc">記載手引きの6区分には含まれないが、事務所の所在地（号室）と商号の対応関係を裏付ける最重要の証拠写真群。この点は非常に強い。</p>
+    <div class="grid">
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3733.jpg" alt="IMG_3733">
+        <div class="card-body">
+          <span class="fname">IMG_3733.jpg</span>
+          <span class="tag evidence">最重要証拠</span>
+          <p class="desc">集合ポスト「801」に「京華株式会社」のラベルが貼付されているクローズアップ。801号室＝京華株式会社であることを示す決定的な1枚。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3732.jpg" alt="IMG_3732">
+        <div class="card-body">
+          <span class="fname">IMG_3732.jpg</span>
+          <span class="tag evidence">証拠写真</span>
+          <p class="desc">501〜1301号室分の集合ポスト一覧。801番のポストにラベルが確認できる全体構図。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3713.jpg" alt="IMG_3713">
+        <div class="card-body">
+          <span class="fname">IMG_3713.jpg</span>
+          <span class="tag evidence">証拠写真</span>
+          <p class="desc">701〜906号室の集合ポスト一覧。801の位置関係を確認できる。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3681.jpg" alt="IMG_3681">
+        <div class="card-body">
+          <span class="fname">IMG_3681.jpg</span>
+          <span class="tag evidence">証拠写真</span>
+          <p class="desc">集合ポストのクローズアップ。「801・京華株式会社」表示。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3682.jpg" alt="IMG_3682">
+        <div class="card-body">
+          <span class="fname">IMG_3682.jpg</span>
+          <span class="tag evidence">証拠写真</span>
+          <p class="desc">集合ポストのクローズアップ。「801・京華株式会社」表示（別アングル）。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3719.jpg" alt="IMG_3719">
+        <div class="card-body">
+          <span class="fname">IMG_3719.jpg</span>
+          <span class="tag note">参考</span>
+          <p class="desc">集合玄関の自動ドアと集合ポスト（701〜806）。「関係者以外立入禁止」の掲示も確認できる。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3720.jpg" alt="IMG_3720">
+        <div class="card-body">
+          <span class="fname">IMG_3720.jpg</span>
+          <span class="tag note">参考</span>
+          <p class="desc">集合玄関ホール、集合ポスト（701〜906）と防犯カメラ2台。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- D -->
+  <section class="block">
+    <div class="block-head"><h2>D. 事務所の直接入口〔記載手引き区分(4)〕</h2></div>
+    <div class="rule-box"><b>手引き原文：</b>「商号（『株式会社』等を省略しない正式なもの）、名称を掲示した入口全体の写真としてください。」</div>
+    <div class="grid">
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3684.jpg" alt="IMG_3684">
+        <div class="card-body">
+          <span class="fname">IMG_3684.jpg</span>
+          <span class="tag evidence">決定的証拠</span>
+          <p class="judge ok">玄関ドアを開けた状態で、廊下の先に集合ポスト「801・京華株式会社」が同時に写り込む構図。事務所位置の証明力が高い1枚。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3683.jpg" alt="IMG_3683">
+        <div class="card-body">
+          <span class="fname">IMG_3683.jpg</span>
+          <span class="tag good">合致</span>
+          <p class="judge ok">玄関ドア開放時の撮影。事務所入口の様子が分かる。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3724.jpg" alt="IMG_3724">
+        <div class="card-body">
+          <span class="fname">IMG_3724.jpg</span>
+          <span class="tag good">合致</span>
+          <p class="judge ok">事務所ドアに「京華株式会社」の商号表示。奥に応接テーブルの室内が見える。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3686.jpg" alt="IMG_3686">
+        <div class="card-body">
+          <span class="fname">IMG_3686.jpg</span>
+          <span class="tag good">合致</span>
+          <p class="judge ok">玄関からリビング方向。ドアに「京華株式会社」の商号表示、奥にデスクPC・モニターが確認できる。</p>
+        </div>
+      </div>
+    </div>
+    <p class="desc" style="font-size:.85rem;color:#555;margin-top:10px;">
+      ※室内の紙表示は、新規申請時点で禁止されている「宅建業を営む旨の外部表示」には該当しない（建物外観・入口の看板ではなく室内の掲示のため）。この点はむしろ現状の運用として問題ない。
+    </p>
+  </section>
+
+  <!-- E -->
+  <section class="block">
+    <div class="block-head"><h2>E. 事務所内部〔記載手引き区分(5)〕</h2></div>
+    <p class="block-desc">
+      デスク・電話機・FAX・応接用テーブルなど業務用什器は確認できるが、<b>ほぼ全カットでオレンジ色のカーテンが閉め切り状態</b>で撮影されている点が最大の懸念。
+      記載手引きは「ブラインド・カーテン等は開けた状態で撮影」を明示しており、この点は再撮影が必要になる可能性が高い。
+      また、同一の部屋を多数の角度から反復撮影しているため、代表的な数カットに絞る整理が望ましい。
+    </p>
+    <div class="grid">
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3688.jpg" alt="IMG_3688">
+        <div class="card-body">
+          <span class="fname">IMG_3688.jpg</span>
+          <span class="tag bad">要再撮影</span>
+          <p class="desc">デスクPC・電話機・FAX一式、丸テーブルと椅子3脚。窓のオレンジカーテンが閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3689.jpg" alt="IMG_3689">
+        <div class="card-body">
+          <span class="fname">IMG_3689.jpg</span>
+          <span class="tag bad">要再撮影</span>
+          <p class="desc">部屋の別角度。丸テーブル・椅子、クローゼット。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3690.jpg" alt="IMG_3690">
+        <div class="card-body">
+          <span class="fname">IMG_3690.jpg</span>
+          <span class="tag bad">要再撮影</span>
+          <p class="desc">プリンター、押し入れカバー付き家具、丸テーブル。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3691.jpg" alt="IMG_3691">
+        <div class="card-body">
+          <span class="fname">IMG_3691.jpg</span>
+          <span class="tag bad">要再撮影</span>
+          <p class="desc">プリンター、押し入れカバー付き家具、デスクPC一式。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3696.jpg" alt="IMG_3696">
+        <div class="card-body">
+          <span class="fname">IMG_3696.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">同室の反復撮影（デスク・電話機・丸テーブル）。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3697.jpg" alt="IMG_3697">
+        <div class="card-body">
+          <span class="fname">IMG_3697.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">同室の反復撮影。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3698.jpg" alt="IMG_3698">
+        <div class="card-body">
+          <span class="fname">IMG_3698.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">事務所内部（デスクPC・電話機・FAX・丸テーブル・椅子・押し入れ・クローゼット）。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3699.jpg" alt="IMG_3699">
+        <div class="card-body">
+          <span class="fname">IMG_3699.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">同室の反復撮影。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3700.jpg" alt="IMG_3700">
+        <div class="card-body">
+          <span class="fname">IMG_3700.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">同室の反復撮影。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3701.jpg" alt="IMG_3701">
+        <div class="card-body">
+          <span class="fname">IMG_3701.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">同室の反復撮影。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3702.jpg" alt="IMG_3702">
+        <div class="card-body">
+          <span class="fname">IMG_3702.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">同室の反復撮影。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3703.jpg" alt="IMG_3703">
+        <div class="card-body">
+          <span class="fname">IMG_3703.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">同室の反復撮影。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3704.jpg" alt="IMG_3704">
+        <div class="card-body">
+          <span class="fname">IMG_3704.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">同室の反復撮影。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3705.jpg" alt="IMG_3705">
+        <div class="card-body">
+          <span class="fname">IMG_3705.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">同室の反復撮影。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3709.jpg" alt="IMG_3709">
+        <div class="card-body">
+          <span class="fname">IMG_3709.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">同室の反復撮影。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3710.jpg" alt="IMG_3710">
+        <div class="card-body">
+          <span class="fname">IMG_3710.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">同室の反復撮影。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3726.jpg" alt="IMG_3726">
+        <div class="card-body">
+          <span class="fname">IMG_3726.jpg</span>
+          <span class="tag bad">要再撮影</span>
+          <p class="desc">デスクPC・ノートPC・電話機、丸テーブル、クローゼット、TV。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3727.jpg" alt="IMG_3727">
+        <div class="card-body">
+          <span class="fname">IMG_3727.jpg</span>
+          <span class="tag bad">要再撮影</span>
+          <p class="desc">プリンター・TV・丸テーブル・デスク電話機FAX一式。別アングル。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3728.jpg" alt="IMG_3728">
+        <div class="card-body">
+          <span class="fname">IMG_3728.jpg</span>
+          <span class="tag bad">要再撮影</span>
+          <p class="desc">押し入れ・丸テーブル・椅子、廊下方向のドア。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3729.jpg" alt="IMG_3729">
+        <div class="card-body">
+          <span class="fname">IMG_3729.jpg</span>
+          <span class="tag bad">重複カット</span>
+          <p class="desc">押し入れ・丸テーブル・椅子。カーテン閉め切り。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3730.jpg" alt="IMG_3730">
+        <div class="card-body">
+          <span class="fname">IMG_3730.jpg</span>
+          <span class="tag good">良い（什器確認用）</span>
+          <p class="desc">TV・プリンター・丸テーブル・デスク電話機FAX一式が1カットで確認できる、什器全体像の把握に適した写真。カーテンのみ要改善。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- F -->
+  <section class="block">
+    <div class="block-head"><h2>F. 共用部・エレベーターホール等〔区分外・参考資料〕</h2></div>
+    <p class="block-desc">記載手引きの6区分には直接該当しないが、建物の管理状況や独立性を補足するための参考資料として使える写真。</p>
+    <div class="grid">
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3711.jpg" alt="IMG_3711">
+        <div class="card-body">
+          <span class="fname">IMG_3711.jpg</span>
+          <span class="tag note">参考</span>
+          <p class="desc">共用廊下・避難通路からの夜景。事務所とは直接関係しない共用部の撮影。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3712.jpg" alt="IMG_3712">
+        <div class="card-body">
+          <span class="fname">IMG_3712.jpg</span>
+          <span class="tag note">参考</span>
+          <p class="desc">共用廊下、消火器・掲示板、暗赤色の玄関扉が奥に見える。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3716.jpg" alt="IMG_3716">
+        <div class="card-body">
+          <span class="fname">IMG_3716.jpg</span>
+          <span class="tag note">参考</span>
+          <p class="desc">マンション集合玄関ホール内部、タイル壁と案内掲示。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="../iloveimg-converted/IMG_3721.jpg" alt="IMG_3721">
+        <div class="card-body">
+          <span class="fname">IMG_3721.jpg</span>
+          <span class="tag note">参考</span>
+          <p class="desc">エレベーターホール、2基のエレベーターと避難経路案内図。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- G -->
+  <section class="block">
+    <div class="block-head"><h2>G. 事務所と無関係な周辺写真〔要整理・提出書類として使用不可〕</h2></div>
+    <p class="block-desc">駅前・薬局・クリニックビル・飲食店など、事務所や建物とは異なる場所の写真が11枚含まれている。記載手引きのいずれの区分にも該当せず、提出資料としては使えないため、申請書類からは除外することを推奨する。</p>
+    <div class="grid">
+      <div class="card"><img src="../iloveimg-converted/IMG_3736.jpg" alt="IMG_3736"><div class="card-body"><span class="fname">IMG_3736.jpg</span><span class="tag note">使用不可</span><p class="desc">駅前・高架下付近の風景。</p></div></div>
+      <div class="card"><img src="../iloveimg-converted/IMG_3739.jpg" alt="IMG_3739"><div class="card-body"><span class="fname">IMG_3739.jpg</span><span class="tag note">使用不可</span><p class="desc">周辺エリアの撮影カット。</p></div></div>
+      <div class="card"><img src="../iloveimg-converted/IMG_3740.jpg" alt="IMG_3740"><div class="card-body"><span class="fname">IMG_3740.jpg</span><span class="tag note">使用不可</span><p class="desc">周辺エリアの撮影カット。</p></div></div>
+      <div class="card"><img src="../iloveimg-converted/IMG_3741.jpg" alt="IMG_3741"><div class="card-body"><span class="fname">IMG_3741.jpg</span><span class="tag note">使用不可</span><p class="desc">「日の出薬局」周辺の撮影カット。</p></div></div>
+      <div class="card"><img src="../iloveimg-converted/IMG_3742.jpg" alt="IMG_3742"><div class="card-body"><span class="fname">IMG_3742.jpg</span><span class="tag note">使用不可</span><p class="desc">クリニックビル付近の撮影カット。</p></div></div>
+      <div class="card"><img src="../iloveimg-converted/IMG_3743.jpg" alt="IMG_3743"><div class="card-body"><span class="fname">IMG_3743.jpg</span><span class="tag note">使用不可</span><p class="desc">周辺エリアの撮影カット。</p></div></div>
+      <div class="card"><img src="../iloveimg-converted/IMG_3744.jpg" alt="IMG_3744"><div class="card-body"><span class="fname">IMG_3744.jpg</span><span class="tag note">使用不可</span><p class="desc">周辺エリアの撮影カット。</p></div></div>
+      <div class="card"><img src="../iloveimg-converted/IMG_3745.jpg" alt="IMG_3745"><div class="card-body"><span class="fname">IMG_3745.jpg</span><span class="tag note">使用不可</span><p class="desc">周辺エリアの撮影カット。</p></div></div>
+      <div class="card"><img src="../iloveimg-converted/IMG_3746.jpg" alt="IMG_3746"><div class="card-body"><span class="fname">IMG_3746.jpg</span><span class="tag note">使用不可</span><p class="desc">周辺エリアの撮影カット。</p></div></div>
+      <div class="card"><img src="../iloveimg-converted/IMG_3747.jpg" alt="IMG_3747"><div class="card-body"><span class="fname">IMG_3747.jpg</span><span class="tag note">使用不可</span><p class="desc">サイゼリヤ付近の撮影カット。</p></div></div>
+      <div class="card"><img src="../iloveimg-converted/IMG_3748.jpg" alt="IMG_3748"><div class="card-body"><span class="fname">IMG_3748.jpg</span><span class="tag note">使用不可</span><p class="desc">周辺エリアの撮影カット。</p></div></div>
+    </div>
+  </section>
+
+  <!-- H -->
+  <section class="block">
+    <div class="block-head"><h2>H. 平面図〔記載手引き必須資料〕</h2></div>
+    <p class="block-desc">写真確認とは別ルートで「平面図.pdf」（マンションアクロス分譲時の図面集）が見つかったため、内容を確認した。</p>
+    <div class="grid">
+      <div class="card">
+        <img src="plan/floorplan-2.jpg" alt="801号室 A2タイプ間取り図">
+        <div class="card-body">
+          <span class="fname">平面図.pdf 2ページ目</span>
+          <span class="tag note">部分適合</span>
+          <p class="desc">801号室（A2タイプ／専有面積72.44㎡）の基本間取り図。居間・食堂、キッチン、和室、洋室(1)(2)、玄関、廊下の配置は確認できる。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="plan/floorplan-3.jpg" alt="8〜10F 全体配置図">
+        <div class="card-body">
+          <span class="fname">平面図.pdf 3ページ目</span>
+          <span class="tag note">参考</span>
+          <p class="desc">8〜10F全体配置図。801号室が「Aタイプ」として建物内のどの位置にあるかが分かる。独立した住戸区画であることの裏付けにはなる。</p>
+        </div>
+      </div>
+    </div>
+    <div class="missing-box" style="margin-top:16px;">
+      <b>⚠️ このままでは提出用平面図として不足</b><br>
+      見つかった図面は分譲時の「基本間取り図」であり、事務所として使用する部屋・応接スペース・出入口を示す加工（着色・斜線・部屋名の書き込み等）がされていない。
+      記載手引きが求めるのは「事務所部分と居住部分の区画が分かる平面図」のため、この基本間取り図をベースに、実際に事務所として使っている洋室・居間の範囲を色分けし、独立した出入口動線を書き込んだ提出用の平面図を別途作成する必要がある。
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="block">
+    <div class="final">
+      <h2>総括</h2>
+
+      <h3>良かった点</h3>
+      <ul>
+        <li>集合ポスト・玄関ドアの写真により「801号室＝京華株式会社」という対応関係は複数枚の証拠で裏付けられており、この点の証明力は十分。</li>
+        <li>事務所内にデスク・パソコン・電話機・FAXなど、業務を継続的に行える設備が整っていることが写真から確認できる。</li>
+        <li>新規申請の時点で建物外部・入口に商号看板等を掲示していない点は、記載手引きのルール（新規申請時は宅建業を営む旨の表示禁止）に合致しており問題ない。</li>
+      </ul>
+
+      <h3>直すべき点（優先度順）</h3>
+      <ol>
+        <li><b>カーテンを開けた状態で事務所内部を再撮影する。</b>ほぼ全カットでオレンジカーテンが閉め切りのため、記載手引きの指示に反する可能性が高い。</li>
+        <li><b>見つかった基本間取り図（平面図.pdf）に事務所部分の着色・書き込みを加えて提出用平面図に仕上げる。</b>独立性確認のため必須。</li>
+        <li><b>写真を6区分（外観／入口付近／看板／事務所直接入口／内部／業者票）ごとに整理し直す。</b>現状は同じ部屋の重複カットが20枚以上あり、区分ごとに代表カットを2〜3枚に絞るのが望ましい。</li>
+        <li>事務所と無関係な周辺写真（11枚）は提出書類から除外する。</li>
+      </ol>
+
+      <h3>次のアクション</h3>
+      <p>①カーテンを開けた状態での事務所内部再撮影　②見つかった間取り図に事務所区画を書き込んだ提出用平面図の作成　③6区分に沿った代表写真の選定、の3点を進めれば申請書類として整う見込み。</p>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
