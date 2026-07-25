@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>埼玉建設業許可（新規） 実務準備ガイド</title>
+<style>
+  :root {
+    --navy: #002B49;
+    --dark-navy: #001A2D;
+    --light-navy: #00407A;
+    --text-black: #222222;
+    --bg-gray: #F4F6F8;
+    --border-gray: #CCCCCC;
+    --white: #FFFFFF;
+    --warning-bg: #FFF8E6;
+    --warning-border: #E6A23C;
+    --alert-bg: #FEEFEF;
+    --alert-border: #F56C6C;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+    color: var(--text-black);
+    background-color: var(--bg-gray);
+    line-height: 1.6;
+  }
+
+  /* Layout Base */
+  .container {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Header for Mobile */
+  .mobile-header {
+    display: none;
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .mobile-header h1 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .mobile-nav select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    font-size: 0.9rem;
+  }
+
+  /* Sidebar Navigation (PC) */
+  .sidebar {
+    width: 280px;
+    background-color: var(--navy);
+    color: var(--white);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    padding: 20px 15px;
+    z-index: 10;
+  }
+
+  .sidebar h2 {
+    font-size: 1.1rem;
+    border-bottom: 2px solid var(--white);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    color: var(--white);
+  }
+
+  .sidebar ul {
+    list-style: none;
+  }
+
+  .sidebar li {
+    margin-bottom: 8px;
+  }
+
+  .sidebar a {
+    color: #DCDCDC;
+    text-decoration: none;
+    font-size: 0.85rem;
+    display: block;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .sidebar a:hover {
+    background-color: var(--light-navy);
+    color: var(--white);
+  }
+
+  /* Main Content Area */
+  .main-content {
+    margin-left: 280px;
+    flex: 1;
+    padding: 40px;
+    background-color: var(--white);
+    max-width: 1200px;
+  }
+
+  /* Typography & Component Styling */
+  h1 {
+    font-size: 1.8rem;
+    color: var(--navy);
+    border-bottom: 3px solid var(--navy);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    color: var(--navy);
+    background-color: var(--bg-gray);
+    padding: 10px 15px;
+    border-left: 6px solid var(--navy);
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    color: var(--dark-navy);
+    border-bottom: 1px solid var(--border-gray);
+    padding-bottom: 5px;
+    margin-top: 25px;
+    margin-bottom: 12px;
+  }
+
+  p, li {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  ul, ol {
+    padding-left: 20px;
+    margin-bottom: 15px;
+  }
+
+  /* Tables */
+  .table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    text-align: left;
+  }
+
+  th, td {
+    border: 1px solid var(--border-gray);
+    padding: 10px;
+    vertical-align: top;
+  }
+
+  th {
+    background-color: var(--navy);
+    color: var(--white);
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  tr:nth-child(even) {
+    background-color: #F9FAFB;
+  }
+
+  /* Callouts & Badges */
+  .citation {
+    display: inline-block;
+    font-size: 0.75rem;
+    background-color: #E8EEF5;
+    color: var(--navy);
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    font-weight: bold;
+  }
+
+  .badge-required {
+    background-color: #D9534F;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+  }
+
+  .badge-optional {
+    background-color: #5BC0DE;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+  }
+
+  .box-warning {
+    background-color: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  .box-alert {
+    background-color: var(--alert-bg);
+    border: 1px solid var(--alert-border);
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  .box-info {
+    background-color: #EBF3FA;
+    border: 1px solid #B8D5E5;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  .box-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .confirm-item {
+    color: #C0392B;
+    font-weight: bold;
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 900px) {
+    .container {
+      flex-direction: column;
+    }
+    .sidebar {
+      display: none;
+    }
+    .mobile-header {
+      display: block;
+    }
+    .main-content {
+      margin-left: 0;
+      padding: 20px 15px;
+    }
+  }
+
+  /* Print Stylesheet */
+  @media print {
+    .sidebar, .mobile-header {
+      display: none !important;
+    }
+    .main-content {
+      margin-left: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      max-width: none !important;
+    }
+    body {
+      background-color: var(--white);
+      color: #000;
+      font-size: 10pt;
+    }
+    h2 {
+      background-color: #EEE !important;
+      color: #000 !important;
+      border-left: 4px solid #000 !important;
+      page-break-after: avoid;
+    }
+    table {
+      font-size: 8pt;
+      page-break-inside: auto;
+    }
+    tr {
+      page-break-inside: avoid;
+      page-break-after: auto;
+    }
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+    .citation {
+      border: 1px solid #999;
+      background: none;
+      color: #000;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="mobile-header">
+  <h1>埼玉建設業許可（新規）ガイド</h1>
+  <div class="mobile-nav">
+    <select onchange="if (this.value) window.location.hash = this.value;">
+      <option value="">-- 目次を選択 --</option>
+      <option value="sec-info">1. 基本案件情報</option>
+      <option value="sec-overview">2. 手続の全体像・区分</option>
+      <option value="sec-conditions">3. 対象者・前提条件・営業所要件</option>
+      <option value="sec-requirements">4. 許可要件・判断基準・証明資料</option>
+      <option value="sec-documents">5. 提出書類一覧</option>
+      <option value="sec-procedure">6. 申請方法・窓口・提出先</option>
+      <option value="sec-fees">7. 手数料・処理期間・時期</option>
+      <option value="sec-steps">8. 申請準備手順</option>
+      <option value="sec-rules">9. 埼玉県独自の最新ルール</option>
+      <option value="sec-pitfalls">10. つまずきやすい点・補正対策</option>
+      <option value="sec-conflicts">11. 資料間の注意点・矛盾点</option>
+      <option value="sec-unconfirmed">12. 要確認事項・行政窓口質問集</option>
+      <option value="sec-sources">13. 出典資料リンク一覧</option>
+    </select>
+  </div>
+</div>
+
+<div class="container">
+  <!-- PC Dynamic Sidebar -->
+  <nav class="sidebar">
+    <h2>目次</h2>
+    <ul>
+      <li><a href="#sec-info">1. 基本案件情報</a></li>
+      <li><a href="#sec-overview">2. 手続の全体像・区分</a></li>
+      <li><a href="#sec-conditions">3. 対象者・前提条件・営業所要件</a></li>
+      <li><a href="#sec-requirements">4. 許可要件・判断基準・証明資料</a></li>
+      <li><a href="#sec-documents">5. 提出書類一覧</a></li>
+      <li><a href="#sec-procedure">6. 申請方法・窓口・提出先</a></li>
+      <li><a href="#sec-fees">7. 手数料・処理期間・時期</a></li>
+      <li><a href="#sec-steps">8. 申請準備手順</a></li>
+      <li><a href="#sec-rules">9. 埼玉県独自の最新ルール</a></li>
+      <li><a href="#sec-pitfalls">10. つまずきやすい点・補正対策</a></li>
+      <li><a href="#sec-conflicts">11. 資料間の注意点・矛盾点</a></li>
+      <li><a href="#sec-unconfirmed">12. 要確認事項・行政窓口質問集</a></li>
+      <li><a href="#sec-sources">13. 出典資料リンク一覧</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <h1>埼玉建設業許可（新規） 実務準備ガイド</h1>
+    <p>本ガイドは、埼玉県における建設業許可（新規申請）の手続きに関して、手引き・様式等の提示情報に基づき、依頼者が「何を、なぜ、いつまでに、どのように用意すべきか」を実務レベルで整理した確認用ガイドです。</p>
+
+    <!-- SECTION 1 -->
+    <section id="sec-info">
+      <h2>1. 基本案件情報</h2>
+      <div class="table-wrapper">
+        <table>
+          <tr>
+            <th style="width: 20%;">項目</th>
+            <th style="width: 80%;">内容</th>
+          </tr>
+          <tr>
+            <td><strong>案件名</strong></td>
+            <td>埼玉建設業許可</td>
+          </tr>
+          <tr>
+            <td><strong>都道府県</strong></td>
+            <td>埼玉県</td>
+          </tr>
+          <tr>
+            <td><strong>手続名</strong></td>
+            <td>埼玉建設業許可（新規申請）</td>
+          </tr>
+          <tr>
+            <td><strong>申請区分</strong></td>
+            <td>新規（知事許可・般特新規含む）</td>
+          </tr>
+          <tr>
+            <td><strong>行政起点ページ</strong></td>
+            <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">https://www.pref.saitama.lg.jp/a1002/youshiki2704.html</a></td>
+          </tr>
+          <tr>
+            <td><strong>依頼内容・事情</strong></td>
+            <td>未入力（新規取得に伴う要件要確認・書類収集）</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section id="sec-overview">
+      <h2>2. 手続の全体像・区分</h2>
+      <p>埼玉県内で新たに建設業を営もうとする場合、都道府県知事または国土交通大臣の許可を受ける必要があります。</p>
+      <ul>
+        <li><strong>許可の区分:</strong> 埼玉県内にのみ営業所を置く場合は「埼玉県知事許可」、複数の都道府県に営業所を置く場合は「国土交通大臣許可」となります <span class="citation">S207: (PDF_12,823KB).pdf</span>。また、工事の発注形態や請負金額規模に応じて「一般建設業」と「特定建設業」の区分が存在します <span class="citation">S207: (PDF_12,823KB).pdf</span>。</li>
+        <li><strong>受付方法:</strong> 窓口持参による申請のほか、令和5年1月10日より「建設業許可・経営事項審査電子申請システム（JCIP）」による電子申請受付が開始されています <span class="citation">S207: (PDF_12,823KB).pdf</span>。なお、郵送による新規申請受付は行われていません <span class="citation">S223: 送付票(PDF_191KB).pdf</span>。</li>
+      </ul>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section id="sec-conditions">
+      <h2>3. 対象者・前提条件・営業所要件</h2>
+      
+      <h3>対象者および前提条件（許可不要工事）</h3>
+      <p>建設業を営もうとする事業者が対象です。ただし、建設業施工令第1条の2に定められる「軽微な建設工事」のみを請け負う場合は許可を要しません <span class="citation">S207: (PDF_12,823KB).pdf</span>。</p>
+
+      <h3>営業所の要件</h3>
+      <p>建設業の許可を受けるための「営業所」とは、単なる名義上の本店や臨時の作業所・現場事務所ではなく、以下の実体を備えている必要があります <span class="citation">S207: (PDF_12,823KB).pdf</span>。</p>
+      <ul>
+        <li>外部から来客を迎え入れられる一定のスペースが確保されていること。</li>
+        <li>常時、建設工事の請負契約における見積り、入札、契約締結等の実体的な業務を行っている事務所であること。</li>
+        <li>固定電話、デスク、書庫、PC等の事務備品が配置され、居住空間とは明確に区分されていること。</li>
+      </ul>
+      <div class="box-warning">
+        <span class="box-title">【注意】立入調査について</span>
+        申請受付後、埼玉県（県土整備部）により営業所の実態を確認するための「立入調査」が実施される場合があります <span class="citation">S207: (PDF_12,823KB).pdf</span>。
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section id="sec-requirements">
+      <h2>4. 許可要件・判断基準・証明資料</h2>
+      <p>新規許可を取得するには、以下の4大要件および欠格要件に該当しないことを証明する必要があります。</p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 20%;">要件項目</th>
+              <th style="width: 40%;">判断基準</th>
+              <th style="width: 40%;">証明資料・必要確認</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. 経営業務の管理責任者等（常勤役員等）の配置</strong></td>
+              <td>建設業に関し5年以上（または6年以上）の経営業務の管理責任者に準ずる地位にある等の経験を有すること <span class="citation">S207: (PDF_12,823KB).pdf</span> <span class="citation">S064: (PDF_180KB).pdf</span>。</td>
+              <td>
+                ・常勤役員等証明書（様式第7号） <span class="citation">S057: (PDF_403KB).pdf</span><br>
+                ・常勤役員等の略歴書（別紙） <span class="citation">S057: (PDF_403KB).pdf</span><br>
+                ・過去の確定申告書控、履歴事項全部証明書等（経験年数および常勤性の確認資料） <span class="citation">S064: (PDF_180KB).pdf</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2. 営業所専任技術者の配置</strong></td>
+              <td>各営業所に指定学科卒業＋実務経験、または指定国家資格（1級・2級施工管理技士等）を有する専任の者を配置すること <span class="citation">S207: (PDF_12,823KB).pdf</span> <span class="citation">S064: (PDF_180KB).pdf</span>。</td>
+              <td>
+                ・営業所技術者等一覧表（様式第1号別紙4） <span class="citation">S055: (PDF_688KB).pdf</span><br>
+                ・資格証明書の写し、卒業証明書の写し、実務経験証明書（様式第9号） <span class="citation">S057: (PDF_403KB).pdf</span> <span class="citation">S208: 新旧対照表</span><br>
+                ※令和8年4月以降、原本提示は廃止され写しのみ提出。
+              </td>
+            </tr>
+            <tr>
+              <td><strong>3. 社会保険等への加入</strong></td>
+              <td>健康保険、厚生年金保険、雇用保険のすべての適用事業所において適切に加入していること <span class="citation">S067: (PDF_97KB).pdf</span>。</td>
+              <td>
+                ・健康保険等の加入状況（様式第7号の3） <span class="citation">S055: (PDF_688KB).pdf</span><br>
+                ・標準報酬決定通知書、領収証書等の確認書類 <span class="citation">S067: (PDF_97KB).pdf</span><br>
+                ※資格確認書等を提出する場合は被保険者等記号・番号のマスキングが必須。
+              </td>
+            </tr>
+            <tr>
+              <td><strong>4. 財産的基礎・金銭的信用</strong></td>
+              <td>一般建設業の場合、自己資本の額が500万円以上、または500万円以上の資金調達能力があること <span class="citation">S065: (PDF_199KB).pdf</span> <span class="citation">S067: (PDF_97KB).pdf</span>。</td>
+              <td>
+                ・直近の財務諸表（貸借対照表等） <span class="citation">S065: (PDF_199KB).pdf</span><br>
+                ・直近決算で満たない場合：申請受付日を基準として1か月以内に発行された金融機関の「預金残高証明書」 <span class="citation">S065: (PDF_199KB).pdf</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>5. 欠格要件に該当しないこと</strong></td>
+              <td>役員や事業主等が法で定める欠格要件（破産者で復権を得ない者、成年被後見人等）に該当しないこと <span class="citation">S057: (PDF_403KB).pdf</span>。</td>
+              <td>
+                ・誓約書（様式第6号） <span class="citation">S055: (PDF_688KB).pdf</span><br>
+                ・登記されていないことの証明書（発行後3か月以内） <span class="citation">S057: (PDF_403KB).pdf</span><br>
+                ・身分証明書（発行後3か月以内） <span class="citation">S057: (PDF_403KB).pdf</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section id="sec-documents">
+      <h2>5. 提出書類一覧</h2>
+      <p>新規申請に必要な法定様式および証明書類です。作成者、調達者、添付ルールを区別して管理してください。</p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>書類名（様式番号）</th>
+              <th>作成・準備主体</th>
+              <th>必要条件／該当区分</th>
+              <th>原本・写し／期限</th>
+              <th>取得先・作成方法</th>
+              <th>実務上の注意点・根拠</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>建設業許可申請書（第1号）</strong></td>
+              <td><span class="badge-required">行政書士作成</span></td>
+              <td>通常必要</td>
+              <td>-</td>
+              <td>様式入力作成</td>
+              <td>空欄不可（補正対象）<span class="citation">S055: (PDF_688KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>役員等の一覧表（第1号別紙1）</strong></td>
+              <td><span class="badge-required">行政書士作成</span></td>
+              <td>法人の場合必要</td>
+              <td>-</td>
+              <td>様式入力作成</td>
+              <td>個人事業主の場合は提出不要 <span class="citation">S055: (PDF_688KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>営業所一覧表（第1号別紙2(1)）</strong></td>
+              <td><span class="badge-required">行政書士作成</span></td>
+              <td>通常必要</td>
+              <td>-</td>
+              <td>様式入力作成</td>
+              <td>従たる営業所がない場合は「該当なし」と記載 <span class="citation">S055: (PDF_688KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>営業所技術者等一覧表（第1号別紙4）</strong></td>
+              <td><span class="badge-required">行政書士作成</span></td>
+              <td>通常必要</td>
+              <td>-</td>
+              <td>様式入力作成</td>
+              <td>専任技術者の情報を正確に記載 <span class="citation">S055: (PDF_688KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>工事経歴書（第2号）</strong></td>
+              <td><span class="badge-required">行政書士作成</span></td>
+              <td>通常必要</td>
+              <td>-</td>
+              <td>様式入力作成</td>
+              <td>新規設立等で施工実績がない場合は「該当なし」と記載 <span class="citation">S055: (PDF_688KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>直前3年の工事施工金額（第3号）</strong></td>
+              <td><span class="badge-required">行政書士作成</span></td>
+              <td>通常必要</td>
+              <td>-</td>
+              <td>様式入力作成</td>
+              <td>実績がない年度は「0」と記載 <span class="citation">S055: (PDF_688KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>使用人数（第4号）</strong></td>
+              <td><span class="badge-required">行政書士作成</span></td>
+              <td>通常必要</td>
+              <td>-</td>
+              <td>様式入力作成</td>
+              <td>役員・社員・専任技術者数を計上 <span class="citation">S055: (PDF_688KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>誓約書（第6号）</strong></td>
+              <td><span class="badge-optional">依頼者用意</span></td>
+              <td>通常必要</td>
+              <td>原本</td>
+              <td>様式に記名・自署</td>
+              <td>欠格要件に該当しないことの誓約 <span class="citation">S055: (PDF_688KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>常勤役員等証明書・略歴書（第7号）</strong></td>
+              <td><span class="badge-required">行政書士作成</span></td>
+              <td>通常必要</td>
+              <td>-</td>
+              <td>様式入力作成</td>
+              <td>経営経験の証明年数を確認 <span class="citation">S057: (PDF_403KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>健康保険等の加入状況（第7号の3）</strong></td>
+              <td><span class="badge-required">行政書士作成</span></td>
+              <td>通常必要</td>
+              <td>-</td>
+              <td>様式入力作成</td>
+              <td>領収証書等の確認資料を添付 <span class="citation">S055: (PDF_688KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>営業所技術者等証明書（第8号）</strong></td>
+              <td><span class="badge-required">行政書士作成</span></td>
+              <td>通常必要</td>
+              <td>-</td>
+              <td>様式入力作成</td>
+              <td>専任技術者の資格区分記載 <span class="citation">S057: (PDF_403KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>許可申請者の調書（第12号）</strong></td>
+              <td><span class="badge-required">行政書士作成</span></td>
+              <td>通常必要</td>
+              <td>-</td>
+              <td>様式入力作成</td>
+              <td>役員全員・本人・法定代理人等の分を作成 <span class="citation">S057: (PDF_403KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>法定財務諸表（第15号〜19号）</strong></td>
+              <td><span class="badge-optional">依頼者用意</span></td>
+              <td>通常必要</td>
+              <td>-</td>
+              <td>決算書から転記・作成</td>
+              <td>法人は15〜17号、個人は18〜19号を使用 <span class="citation">S065: (PDF_199KB).pdf</span> <span class="citation">S056: (PDF_8,153KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>履歴事項全部証明書</strong></td>
+              <td><span class="badge-optional">依頼者用意</span></td>
+              <td>法人の場合必要</td>
+              <td>原本（発行後3か月以内）</td>
+              <td>法務局にて取得</td>
+              <td>目的欄に「建設業」の記載を確認 <span class="citation">S057: (PDF_403KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>登記されていないことの証明書</strong></td>
+              <td><span class="badge-optional">依頼者用意</span></td>
+              <td>通常必要</td>
+              <td>原本（発行後3か月以内）</td>
+              <td>東京法務局（郵送等）</td>
+              <td>役員全員・個人事業主本人分が必要 <span class="citation">S057: (PDF_403KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>身分証明書</strong></td>
+              <td><span class="badge-optional">依頼者用意</span></td>
+              <td>通常必要</td>
+              <td>原本（発行後3か月以内）</td>
+              <td>本籍地の市区町村窓口</td>
+              <td>破産者等に該当しないことの証明 <span class="citation">S057: (PDF_403KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>資格証明書・卒業証明書等</strong></td>
+              <td><span class="badge-optional">依頼者用意</span></td>
+              <td>資格等で証明する者</td>
+              <td>写し（期限なし）</td>
+              <td>手元資料／学校等発行</td>
+              <td>【R8.4改訂】原本提示廃止。写し提出。資格確認書はマスキング必須 <span class="citation">S057: (PDF_403KB).pdf</span> <span class="citation">S208: 新旧対照表</span></td>
+            </tr>
+            <tr>
+              <td><strong>預金残高証明書</strong></td>
+              <td><span class="badge-optional">依頼者用意</span></td>
+              <td>自己資本500万未満等の場合</td>
+              <td>原本（発行後1か月以内）</td>
+              <td>取引金融機関窓口</td>
+              <td>申請受付日基準で1か月以内の証明日 <span class="citation">S065: (PDF_199KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>営業所の確認資料</strong></td>
+              <td><span class="badge-optional">依頼者用意</span></td>
+              <td>通常必要</td>
+              <td>写真・書類の写し</td>
+              <td>営業所現況撮影／賃貸借契約書等</td>
+              <td>建物の外観、入口看板、内部（デスク等）の写真等 <span class="citation">S064: (PDF_180KB).pdf</span></td>
+            </tr>
+            <tr>
+              <td><strong>埼玉県税の納税情報の確認に関する同意書</strong></td>
+              <td><span class="badge-optional">依頼者用意</span></td>
+              <td>納税証明省略時</td>
+              <td>原本（様式）</td>
+              <td>記名押印／県所定様式</td>
+              <td>同意書の提出により県税事務所発行の納税証明書添付を省略可能 <span class="citation">S191: 同意書(PDF_131KB).pdf</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section id="sec-procedure">
+      <h2>6. 申請方法・窓口・提出先</h2>
+      <ul>
+        <li><strong>提出窓口（紙申請時）:</strong> 埼玉県 県土整備部 建設管理課 建設業担当（埼玉県庁第二庁舎3階） <span class="citation">S207: (PDF_12,823KB).pdf</span></li>
+        <li><strong>受付方法:</strong> 窓口持参 または 電子申請システム（JCIP） <span class="citation">S207: (PDF_12,823KB).pdf</span></li>
+        <li><strong>郵送受付の可否:</strong> <u>新規許可申請における郵送受付は不可</u>（変更届等のみ郵送可） <span class="citation">S223: 送付票(PDF_191KB).pdf</span>。</li>
+        <li><strong class="confirm-item">事前予約の要否: 【要確認】</strong> 提供資料内に事前予約（対面審査予約）の義務付けに関する明記はありません。窓口訪問前の確認が必要です。</li>
+        <li><strong class="confirm-item">提出部数: 【要確認】</strong> 正本1部・副本1部（計2部）が一般的ですが、正確な必要部数は資料未記載のため窓口確認事項とします。</li>
+      </ul>
+    </section>
+
+    <!-- SECTION 7 -->
+    <section id="sec-fees">
+      <h2>7. 手数料・処理期間・時期</h2>
+      <div class="table-wrapper">
+        <table>
+          <tr>
+            <th style="width: 25%;">項目</th>
+            <th style="width: 75%;">内容・根拠</th>
+          </tr>
+          <tr>
+            <td><strong>申請手数料</strong></td>
+            <td>
+              <span class="confirm-item">【要確認】</span> 提供資料には業種追加等の手数料が5万円である記載 <span class="citation">S054: (PDF_136KB).pdf</span> は確認できますが、知事新規許可申請の正確な手数料額（一般的に9万円程度）は明記されていません。
+            </td>
+          </tr>
+          <tr>
+            <td><strong>納付方法</strong></td>
+            <td>
+              <span class="confirm-item">【要確認】</span> 埼玉県収入証紙、現金、キャッシュレス決済、電子納付等の指定納付手段は提供資料内に見当たりません。
+            </td>
+          </tr>
+          <tr>
+            <td><strong>標準処理期間</strong></td>
+            <td>
+              <span class="confirm-item">【要確認】</span> 申請受理から許可書交付までの目安期間（一般的に30日〜45日程度）は資料未記載です。
+            </td>
+          </tr>
+          <tr>
+            <td><strong>許可の有効期間・更新時期</strong></td>
+            <td>
+              許可の有効期間は5年間です。更新申請は有効期間満了日の2か月前から受け付けます <span class="citation">S207: (PDF_12,823KB).pdf</span>。
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 8 -->
+    <section id="sec-steps">
+      <h2>8. 申請準備手順</h2>
+      <ol>
+        <li>
+          <strong>ステップ1：要件の確認および役割分担の確定</strong><br>
+          常勤役員等（経営業務の管理責任者）および専任技術者の該当者を特定し、必要となる経験年数や所有資格を確認します。
+        </li>
+        <li>
+          <strong>ステップ2：公的証明書類・自社資料の調達（依頼者）</strong><br>
+          履歴事項全部証明書、登記されていないことの証明書、身分証明書を取得（発行後3か月以内）。過去の決算書、確定申告書控、社会保険加入証明書類を揃えます。
+        </li>
+        <li>
+          <strong>ステップ3：申請書式の作成および各種証明書の集約（行政書士）</strong><br>
+          様式第1号をはじめとする法定書類一式、工事経歴書、財務諸表等を調製・作成します。
+        </li>
+        <li>
+          <strong>ステップ4：営業所現況写真の撮影・確認（依頼者・行政書士）</strong><br>
+          建物の外形、看板、専用入口、内部執務環境等の写真を撮影し、必要条件を満たしているか確認します。
+        </li>
+        <li>
+          <strong>ステップ5：申請書の提出・審査</strong><br>
+          埼玉県庁建設管理課窓口または電子申請システム（JCIP）にて申請手続を行います。必要に応じて営業所への実地立入調査に対応します <span class="citation">S207: (PDF_12,823KB).pdf</span>。
+        </li>
+        <li>
+          <strong>ステップ6：許可取得・標識掲示</strong><br>
+          許可交付後、店舗および建設現場の見やすい場所に許可標識（建設業の許可票）を掲示します <span class="citation">S207: (PDF_12,823KB).pdf</span>。
+        </li>
+      </ol>
+    </section>
+
+    <!-- SECTION 9 -->
+    <section id="sec-rules">
+      <h2>9. 埼玉県独自の最新ルール</h2>
+      <div class="box-info">
+        <span class="box-title">【令和8年4月施行】資格証等の「原本提示」廃止</span>
+        最新の手引き改訂（令和8年4月施行新旧対照表）により、従来窓口で行われていた資格証明書、卒業証書、預金通帳等の「原本提示」が全面的に廃止されました。すべて「写し（コピー）」の提出のみで審査が行われます <span class="citation">S208: 新旧対照表</span>。
+      </div>
+      
+      <h3>健康保険証廃止（資格確認書等）に伴うマスキングルール</h3>
+      <p>国民健康保険組合の加入証明書や資格確認書の写しを添付資料として提出する場合、プライバシー保護のため、紙面に記載されている「被保険者等記号・番号」を黒塗り等で隠す（マスキング）処理が義務付けられています <span class="citation">S208: 新旧対照表</span>。</p>
+
+      <h3>埼玉県税の納税情報の確認に関する同意書</h3>
+      <p>「埼玉県税の納税情報の確認に関する同意書」を提出し、埼玉県側がシステム等で直近の県税納税状況を確認できる場合、県税事務所が発行する納税証明書の添付を省略することができます <span class="citation">S191: 同意書(PDF_131KB).pdf</span>。</p>
+    </section>
+
+    <!-- SECTION 10 -->
+    <section id="sec-pitfalls">
+      <h2>10. つまずきやすい点・補正対策</h2>
+      <ul>
+        <li>
+          <strong>空欄（未記入）による不備・補正:</strong><br>
+          従たる営業所がない場合、施工実績がない場合、または賞罰がない場合でも、記入欄を空欄のまま提出することはできません。「該当なし」「0」「なし」等の指定文言を必ず明記してください <span class="citation">S055: (PDF_688KB).pdf</span>。
+        </li>
+        <li>
+          <strong>マスキングの漏れ:</strong><br>
+          資格確認書や保険証関連のコピーにおいて、記号・番号のマスキングが漏れていると受け付けられず補正対象となります <span class="citation">S208: 新旧対照表</span>。
+        </li>
+        <li>
+          <strong>常勤役員等の経験年数証明の誤り:</strong><br>
+          役員としての経営経験と、執行役員等（行政が定める基準を満たす職制上の地位）での経験では、必要とされる年数や必要証明書類の性質が異なります <span class="citation">S067: (PDF_97KB).pdf</span>。
+        </li>
+      </ul>
+    </section>
+
+    <!-- SECTION 11 -->
+    <section id="sec-conflicts">
+      <h2>11. 資料間の注意点・矛盾点</h2>
+      <div class="box-alert">
+        <span class="box-title">【注意】「建設業許可」と「解体工事業登録」の混同不可</span>
+        提示資料の中には、建設リサイクル法に基づく「解体工事業登録申請書（様式第1号）」や「解体工事業廃業等届出書」が含まれています <span class="citation">S227: (PDF_108KB).pdf</span>。本件は「建設業許可（新規）」の手続きであるため、<u>解体工事業登録用の申請書式を誤って使用しないよう厳重に区別してください</u>。
+      </div>
+
+      <div class="box-warning">
+        <span class="box-title">【矛盾点・新旧記載の優先ルール】原本提示の表記について</span>
+        過去の手引きや記載例の旧版資料には「窓口で原本を提示すること」という旧ルールの文言が残されている箇所があります。しかし、最新の改訂情報である「●新旧対照表（令和8年4月施行）」 <span class="citation">S208: 新旧対照表</span> の規定が優先されるため、実務上は<u>「原本提示不要・写しの提出のみ」</u>として対応します。
+      </div>
+    </section>
+
+    <!-- SECTION 12 -->
+    <section id="sec-unconfirmed">
+      <h2>12. 要確認事項・行政窓口質問集</h2>
+      <p>提示されたNotebookLM統合資料のみでは確認できなかった以下の事項について、申請前に埼玉県知事部局（建設管理課）窓口へ確認を行います。</p>
+
+      <h3>要確認事項リスト</h3>
+      <ol>
+        <li>知事許可・新規申請における正確な手数料額（県証紙額または納付額）</li>
+        <li>手数料の納付方法（埼玉県収入証紙、窓口キャッシュレス決済、電子納付等）</li>
+        <li>申請書類を窓口持参する場合の事前予約（審査日時予約）の要否</li>
+        <li>紙申請における正式な提出部数（正本1部・副本1部で確定か）</li>
+        <li>申請書受理から許可通知書交付までの標準処理期間（目安日数）</li>
+      </ol>
+
+      <h3>行政窓口への確認用質問テンプレート</h3>
+      <div class="box-info">
+        <p><strong>質問1:</strong> 「埼玉県知事許可の『新規申請』における申請手数料の正確な金額と、具体的な納付方法（県証紙、現金、キャッシュレス等）を教えていただけますでしょうか。」</p>
+        <p><strong>質問2:</strong> 「審査窓口（第二庁舎3階）へ書類を持参して申請する場合、事前の来庁予約は必要でしょうか。」</p>
+        <p><strong>質問3:</strong> 「紙媒体で申請する場合の提出部数は、正本1部・副本1部の合計2部でよろしいでしょうか。」</p>
+        <p><strong>質問4:</strong> 「申請書が正式に受理されてから、許可が下りるまでの標準処理期間（審査期間）はどのくらいを見込めばよろしいでしょうか。」</p>
+      </div>
+    </section>
+
+    <!-- SECTION 13 -->
+    <section id="sec-sources">
+      <h2>13. 出典資料リンク一覧</h2>
+      <p>本ガイドの作成にあたり参照した埼玉県公式の掲載ページおよび資料直リンクの一覧です。</p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 10%;">資料ID</th>
+              <th style="width: 35%;">資料名</th>
+              <th style="width: 15%;">分類</th>
+              <th style="width: 20%;">資料直リンク</th>
+              <th style="width: 20%;">掲載ページ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>S048</td>
+              <td>エクセル：91KB</td>
+              <td>表計算書式</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/0008.xls" target="_blank" rel="noopener">ファイルを開く (XLS)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S049</td>
+              <td>PDF：128KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/001_hyosi_202604.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S050</td>
+              <td>PDF：132KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/002_hajimeni_202604.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S051</td>
+              <td>PDF：135KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/003_mokuji_202604.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S052</td>
+              <td>PDF：278KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/004_1-5_202604.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S053</td>
+              <td>PDF：432KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/005_6_202604.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S054</td>
+              <td>PDF：136KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/006_7_202604.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S055</td>
+              <td>PDF：688KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/007_8_202604.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S056</td>
+              <td>PDF：8,153KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/008_9_202604.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S057</td>
+              <td>PDF：403KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/009_10_202604.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S058</td>
+              <td>PDF：79KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/01_0.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S064</td>
+              <td>PDF：180KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/011_12_202604.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S065</td>
+              <td>PDF：199KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/012_13_202604.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S067</td>
+              <td>PDF：97KB</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/014_15_202604.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S191</td>
+              <td>PDF：131KB（PDF：129KB）</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/douisyo0603.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S207</td>
+              <td>（PDF：12,823KB）</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/r8_tebiki_ikkatu.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S208</td>
+              <td>●新旧対照表（令和8年4月施行）</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/44992/r8_tebiki_shinkyutaishohyo.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/youshiki2704.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S223</td>
+              <td>「建設業許可に係る変更届等送付票」</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/25896/souhuhyou070602.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/yuusouuketuke.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+            <tr>
+              <td>S227</td>
+              <td>解体工事業登録申請書（PDF：108KB）</td>
+              <td>PDF資料</td>
+              <td><a href="https://www.pref.saitama.lg.jp/documents/35686/01sinnseisyo.pdf" target="_blank" rel="noopener">ファイルを開く (PDF)</a></td>
+              <td><a href="https://www.pref.saitama.lg.jp/a1002/shigoto/kensetsugyo/kensetsu/kaitai/index.html" target="_blank" rel="noopener">掲載ページ</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+</body>
+</html>
