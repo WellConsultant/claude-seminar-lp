@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    
+  </style>
+</head>
+<body>
+  
+
+  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>補助金実績報告サポートLP</title>
+    <meta name="description" content="採択後の交付申請・実績報告・入金まで伴走する専門家向けの補助金実務パートナーシップLP">
+    <style>
+      :root {
+        --ink: #222;
+        --black: #050505;
+        --yellow: #fff200;
+        --soft-yellow: #fff981;
+        --red: #e5161d;
+        --paper: #f5f2ea;
+        --line: #d8d4ca;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: #fff;
+        font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; text-decoration: none; }
+      p { line-height: 2; }
+      mark { color: inherit; background: linear-gradient(transparent 52%, var(--yellow) 52%); }
+      .wrap { width: min(960px, calc(100% - 40px)); margin: 0 auto; }
+      .copy { width: min(760px, calc(100% - 40px)); margin: 0 auto; }
+      .en, .kicker { margin: 0 0 18px; font: 800 13px/1.3 Arial, sans-serif; letter-spacing: .18em; }
+
+      .hero {
+        min-height: 1050px;
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        background:
+          radial-gradient(circle at 50% 16%, rgba(255,242,0,.18), transparent 25%),
+          repeating-linear-gradient(135deg, transparent 0 40px, rgba(255,255,255,.025) 40px 41px),
+          #050505;
+      }
+      .hero::before, .hero::after {
+        content: "";
+        position: absolute;
+        border: 1px solid rgba(255,255,255,.13);
+        border-radius: 50%;
+      }
+      .hero::before { width: 700px; height: 700px; left: -420px; top: -280px; }
+      .hero::after { width: 520px; height: 520px; right: -280px; bottom: -200px; }
+      .hero-noise {
+        position: absolute;
+        inset: 0;
+        opacity: .18;
+        background-image: radial-gradient(rgba(255,255,255,.5) .6px, transparent .6px);
+        background-size: 9px 9px;
+        mask-image: linear-gradient(to bottom, #000, transparent 72%);
+      }
+      .hero-inner {
+        width: min(980px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 72px 0 90px;
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+      .hero-overline { margin: 0 0 28px; color: #efefef; font-size: 23px; font-weight: 800; line-height: 1.75; }
+      .hero-badge {
+        display: inline-block;
+        padding: 12px 28px;
+        border-radius: 999px;
+        color: #000;
+        background: var(--yellow);
+        font-size: 18px;
+        font-weight: 900;
+      }
+      .hero h1 { margin: 30px 0 26px; font-size: clamp(44px, 6.5vw, 76px); line-height: 1.38; letter-spacing: -.055em; }
+      .hero h1 mark { color: #000; background: var(--yellow); padding: 0 .14em .07em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+      .hero-sub { margin: 0; font-size: clamp(21px, 3vw, 32px); font-weight: 800; line-height: 1.75; }
+      .hero-title {
+        width: min(750px, 100%);
+        margin: 46px auto 0;
+        padding: 22px 25px 28px;
+        transform: rotate(-1deg);
+        color: #000;
+        background: #fff;
+        box-shadow: 13px 13px 0 var(--yellow);
+      }
+      .hero-title span { display: block; font-size: 24px; font-weight: 900; letter-spacing: .14em; }
+      .hero-title strong { display: block; margin-top: 5px; font-size: clamp(42px, 7vw, 75px); line-height: 1.1; letter-spacing: -.06em; }
+      .hero-note { margin: 42px 0 20px; color: var(--yellow); font-size: 19px; font-weight: 900; }
+
+      .cta {
+        width: min(720px, 100%);
+        margin: 36px auto 0;
+        padding: 22px 25px 24px;
+        display: block;
+        border: 4px solid #85080b;
+        border-radius: 8px;
+        color: #fff;
+        background: linear-gradient(#ff3a42, #d50d13);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 9px 0 #85080b, 0 18px 25px rgba(0,0,0,.24);
+        text-align: center;
+      }
+      .cta small, .cta strong, .cta span { display: block; }
+      .cta small { font-size: 13px; }
+      .cta strong { margin-top: 4px; font-size: clamp(23px, 3.4vw, 35px); line-height: 1.35; }
+      .cta span { margin-top: 6px; font-size: 16px; font-weight: 900; }
+      .cta-compact { margin-top: 20px; }
+
+      .shock { padding: 100px 0 105px; text-align: center; background: var(--yellow); }
+      .shock p { margin: 0; font-size: 22px; font-weight: 900; }
+      .shock h2 { margin: 18px 0 25px; font-size: clamp(36px, 5.4vw, 61px); line-height: 1.5; letter-spacing: -.055em; }
+      .shock h2 mark { color: #fff; background: #000; padding: .08em .2em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+      .shock-sub { font-size: 26px !important; line-height: 1.75 !important; }
+
+      .section-white { padding: 95px 0; background: #fff; }
+      .letter p { margin: 0 0 29px; font-size: 18px; }
+      .letter .from { padding-bottom: 13px; border-bottom: 1px solid #bdb9af; font-weight: 900; }
+      .letter .lead { font-size: 24px; }
+      .black-highlight {
+        padding: .08em .2em;
+        color: var(--soft-yellow);
+        background: #000;
+        font-weight: 900;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+      }
+
+      .big-question { padding: 95px 0; text-align: center; background: var(--paper); }
+      .big-question h2 { margin: 0; font-size: clamp(42px, 6vw, 66px); line-height: 1.35; }
+      .big-line { margin: 42px 0 0; font-size: clamp(25px, 3.5vw, 38px); font-weight: 900; line-height: 1.65; }
+      .logic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 55px 0; }
+      .logic-grid article { padding: 28px 21px; border: 3px solid #111; text-align: center; }
+      .logic-grid span { width: 43px; height: 43px; margin: 0 auto 12px; display: grid; place-items: center; border-radius: 50%; color: #000; background: var(--yellow); font: 900 19px/1 Arial; }
+      .logic-grid h3 { margin: 0; font-size: 24px; }
+      .logic-grid p { margin: 10px 0 0; font-size: 14px; line-height: 1.7; }
+      .conclusion { margin-top: 50px !important; padding: 32px; border-top: 5px solid #111; border-bottom: 5px solid #111; text-align: center; font-size: 22px !important; }
+      .conclusion b { font-size: 26px; }
+
+      .black-section { padding: 105px 0; color: #fff; text-align: center; background: #050505; }
+      .black-section .yellow { color: var(--yellow); }
+      .black-section h2 { margin: 0; font-size: clamp(42px, 6vw, 68px); line-height: 1.45; }
+      .black-section h2 mark { color: #000; background: var(--yellow); padding: 0 .15em; }
+      .black-lead { margin: 50px 0 0; color: var(--yellow); font-size: clamp(30px, 4.5vw, 50px); font-weight: 900; line-height: 1.55; }
+      .black-lead.small { font-size: clamp(24px, 3.6vw, 38px); }
+      .grow-section { border-top: 18px solid var(--yellow); }
+      .flow { margin: 48px -80px; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr; gap: 9px; align-items: center; }
+      .flow div { min-height: 112px; padding: 16px 8px; display: grid; align-content: center; border: 2px solid #aaa; background: #f6f6f6; text-align: center; }
+      .flow span, .flow b { display: block; }
+      .flow span { color: #777; font-size: 10px; }
+      .flow b { margin-top: 8px; font-size: 20px; }
+      .flow i { font-size: 20px; font-style: normal; }
+      .flow .focus { border-color: #111; color: #000; background: var(--yellow); }
+      .flow .focus span { color: #5c5700; }
+
+      .data-section { padding: 100px 0; color: #fff; text-align: center; background: #151515; }
+      .data-section h2 { margin: 0; font-size: clamp(34px, 5vw, 54px); line-height: 1.5; }
+      .data-row { margin: 55px 0 28px; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 15px; align-items: center; }
+      .data-row > div { padding: 32px 12px; border: 1px solid #565656; background: #222; }
+      .data-row small { display: block; color: #bdbdbd; font-size: 12px; }
+      .data-row strong { font: 900 clamp(34px, 5vw, 54px)/1.25 Arial, sans-serif; }
+      .data-row span { margin-left: 4px; }
+      .data-row .data-focus { border-color: var(--yellow); color: #000; background: var(--yellow); }
+      .data-row .data-focus small { color: #4f4a00; }
+      .data-punch { margin: 0; font-size: 28px; font-weight: 900; }
+      .data-punch mark { padding: .08em .2em; color: #000; background: var(--yellow); font-size: 42px; }
+      .source { margin: 30px 0 0; color: #888; font-size: 10px; }
+      .copy-heading { margin: 0 0 48px; text-align: center; font-size: clamp(33px, 4.8vw, 50px); line-height: 1.55; }
+      .doc-gallery { margin: 55px -90px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .doc-gallery figure { margin: 0; padding: 10px; border: 1px solid #ddd; background: #f7f7f7; box-shadow: 0 12px 25px rgba(0,0,0,.08); }
+      .doc-gallery img { width: 100%; aspect-ratio: 1.42; object-fit: cover; object-position: top; border: 1px solid #ddd; }
+      .doc-gallery figcaption { padding: 13px 5px 5px; font-size: 12px; font-weight: 800; line-height: 1.65; }
+
+      .compare-section { padding: 105px 0; background: var(--yellow); }
+      .compare-section h2 { margin: 0 0 55px; text-align: center; font-size: clamp(38px, 5.5vw, 59px); line-height: 1.45; }
+      .compare-section h2 mark { color: #fff; background: #000; padding: 0 .15em; }
+      .wide-copy { width: min(760px, 100%); margin: 0 auto; }
+      .wide-copy p { margin: 0 0 25px; font-size: 18px; line-height: 2; }
+      .compare-end { margin: 52px 0 0; text-align: center; font-size: 27px; font-weight: 700; }
+      .compare-end b { font-size: 40px; }
+
+      .now-section { padding: 110px 0; color: #fff; text-align: center; background: #080808; }
+      .now-section h2 { margin: 0 0 48px; font-size: clamp(43px, 6vw, 68px); line-height: 1.35; }
+      .now-section h2 mark { color: #000; background: var(--yellow); padding: 0 .15em; }
+      .now-section p { width: min(760px, 100%); margin: 0 auto 25px; color: #d1d1d1; font-size: 18px; }
+      .now-punch { margin-top: 55px !important; color: #fff !important; font-size: 38px !important; font-weight: 900; }
+      .now-punch em { color: var(--yellow); font-size: 72px; font-style: normal; }
+      .repeat-offer { padding: 105px 0 115px; text-align: center; background: #fff; }
+      .repeat-offer > .wrap > p { margin: 0; font-size: 24px; font-weight: 900; }
+      .repeat-offer h2 { margin: 30px 0 0; font-size: clamp(35px, 5vw, 53px); line-height: 1.55; }
+
+      .purpose { padding: 110px 0; background: var(--paper); }
+      .purpose > .wrap > .en, .curriculum > .wrap > .en { text-align: center; }
+      .purpose > .wrap > h2, .curriculum > .wrap > h2 { margin: 0 0 55px; text-align: center; font-size: clamp(41px, 5.5vw, 60px); }
+      .purpose-copy { width: min(760px, 100%); margin: 0 auto; }
+      .purpose-copy p { margin: 0 0 28px; font-size: 18px; }
+      .purpose-copy p:nth-child(2) { padding: 28px; border: 4px solid #111; background: #fff; font-size: 22px; }
+
+      .program-title { padding: 95px 0; color: #fff; text-align: center; background: var(--red); }
+      .program-title p { margin: 0 0 12px; font-size: 21px; font-weight: 900; }
+      .program-title h2 { margin: 0; font-size: clamp(38px, 6vw, 68px); line-height: 1.4; }
+      .program-title strong { margin-top: 24px; display: inline-block; padding: 10px 22px; color: #000; background: var(--yellow); font-size: 25px; }
+
+      .profile { padding: 115px 0; color: #fff; background: #080808; }
+      .profile-grid { display: grid; grid-template-columns: .65fr 1.35fr; gap: 65px; align-items: start; }
+      .profile-card { min-height: 540px; display: grid; place-items: center; align-content: center; border: 2px solid #444; background: repeating-linear-gradient(135deg, #111 0 20px, #161616 20px 40px); text-align: center; }
+      .profile-card img { width: min(100%, 420px); height: 460px; object-fit: cover; object-position: center top; border: 2px solid #555; }
+      .profile-card p { margin: 28px 0 0; color: #aaa; font-size: 12px; }
+      .profile-copy .en { color: var(--yellow); }
+      .profile-copy h2 { margin: 0 0 25px; font-size: 37px; }
+      .profile-copy h3 { margin: 0 0 30px; padding-bottom: 25px; border-bottom: 1px solid #444; color: var(--yellow); font-size: 27px; line-height: 1.55; }
+      .profile-copy > p { color: #d3d3d3; font-size: 15px; }
+      .profile-belief { margin: 0 0 24px; color: var(--yellow) !important; font-size: 24px !important; font-weight: 900; line-height: 1.7; }
+
+      .curriculum { padding: 115px 0; background: #fff; }
+      .curriculum > .wrap > h2 mark { padding: 0 .12em; background: var(--yellow); }
+      .curriculum-list { display: grid; gap: 34px; }
+      .curriculum-list article { border: 4px solid #111; }
+      .curriculum-list header { padding: 34px 40px; color: #fff; background: #111; }
+      .curriculum-list header > span { color: var(--yellow); font: 900 13px/1 Arial; letter-spacing: .16em; }
+      .curriculum-list header > small { margin-left: 16px; padding: 5px 9px; color: #000; background: var(--yellow); font-weight: 900; }
+      .curriculum-list h3 { margin: 18px 0 12px; font-size: 31px; line-height: 1.45; }
+      .curriculum-body { padding: 34px 40px 38px; }
+      .curriculum-body ul { margin: 0 0 25px; padding: 0; list-style: none; }
+      .curriculum-body li { padding: 12px 12px 12px 38px; position: relative; border-bottom: 1px solid #ddd; font-weight: 800; }
+      .curriculum-body li::before { content: "✓"; position: absolute; left: 10px; color: var(--red); font-weight: 900; }
+      .curriculum-body p { margin: 0; font-size: 16px; }
+      .curriculum-note { margin: 35px 0 0; color: #777; text-align: center; font-size: 12px; }
+
+      .support-section { padding: 110px 0; background: var(--paper); }
+      .support-question { margin: 0; text-align: center; color: var(--red); font-size: 26px; font-weight: 900; }
+      .support-label { margin: 16px 0 0; text-align: center; font: 900 13px/1 Arial, sans-serif; letter-spacing: .16em; }
+      .support-section > .wrap > h2 { margin: 15px 0 55px; text-align: center; font-size: clamp(38px, 5vw, 56px); line-height: 1.45; }
+      .support-list { display: grid; gap: 24px; }
+      .support-list article { display: grid; grid-template-columns: 185px 1fr; border: 3px solid #111; background: #fff; }
+      .support-no { display: grid; place-items: center; align-content: center; color: #fff; background: #111; font: 800 13px/1.2 Arial; letter-spacing: .1em; }
+      .support-no b { display: block; margin-top: 8px; color: var(--yellow); font-size: 68px; }
+      .support-list article > div:last-child { padding: 28px 34px; }
+      .support-list h3 { margin: 0; font-size: 29px; }
+      .support-list h4 { margin: 10px 0; color: var(--red); font-size: 18px; }
+      .support-list p { margin: 0; font-size: 15px; }
+
+      .value-section { padding: 100px 0; text-align: center; background: var(--yellow); }
+      .value-section h2 { margin: 0; font-size: clamp(36px, 5vw, 55px); line-height: 1.55; }
+      .value-section p { margin: 35px 0 0; font-size: 27px; font-weight: 900; }
+      .value-section p mark { padding: .08em .2em; color: #fff; background: #000; font-size: 40px; }
+
+      .bonus-title { padding: 90px 0; color: #fff; text-align: center; background: var(--red); }
+      .bonus-title p { margin: 0; font-size: 25px; font-weight: 900; }
+      .bonus-title h2 { margin: 0; font-size: clamp(55px, 8vw, 88px); line-height: 1.25; }
+      .bonus-title strong { margin-top: 30px; display: inline-block; padding: 12px 22px; color: #000; background: var(--yellow); font-size: 28px; }
+      .bonuses { padding: 100px 0 115px; background: #fff; }
+      .bonus-list { display: grid; gap: 55px; }
+      .bonus-list article { padding: 0 0 45px; display: grid; grid-template-columns: .7fr 1.3fr; gap: 35px 45px; border-bottom: 3px solid #111; }
+      .bonus-head { grid-column: 1 / -1; }
+      .bonus-head span { display: inline-block; padding: 7px 14px; color: #000; background: var(--yellow); font-weight: 900; }
+      .bonus-head h3 { margin: 13px 0 0; font-size: 33px; line-height: 1.4; }
+      .bonus-visual { min-height: 230px; display: flex; align-items: center; justify-content: center; gap: 15px; color: #fff; background: #111; }
+      .bonus-visual b { color: var(--yellow); font: 900 90px/1 Arial; }
+      .bonus-visual span { font: 800 13px/1.4 Arial; letter-spacing: .15em; }
+      .bonus-list article > p { margin: 0; align-self: center; font-size: 17px; }
+
+      .offer-section { padding: 110px 0; color: #fff; text-align: center; background: #090909; }
+      .offer-section .en { color: var(--yellow); }
+      .offer-section h2 { margin: 0 0 50px; font-size: clamp(39px, 5.5vw, 59px); line-height: 1.5; }
+      .offer-copy { width: min(760px, 100%); margin: 0 auto; text-align: left; }
+      .offer-copy p { color: #d1d1d1; font-size: 17px; }
+      .consult-box { width: min(700px, 100%); margin: 55px auto 0; padding: 42px; border: 5px solid var(--yellow); background: #fff; color: #111; }
+      .consult-box > span { padding: 7px 14px; color: #000; background: var(--yellow); font-weight: 900; }
+      .consult-box h3 { margin: 22px 0; font-size: 39px; line-height: 1.4; }
+      .consult-box ul { width: max-content; max-width: 100%; margin: 0 auto 28px; padding-left: 1.3em; text-align: left; line-height: 2; }
+      .consult-box a { display: block; padding: 20px; color: #fff; background: var(--red); font-size: 21px; font-weight: 900; }
+
+      .summary-section { padding: 105px 0; background: var(--paper); }
+      .summary-section h2 { margin: 0 0 55px; text-align: center; font-size: clamp(40px, 5.5vw, 59px); line-height: 1.45; }
+      .summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .summary-grid div { min-height: 145px; padding: 22px; display: grid; grid-template-columns: 65px 1fr; gap: 16px; align-items: center; border: 3px solid #111; background: #fff; }
+      .summary-grid span { color: var(--red); font: 900 30px/1 Arial; }
+      .summary-grid b { font-size: 18px; line-height: 1.65; }
+
+      .last-chance { padding: 105px 0; text-align: center; background: var(--yellow); }
+      .last-chance h2 { margin: 0 0 45px; font-size: clamp(42px, 6vw, 67px); line-height: 1.45; }
+      .last-chance p { width: min(740px, 100%); margin: 0 auto 20px; font-size: 19px; font-weight: 700; }
+      .last-kicker { font: 900 13px/1 Arial, sans-serif !important; letter-spacing: .18em; }
+      .last-question { margin: -18px auto 35px !important; font-size: clamp(24px, 4vw, 39px) !important; }
+
+      .consultation { padding: 110px 0 125px; color: #fff; text-align: center; background: #090909; }
+      .consult-label { margin: 0 0 16px; color: var(--yellow); font: 800 13px/1 Arial; letter-spacing: .18em; }
+      .consultation h2 { margin: 0; font-size: clamp(40px, 5.5vw, 60px); line-height: 1.5; }
+      .consult-lead { margin: 28px 0 45px; color: #ccc; font-size: 17px; }
+      .iframe-wrap { overflow: hidden; border: 5px solid var(--yellow); background: #fff; }
+      .iframe-head { min-height: 58px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; color: #111; border-bottom: 1px solid #ddd; }
+      .iframe-head a { color: #555; font-size: 12px; text-decoration: underline; }
+      .iframe-wrap iframe { width: 100%; min-height: 780px; display: block; border: 0; }
+      .reserve-note { margin: 16px 0 0; color: #777; font-size: 11px; }
+      footer { padding: 58px 20px 90px; text-align: center; background: #fff; }
+      footer p { margin: 4px 0; font-size: 12px; line-height: 1.6; }
+      footer small { margin-top: 22px; display: block; color: #999; font-size: 10px; }
+      .fixed-cta { display: none; }
+
+      @media (max-width: 720px) {
+        .wrap, .copy, .hero-inner { width: min(100% - 28px, 960px); }
+        .hero { min-height: auto; }
+        .hero-inner { padding: 45px 0 65px; }
+        .hero-overline { font-size: 15px; }
+        .hero-badge { padding: 9px 18px; font-size: 14px; }
+        .hero h1 { margin-top: 22px; font-size: 37px; line-height: 1.42; }
+        .hero-sub { font-size: 18px; }
+        .hero-title { margin-top: 30px; padding: 18px 10px 21px; box-shadow: 8px 8px 0 var(--yellow); }
+        .hero-title span { font-size: 15px; }
+        .hero-title strong { font-size: 37px; }
+        .hero-note { margin-top: 34px; font-size: 14px; }
+        .cta { padding: 17px 13px 19px; border-width: 3px; box-shadow: 0 6px 0 #85080b, 0 12px 20px rgba(0,0,0,.22); }
+        .cta small { font-size: 10px; }
+        .cta strong { font-size: 20px; }
+        .cta span { font-size: 13px; }
+        .shock, .section-white, .big-question, .black-section, .data-section, .compare-section, .now-section, .repeat-offer, .purpose, .profile, .program-title, .curriculum, .support-section, .value-section, .bonuses, .offer-section, .summary-section, .last-chance, .consultation { padding: 72px 0; }
+        .shock p { font-size: 17px; }
+        .shock h2 { font-size: 33px; line-height: 1.55; }
+        .shock-sub { font-size: 19px !important; }
+        .letter p { font-size: 16px; line-height: 1.95; }
+        .logic-grid { grid-template-columns: 1fr; }
+        .conclusion { padding: 25px 12px; font-size: 18px !important; }
+        .conclusion b { font-size: 21px; }
+        .flow { margin: 40px 0; grid-template-columns: 1fr; }
+        .flow i { transform: rotate(90deg); }
+        .data-row { grid-template-columns: 1fr; }
+        .data-row > b { transform: rotate(90deg); }
+        .data-punch { font-size: 20px; }
+        .data-punch mark { font-size: 31px; }
+        .doc-gallery { margin: 40px 0 0; grid-template-columns: 1fr; }
+        .compare-end { font-size: 20px; }
+        .compare-end b { font-size: 29px; }
+        .now-punch { font-size: 29px !important; }
+        .now-punch em { font-size: 56px; }
+        .profile-grid { grid-template-columns: 1fr; gap: 40px; }
+        .profile-card { min-height: 350px; }
+        .profile-card img { height: 360px; }
+        .profile-copy h2 { font-size: 29px; }
+        .profile-copy h3 { font-size: 23px; }
+        .profile-belief { font-size: 20px !important; }
+        .curriculum-list header, .curriculum-body { padding: 25px 20px; }
+        .curriculum-list header > small { margin: 10px 0 0; display: block; width: max-content; }
+        .curriculum-list h3 { font-size: 24px; }
+        .support-list article { grid-template-columns: 1fr; }
+        .support-no { min-height: 110px; display: flex; gap: 12px; justify-content: center; align-items: center; }
+        .support-no b { margin: 0; font-size: 45px; }
+        .support-list article > div:last-child { padding: 25px 20px; }
+        .support-list h3 { font-size: 24px; }
+        .value-section p { font-size: 20px; }
+        .value-section p mark { font-size: 27px; }
+        .bonus-title strong { font-size: 20px; }
+        .bonus-list article { grid-template-columns: 1fr; }
+        .bonus-head { grid-column: auto; }
+        .bonus-head h3 { font-size: 27px; }
+        .bonus-visual { min-height: 180px; }
+        .consult-box { padding: 32px 18px; }
+        .consult-box h3 { font-size: 30px; }
+        .consult-box a { font-size: 17px; }
+        .summary-grid { grid-template-columns: 1fr; }
+        .summary-grid div { min-height: 115px; }
+        .iframe-wrap iframe { min-height: 680px; }
+        footer { padding-bottom: 110px; }
+        .fixed-cta {
+          height: 66px;
+          padding: 8px 16px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          position: fixed;
+          z-index: 50;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          color: #fff;
+          background: var(--red);
+          box-shadow: 0 -3px 15px rgba(0,0,0,.25);
+        }
+        .fixed-cta b { font-size: 18px; }
+        .fixed-cta span { font-size: 12px; }
+      }
+    </style>
+  
+  
+    <main>
+      <section class="hero" id="top">
+        <div class="hero-noise"></div>
+        <div class="hero-inner">
+          <div class="hero-badge">＼ 0期パートナー募集 ／</div>
+          <p class="hero-overline">もしあなたが、行政書士・診断士として<br>一生使える安定した仕事を手に入れたいなら…</p>
+          <h1 class=""><span style="font-size: clamp(21px, 3vw, 32px); font-weight: 800;">採択者を入金まで脱落させず、手元にお金を着実に届ける</span></h1><p class="hero-sub">補助金実務パートナープログラム<br>（非行政書士も参加可能）</p>
+          <div class="hero-title">
+            <span>補助金実務</span>
+            <strong>パートナーシップ</strong>
+          </div>
+          <p class="hero-note">個別戦略ミーティング受付中</p>
+          <a class="cta cta-compact" href="#consultation">
+            <small>まずは内容を聞いてから判断してください</small>
+            <strong class="">補助金実務パートナー 戦略ミーティング</strong>
+            <span class="">オンライン相談の日程を確認する →</span></a></div></section>
+
+      <section class="letter section-white">
+        <div class="copy">
+          <p class="from">From：阿久津和宏</p>
+          <p class="lead"><b>単刀直入に言います。</b></p>
+          <p>もしあなたが、行政書士、中小企業診断士、補助金支援者として、安定して仕事が入り、高単価で、しかも1回きりで終わらない仕事を持ちたいなら…</p>
+          <p class=""><span class="black-highlight">採択後の「交付申請・実績報告・入金支援」</span>は今最も求められているマーケットです。なぜなら、この後も話しますが、採択されたにも関わらず、補助金を受け取る権利を剥奪されている方が、数年前と比べて<b><font color="#e21818" class="">3倍以上に膨れ上がっている</font></b>からです。</p>
+          <p class="">とはいえ、そんな人、申請を支援した人がしているし、税理士さんや中小企業診断士のプロフェッショナルが支援しているんじゃないのか？と思うかもしれませんが、繰り返しになりますが、補助金を受け取る権利を剥奪されている方が、数年前と比べて<span style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; font-weight: bolder; outline: rgba(59, 130, 246, 0.4) dashed 1px; outline-offset: 2px;"><font color="#e21818" style="--tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; outline: rgba(59, 130, 246, 0.4) dashed 1px; outline-offset: 2px;" class="">3倍以上に膨れ上がっています。</font></span></p><p class="">なぜこんなふうになってしまっているのか？事業計画書を頑張って作っても、捏造なら尚さら、受け取りにくい環境になっているからです。だから求められているのです。なので、なんとなく流れで取り組んでいる専門家は多いものの、本気で取り組んでいる事業者はほとんどいません。なので、</p><p class=""><b class="">戦う場所をもう一つ増やしませんか？</b></p>
+          <p class="">これが今日、僕が話したいことなんです。もしあなたが、お客様から求められながら、信頼されながら、不正まがいの事業計画書の捏造や、「とりあえずこれをやったことにして買う計画」などイヤイヤやるのではなく、<br>お客様の実利に直結する事業をもう一本手に入れられたら？どうしますか？</p><p class="">もしそんなことに興味があるなら、２−３分時間をとって読んでもらえたらって思っています。</p>
+        </div>
+      </section>
+
+      <section class="big-question">
+        <div class="wrap">
+          <p class="kicker">そもそも、、、</p>
+          <h2 class=""><font color="#2f2c35" class=""><b>なぜ、この企画を始めるのか？</b></font></h2>
+          <p class="big-line"><font><font color="#232225">本気でお客様の役にたつ、</font><br><font color="#232225">という</font><font class="" style="" color="#ff6314">使命</font><font color="#232225">をまっとうしながら</font></font></p><p class="big-line"><font color="#232225" class="">売りやすい…高単価…継続契約…<br>理想的な3つの条件がすべて揃っているからです。</font></p>
+        </div>
+      </section>
+
+      <section class="letter section-white">
+        <div class="copy">
+          <p class=""><font color="#181616" class="">士業やコンサルタントにとって、「案件獲得」「単価」「継続」は大きな悩みですよね。</font><span style="color: rgb(24, 22, 22);">案件が取れなければ売上は立ちません。安くしなければ選ばれない仕事では、件数を増やし続けなければいけません。単発で終われば、毎月またゼロから集客です。</span><span style="color: rgb(24, 22, 22);">だから、売りやすく、高単価で、継続する案件を探す。でも、普通は3つのうち1つか2つしか揃いません。さらに、自分の使命を全うしながら、というとさらにハードルが上がったりしているかもしれません。</span></p>
+          <div class="logic-grid">
+            <article><span>1</span><h3 class=""><font color="#1d1c1b" class="">求められて<br>いる</font></h3></article><article class=""><span class="">2</span><h3 class=""><font color="#272625">値引きの要望</font></h3><div class="">0</div></article><article class=""><span class="">3</span><h3 class=""><font color="#252322">またお願い</font></h3><h3 class=""><font color="#252322" class="">します</font></h3></article></div><p class="conclusion"><font color="#2e2a29" class=""><b class="">案件獲得・単価・継続という悩みを、まとめて変えられる施策は？</b><b>補助金の実務支援です</b>。</font></p>
+        </div>
+      </section>
+
+      <section class="black-section">
+        <div class="wrap">
+          <p class="kicker yellow">WHY DOES IT SELL?</p>
+          <h2>なぜ、実績報告支援は<br><mark class="">相談につながりやすいのか？</mark></h2>
+          <p class="black-lead">採択されたのに、入金前だからです</p></div></section><section class="letter section-white"><div class="copy">
+          <p class="">そして、これを完了しなければ、補助金は入金されません。入金よりも前に採択された実績そのものが剥奪されてしまっている人も多くいるのが実情なんです。</p>
+          <div class="flow">
+            <div><span>競争が集中</span><b>申請</b></div><i>→</i>
+            <div><span>まだ未入金</span><b>採択</b></div><i>→</i>
+            <div class="focus"><span>支援が手薄</span><b>交付決定</b></div><i>→</i>
+            <div class="focus"><span>最大の難所</span><b>実績報告</b></div><i>→</i>
+            <div class="focus"><span>本当のゴール</span><b>入金</b></div>
+          </div>
+          <p><span class="black-highlight">相手は、すでに解決しなければいけない問題を持っている。</span></p>
+          <p class="">こちらから欲しくさせる必要はありません。社長が今困っていることを整理し、入金までの道筋を見せるだけです。</p>
+        </div>
+      </section>
+
+      <section class="letter section-white">
+        <div class="copy">
+          <h2 class="copy-heading"><b><font color="#2d2b2a">読みにくい手引き</font></b></h2>
+          <p class=""><font color="#272220">何十ページもある手引きを読み、見積書を取り直し、取引先へ証拠書類を頼み、申請システムへアップロードする。もちろん、本業を止めることはできません。</font></p>
+          <p><font color="#272220">従業員へ押しつければ、その人の通常業務が止まります。社長が自分で抱えれば、「この支払いは対象になるのか」「不正を疑われないか」「期限に間に合うのか」と、一晩考え続けることになります。</font></p>
+          <p class=""><font color="#272220">申請支援者はたくさんいる。でも、入金まで一緒に走る支援者は少ない。</font></p>
+          <p class=""><span class="black-highlight">圧倒的に、需要に対して供給が足りていません。</span></p>
+          <div class="doc-gallery">
+            <figure><img src="https://hjp2026.fp-1.info/source-docs/estimate-request.jpg" alt="申請システムの見積書提出画面"><figcaption>交付申請では見積書等の提出と修正対応が必要</figcaption></figure>
+            <figure><img src="https://hjp2026.fp-1.info/source-docs/report-deadline.jpg" alt="実績報告の提出期限を説明する公式手引き"><figcaption>補助事業完了後は期限内に実績報告を提出</figcaption></figure>
+            <figure><img src="https://hjp2026.fp-1.info/source-docs/required-documents.jpg" alt="実績報告の提出書類一覧を説明する公式手引き"><figcaption>経費ごとに証拠書類をそろえて報告</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="compare-section">
+        <div class="wrap">
+          <h2>「書類作成」を売るのではなく<br><mark class="">「採択を入金へ変える支援」</mark>を売れる。</h2>
+          <div class="wide-copy">
+            <p class=""><font color="#2a2827">なぜ、安くしてと言われないのか？</font></p>
+            <p><font color="#2a2827">それは、事業者が欲しいのは実績報告書ではなく、採択された補助金をきちんと入金まで届けることだからです。</font></p>
+            <p><font color="#2a2827">申請書のページ数や作業時間で値段を比べる仕事ではありません。交付決定前の発注を止め、必要な証拠を先に伝え、期限を管理し、差し戻しに対応し、脱落させない。</font></p>
+            <p class=""><font color="#2a2827">顧客にとっては、採択そのものを無駄にしないための支援です。</font></p>
+          </div>
+          <p class="compare-end">だから、安さではなく<br><b>最後まで任せられるか</b>で選ばれます。</p>
+        </div>
+      </section>
+
+      <section class="black-section grow-section">
+        <div class="wrap">
+          <p class="kicker yellow">CONTINUITY</p>
+          <h2 class="">提出して終わりではない<br><mark>入金まで数か月、関係が続く。</mark></h2>
+          <p class="black-lead small">だから、次の補助金・融資・許認可・経営支援へ<br>売り込まずにつながっていきます。</p>
+        </div>
+      </section>
+
+      <section class="letter section-white">
+        <div class="copy">
+          <p class=""><font color="#1d1c1b">実績報告支援は、書類を1回作って終わる仕事ではありません。</font></p>
+          <p><font color="#1d1c1b">交付決定、発注、納品、支払い、成果物の確認、実績報告、差し戻し、確定通知、精算払請求、入金。何か月も一緒に進めます。</font></p>
+          <p><font color="#1d1c1b">その間に、事業内容、設備投資、取引先、資金繰り、社内体制まで見えてきます。</font></p>
+          <p class=""><font color="#1d1c1b" class="">だから、次に必要な支援もわかる。次の補助金かもしれません。融資かもしれません。建設業許可や就業規則、経営改善かもしれません。</font><span style="color: rgb(29, 28, 27);">「またお願いします」が社交辞令ではなく、本当に次の依頼になることはそれほど難しいことではないんです。</span></p>
+          </div></section><section class="repeat-offer"><div class="wrap"><p class="">僕たちが現在進行形で実践している<br>集客と実績報告の仕組みをそのまま使って</p>
+          <h2 class=""><font color="#171716" class=""><b><mark class="">「補助金実務支援」</mark>を<br>もう一つの軸にしないか？</b></font></h2>
+          <a class="cta" href="#consultation">
+            <small>まずは内容を聞いてから判断してください</small>
+            <strong>補助金実務パートナー 個別相談</strong>
+            <span>オンライン相談の日程を確認する →</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="now-section">
+        <div class="wrap">
+          <h2 class=""><mark class=""><font color="#ffffff"><span style="background-color: rgb(8, 8, 8);">タイミングは<br></span></font>今です。</mark></h2>
+          <p>売りやすい市場には、必ずプレイヤーが集まります。</p>
+          <p>採択後支援の価値が広く知られれば、申請支援と同じように競争は増えます。採択者への案内が珍しくなくなり、事例がなければ選ばれにくくなるでしょう。</p>
+          <p class="">まだ支援者が少ない今なら、最初の事例をつくり、地域で「採択後から入金までならこの人」という立ち位置・ポジションを獲得できるでしょう。</p>
+        </div>
+      </section>
+
+      <section class="purpose">
+        <div class="wrap">
+          <p class="en">PURPOSE</p>
+          <h2 class=""><font color="#1a1919" class=""><b>このパートナーシップの目的</b></font></h2>
+          <div class="purpose-copy">
+            <p class=""><font color="#151414" class="">この企画の目的は、知識を教えて終わることではありません。知識を与えようとしても、9割は知識を得ることなく脱落する、それが講座の特性だからです。なのでそもそも知識だけ得ておきたい、的な生半可な人は今回は募集しません。<br><br>それよりも、本当にお客様の「実利」「役に立ちたい」という想いが熱い人、これからもう一本の軸を通して本業をさらに強化したいと本気で考えている人とパートナーシップを組んで、本気でこのマーケットに取り組みたいと考えているからなんです。</font></p>
+            <p class=""><b class="">採択者との出会いから、交付申請・実績報告・入金、そして次の仕事までを、自分の実務として完遂できるようになるのではんく、やる</b></p>
+            <p class=""><font color="#171716">あなたがここに専念できるように、僕たちは、環境を整備します。もちろん現場で僕たちもやり続けます。</font></p><p class=""><font color="#171716">環境でいうならまず最初は、</font></p><p class=""><font color="#171716">見込み客リスト、案内文、個別相談の型、実務マニュアル、管理シート、AI実務環境、案件相談まで、実際に仕事にするためのものを一式そろえます。</font></p>
+            <p class=""><font color="#171716">AIに丸投げするのではありません。公式手引きを確認し、わからないことは事務局へ聞き、顧客と期限を守り、最後まで逃げずに完遂する。その当たり前を積み上げ、入金まで支援できる専門家を全国に増やします。</font></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="profile">
+        <div class="wrap profile-grid">
+          <div class="profile-card">
+            <img src="https://kensetsu.fp-1.info/assets/akutsu-portrait.jpg" alt="阿久津和宏のプロフィール写真">
+            <p>行政書士／認定経営革新等支援機関</p>
+          </div>
+          <div class="profile-copy">
+            <p class="en">YOUR PARTNER</p>
+            <h2>この企画を主催するのは…</h2>
+            <h3>阿久津和宏</h3>
+            <p class="profile-belief">本気でクライアントを思えるからこそ、信念を持って続けられる補助金支援があります。</p>
+            <p>毎年数千億円の補助金・助成金が中小企業向けに用意されています。しかし実際に活用できている企業はごくわずかです。このサイトは、補助金を「知る」「申請する」「活かす」ための情報と仕組みを提供します。情報だけでなく、AIツールとコンサルタントの伴走支援まで一貫して届けます。</p>
+            <p>初めまして。行政書士で認定支援機関の阿久津和宏です。中小企業や、士業・コンサルタントの方の経営支援をしています。セブン-イレブン・ジャパンで24年間、店舗運営コンサルタントとして、加盟店オーナーが毎日ぶつかるリアルな経営課題と向き合ってきました。</p>
+            <p>独立してからは補助金の申請支援を専門にやってきましたが、僕が大切にしているのは、ただの申請代行ではありません。補助金は、もらえるお金ではなく、事業を前に進めるための実行装置です。採択されたあと、そのお金で何を仕掛け、どう販路を広げ、どう次の仕事につなげるのか。ここまで設計して初めて価値になります。</p>
+            <p>だから僕は、補助金支援を儲かるからやる仕事にはしたくありません。本気でクライアントを思う気持ちがあるからこそ、実績報告でつまずかせないところまで責任を持ち、入金まで届け、その先の経営まで強くしたい。その結果として、次の仕事まで続く信頼が生まれる。そういう信念を持ってできる仕事として、この支援を広げています。</p>
+            <p>採択者を脱落者にしない。従業員へ押しつけさせない。意味のわからない差し戻しを放置させない。補助金を、ただの面倒な手続きではなく、ビジネスを構造から前に進める戦略的な武器として使い倒してもらうために、このパートナーシップを運営しています。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="program-title">
+        <div class="wrap">
+          <p>私たちが実際に使っている流れを<br>仕事の順番どおりにお渡しします。</p>
+          <h2 class=""><b>補助金実務パートナーシップ</b></h2>
+          <strong>実務カリキュラム</strong>
+        </div>
+      </section>
+
+      <section class="curriculum">
+        <div class="wrap">
+          <p class="en">CURRICULUM</p>
+          <h2 class=""><mark class="">4つの実務セッション</mark></h2>
+          <div class="curriculum-list">
+            <article>
+              <header><span>SESSION 1</span><small>採択者集客編</small><h3 class=""><b>採択者という「すでに困っている見込み客」と出会う</b></h3></header>
+              <div class="curriculum-body">
+                <ul>
+                  <li>なぜ申請前より採択後のほうが話を聞いてもらいやすいのか</li>
+                  <li>公開情報から支援対象を整理する方法</li>
+                  <li>売り込まずに相談へつなぐ最初の案内文</li>
+                  <li>問い合わせ・個別相談までのフォロー設計</li>
+                </ul>
+                <p class=""><font color="#302d2c">まだ補助金を使うかどうかも決めていない人を説得するのではありません。すでに採択され、交付申請、見積、発注、支払い、実績報告という期限のある仕事を抱えている事業者へ、必要な情報を届けます。誰に、何を、どの順番で伝えれば「ちょうど困っていました」と相談につながるのか。実際に使う文章と一緒に整理します。</font></p>
+              </div>
+            </article>
+            <article>
+              <header><span>SESSION 2</span><small>相談・受注編</small><h3 class="">専門家の立ち位置を生かした相談の進め方</h3></header>
+              <div class="curriculum-body">
+                <ul>
+                  <li>最初に確認する採択通知・交付決定・事業期間</li>
+                  <li>その場で危険箇所を見つける質問項目</li>
+                  <li>支援範囲と役割分担を誤解なく伝える方法</li>
+                  <li>値段の話をする前に支援価値を理解してもらう流れ</li>
+                </ul>
+                <p class=""><font color="#252322">制度の知識を披露する相談ではありません。「このまま発注して大丈夫か」「いつまでに何を終えるのか」「証拠として何を残すのか」を、社長が理解できる言葉で見えるようにします。現状と危険箇所が見えれば、支援の必要性は相手が判断できます。聞く順番、見せる資料、相談後の提案までを一つの型にします。</font></p>
+              </div>
+            </article>
+            <article>
+              <header><span>SESSION 3</span><small>交付・報告実務編</small><h3 class="">交付申請から実績報告、差し戻し、入金まで止めない</h3></header>
+              <div class="curriculum-body">
+                <ul>
+                  <li>見積書・相見積書・選定理由の確認</li>
+                  <li>発注・納品・請求・支払いの証拠管理</li>
+                  <li>経費区分ごとの提出書類チェック</li>
+                  <li>差し戻し通知を読み解き、修正・再提出する方法</li>
+                </ul>
+                <p class=""><font color="#222120" class="">採択はゴールではありません。交付決定前の発注、計画と違う購入、証拠の不足、未使用・未納品・未配布・未公開。途中で判断を誤ると、採択されていても補助対象として認められないことがあります。公式手引きと通知を確認し、顧客、取引先、事務局の間で何をいつ確認するかを、案件の流れに沿って扱います。</font></p>
+              </div>
+            </article>
+            <article>
+              <header><span>SESSION 4</span><small>継続顧客化編</small><h3 class="">入金まで伴走した信頼⇨お客様の次なるステップアップを支援する</h3></header>
+              <div class="curriculum-body">
+                <ul>
+                  <li class="">入金後に必ず行う振り返り</li>
+                  <li>次の補助金・融資・許認可へのつなぎ方</li>
+                  <li>税理士・他士業との連携のつくり方</li>
+                  <li>単発案件を継続支援へ変える提案</li>
+                </ul>
+                <p class=""><font color="#302d2c" class="">数か月にわたって実績報告まで伴走すると、その会社の事業計画、資金繰り、設備投資、取引先、社内体制までわかります。だから、次に必要な支援を的外れなく提案できます。「また何かあったら」では終わらせません。入金後の振り返りから、次の仕事や紹介が自然に生まれる関係をつくります。</font></p>
+              </div>
+            </article>
+          </div>
+          <p class="curriculum-note">※より実務に役立つ内容とするため、内容を追加・変更する場合があります。</p>
+        </div>
+      </section>
+
+      <section class="support-section">
+        <div class="wrap">
+          <p class="support-question">でも、実績報告をやったことがない…？</p>
+          <p class="support-label">SUPPORT PACKAGE</p>
+          <h2 class="">安心してください。<br>実務を動かす4つの環境</h2>
+          <div class="support-list">
+            <article><div class="support-no">SUPPORT <b>1</b></div><div><h3 class=""><b><font color="#1d1c1b">毎月の見込み客リスト</font></b></h3><h4 class="">見込み客がいない？安心してください。</h4><p class="">採択者を中心とした見込み客情報を、毎月最大1,000件規模で整理します。会社名を並べるだけではなく、案内に必要な連絡先を調べ、重複を除き、実際に動ける状態へ近づけます。</p></div></article>
+            <article><div class="support-no">SUPPORT <b>2</b></div><div><h3 class=""><b><font color="#32302f" class="">補助金特化型<br>集客・個別相談のマーケティングシステム</font></b></h3><h4 class="">文章をゼロから考える必要はありません。</h4><p>最初の案内、問い合わせへの返信、個別相談への誘導、リマインド、相談後フォロー、ニュースレターまで、見込み客との接点ごとに使う文章と資料を用意します。</p></div></article>
+            <article><div class="support-no">SUPPORT <b>3</b></div><div><h3 class=""><b><font color="#1f1e1e" class="">補助金別マニュアル・AI実務環境</font></b></h3><h4>手引きを探し回る時間を減らします。</h4><p>持続化補助金、ものづくり補助金などの交付申請・実績報告を補助金別に整理。公式資料と案件情報をもとに確認事項を洗い出せる、実務用の環境も整えます。</p></div></article>
+            <article><div class="support-no">SUPPORT <b>4</b></div><div><h3 class=""><b><font color="#222120">回数を気にせず相談できる伴走体制</font></b></h3><h4 class="">初めての差し戻しを、1人で抱えません。</h4><p>顧客への聞き方、事務局への確認、差し戻し対応など、現場で止まった場面をそのまま相談できます。行政書士の関与が必要な業務は、役割を適切に切り分けます。</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="value-section">
+        <div class="wrap">
+          <h2 class=""><font color="#252322" class=""><b>売りやすい…高単価…継続契約…<br>この3つが揃う希少な案件を<br>新たな武器にしませんか？</b></font></h2>
+          <p>あなたにとって<br><mark class="">どんな価値がありますか？</mark></p>
+        </div>
+      </section>
+
+      <section class="letter section-white">
+        <div class="copy">
+          <p class=""><font color="#292524">ここまで読んでくれたあなたは、すでに実績報告支援の大きな魅力に気づいているはずです。</font></p>
+          <p><font color="#292524">でも、正直にお伝えしなければいけないことがあります。</font></p>
+          <p><font color="#292524">ノウハウを知っただけでは、仕事にはなりません。</font></p>
+          <p><font color="#292524">誰に案内するか。最初に何と伝えるか。相談で何を聞くか。案件をどう管理するか。差し戻しが来たとき、顧客へ何と頼むか。</font></p>
+          <p class=""><font color="#292524">ここで止まれば、せっかく市場に気づいても最初の1件は生まれません。</font></p>
+          <p class=""><font color="#292524">だから、知識だけではなく、実務ですぐ使う8つの特典を用意しました。</font></p>
+        </div>
+      </section>
+
+      <section class="bonus-title">
+        <div class="wrap">
+          <p>ちょっと待ってください。</p>
+          <h2>まだあります…</h2>
+          <strong>実務ですぐ使える 8つの特典</strong>
+        </div>
+      </section>
+
+      <section class="bonuses">
+        <div class="wrap bonus-list">
+          <article><div class="bonus-head"><span>特典 01</span><h3 class=""><font color="#151414" class=""><b>採択者への初回案内テンプレート</b></font></h3></div><div class="bonus-visual"><b>1</b><span>PRACTICAL<br>TOOL</span></div><p class="">何を案内したらいいかわからない？そう思うなら僕たちが普段から使っている、システムで活用しているテンプレートを使ってください。<br>採択後に起きる問題を知らせ、相談のきっかけをつくる案内文です。メール・問い合わせフォーム・郵送へ調整して使えます。</p></article>
+          <article><div class="bonus-head"><span>特典 02</span><h3>個別相談ヒアリングシート</h3></div><div class="bonus-visual"><b>2</b><span>PRACTICAL<br>TOOL</span></div><p class="">個別相談で何を話せば？この相談は普段のものとは違います。単にやることだけ伝えても、成約にはなりませんしあなたを信頼して任せようとはなりません。なぜなら、本当の価値を理解してもらえていないのが実情だからです。なので、本当に聞くべきポイントを網羅した個別相談ヒアリングシートを過去のミーティングログから集めてあなたにそのまま提供します。</p></article>
+          <article><div class="bonus-head"><span>特典 03</span><h3>案件進行・期限管理シート</h3></div><div class="bonus-visual"><b>3</b><span>PRACTICAL<br>TOOL</span></div><p>顧客ごとに、見積、発注、納品、支払い、実績報告、差し戻し、精算払請求までの現在地と期限を一覧で管理します。</p></article>
+          <article><div class="bonus-head"><span>特典 04</span><h3>経費別・提出書類チェックリスト</h3></div><div class="bonus-visual"><b>4</b><span>PRACTICAL<br>TOOL</span></div><p>経費区分ごとに必要になりやすい証拠書類を整理。顧客へ何を依頼するか、何が不足しているかを明確にします。</p></article>
+          <article><div class="bonus-head"><span>特典 05</span><h3>差し戻し対応の依頼文例集</h3></div><div class="bonus-visual"><b>5</b><span class="">PRACTICAL<br>TOOL</span></div><p class="">実は、この支援のもっとも大事なところはここなんです。偉そうな事務局、意味不明な不備内容の説明文などに多くの人は頭を悩ませているからです。<br>事務局から届いた不備内容を、顧客や取引先が行動できる言葉へ変換する文例です。曖昧な「修正してください」で終わりません。</p></article>
+          <article><div class="bonus-head"><span>特典 06</span><h3>公式手引き・通知文書の確認ガイド</h3></div><div class="bonus-visual"><b>6</b><span>PRACTICAL<br>TOOL</span></div><p>どの資料の、どこを確認するかを整理。自己流の判断を減らし、事務局へ確認すべき論点も見つけやすくします。</p></article>
+          <article><div class="bonus-head"><span>特典 07</span><h3>入金後の次回提案テンプレート</h3></div><div class="bonus-visual"><b>7</b><span>PRACTICAL<br>TOOL</span></div><p>支援完了後の振り返りから、次の補助金、融資、許認可、経営改善支援へ自然につなぐ提案の型です。</p></article>
+          <article><div class="bonus-head"><span>特典 08</span><h3>顧客説明用プレゼンテーション</h3></div><div class="bonus-visual"><b>8</b><span>PRACTICAL<br>TOOL</span></div><p>採択から入金までの全体像、顧客側で必要な準備、やってはいけないことを、画面共有しながら説明できます。</p></article>
+        </div>
+      </section>
+
+      <section class="offer-section">
+        <div class="wrap">
+          <p class="en">SPECIAL OFFER</p>
+          <h2 class=""><b>この「ペイン」だらけの<br></b><b style="font-size: clamp(39px, 5.5vw, 59px);">ガラ空き市場をあなたは<br></b><b style="font-size: clamp(39px, 5.5vw, 59px);">どう活用しますか？</b></h2>
+          <div class="offer-copy">
+            <p>単刀直入に言います。</p>
+            <p>もしあなたが、価格で比較される申請支援だけから抜けて、採択者に必要とされ、入金まで伴走し、次の仕事まで続く関係を持ちたいなら、この補助金実務パートナーシップをおすすめします。</p>
+            <p>ただし、現在の仕事、資格、実績報告の経験、地域、既存顧客によって、最初にやることは変わります。</p>
+            <p>そこで、いきなり申込みではなく、まず個別相談で、あなたがこの市場へ入るなら何から始めるべきかを整理します。</p>
+          </div>
+          <div class="consult-box">
+            <span>0期・原則各都道府県1名</span>
+            <h3 class="">補助金実務パートナー<br>戦略ミーティング</h3><div class=""><b><font color="#ee1b1b">無料</font></b></div>
+            <ul>
+              <li>現在地と最初の一手を整理</li>
+              <li>対象補助金・地域・集客方法を具体化</li>
+              <li>相談後に参加を見送っても構いません</li>
+            </ul>
+            <a href="#consultation" class="">戦略ミーティングの日程を確認する →</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="summary-section">
+        <div class="wrap">
+          <h2 class=""><b>まとめると…<br>あなたが手に入れるのは…</b></h2>
+          <div class="summary-grid">
+            <div><span class="">01</span><b>採択者へ届く<br>見込み客リスト</b></div>
+            <div><span>02</span><b>売り込まず相談につなぐ<br>マーケティング一式</b></div>
+            <div><span>03</span><b>採択者との出会いから<br>入金までの実務の型</b></div>
+            <div><span>04</span><b>補助金別のマニュアルと<br>AI実務環境</b></div>
+            <div><span>05</span><b>初めての案件を抱えない<br>相談・伴走体制</b></div>
+            <div><span>06</span><b>現場ですぐ使える<br>8つの実務特典</b></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="last-chance">
+        <div class="wrap">
+          <p class="last-kicker">START NOW</p>
+          <h2>始めるなら「今」。</h2>
+          <p class="last-question">あなたは、このチャンスにいつ乗りますか？</p>
+          <p>採択後の支援を前面に出す専門家は、まだ多くありません。</p>
+          <p>だから今なら、地域で最初の事例をつくり、「採択後から入金までならこの人」という立ち位置を取れます。</p>
+          <p>値下げで選ばれる仕事から、最後まで任される仕事へ。</p>
+          <a class="cta" href="#consultation">
+            <small>まずは内容を聞いてから判断してください</small>
+            <strong>補助金実務パートナー 個別相談</strong>
+            <span>オンライン相談の日程を確認する →</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="consultation" id="consultation">
+        <div class="wrap">
+          <p class="consult-label">ONLINE CONSULTATION</p>
+          <h2>補助金実務パートナー<br>個別相談の日程を選ぶ</h2>
+          <p class="consult-lead">相談したからといって、参加する義務はありません。<br>地域・経験・現在の仕事から、実績報告支援の入口を整理します。</p>
+          <div class="iframe-wrap">
+            <div class="iframe-head">
+              <b>予約カレンダー</b>
+              <a href="https://lp2.well-c.biz/reserve/d7ed4f33-f24b-4e41-83c7-c9bdb3774dde/type-mrt127n2" target="_blank" rel="noreferrer">別画面で開く ↗</a>
+            </div>
+            <iframe src="https://lp2.well-c.biz/reserve/d7ed4f33-f24b-4e41-83c7-c9bdb3774dde/type-mrt127n2?embed=1" title="補助金実務パートナー個別相談予約" loading="lazy"></iframe>
+          </div>
+          <p class="reserve-note">予約枠が表示されない場合は、別画面で開くか、後ほど再度ご確認ください。</p>
+        </div>
+      </section>
+
+      <footer>
+        <p><b>阿久津和宏</b></p>
+        <p>行政書士／認定経営革新等支援機関</p>
+        <p>埼玉県熊谷市石原641-3 ／ 完全オンライン・全国対応</p>
+        <p><a href="mailto:info@fp-1.info">info@fp-1.info</a></p>
+      </footer>
+
+      <a class="fixed-cta" href="#consultation"><b>個別相談へ</b><span>日程を確認 →</span></a>
+    </main>
+  
+
+
+</body>
+</html>
