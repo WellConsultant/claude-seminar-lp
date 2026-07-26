@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ものづくり分析</title>
+<style>
+:root{
+  --bg:#f7f8fa; --card:#ffffff; --ink:#1f2733; --sub:#5b6675;
+  --accent:#e8603c; --line:#e6e9ee; --chip:#eef1f6;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  line-height:1.85;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 80px}
+article{background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:44px 48px;box-shadow:0 6px 30px rgba(31,39,51,.06)}
+h1{font-size:30px;line-height:1.4;margin:0 0 14px;letter-spacing:.01em}
+.meta{color:var(--sub);font-size:13px;margin-bottom:22px;
+  display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.meta .dot{width:4px;height:4px;border-radius:50%;background:var(--sub);opacity:.5}
+.tags{margin:0 0 22px}
+.tag{display:inline-block;background:var(--chip);color:var(--sub);font-size:12px;
+  padding:4px 10px;border-radius:999px;margin:0 6px 6px 0}
+.lead{font-size:17px;color:var(--ink);background:#fbf3f0;border-left:4px solid var(--accent);
+  padding:16px 18px;border-radius:0 8px 8px 0;margin:0 0 30px}
+.toc{background:#fafbfc;border:1px solid var(--line);border-radius:12px;
+  padding:16px 20px;margin:0 0 34px}
+.toc-title{font-weight:700;font-size:14px;margin:0 0 8px;color:var(--sub)}
+.toc ol{margin:0;padding-left:20px}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+section{margin:0 0 30px}
+h2{font-size:21px;margin:34px 0 12px;padding-left:12px;
+  border-left:5px solid var(--accent);line-height:1.5}
+p{margin:0 0 16px}
+ul{margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+strong{color:#b6472a}
+hr{border:0;border-top:1px solid var(--line);margin:34px 0}
+.source{display:inline-block;color:var(--accent);font-weight:700;text-decoration:none}
+.footer{color:var(--sub);font-size:12px;margin-top:8px}
+@media(max-width:600px){article{padding:26px 20px}h1{font-size:24px}}
+@media print{body{background:#fff}article{border:0;box-shadow:none;padding:0}.toc{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<article>
+  <h1>ものづくり分析</h1>
+  <div class="meta">
+    <span>読了目安 約8分</span><span class="dot"></span>
+    <span>Vimeo→ブログ自動生成</span>
+  </div>
+  <div class="tags"><span class="tag">補助金</span><span class="tag">行政書士</span></div>
+  <p class="lead">ものづくり補助金の申請数・採択数・交付決定数のデータから、交付決定単価や交付決定率の推移を追いかけてみました。あわせて、行政事業レビューの公開データを手がかりに、採択から入金までの間にどれくらいの事業者が抜け落ちているのかを推定しています。断定できる数字ではなく仮説段階の内容ですが、記録として残しておきます。</p>
+<div class="video-embed" style="position:relative;padding-top:56.25%;margin:0 0 30px;border-radius:12px;overflow:hidden;background:#000">
+  <iframe src="https://player.vimeo.com/video/1212331144?h=cbceeea496" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="動画プレイヤー"></iframe>
+</div>
+  <nav class="toc" aria-label="目次">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#sec-0">ものづくり補助金データから仮説を立てた経緯</a></li>
+      <li><a href="#sec-1">交付決定単価と交付決定率の推移</a></li>
+      <li><a href="#sec-2">採択から交付決定までに減っているのではという仮説</a></li>
+      <li><a href="#sec-3">行政事業レビューのデータを追いかける</a></li>
+      <li><a href="#sec-4">2025年分の交付決定単価を算出</a></li>
+      <li><a href="#sec-5">採択から入金までの期間を仮に置いてみる</a></li>
+      <li><a href="#sec-6">2025年に支払われたであろう交付決定数・入金数を推定</a></li>
+      <li><a href="#sec-7">本来どこかにあるはずのデータ</a></li>
+      <li><a href="#sec-8">採択から交付決定までの脱落者数</a></li>
+      <li><a href="#sec-9">気になる運営費の規模</a></li>
+      <li><a href="#sec-10">今後、行政書士としてできること</a></li>
+    </ol>
+  </nav>
+  <section id="sec-0">
+    <h2>ものづくり補助金データから仮説を立てた経緯</h2>
+  <p>見える化部と話している中で、ものづくり補助金のデータについてある仮説を立てました。今回照合したのは第1次から22次までの申請数・採択数・交付決定数です。ものづくり補助金は交付決定数をきちんと公表しているため、他の補助金に比べて追いかけやすいデータになっています。</p>
+  </section>
+  <section id="sec-1">
+    <h2>交付決定単価と交付決定率の推移</h2>
+  <p>交付決定数と決定金額から交付決定単価を計算すると、平均でおよそ850万円になります。最大採択額として数千万円や1億円という数字が語られることも多いわりに、実際の単価はこの水準にとどまっているようです。</p>
+  <p>交付決定率（申請数を分母にした場合）は、第1回で採択率62.48%に対し60.77%とほぼ差がありませんでした。ただ、初期の回では3〜4%程度だった交付決定率が、回を重ねるごとに上昇しています。これは採択から交付決定までに10ヶ月ほどかかるため、直近の22次・19次のような新しい回はまだ交付決定が出そろっていないことが主な理由とみられます。それでも11%程度にとどまっている回もあり、単純な時間差だけでは説明しきれない開きが残っています。</p>
+  </section>
+  <section id="sec-2">
+    <h2>採択から交付決定までに減っているのではという仮説</h2>
+  <p>ここでの仮説は、交付決定金額または交付決定者数が、採択時点よりも実際には減っているのではないかというものです。裏付けになりそうなデータを探しましたが、公式には見当たりませんでした。手がかりになりそうだったのが「行政事業レビュー見える化サイト」で、各府省庁の事業ごとの支出実績を公開しているサイトです。ただし実際に見てみると、名称ほど内容が見える化されているわけではなく、読み解くのはかなり難しい印象でした。</p>
+  </section>
+  <section id="sec-3">
+    <h2>行政事業レビューのデータを追いかける</h2>
+  <p>2025年の支出データの中で、ものづくり補助金に該当しそうな項目が2件見つかりました。主催しているのは全国中小企業団体中央会とみられ、事業IDを手がかりに検索すると「革新的な製品・サービス開発、生産プロセス改善のための設備投資等の実施」という事業名がヒットしました。この事業IDに関連する支出先を見ていくと、金額は3,551億円、支出先の数は3,850件という数字が確認できました。</p>
+  </section>
+  <section id="sec-4">
+    <h2>2025年分の交付決定単価を算出</h2>
+  <p>確認できた金額を確定通知数で割ると、確定通知単価が出せます。1,000円単位の表記だったため、実際の単価は981万7,000円になりました。この数値がなぜ他の年度分と分かれて計上されているのかは分かりませんが、予算区分の関係ではないかと推測しています。データを見る限りこれは2024年度の執行分にあたる可能性が高く、2025年の支出として単純に足し合わせてよいものかどうかは、正直判断がつきにくいところです。</p>
+  </section>
+  <section id="sec-5">
+    <h2>採択から入金までの期間を仮に置いてみる</h2>
+  <p>交付決定・事業期間・実績報告までのプロセスにかかる期間として、次のような仮定を置きました。交付決定後の事業期間はおおむね10ヶ月でほぼ固定です。実績報告の提出期限は決まっているものの、実際の支払いまでの期限は定められていないため、半年から1年、目安として8ヶ月程度と仮定しました。これらを積み上げると、採択されてから実際に入金されるまではおよそ540日ではないかという仮説になります。あくまで肌感覚に基づく仮定で、確定的な数字ではありません。</p>
+  </section>
+  <section id="sec-6">
+    <h2>2025年に支払われたであろう交付決定数・入金数を推定</h2>
+  <p>この仮定をもとに逆算すると、2025年に支払われたと考えられる交付決定数はおよそ1万社、金額にして686億5,460万1,053円という結果になりました。一方、入金数として算出された数は4,490社、金額は440億円で、交付決定数に対して64%程度まで減っている計算になります。この減り方は仮説にしても大きすぎるため、集計対象の月をひとつずらして再計算したところ491億円という数字が出てきました。この場合の減少幅は1割程度で、交付決定者数ベースでも7,780社から4,990社への減少という計算になります。いずれにしても、どこかの段階で数字が変動していることは確かですが、月のずれ方によって結果が大きく変わるため、正確性については留保が必要な仮説段階の数字です。</p>
+  </section>
+  <section id="sec-7">
+    <h2>本来どこかにあるはずのデータ</h2>
+  <p>何人が実際にいくら受け取っているかという実績値は、本来どこかで公表されているはずのデータです。ただ、それが公表義務のある情報なのか、根拠となる法律があるのかは把握できていません。この点に詳しい方がいれば、ぜひ教えていただきたいところです。</p>
+  </section>
+  <section id="sec-8">
+    <h2>採択から交付決定までの脱落者数</h2>
+  <p>行政事業レビューのデータとは別に、採択数と交付決定数を回ごとに比較すると、明確な脱落が見て取れます。ある回では採択者1,698社に対して交付決定者は1,500社で、約200社が交付決定に至っていません。別の回では825社の採択に対し交付決定は691社、さらに別の回では638社という数字も見られました。交付決定はお金を実際に支払う前の段階なので、この時点ですでに減っているということは、その後の実績報告や入金の段階でさらに減っている可能性が高いと考えられます。資金繰りの事情もあるかもしれませんが、それだけでは説明しきれない部分もありそうです。</p>
+  </section>
+  <section id="sec-9">
+    <h2>気になる運営費の規模</h2>
+  <p>補助金そのものに支払われている金額に比べて、この事業に関する運営費（ホームページやシステム開発、印刷、通知などの委託費）が10倍以上の規模になっている点も気になりました。ある年の運営費は1億4,000万円で、これが特定の1社を除いた複数の会社に配分されています。補助金を受け取る事業者側の実績数字があまり公表されない一方で、こうした運営側の支出の規模には違和感が残ります。</p>
+  </section>
+  <section id="sec-10">
+    <h2>今後、行政書士としてできること</h2>
+  <p>今回分かったのは、少なくとも採択から交付決定の段階で一定数の事業者が脱落しているという事実です。自分たちが直接支援している事業者については交付決定率・入金率がほぼ100%になっているため、この脱落は支援の有無によって生まれている差である可能性があります。行政書士法の改正をめぐる議論の中で、申請書類の作成は行政書士でなければならないという声も出てきていますが、行政書士でなくてもこの領域の知識をきちんと持っていればサポートできる部分は大きいと考えています。この点については、今後も発信を続けていきたいと思います。</p>
+  <p>このデータや仮説について詳しい方、協力できる方がいれば、ぜひご連絡ください。</p>
+  </section>
+  <hr>
+    <a class="source" href="https://vimeo.com/1212331144" rel="noopener" target="_blank">▶ 元動画を見る</a>
+  <p class="footer">この記事は動画の文字起こしから自動生成されました（LLM整形）。</p>
+</article>
+</div>
+</body>
+</html>
