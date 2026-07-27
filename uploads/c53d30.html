@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="事業再構築補助金では、採択76,224者のうち入金まで到達したのは60,223者。採択後に16,001者が離脱した数字を、行政書士・認定支援機関の視点から解説し、資金繰り・書類手続き・不備解消の対策をまとめます。">
+  <title>採択されたのに、なぜ入金まで届かないのか｜16,001者の離脱を減らしたい</title>
+  <style>
+    :root{
+      --navy:#10213f;--navy2:#19345f;--ink:#1b2535;--muted:#607086;
+      --line:#dce3ec;--soft:#f3f6fa;--orange:#e87324;--orange2:#fff1e6;
+      --red:#b33a35;--red2:#fff0ee;--green:#277552;--green2:#edf8f2;
+      --white:#fff;--shadow:0 12px 34px rgba(16,33,63,.09);
+      --radius:18px;--content:820px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#fff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.95;letter-spacing:.02em}
+    img,svg{display:block;max-width:100%}
+    a{color:var(--navy2);text-underline-offset:3px}
+    .progress{position:fixed;inset:0 auto auto 0;height:4px;background:var(--orange);width:0;z-index:50}
+    .hero{background:linear-gradient(135deg,#0c1c37 0%,#17345f 64%,#233f68 100%);color:#fff;overflow:hidden;position:relative}
+    .hero:after{content:"";position:absolute;width:540px;height:540px;border-radius:50%;right:-260px;top:-260px;border:90px solid rgba(255,255,255,.045)}
+    .hero-inner{width:min(1140px,calc(100% - 36px));margin:auto;padding:68px 0 62px;display:grid;grid-template-columns:1.1fr .9fr;gap:46px;align-items:center;position:relative;z-index:2}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.13em;color:#ffbe8c}
+    .eyebrow:before{content:"";width:24px;height:2px;background:#ff9a52}
+    h1{font-size:clamp(32px,4.6vw,58px);line-height:1.28;letter-spacing:-.025em;margin:18px 0 20px}
+    .hero-lead{font-size:17px;line-height:1.9;color:#e2eaf5;margin:0;max-width:650px}
+    .hero-visual{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:26px;backdrop-filter:blur(8px)}
+    .hero-visual h2{font-size:16px;margin:0 0 18px;font-weight:650}
+    .mini-flow{display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr;align-items:center}
+    .mini-stage{text-align:center;background:#fff;color:var(--navy);border-radius:13px;padding:15px 6px}
+    .mini-stage strong{display:block;font-size:clamp(19px,2vw,27px);line-height:1.2}
+    .mini-stage span{font-size:11px;color:#617087}
+    .mini-arrow{text-align:center;color:#ffb37e;font-weight:900}
+    .hero-loss{margin-top:16px;background:rgba(0,0,0,.19);border-radius:14px;padding:13px;text-align:center;font-size:14px}
+    .hero-loss strong{font-size:24px;color:#ffb37e;margin-right:6px}
+    .layout{width:min(1140px,calc(100% - 36px));margin:0 auto;display:grid;grid-template-columns:250px minmax(0,var(--content));gap:52px;align-items:start;padding:46px 0 80px}
+    .toc{position:sticky;top:22px;border:1px solid var(--line);border-radius:15px;padding:18px;background:#fff}
+    .toc-title{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.12em;margin-bottom:10px}
+    .toc ol{padding:0;margin:0;list-style:none;counter-reset:toc}
+    .toc li{counter-increment:toc;border-top:1px solid #edf0f4}
+    .toc li:first-child{border-top:0}
+    .toc a{display:flex;gap:7px;padding:8px 2px;color:#435168;text-decoration:none;font-size:12px;line-height:1.55}
+    .toc a:before{content:counter(toc,decimal-leading-zero);color:var(--orange);font-weight:800}
+    article{min-width:0}
+    .intro{font-size:17px}
+    .intro p:first-child:first-letter{float:left;font-size:64px;line-height:.85;font-weight:800;color:var(--navy);padding:9px 10px 0 0}
+    p{margin:0 0 1.25em}
+    h2{font-size:clamp(25px,3vw,34px);line-height:1.48;letter-spacing:-.015em;color:var(--navy);margin:64px 0 24px;padding-top:10px}
+    h2 .no{display:block;color:var(--orange);font-size:12px;letter-spacing:.16em;margin-bottom:7px}
+    h3{font-size:21px;line-height:1.55;color:var(--navy);margin:38px 0 15px}
+    strong{font-weight:750}
+    .marker{background:linear-gradient(transparent 64%,#ffe0c8 64%)}
+    .quote{border-left:4px solid var(--orange);padding:18px 22px;margin:30px 0;background:var(--orange2);font-size:18px;font-weight:700;color:var(--navy)}
+    .figure{margin:34px 0;border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:#fff;box-shadow:var(--shadow)}
+    .figure-title{font-size:15px;font-weight:800;color:var(--navy);margin:0 0 18px}
+    .figure-note{font-size:12px;color:var(--muted);margin:14px 0 0;line-height:1.7}
+    .drop-flow{display:grid;grid-template-columns:1fr 52px 1fr 52px 1fr;align-items:stretch}
+    .drop-stage{border:1px solid var(--line);border-radius:15px;padding:19px 10px;text-align:center;background:var(--soft)}
+    .drop-stage.final{background:var(--green2);border-color:#bddfce}
+    .drop-stage span{display:block;color:var(--muted);font-size:12px}
+    .drop-stage strong{display:block;color:var(--navy);font-size:27px;line-height:1.35}
+    .drop-link{display:flex;flex-direction:column;justify-content:center;align-items:center;color:var(--red);font-weight:800;font-size:18px;line-height:1.25}
+    .drop-link small{font-size:9px;white-space:nowrap}
+    .ratio-grid{display:grid;grid-template-columns:180px 1fr;gap:28px;align-items:center}
+    .donut{width:170px;height:170px;margin:auto;position:relative}
+    .donut svg{transform:rotate(-90deg)}
+    .donut-center{position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1.25}
+    .donut-center strong{font-size:29px;color:var(--navy)}
+    .donut-center span{font-size:11px;color:var(--muted)}
+    .ratio-copy{display:grid;gap:10px}
+    .legend{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+    .dot{width:11px;height:11px;border-radius:50%;margin-top:8px;flex:0 0 auto}
+    .data-table{width:100%;border-collapse:collapse;font-size:14px}
+    .data-table th,.data-table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .data-table th{font-size:12px;color:var(--muted);background:var(--soft)}
+    .data-table td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+    .callout{border-radius:16px;padding:22px 24px;margin:28px 0}
+    .callout.warn{background:var(--red2);border:1px solid #ecc9c5}
+    .callout.info{background:#eef4fc;border:1px solid #cfddf0}
+    .callout.good{background:var(--green2);border:1px solid #c8e5d6}
+    .callout-title{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:8px}
+    .callout p:last-child{margin-bottom:0}
+    .three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}
+    .reason{border:1px solid var(--line);border-radius:16px;padding:19px;background:#fff}
+    .reason-no{display:grid;place-items:center;width:34px;height:34px;background:var(--navy);color:#fff;border-radius:50%;font-weight:800}
+    .reason h3{font-size:18px;margin:14px 0 9px}
+    .reason p{font-size:13px;color:#4f5d70;margin:0;line-height:1.75}
+    .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin:28px 0 12px}
+    .timeline:before{content:"";position:absolute;left:8%;right:8%;top:20px;height:3px;background:#d8e0ea}
+    .time-item{position:relative;text-align:center;padding:0 6px}
+    .time-dot{width:41px;height:41px;border-radius:50%;background:#fff;border:3px solid var(--navy2);display:grid;place-items:center;margin:0 auto 8px;position:relative;z-index:2;font-size:12px;font-weight:800}
+    .time-item.risk .time-dot{border-color:var(--orange);background:var(--orange2)}
+    .time-item span{font-size:11px;line-height:1.45;display:block}
+    .checklist{display:grid;gap:10px;margin:22px 0}
+    .check{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+    .check:before{content:"✓";display:grid;place-items:center;width:23px;height:23px;flex:0 0 23px;border-radius:50%;background:var(--green);color:#fff;font-weight:900;font-size:13px;margin-top:3px}
+    .check b{color:var(--navy)}
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:24px 0}
+    .process div{position:relative;background:var(--soft);border-radius:13px;padding:15px 12px;text-align:center;font-size:13px;font-weight:700;color:var(--navy)}
+    .process div:not(:last-child):after{content:"›";position:absolute;right:-9px;top:50%;transform:translateY(-50%);z-index:2;color:var(--orange);font-size:26px}
+    .law{background:var(--navy);color:#fff;border-radius:18px;padding:28px;margin:30px 0}
+    .law-label{color:#ffb37e;font-size:12px;font-weight:800;letter-spacing:.12em}
+    .law blockquote{margin:14px 0 0;padding:0;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:15px;line-height:2;color:#f1f5fb}
+    .law hr{border:0;border-top:1px solid rgba(255,255,255,.18);margin:20px 0}
+    .profile{display:grid;grid-template-columns:76px 1fr;gap:17px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:20px;margin:30px 0;background:var(--soft)}
+    .profile-mark{width:76px;height:76px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-content:center;text-align:center;font-size:12px;line-height:1.2}
+    .profile-mark strong{font-size:24px}
+    .profile p{font-size:13px;margin:3px 0 0;color:#4e5d72}
+    .cta{margin-top:62px;background:linear-gradient(135deg,var(--navy),#1c406e);border-radius:22px;padding:36px;color:#fff;text-align:center}
+    .cta-kicker{font-size:12px;color:#ffbc89;letter-spacing:.14em;font-weight:800}
+    .cta h2{margin:10px 0 15px;padding:0;color:#fff;font-size:29px}
+    .cta p{color:#e2eaf5;max-width:650px;margin:0 auto 22px}
+    .button{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;padding:15px 28px;border-radius:999px;font-weight:800;box-shadow:0 8px 22px rgba(232,115,36,.3)}
+    .button:hover{transform:translateY(-1px)}
+    .source-box{font-size:12px;color:var(--muted);margin-top:46px;border-top:1px solid var(--line);padding-top:20px}
+    .source-box ul{padding-left:20px}
+    .source-box li{margin:5px 0}
+    footer{border-top:1px solid var(--line);padding:28px 18px;text-align:center;color:var(--muted);font-size:12px}
+    @media(max-width:900px){
+      .hero-inner{grid-template-columns:1fr;padding:52px 0}.hero-visual{max-width:680px}
+      .layout{grid-template-columns:1fr;gap:0}.toc{position:relative;top:0;margin-bottom:15px}.toc ol{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+    }
+    @media(max-width:650px){
+      body{line-height:1.85}.hero-inner,.layout{width:min(100% - 28px,820px)}
+      .hero-inner{padding:42px 0}.hero-lead{font-size:15px}.hero-visual{padding:17px}
+      .mini-flow,.drop-flow{grid-template-columns:1fr}.mini-arrow{transform:rotate(90deg);height:25px}.drop-link{height:64px}
+      .drop-link:after{content:"↓";display:block}.drop-link small{font-size:10px}
+      .ratio-grid{grid-template-columns:1fr}.three{grid-template-columns:1fr}
+      .timeline{grid-template-columns:1fr;gap:8px}.timeline:before{left:20px;top:5%;bottom:5%;height:auto;width:3px}.time-item{display:grid;grid-template-columns:42px 1fr;text-align:left;align-items:center;gap:10px}.time-dot{margin:0}.time-item span{font-size:12px}
+      .process{grid-template-columns:1fr 1fr}.process div:nth-child(2):after{display:none}
+      .toc ol{grid-template-columns:1fr}.figure{padding:17px;margin-inline:-3px}.data-table{font-size:12px}
+      h2{margin-top:50px}.cta{padding:28px 20px}.cta h2{font-size:25px}
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow">事業再構築補助金・採択後の現実</span>
+        <h1>採択されたのに、<br>なぜ入金まで<br>届かないのか。</h1>
+        <p class="hero-lead">採択は、ゴールではありません。交付申請、事業の実施、実績報告、確定検査、請求を終え、補助金が入金されて初めて、計画した支援が会社の資金になります。行政書士として、認定支援機関として、僕はこの離脱の数字を受け入れられません。</p>
+      </div>
+      <div class="hero-visual" role="img" aria-label="採択76,224者から交付決定69,776者、入金60,223者へ減少する図">
+        <h2>採択から入金までの到達状況</h2>
+        <div class="mini-flow">
+          <div class="mini-stage"><span>採択</span><strong>76,224</strong><span>者</span></div>
+          <div class="mini-arrow">›</div>
+          <div class="mini-stage"><span>交付決定</span><strong>69,776</strong><span>者</span></div>
+          <div class="mini-arrow">›</div>
+          <div class="mini-stage"><span>入金</span><strong>60,223</strong><span>者</span></div>
+        </div>
+        <div class="hero-loss"><strong>16,001者</strong>が、採択後に入金まで届いていない</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="目次">
+      <div class="toc-title">CONTENTS</div>
+      <ol>
+        <li><a href="#sec1">受け入れられない数字</a></li>
+        <li><a href="#sec2">数字が示す現実</a></li>
+        <li><a href="#sec3">応募と受付の壁</a></li>
+        <li><a href="#sec4">離脱する3つの理由</a></li>
+        <li><a href="#sec5">資金繰りの対応策</a></li>
+        <li><a href="#sec6">書類手続きを円滑にする</a></li>
+        <li><a href="#sec7">不備解消の重要ポイント</a></li>
+        <li><a href="#sec8">行政書士の役割</a></li>
+        <li><a href="#sec9">手取りを最大化する</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <article>
+        <div class="intro">
+          <p>補助金の採択結果が発表され、自社の名前や受付番号を見つけた瞬間、ようやく努力が報われたと感じる。これで設備投資に踏み切れる。新しい事業を始められる。会社を一歩前へ進められる。そう思うのは当然です。</p>
+          <p>事業計画を何度も見直し、資料を集め、期限までに申請したのですから、「採択されたら、あとは補助金が入ってくる」と受け止める方がいても不思議ではありません。</p>
+          <p>ところが、制度の実務はそこで終わりません。むしろ採択後に、交付申請、見積書や相見積書の確認、交付決定、発注、契約、納品、検収、支払い、実績報告、確定検査、精算払請求という長い手続きが続きます。</p>
+          <p>この途中で立ち止まってしまえば、採択されていても、補助金は入金されません。</p>
+          <p>「そんなこと、最初にもっとはっきり教えてほしかった」</p>
+          <p>「採択されたのだから、補助金を受け取れると思っていた」</p>
+          <p>「本業をしながら、これだけの書類をそろえるのは無理だった」</p>
+          <p>「不備の連絡にどう答えればよいか分からず、時間だけが過ぎてしまった」</p>
+          <p>そう感じる事業者がいるのは、決しておかしなことではありません。制度を知る側にとっての当たり前が、初めて利用する中小企業にとっても当たり前とは限らないからです。</p>
+        </div>
+
+        <h2 id="sec1"><span class="no">01 / MY POSITION</span>僕は、行政書士として、認定支援機関として、この数字を受け入れられない</h2>
+        <p>添付資料の集計では、採択された事業者は76,224者。そのうち交付決定に至ったのは69,776者、入金まで到達したのは60,223者です。</p>
+        <p>採択から交付決定までに6,448者が減り、さらに交付決定から入金までに9,553者が減っています。採択後、入金まで届かなかった事業者は合計16,001者。採択者を基準にすると20.99％です。</p>
+        <div class="quote">採択者のおよそ5者に1者が、補助金を受け取るところまで届いていない。</div>
+        <p>この数字を見て、「補助金は難しいから仕方がない」「途中で事業をやめる会社もあるのだから当然だ」と片づけることは、僕にはできません。</p>
+        <p>もちろん、16,001者すべてが同じ事情で離脱したわけではありません。経営判断による辞退、事業環境の変化、交付決定の取り消し、事業期間の延長、資金調達の不成立、書類の不足など、事情は一社ずつ違います。公表された集計だけから、個別の離脱理由を断定することもできません。</p>
+        <p>それでも、ここまで大きな差がある以上、「個々の会社の問題だった」で終わらせてよい数字ではないと考えています。</p>
+        <p>事業者は、採択されるためだけに計画を作ったわけではありません。新しい設備を入れたい。売上の柱を増やしたい。雇用を守りたい。会社を次の世代につなぎたい。その目的を実現するために申請しています。</p>
+        <p>だから、本当に見るべき成果は採択通知ではなく、<span class="marker">計画した事業を実施し、必要な手続きを終え、補助金が入金され、会社の資金負担が軽くなったか</span>です。</p>
+
+        <figure class="figure">
+          <figcaption class="figure-title">図1｜採択後に生じている2段階の離脱</figcaption>
+          <div class="drop-flow">
+            <div class="drop-stage"><span>採択</span><strong>76,224者</strong><span>基準 100％</span></div>
+            <div class="drop-link">−6,448<small>交付決定前</small></div>
+            <div class="drop-stage"><span>交付決定</span><strong>69,776者</strong><span>採択者の91.54％</span></div>
+            <div class="drop-link">−9,553<small>入金前</small></div>
+            <div class="drop-stage final"><span>入金</span><strong>60,223者</strong><span>採択者の79.01％</span></div>
+          </div>
+          <p class="figure-note">※9,553者は「交付決定69,776者－入金60,223者」。比率は採択76,224者を基準に計算。端数処理により表示差が生じる場合があります。</p>
+        </figure>
+
+        <h2 id="sec2"><span class="no">02 / DATA</span>数字の解説――採択率だけでは見えない「その後」がある</h2>
+        <p>補助金の話題では、採択率が注目されます。何件が応募し、何件が採択されたか。採択率が高いか、低いか。もちろん、それは制度の競争性を知るうえで大切な数字です。</p>
+        <p>しかし、中小企業の経営にとって、採択率だけでは不十分です。なぜなら、採択は「事業計画が採択された」という段階であり、補助対象経費や手続きのすべてが確定し、補助金の支払いが保証された状態ではないからです。</p>
+        <p>採択後には、まず交付申請があります。ここでは、採択された計画を実行可能な支出計画に落とし込み、見積書、相見積書、経費の内容、発注先、価格の妥当性などを確認してもらいます。申請時に想定した経費であっても、交付審査の結果、対象外となることがあります。</p>
+        <p>交付決定を受けた後は、決められたルールに沿って発注・契約・支払いを進めます。事業が完了したら、支出したこと、納品されたこと、計画どおりに使用したことを証拠書類で説明します。そして確定検査を受け、補助金額が確定し、請求をして、ようやく入金です。</p>
+
+        <figure class="figure">
+          <figcaption class="figure-title">図2｜採択者のうち、入金まで到達した割合</figcaption>
+          <div class="ratio-grid">
+            <div class="donut" aria-label="到達79.01％、離脱20.99％の円グラフ">
+              <svg viewBox="0 0 120 120" role="img">
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#edf0f4" stroke-width="15"/>
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#277552" stroke-width="15" pathLength="100" stroke-dasharray="79.01 20.99" stroke-linecap="butt"/>
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#e87324" stroke-width="15" pathLength="100" stroke-dasharray="20.99 79.01" stroke-dashoffset="-79.01"/>
+              </svg>
+              <div class="donut-center"><strong>79.01%</strong><span>入金到達</span></div>
+            </div>
+            <div class="ratio-copy">
+              <div class="legend"><span class="dot" style="background:#277552"></span><div><strong>60,223者・79.01％</strong><br>採択後、入金まで到達</div></div>
+              <div class="legend"><span class="dot" style="background:#e87324"></span><div><strong>16,001者・20.99％</strong><br>採択後、入金まで届かなかった</div></div>
+            </div>
+          </div>
+        </figure>
+
+        <div class="figure">
+          <div class="figure-title">表1｜各段階の人数と、前段階からの差</div>
+          <div style="overflow-x:auto">
+            <table class="data-table">
+              <thead><tr><th>段階</th><th>人数</th><th>前段階からの差</th><th>採択者を100％とした到達率</th></tr></thead>
+              <tbody>
+                <tr><td>採択</td><td class="num">76,224者</td><td class="num">―</td><td class="num">100.00％</td></tr>
+                <tr><td>交付決定</td><td class="num">69,776者</td><td class="num">−6,448者</td><td class="num">91.54％</td></tr>
+                <tr><td>入金</td><td class="num">60,223者</td><td class="num">−9,553者</td><td class="num">79.01％</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p>金額でも同じことが起きています。添付図表では、採択金額は約1兆7,970億円、交付決定金額は約1兆6,720億円、入金額は約1兆3,740億円と整理されています。採択から入金までに届かなかった金額の予測値は377,227,605,479円、約3,772億円です。</p>
+        <p>ただし、この金額は個々の事業者の補助金がそのまま失われたと断定する数字ではありません。計画変更、対象経費の減額、辞退、交付決定の取り消し、未完了などが含まれ得る集計上の差です。だからこそ、数字を強く見せるために意味を広げるのではなく、「どの段階で、何が起きているのか」を丁寧に見る必要があります。</p>
+        <div class="callout info">
+          <div class="callout-title">大事なのは、採択実績ではなく入金到達までを見ること</div>
+          <p>支援の価値を採択通知だけで測ると、交付申請、事業実施、実績報告、確定検査で困っている事業者が見えなくなります。申請から入金までを一本の仕事として設計する必要があります。</p>
+        </div>
+
+        <h2 id="sec3"><span class="no">03 / BEFORE SCREENING</span>一部の公表データでは、応募したのに「申請受付」に進んでいない</h2>
+        <p>もう一つ、採択前にも見えにくい差があります。一部の公表データでは、「応募した数」と「申請を受け付けた数」が一致していません。</p>
+        <p>ここで注意したいのは、応募の操作を始めたこと、申請データを送ったこと、事務局が申請として受け付けたこと、審査対象になったことは、必ずしも同じではないという点です。</p>
+        <p>締切直前のアクセス集中、入力途中のまま未完了、必須項目の不足、添付ファイルの不備、電子申請上の操作ミス、申請要件を満たさないことによる扱いなど、受付に至らない可能性はいくつもあります。ただし、公表資料だけで個別の差の理由を一律に決めつけることはできません。</p>
+        <p>それでも、「出したつもりだったのに、受付されていなかった」という状態が起き得るなら、支援する側は提出ボタンを押したところで仕事を終えてはいけません。</p>
+        <div class="process" aria-label="応募から審査対象までの確認工程">
+          <div>入力完了</div><div>添付確認</div><div>受付確認</div><div>審査対象</div>
+        </div>
+        <p>送信後の受付番号は発行されているか。申請ステータスはどう表示されているか。差し戻しやエラーの通知は来ていないか。登録したメールアドレスは正しいか。迷惑メールに入っていないか。ここまで確認して、初めて「申請が届いた」と判断できます。</p>
+        <p>これは特別なサービスではありません。申請を支援するなら、当然確認すべきことです。しかし、その当然が抜けた結果として、事業者だけが悔しい思いをすることは避けなければなりません。</p>
+        <h3>受付されなければ、計画の内容を評価してもらうことさえできない</h3>
+        <p>事業者からすれば、何週間、何か月もかけて作った申請です。市場を調べ、設備の見積を取り、売上計画を作り、社内で投資の判断をし、金融機関や支援者とも打ち合わせを重ねています。</p>
+        <p>その努力が、受付前の操作や添付の不足で審査に進まなければ、「計画が悪くて不採択だった」のとは違う悔しさが残ります。計画の中身を見てもらう機会そのものを失うからです。</p>
+        <p>だから、締切日の前に一度送信できる状態まで仕上げる。必要なIDや電子申請環境を先に確認する。添付ファイルの容量と形式を確認する。送信後の画面を保存する。受付番号と申請ステータスを記録する。これらは単なる事務作業ではなく、事業者の挑戦を審査の入口まで確実に届けるための仕事です。</p>
+        <p>「締切までに作成した」と「締切までに受け付けられた」は違います。支援の完了条件を、作成完了ではなく受付確認に置く。この小さな違いが、申請機会を守ります。</p>
+
+        <h2 id="sec4"><span class="no">04 / THREE REASONS</span>交付決定、入金にたどり着けない3つの理由</h2>
+        <p>採択後の離脱理由は一社ずつ異なります。そのうえで、実務上とくに大きな壁になりやすいのが、資金繰り、書類手続き、不備解消の3つです。</p>
+        <div class="three">
+          <section class="reason"><div class="reason-no">1</div><h3>資金繰り</h3><p>補助金は原則として後払いです。先に設備代や外注費を支払う資金が必要で、入金時期の遅れも織り込まなければなりません。</p></section>
+          <section class="reason"><div class="reason-no">2</div><h3>書類手続き</h3><p>見積、契約、発注、納品、検収、支払いの証拠がつながらないと、実際に使った経費でも説明が難しくなります。</p></section>
+          <section class="reason"><div class="reason-no">3</div><h3>不備解消</h3><p>差し戻しの意図を読み違えたり、回答が遅れたりすると、補正を繰り返し、期限や事業進行に影響します。</p></section>
+        </div>
+
+        <h3>理由1　採択されても、先に支払う資金がなければ事業を実行できない</h3>
+        <p>補助金は、採択時に前払いされるお金ではありません。原則として、事業者が対象経費を先に支払い、事業完了後に実績報告を行い、確定した補助金が後から入金されます。</p>
+        <p>たとえば補助対象事業に3,000万円を使い、補助率が一定割合であっても、発注先への支払いに必要な3,000万円をいったん用意しなければならない場面があります。補助対象外経費、消費税、追加工事、値上がり分なども自己負担です。</p>
+        <p>採択されたことで安心し、融資相談を後回しにすると、いざ契約・支払いの段階で資金が足りなくなることがあります。金融機関の審査にも時間がかかります。採択通知は融資実行の保証ではありません。</p>
+
+        <h3>理由2　本業を続けながら、大量の証拠書類を整える負担が重い</h3>
+        <p>中小企業の社長や担当者は、補助金だけを扱っているわけではありません。営業、現場、採用、資金繰り、取引先対応をしながら、補助事業も進めています。</p>
+        <p>その中で、見積書、相見積書、発注書、注文請書、契約書、納品書、検収書、請求書、振込記録、通帳、写真、成果物、事業の実施状況などを、ルールに沿って保存し、説明可能な形に整える必要があります。</p>
+        <p>書類が存在するだけでは足りません。見積書と請求書で品名が違う。契約日と交付決定日の前後関係が合わない。振込額が複数の請求分と合算されている。納品された設備の型番が確認できない。こうした小さなずれが、実績報告では大きな確認事項になります。</p>
+
+        <h3>理由3　不備の指摘を「怒られた」と受け止め、対応が止まってしまう</h3>
+        <p>事務局から修正依頼や追加資料の連絡が来ると、不安になるのは当然です。「不採択になるのではないか」「何を出しても否定されるのではないか」と感じ、メールを開くこと自体が怖くなる方もいます。</p>
+        <p>しかし、多くの不備連絡は、審査担当者が判断するために足りない情報を示しています。感情的に反論することでも、言われた資料を意味も分からず追加することでもなく、確認事項を分解し、一つずつ証拠で回答する必要があります。</p>
+        <p>ここで対応が遅れ、期限が迫り、必要な証拠を後から集めようとして見つからず、さらに回答が遅れる。この連鎖が離脱につながります。</p>
+
+        <h2 id="sec5"><span class="no">05 / CASH FLOW</span>資金繰りの対応策――採択前から「入金が遅れても回る計画」を作る</h2>
+        <p>資金繰り対策で最も重要なのは、採択後に考え始めないことです。申請時点で、いつ、いくら支払い、補助金がいつ入る想定なのかを月単位で並べます。</p>
+        <figure class="figure">
+          <figcaption class="figure-title">図3｜補助金は「採択」と「入金」の間に資金負担がある</figcaption>
+          <div class="timeline">
+            <div class="time-item"><div class="time-dot">採択</div><span>計画が選ばれる</span></div>
+            <div class="time-item"><div class="time-dot">交付</div><span>対象経費を確定</span></div>
+            <div class="time-item risk"><div class="time-dot">支払</div><span>事業者が先に負担</span></div>
+            <div class="time-item"><div class="time-dot">報告</div><span>証拠書類を提出</span></div>
+            <div class="time-item"><div class="time-dot">入金</div><span>確定後に補助金</span></div>
+          </div>
+          <p class="figure-note">※実際の手続き、対象経費、期限、支払い時期は公募回・交付規程・個別案件により異なります。</p>
+        </figure>
+        <p>まず、補助対象経費だけでなく、補助対象外となる費用、消費税、価格上昇、追加費用を含めた総支出を確認します。次に、自己資金でどこまで賄えるか、運転資金を圧迫しないか、売上の入金と仕入れの支払いが重なる月はないかを見ます。</p>
+        <p>そのうえで、必要に応じて金融機関へ早めに相談します。金融機関に伝えるのは、採択された事実だけではありません。事業計画、投資額、支払時期、補助金の予定額、入金までのつなぎ期間、補助事業による売上・利益への影響、返済原資まで説明できるようにします。</p>
+        <div class="checklist">
+          <div class="check"><div><b>総額で見る</b><br>補助対象額だけでなく、対象外経費・税・追加費用まで資金表に入れる。</div></div>
+          <div class="check"><div><b>月別で見る</b><br>発注時、着手時、中間金、納品時など、実際の支払条件に合わせて並べる。</div></div>
+          <div class="check"><div><b>遅れを入れる</b><br>実績報告の補正や確定検査に時間がかかる前提で、余裕を持たせる。</div></div>
+          <div class="check"><div><b>早く相談する</b><br>融資が必要なら、資金が不足する直前ではなく、計画段階で金融機関へ共有する。</div></div>
+        </div>
+        <p>補助金を使うことで、かえって本業の支払いが苦しくなっては本末転倒です。補助事業の成功と会社全体の資金繰りを分けず、同じ表で管理することが重要です。</p>
+
+        <h2 id="sec6"><span class="no">06 / DOCUMENTS</span>書類手続きを円滑にする方法――終わってから集めない</h2>
+        <p>実績報告で苦労する会社の多くは、事業が終わってから書類を集め始めます。しかし、数か月前の取引について、担当者に「この振込は何の支払いですか」「この写真は納品時のものですか」「この型番が分かる資料はありますか」と聞いても、すぐには答えられません。</p>
+        <p>書類は、取引が発生した瞬間に保存するのが最も確実です。補助事業専用のフォルダを作り、経費ごとに番号を付け、見積から支払いまで一つの束にします。</p>
+        <div class="figure">
+          <div class="figure-title">図4｜一つの経費を「証拠の鎖」でつなぐ</div>
+          <div class="process">
+            <div>見積・相見積</div><div>契約・発注</div><div>納品・検収</div><div>請求・振込</div>
+          </div>
+          <p class="figure-note">品名、数量、型番、金額、取引先、日付が前後の書類でつながっているかを確認します。</p>
+        </div>
+        <p>おすすめは、経費ごとに「管理番号」を決める方法です。たとえば機械装置費の1件目なら「機械01」とし、ファイル名を「機械01_見積書」「機械01_発注書」「機械01_納品書」「機械01_振込明細」のように統一します。</p>
+        <p>同時に、一覧表を作ります。経費区分、管理番号、取引先、内容、税抜金額、消費税、支払額、見積日、発注日、納品日、支払日、書類の有無、写真の有無、不備の状況を一行で確認できるようにします。</p>
+        <p>この一覧表があれば、未回収の書類を早く発見できます。支払日の前に請求書が届いていない、納品されたのに写真を撮っていない、相見積書の条件がそろっていない、といった問題を、その場で直せます。</p>
+        <div class="callout good">
+          <div class="callout-title">実績報告は「報告書を書く仕事」ではありません</div>
+          <p>計画どおりの手順で事業を進め、その過程を証拠として残し、第三者が確認できるように整理する仕事です。事業開始時に証拠の残し方を決めれば、完了後の負担は大きく減ります。</p>
+        </div>
+        <p>社内の役割分担も必要です。社長だけがすべてを抱えるのではなく、発注担当、経理担当、現場担当、外部支援者の役割を決めます。誰が契約書を保存するのか。誰が納品写真を撮るのか。誰が振込記録と請求書を照合するのか。誰が期限を管理するのか。担当が決まっていない仕事は、忙しい時期ほど抜けます。</p>
+
+        <h2 id="sec7"><span class="no">07 / CORRECTIONS</span>不備解消で重要なポイント――指摘を「一問一答」に変える</h2>
+        <p>不備連絡を受けたら、最初にすることは、急いで資料を送ることではありません。まず、指摘内容を一つずつ分解します。</p>
+        <p>一通のメールに、金額の確認、日付の確認、取引先の確認、成果物の追加、理由書の提出がまとめて書かれていることがあります。これに文章だけで回答すると、どの回答がどの質問に対応しているか分かりにくくなります。</p>
+        <p>そこで、指摘事項に番号を付け、「指摘」「回答」「提出資料」「ファイル名」「対応日」を一覧にします。回答は、結論、理由、証拠の順に書きます。</p>
+        <div class="figure">
+          <div class="figure-title">図5｜不備解消の基本ループ</div>
+          <svg viewBox="0 0 760 190" role="img" aria-label="指摘を分解し、事実確認、証拠特定、回答提出、再確認を行う流れ">
+            <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#e87324"/></marker></defs>
+            <g font-family="sans-serif" font-size="14" text-anchor="middle">
+              <rect x="12" y="58" width="126" height="68" rx="14" fill="#f3f6fa" stroke="#dce3ec"/><text x="75" y="86" fill="#10213f" font-weight="700">指摘を分解</text><text x="75" y="108" fill="#607086" font-size="11">質問ごとに番号</text>
+              <rect x="164" y="58" width="126" height="68" rx="14" fill="#f3f6fa" stroke="#dce3ec"/><text x="227" y="86" fill="#10213f" font-weight="700">事実を確認</text><text x="227" y="108" fill="#607086" font-size="11">日付・金額・経緯</text>
+              <rect x="316" y="58" width="126" height="68" rx="14" fill="#fff1e6" stroke="#e87324"/><text x="379" y="86" fill="#10213f" font-weight="700">証拠を特定</text><text x="379" y="108" fill="#607086" font-size="11">資料名・該当箇所</text>
+              <rect x="468" y="58" width="126" height="68" rx="14" fill="#f3f6fa" stroke="#dce3ec"/><text x="531" y="86" fill="#10213f" font-weight="700">回答・提出</text><text x="531" y="108" fill="#607086" font-size="11">結論→理由→証拠</text>
+              <rect x="620" y="58" width="126" height="68" rx="14" fill="#edf8f2" stroke="#277552"/><text x="683" y="86" fill="#10213f" font-weight="700">再確認</text><text x="683" y="108" fill="#607086" font-size="11">漏れと表示を確認</text>
+              <path d="M138 92H160M290 92H312M442 92H464M594 92H616" stroke="#e87324" stroke-width="3" marker-end="url(#arrow)"/>
+            </g>
+          </svg>
+        </div>
+        <p>不明点がある場合は、勝手に解釈して資料を作り込む前に、確認します。「何を証明するための資料が必要なのか」を理解できれば、同じ補正を繰り返しにくくなります。</p>
+        <p>また、事実と説明を分けることも大切です。日付、金額、契約内容、振込先などの事実を先に確認し、その事実から説明文を作ります。説明に合わせて事実を選ぶのではありません。</p>
+        <p>提出前には、ファイルが開くか、向きは正しいか、文字が読めるか、指定形式か、ファイル名で内容が分かるか、提出漏れがないかを確認します。内容が正しくても、ファイルが壊れていたり、別の資料を添付したりすれば、再提出になります。</p>
+        <div class="callout warn">
+          <div class="callout-title">期限直前まで回答を寝かせない</div>
+          <p>追加資料がすぐにそろわない場合も、指摘を受けた時点で対応計画を立てます。取引先から再発行が必要な資料、金融機関の記録、社内確認が必要な経緯などは時間がかかります。早く着手すること自体が、不備解消の重要な対策です。</p>
+        </div>
+        <h3>不備管理表に残すべき7項目</h3>
+        <p>補正が一度で終わるとは限りません。担当者から追加確認が入り、同じ経費について別の角度から説明を求められることもあります。そのたびにメールを探し直していると、回答の整合性が崩れます。</p>
+        <p>不備管理表には、少なくとも「指摘を受けた日」「回答期限」「指摘内容」「確認した事実」「回答内容」「提出したファイル名」「提出日」を残します。再度の指摘が来た場合は、前回回答と今回回答を並べ、説明が矛盾していないか確認します。</p>
+        <p>口頭で確認した内容も、日時、相手、質問、回答を記録します。ただし、電話で聞いたから何でも認められるという意味ではありません。最終的には交付規程、手引き、事務局からの正式な指示、提出画面の内容に沿って対応します。口頭回答と文書上のルールに差があるように感じた場合は、どちらを根拠に進めるべきかを再確認します。</p>
+        <p>また、修正前のファイルを消さず、版を分けて保存します。「最終」「最終2」「本当の最終」のような名前では、どれを提出したか分かりません。「20260727_実績報告書_v03_提出」のように、日付、資料名、版、状態を入れると、提出した資料を後から特定できます。</p>
+        <p>不備をゼロにすることは理想ですが、制度が複雑で、個別確認が必要な以上、追加確認が来ること自体はあります。大切なのは、不備が来ないことだけを目標にせず、来たときに早く、正確に、前回との整合性を保って回答できる仕組みを持つことです。</p>
+
+        <h2 id="sec8"><span class="no">08 / MISSION</span>行政書士の役割――手続きを円滑にし、権利利益の実現につなげる</h2>
+        <p>なぜ僕が、この離脱の数字を受け入れられないのか。それは、行政書士の使命そのものに関わるからです。</p>
+        <div class="law">
+          <div class="law-label">行政書士法　第一条（行政書士の使命）</div>
+          <blockquote>行政書士は、その業務を通じて、行政に関する手続の円滑な実施に寄与するとともに国民の利便に資し、もつて国民の権利利益の実現に資することを使命とする。</blockquote>
+          <hr>
+          <div class="law-label">行政書士法　第一条の二（職責）</div>
+          <blockquote>行政書士は、常に品位を保持し、業務に関する法令及び実務に精通して、公正かつ誠実にその業務を行わなければならない。<br><br>２　行政書士は、その業務を行うに当たつては、デジタル社会の進展を踏まえ、情報通信技術の活用その他の取組を通じて、国民の利便の向上及び当該業務の改善進歩を図るよう努めなければならない。</blockquote>
+        </div>
+        <p>行政書士の仕事は、書類の空欄を埋めることだけではありません。行政手続きを円滑にし、国民の利便に資し、権利利益の実現につなげることが制度の目的として定められています。</p>
+        <p>補助金に置き換えれば、申請書を提出するだけで終わるのではなく、事業者が制度を正しく理解し、必要な手続きを進め、補助事業を完了し、本来受け取れる補助金を受け取れる状態に近づけることです。</p>
+        <p>もちろん、行政書士が採択や入金を保証することはできません。事業者に代わって事実を作ることも、存在しない書類を作ることもできません。ルールに反する支出を補助対象に変えることもできません。</p>
+        <p>だからこそ、始める前にルールを伝える。必要な証拠を先に示す。期限を見えるようにする。書類を整える。差し戻しの意味を分解する。事実に基づいて回答する。できないことは、できないとはっきり伝える。</p>
+        <p>この「当たり前」を、最後まで誠実に積み重ねることが行政書士の役割だと考えています。</p>
+        <p>また、条文は情報通信技術の活用による利便向上と業務の改善進歩にも触れています。電子申請、共有フォルダ、進捗台帳、期限通知、AIを使った確認項目の整理など、デジタルを使えば、人が記憶だけに頼る場面を減らせます。</p>
+        <p>ただし、デジタル化はツールを増やすことではありません。必要な情報が必要な人に届き、未対応が分かり、証拠が探せる状態を作ることです。便利なシステムを導入しても、誰も確認しなければ意味がありません。最後は、人が責任を持って確かめる必要があります。</p>
+
+        <div class="profile">
+          <div class="profile-mark"><strong>AK</strong>行政書士<br>認定支援機関</div>
+          <div><strong>阿久津和宏</strong><p>Well Consultant合同会社代表。行政書士・認定経営革新等支援機関として、補助金を「採択まで」ではなく「入金まで」つなげる支援に取り組んでいます。</p></div>
+        </div>
+
+        <h2 id="sec9"><span class="no">09 / CONCLUSION</span>離脱者を減らし、当たり前を当たり前に対応して、手取りを最大化する中小企業を増やしたい</h2>
+        <p>補助金は、採択通知を飾るための制度ではありません。会社が新しい投資を行い、事業を前へ進めるための資金です。</p>
+        <p>採択されたのに、資金が足りず実行できなかった。書類の残し方を知らず、補助対象額が減った。不備の意味が分からず、期限に間に合わなかった。支援を頼んだのに、採択後は自分で何とかするしかなかった。</p>
+        <p>そのような悔しい思いをする事業者を、少しでも減らしたいと思っています。</p>
+        <p>特別な裏技が必要なのではありません。交付決定前に発注しない。対象経費と対象外経費を分ける。見積から支払いまで証拠をつなぐ。変更が生じたら先に確認する。期限を管理する。不備には一つずつ答える。請求まで終えたことを確認する。</p>
+        <p>どれも地味です。しかし、この地味な対応が、最終的な手取りを左右します。</p>
+        <p>補助金額が大きく見えても、対象外経費が増え、補正で減額され、追加コストがかかれば、会社に残る効果は小さくなります。反対に、申請前から資金と手続きを設計し、必要な証拠を残し、適切に報告できれば、無用な減額や手戻りを減らせます。</p>
+        <p><span class="marker">目指すのは「採択された会社」を増やすことだけではなく、「補助事業を完了し、入金まで到達し、投資効果を会社に残せた会社」を増やすことです。</span></p>
+        <p>76,224者が採択され、60,223者が入金に到達した。その間にいる16,001者を、単なる集計上の差として見ない。一社ごとに事情があり、そこで働く人がいて、実現したかった事業があります。</p>
+        <p>制度だから難しくて当然、初めてだから失敗して当然、忙しい会社が対応できないのは仕方がない。そう諦めるのではなく、手続きを分かりやすくし、実務を整え、完了まで伴走する。</p>
+        <p>それが、行政書士として、認定支援機関として、僕がこの数字に向き合う理由です。</p>
+
+        <h3>支援を依頼する前に、採択後の範囲を確認してほしい</h3>
+        <p>これから補助金支援を依頼する方には、料金や採択実績だけでなく、採択後にどこまで対応するのかを確認してほしいと思います。</p>
+        <p>交付申請は含まれるのか。計画変更が必要になったときに相談できるのか。実績報告のために、どの書類をいつ保存すべきか教えてもらえるのか。不備連絡が来たときに回答を整理してもらえるのか。確定検査、精算払請求、入金確認まで支援範囲なのか。</p>
+        <p>「採択まで」と「入金まで」は、必要な期間も、確認する書類も、実務の量も違います。どちらが良い、悪いということではありません。契約時に支援範囲が明確で、事業者が採択後に自社で対応する作業を理解していることが重要です。</p>
+        <p>採択後の支援が含まれないなら、社内で担当者を決め、手引きを読み、管理表とフォルダを用意し、分からない点の相談先を確認しておきます。含まれるなら、支援者から連絡が来るのを待つだけではなく、発注、契約、変更、納品、支払いなどの予定を事前に共有します。</p>
+        <p>補助金は、事業者と支援者のどちらか一方だけで完了させるものではありません。実際の取引と支払いを行う事業者、手続きと証拠を確認する支援者が、同じ期限と同じ資料を見て進めることで、抜けを減らせます。</p>
+
+        <div class="figure">
+          <div class="figure-title">図6｜「採択まで」と「入金まで」で確認する範囲は違う</div>
+          <div style="overflow-x:auto">
+            <table class="data-table">
+              <thead><tr><th>段階</th><th>主な確認</th><th>完了の目印</th></tr></thead>
+              <tbody>
+                <tr><td>申請</td><td>要件、計画、添付、送信、受付状態</td><td>受付番号・申請ステータス</td></tr>
+                <tr><td>採択後</td><td>交付申請、見積、対象経費、変更</td><td>交付決定通知</td></tr>
+                <tr><td>事業実施</td><td>発注、契約、納品、検収、支払い、証拠</td><td>事業と支払いの完了</td></tr>
+                <tr><td>実績報告</td><td>支出証拠、成果物、不備回答、確定検査</td><td>補助金額の確定</td></tr>
+                <tr><td>請求</td><td>精算払請求、口座、入金額</td><td>入金確認</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <section class="cta">
+          <div class="cta-kicker">申請後・採択後の手続きでお困りの方へ</div>
+          <h2>入金までの流れを、先に整理しませんか。</h2>
+          <p>交付申請、資金繰り、実績報告、不備解消など、どこで止まっているのかを確認し、次に必要な対応を整理します。</p>
+          <a class="button" href="https://fp-1.info/hojokin/houkoku/" target="_blank" rel="noopener">実績報告支援の説明を見る</a>
+        </section>
+
+        <aside class="source-box">
+          <strong>数値・記載について</strong>
+          <ul>
+            <li>採択76,224者、交付決定69,776者、入金60,223者、金額は添付HTML「事業再構築補助金｜申請から入金までの離脱状況」の集計値を使用しています。</li>
+            <li>令和5年度基金シートには、採択後の辞退、交付決定取り消し、実績報告の集中、支払いの翌年度へのずれ、事業実施期間の延長などによって、見込額と実際の支出額に乖離が生じた旨が記載されています。</li>
+            <li>応募から受付までの差については、公表資料だけで個別理由を断定せず、確認すべき実務上の論点として記載しています。</li>
+            <li>行政書士法の条文は、<a href="https://laws.e-gov.go.jp/law/326AC1000000004" target="_blank" rel="noopener">e-Gov法令検索の現行掲載内容</a>と照合しています。</li>
+            <li>制度の要件・期限・対象経費は公募回や個別の交付決定内容で異なります。実際の対応では、該当する公募要領、交付規程、補助事業の手引き、事務局の指示をご確認ください。</li>
+          </ul>
+        </aside>
+      </article>
+    </main>
+  </div>
+  <footer>© Well Consultant合同会社 / 阿久津和宏（行政書士・認定経営革新等支援機関）</footer>
+  <script>
+    const bar=document.getElementById("progress");
+    addEventListener("scroll",()=>{const d=document.documentElement;bar.style.width=((d.scrollTop/(d.scrollHeight-d.clientHeight))*100)+"%"},{passive:true});
+  </script>
+</body>
+</html>
