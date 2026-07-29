@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>デジタル化・AI導入補助金2026｜申請前手続き・加点ガイド</title>
+  <style>
+    :root{--navy:#071a33;--navy2:#102b4e;--ink:#101820;--muted:#586577;--line:#d6dde6;--soft:#f4f6f8;--white:#fff;--warn:#fff7e6;--danger:#fff1f1;--ok:#eef6f2}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--white);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;line-height:1.75;font-size:15px}
+    a{color:#0b4078;overflow-wrap:anywhere}
+    .sidebar{position:fixed;inset:0 auto 0 0;width:270px;background:var(--navy);color:#fff;padding:28px 22px;overflow-y:auto}
+    .sidebar .eyebrow{font-size:11px;letter-spacing:.12em;opacity:.7}
+    .sidebar h1{font-size:18px;line-height:1.45;margin:8px 0 24px}
+    .sidebar nav{display:grid;gap:2px}
+    .sidebar a{color:#dbe6f2;text-decoration:none;padding:7px 9px;border-left:2px solid transparent;font-size:13px}
+    .sidebar a:hover{background:#102b4e;border-left-color:#fff}
+    .sidebar .meta{margin-top:24px;padding-top:18px;border-top:1px solid #30445c;font-size:11px;line-height:1.7;color:#b9c6d5}
+    .mobile-menu{display:none}
+    main{margin-left:270px;min-width:0}
+    .hero{background:linear-gradient(135deg,#071a33,#142d4d);color:#fff;padding:58px clamp(24px,6vw,86px) 52px}
+    .hero .kicker{font-size:12px;letter-spacing:.14em;font-weight:700;color:#cbd8e6}
+    .hero h2{margin:12px 0 14px;font-size:clamp(30px,4vw,50px);line-height:1.22;letter-spacing:-.02em}
+    .hero p{margin:0;max-width:860px;color:#e3eaf2;font-size:16px}
+    .hero-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#39506a;margin-top:32px;border:1px solid #39506a}
+    .hero-grid div{background:#102641;padding:14px}
+    .hero-grid small{display:block;color:#aebdd0}
+    .hero-grid strong{display:block;margin-top:2px;font-size:14px}
+    .content{max-width:1180px;margin:auto;padding:38px clamp(20px,5vw,68px) 80px}
+    section{scroll-margin-top:18px;margin:0 0 50px}
+    h3{font-size:26px;line-height:1.35;margin:0 0 20px;padding-bottom:10px;border-bottom:3px solid var(--navy)}
+    h4{font-size:18px;line-height:1.5;margin:28px 0 12px}
+    p{margin:8px 0 14px}
+    ul,ol{padding-left:1.35em}
+    li+li{margin-top:5px}
+    .lead{font-size:17px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card{border:1px solid var(--line);border-top:4px solid var(--navy);padding:19px;background:#fff;min-width:0}
+    .card h4{margin:0 0 8px;font-size:17px}
+    .card p:last-child{margin-bottom:0}
+    .label{display:inline-block;padding:2px 8px;margin:0 5px 4px 0;background:var(--navy);color:#fff;font-size:11px;font-weight:700;border-radius:2px}
+    .label.alt{background:#4b5969}.label.req{background:#252b33}.label.opt{background:#5d6875}
+    .evidence{display:inline-block;margin:2px 0 2px 5px;padding:2px 7px;background:#e9edf2;color:#26384c;border-radius:3px;font-size:11px;line-height:1.5;vertical-align:middle}
+    .notice{border-left:5px solid var(--navy);background:var(--soft);padding:15px 17px;margin:16px 0}
+    .notice.warn{background:var(--warn);border-left-color:#a36500}
+    .notice.danger{background:var(--danger);border-left-color:#9f1f1f}
+    .notice.ok{background:var(--ok);border-left-color:#245a43}
+    .notice strong{display:block;margin-bottom:3px}
+    .table-wrap{width:100%;overflow-x:auto;border:1px solid var(--line);margin:14px 0 20px}
+    table{border-collapse:collapse;width:100%;min-width:760px;background:#fff}
+    th,td{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top;line-height:1.6}
+    th{background:var(--navy);color:#fff;font-size:12px}
+    tr:last-child td{border-bottom:0}
+    th:last-child,td:last-child{border-right:0}
+    .center{text-align:center}
+    .yes{font-weight:800;color:#0a4a32}
+    .no{color:#8994a1}
+    .steps{counter-reset:step;display:grid;gap:11px}
+    .step{position:relative;padding:16px 17px 16px 64px;border:1px solid var(--line);min-height:68px}
+    .step:before{counter-increment:step;content:counter(step);position:absolute;left:16px;top:15px;width:32px;height:32px;display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:800}
+    .step strong{display:block}
+    .check{list-style:none;padding:0}
+    .check li{position:relative;padding:11px 12px 11px 42px;border-bottom:1px solid var(--line)}
+    .check li:before{content:"□";position:absolute;left:12px;top:8px;font-size:20px;color:var(--navy)}
+    .source-list{display:grid;gap:10px}
+    .source{border:1px solid var(--line);padding:13px 15px}
+    .source strong{display:block}
+    .source .links{font-size:13px;margin-top:4px}
+    .muted{color:var(--muted);font-size:13px}
+    .nowrap{white-space:nowrap}
+    footer{background:var(--navy);color:#cad5e2;padding:24px clamp(20px,5vw,68px);font-size:12px;margin-left:0}
+    @media(max-width:900px){
+      .sidebar{display:none}.mobile-menu{display:block;position:sticky;top:0;z-index:20;background:var(--navy);padding:9px 12px}
+      .mobile-menu details{color:#fff}.mobile-menu summary{cursor:pointer;font-weight:700}
+      .mobile-menu nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin-top:9px}
+      .mobile-menu a{color:#fff;text-decoration:none;font-size:12px;padding:6px;background:#102b4e}
+      main{margin-left:0}.hero{padding-top:42px}.hero-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .grid,.grid.three{grid-template-columns:1fr}
+    }
+    @media(max-width:520px){
+      body{font-size:14px}.hero h2{font-size:29px}.hero-grid{grid-template-columns:1fr}.content{padding-top:28px}
+      h3{font-size:22px}.mobile-menu nav{grid-template-columns:1fr 1fr}
+    }
+    @media print{
+      @page{size:A4;margin:12mm}
+      body{font-size:10pt}.sidebar,.mobile-menu{display:none!important}main{margin:0}.hero{padding:14mm 10mm;background:#fff!important;color:#000;border:2px solid #071a33}
+      .hero p,.hero-grid small{color:#222}.hero-grid{background:#bbb;border-color:#bbb}.hero-grid div{background:#fff;color:#000}
+      .content{max-width:none;padding:10mm 0}.card,.notice,.step,.source{break-inside:avoid}section{break-before:auto}h3,h4{break-after:avoid}
+      a{color:#000;text-decoration:none}.table-wrap{overflow:visible}table{min-width:0;font-size:8pt}th{background:#e8edf2!important;color:#000}
+      footer{background:#fff;color:#222;border-top:1px solid #000;padding:8mm 0}
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="eyebrow">PRACTICAL GUIDE 2026</div>
+    <h1>デジタル化・AI導入補助金<br>申請前手続き・加点</h1>
+    <nav>
+      <a href="#overview">最初に確認すること</a>
+      <a href="#eligibility">対象者・前提条件</a>
+      <a href="#mandatory">申請前の必須手続き</a>
+      <a href="#points">加点項目一覧</a>
+      <a href="#documents">準備書類</a>
+      <a href="#schedule">期限・申請方法</a>
+      <a href="#workflow">準備手順</a>
+      <a href="#errors">止まりやすい点</a>
+      <a href="#conflicts">資料差・要確認</a>
+      <a href="#checklist">最終チェック</a>
+      <a href="#sources">出典リンク</a>
+    </nav>
+    <div class="meta">対象：全国／新規申請<br>基準資料：デジタル化・AI導入補助金2026<br>作成基準：提供されたNotebookLM資料統合結果のみ</div>
+  </aside>
+
+  <div class="mobile-menu">
+    <details>
+      <summary>目次を開く</summary>
+      <nav>
+        <a href="#overview">最初の確認</a><a href="#eligibility">対象者</a>
+        <a href="#mandatory">必須手続き</a><a href="#points">加点</a>
+        <a href="#documents">準備書類</a><a href="#schedule">期限</a>
+        <a href="#workflow">準備手順</a><a href="#errors">不備防止</a>
+        <a href="#conflicts">要確認</a><a href="#checklist">チェック</a>
+        <a href="#sources">出典</a>
+      </nav>
+    </details>
+  </div>
+
+  <main>
+    <header class="hero">
+      <div class="kicker">申請者向け・実務確認用</div>
+      <h2>申請を始める前に<br>終わらせる手続きと加点準備</h2>
+      <p>デジタル化・AI導入補助金2026について、申請前に必要な手続き、加点の選び方、準備書類、不備を避ける確認事項を一つにまとめたガイドです。</p>
+      <div class="hero-grid">
+        <div><small>対象地域</small><strong>全国</strong></div>
+        <div><small>申請区分</small><strong>新規</strong></div>
+        <div><small>申請方法</small><strong>電子申請のみ</strong></div>
+        <div><small>申請手数料</small><strong>0円</strong></div>
+      </div>
+    </header>
+
+    <div class="content">
+      <section id="overview">
+        <h3>最初に確認すること</h3>
+        <p class="lead">交付申請の前に、少なくとも「GビズIDプライム」と「SECURITY ACTION」の準備が必要です。加点を受ける場合は、申請枠と締切から逆算し、該当する手続きを申請前に完了させます。</p>
+        <div class="grid three">
+          <div class="card"><h4>必須 1</h4><p><strong>GビズIDプライム</strong>を取得する。エントリー、メンバーでは申請できません。<span class="evidence">資料191：通常枠公募要領 p.7／資料268</span></p></div>
+          <div class="card"><h4>必須 2</h4><p><strong>SECURITY ACTION</strong>の「一つ星」または「二つ星」を自己宣言する。申請時に自己宣言IDを照合します。<span class="evidence">資料200：通常枠公募要領 p.48</span></p></div>
+          <div class="card"><h4>加点</h4><p>申請する枠に対応する加点だけを選び、必要な登録・面談・PDF出力・証明書類を締切前にそろえます。<span class="evidence">資料99：加点項目一覧 2026/6/3版</span></p></div>
+        </div>
+        <div class="notice danger">
+          <strong>交付決定前に契約・発注・支払いをしない</strong>
+          一部でも先に行うと補助対象外となり、不備訂正では解消できません。<span class="evidence">資料225：交付申請マニュアル p.8</span>
+        </div>
+      </section>
+
+      <section id="eligibility">
+        <h3>対象者・前提条件</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>確認項目</th><th>判断基準</th><th>確認方法・注意点</th><th>根拠</th></tr></thead>
+            <tbody>
+              <tr><td>法人</td><td>日本国内で法人登記され、法人番号が指定・公表されている。日本国内に本社と補助事業の実施場所がある。</td><td>法人番号、登記、本社・実施場所を確認する。</td><td>資料102：電子取引類型FAQ No.1</td></tr>
+              <tr><td>個人事業主</td><td>日本国内に補助事業の実施場所がある。</td><td>本人確認書類、確定申告書類、実施場所を確認する。</td><td>資料102：電子取引類型FAQ No.1</td></tr>
+              <tr><td>事業実態</td><td>製品・サービスの生産・提供など、生産活動に資する事業を行っている。</td><td>申請内容、決算・申告書類と事業実態の整合を確認する。</td><td>資料144：電子取引類型公募要領 p.9</td></tr>
+              <tr><td>IT導入支援事業者との関係</td><td>2026年事業のIT導入支援事業者（構成員を含む）として登録済み・登録予定の事業者、およびその代表者・役員が経営する企業ではない。</td><td>役員・関係会社を含めて確認する。</td><td>資料146：電子取引類型公募要領 p.10／資料112：FAQ No.13</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h4>資料上、対象外とされている主な事業者</h4>
+        <ul>
+          <li>風俗営業等を営む事業者</li>
+          <li>過去1年以内に労働関係法令違反で送検処分を受けた事業者</li>
+          <li>宗教法人</li>
+          <li>PTA、同窓会などの任意団体</li>
+        </ul>
+        <p class="muted">根拠：資料146「電子取引類型公募要領」p.10。上記は資料に記載された対象外例であり、対象外要件の全項目を代替するものではありません。</p>
+      </section>
+
+      <section id="mandatory">
+        <h3>申請前の必須手続き</h3>
+        <h4>1．GビズIDプライム</h4>
+        <div class="grid">
+          <div class="card">
+            <h4>必要なアカウント</h4>
+            <p><span class="label req">通常必要</span><span class="label">依頼者が取得</span></p>
+            <p>申請に使えるのは<strong>GビズIDプライム</strong>です。GビズIDエントリー、GビズIDメンバーでは申請できません。<span class="evidence">資料191 p.7／資料268</span></p>
+          </div>
+          <div class="card">
+            <h4>確認できる状態</h4>
+            <p>取得済みというだけでなく、申請者自身がID・パスワードを管理し、ポータルサイトへログインできる状態にします。申請マイページの開設にも使います。<span class="evidence">資料273：申請前手続きWEBページ</span></p>
+          </div>
+        </div>
+
+        <h4>2．SECURITY ACTION</h4>
+        <div class="grid">
+          <div class="card">
+            <h4>原則</h4>
+            <p><span class="label req">通常必要</span><span class="label">依頼者が宣言</span></p>
+            <p>「★ 一つ星」または「★★ 二つ星」を自己宣言し、交付申請作成時に自己宣言IDを入力します。セキュリティ対策推進枠は二つ星が前提です。<span class="evidence">資料191 p.7／資料99</span></p>
+          </div>
+          <div class="card">
+            <h4>第2次公募以降</h4>
+            <p>資料では、新システムで申し込んだ自己宣言IDのみ利用可能とされています。旧システムIDでは申請提出できません。<span class="evidence">資料8：照合ニュース</span></p>
+          </div>
+        </div>
+        <div class="notice warn">
+          <strong>GビズIDの一致を確認</strong>
+          SECURITY ACTIONの申込みに用いるGビズIDと、補助金申請マイページへのログインに用いるGビズIDプライムは、完全に同一である必要があります。<span class="evidence">資料9：照合ニュース</span>
+        </div>
+      </section>
+
+      <section id="points">
+        <h3>加点項目一覧</h3>
+        <p>申請枠によって利用できる加点が異なります。「○」の項目でも、製品選定、認定取得、事前登録、面談、PDF添付などの条件を満たす必要があります。</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>加点項目</th><th class="center">通常枠</th><th class="center">インボイス<br>対応類型</th><th class="center">電子取引<br>類型</th><th class="center">セキュリティ<br>対策推進枠</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>クラウド製品の選定</td><td class="center yes">○</td><td class="center no">—</td><td class="center yes">○</td><td class="center no">—</td></tr>
+              <tr><td>インボイス対応製品の選定</td><td class="center yes">○</td><td class="center no">—</td><td class="center no">—</td><td class="center no">—</td></tr>
+              <tr><td>賃上げ事業計画の策定・表明・達成</td><td class="center yes">○</td><td class="center yes">○</td><td class="center yes">○</td><td class="center yes">○</td></tr>
+              <tr><td>最低賃金に関する状況</td><td class="center yes">○</td><td class="center yes">○</td><td class="center yes">○</td><td class="center yes">○</td></tr>
+              <tr><td>SECURITY ACTION「★★ 二つ星」</td><td class="center no">—</td><td class="center no">—</td><td class="center no">—</td><td class="center yes">○</td></tr>
+              <tr><td>国の推進するセキュリティサービスの選定</td><td class="center yes">○</td><td class="center yes">○</td><td class="center no">—</td><td class="center no">—</td></tr>
+              <tr><td>IT戦略ナビwithの実施</td><td class="center yes">○</td><td class="center yes">○</td><td class="center yes">○</td><td class="center yes">○</td></tr>
+              <tr><td>健康経営優良法人2026</td><td class="center yes">○</td><td class="center yes">○</td><td class="center yes">○</td><td class="center yes">○</td></tr>
+              <tr><td>くるみん・えるぼし認定</td><td class="center yes">○</td><td class="center yes">○</td><td class="center yes">○</td><td class="center yes">○</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted">根拠：資料99「加点項目一覧」2026年6月3日版。表はNotebookLM資料統合結果に明示された範囲を再構成しています。</p>
+
+        <h4>全枠で検討できる主な加点</h4>
+        <div class="grid">
+          <div class="card">
+            <h4>IT戦略ナビwith</h4>
+            <p><span class="label opt">該当者のみ</span><span class="label">依頼者が実施</span></p>
+            <p>交付申請前に実施し、申請に使うGビズIDプライムを入力します。出力した「IT戦略マップ」をPDFで添付します。<span class="evidence">資料99／資料181 p.16／資料232 p.42</span></p>
+          </div>
+          <div class="card">
+            <h4>最低賃金に関する状況</h4>
+            <p><span class="label opt">該当者のみ</span><span class="label">依頼者が資料準備</span></p>
+            <p>令和6年10月〜令和7年9月の間に、所定の賃金帯で雇用する従業員が全従業員の30％以上となる月が3か月以上あることを確認します。<span class="evidence">資料99／資料181 p.16</span></p>
+          </div>
+          <div class="card">
+            <h4>くるみん・えるぼし</h4>
+            <p><span class="label opt">認定者のみ</span></p>
+            <p>交付申請時点で、えるぼし（1〜3段階目・プラチナ）または、くるみん・トライくるみん・プラチナくるみんの認定を受けていることが必要です。<span class="evidence">資料99／資料194 p.22</span></p>
+          </div>
+          <div class="card">
+            <h4>成長加速マッチングサービス</h4>
+            <p><span class="label opt">該当者のみ</span></p>
+            <p>交付申請締切日時点で会員登録し、挑戦課題を「掲載中」として登録していることが条件です。<span class="evidence">資料99／資料194 p.22</span></p>
+          </div>
+          <div class="card">
+            <h4>省力化ナビ</h4>
+            <p><span class="label opt">該当者のみ</span></p>
+            <p>交付申請締切日時点で「省力化ナビ」を活用し、「解決策」のPDFをダウンロードしていることが必要です。GビズIDプライムの入力が必要です。<span class="evidence">資料161：通常枠公募要領改訂履歴 p.2</span></p>
+          </div>
+          <div class="card">
+            <h4>健康経営優良法人2026</h4>
+            <p><span class="label opt">認定者のみ</span></p>
+            <p>健康経営優良法人2026の認定が加点項目とされています。認定区分・確認方法の詳細は申請時点の資料で要確認です。<span class="evidence">資料99</span></p>
+          </div>
+        </div>
+
+        <h4>通常枠で追加検討する加点</h4>
+        <div class="card">
+          <h4>デジタル化セカンドオピニオン</h4>
+          <p><span class="label opt">通常枠・第3回公募以降</span><span class="label">事前予約・面談</span></p>
+          <p>登録確認者（中小企業診断士等）とのオンライン面談を申請締切までに完了します。予約時は最低3日以上の日程候補を入力します。面談時の具体的な合否判定基準など、資料で確定できない運用は要確認です。<span class="evidence">資料99／資料119：申請者向けマニュアル p.3／資料196 p.24</span></p>
+        </div>
+
+        <h4>インボイス対応類型で追加検討する加点</h4>
+        <div class="grid">
+          <div class="card">
+            <h4>インボイス登録の約束</h4>
+            <p>交付申請時点では未登録で、実績報告日までに登録し、登録通知書を提出することを約束する場合の加点です。<span class="evidence">資料99／資料172 p.25</span></p>
+          </div>
+          <div class="card">
+            <h4>スマートレジの選定</h4>
+            <p>第3回公募以降。カテゴリ1（ソフトウェア）とカテゴリ9（POSレジ等）の双方が「スマートレジ」として登録されていることが条件です。<span class="evidence">資料99／資料161 p.2</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="documents">
+        <h3>準備書類</h3>
+        <p>交付申請時の代替書類は認められないとされています。資料名、発行日、税目、年度、個人情報の有無を提出前に確認します。<span class="evidence">資料180：通常枠公募要領 p.11</span></p>
+        <h4>法人</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>書類</th><th>区分・作成者</th><th>形式・期限</th><th>取得先・確認事項</th><th>根拠</th></tr></thead>
+            <tbody>
+              <tr><td><strong>履歴事項全部証明書</strong></td><td>通常必要<br>依頼者が取得</td><td>写し・PDF・1部<br>交付申請日から遡って3か月以内</td><td>法務局。登記情報提供サービスや現在事項証明書は不可。法人番号13桁を確認。個人情報等は黒塗り。</td><td>資料167 p.19／資料98 p.42／資料194 p.23</td></tr>
+              <tr><td><strong>法人税の納税証明書<br>その1またはその2</strong></td><td>通常必要<br>依頼者が取得</td><td>写し・PDF・1部<br>直近分</td><td>税務署発行。「法人税」であること。領収書は不可。直近事業年度分を確認。</td><td>資料167 p.19／資料194 p.23</td></tr>
+              <tr><td><strong>貸借対照表・損益計算書</strong></td><td>通常必要<br>依頼者が用意</td><td>写し・PDF・各1部<br>直近分</td><td>申請者の決算書。対象年度と内容の整合を確認。</td><td>資料167 p.19</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h4>個人事業主</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>書類</th><th>区分・作成者</th><th>形式・期限</th><th>取得先・確認事項</th><th>根拠</th></tr></thead>
+            <tbody>
+              <tr><td><strong>運転免許証、運転経歴証明書、または住民票</strong></td><td>通常必要<br>依頼者が取得</td><td>写し・PDF・1部<br>免許証等は有効期限内、住民票は発行後3か月以内</td><td>地方公共団体等。マイナンバー、保険者番号等は黒塗り。</td><td>資料167 p.19／資料194 p.23</td></tr>
+              <tr><td><strong>所得税の納税証明書<br>その1またはその2</strong></td><td>通常必要<br>依頼者が取得</td><td>写し・PDF・1部<br>直近分</td><td>税務署発行。「所得税」であること。領収書は不可。</td><td>資料194 p.23</td></tr>
+              <tr><td><strong>確定申告書の控え</strong></td><td>通常必要<br>依頼者が用意</td><td>写し・PDF・1部<br>原則、令和7年（2025年）分</td><td>受付印または電子申請の受信通知が必要。事情がある場合は令和6年分も可とされるが、代替条件は要確認。</td><td>資料113：FAQ No.14</td></tr>
+              <tr><td><strong>青色申告決算書または収支内訳書</strong></td><td>通常必要<br>依頼者が用意</td><td>写し・PDF・1部<br>直近分</td><td>確定申告書類。確定申告書と同じ年度か確認。</td><td>資料167 p.19</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h4>加点・補助率引上げを使う場合</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>書類・データ</th><th>該当条件</th><th>作成・取得方法</th><th>根拠</th></tr></thead>
+            <tbody>
+              <tr><td><strong>IT戦略マップ</strong></td><td>IT戦略ナビwithの加点</td><td>デジwith内で実施しPDF出力。申請に使うGビズIDプライムが表示された結果を添付。</td><td>資料168 p.19／資料232 p.42</td></tr>
+              <tr><td><strong>賃金状況報告シート</strong></td><td>最低賃金加点、または通常枠の補助率2/3引上げ</td><td>2026年用の所定様式をダウンロードし、令和6年10月〜令和7年9月の雇用・賃金状況を入力。</td><td>資料193 p.20／資料181 p.16</td></tr>
+              <tr><td><strong>省力化ナビ「解決策」PDF</strong></td><td>省力化ナビ加点</td><td>申請締切日時点までにGビズIDプライムを入力して利用し、PDFをダウンロード。</td><td>資料161 p.2</td></tr>
+              <tr><td><strong>認定・登録状況</strong></td><td>健康経営優良法人、くるみん・えるぼし、成長加速マッチングサービス等</td><td>交付申請時点または締切日時点の要件を個別確認。資料で添付形式が確定できないものは要確認。</td><td>資料99／資料194 p.22</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice">
+          <strong>申請書式と参考資料を混同しない</strong>
+          賃金状況報告シートは所定の表計算書式です。公募要領、FAQ、交付申請手引き、加点項目一覧は判断・入力のための資料であり、申請書式そのものではありません。
+        </div>
+      </section>
+
+      <section id="schedule">
+        <h3>期限・申請方法・費用</h3>
+        <div class="grid">
+          <div class="card"><h4>申請方法</h4><p>事務局が提供する申請マイページから電子申請します。紙の郵送、窓口持込みは受け付けていません。<span class="evidence">資料224 p.8</span></p></div>
+          <div class="card"><h4>予約</h4><p>通常の交付申請に予約は不要です。セカンドオピニオン加点を使う場合は、オンライン面談の事前予約が必要です。<span class="evidence">資料119 p.3</span></p></div>
+          <div class="card"><h4>申請手数料</h4><p>0円。GビズIDプライムの利用料も資料上は発生しません。将来にわたる無料を約束するものではありません。<span class="evidence">資料214 p.11</span></p></div>
+          <div class="card"><h4>推奨環境</h4><p>Windows環境のMicrosoft Edge、Google Chromeの各最新版。<span class="evidence">資料213 p.11</span></p></div>
+        </div>
+        <h4>資料に示された2026年・第4次締切の例</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>区分</th><th>日時</th><th>扱い</th></tr></thead>
+            <tbody>
+              <tr><td>公募締切</td><td><strong>2026年8月25日（火）17:00</strong></td><td>資料記載の第4次締切例。申請枠ごとに最新日程を再確認。</td></tr>
+              <tr><td>交付決定</td><td>2026年10月7日（水）予定</td><td>予定日</td></tr>
+              <tr><td>事業実施期間</td><td>交付決定後〜2027年3月31日（水）17:00予定</td><td>交付決定前の契約等は禁止</td></tr>
+              <tr><td>実績報告期限</td><td>2027年3月31日（水）17:00予定</td><td>予定日</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted">根拠：資料295「通常枠WEBページ」。公募は複数回の締切があり、第5次以降および最終受付終了時期は資料内で確定していません。</p>
+      </section>
+
+      <section id="workflow">
+        <h3>準備から申請完了まで</h3>
+        <div class="steps">
+          <div class="step"><strong>制度と申請枠を確認</strong>補助金ホームページ、交付規程、公募要領を確認し、自社が申請する枠・類型を決めます。</div>
+          <div class="step"><strong>必須の事前手続きを完了</strong>GビズIDプライムを取得し、SECURITY ACTIONを新システムで自己宣言します。</div>
+          <div class="step"><strong>使う加点を決める</strong>IT戦略ナビwith、省力化ナビ、認定、登録、賃上げ、最低賃金、セカンドオピニオン等から、申請枠に対応する項目を選びます。</div>
+          <div class="step"><strong>ITツール・IT導入支援事業者を選定</strong>自社の課題・将来計画と導入効果が合う登録ツールを選び、見積等を取得します。交付決定前に契約・発注・支払いはしません。</div>
+          <div class="step"><strong>申請マイページを開設</strong>IT導入支援事業者から招待を受け、申請者がGビズIDプライムでマイページを開設します。</div>
+          <div class="step"><strong>共同で交付申請を作成</strong>申請者が基本情報・財務情報を入力して書類を添付し、IT導入支援事業者がITツール・事業計画情報を入力します。</div>
+          <div class="step"><strong>申請者が確認・宣誓</strong>要件、賃金情報、添付書類、入力内容を確認し、申請者自身が宣誓します。</div>
+          <div class="step"><strong>SMS認証して提出</strong>申請者の携帯電話で本人確認コードを受け取り、入力して事務局へ提出します。</div>
+        </div>
+        <p class="muted">根拠：資料167「通常枠公募要領」p.19／資料225「交付申請マニュアル」p.10。</p>
+      </section>
+
+      <section id="errors">
+        <h3>止まりやすい点・不備防止</h3>
+        <div class="grid">
+          <div class="card">
+            <h4>個人情報が残っている</h4>
+            <p>マイナンバー、保険者番号等が見える添付ファイルは事務局で削除されます。判別できない状態に黒塗りしてから提出します。<span class="evidence">資料194 p.23</span></p>
+          </div>
+          <div class="card">
+            <h4>納税証明書ではなく領収書</h4>
+            <p>必要なのは税務署発行の納税証明書「その1」または「その2」です。法人税・所得税の別、直近分かを確認します。<span class="evidence">資料194 p.23</span></p>
+          </div>
+          <div class="card">
+            <h4>SECURITY ACTIONのID不一致</h4>
+            <p>自己宣言IDの誤りや、申請用GビズIDとの不一致は不採択につながるとされています。新旧システムの別も確認します。<span class="evidence">資料230 p.42</span></p>
+          </div>
+          <div class="card">
+            <h4>交付決定前に契約等をした</h4>
+            <p>契約・発注・支払いを交付決定前に行うと補助対象外です。申請前だけでなく、交付決定まで社内で発注を止めます。<span class="evidence">資料225 p.8</span></p>
+          </div>
+          <div class="card">
+            <h4>加点手続きが締切後</h4>
+            <p>「交付申請前」「交付申請時点」「締切日時点」「申請締切までに面談完了」など基準時が異なります。登録しただけで完了と思わないようにします。</p>
+          </div>
+          <div class="card">
+            <h4>課題とツールが合っていない</h4>
+            <p>期待する導入効果が、自社の状況・課題分析・将来計画と一致しているかを確認します。<span class="evidence">資料195 p.24</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="conflicts">
+        <h3>資料差・要確認事項</h3>
+        <div class="notice warn">
+          <strong>賃上げ計画の年平均成長率は、申請枠ごとに切り替えて確認</strong>
+          通常枠・セキュリティ対策推進枠の資料には「給与支給総額の年平均成長率1.5％以上」とある一方、インボイス枠の資料には「1人当たり給与支給総額3.5％以上」、過去の交付決定状況によって「3％以上」とする記載があります。共通基準として一つの数値を使わず、申請する枠の最新公募要領で確認してください。<br>
+          <span class="evidence">資料41 p.18／資料81 p.22／資料147 p.11／資料150 p.23／資料179 p.8</span>
+        </div>
+        <div class="notice warn">
+          <strong>SECURITY ACTIONの「一つ星」と「二つ星」</strong>
+          一般の申請要件は一つ星または二つ星です。セキュリティ対策推進枠では二つ星が前提です。申請枠を確定したうえで宣言区分を選びます。<span class="evidence">資料191 p.7／資料99</span>
+        </div>
+        <h4>資料だけでは確定できない事項</h4>
+        <ul>
+          <li>デジタル化セカンドオピニオン面談の具体的な判定基準と、公開資料にない詳細運用</li>
+          <li>第5次以降の締切、最終受付終了時期</li>
+          <li>令和7年分の確定申告書を用意できない場合に認められる具体的事情、理由書、代替証憑</li>
+          <li>第1次公募で申請し、不備訂正が第2次以降にずれ込んだ場合の旧SECURITY ACTION IDの扱い</li>
+          <li>各認定・登録加点について、申請画面で必要となる具体的な添付形式または照合方法</li>
+        </ul>
+        <h4>事務局へ確認する質問</h4>
+        <ol>
+          <li>第1次公募で旧システムの自己宣言IDを使い、不備訂正が第2次公募以降になった場合、新システムでの再取得が必要か。</li>
+          <li>個人事業主が令和7年分の確定申告書を用意できない場合、認められる事情と必要な補足資料は何か。</li>
+          <li>申請予定の枠・公募回における賃上げ加点の基準値、基準時、必要な表明・添付方法は何か。</li>
+          <li>申請予定の加点について、登録・認定状況はシステム照合か、証明書添付か。</li>
+        </ol>
+      </section>
+
+      <section id="checklist">
+        <h3>申請前の最終チェック</h3>
+        <ul class="check">
+          <li>申請する枠・類型と公募回を確定した</li>
+          <li>申請者が対象者要件を満たし、対象外要件に該当しないことを確認した</li>
+          <li>GビズIDプライムでログインできる</li>
+          <li>SECURITY ACTIONを新システムで宣言し、自己宣言IDを確認した</li>
+          <li>SECURITY ACTIONと申請マイページのGビズIDが完全に一致する</li>
+          <li>使う加点を申請枠別に選び、各基準時までに手続きを終えた</li>
+          <li>IT戦略ナビwithを使う場合、正しいGビズIDが表示されたIT戦略マップPDFを用意した</li>
+          <li>賃金状況報告シートは2026年用の該当様式を使った</li>
+          <li>法人・個人の区分に応じた必要書類をすべて用意した</li>
+          <li>証明書の発行日、有効期限、年度、税目を確認した</li>
+          <li>マイナンバー、保険者番号等を判別できないように黒塗りした</li>
+          <li>申請情報、登記・申告書類、事業実態、導入目的に矛盾がない</li>
+          <li>交付決定前の契約・発注・支払いがない</li>
+          <li>IT導入支援事業者との共同入力後、申請者自身が全内容を確認した</li>
+          <li>申請者本人がSMS認証できる携帯電話を準備した</li>
+          <li>締切日の17時直前ではなく、補正・再確認時間を見込んで提出する</li>
+        </ul>
+      </section>
+
+      <section id="sources">
+        <h3>出典リンク一覧</h3>
+        <p>本ガイドで中心的に使用した2026年資料です。資料直リンクと掲載ページを分けて記載しています。</p>
+        <div class="source-list">
+          <div class="source"><strong>S067｜加点項目一覧（2026年6月3日更新）</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_addition_list.pdf">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/applicant/measures/">掲載ページ</a></div></div>
+          <div class="source"><strong>S068｜申請者向けデジタル化セカンドオピニオンマニュアル</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_manual_2ndopinion_shinsei.pdf">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/applicant/measures/">掲載ページ</a></div></div>
+          <div class="source"><strong>S133｜2026 賃金状況報告シート（補助率引上げ・加点項目①用）</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_chingin_houkoku1_hojyoritsu_katen.xlsx">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/download/">掲載ページ</a></div></div>
+          <div class="source"><strong>S134｜2026 賃金状況報告シート（加点項目①用）</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_chingin_houkoku1_katen.xlsx">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/download/">掲載ページ</a></div></div>
+          <div class="source"><strong>S135｜2026 賃金状況報告シート（加点項目②用）</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_chingin_houkoku2_katen.xlsx">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/download/">掲載ページ</a></div></div>
+          <div class="source"><strong>S136｜2026 FAQ インボイス枠（電子取引類型）</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_faq_denshi.pdf">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/faq/">掲載ページ</a></div></div>
+          <div class="source"><strong>S138｜2026 FAQ インボイス枠（インボイス対応類型）</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_faq_invoice.pdf">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/faq/">掲載ページ</a></div></div>
+          <div class="source"><strong>S139｜2026 FAQ セキュリティ対策推進枠</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_faq_security.pdf">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/faq/">掲載ページ</a></div></div>
+          <div class="source"><strong>S140｜2026 FAQ 通常枠</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_faq_tsujyo.pdf">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/faq/">掲載ページ</a></div></div>
+          <div class="source"><strong>S162｜2026 公募要領 インボイス枠（電子取引類型）</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_koubo_denshi.pdf">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/applicant/subsidy/digitalbased_invoice/">掲載ページ</a></div></div>
+          <div class="source"><strong>S164｜2026 公募要領 インボイス枠（インボイス対応類型）</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_koubo_invoice.pdf">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/applicant/subsidy/digitalbase/">掲載ページ</a></div></div>
+          <div class="source"><strong>S165｜2026 公募要領 セキュリティ対策推進枠</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_koubo_security.pdf">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/applicant/subsidy/security/">掲載ページ</a></div></div>
+          <div class="source"><strong>S166｜2026 公募要領 通常枠</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_koubo_tsujyo.pdf">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/applicant/subsidy/normal/">掲載ページ</a></div></div>
+          <div class="source"><strong>S172｜2026 交付申請の手引き（通常枠・各対象枠共通）</strong><div class="links"><a href="https://it-shien.smrj.go.jp/pdf/it2026_manual_kofu.pdf">資料直リンク</a> ／ <a href="https://it-shien.smrj.go.jp/download/">掲載ページ</a></div></div>
+        </div>
+        <div class="notice">
+          <strong>資料の優先関係</strong>
+          2025年以前の資料、過去年度の不備期限案内、導入事例、支援事業者一覧等は、2026年の申請要件・加点要件の直接根拠として本ガイドに採用していません。申請時は、申請枠・公募回に対応する最新の2026年公募要領と更新情報を最終確認してください。
+        </div>
+      </section>
+    </div>
+    <footer>デジタル化・AI導入補助金2026｜申請前手続き・加点ガイド　提供されたNotebookLM資料統合結果に基づく実務確認用資料</footer>
+  </main>
+</body>
+</html>
