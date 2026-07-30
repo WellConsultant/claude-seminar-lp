@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>補助金・経営支援 メニューテンプレート</title>
+  <style>
+    :root {
+      --navy: #111c31;
+      --navy-2: #1c2b47;
+      --ink: #171a20;
+      --muted: #656b75;
+      --paper: #ffffff;
+      --bg: #eef0f3;
+      --line: #d8dce3;
+      --gold: #b48a46;
+      --gold-soft: #f3ecdf;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+        "Yu Gothic", "Meiryo", sans-serif;
+      line-height: 1.65;
+    }
+    button, input { font: inherit; }
+    .toolbar {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: rgba(17, 28, 49, .96);
+      box-shadow: 0 8px 24px rgba(17, 28, 49, .18);
+    }
+    .toolbar button, .upload-label {
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px;
+      padding: 8px 14px;
+      color: #fff;
+      background: transparent;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+    .toolbar button:hover, .upload-label:hover { background: rgba(255,255,255,.12); }
+    .toolbar .primary {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: #101725;
+      font-weight: 800;
+    }
+    #logoInput { display: none; }
+    .sheet {
+      width: min(1080px, calc(100% - 32px));
+      margin: 28px auto 48px;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: 0 24px 60px rgba(26, 35, 52, .14);
+    }
+    .hero {
+      position: relative;
+      min-height: 310px;
+      padding: 54px 64px 48px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 88% 18%, rgba(180,138,70,.27), transparent 28%),
+        linear-gradient(135deg, #101a2d 0%, #1d2c49 70%, #111c31 100%);
+    }
+    .hero::after {
+      position: absolute;
+      right: -70px;
+      bottom: -115px;
+      width: 310px;
+      height: 310px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      content: "";
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 42px;
+    }
+    .logo {
+      display: grid;
+      place-items: center;
+      width: 62px;
+      height: 62px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 15px;
+      color: var(--gold);
+      background: rgba(255,255,255,.07);
+      font-family: Georgia, serif;
+      font-size: 25px;
+      font-weight: 700;
+    }
+    .logo img { width: 100%; height: 100%; object-fit: contain; background: #fff; }
+    .company { font-size: 17px; font-weight: 700; letter-spacing: .08em; }
+    .hero .eyebrow {
+      margin: 0 0 8px;
+      color: #dac7a2;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .18em;
+    }
+    .hero h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(32px, 5vw, 55px);
+      line-height: 1.18;
+      letter-spacing: .02em;
+    }
+    .hero-copy {
+      max-width: 700px;
+      margin: 22px 0 0;
+      color: rgba(255,255,255,.78);
+      font-size: 16px;
+    }
+    main { padding: 54px 64px 34px; }
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 38px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--line);
+    }
+    .intro h2 {
+      margin: 0 0 5px;
+      color: var(--navy);
+      font-size: 27px;
+    }
+    .intro p { margin: 0; color: var(--muted); }
+    .mark {
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 48px;
+      line-height: 1;
+    }
+    .category { margin: 0 0 38px; }
+    .category-head {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin: 0 0 13px;
+    }
+    .category-no {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--navy);
+      font-family: Georgia, serif;
+      font-size: 14px;
+    }
+    .category h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 21px;
+      letter-spacing: .03em;
+    }
+    .menu-list {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+    .menu-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 180px;
+      align-items: center;
+      min-height: 62px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+    .menu-row:last-child { border-bottom: 0; }
+    .menu-row:nth-child(even) { background: #fafafa; }
+    .menu-name { padding: 15px 22px; font-weight: 650; }
+    .menu-price {
+      align-self: stretch;
+      display: grid;
+      place-items: center end;
+      padding: 15px 22px;
+      border-left: 1px solid var(--line);
+      color: var(--navy);
+      background: var(--gold-soft);
+      font-size: 17px;
+      font-weight: 850;
+      letter-spacing: .02em;
+    }
+    .featured .menu-price { color: #fff; background: var(--navy); }
+    .row-actions {
+      display: none;
+      position: absolute;
+      right: 8px;
+      gap: 4px;
+    }
+    body.editing .menu-row { position: relative; padding-right: 74px; }
+    body.editing .row-actions { display: flex; }
+    .row-actions button, .add-row {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--navy);
+      background: #fff;
+      cursor: pointer;
+    }
+    .row-actions button { width: 28px; height: 28px; padding: 0; }
+    .add-row {
+      display: none;
+      margin-top: 9px;
+      padding: 7px 12px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    body.editing .add-row { display: inline-block; }
+    [contenteditable="true"] {
+      border-radius: 5px;
+      outline: 2px dashed rgba(180,138,70,.72);
+      outline-offset: 3px;
+      cursor: text;
+    }
+    .notice {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .cta {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 25px;
+      align-items: center;
+      margin-top: 46px;
+      padding: 28px 30px;
+      border-radius: var(--radius);
+      color: #fff;
+      background: var(--navy);
+    }
+    .cta h3 { margin: 0 0 4px; font-size: 21px; }
+    .cta p { margin: 0; color: rgba(255,255,255,.72); font-size: 14px; }
+    .cta-contact {
+      min-width: 235px;
+      padding-left: 24px;
+      border-left: 1px solid rgba(255,255,255,.2);
+      font-weight: 750;
+      text-align: right;
+    }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 64px;
+      color: var(--muted);
+      background: #f5f6f8;
+      font-size: 12px;
+    }
+    .save-state {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+      padding: 8px 13px;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(17,28,49,.9);
+      font-size: 12px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: .25s;
+      pointer-events: none;
+    }
+    .save-state.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 720px) {
+      .toolbar { flex-wrap: wrap; }
+      .sheet { width: 100%; margin: 0; }
+      .hero, main { padding-right: 24px; padding-left: 24px; }
+      .hero { padding-top: 38px; }
+      .brand { margin-bottom: 32px; }
+      .intro { grid-template-columns: 1fr; }
+      .mark { display: none; }
+      .menu-row { grid-template-columns: minmax(0, 1fr) 125px; }
+      .menu-name, .menu-price { padding: 13px 14px; }
+      .menu-price { font-size: 14px; }
+      .cta { grid-template-columns: 1fr; }
+      .cta-contact { padding: 18px 0 0; border-top: 1px solid rgba(255,255,255,.2); border-left: 0; text-align: left; }
+      footer { flex-direction: column; padding: 20px 24px; }
+      body.editing .menu-row { padding-right: 64px; }
+    }
+    @media print {
+      @page { size: A4; margin: 9mm; }
+      body { background: #fff; }
+      .toolbar, .add-row, .row-actions, .save-state { display: none !important; }
+      .sheet { width: 100%; margin: 0; box-shadow: none; }
+      .hero { min-height: 0; padding: 34px 40px 30px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .brand { margin-bottom: 26px; }
+      main { padding: 32px 40px 22px; }
+      .category { margin-bottom: 24px; break-inside: avoid; }
+      .menu-row { min-height: 46px; }
+      .menu-name, .menu-price { padding-top: 8px; padding-bottom: 8px; }
+      .cta { margin-top: 28px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      footer { padding: 16px 40px; }
+      [contenteditable="true"] { outline: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar" aria-label="編集メニュー">
+    <button type="button" id="editBtn" class="primary">編集を開始</button>
+    <label class="upload-label" for="logoInput">ロゴを変更</label>
+    <input id="logoInput" type="file" accept="image/*">
+    <button type="button" id="printBtn">印刷・PDF保存</button>
+    <button type="button" id="resetBtn">初期状態に戻す</button>
+  </div>
+
+  <article class="sheet" id="menuSheet">
+    <header class="hero">
+      <div class="brand">
+        <div class="logo" id="logoBox"><span>LOGO</span></div>
+        <div>
+          <div class="company editable" data-key="company">〇〇株式会社／〇〇事務所</div>
+          <div class="editable" data-key="brandSub" style="color:rgba(255,255,255,.62);font-size:12px;">補助金・経営支援サービス</div>
+        </div>
+      </div>
+      <p class="eyebrow editable" data-key="eyebrow">SERVICE MENU</p>
+      <h1 class="editable" data-key="title">補助金・経営支援<br>サービスメニュー</h1>
+      <p class="hero-copy editable" data-key="heroCopy">準備から申請、採択後の手続きまで。必要な業務を組み合わせてご依頼いただけます。</p>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div>
+          <h2 class="editable" data-key="introTitle">必要な支援を、必要な段階で。</h2>
+          <p class="editable" data-key="introCopy">単独メニューでも、複数メニューの組み合わせでもご利用いただけます。</p>
+        </div>
+        <div class="mark">Menu</div>
+      </section>
+
+      <div id="categories">
+        <section class="category">
+          <div class="category-head">
+            <span class="category-no">01</span>
+            <h3 class="editable" data-key="cat1">申請準備・事業計画</h3>
+          </div>
+          <div class="menu-list">
+            <div class="menu-row"><div class="menu-name editable">ヒアリングシート</div><div class="menu-price editable">100,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">事前調査</div><div class="menu-price editable">100,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">基本データ作成</div><div class="menu-price editable">300,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">事業計画作成</div><div class="menu-price editable">100,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">電子申請遠隔サポート</div><div class="menu-price editable">50,000円</div></div>
+            <div class="menu-row featured"><div class="menu-name editable">採択時</div><div class="menu-price editable">300,000円</div></div>
+            <div class="menu-row featured"><div class="menu-name editable">交付決定時</div><div class="menu-price editable">10%</div></div>
+          </div>
+          <button class="add-row" type="button">＋ メニューを追加</button>
+        </section>
+
+        <section class="category">
+          <div class="category-head">
+            <span class="category-no">02</span>
+            <h3 class="editable" data-key="cat2">採択後・入金までのサポート</h3>
+          </div>
+          <div class="menu-list">
+            <div class="menu-row"><div class="menu-name editable">交付申請サポート</div><div class="menu-price editable">100,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">電子申請遠隔サポート</div><div class="menu-price editable">50,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">実績報告サポート</div><div class="menu-price editable">300,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">電子申請遠隔サポート</div><div class="menu-price editable">50,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">事業化状況報告</div><div class="menu-price editable">100,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">電子申請遠隔サポート</div><div class="menu-price editable">50,000円</div></div>
+          </div>
+          <button class="add-row" type="button">＋ メニューを追加</button>
+        </section>
+
+        <section class="category">
+          <div class="category-head">
+            <span class="category-no">03</span>
+            <h3 class="editable" data-key="cat3">経営計画・認定取得</h3>
+          </div>
+          <div class="menu-list">
+            <div class="menu-row"><div class="menu-name editable">経営革新計画</div><div class="menu-price editable">300,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">事業継続力強化計画</div><div class="menu-price editable">200,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">経営力向上計画</div><div class="menu-price editable">200,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">健康経営優良法人認定</div><div class="menu-price editable">100,000円</div></div>
+          </div>
+          <button class="add-row" type="button">＋ メニューを追加</button>
+        </section>
+
+        <section class="category">
+          <div class="category-head">
+            <span class="category-no">04</span>
+            <h3 class="editable" data-key="cat4">IT導入支援</h3>
+          </div>
+          <div class="menu-list">
+            <div class="menu-row"><div class="menu-name editable">IT導入支援事業者登録申請</div><div class="menu-price editable">300,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">ツール登録</div><div class="menu-price editable">100,000円</div></div>
+            <div class="menu-row"><div class="menu-name editable">交付申請サポート</div><div class="menu-price editable">300,000円</div></div>
+          </div>
+          <button class="add-row" type="button">＋ メニューを追加</button>
+        </section>
+      </div>
+
+      <p class="notice editable" data-key="notice">※ 業務範囲・お支払い条件・消費税の取扱いなどは、案件ごとにご確認ください。</p>
+
+      <section class="cta">
+        <div>
+          <h3 class="editable" data-key="ctaTitle">まずはお気軽にご相談ください</h3>
+          <p class="editable" data-key="ctaCopy">ご希望の内容に合わせて、最適なサポートをご案内します。</p>
+        </div>
+        <div class="cta-contact">
+          <div class="editable" data-key="phone">TEL：000-0000-0000</div>
+          <div class="editable" data-key="email">MAIL：info@example.com</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span class="editable" data-key="footerCompany">〇〇株式会社／〇〇事務所</span>
+      <span class="editable" data-key="footerAddress">〒000-0000　所在地を入力してください</span>
+    </footer>
+  </article>
+
+  <div class="save-state" id="saveState">変更を保存しました</div>
+
+  <script>
+    (() => {
+      const STORAGE_KEY = "editable-service-menu-v1";
+      const sheet = document.getElementById("menuSheet");
+      const editBtn = document.getElementById("editBtn");
+      const logoInput = document.getElementById("logoInput");
+      const logoBox = document.getElementById("logoBox");
+      const saveState = document.getElementById("saveState");
+      let editing = false;
+      let saveTimer;
+
+      function attachRowActions(row) {
+        if (row.querySelector(".row-actions")) return;
+        const actions = document.createElement("div");
+        actions.className = "row-actions";
+        actions.innerHTML = '<button type="button" title="上へ">↑</button><button type="button" title="削除">×</button>';
+        actions.children[0].addEventListener("click", () => {
+          const prev = row.previousElementSibling;
+          if (prev) row.parentNode.insertBefore(row, prev);
+          save();
+        });
+        actions.children[1].addEventListener("click", () => {
+          if (confirm("このメニューを削除しますか？")) {
+            row.remove();
+            save();
+          }
+        });
+        row.appendChild(actions);
+      }
+
+      function prepareRows() {
+        document.querySelectorAll(".menu-row").forEach(row => {
+          row.querySelectorAll(".editable").forEach(el => el.contentEditable = editing);
+          attachRowActions(row);
+        });
+      }
+
+      function setEditing(on) {
+        editing = on;
+        document.body.classList.toggle("editing", on);
+        document.querySelectorAll(".editable").forEach(el => el.contentEditable = on);
+        editBtn.textContent = on ? "編集を終了" : "編集を開始";
+        editBtn.classList.toggle("primary", !on);
+        if (!on) save();
+      }
+
+      function save() {
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => {
+          const clone = sheet.cloneNode(true);
+          clone.querySelectorAll(".row-actions").forEach(el => el.remove());
+          localStorage.setItem(STORAGE_KEY, clone.innerHTML);
+          saveState.classList.add("show");
+          setTimeout(() => saveState.classList.remove("show"), 1200);
+        }, 180);
+      }
+
+      function load() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) sheet.innerHTML = saved;
+        prepareRows();
+      }
+
+      editBtn.addEventListener("click", () => setEditing(!editing));
+      sheet.addEventListener("input", save);
+
+      document.addEventListener("click", event => {
+        if (!event.target.classList.contains("add-row")) return;
+        const list = event.target.previousElementSibling;
+        const row = document.createElement("div");
+        row.className = "menu-row";
+        row.innerHTML = '<div class="menu-name editable">新しいメニュー</div><div class="menu-price editable">0円</div>';
+        list.appendChild(row);
+        prepareRows();
+        row.querySelector(".menu-name").focus();
+        save();
+      });
+
+      logoInput.addEventListener("change", event => {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          logoBox.innerHTML = '<img alt="ロゴ">';
+          logoBox.querySelector("img").src = reader.result;
+          save();
+        };
+        reader.readAsDataURL(file);
+      });
+
+      document.getElementById("printBtn").addEventListener("click", () => {
+        setEditing(false);
+        window.print();
+      });
+
+      document.getElementById("resetBtn").addEventListener("click", () => {
+        if (!confirm("入力した変更をすべて初期状態に戻しますか？")) return;
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+      });
+
+      load();
+    })();
+  </script>
+</body>
+</html>
