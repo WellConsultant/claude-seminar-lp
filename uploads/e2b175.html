@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>補助金証憑 一括作成ツール</title>
+  <style>
+    :root{--navy:#13233b;--navy2:#203857;--blue:#275ec8;--ink:#172033;--muted:#6b7482;--line:#cfd5df;--soft:#f3f5f8;--white:#fff;--danger:#8c2932}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;color:var(--ink);background:#edf0f4}
+    button,input,textarea,select{font:inherit}button{cursor:pointer}.top{height:58px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:30}.brand{font-weight:700}.brand small{font-weight:400;color:#cbd2dc;margin-left:10px}.save-state{font-size:12px;color:#cbd2dc}
+    .app{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:calc(100vh - 58px)}
+    aside{background:#fff;border-right:1px solid var(--line);padding:16px 12px;position:sticky;top:58px;height:calc(100vh - 58px);display:flex;flex-direction:column;overflow:hidden}
+    .side-scroll{overflow:auto;flex:1}.side-label{font-size:11px;font-weight:700;color:var(--muted);margin:6px 8px}.navbtn{width:100%;border:0;background:transparent;padding:10px 9px;border-radius:5px;text-align:left;color:#29364b;margin-bottom:2px}.navbtn:hover{background:var(--soft)}.navbtn.active{background:var(--navy);color:#fff;font-weight:700}.navbtn .sub{font-size:11px;display:block;opacity:.7;margin-top:2px}
+    .side-output{border-top:1px solid var(--line);padding-top:11px;margin-top:8px}.side-output button{width:100%;border:0;border-radius:5px;padding:11px;background:var(--navy);color:#fff;font-weight:700;margin-bottom:7px}.side-output button.secondary{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+    main{padding:20px;min-width:0}.panel{background:#fff;border:1px solid var(--line);border-radius:7px;margin-bottom:15px;overflow:hidden}.panel-head{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.panel-head h1,.panel-head h2{margin:0;color:var(--navy)}.panel-head h1{font-size:21px}.panel-head h2{font-size:16px}.panel-body{padding:16px}
+    .page{display:none}.page.active{display:block}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px 16px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.field.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:700;margin-bottom:5px}.hint{font-weight:400;color:var(--muted)}input,textarea,select{width:100%;border:1px solid #b7c0cd;border-radius:4px;padding:9px 10px;background:#fff;color:var(--ink)}textarea{min-height:82px;resize:vertical;line-height:1.55}input:focus,textarea:focus,select:focus{outline:2px solid #8594a8;outline-offset:1px}.section-title{font-size:14px;margin:2px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--navy);color:var(--navy)}
+    .btn{border:1px solid #9ca6b5;border-radius:4px;padding:9px 13px;background:#fff;color:#25334a;font-weight:650}.btn:hover{background:#f1f3f6}.btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}.btn.danger{color:var(--danger)}.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.right{margin-left:auto}.notice{font-size:12px;line-height:1.55;padding:10px 12px;background:#f2f4f7;border-left:4px solid var(--navy);margin-bottom:13px;color:#39465a}
+    .items-wrap{overflow:auto}.items{width:100%;border-collapse:collapse;min-width:900px}.items th{background:var(--navy);color:#fff;font-size:12px;padding:8px;border:1px solid var(--navy2)}.items td{padding:5px;border-bottom:1px solid var(--line)}.items input,.items select{padding:7px}.items .drag{width:34px;text-align:center;color:var(--muted)}.items .delete{width:42px;text-align:center}.iconbtn{border:0;background:transparent;color:var(--danger);font-size:17px}.summary-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:13px}.card{background:var(--soft);border-radius:5px;padding:10px 12px;font-size:12px}.card b{display:block;font-size:19px;color:var(--navy);margin-top:3px}
+    .doc-tabs{display:flex;gap:5px;overflow:auto;padding-bottom:9px}.doc-tab{border:1px solid var(--line);background:#fff;padding:8px 12px;border-radius:4px;white-space:nowrap}.doc-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}.preview-shell{background:#cfd4dc;padding:22px;overflow:auto}.paper{width:210mm;min-height:297mm;margin:0 auto;background:#fff;padding:14mm 14mm 12mm;box-shadow:0 2px 12px rgba(0,0,0,.18);color:#111;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;position:relative}.doc-title{text-align:center;font-size:25px;letter-spacing:.22em;margin:0 0 11mm;border-top:8px solid #225ad1;padding-top:5mm}.doc-meta{position:absolute;right:14mm;top:29mm;width:60mm;font-size:10.5px}.doc-meta div{display:grid;grid-template-columns:25mm 1fr;border-bottom:1px solid #444;padding:2px 0}.parties{display:grid;grid-template-columns:1fr 1fr;gap:13mm;min-height:42mm}.recipient{font-size:12px}.recipient .name{font-size:16px;font-weight:700;border-bottom:1px solid #222;padding:3mm 0;margin-bottom:3mm}.issuer{font-size:10.5px;line-height:1.65}.issuer .company{font-size:13px;font-weight:700}.doc-message{font-size:11px;margin:4mm 0 3mm}.total-box{border:2px solid #225ad1;width:82mm;margin:3mm 0 4mm}.total-box span{display:inline-block;background:#225ad1;color:#fff;padding:2.5mm 4mm;font-size:11px}.total-box b{display:inline-block;font-size:20px;padding:1.5mm 4mm;min-width:46mm;text-align:right}.condition-table{width:100%;border-collapse:collapse;font-size:10px;margin-bottom:4mm}.condition-table th{width:25mm;background:#225ad1;color:#fff;border:1px solid #225ad1;padding:2mm;text-align:left}.condition-table td{border:1px solid #777;padding:2mm}.doc-items{width:100%;border-collapse:collapse;font-size:9.5px}.doc-items th{background:#225ad1;color:#fff;border:1px solid #17439b;padding:2mm}.doc-items td{border:1px solid #777;padding:1.6mm}.doc-items .num{text-align:right;white-space:nowrap}.doc-items .center{text-align:center}.doc-items .content{width:43%}.doc-items.request .content{width:55%}.totals{margin-left:auto;width:72mm;border-collapse:collapse;font-size:10px;margin-top:1mm}.totals th,.totals td{border:1px solid #777;padding:1.7mm}.totals th{background:#225ad1;color:#fff;text-align:left}.totals td{text-align:right;font-weight:700}.note-box{margin-top:5mm;border-top:7px solid #225ad1;min-height:22mm;padding:2.5mm;border-left:1px solid #777;border-right:1px solid #777;border-bottom:1px solid #777;font-size:9.5px;white-space:pre-wrap}.bank-box{margin-top:3mm;border:1px solid #777;padding:2.5mm;font-size:9.5px;white-space:pre-wrap}.doc-footer{position:absolute;bottom:7mm;left:14mm;right:14mm;text-align:right;font-size:8px;color:#666}
+    #printRoot{display:none}.toast{position:fixed;right:18px;bottom:18px;background:var(--navy);color:#fff;padding:10px 14px;border-radius:4px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s;z-index:100}.toast.show{opacity:1;transform:none}
+    @media(max-width:900px){.app{display:block}aside{position:static;height:auto;display:block;overflow:auto;border-right:0;border-bottom:1px solid var(--line)}.side-scroll{display:flex;overflow:auto}.side-label{display:none}.navbtn{min-width:150px}.side-output{display:flex;gap:6px;border-top:0}.side-output button{min-width:170px}.grid,.grid.three{grid-template-columns:1fr}.preview-shell{padding:8px}.paper{transform-origin:top left;zoom:.55}main{padding:12px}.summary-cards{grid-template-columns:1fr}}
+    @page{size:A4 portrait;margin:0}@media print{body{background:#fff}.top,.app,.toast{display:none!important}#printRoot{display:block}.paper{box-shadow:none;margin:0;width:210mm;height:297mm;min-height:297mm;page-break-after:always;overflow:hidden}.paper:last-child{page-break-after:auto}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="brand">補助金証憑 一括作成ツール <small>v1</small></div><div class="save-state" id="saveState">ブラウザ内に自動保存</div></header>
+  <div class="app">
+    <aside>
+      <div class="side-scroll">
+        <div class="side-label">入力</div>
+        <button class="navbtn active" data-page="parties">1. 発注者・受注者<span class="sub">会社情報を1回入力</span></button>
+        <button class="navbtn" data-page="conditions">2. 日付・取引条件<span class="sub">番号、納期、振込先</span></button>
+        <button class="navbtn" data-page="items">3. 明細<span class="sub">全書類へ共通反映</span></button>
+        <div class="side-label">書類</div>
+        <button class="navbtn doc-link" data-doc="request">見積依頼書</button>
+        <button class="navbtn doc-link" data-doc="quote">見積書</button>
+        <button class="navbtn doc-link" data-doc="order">発注書</button>
+        <button class="navbtn doc-link" data-doc="invoice">請求書</button>
+        <button class="navbtn doc-link" data-doc="delivery">納品書</button>
+      </div>
+      <div class="side-output">
+        <button id="printCurrentSide">表示中の書類を印刷</button>
+        <button class="secondary" id="printAllSide">5書類をまとめて印刷</button>
+      </div>
+    </aside>
+    <main>
+      <section class="page active" id="page-parties">
+        <div class="panel">
+          <div class="panel-head"><h1>発注者・受注者情報</h1><div class="row"><button class="btn" id="loadSample">見本データを読み込む</button><button class="btn danger" id="resetAll">全項目を初期化</button></div></div>
+          <div class="panel-body">
+            <div class="notice">ここで入力した会社情報を5種類すべての書類へ反映します。見積依頼書・発注書は発注者から受注者へ、見積書・請求書・納品書は受注者から発注者へ作成します。</div>
+            <h2 class="section-title">発注者</h2>
+            <div class="grid">
+              <div class="field"><label>会社名</label><input data-bind="orderer.company"></div>
+              <div class="field"><label>担当者名</label><input data-bind="orderer.person"></div>
+              <div class="field"><label>郵便番号</label><input data-bind="orderer.zip" placeholder="000-0000"></div>
+              <div class="field"><label>電話番号</label><input data-bind="orderer.phone"></div>
+              <div class="field full"><label>住所</label><input data-bind="orderer.address"></div>
+              <div class="field"><label>メールアドレス</label><input type="email" data-bind="orderer.email"></div>
+              <div class="field"><label>登録番号 <span class="hint">任意</span></label><input data-bind="orderer.registration" placeholder="T1234567890123"></div>
+            </div>
+            <h2 class="section-title" style="margin-top:22px">受注者</h2>
+            <div class="grid">
+              <div class="field"><label>会社名</label><input data-bind="contractor.company"></div>
+              <div class="field"><label>担当者名</label><input data-bind="contractor.person"></div>
+              <div class="field"><label>郵便番号</label><input data-bind="contractor.zip" placeholder="000-0000"></div>
+              <div class="field"><label>電話番号</label><input data-bind="contractor.phone"></div>
+              <div class="field full"><label>住所</label><input data-bind="contractor.address"></div>
+              <div class="field"><label>メールアドレス</label><input type="email" data-bind="contractor.email"></div>
+              <div class="field"><label>登録番号 <span class="hint">任意</span></label><input data-bind="contractor.registration" placeholder="T1234567890123"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="page" id="page-conditions">
+        <div class="panel">
+          <div class="panel-head"><h1>日付・取引条件</h1></div>
+          <div class="panel-body">
+            <h2 class="section-title">書類の日付・番号</h2>
+            <div class="grid three">
+              <div class="field"><label>見積依頼日</label><input type="date" data-bind="dates.request"></div>
+              <div class="field"><label>見積依頼番号</label><input data-bind="numbers.request"></div>
+              <div></div>
+              <div class="field"><label>見積日</label><input type="date" data-bind="dates.quote"></div>
+              <div class="field"><label>見積番号</label><input data-bind="numbers.quote"></div>
+              <div></div>
+              <div class="field"><label>発注日</label><input type="date" data-bind="dates.order"></div>
+              <div class="field"><label>発注番号</label><input data-bind="numbers.order"></div>
+              <div></div>
+              <div class="field"><label>請求日</label><input type="date" data-bind="dates.invoice"></div>
+              <div class="field"><label>請求書番号</label><input data-bind="numbers.invoice"></div>
+              <div></div>
+              <div class="field"><label>納品日</label><input type="date" data-bind="dates.delivery"></div>
+              <div class="field"><label>納品番号</label><input data-bind="numbers.delivery"></div>
+            </div>
+            <h2 class="section-title" style="margin-top:22px">共通条件</h2>
+            <div class="grid">
+              <div class="field"><label>納期</label><input data-bind="terms.deadline" placeholder="2026年10月31日／契約後30日以内など"></div>
+              <div class="field"><label>納品場所</label><input data-bind="terms.deliveryPlace"></div>
+              <div class="field"><label>支払方法</label><input data-bind="terms.payment" placeholder="請求書受領後30日以内に銀行振込"></div>
+              <div class="field"><label>案件名</label><input data-bind="terms.projectName"></div>
+              <div class="field full"><label>振込先</label><textarea data-bind="terms.bank" placeholder="銀行名・支店名・口座種別・口座番号・口座名義"></textarea></div>
+              <div class="field full"><label>共通備考</label><textarea data-bind="terms.notes"></textarea></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>書類別備考</h2></div>
+          <div class="panel-body grid">
+            <div class="field"><label>見積依頼書</label><textarea data-bind="notes.request"></textarea></div>
+            <div class="field"><label>見積書</label><textarea data-bind="notes.quote"></textarea></div>
+            <div class="field"><label>発注書</label><textarea data-bind="notes.order"></textarea></div>
+            <div class="field"><label>請求書</label><textarea data-bind="notes.invoice"></textarea></div>
+            <div class="field"><label>納品書</label><textarea data-bind="notes.delivery"></textarea></div>
+          </div>
+        </div>
+      </section>
+      <section class="page" id="page-items">
+        <div class="panel">
+          <div class="panel-head"><h1>商品・業務明細</h1><button class="btn primary" id="addItem">明細を追加</button></div>
+          <div class="panel-body">
+            <div class="notice">内容・数量・単価を1回入力すると、5種類すべての書類へ反映します。見積依頼書では単価と金額を表示せず、仕様・要望を表示します。</div>
+            <div class="items-wrap"><table class="items"><thead><tr><th>No.</th><th>内容</th><th>数量</th><th>単位</th><th>単価（税抜）</th><th>税率</th><th>仕様・要望</th><th></th></tr></thead><tbody id="itemRows"></tbody></table></div>
+            <div class="summary-cards"><div class="card">小計（税抜）<b id="subtotalCard">¥0</b></div><div class="card">消費税<b id="taxCard">¥0</b></div><div class="card">合計（税込）<b id="totalCard">¥0</b></div></div>
+          </div>
+        </div>
+      </section>
+      <section class="page" id="page-preview">
+        <div class="panel">
+          <div class="panel-head"><h1>証憑プレビュー</h1><div class="row"><button class="btn primary" id="printCurrent">表示中を印刷・PDF保存</button><button class="btn" id="printAll">5書類をまとめて印刷</button></div></div>
+          <div class="panel-body">
+            <div class="doc-tabs" id="docTabs"></div>
+            <div class="preview-shell"><div id="paper"></div></div>
+          </div>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><h2>案件データ</h2></div>
+        <div class="panel-body row"><button class="btn" id="downloadBackup">バックアップ保存</button><label class="btn" style="margin:0">バックアップ読込<input type="file" id="restoreBackup" accept=".json" hidden></label><span class="hint">別のパソコンへ移す場合や、案件ごとに保存する場合に使用します。</span></div>
+      </section>
+    </main>
+  </div>
+  <div id="printRoot"></div><div class="toast" id="toast"></div>
+  <script>
+    const DOCS={
+      request:{title:"見積依頼書",dateLabel:"見積依頼日",noLabel:"見積依頼番号",message:"下記の通り、見積を依頼します。"},
+      quote:{title:"見積書",dateLabel:"見積日",noLabel:"見積番号",message:"下記の通り、お見積り申し上げます。"},
+      order:{title:"発注書",dateLabel:"発注日",noLabel:"発注番号",message:"下記の通り、発注いたします。"},
+      invoice:{title:"請求書",dateLabel:"請求日",noLabel:"請求書番号",message:"下記の通り、ご請求申し上げます。"},
+      delivery:{title:"納品書",dateLabel:"納品日",noLabel:"納品番号",message:"下記の通り、納品いたしました。"}
+    };
+    const STORAGE="subsidy-evidence-tool-v1";
+    const blankParty=()=>({company:"",person:"",zip:"",address:"",phone:"",email:"",registration:""});
+    const emptyItem=()=>({name:"",qty:1,unit:"式",price:0,tax:10,spec:""});
+    const initialState=()=>({orderer:blankParty(),contractor:blankParty(),dates:{request:"",quote:"",order:"",invoice:"",delivery:""},numbers:{request:"",quote:"",order:"",invoice:"",delivery:""},terms:{deadline:"",deliveryPlace:"",payment:"",projectName:"",bank:"",notes:""},notes:{request:"",quote:"",order:"",invoice:"",delivery:""},items:[emptyItem()],currentDoc:"quote"});
+    let state=initialState();
+    const $=id=>document.getElementById(id);
+    const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const yen=n=>"¥"+Math.round(Number(n)||0).toLocaleString("ja-JP");
+    const fmtDate=v=>{if(!v)return"";const d=new Date(v+"T00:00:00");return Number.isNaN(d.getTime())?v:`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`};
+    function getPath(path){return path.split(".").reduce((o,k)=>o?.[k],state)}
+    function setPath(path,value){const keys=path.split(".");let o=state;keys.slice(0,-1).forEach(k=>o=o[k]);o[keys.at(-1)]=value}
+    function normalize(data={}){
+      const base=initialState();
+      return{...base,...data,orderer:{...base.orderer,...(data.orderer||{})},contractor:{...base.contractor,...(data.contractor||{})},dates:{...base.dates,...(data.dates||{})},numbers:{...base.numbers,...(data.numbers||{})},terms:{...base.terms,...(data.terms||{})},notes:{...base.notes,...(data.notes||{})},items:Array.isArray(data.items)&&data.items.length?data.items.map(x=>({...emptyItem(),...x})):[emptyItem()]};
+    }
+    function load(){try{const saved=JSON.parse(localStorage.getItem(STORAGE));if(saved)state=normalize(saved)}catch(e){}}
+    function save(){localStorage.setItem(STORAGE,JSON.stringify(state));$("saveState").textContent="保存済み "+new Date().toLocaleTimeString("ja-JP",{hour:"2-digit",minute:"2-digit"})}
+    function bindInputs(){document.querySelectorAll("[data-bind]").forEach(el=>{el.value=getPath(el.dataset.bind)??"";el.addEventListener("input",()=>{setPath(el.dataset.bind,el.value);save();renderPreview()})})}
+    function totals(){
+      const groups={};let subtotal=0;
+      state.items.forEach(x=>{const amount=(Number(x.qty)||0)*(Number(x.price)||0),rate=Number(x.tax)||0;subtotal+=amount;groups[rate]=(groups[rate]||0)+amount});
+      const tax=Object.entries(groups).reduce((s,[r,a])=>s+Math.floor(a*Number(r)/100),0);
+      return{subtotal,tax,total:subtotal+tax,groups};
+    }
+    function renderItems(){
+      $("itemRows").innerHTML=state.items.map((x,i)=>`<tr>
+        <td class="drag">${i+1}</td>
+        <td><input data-i="${i}" data-k="name" value="${esc(x.name)}"></td>
+        <td><input type="number" min="0" step="0.01" data-i="${i}" data-k="qty" value="${esc(x.qty)}"></td>
+        <td><input data-i="${i}" data-k="unit" value="${esc(x.unit)}"></td>
+        <td><input type="number" min="0" step="1" data-i="${i}" data-k="price" value="${esc(x.price)}"></td>
+        <td><select data-i="${i}" data-k="tax"><option value="10" ${Number(x.tax)===10?"selected":""}>10%</option><option value="8" ${Number(x.tax)===8?"selected":""}>8%</option><option value="0" ${Number(x.tax)===0?"selected":""}>非課税</option></select></td>
+        <td><input data-i="${i}" data-k="spec" value="${esc(x.spec)}"></td>
+        <td class="delete"><button class="iconbtn" data-delete="${i}" title="削除">×</button></td></tr>`).join("");
+      document.querySelectorAll("[data-i]").forEach(el=>el.oninput=()=>{const i=Number(el.dataset.i),k=el.dataset.k;state.items[i][k]=["qty","price","tax"].includes(k)?Number(el.value):el.value;save();updateTotals();renderPreview()});
+      document.querySelectorAll("[data-delete]").forEach(b=>b.onclick=()=>{if(state.items.length===1){state.items=[emptyItem()]}else state.items.splice(Number(b.dataset.delete),1);save();renderItems();renderPreview()});
+      updateTotals();
+    }
+    function updateTotals(){const t=totals();$("subtotalCard").textContent=yen(t.subtotal);$("taxCard").textContent=yen(t.tax);$("totalCard").textContent=yen(t.total)}
+    function partyFor(type){const fromOrderer=["request","order"].includes(type);return{recipient:fromOrderer?state.contractor:state.orderer,issuer:fromOrderer?state.orderer:state.contractor}}
+    function itemRows(type){
+      const request=type==="request",items=state.items.filter(x=>x.name||Number(x.price)||x.spec),minimum=12,rows=[];
+      items.slice(0,16).forEach(x=>{const amount=(Number(x.qty)||0)*(Number(x.price)||0);rows.push(request?`<tr><td class="content">${esc(x.name)}</td><td class="num">${esc(x.qty)}</td><td class="center">${esc(x.unit)}</td><td>${esc(x.spec)}</td></tr>`:`<tr><td class="content">${esc(x.name)}</td><td class="num">${esc(x.qty)}</td><td class="center">${esc(x.unit)}</td><td class="num">${yen(x.price)}</td><td class="center">${Number(x.tax)?esc(x.tax)+"%":"非課税"}</td><td class="num">${yen(amount)}</td></tr>`)});
+      while(rows.length<minimum)rows.push(request?`<tr><td>&nbsp;</td><td></td><td></td><td></td></tr>`:`<tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td></tr>`);
+      return rows.join("");
+    }
+    function conditions(type){
+      const rows=[];
+      if(type==="delivery"){rows.push(["納品日",fmtDate(state.dates.delivery)])}else{rows.push(["納期",state.terms.deadline])}
+      rows.push(["納品場所",state.terms.deliveryPlace]);
+      if(type!=="delivery")rows.push(["支払方法",state.terms.payment]);
+      return `<table class="condition-table">${rows.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join("")}</table>`;
+    }
+    function docPage(type){
+      const d=DOCS[type],p=partyFor(type),t=totals(),request=type==="request";
+      const note=[state.terms.notes,state.notes[type]].filter(Boolean).join("\n");
+      return `<article class="paper" data-type="${type}">
+        <h1 class="doc-title">${d.title}</h1>
+        <div class="doc-meta"><div><span>${d.dateLabel}</span><b>${esc(fmtDate(state.dates[type]))}</b></div><div><span>${d.noLabel}</span><b>${esc(state.numbers[type])}</b></div></div>
+        <div class="parties">
+          <div class="recipient"><div class="name">${esc(p.recipient.company||"　　　　　　　　　")}　御中</div><div>〒${esc(p.recipient.zip)}</div><div>${esc(p.recipient.address)}</div><div>ご担当：${esc(p.recipient.person)} 様</div></div>
+          <div class="issuer"><div class="company">${esc(p.issuer.company)}</div><div>〒${esc(p.issuer.zip)}</div><div>${esc(p.issuer.address)}</div><div>電話：${esc(p.issuer.phone)}</div><div>メール：${esc(p.issuer.email)}</div><div>担当者：${esc(p.issuer.person)}</div>${p.issuer.registration?`<div>登録番号：${esc(p.issuer.registration)}</div>`:""}</div>
+        </div>
+        <div class="doc-message">${d.message}</div>
+        ${request?"":`<div class="total-box"><span>合計金額（税込）</span><b>${yen(t.total)}</b></div>`}
+        ${conditions(type)}
+        <table class="doc-items ${request?"request":""}"><thead><tr>${request?"<th>内容</th><th>数量</th><th>単位</th><th>サイズ・仕様・要望など</th>":"<th>内容</th><th>数量</th><th>単位</th><th>単価（税抜）</th><th>税率</th><th>金額（税抜）</th>"}</tr></thead><tbody>${itemRows(type)}</tbody></table>
+        ${request?"":`<table class="totals"><tr><th>小計</th><td>${yen(t.subtotal)}</td></tr><tr><th>消費税</th><td>${yen(t.tax)}</td></tr><tr><th>合計</th><td>${yen(t.total)}</td></tr></table>`}
+        <div class="note-box"><b>備考</b><br>${esc(note)}</div>
+        ${type==="invoice"&&state.terms.bank?`<div class="bank-box"><b>お振込先</b><br>${esc(state.terms.bank)}<br>※お振込手数料は御社負担にてお願いいたします。</div>`:""}
+        <div class="doc-footer">${esc(state.terms.projectName)}</div>
+      </article>`;
+    }
+    function renderDocTabs(){$("docTabs").innerHTML=Object.entries(DOCS).map(([k,v])=>`<button class="doc-tab ${k===state.currentDoc?"active":""}" data-preview="${k}">${v.title}</button>`).join("");document.querySelectorAll("[data-preview]").forEach(b=>b.onclick=()=>selectDoc(b.dataset.preview))}
+    function renderPreview(){if(!$("paper"))return;$("paper").innerHTML=docPage(state.currentDoc);renderDocTabs()}
+    function selectDoc(type){state.currentDoc=type;save();showPage("preview");renderPreview()}
+    function showPage(name){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+name));document.querySelectorAll(".navbtn[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));window.scrollTo({top:0,behavior:"smooth"})}
+    function printDocs(types){$("printRoot").innerHTML=types.map(docPage).join("");window.print()}
+    function showToast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800)}
+    function sample(){
+      const today=new Date().toISOString().slice(0,10);
+      state={orderer:{company:"相生株式会社",person:"阿久津 和宏",zip:"",address:"",phone:"",email:"",registration:""},contractor:{company:"株式会社サンプル制作",person:"山田 太郎",zip:"100-0001",address:"東京都千代田区千代田1-1",phone:"03-0000-0000",email:"sample@example.com",registration:"T1234567890123"},dates:{request:today,quote:today,order:today,invoice:today,delivery:today},numbers:{request:"REQ-001",quote:"EST-001",order:"ORD-001",invoice:"INV-001",delivery:"DEL-001"},terms:{deadline:"契約後30日以内",deliveryPlace:"発注者指定のオンライン環境",payment:"請求書受領後30日以内に銀行振込",projectName:"採用研修事業サイト制作",bank:"○○銀行　○○支店\n普通 1234567\nカ）サンプルセイサク",notes:"補助事業の実施内容と証憑の記載内容が一致するよう保管してください。"},notes:{request:"",quote:"",order:"",invoice:"",delivery:""},items:[
+        {name:"TOPページ制作",qty:1,unit:"式",price:200000,tax:10,spec:"企画・原稿・デザインを含む"},
+        {name:"資料請求ページ制作",qty:1,unit:"式",price:200000,tax:10,spec:"申込フォームを含む"},
+        {name:"セミナー集客ページ制作",qty:1,unit:"式",price:100000,tax:10,spec:""},
+        {name:"オンライン研修案内用ページ制作",qty:3,unit:"頁",price:100000,tax:10,spec:""},
+        {name:"お問い合わせ時配布用資料作成",qty:1,unit:"式",price:300000,tax:10,spec:""},
+        {name:"ブログ記事制作",qty:30,unit:"本",price:10000,tax:10,spec:""},
+        {name:"ウェビナー制作",qty:1,unit:"式",price:200000,tax:10,spec:""}
+      ],currentDoc:"quote"};
+      save();hydrate();showToast("見本データを読み込みました");
+    }
+    function hydrate(){document.querySelectorAll("[data-bind]").forEach(el=>el.value=getPath(el.dataset.bind)??"");renderItems();renderPreview()}
+    load();bindInputs();renderItems();renderPreview();
+    document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+    document.querySelectorAll(".doc-link").forEach(b=>b.onclick=()=>selectDoc(b.dataset.doc));
+    $("addItem").onclick=()=>{state.items.push(emptyItem());save();renderItems()};
+    $("loadSample").onclick=()=>{if(confirm("現在の入力内容を見本データに置き換えますか？"))sample()};
+    $("resetAll").onclick=()=>{if(!confirm("入力内容をすべて初期化しますか？"))return;state=initialState();save();hydrate();showToast("初期化しました")};
+    $("printCurrent").onclick=$("printCurrentSide").onclick=()=>printDocs([state.currentDoc]);
+    $("printAll").onclick=$("printAllSide").onclick=()=>printDocs(Object.keys(DOCS));
+    $("downloadBackup").onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=(state.terms.projectName||"補助金証憑案件")+"_バックアップ.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+    $("restoreBackup").onchange=()=>{const f=$("restoreBackup").files?.[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(String(r.result));state=normalize(data);save();hydrate();showToast("バックアップを読み込みました")}catch(e){alert("バックアップファイルを読み込めませんでした。")}};r.readAsText(f,"utf-8")};
+  </script>
+</body>
+</html>
