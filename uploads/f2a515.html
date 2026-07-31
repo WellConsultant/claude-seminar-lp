@@ -1,0 +1,3091 @@
+
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Traingo-consulting</title>
+  <meta name="application-name" content="Traingo-consulting">
+  <meta name="apple-mobile-web-app-title" content="Traingo-consulting">
+  <meta name="theme-color" content="#0f5fd7">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="./favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --bg: #f5f7f8;
+      --panel: #fff;
+      --ink: #172026;
+      --muted: #64727a;
+      --line: #d9e0e3;
+      --accent: #176b7a;
+      --ok: #16724b;
+      --bad: #a33b32;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.55; }
+    header { position: sticky; top: 0; z-index: 2; border-bottom: 1px solid var(--line); background: #fff; }
+    .head { max-width: 1120px; margin: 0 auto; padding: 14px 18px; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+    h1 { margin: 0; font-size: 20px; letter-spacing: 0; }
+    .sub { margin-top: 2px; color: var(--muted); font-size: 12px; }
+    main { max-width: 1120px; margin: 0 auto; padding: 18px; display: grid; grid-template-columns: 220px 1fr; gap: 14px; }
+    nav, section { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+    nav { align-self: start; position: sticky; top: 76px; padding: 8px; }
+    nav button, .btn { width: 100%; min-height: 38px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); padding: 9px 10px; font-weight: 800; cursor: pointer; }
+    nav button { text-align: left; }
+    nav button + button { margin-top: 6px; }
+    nav button.active { border-color: #a7cfd6; background: #eaf6f8; color: #0f5662; }
+    .btn { width: auto; }
+    .btn.primary { border-color: var(--accent); background: var(--accent); color: #fff; }
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+    .hidden { display: none !important; }
+    .muted { color: var(--muted); }
+    .toolbar { display: flex; flex-wrap: nowrap; gap: 8px; align-items: center; }
+    .toolbar .btn { width: auto; }
+    .toolbar input, .toolbar select { max-width: 220px; }
+    .account-ops {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      overflow: visible;
+      white-space: nowrap;
+    }
+        .account-ops .btn {
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .account-ops .toolbar {
+      flex-shrink: 0;
+      width: auto;
+    }
+
+    .tool-note {
+      color: #0b3f8a;
+      font-size: 12px;
+      font-weight: 700;
+      border: 2px solid rgba(11, 63, 138, 0.3);
+      background: rgba(11, 63, 138, 0.08);
+      border-radius: 6px;
+      padding: 6px 10px;
+      width: auto;
+      min-width: 0;
+      max-width: min(100%, 400px);
+      overflow: visible;
+      white-space: normal;
+      margin-top: 0;
+      line-height: 1.4;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .identity-note {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: #244455;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .identity-pill {
+      background: #f0f7ff;
+      border: 1px solid #cbe0f5;
+      border-radius: 999px;
+      padding: 4px 8px;
+      display: inline-flex;
+      gap: 5px;
+      align-items: center;
+      font-weight: 700;
+    }
+    /* Traingo本体に埋め込み表示(?embedded=1)した時は、単体ツール用のヘッダUI（別ツールリンク・管理画面リンク・ログイン中バッジ・ログアウト・プロフィール）を消し、Traingoへ戻るリンクだけ出す */
+    .embedded-only { display: none; }
+    .embedded-mode .standalone-only { display: none !important; }
+    .embedded-mode .embedded-only { display: block; }
+    .embedded-mode #logoutBtn,
+    .embedded-mode #profileEdit { display: none !important; }
+    .back-to-traingo a { color: #2563eb; text-decoration: none; font-weight: 700; }
+    .back-to-traingo a:hover { text-decoration: underline; }
+    .profile-edit { position: relative; flex-shrink: 0; }
+    .profile-edit > summary {
+      list-style: none;
+      cursor: pointer;
+      white-space: nowrap;
+      width: auto;
+    }
+    .profile-edit > summary::-webkit-details-marker { display: none; }
+    .profile-edit[open] > summary { background: #0f5fd7; color: #fff; border-color: #0f5fd7; }
+    .profile-edit .profile-pop {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      z-index: 60;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 12px 30px rgba(15, 40, 80, 0.18);
+      padding: 12px;
+      width: 240px;
+      display: grid;
+      gap: 8px;
+      white-space: normal;
+    }
+    .profile-edit .profile-pop-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0b3f8a;
+    }
+    .profile-edit .profile-pop label {
+      display: grid;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #244455;
+    }
+    .profile-edit .profile-pop input { width: 100%; max-width: 100%; }
+    #mdTagFilter {
+      width: 100%;
+      font-size: 12px;
+      padding: 4px 7px;
+      border: 1px solid #c5d4e4;
+      border-radius: 4px;
+      box-sizing: border-box;
+      color: #244455;
+      background: #f5f8fd;
+    }
+    #mdTagInput {
+      font-size: 12px;
+      padding: 4px 7px;
+      border: 1px solid #c5d4e4;
+      border-radius: 4px;
+      box-sizing: border-box;
+      flex: 1;
+      min-width: 0;
+      color: #244455;
+      background: #f5f8fd;
+    }
+    .tag-save-label {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #244455;
+    }
+    .auth-screen {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 30px 18px;
+      display: grid;
+      gap: 10px;
+    }
+    .auth-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 16px;
+    }
+    .auth-card h2 { margin: 0 0 10px; font-size: 20px; }
+    .auth-card p { margin: 0 0 12px; color: var(--muted); font-size: 12px; }
+    .auth-inputs { display: grid; gap: 10px; max-width: 320px; }
+    .app-shell.hidden, .auth-screen.hidden { display: none; }
+    .content { display: grid; gap: 14px; }
+    section { padding: 14px; }
+    section { scroll-margin-top: 84px; }
+    h2 { margin: 0 0 4px; font-size: 18px; }
+    p { margin: 0 0 12px; color: var(--muted); font-size: 13px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .wide { grid-column: 1 / -1; }
+    label { display: grid; gap: 5px; color: var(--muted); font-size: 12px; font-weight: 800; }
+    input, textarea { width: 100%; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); padding: 10px; font: inherit; }
+    textarea { min-height: 120px; resize: vertical; }
+    .prompt-list { display: grid; gap: 10px; margin-top: 12px; }
+    .prompt-card { border: 1px solid var(--line); border-radius: 8px; background: #fbfcfd; padding: 10px; }
+    .prompt-head { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; margin-bottom: 8px; }
+    .prompt-head h3 { margin: 0; font-size: 15px; }
+    .prompt-head span { display: block; color: var(--muted); font-size: 12px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .small-input { min-height: 38px; border: 1px solid var(--line); border-radius: 8px; padding: 9px 10px; background: #fff; color: var(--ink); width: 230px; box-sizing: border-box; }
+    .small-input:focus { outline: none; border-color: #0f5fd7; }
+    .project-management { display: grid; gap: 10px; margin: 10px 0 14px; }
+    .project-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: flex-end;
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+      border: 1px solid #d6e6f5;
+      border-left: 4px solid #0f5fd7;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 10px 28px -24px rgba(16, 46, 84, 0.3);
+    }
+    .project-row .wide { flex: 1 1 100%; }
+    .project-switch-list {
+      display: grid;
+      gap: 6px;
+      grid-template-columns: repeat(auto-fit, minmax(130px, max-content));
+      margin-top: 6px;
+      width: 100%;
+    }
+    .project-switch-list .btn.secondary {
+      min-height: 34px;
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+    .project-row label { min-width: 200px; flex: 1 1 220px; }
+    .project-row-title {
+      width: 100%;
+      color: #0f4a6d;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.01em;
+    }
+    .project-row-title::before {
+      content: '⚬';
+      margin-right: 6px;
+      color: #0f5fd7;
+      font-size: 10px;
+    }
+    .project-row .btn { flex: 0 0 auto; min-height: 40px; }
+    .project-row .btn.primary {
+      box-shadow: 0 4px 12px -6px rgba(15, 95, 215, 0.5);
+    }
+    .project-row .btn.secondary {
+      border-color: #d1dde8;
+      background: #fff;
+      color: #234;
+    }
+    .project-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 8px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #0f4a6d;
+      background: #eaf3ff;
+      border: 1px solid #d4e4ff;
+      border-radius: 999px;
+      padding: 4px 10px;
+      width: fit-content;
+    }
+    .project-note {
+      border: 1px dashed #d2d7de;
+      border-radius: 8px;
+      background: #f6f8fa;
+      padding: 8px 10px;
+      font-size: 11px;
+      color: #57646d;
+    }
+    .project-quick-switch {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .project-quick-switch .btn {
+      min-height: 32px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .project-quick-switch .btn.active {
+      border-color: #0f5fd7;
+      background: #0f5fd7;
+      color: #fff;
+    }
+    .project-grid-basic {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .project-row select,
+    .project-row input { width: 100%; }
+    .copy-note { margin: 5px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .media-area { margin: 10px 0; border: 1px solid var(--line); border-radius: 8px; padding: 10px; background: #fbfcfd; }
+    .media-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .media-meta { font-size: 12px; color: var(--muted); margin-top: 8px; }
+    .notice { border-left: 4px solid #9db9c3; background: #eef6f8; padding: 10px; color: var(--muted); font-size: 13px; }
+    .account-note {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #4e5f68;
+      line-height: 1.45;
+    }
+    .account-note code {
+      font-size: 11px;
+      color: #0b3f8a;
+      background: #eff4fb;
+      border: 1px solid #c7dcf5;
+      border-radius: 4px;
+      padding: 1px 4px;
+    }
+    .result { min-height: 320px; white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+    .print-doc { display: none; }
+    .toast { position: fixed; right: 18px; bottom: 18px; display: none; border-radius: 8px; background: var(--ok); color: #fff; padding: 11px 14px; font-weight: 800; box-shadow: 0 14px 35px rgba(0,0,0,.18); }
+    .toast.show { display: block; }
+    @media (max-width: 820px) { main { grid-template-columns: 1fr; } nav { position: static; } .grid, .prompt-row { grid-template-columns: 1fr; } }
+    @media print {
+      header, nav, main, .content, .btn, .toast, #markdown, #copyOutput { display: none !important; }
+      body { background: #fff; }
+      .print-doc { display: block; color: #111; font-size: 10.5pt; line-height: 1.7; }
+      .print-title { border-bottom: 2px solid #111; padding-bottom: 5mm; margin: 0 0 8mm; }
+      .print-title h1 { font-size: 20pt; margin: 0 0 2mm; }
+      .print-title p { margin: 0; color: #444; font-size: 10pt; }
+      .print-section { break-after: page; padding: 0 0 8mm; }
+      .print-section h2 { font-size: 16pt; border-bottom: 1px solid #999; padding-bottom: 2mm; margin: 0 0 5mm; }
+      .print-block { break-inside: avoid; margin: 0 0 5mm; }
+      .print-block h3 { font-size: 11.5pt; margin: 0 0 1.5mm; color: #12343b; }
+      .print-text { white-space: normal; }
+      .print-text p { color: #111; font-size: 10.5pt; margin: 0 0 2.5mm; }
+      .print-text ul { margin: 0 0 3mm 5mm; padding: 0; }
+      .print-text li { margin: 0 0 1mm; }
+      .print-text table { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm; }
+      .print-text th, .print-text td { border: 1px solid #bbb; padding: 1.5mm 2mm; vertical-align: top; }
+      .print-text th { background: #f1f4f5; font-weight: 800; }
+      .print-text h3 { font-size: 12pt; margin: 4mm 0 1.5mm; color: #111; }
+      .print-text h4 { font-size: 11pt; margin: 3mm 0 1mm; color: #333; }
+      section { break-after: page; border: 0; padding: 0 0 12mm; }
+      input, textarea { border: 0; border-radius: 0; padding: 0; overflow: hidden; background: transparent; }
+      textarea { min-height: 0; resize: none; white-space: pre-wrap; scrollbar-width: none; -ms-overflow-style: none; }
+      textarea::-webkit-scrollbar { display: none; }
+      .prompt-card, .notice { border: 0; background: transparent; padding: 0; }
+      .grid { display: block; }
+      label { display: block; break-inside: avoid; margin: 0 0 8mm; }
+    }
+  </style>
+<script>window.__TRAINGO_UID__="e33d5413-e4ea-49fe-b981-54b3a716a464";</script></head>
+<body>
+  <div id="authGate" class="auth-screen">
+      <div class="auth-card">
+        <h2>Traingo-consulting ログイン</h2>
+      <div class="auth-inputs">
+        <label>ログインID<input id="loginId" autocomplete="off" placeholder="ログインIDを入力"></label>
+        <label>パスワード<input id="loginPassword" type="password" autocomplete="new-password" placeholder="パスワードを入力"></label>
+        <label>会社名<input id="loginCompany" autocomplete="off" placeholder="会社名（任意）"></label>
+        <label>あなたの名前<input id="loginUserName" autocomplete="off" placeholder="氏名（任意）"></label>
+      </div>
+      <div class="actions" style="margin-top: 10px;">
+        <button class="btn primary" id="loginBtn" type="button">ログイン</button>
+        <a href="#" id="copyRegisterLinkBtn" class="btn">初回登録情報をコピー</a>
+        <input type="email" id="shareEmailInput" placeholder="例: user@example.com" class="small-input" style="max-width: 220px;" />
+        <a href="#" id="shareByEmailBtn" class="btn" style="white-space: nowrap;">メールで共有</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="appShell" class="app-shell hidden">
+    <header>
+      <div class="head">
+        <div>
+          <h1>Traingo-consulting</h1>
+          <div class="sub">素材、コピー、貼り付け、まとめ作成を1画面で進める</div>
+          <div class="funnel-link standalone-only" style="margin-top:6px;font-size:12px;"><a href="../webinar-flow-tool/index.html" target="_blank" rel="noopener">▶ Traingo-webinar（ウェビナー作成）へ</a> ｜ <a href="../consulting-flow-tool/admin.html" target="_blank" rel="noopener">管理画面（管理者用）</a></div>
+          <div class="funnel-link back-to-traingo embedded-only" style="margin-top:6px;font-size:13px;"><a href="/company/dashboard">← Traingoに戻る</a></div>
+        </div>
+        <div class="account-ops">
+          <div class="tool-note" id="signedUserBadge">未ログイン</div>
+          <button class="btn" id="logoutBtn" type="button">ログアウト</button>
+          <div class="toolbar" id="mainActions">
+            <button class="btn" id="buildMdBtn" type="button">MD作成</button>
+            <button class="btn" id="copyMdBtn" type="button">MDコピー</button>
+            <button class="btn" id="downloadMdBtn" type="button">MDファイル保存</button>
+            <button class="btn" id="printBtn" type="button">印刷</button>
+            <button class="btn primary" id="saveBtn" type="button">保存</button>
+            <details class="profile-edit" id="profileEdit">
+              <summary class="btn" title="会社名・あなたの名前を編集">プロフィール</summary>
+              <div class="profile-pop">
+                <div class="profile-pop-title">あなたの情報を編集</div>
+                <label>会社名<input id="headerCompany" type="text" autocomplete="organization" placeholder="会社名"></label>
+                <label>あなたの名前<input id="headerUserName" type="text" autocomplete="name" placeholder="氏名"></label>
+                <button class="btn primary" id="headerProfileSaveBtn" type="button">この内容で保存</button>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <nav id="nav"></nav>
+      <div class="content">
+      <section data-view="project" id="project">
+        <h2>案件</h2>
+        <p>素材を貼り、必要な項目をコピーし、返ってきた内容をまとめ資料へ保存します。</p>
+        <div class="project-pill">案件管理</div>
+        <div class="project-management" id="projectManagementRow">
+          <div class="project-row">
+            <div class="project-row-title">① 案件を選ぶ／新しく作る</div>
+            <label class="wide">いまの案件
+              <select id="projectSelect" onchange="window.__consultingSwitchProject && window.__consultingSwitchProject(this.value)"></select>
+            </label>
+            <label class="wide">新しい案件を作るとき（名前を入れて下のボタンを押す）
+              <input id="newProjectName" placeholder="例: あくつ商事のコンサル案件">
+            </label>
+            <button class="btn primary" type="button" id="addProjectBtn">＋ 新しい案件を作る</button>
+            <div class="muted" style="width:100%;font-size:12px;line-height:1.6;margin-top:6px">
+              案件を選んだら、あとは各ページの入力欄に書くだけで自動で保存されます。ここで作った案件は、相手ツールの「基本データを取り込む」にも出てきます。
+            </div>
+          </div>
+          <details class="project-row" style="width:100%;">
+            <summary style="cursor:pointer;font-weight:600;">そのほかの操作（タグ絞り込み・MD保存／復元・上書き保存）</summary>
+            <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;">
+              <div id="projectSwitchList" class="project-switch-list" aria-label="案件直接切替"></div>
+              <div id="projectQuickSwitch" class="project-quick-switch" aria-label="案件快速切替"></div>
+              <label>タグ・名前で絞り込み
+                <input type="text" id="mdTagFilter" placeholder="タグや案件名を入力…" autocomplete="off">
+              </label>
+              <label>保存済みMDを反映
+                <select id="mdHistorySelect">
+                  <option value="">未選択</option>
+                </select>
+              </label>
+              <button class="btn" type="button" id="loadMdHistoryBtn">過去MDを反映</button>
+              <button class="btn" type="button" id="importMdBtn">MDインポート</button>
+              <label class="tag-save-label">保存時のタグ（任意）
+                <input type="text" id="mdTagInput" placeholder="例：重要,確認済" autocomplete="off">
+              </label>
+              <button class="btn" type="button" id="exportMdBtn">MD保存</button>
+              <button class="btn" type="button" id="exportAllDataBtn">案件データ保存</button>
+              <button class="btn" type="button" id="importAllDataBtn">過去データ復元</button>
+              <button class="btn" type="button" id="rebuildProjectCatalogBtn">案件一覧を再読込</button>
+              <button class="btn" type="button" id="saveProjectBtn">この内容で上書き保存</button>
+              <div class="muted" style="width:100%;font-size:11px;line-height:1.4;margin-top:4px">
+                過去データを見る: <strong>過去データ復元</strong>でJSONを読み込むと、案件一覧と全案件内容を復元できます。MDは「過去MDを反映」で選択して反映します。
+              </div>
+              <input type="file" id="mdImportInput" accept=".md,.txt,.pdf,text/markdown,text/plain,application/pdf" hidden>
+              <input type="file" id="allDataImportInput" accept=".json,application/json" hidden>
+            </div>
+          </details>
+        </div>
+        <div class="project-grid-basic">
+          <label>案件名<input data-key="projectName"></label>
+          <label>顧客名<input data-key="clientName"></label>
+          <label class="wide">案件メモ<textarea data-key="projectMemo"></textarea></label>
+        </div>
+        <div class="project-note">案件名/顧客名/案件メモを埋めてから、各種プロンプトをコピー→貼り付けすると「まとめ資料」に反映しやすくなります。</div>
+      </section>
+
+      <section data-view="materials" id="materials">
+        <h2>資料収集</h2>
+        <p>ホームページ、パンフレット、会話記録、調査結果などを貼ります。</p>
+        <div class="grid">
+          <label class="wide">素材<textarea data-key="materials"></textarea></label>
+          <label class="wide">まとめ資料に追加する内容<textarea data-key="materialsResult"></textarea></label>
+        </div>
+        <div class="notice">資料収集まとめ専用プロンプトは、元Excel・user-prompts.json・notion-materials.json検索では見つかっていません。未確認のプロンプトは作りません。</div>
+      </section>
+
+      <section data-view="hearing" id="hearing">
+        <h2>ヒアリング</h2>
+        <p>会話記録を貼り、Excel由来のヒアリング用項目をコピーします。</p>
+        <div class="grid">
+          <label class="wide">会話記録・文字起こし<textarea data-key="conversationRecord"></textarea></label>
+        </div>
+        <div class="prompt-list" id="hearingPrompts"></div>
+        <div class="grid">
+          <label class="wide">まとめ資料に追加する内容<textarea data-key="hearingResult"></textarea></label>
+        </div>
+      </section>
+
+      <section data-view="baseData" id="baseData">
+        <h2>基本データ 現時点版</h2>
+        <p>最初に完成させません。資料収集・ヒアリング時点の現時点版を作り、調査結果を後から足します。</p>
+        <div class="prompt-list" id="baseDataPrompts"></div>
+        <div class="actions">
+          <button class="btn primary" type="button" id="mergeBaseDataBtn">基本データを統合</button>
+        </div>
+        <div class="consult-import" style="margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:8px;background:#fbfcfd;">
+          <label class="wide" style="margin:0;">ウェビナーツールで作った案件の基本データを取り込む
+            <select id="webinarImportSelect"><option value="">案件を選択</option></select>
+          </label>
+          <button class="btn primary" type="button" id="webinarImportBtn" style="margin-top:8px;">この案件の基本データを取り込む</button>
+        </div>
+        <label class="wide">基本データ<textarea data-key="baseData"></textarea></label>
+      </section>
+
+      <section data-view="product" id="product">
+        <h2>商品調査</h2>
+        <p>商品内容を書き、各プロンプトごとに返答を貼ります。最後に統合してまとめ資料へ入れます。</p>
+        <div class="grid">
+          <label class="wide">商品内容<textarea data-key="productContent"></textarea></label>
+        </div>
+        <div class="prompt-list" id="productPrompts"></div>
+        <button class="btn primary" type="button" id="mergeProductBtn">商品調査を統合</button>
+        <div class="grid">
+          <label class="wide">まとめ資料に追加する内容<textarea data-key="productResult"></textarea></label>
+        </div>
+      </section>
+
+      <section data-view="customer" id="customer">
+        <h2>顧客調査</h2>
+        <p>Excel由来の7項目をコピーし、返ってきた内容を各欄へ貼ります。</p>
+        <div class="prompt-list" id="customerPrompts"></div>
+        <div class="grid">
+          <label class="wide">まとめ資料に追加する内容<textarea data-key="customerResult"></textarea></label>
+        </div>
+      </section>
+
+      <section data-view="market" id="market">
+        <h2>市場調査</h2>
+        <p>市場動向をコピーし、返ってきた内容を貼ります。</p>
+        <div class="prompt-list" id="marketPrompts"></div>
+        <div class="grid">
+          <label>採用する市場動向<textarea data-key="marketAdoptTrend"></textarea></label>
+          <label>採用する機会・脅威<textarea data-key="marketAdoptOpportunityThreat"></textarea></label>
+          <label class="wide">採用する根拠・出典<textarea data-key="marketAdoptSources"></textarea></label>
+        </div>
+        <div class="actions">
+          <button class="btn primary" type="button" id="mergeMarketBtn">市場調査を統合</button>
+        </div>
+        <div class="grid">
+          <label class="wide">まとめ資料に追加する内容<textarea data-key="marketResult"></textarea></label>
+        </div>
+      </section>
+
+      <section data-view="competitor" id="competitor">
+        <h2>競合調査</h2>
+        <p>競合分析をコピーし、返ってきた内容を貼ります。</p>
+        <div class="prompt-list" id="competitorPrompts"></div>
+        <div class="grid">
+          <label>採用する競合情報<textarea data-key="competitorAdoptInfo"></textarea></label>
+          <label>採用する競合の強み・弱み<textarea data-key="competitorAdoptStrengthWeakness"></textarea></label>
+          <label class="wide">採用する自社が勝てる隙間<textarea data-key="competitorAdoptGap"></textarea></label>
+        </div>
+        <div class="actions">
+          <button class="btn primary" type="button" id="mergeCompetitorBtn">競合調査を統合</button>
+        </div>
+        <div class="grid">
+          <label class="wide">まとめ資料に追加する内容<textarea data-key="competitorResult"></textarea></label>
+        </div>
+      </section>
+
+      <section data-view="swot" id="swot">
+        <h2>SWOT分析</h2>
+        <p>強み・弱み・機会・脅威を分け、最後にクロスSWOTへ統合します。</p>
+        <div class="prompt-list" id="swotPrompts"></div>
+        <div class="grid">
+          <label>採用する強み<textarea data-key="swotStrength"></textarea></label>
+          <label>採用する弱み<textarea data-key="swotWeakness"></textarea></label>
+          <label>採用する機会<textarea data-key="swotOpportunity"></textarea></label>
+          <label>採用する脅威<textarea data-key="swotThreat"></textarea></label>
+          <label class="wide">採用するクロスSWOT<textarea data-key="crossSwot"></textarea></label>
+        </div>
+        <div class="actions">
+          <button class="btn primary" type="button" id="mergeSwotBtn">SWOTを統合</button>
+        </div>
+        <div class="grid">
+          <label class="wide">まとめ資料に追加する内容<textarea data-key="swotResult"></textarea></label>
+        </div>
+      </section>
+
+      <section data-view="trainingCreator" id="trainingCreator">
+        <h2>研修企画クリエイター</h2>
+        <p>研修企画をコピーし、返ってきた内容を見て採用するものを残します。</p>
+        <div class="prompt-list" id="trainingPrompts"></div>
+        <div class="grid">
+          <label class="wide">採用する既存コンテンツ・教材素材<textarea data-key="trainingExistingContent"></textarea></label>
+          <label>採用する研修化テーマ<textarea data-key="trainingThemes"></textarea></label>
+          <label>採用する最優先テーマ<textarea data-key="trainingPriorityTheme"></textarea></label>
+          <label>採用する研修タイトル<textarea data-key="trainingTitle"></textarea></label>
+          <label>採用する対象者<textarea data-key="trainingAudience"></textarea></label>
+          <label>採用する研修の目的<textarea data-key="trainingPurpose"></textarea></label>
+          <label>採用する到達目標<textarea data-key="trainingGoals"></textarea></label>
+          <label class="wide">採用するカリキュラム案<textarea data-key="trainingCurriculum"></textarea></label>
+          <label>採用する教材化・オンラインコース化の方針<textarea data-key="trainingMaterialsPlan"></textarea></label>
+          <label>採用する提供方法<textarea data-key="trainingDelivery"></textarea></label>
+          <label>採用する販売・提案への導線<textarea data-key="trainingSalesPath"></textarea></label>
+          <label>採用する成果測定・次に作る成果物<textarea data-key="trainingMetrics"></textarea></label>
+        </div>
+        <div class="actions">
+          <button class="btn primary" type="button" id="mergeTrainingBtn">研修企画クリエイターを統合</button>
+        </div>
+        <div class="grid">
+          <label class="wide">まとめ資料に追加する内容<textarea data-key="trainingCreatorResult"></textarea></label>
+        </div>
+      </section>
+
+      <section data-view="plan" id="plan">
+        <h2>事業計画書</h2>
+        <p>3つの欄を埋めると、下の「自動生成プロンプト」が自動で組み上がります。そのままコピーしてAIに貼り付けてください。</p>
+        <label class="wide">① 参考フォーマット<textarea data-key="planFormat" placeholder="例：日本政策金融公庫の創業計画書の様式"></textarea></label>
+        <label class="wide">② 基本データ<textarea data-key="planBaseData" placeholder="例：事業内容・売上計画・経歴・資金計画などの調査結果"></textarea></label>
+        <label class="wide">③ 指示内容<textarea data-key="planInstruction" placeholder="例：事業計画書の作成"></textarea></label>
+        <div class="prompt-card">
+          <div class="prompt-head">
+            <div>
+              <h3>自動生成プロンプト</h3>
+              <span>上の①②③から自動で組み上がります</span>
+            </div>
+            <button class="btn primary" type="button" id="planGenCopyBtn">コピー</button>
+          </div>
+          <textarea class="result" id="planGeneratedPrompt" readonly></textarea>
+        </div>
+        <div class="prompt-list" id="planPrompts" hidden></div>
+        <label class="wide">事業計画書ドラフト<textarea data-key="businessPlan"></textarea></label>
+      </section>
+
+      <section data-view="markdown" id="markdown">
+        <h2>MD形式まとめ</h2>
+        <p>印刷とは別に、案件全体をMarkdown形式で置きます。上の内容から作成し、必要ならこの欄で直接直せます。</p>
+        <label class="wide">MD形式<textarea class="result" data-key="markdownOutput" id="markdownOutput"></textarea></label>
+      </section>
+
+      <textarea class="result" id="copyOutput" readonly hidden></textarea>
+      </div>
+    </main>
+  </div>
+
+  <div class="print-doc" id="printDoc"></div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const promptGroups = {
+      hearing: ['会話内容を整理するプロンプト', '会話記録から理念を言語化するプロンプト'],
+      product: ['商品特徴分析', 'ベネフィット転換プロンプト', 'USP制作プロンプト'],
+      customer: [
+        'ナンバーワンの見込み客を発見するプロンプト',
+        'ナンバーワンの見込み客の期待',
+        '見込み客のBeliefを特定するプロンプト',
+        'Beliefの根源',
+        '見込み客の反論',
+        '新しいBelief',
+        '顧客ニーズをまとめるプロンプト'
+      ],
+      market: ['市場動向プロンプト'],
+      competitor: ['競合分析'],
+      swot: ['強み', '弱み', '機会', '脅威', 'クロスSWOT分析'],
+      baseData: ['会社概要を作る', '決算書概要分析プロンプトパーツ', '経営課題発見プロンプト【多視点リスト型】', '経営方針作成プロンプト'],
+      trainingCreator: ['研修企画書生成テンプレート（Traingo標準）'],
+      plan: []
+    };
+    const views = [
+      ['project', '案件'],
+      ['materials', '資料収集'],
+      ['hearing', 'ヒアリング'],
+      ['baseData', '基本データ'],
+      ['product', '商品調査'],
+      ['customer', '顧客調査'],
+      ['market', '市場調査'],
+      ['competitor', '競合調査'],
+      ['swot', 'SWOT分析'],
+      ['trainingCreator', '研修企画クリエイター'],
+      ['plan', '事業計画書'],
+      ['markdown', 'MD形式']
+    ];
+    // 案件データはアカウント別スコープに分離する（他アカウントへの漏洩防止・2026-06-25）。
+    // basePrefix は固定。ログイン確定後に applyAccountDataScope() で storePrefix を
+    // `${basePrefix}-acct-${accountId}` へ切り替える。未ログイン時は従来どおり basePrefix。
+    const basePrefix = 'consulting-flow-tool';
+    let storePrefix = basePrefix;
+    let storeKey = `${storePrefix}-minimal-v1`;
+    let projectCatalogKey = `${storePrefix}-projects-v1`;
+    let legacyStoreKey = `${storePrefix}-legacy`;
+    let globalMdHistoryKey = `${storePrefix}-md-history-v1`;
+    const loginIdStorageKey = `${basePrefix}-login-id`;
+    const legacyMigratedFlagKey = `${basePrefix}-legacy-migrated-v1`;
+    let currentProjectId = '';
+    let projectCatalog = [];
+    let state = {};
+    let prompts = [];
+    let promptsLoaded = false;
+    const authGate = document.getElementById('authGate');
+    const appShell = document.getElementById('appShell');
+    const loginIdInput = document.getElementById('loginId');
+    const loginPasswordInput = document.getElementById('loginPassword');
+    const loginCompanyInput = document.getElementById('loginCompany');
+    const loginUserNameInput = document.getElementById('loginUserName');
+    const registerInfo = document.getElementById('registerInfo');
+    const loginBtn = document.getElementById('loginBtn');
+    const profileEdit = document.getElementById('profileEdit');
+    const headerCompanyInput = document.getElementById('headerCompany');
+    const headerUserNameInput = document.getElementById('headerUserName');
+    const headerProfileSaveBtn = document.getElementById('headerProfileSaveBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const copyRegisterLinkBtn = document.getElementById('copyRegisterLinkBtn');
+    const shareEmailInput = document.getElementById('shareEmailInput');
+    const shareByEmailBtn = document.getElementById('shareByEmailBtn');
+    const authKey = `${storePrefix}-auth-v1`;
+    const authSessionKey = `${storePrefix}-auth-session-v1`;
+    const profileKey = `${storePrefix}-profile-v1`;
+    const userRegistryKey = `${storePrefix}-users-v1`;
+    const signedUserBadge = document.getElementById('signedUserBadge');
+    const defaultUsers = [
+      {
+        id: 'login-user',
+        password: 'consulting@2026',
+        role: 'user',
+        companyName: '',
+        userName: ''
+      },
+      {
+        id: 'admin',
+        password: 'admin@2026',
+        role: 'admin',
+        companyName: 'Traingo',
+        userName: 'admin'
+      }
+    ];
+    const nav = document.getElementById('nav');
+    const projectSwitchList = document.getElementById('projectSwitchList');
+    const projectQuickSwitch = document.getElementById('projectQuickSwitch');
+    const toast = document.getElementById('toast');
+    const copyOutput = document.getElementById('copyOutput');
+    const mainContainer = document.querySelector('main');
+    const projectSelect = document.getElementById('projectSelect');
+    const mdHistorySelect = document.getElementById('mdHistorySelect');
+    const mdTagFilterInput = document.getElementById('mdTagFilter');
+    const mdTagInput = document.getElementById('mdTagInput');
+    const loadMdHistoryBtn = document.getElementById('loadMdHistoryBtn');
+    const importMdBtn = document.getElementById('importMdBtn');
+    const exportMdBtn = document.getElementById('exportMdBtn');
+    const exportAllDataBtn = document.getElementById('exportAllDataBtn');
+    const importAllDataBtn = document.getElementById('importAllDataBtn');
+    const rebuildProjectCatalogBtn = document.getElementById('rebuildProjectCatalogBtn');
+    const mdImportInput = document.getElementById('mdImportInput');
+    const allDataImportInput = document.getElementById('allDataImportInput');
+    const addProjectBtn = document.getElementById('addProjectBtn');
+    const saveProjectBtn = document.getElementById('saveProjectBtn');
+    const newProjectName = document.getElementById('newProjectName');
+
+    function loadUserRegistry() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(userRegistryKey) || '[]');
+        if (Array.isArray(parsed) && parsed.length) {
+          return parsed.map((item) => ({
+            id: String(item?.id || '').trim(),
+            password: String(item?.password || ''),
+            role: String(item?.role || 'user').trim(),
+            companyName: String(item?.companyName || '').trim(),
+            userName: String(item?.userName || '').trim()
+          })).filter((item) => item.id && item.password);
+        }
+      } catch {}
+      return defaultUsers.map((item) => ({ ...item }));
+    }
+
+    function ensureUserRegistry() {
+      const users = loadUserRegistry();
+      if (!users.length) {
+        localStorage.setItem(userRegistryKey, JSON.stringify(defaultUsers));
+        return defaultUsers.map((item) => ({ ...item }));
+      }
+      const loginUserExists = users.some((user) => user.id === defaultUsers[0].id);
+      const adminExists = users.some((user) => user.role === 'admin');
+      const merged = users;
+      if (!loginUserExists) {
+        merged.push({ ...defaultUsers[0] });
+      }
+      if (!adminExists) {
+        merged.push({ ...defaultUsers[1] });
+      }
+      localStorage.setItem(userRegistryKey, JSON.stringify(merged));
+      return merged;
+    }
+
+    function isAuthenticated() {
+      const value = localStorage.getItem(authKey);
+      if (value === '1') return true;
+      try {
+        const session = JSON.parse(localStorage.getItem(authSessionKey) || '{}');
+        if (session && typeof session.accountId === 'string' && session.accountId.trim()) {
+          localStorage.setItem(authKey, '1');
+          return true;
+        }
+      } catch {
+      }
+      return false;
+    }
+
+    function setSignedUserBadge() {
+      let profile = { accountId: '', companyName: '', userName: '' };
+      try {
+        profile = JSON.parse(localStorage.getItem(profileKey) || '{}');
+      } catch {
+        profile = { accountId: '', companyName: '', userName: '' };
+      }
+      const accountId = String((localStorage.getItem('consulting-flow-tool-login-id') || profile.accountId || '')).trim() || '未設定';
+      const companyName = String(profile.companyName || '').trim();
+      const userName = String(profile.userName || '').trim();
+      if (signedUserBadge) {
+        // Traingo本体に埋め込み(?embedded=1)した時は、内部値「ログイン中: login-user」は出さず、会社管理者の会社名だけを出す
+        if (document.body.classList.contains('embedded-mode')) {
+          signedUserBadge.innerHTML = companyName ? `<span class="identity-pill">${escapeHtml(companyName)}</span>` : '';
+        } else {
+          signedUserBadge.innerHTML = `<span class="identity-pill">ログイン中: ${escapeHtml(accountId)}</span>`
+            + (companyName ? `<span class="identity-pill">会社: ${escapeHtml(companyName)}</span>` : '')
+            + (userName ? `<span class="identity-pill">担当: ${escapeHtml(userName)}</span>` : '');
+        }
+      }
+    }
+
+    function saveSignedSession(id, companyName, userName) {
+      const accountId = String(id || '').trim();
+      localStorage.setItem('consulting-flow-tool-login-id', accountId);
+      localStorage.setItem(authSessionKey, JSON.stringify({ accountId, at: Date.now() }));
+      localStorage.setItem(profileKey, JSON.stringify({
+        accountId,
+        companyName: String(companyName || '').trim(),
+        userName: String(userName || '').trim()
+      }));
+    }
+
+    // ログイン中アカウントのデータスコープを適用する。
+    // 案件データ系キー(storePrefix/storeKey/projectCatalogKey/legacyStoreKey/globalMdHistoryKey)を
+    // `${basePrefix}-acct-${accountId}` 配下へ切り替え、他アカウントの案件が見えないようにする。
+    // 認証・ユーザー登録(authKey/userRegistryKey/profileKey/login-id)は basePrefix のまま共通。
+    function applyAccountDataScope() {
+      const accountId = String(localStorage.getItem(loginIdStorageKey) || '').trim();
+      if (!accountId) {
+        // 未ログイン時は従来スコープ(basePrefix)に戻す
+        storePrefix = basePrefix;
+      } else {
+        // 旧(アカウントID無し)データは消さず、最初にログインしたアカウントへ1回だけ引き継ぐ。
+        // 2人目以降は引き継がない＝他人のブラウザ共有時に漏れない。
+        // 🔴本体埋め込み(embedded=1)時は legacy 引き継ぎを一切行わない。本体は各受講者を正規ログイン
+        //   させており、ツール内の旧共有データ(素のbasePrefix直下)を新アカウントへ移すと、他人の案件が
+        //   アカウントを超えて見える漏洩になる（2026-06-25 阿久津さん「基本データがアカウントを超えている」大失態の根治）。
+        const isEmbedded = new URLSearchParams(location.search).get('embedded') === '1';
+        if (!isEmbedded && !localStorage.getItem(legacyMigratedFlagKey)) {
+          migrateLegacyDataTo(`${basePrefix}-acct-${accountId}`);
+          localStorage.setItem(legacyMigratedFlagKey, accountId);
+        }
+        storePrefix = `${basePrefix}-acct-${accountId}`;
+      }
+      storeKey = `${storePrefix}-minimal-v1`;
+      projectCatalogKey = `${storePrefix}-projects-v1`;
+      legacyStoreKey = `${storePrefix}-legacy`;
+      globalMdHistoryKey = `${storePrefix}-md-history-v1`;
+    }
+
+    // ===== サーバー保存（Supabase）連携レイヤ ここから ======================================
+    // 2026-06-26 阿久津さん指示：案件データの正本をブラウザlocalStorageから会社アカウント
+    //   ごとのサーバー保存へ移す。これで「シークレットと通常モードで表示が違う」「案件が
+    //   アカウントを跨ぐ」を根本解決する。localStorageは“ネット不通時のキャッシュ”として残し、
+    //   表示は必ずサーバーGETの結果を優先する。auth系キー(-auth-v1等)には一切手を付けない。
+    const CONSULTING_API = '/api/company/consulting-projects';
+    // サーバー保存が一度でも成功したか（true中はlocalStorageを正本とみなさず、表示はサーバー優先）
+    let serverStoreReady = false;
+    // 案件IDごとの保存デバウンスタイマー
+    const serverSaveTimers = {};
+
+    // 旧localStorageデータ→サーバーへ1回だけ移行したかのフラグ（scoped別）
+    function serverMigratedFlagKey() { return `${storePrefix}-server-migrated-v1`; }
+
+    // 案件1件をサーバーへ保存（デバウンス1000ms）。入力のたびの連打を1回にまとめる。
+    function scheduleServerSave(projectId) {
+      if (!projectId) return;
+      if (serverSaveTimers[projectId]) clearTimeout(serverSaveTimers[projectId]);
+      serverSaveTimers[projectId] = setTimeout(() => {
+        serverSaveTimers[projectId] = null;
+        serverSaveProject(projectId);
+      }, 1000);
+    }
+
+    // 案件1件を即時サーバー保存（payloadは project-state とカタログ名を丸ごと送る）
+    async function serverSaveProject(projectId) {
+      if (!projectId) return;
+      let payload = {};
+      try { payload = JSON.parse(localStorage.getItem(getProjectStateKey(projectId)) || '{}') || {}; } catch { payload = {}; }
+      const catItem = projectCatalog.find((p) => p.id === projectId);
+      const name = (catItem && catItem.name) || payload.projectName || `案件${projectId}`;
+      // カタログのメタ（作成日時など）も payload 内に残し、再構築できるようにする
+      payload.__meta = {
+        createdAt: (catItem && catItem.createdAt) || payload.createdAt || Date.now(),
+        updatedAt: (catItem && catItem.updatedAt) || Date.now(),
+        name
+      };
+      try {
+        const res = await fetch(CONSULTING_API, {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ project_key: projectId, name, payload })
+        });
+        if (res.ok) serverStoreReady = true;
+      } catch (e) {
+        // ネット不通：localStorageキャッシュは既に書き込まれているので次回起動時に再送される
+      }
+    }
+
+    // 案件1件をサーバーから削除
+    async function serverDeleteProject(projectId) {
+      if (!projectId) return;
+      try {
+        await fetch(`${CONSULTING_API}?project_key=${encodeURIComponent(projectId)}`, {
+          method: 'DELETE',
+          credentials: 'include'
+        });
+      } catch (e) { /* ネット不通時は無視 */ }
+    }
+
+    // サーバーから自社の案件一覧を取得し、localStorageの scoped キャッシュを上書きする。
+    // 戻り値: { ok:boolean, count:number }。okがtrueなら以後サーバーが正本。
+    async function syncProjectsFromServer() {
+      let json = null;
+      try {
+        const res = await fetch(CONSULTING_API, { method: 'GET', credentials: 'include' });
+        if (!res.ok) return { ok: false, count: 0 };
+        json = await res.json();
+      } catch (e) {
+        return { ok: false, count: 0 };
+      }
+      if (!json || !Array.isArray(json.items)) return { ok: false, count: 0 };
+      serverStoreReady = true;
+      const items = json.items;
+
+      if (items.length === 0) {
+        // サーバーが空。ローカルに既存案件があれば「1回だけ」サーバーへ移行して案件を消さない。
+        if (!localStorage.getItem(serverMigratedFlagKey())) {
+          const localCatalog = loadProjectCatalog();
+          if (localCatalog.length) {
+            for (const p of localCatalog) {
+              await serverSaveProject(p.id);
+            }
+            localStorage.setItem(serverMigratedFlagKey(), '1');
+            // 移行直後はローカルカタログをそのまま表示に使う（サーバーへも上がっている）
+            return { ok: true, count: localCatalog.length };
+          }
+          localStorage.setItem(serverMigratedFlagKey(), '1');
+        }
+        return { ok: true, count: 0 };
+      }
+
+      // サーバーに案件あり＝これが正本。localStorageの scoped キャッシュをサーバー内容で作り直す。
+      const rebuiltCatalog = items.map((it) => {
+        const payload = it.payload || {};
+        const meta = payload.__meta || {};
+        const createdAt = Number(meta.createdAt) || (it.created_at ? Date.parse(it.created_at) : Date.now());
+        const updatedAt = Number(meta.updatedAt) || (it.updated_at ? Date.parse(it.updated_at) : Date.now());
+        // 案件本体キャッシュを上書き
+        try { localStorage.setItem(getProjectStateKey(it.project_key), JSON.stringify(payload)); } catch (e) {}
+        return {
+          id: it.project_key,
+          name: it.name || payload.projectName || '案件',
+          createdAt,
+          updatedAt
+        };
+      });
+      projectCatalog = rebuiltCatalog.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+      try { localStorage.setItem(projectCatalogKey, JSON.stringify(projectCatalog)); } catch (e) {}
+      localStorage.setItem(serverMigratedFlagKey(), '1');
+      return { ok: true, count: items.length };
+    }
+    // ===== サーバー保存（Supabase）連携レイヤ ここまで ======================================
+
+    // basePrefix直下(アカウントID無し)の案件データを scoped 配下へコピーする。旧キーは削除しない。
+    function migrateLegacyDataTo(scoped) {
+      Object.keys(localStorage).forEach((key) => {
+        if (!key.startsWith(`${basePrefix}-`)) return;
+        if (key.startsWith(`${basePrefix}-acct-`)) return; // 既にアカウント別のものは対象外
+        const isData = key.includes('-project-state-')
+          || key.endsWith('-projects-v1')
+          || key.endsWith('-minimal-v1')
+          || key.endsWith('-legacy')
+          || key.endsWith('-md-history-v1');
+        if (!isData) return;
+        const newKey = key.replace(`${basePrefix}-`, `${scoped}-`);
+        if (localStorage.getItem(newKey) === null) {
+          const val = localStorage.getItem(key);
+          if (val !== null) localStorage.setItem(newKey, val);
+        }
+      });
+    }
+
+    function showAppShell() {
+      authGate.classList.add('hidden');
+      appShell.classList.remove('hidden');
+      applyAccountDataScope();
+      setSignedUserBadge();
+    }
+
+    function showAuthGate() {
+      if (new URLSearchParams(location.search).get('embedded') === '1') {
+        document.body.classList.add('embedded-mode');
+        const embCompany = new URLSearchParams(location.search).get('company') || '';
+        // 🔴アカウント分離：本体から渡る受講者固有ID(?uid=)をaccountIdに使い、受講者ごとに
+        // localStorageのscoped領域を分ける。uid未指定時のみ後方互換で'login-user'。
+        const embUid = new URLSearchParams(location.search).get('uid') || '';
+        try { saveSignedSession(embUid || 'login-user', embCompany, ''); } catch (e) {}
+        showAppShell();
+        return;
+      }
+      // Traingo本体ログイン済みの単体アクセス：route handler が注入した本体ユーザーIDで
+      // 自動認証し、独自パスワード画面は出さない（ログイン済みなのに再パスワードは無意味なため）。
+      const serverUid = (typeof window !== 'undefined' && window.__TRAINGO_UID__) ? String(window.__TRAINGO_UID__).trim() : '';
+      if (serverUid) {
+        try { saveSignedSession(serverUid, '', ''); } catch (e) {}
+        showAppShell();
+        return;
+      }
+      authGate.classList.remove('hidden');
+      appShell.classList.add('hidden');
+      if (signedUserBadge) {
+        signedUserBadge.textContent = '未ログイン';
+      }
+      try {
+        const profile = JSON.parse(localStorage.getItem(profileKey) || '{}');
+        if (loginCompanyInput) loginCompanyInput.value = profile.companyName || '';
+        if (loginUserNameInput) loginUserNameInput.value = profile.userName || '';
+      } catch {
+        if (loginCompanyInput) loginCompanyInput.value = '';
+        if (loginUserNameInput) loginUserNameInput.value = '';
+      }
+    }
+
+    function getProjectStateKey(id) {
+      return `${storePrefix}-project-state-${id}`;
+    }
+
+    function loadLegacyState() {
+      try {
+        return JSON.parse(localStorage.getItem(legacyStoreKey) || localStorage.getItem(storeKey) || '{}');
+      } catch {
+        return {};
+      }
+    }
+
+    function loadProjectCatalog() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(projectCatalogKey) || '[]');
+        if (!Array.isArray(parsed)) return [];
+        return parsed
+          .map((item) => {
+            if (!item || typeof item !== 'object') return null;
+            const id = String(item.id || '').trim();
+            if (!id) return null;
+            return {
+              id,
+              name: String(item.name || '案件').trim() || '案件',
+              updatedAt: Number(item.updatedAt) || Date.now(),
+              createdAt: Number(item.createdAt) || Date.now()
+            };
+          })
+          .filter(Boolean);
+      } catch {
+        return [];
+      }
+    }
+
+    function normalizeProjectIdFromStorageKey(key) {
+      const match = /(?:^|-)project-state-(.+)$/.exec(key) || /(?:^|-)project[-_ ]?state[-_ ]?(.+)$/i.exec(key);
+      return match ? match[1] : '';
+    }
+
+    function getProjectStateCandidateKeys() {
+      const skipKeys = new Set([
+        storeKey,
+        legacyStoreKey,
+        projectCatalogKey,
+        globalMdHistoryKey
+      ]);
+      return Object.keys(localStorage).filter((key) => {
+        if (skipKeys.has(key)) return false;
+        // 🔴アカウント分離：ログイン中アカウントの scoped キー以外は一切拾わない（他アカウントの案件漏洩防止）
+        if (!key.startsWith(`${storePrefix}-`)) return false;
+        if (/-project-state-/.test(key)) return true;
+        if (/-project_data-/.test(key)) return true;
+        if (/-project[-_]state-/.test(key)) return true;
+        return false;
+      });
+    }
+
+    function extractProjectIdFromKeyFallback(key) {
+      return key
+        .replace(/^.*(?:project-state|project_data|project-state|projectstate|project)[-_]?/i, '')
+        .replace(/^[^a-zA-Z0-9_-]+/, '')
+        .trim();
+    }
+
+    function hasProjectStateLikeShape(text) {
+      if (!text) return false;
+      if (typeof text !== 'object') return false;
+      const keys = Object.keys(text);
+      if (!keys.length) return false;
+      return ['projectName', 'clientName', 'projectMemo', 'materials', 'conversationRecord', 'markdownOutput', 'projectId', 'baseData', 'hearingResult', 'productResult']
+        .some((candidate) => keys.includes(candidate));
+    }
+
+    function buildProjectStateFallbackKeys() {
+      const fallback = [];
+      Object.keys(localStorage).forEach((key) => {
+        // 🔴アカウント分離：ログイン中アカウントの scoped キー以外は形状一致でも拾わない（他アカウントの案件漏洩防止）
+        if (!key.startsWith(`${storePrefix}-`)) return;
+        if (key.includes('projects-v1') || key.includes('legacy') || key.includes('auth') || key.includes('md-history') || key.includes('users-v1')) return;
+        try {
+          const parsed = JSON.parse(localStorage.getItem(key) || '{}');
+          if (hasProjectStateLikeShape(parsed)) {
+            fallback.push(key);
+          }
+        } catch {
+          return;
+        }
+      });
+      return fallback;
+    }
+
+      function buildCatalogFromStorageStates() {
+      const keys = [...new Set([...getProjectStateCandidateKeys(), ...buildProjectStateFallbackKeys()])];
+      const catalogById = new Map();
+      keys.forEach((key) => {
+        const id = normalizeProjectIdFromStorageKey(key);
+        const fallbackId = id || extractProjectIdFromKeyFallback(key);
+        const candidateId = fallbackId || id;
+        if (!candidateId) return;
+        try {
+          const projectState = JSON.parse(localStorage.getItem(key) || '{}');
+          const projectName = (projectState && typeof projectState === 'object' && typeof projectState.projectName === 'string' && projectState.projectName.trim())
+            ? projectState.projectName.trim()
+            : `案件${candidateId.slice(-4)}`;
+          const updatedAt = Number(projectState?.updatedAt) || Date.now();
+          const createdAt = Number(projectState?.createdAt) || updatedAt;
+          const sourceIsCurrent = key.startsWith(`${storePrefix}-project-state-`);
+          const existing = catalogById.get(candidateId);
+          const next = {
+            id: candidateId,
+            name: projectName,
+            updatedAt,
+            createdAt,
+            sourceKey: key,
+            sourceIsCurrent
+          };
+          if (!existing || (next.updatedAt > existing.updatedAt) || (!existing.sourceIsCurrent && sourceIsCurrent)) {
+            catalogById.set(candidateId, next);
+          }
+        } catch {
+          const existing = catalogById.get(candidateId);
+          if (!existing) {
+            catalogById.set(candidateId, { id: candidateId, name: `案件${candidateId.slice(-4)}`, updatedAt: Date.now(), createdAt: Date.now(), sourceKey: key, sourceIsCurrent: key.startsWith(`${storePrefix}-project-state-`) });
+          }
+        }
+      });
+
+      const catalog = Array.from(catalogById.values())
+        .map(({ sourceKey, ...item }) => item)
+        .filter(Boolean);
+      return catalog.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+    }
+
+    function saveProjectCatalog() {
+      localStorage.setItem(projectCatalogKey, JSON.stringify(projectCatalog));
+    }
+
+    function loadProjectData(projectId) {
+      if (!projectId) return {};
+      const targetId = String(projectId || '').trim();
+      if (!targetId) return {};
+      const directKey = getProjectStateKey(targetId);
+      const fallbackIdKeys = [...new Set([...getProjectStateCandidateKeys(), ...buildProjectStateFallbackKeys()])];
+      let sourceKey = directKey;
+
+      if (!localStorage.getItem(directKey)) {
+        const candidates = fallbackIdKeys
+          .filter((key) => {
+            const normalized = normalizeProjectIdFromStorageKey(key);
+            const fallback = extractProjectIdFromKeyFallback(key);
+            const candidateId = normalized || fallback;
+            if (candidateId !== targetId) return false;
+            if (!key.startsWith(storePrefix)) return false;
+            return true;
+          })
+          .sort((a, b) => {
+            if (a === directKey) return -1;
+            if (b === directKey) return 1;
+            if (a.startsWith(`${storePrefix}-project-state-`) && !b.startsWith(`${storePrefix}-project-state-`)) return -1;
+            if (!a.startsWith(`${storePrefix}-project-state-`) && b.startsWith(`${storePrefix}-project-state-`)) return 1;
+            return a.localeCompare(b);
+          });
+        sourceKey = candidates[0] || directKey;
+      }
+
+      if (!localStorage.getItem(sourceKey)) {
+        const shapeMatched = fallbackIdKeys.find((key) => {
+          if (!key.startsWith(storePrefix) || key === sourceKey) return false;
+          try {
+            const parsed = JSON.parse(localStorage.getItem(key) || '{}');
+            return parsed && typeof parsed === 'object' && String(parsed.projectId || parsed.id || '') === targetId;
+          } catch {
+            return false;
+          }
+        });
+        if (shapeMatched) {
+          sourceKey = shapeMatched;
+        }
+      }
+
+      if (!localStorage.getItem(sourceKey) && sourceKey !== directKey && localStorage.getItem(directKey)) {
+        sourceKey = directKey;
+      }
+
+      try {
+        const loaded = JSON.parse(localStorage.getItem(sourceKey) || '{}');
+        if (sourceKey !== directKey && Object.keys(loaded || {}).length) {
+          localStorage.setItem(directKey, JSON.stringify(loaded));
+        }
+        return loaded;
+      } catch {
+        return {};
+      }
+    }
+
+    function persistProjectData(recordMarkdown = false) {
+      const now = Date.now();
+      state.updatedAt = now;
+      state.mdHistory = Array.isArray(state.mdHistory) ? state.mdHistory : [];
+      state.mdHistory = state.mdHistory.filter((item) => typeof item.text === 'string' && item.id && item.createdAt);
+      if (recordMarkdown && typeof state.markdownOutput === 'string' && state.markdownOutput.trim()) {
+        const tags = parseMdTags(mdTagInput ? mdTagInput.value : '');
+        state.mdHistory = upsertMdHistory(state.mdHistory, state.markdownOutput, tags);
+        upsertGlobalMdHistory(state.markdownOutput, tags);
+        if (mdTagInput) mdTagInput.value = '';
+      }
+      if (currentProjectId) {
+        const typedName = String(state.projectName || '').trim();
+        const catalogIndex = projectCatalog.findIndex((item) => item.id === currentProjectId);
+        const existingName = catalogIndex >= 0 ? String(projectCatalog[catalogIndex].name || '').trim() : '';
+        // ユーザーが入力した案件名を最優先。空のときは既存名を保持し、名前を潰さない（名前喪失防止）。
+        const projectName = typedName || existingName || `案件${currentProjectId}`;
+        if (catalogIndex >= 0) {
+          if (typedName || !existingName) {
+            projectCatalog[catalogIndex].name = projectName;
+          }
+          projectCatalog[catalogIndex].updatedAt = now;
+        } else {
+          projectCatalog.push({ id: currentProjectId, name: projectName, updatedAt: now, createdAt: now });
+        }
+        saveProjectCatalog();
+        localStorage.setItem(getProjectStateKey(currentProjectId), JSON.stringify(state));
+      }
+      if (!currentProjectId) {
+        localStorage.setItem(legacyStoreKey, JSON.stringify(state));
+      }
+      // ローカルキャッシュ書込み済み。正本のサーバーへもデバウンス保存（入力連打は1回にまとめる）。
+      if (currentProjectId) scheduleServerSave(currentProjectId);
+      refreshProjectSelect();
+      refreshMdHistorySelect();
+    }
+
+    function parseMdTags(raw) {
+      if (!raw) return [];
+      return String(raw).split(/[,、，\s]+/).map((t) => t.trim()).filter(Boolean);
+    }
+
+    function upsertMdHistory(history, text, tags) {
+      const list = Array.isArray(history) ? history : [];
+      const now = Date.now();
+      if (!text.trim()) return list;
+      const tagArr = parseMdTags(tags);
+      list.unshift({
+        id: `md-${now}`,
+        label: `保存 ${new Date(now).toLocaleString('ja-JP')}`,
+        text,
+        createdAt: now,
+        tags: tagArr
+      });
+      return list.slice(0, 20);
+    }
+
+    function getGlobalMdHistory() {
+      try {
+        return JSON.parse(localStorage.getItem(globalMdHistoryKey) || '[]');
+      } catch {
+        return [];
+      }
+    }
+
+    function upsertGlobalMdHistory(text, tags) {
+      const list = getGlobalMdHistory();
+      const now = Date.now();
+      if (!text.trim()) return;
+      const tagArr = Array.isArray(tags) ? tags : parseMdTags(tags);
+      list.unshift({
+        id: `md-${now}`,
+        label: `${state.projectName ? `${state.projectName} / ` : ''}保存 ${new Date(now).toLocaleString('ja-JP')}`,
+        text,
+        createdAt: now,
+        projectId: currentProjectId || '',
+        tags: tagArr
+      });
+      localStorage.setItem(globalMdHistoryKey, JSON.stringify(list.slice(0, 50)));
+    }
+
+    function readFieldValues() {
+      document.querySelectorAll('[data-key]').forEach((field) => {
+        state[field.dataset.key] = field.value;
+      });
+      document.querySelectorAll('[data-prompt-output]').forEach((field) => {
+        state[promptOutputKey(field.dataset.promptOutput)] = field.value;
+      });
+    }
+
+    function fillFieldsFromState() {
+      document.querySelectorAll('[data-key]').forEach((field) => {
+        field.value = state[field.dataset.key] || '';
+      });
+      document.querySelectorAll('[data-prompt-output]').forEach((field) => {
+        field.value = state[promptOutputKey(field.dataset.promptOutput)] || '';
+      });
+      refreshMdHistorySelect();
+      updatePlanGeneratedPrompt();
+      populateWebinarImport();
+      if (projectSelect.value !== currentProjectId && projectSelect.value) {
+        projectSelect.value = currentProjectId;
+      }
+    }
+
+    function refreshProjectSelect() {
+      const sortedCatalog = projectCatalog
+        .slice()
+        .sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+      projectSelect.disabled = false;
+      projectSelect.innerHTML = sortedCatalog
+        .map((project) => `<option value="${project.id}">${escapeHtml(project.name)} (${new Date(project.updatedAt || project.createdAt || Date.now()).toLocaleString('ja-JP')})</option>`)
+        .join('') || '<option value="">未作成</option>';
+      if (currentProjectId) {
+        projectSelect.value = currentProjectId;
+      }
+      if (!projectSelect.value && projectCatalog[0]) {
+        projectSelect.value = projectCatalog[0].id;
+      }
+      currentProjectId = projectSelect.value || currentProjectId;
+      if (projectSwitchList) {
+        const quickCatalog = sortedCatalog.length ? sortedCatalog : (currentProjectId ? projectCatalog : []);
+        projectSwitchList.innerHTML = quickCatalog
+          .map((project) => `<button type="button" class="btn secondary ${project.id === currentProjectId ? 'active' : ''}" data-project-id="${escapeAttr(project.id)}" onclick="window.__consultingSwitchProject && window.__consultingSwitchProject('${escapeAttr(project.id)}')">${escapeHtml(project.name)}</button>`)
+          .join('');
+        if (!projectSwitchList.children.length) {
+          projectSwitchList.innerHTML = '<span class="muted">案件がありません。新規作成してください。</span>';
+        }
+        projectSwitchList.querySelectorAll('[data-project-id]').forEach((button) => {
+          const next = button.getAttribute('data-project-id');
+          if (!next || next === currentProjectId) return;
+          button.addEventListener('click', () => window.__consultingSwitchProject && window.__consultingSwitchProject(next), { once: true });
+        });
+      }
+      if (projectQuickSwitch) {
+        const quickCatalog = sortedCatalog.length ? sortedCatalog : (currentProjectId ? projectCatalog : []);
+        projectQuickSwitch.innerHTML = quickCatalog
+          .map((project) => `<button type="button" class="btn ${project.id === currentProjectId ? 'active' : ''}" data-project-id="${escapeAttr(project.id)}" onclick="window.__consultingSwitchProject && window.__consultingSwitchProject('${escapeAttr(project.id)}')">${escapeHtml(project.name)}</button>`)
+          .join('');
+        if (!projectQuickSwitch.children.length) {
+          projectQuickSwitch.innerHTML = '<span class="muted">案件がありません。新規作成してください。</span>';
+        }
+        projectQuickSwitch.querySelectorAll('[data-project-id]').forEach((button) => {
+          const next = button.getAttribute('data-project-id');
+          if (!next || next === currentProjectId) return;
+          button.addEventListener('click', () => window.__consultingSwitchProject && window.__consultingSwitchProject(next), { once: true });
+        });
+      }
+    }
+
+    function refreshMdHistorySelect() {
+      const localList = Array.isArray(state.mdHistory) ? state.mdHistory : [];
+      const allList = [
+        ...localList.map((item) => ({ ...item, scope: '案件' })),
+        ...getGlobalMdHistory().map((item) => ({ ...item, scope: '全体' }))
+      ];
+      let list = allList.filter((item, index, self) => index === self.findIndex((x) => x.id === item.id));
+      const mdNameById = new Map((Array.isArray(projectCatalog) ? projectCatalog : []).map((p) => [p.id, p.name]));
+      const looksAnonName = (t) => /^案件[-_]?\d{3,}$/.test(t) || /^p-\d+$/.test(t) || /^legacy-\d+$/.test(t);
+      const filterRaw = mdTagFilterInput ? String(mdTagFilterInput.value || '').trim().toLowerCase() : '';
+      if (filterRaw) {
+        const filterTokens = filterRaw.split(/[,、，\s]+/).filter(Boolean);
+        list = list.filter((item) => {
+          const rawName = item.projectId ? (mdNameById.get(item.projectId) || '') : '';
+          const projName = (rawName && !looksAnonName(String(rawName).trim())) ? String(rawName).trim().toLowerCase() : '';
+          const label = String(item.label || '').toLowerCase();
+          const tags = Array.isArray(item.tags) ? item.tags.map((t) => String(t).toLowerCase()) : [];
+          return filterTokens.every((token) =>
+            projName.includes(token) || label.includes(token) || tags.some((t) => t.includes(token))
+          );
+        });
+      }
+      mdHistorySelect.innerHTML = '<option value="">未選択</option>' +
+        list.map((item) => {
+          const rawName = item.projectId ? (mdNameById.get(item.projectId) || '') : '';
+          const projName = (rawName && !looksAnonName(String(rawName).trim())) ? String(rawName).trim() : '';
+          const head = (projName && !String(item.label || '').includes(projName)) ? `${projName} / ` : '';
+          const tagStr = Array.isArray(item.tags) && item.tags.length ? ` [${item.tags.join(', ')}]` : '';
+          return `<option value="${item.id}">${escapeHtml(`[${item.scope}] ${head}${item.label}${tagStr}`)}</option>`;
+        }).join('');
+    }
+
+    function rebuildProjectCatalogFromStorage() {
+      const fallbackCatalog = buildCatalogFromStorageStates();
+      if (fallbackCatalog.length) {
+        projectCatalog = fallbackCatalog;
+        saveProjectCatalog();
+      }
+
+      if (!projectCatalog.length) {
+        projectCatalog = loadProjectCatalog();
+      }
+
+      if (!projectCatalog.length) {
+        const legacy = loadLegacyState();
+        if (Object.keys(legacy).length) {
+          const initialId = `legacy-${Date.now()}`;
+          projectCatalog = [{
+            id: initialId,
+            name: legacy.projectName || 'インポート済み案件',
+            createdAt: Date.now(),
+            updatedAt: Date.now()
+          }];
+          localStorage.setItem(getProjectStateKey(initialId), JSON.stringify(legacy));
+          localStorage.removeItem(storeKey);
+          localStorage.removeItem(legacyStoreKey);
+          saveProjectCatalog();
+        }
+      }
+
+      if (!projectCatalog.length) {
+        const initialId = `p-${Date.now()}`;
+        projectCatalog = [{
+          id: initialId,
+          name: '新規案件',
+          createdAt: Date.now(),
+          updatedAt: Date.now()
+        }];
+        localStorage.setItem(getProjectStateKey(initialId), '{}');
+        saveProjectCatalog();
+      }
+
+      refreshProjectSelect();
+      if (currentProjectId && projectCatalog.some((project) => project.id === currentProjectId)) {
+        selectProject(currentProjectId);
+      } else if (projectCatalog[0]) {
+        selectProject(projectCatalog[0].id);
+      }
+    }
+
+    function findMdHistoryById(historyId) {
+      return (Array.isArray(state.mdHistory) ? state.mdHistory : []).find((item) => item.id === historyId)
+        || getGlobalMdHistory().find((item) => item.id === historyId) || null;
+    }
+
+    function selectProject(projectId) {
+      const next = projectId || projectCatalog[0]?.id;
+      if (!next) return;
+      readFieldValues();
+      currentProjectId = next;
+      state = loadProjectData(currentProjectId) || {};
+      fillFieldsFromState();
+      showToast(`案件を読み込みました`);
+      if (promptsLoaded) {
+        renderPromptGroup('hearingPrompts', promptGroups.hearing, 'hearing');
+        renderProductPromptCards();
+        renderPromptGroup('customerPrompts', promptGroups.customer, 'customer');
+        renderPromptGroup('marketPrompts', promptGroups.market, 'market');
+        renderPromptGroup('competitorPrompts', promptGroups.competitor, 'competitor');
+        renderPromptGroup('swotPrompts', promptGroups.swot, 'swot');
+        renderPromptGroup('baseDataPrompts', promptGroups.baseData, 'baseData');
+        renderPromptGroup('trainingPrompts', promptGroups.trainingCreator, 'trainingCreator');
+        renderPromptGroup('planPrompts', promptGroups.plan, 'plan');
+      }
+    }
+
+    function init() {
+      // Traingo本体に埋め込み(?embedded=1)の時は、ログイン済み/未ログインどちらの経路でもembedded-modeを必ず付ける
+      // （showAuthGate内だけだとログイン済み時に通らず、管理画面ボタン・login-userバッジが残る不具合になる）
+      if (new URLSearchParams(location.search).get('embedded') === '1') {
+        document.body.classList.add('embedded-mode');
+        // Traingo本体から渡された会社名(?company=)をログインプロフィールに入れ、ヘッダに会社名を出す
+        const embCompany = new URLSearchParams(location.search).get('company') || '';
+        // 🔴アカウント分離：受講者固有ID(?uid=)があればaccountIdに使い、scoped領域を受講者別に分ける
+        const embUid = new URLSearchParams(location.search).get('uid') || '';
+        if (embUid || embCompany) { try { saveSignedSession(embUid || 'login-user', embCompany, ''); } catch (e) {} }
+      }
+      ensureUserRegistry();
+      if (!isAuthenticated()) {
+        showAuthGate();
+        return;
+      }
+      showAppShell();
+
+      projectCatalog = loadProjectCatalog();
+      if (!projectCatalog.length) {
+        const fallbackCatalog = buildCatalogFromStorageStates();
+        if (fallbackCatalog.length) {
+          projectCatalog = fallbackCatalog;
+          saveProjectCatalog();
+        }
+      }
+      if (!projectCatalog.length) {
+        const legacy = loadLegacyState();
+        const initialId = `legacy-${Date.now()}`;
+        if (Object.keys(legacy).length) {
+          currentProjectId = initialId;
+          state = legacy;
+          localStorage.setItem(getProjectStateKey(currentProjectId), JSON.stringify(state));
+          projectCatalog = [{
+            id: initialId,
+            name: state.projectName || 'インポート済み案件',
+            createdAt: Date.now(),
+            updatedAt: Date.now()
+          }];
+          saveProjectCatalog();
+          localStorage.removeItem(storeKey);
+          localStorage.removeItem(legacyStoreKey);
+        }
+      }
+
+      if (!projectCatalog.length) {
+        const initialId = `p-${Date.now()}`;
+        projectCatalog = [{
+          id: initialId,
+          name: '新規案件',
+          createdAt: Date.now(),
+          updatedAt: Date.now()
+        }];
+        localStorage.setItem(getProjectStateKey(initialId), '{}');
+        saveProjectCatalog();
+      }
+
+      const initialProjectId = projectCatalog[0]?.id || '';
+      state = loadProjectData(initialProjectId) || {};
+      currentProjectId = initialProjectId;
+      refreshProjectSelect();
+      fillFieldsFromState();
+
+      mainContainer.classList.remove('hidden');
+      nav.innerHTML = views.map(([id, label]) => `<button type="button" data-nav="${id}">${label}</button>`).join('');
+      nav.querySelectorAll('button').forEach((button) => button.onclick = () => scrollToSection(button.dataset.nav));
+      refreshProjectSelect();
+      fillFieldsFromState();
+      window.__consultingSwitchProject = selectProject;
+
+      // 正本はサーバー。まずローカルキャッシュで即描画した上で、サーバーから最新を取り直して
+      // 表示を上書きする（シークレット/別ブラウザでも同じ案件が出る・アカウント跨ぎを根絶）。
+      syncProjectsFromServer().then((result) => {
+        if (!result.ok) return; // ネット不通時はローカルキャッシュ表示のまま
+        refreshProjectSelect();
+        const stillExists = currentProjectId && projectCatalog.some((p) => p.id === currentProjectId);
+        const target = stillExists ? currentProjectId : (projectCatalog[0] && projectCatalog[0].id);
+        if (target) {
+          currentProjectId = target;
+          state = loadProjectData(currentProjectId) || {};
+          fillFieldsFromState();
+          refreshProjectSelect();
+        }
+      });
+
+      document.querySelectorAll('[data-key]').forEach((field) => {
+        field.addEventListener('input', () => {
+          state[field.dataset.key] = field.value;
+          persistProjectData();
+          if (field.dataset.key === 'planFormat' || field.dataset.key === 'planBaseData' || field.dataset.key === 'planInstruction') {
+            updatePlanGeneratedPrompt();
+          }
+        });
+      });
+      const planGenCopyBtn = document.getElementById('planGenCopyBtn');
+      if (planGenCopyBtn) {
+        planGenCopyBtn.onclick = async () => {
+          const text = buildPlanPrompt();
+          if (!text) {
+            showToast('①②③のいずれかを入力してください');
+            return;
+          }
+          try {
+            await navigator.clipboard.writeText(text);
+            showToast('自動生成プロンプトをコピーしました');
+          } catch (e) {
+            const out = document.getElementById('planGeneratedPrompt');
+            out.removeAttribute('readonly');
+            out.select();
+            document.execCommand('copy');
+            out.setAttribute('readonly', '');
+            showToast('自動生成プロンプトをコピーしました');
+          }
+        };
+      }
+      const webinarImportBtn = document.getElementById('webinarImportBtn');
+      if (webinarImportBtn) webinarImportBtn.onclick = importWebinarBaseData;
+      populateWebinarImport();
+      document.getElementById('saveBtn').onclick = () => {
+        persistProjectData(typeof state.markdownOutput === 'string' && state.markdownOutput.trim());
+        if (typeof state.markdownOutput === 'string' && state.markdownOutput.trim()) {
+          showToast('保存しました（MD履歴を更新）');
+        } else {
+          showToast('保存しました');
+        }
+      };
+      document.getElementById('printBtn').onclick = () => {
+        window.preparePrintDocument();
+        window.print();
+      };
+      document.getElementById('buildMdBtn').onclick = buildMarkdownOutput;
+      document.getElementById('copyMdBtn').onclick = copyMarkdownOutput;
+      document.getElementById('mergeProductBtn').onclick = mergeProductResearch;
+      document.getElementById('mergeMarketBtn').onclick = mergeMarketResearch;
+      document.getElementById('mergeCompetitorBtn').onclick = mergeCompetitorResearch;
+      document.getElementById('mergeSwotBtn').onclick = mergeSwotResearch;
+      document.getElementById('mergeBaseDataBtn').onclick = mergeBaseData;
+      document.getElementById('mergeTrainingBtn').onclick = mergeTrainingCreator;
+      projectSelect.onchange = () => selectProject(projectSelect.value);
+      if (rebuildProjectCatalogBtn) {
+        rebuildProjectCatalogBtn.onclick = rebuildProjectCatalogFromStorage;
+      }
+      addProjectBtn.onclick = addNewProject;
+      saveProjectBtn.onclick = () => {
+        syncStateFromFields();
+        if (!currentProjectId) return;
+        persistProjectData();
+        showToast('現在の案件を上書き保存しました');
+      };
+      loadMdHistoryBtn.onclick = loadSelectedMdHistory;
+      importMdBtn.onclick = () => mdImportInput?.click();
+      exportMdBtn.onclick = exportMarkdownToFile;
+      document.getElementById('downloadMdBtn')?.addEventListener('click', exportMarkdownToFile);
+      mdImportInput.onchange = handleMdImport;
+      exportAllDataBtn.onclick = exportAllConsultingData;
+      importAllDataBtn.onclick = () => allDataImportInput?.click();
+      allDataImportInput.onchange = handleAllDataImport;
+      window.addEventListener('beforeprint', window.preparePrintDocument);
+      window.addEventListener('afterprint', window.restoreFieldsAfterPrint);
+      markActiveNav('project');
+      loadPrompts();
+    }
+
+    function addNewProject() {
+      const name = (newProjectName.value || '').trim() || `新規案件${projectCatalog.length + 1}`;
+      const projectId = `p-${Date.now()}`;
+      const now = Date.now();
+      projectCatalog.unshift({ id: projectId, name, createdAt: now, updatedAt: now });
+      localStorage.setItem(getProjectStateKey(projectId), JSON.stringify({ projectName: name, projectMemo: '' }));
+      saveProjectCatalog();
+      selectProject(projectId);
+      state = { projectName: name, projectMemo: '' };
+      fillFieldsFromState();
+      newProjectName.value = '';
+      persistProjectData();
+      showToast('新規案件を追加しました');
+    }
+
+    function loadSelectedMdHistory() {
+      const selected = mdHistorySelect.value;
+      if (!selected) {
+        showToast('反映する保存MDを選択してください', true);
+        return;
+      }
+      const hit = findMdHistoryById(selected);
+      if (!hit) {
+        showToast('保存MDが見つかりません', true);
+        return;
+      }
+      const output = document.getElementById('markdownOutput');
+      output.value = hit.text;
+      state.markdownOutput = hit.text;
+      persistProjectData();
+      scrollToSection('markdown');
+      showToast('保存MDを反映しました');
+    }
+
+    function exportMarkdownToFile() {
+      const output = document.getElementById('markdownOutput');
+      if (!output) return;
+      const current = output.value || buildMarkdown();
+      const blob = new Blob([current], { type: 'text/markdown;charset=utf-8' });
+      const anchor = document.createElement('a');
+      anchor.href = URL.createObjectURL(blob);
+      anchor.download = `${(state.projectName || 'consulting-project').replaceAll(/[\\/:*?"<>|]/g, '_')}.md`;
+      anchor.style.display = 'none';
+      document.body.appendChild(anchor);
+      anchor.click();
+      document.body.removeChild(anchor);
+      URL.revokeObjectURL(anchor.href);
+      state.markdownOutput = current;
+      output.value = current;
+      persistProjectData(true);
+      showToast('MDをファイル保存しました');
+    }
+
+    function loadPdfJsLibrary() {
+      if (window.pdfjsLib) {
+        return Promise.resolve(window.pdfjsLib);
+      }
+      return new Promise((resolve, reject) => {
+        const existing = document.querySelector('script[data-pdfjs]');
+        const onLoad = () => {
+          if (window.pdfjsLib && window.pdfjsLib.getDocument) {
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
+            resolve(window.pdfjsLib);
+          } else {
+            reject(new Error('pdfjs未読込'));
+          }
+        };
+        if (window.pdfjsLib && window.pdfjsLib.getDocument) {
+          onLoad();
+          return;
+        }
+        if (existing) {
+          existing.addEventListener('load', onLoad, { once: true });
+          existing.addEventListener('error', () => reject(new Error('pdfjs読込エラー')), { once: true });
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.js';
+        script.async = true;
+        script.setAttribute('data-pdfjs', '1');
+        script.onload = onLoad;
+        script.onerror = () => reject(new Error('pdfjs読込エラー'));
+        document.head.appendChild(script);
+      });
+    }
+
+    async function extractTextFromPdf(file) {
+      const buffer = await file.arrayBuffer();
+      await loadPdfJsLibrary();
+      const pdf = await window.pdfjsLib.getDocument({ data: buffer }).promise;
+      const texts = [];
+      for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        const page = await pdf.getPage(pageNum);
+        const textContent = await page.getTextContent();
+        const pageText = textContent.items
+          .map((item) => item.str)
+          .filter((s) => typeof s === 'string' && s.trim())
+          .join('\n');
+        texts.push(`\n\n--- ${pageNum}ページ目 ---\n${pageText}`);
+      }
+      await pdf.cleanup();
+      return texts.join('\n').trim();
+    }
+
+    async function handleMdImport() {
+      const file = mdImportInput?.files?.[0];
+      if (!file) return;
+      const output = document.getElementById('markdownOutput');
+      if (!output) return;
+
+      try {
+        if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
+          const text = await extractTextFromPdf(file);
+          output.value = text || '（PDFからテキストを抽出できませんでした）';
+          state.markdownOutput = output.value;
+          persistProjectData(true);
+          scrollToSection('markdown');
+          showToast(text ? 'PDFを読み込みました' : 'PDFは読み取り対象テキストがありませんでした');
+        } else {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const text = String(reader.result || '');
+            output.value = text;
+            state.markdownOutput = text;
+            persistProjectData(true);
+            scrollToSection('markdown');
+            showToast('MDをインポートしました');
+          };
+          reader.onerror = () => showToast('MDの読み込みに失敗しました', true);
+          reader.readAsText(file, 'utf-8');
+        }
+      } catch (error) {
+        const message = error && String(error.message || '');
+        if (message.includes('pdfjs')) {
+          showToast('PDF自動反映はこの環境で未対応です。PDFを開いて本文をコピーして貼り付けてください。', true);
+        } else {
+          showToast('MDの読み込みに失敗しました', true);
+        }
+      }
+      mdImportInput.value = '';
+    }
+
+    function exportAllConsultingData() {
+      syncStateFromFields();
+      const projectData = {};
+      (projectCatalog || []).forEach((project) => {
+        const projectId = String(project.id || '').trim();
+        if (!projectId) return;
+        try {
+          const data = loadProjectData(projectId);
+          if (data && Object.keys(data).length) {
+            projectData[projectId] = data;
+          }
+        } catch {
+          projectData[projectId] = {};
+        }
+      });
+      if (!projectData[currentProjectId] && currentProjectId) {
+        projectData[currentProjectId] = state;
+      }
+
+      const payload = {
+        schema: 'consulting-flow-tool-all-data-v1',
+        exportedAt: new Date().toISOString(),
+        currentProjectId,
+        projectCatalog,
+        projectData,
+        globalMdHistory: getGlobalMdHistory(),
+        note: 'Traingo-consultingで過去に入力した案件データのバックアップ'
+      };
+
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json;charset=utf-8' });
+      const anchor = document.createElement('a');
+      anchor.href = URL.createObjectURL(blob);
+      const stamp = new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-');
+      anchor.download = `consulting-project-backup-${stamp}.json`;
+      anchor.style.display = 'none';
+      document.body.appendChild(anchor);
+      anchor.click();
+      document.body.removeChild(anchor);
+      URL.revokeObjectURL(anchor.href);
+      showToast('案件データを保存しました');
+    }
+
+    function handleAllDataImport() {
+      const file = allDataImportInput?.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        let parsed;
+        try {
+          parsed = JSON.parse(String(reader.result || ''));
+        } catch {
+          showToast('JSONの形式が不正です', true);
+          return;
+        }
+        if (!parsed || typeof parsed !== 'object' || !Array.isArray(parsed.projectCatalog) || !parsed.projectData) {
+          showToast('インポート形式が対応外です', true);
+          return;
+        }
+
+        const incomingCatalog = parsed.projectCatalog
+          .map((item, index) => {
+            if (!item || typeof item !== 'object' || !item.id) return null;
+            return {
+              id: String(item.id),
+              name: typeof item.name === 'string' && item.name.trim() ? item.name.trim() : `案件${index + 1}`,
+              createdAt: Number(item.createdAt) || Date.now(),
+              updatedAt: Number(item.updatedAt) || Number(item.createdAt) || Date.now()
+            };
+          })
+          .filter(Boolean);
+
+        const incomingProjectData = parsed.projectData && typeof parsed.projectData === 'object' ? parsed.projectData : {};
+        if (!incomingCatalog.length) {
+          showToast('インポート対象の案件がありません', true);
+          return;
+        }
+
+        Object.keys(localStorage).forEach((key) => {
+          if (
+            key === storeKey ||
+            key === legacyStoreKey ||
+            key === projectCatalogKey ||
+            key.startsWith(`${storePrefix}-project-state-`) ||
+            key === globalMdHistoryKey
+          ) {
+            localStorage.removeItem(key);
+          }
+        });
+
+        projectCatalog = incomingCatalog;
+        saveProjectCatalog();
+
+        incomingCatalog.forEach((project) => {
+          const key = getProjectStateKey(project.id);
+          const source = incomingProjectData[project.id];
+          const nextState = (source && typeof source === 'object') ? source : {};
+          localStorage.setItem(key, JSON.stringify(nextState));
+        });
+
+        try {
+          const importedMdHistory = Array.isArray(parsed.globalMdHistory) ? parsed.globalMdHistory : [];
+          localStorage.setItem(globalMdHistoryKey, JSON.stringify(importedMdHistory.slice(0, 200)));
+        } catch {
+          localStorage.removeItem(globalMdHistoryKey);
+        }
+
+        const requestedId = typeof parsed.currentProjectId === 'string' && incomingProjectData[parsed.currentProjectId]
+          ? parsed.currentProjectId
+          : incomingCatalog[0]?.id;
+        currentProjectId = requestedId || '';
+        state = loadProjectData(currentProjectId) || {};
+        fillFieldsFromState();
+        refreshProjectSelect();
+        refreshMdHistorySelect();
+        showToast(`過去データを復元しました（${incomingCatalog.length}件）`);
+      };
+      reader.onerror = () => showToast('データの読み込みに失敗しました', true);
+      reader.readAsText(file, 'utf-8');
+      allDataImportInput.value = '';
+    }
+
+    window.expandFieldsForPrint = function expandFieldsForPrint() {
+      document.querySelectorAll('textarea').forEach((field) => {
+        field.dataset.printHeight = field.style.height || '';
+        field.style.height = `${Math.max(field.scrollHeight, 24)}px`;
+      });
+    };
+
+    window.restoreFieldsAfterPrint = function restoreFieldsAfterPrint() {
+      document.querySelectorAll('textarea').forEach((field) => {
+        field.style.height = field.dataset.printHeight || '';
+        delete field.dataset.printHeight;
+      });
+    };
+
+    window.preparePrintDocument = function preparePrintDocument() {
+      syncStateFromFields();
+      window.expandFieldsForPrint();
+      const printDoc = document.getElementById('printDoc');
+      printDoc.innerHTML = [
+        `<div class="print-title"><h1>コンサル案件まとめ</h1><p>${escapeHtml(state.projectName || '案件名未入力')} / ${escapeHtml(state.clientName || '顧客名未入力')}</p></div>`,
+        printSection('案件', [
+          ['案件名', state.projectName],
+          ['顧客名', state.clientName],
+          ['案件メモ', state.projectMemo]
+        ]),
+        printSection('資料収集', [
+          ['素材', state.materials],
+          ['まとめ資料に追加する内容', state.materialsResult]
+        ]),
+        printSection('ヒアリング', [
+          ['会話記録・文字起こし', state.conversationRecord],
+          ['まとめ資料に追加する内容', state.hearingResult],
+          ...promptPrintBlocks(promptGroups.hearing)
+        ]),
+        printSection('商品調査', [
+          ['商品内容', state.productContent],
+          ['特徴', state.productFeatures],
+          ['ベネフィット', state.productBenefits],
+          ['USP', state.productUsp],
+          ['まとめ資料に追加する内容', state.productResult]
+        ]),
+        printSection('顧客調査', [
+          ['まとめ資料に追加する内容', state.customerResult],
+          ...promptPrintBlocks(promptGroups.customer)
+        ]),
+        printSection('市場調査', [
+          ['採用する市場動向', state.marketAdoptTrend],
+          ['採用する機会・脅威', state.marketAdoptOpportunityThreat],
+          ['採用する根拠・出典', state.marketAdoptSources],
+          ['まとめ資料に追加する内容', state.marketResult],
+          ...promptPrintBlocks(promptGroups.market)
+        ]),
+        printSection('競合調査', [
+          ['採用する競合情報', state.competitorAdoptInfo],
+          ['採用する競合の強み・弱み', state.competitorAdoptStrengthWeakness],
+          ['採用する自社が勝てる隙間', state.competitorAdoptGap],
+          ['まとめ資料に追加する内容', state.competitorResult],
+          ...promptPrintBlocks(promptGroups.competitor)
+        ]),
+        printSection('SWOT分析', [
+          ['採用する強み', state.swotStrength],
+          ['採用する弱み', state.swotWeakness],
+          ['採用する機会', state.swotOpportunity],
+          ['採用する脅威', state.swotThreat],
+          ['採用するクロスSWOT', state.crossSwot],
+          ['まとめ資料に追加する内容', state.swotResult],
+          ...promptPrintBlocks(promptGroups.swot)
+        ]),
+        printSection('基本データ 現時点版', [
+          ['基本データ', state.baseData],
+          ...promptPrintBlocks(promptGroups.baseData)
+        ]),
+        printSection('研修企画クリエイター', [
+          ['採用する既存コンテンツ・教材素材', state.trainingExistingContent],
+          ['採用する研修化テーマ', state.trainingThemes],
+          ['採用する最優先テーマ', state.trainingPriorityTheme],
+          ['採用する研修タイトル', state.trainingTitle],
+          ['採用する対象者', state.trainingAudience],
+          ['採用する研修の目的', state.trainingPurpose],
+          ['採用する到達目標', state.trainingGoals],
+          ['採用するカリキュラム案', state.trainingCurriculum],
+          ['採用する教材化・オンラインコース化の方針', state.trainingMaterialsPlan],
+          ['採用する提供方法', state.trainingDelivery],
+          ['採用する販売・提案への導線', state.trainingSalesPath],
+          ['採用する成果測定・次に作る成果物', state.trainingMetrics],
+          ['まとめ資料に追加する内容', state.trainingCreatorResult],
+          ...promptPrintBlocks(promptGroups.trainingCreator)
+        ]),
+        printSection('事業計画書', [
+          ['参考フォーマット', state.planFormat],
+          ['基本データ', state.planBaseData],
+          ['指示内容', state.planInstruction],
+          ['自動生成プロンプト', buildPlanPrompt()],
+          ['事業計画書ドラフト', state.businessPlan]
+        ])
+      ].join('');
+    };
+
+    function printSection(title, blocks) {
+      const body = blocks
+        .filter(([, text]) => String(text || '').trim())
+        .map(([label, text]) => `<div class="print-block"><h3>${escapeHtml(label)}</h3><div class="print-text">${formatTextForPrint(text)}</div></div>`)
+        .join('') || '<div class="print-block"><div class="print-text"><p>未入力</p></div></div>';
+      return `<section class="print-section"><h2>${escapeHtml(title)}</h2>${body}</section>`;
+    }
+
+    function promptPrintBlocks(names) {
+      return names.map((name) => [displayPromptName(name), state[promptOutputKey(name)]]);
+    }
+
+    function formatTextForPrint(text) {
+      const lines = String(text || '未入力').split(/\r?\n/);
+      let html = '';
+      let listOpen = false;
+      let orderedListOpen = false;
+      let tableRows = [];
+      const closeList = () => {
+        if (listOpen) {
+          html += '</ul>';
+          listOpen = false;
+        }
+        if (orderedListOpen) {
+          html += '</ol>';
+          orderedListOpen = false;
+        }
+      };
+      const flushTable = () => {
+        if (!tableRows.length) return;
+        closeList();
+        const rows = tableRows.filter((row) => !row.every((cell) => /^:?-{2,}:?$/.test(cell.trim())));
+        if (rows.length) {
+          html += '<table>';
+          rows.forEach((row, index) => {
+            const tag = index === 0 ? 'th' : 'td';
+            html += '<tr>' + row.map((cell) => `<${tag}>${formatInlineForPrint(cell.trim())}</${tag}>`).join('') + '</tr>';
+          });
+          html += '</table>';
+        }
+        tableRows = [];
+      };
+      lines.forEach((line) => {
+        const trimmed = line.trim();
+        if (!trimmed) {
+          flushTable();
+          closeList();
+          return;
+        }
+        if (/^\|.+\|$/.test(trimmed)) {
+          tableRows.push(trimmed.replace(/^\||\|$/g, '').split('|'));
+          return;
+        }
+        flushTable();
+        if (/^#{1,6}\s+/.test(trimmed)) {
+          closeList();
+          const level = Math.min((trimmed.match(/^#+/) || [''])[0].length + 2, 4);
+          html += `<h${level}>${formatInlineForPrint(trimmed.replace(/^#{1,6}\s+/, ''))}</h${level}>`;
+          return;
+        }
+        if (/^[-*]\s+/.test(trimmed)) {
+          if (orderedListOpen) {
+            html += '</ol>';
+            orderedListOpen = false;
+          }
+          if (!listOpen) {
+            html += '<ul>';
+            listOpen = true;
+          }
+          html += `<li>${formatInlineForPrint(trimmed.replace(/^[-*]\s+/, ''))}</li>`;
+          return;
+        }
+        if (/^\d+[.)]\s+/.test(trimmed)) {
+          if (listOpen) {
+            html += '</ul>';
+            listOpen = false;
+          }
+          if (!orderedListOpen) {
+            html += '<ol>';
+            orderedListOpen = true;
+          }
+          html += `<li>${formatInlineForPrint(trimmed.replace(/^\d+[.)]\s+/, ''))}</li>`;
+          return;
+        }
+        closeList();
+        html += `<p>${formatInlineForPrint(stripMarkdownMarks(trimmed))}</p>`;
+      });
+      flushTable();
+      closeList();
+      return html || '<p>未入力</p>';
+    }
+
+    function stripMarkdownMarks(text) {
+      return String(text || '')
+        .replace(/^#{1,6}\s*/, '')
+        .replace(/^[-*]\s+/, '')
+        .replace(/^\d+[.)]\s+/, '')
+        .replace(/`{3,}/g, '')
+        .replace(/^\|(.+)\|$/g, '$1');
+    }
+
+    function formatInlineForPrint(text) {
+      return escapeHtml(stripMarkdownMarks(text))
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/__([^_]+)__/g, '<strong>$1</strong>')
+        .replace(/`([^`]+)`/g, '<span>$1</span>');
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      markActiveNav(id);
+    }
+
+    function markActiveNav(id) {
+      nav.querySelectorAll('button').forEach((button) => button.classList.toggle('active', button.dataset.nav === id));
+    }
+
+    async function loadPrompts() {
+      try {
+        const response = await fetch('user-prompts.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        prompts = await response.json();
+        await loadTrainingPrompt();
+        await loadManagementIssuesPrompt();
+        await loadPlanPrompt();
+        promptsLoaded = true;
+        renderPromptGroup('hearingPrompts', promptGroups.hearing, 'hearing');
+        renderProductPromptCards();
+        renderPromptGroup('customerPrompts', promptGroups.customer, 'customer');
+        renderPromptGroup('marketPrompts', promptGroups.market, 'market');
+        renderPromptGroup('competitorPrompts', promptGroups.competitor, 'competitor');
+        renderPromptGroup('swotPrompts', promptGroups.swot, 'swot');
+        renderPromptGroup('baseDataPrompts', promptGroups.baseData, 'baseData');
+        renderPromptGroup('trainingPrompts', promptGroups.trainingCreator, 'trainingCreator');
+        renderPromptGroup('planPrompts', promptGroups.plan, 'plan');
+      } catch (error) {
+        const isFileScheme = location.protocol === 'file:';
+        if (isFileScheme) {
+          showToast('ファイル直接読み込みのため、初期起動後に一部プロンプトが読み込めない場合があります。', false);
+        } else {
+          showToast(`user-prompts.jsonを読み込めませんでした：${error?.message || '原因不明'}`, false);
+        }
+        // file://運用でも画面側を止めないため、既存プロンプトの最小セットを確保
+        prompts = prompts.length ? prompts : [];
+        renderPromptGroup('hearingPrompts', promptGroups.hearing, 'hearing');
+        renderProductPromptCards();
+        renderPromptGroup('customerPrompts', promptGroups.customer, 'customer');
+        renderPromptGroup('marketPrompts', promptGroups.market, 'market');
+        renderPromptGroup('competitorPrompts', promptGroups.competitor, 'competitor');
+        renderPromptGroup('swotPrompts', promptGroups.swot, 'swot');
+        renderPromptGroup('baseDataPrompts', promptGroups.baseData, 'baseData');
+        renderPromptGroup('trainingPrompts', promptGroups.trainingCreator, 'trainingCreator');
+        renderPromptGroup('planPrompts', promptGroups.plan, 'plan');
+      }
+    }
+
+    async function loadTrainingPrompt() {
+      const response = await fetch('prompts/training-plan.txt', { cache: 'no-store' });
+      if (!response.ok) throw new Error(`training-plan HTTP ${response.status}`);
+      const body = await response.text();
+      prompts = prompts.filter((prompt) => prompt.name !== '研修企画書生成テンプレート（Traingo標準）');
+      prompts.push({
+        name: '研修企画書生成テンプレート（Traingo標準）',
+        body,
+        source: 'prompts/training-plan.txt',
+        status: 'Traingo内確認済み'
+      });
+    }
+
+    async function loadManagementIssuesPrompt() {
+      const response = await fetch('prompts/jizokuka-management-issues.txt', { cache: 'no-store' });
+      if (!response.ok) throw new Error(`management-issues HTTP ${response.status}`);
+      const body = await response.text();
+      prompts = prompts.filter((prompt) => prompt.name !== '経営課題発見プロンプト【多視点リスト型】');
+      prompts.push({
+        name: '経営課題発見プロンプト【多視点リスト型】',
+        body,
+        source: 'prompts/jizokuka-management-issues.txt',
+        status: 'ユーザー提供本文から取得済み'
+      });
+    }
+
+    async function loadPlanPrompt() {
+      const response = await fetch('prompts/business-plan-any.txt', { cache: 'no-store' });
+      if (!response.ok) throw new Error(`business-plan-any HTTP ${response.status}`);
+      const body = await response.text();
+      prompts = prompts.filter((prompt) => prompt.name !== '事業計画書作成プロンプト');
+      prompts.push({
+        name: '事業計画書作成プロンプト',
+        body,
+        source: 'prompts/business-plan-any.txt',
+        status: 'ユーザー提供本文から取得済み'
+      });
+    }
+
+    function renderPromptGroup(elementId, names, group) {
+      const element = document.getElementById(elementId);
+      element.innerHTML = names.map((name) => {
+        const found = findPrompt(name);
+        const label = displayPromptName(name);
+      return `
+          <div class="prompt-card">
+            <div class="prompt-head">
+              <div>
+                <h3>${escapeHtml(label)}</h3>
+                <span>${found ? escapeHtml(found.status || `${found.source || 'user-prompts.json'}から取得済み`) : '未設定'}</span>
+              </div>
+              <button class="btn primary" type="button" data-name="${escapeAttr(name)}" data-group="${group}" ${found ? '' : 'disabled'}>コピー</button>
+            </div>
+            <label>貼り付け欄
+              <textarea data-prompt-output="${escapeAttr(name)}" placeholder="${escapeAttr(label)}の返答をここに貼る">${escapeHtml(state[promptOutputKey(name)] || '')}</textarea>
+            </label>
+            <p class="copy-note">ここにコピー</p>
+          </div>
+        `;
+      }).join('');
+      element.querySelectorAll('[data-name]').forEach((button) => {
+        button.onclick = () => copyPrompt(button.dataset.name, button.dataset.group);
+      });
+      element.querySelectorAll('[data-prompt-output]').forEach((textarea) => {
+        textarea.addEventListener('input', () => {
+          state[promptOutputKey(textarea.dataset.promptOutput)] = textarea.value;
+          persistProjectData();
+        });
+      });
+    }
+
+    function findPrompt(name) {
+      return prompts.find((prompt) => prompt.name === name);
+    }
+
+    function promptOutputKey(name) {
+      return `promptOutput::${name}`;
+    }
+
+    function buildPlanPrompt() {
+      const fmt = (state.planFormat || '').trim();
+      const data = (state.planBaseData || '').trim();
+      const inst = (state.planInstruction || '').trim();
+      if (!fmt && !data && !inst) return '';
+      return [
+        `#指示内容：${inst}`,
+        `#参考フォーマット：${fmt}`,
+        `#基本データ：${data}`
+      ].join('\n');
+    }
+
+    function updatePlanGeneratedPrompt() {
+      const out = document.getElementById('planGeneratedPrompt');
+      if (out) out.value = buildPlanPrompt();
+    }
+
+    function syncStateFromFields() {
+      document.querySelectorAll('[data-key]').forEach((field) => {
+        state[field.dataset.key] = field.value || '';
+      });
+      document.querySelectorAll('[data-prompt-output]').forEach((field) => {
+        state[promptOutputKey(field.dataset.promptOutput)] = field.value || '';
+      });
+      persistProjectData();
+    }
+
+    function renderProductPromptCards() {
+      const cards = [
+        {
+          title: '特徴',
+          fieldKey: 'productFeatures',
+          promptName: '商品特徴分析'
+        },
+        {
+          title: 'ベネフィット',
+          fieldKey: 'productBenefits',
+          promptName: 'ベネフィット転換プロンプト'
+        },
+        {
+          title: 'USP',
+          fieldKey: 'productUsp',
+          promptName: 'USP制作プロンプト'
+        }
+      ];
+      const element = document.getElementById('productPrompts');
+      element.innerHTML = cards.map((card) => {
+        const found = findPrompt(card.promptName);
+        return `
+          <div class="prompt-card">
+            <div class="prompt-head">
+              <div>
+                <h3>${escapeHtml(card.title)}</h3>
+                <span>${found ? 'user-prompts.jsonから取得済み' : '未設定'}</span>
+              </div>
+              <button class="btn primary" type="button" data-name="${escapeAttr(card.promptName)}" data-group="product" ${found ? '' : 'disabled'}>コピー</button>
+            </div>
+            <label>記入欄<textarea data-key="${escapeAttr(card.fieldKey)}">${escapeHtml(state[card.fieldKey] || '')}</textarea></label>
+          </div>
+        `;
+      }).join('');
+      element.querySelectorAll('[data-name]').forEach((button) => {
+        button.onclick = () => copyPrompt(button.dataset.name, button.dataset.group);
+      });
+      element.querySelectorAll('[data-key]').forEach((textarea) => {
+        textarea.addEventListener('input', () => {
+          state[textarea.dataset.key] = textarea.value;
+          persistProjectData();
+        });
+      });
+    }
+
+    async function copyPrompt(name, group) {
+      if (!promptsLoaded) {
+        showToast('プロンプト読込中です。もう一度押してください', true);
+        return;
+      }
+      const prompt = findPrompt(name);
+      if (!prompt) {
+        showToast('プロンプト未設定です', true);
+        return;
+      }
+      const text = fillVariables(prompt.body, group, name);
+      copyOutput.value = text;
+      const ok = await writeClipboard(text);
+      showToast(ok ? `${name}をコピーしました` : 'コピーできませんでした', !ok);
+    }
+
+    function mergeProductResearch() {
+      syncStateFromFields();
+      const merged = [
+        '## 商品調査',
+        '',
+        '### 商品内容',
+        state.productContent || '未入力',
+        '',
+        '### 特徴',
+        state.productFeatures || '未入力',
+        '',
+        '### ベネフィット',
+        state.productBenefits || '未入力',
+        '',
+        '### USP',
+        state.productUsp || '未入力',
+        ''
+      ].join('\n');
+      state.productResult = merged;
+      const textarea = document.querySelector('[data-key="productResult"]');
+      if (textarea) textarea.value = merged;
+      persistProjectData();
+      showToast('商品調査を統合しました');
+    }
+
+    function mergeMarketResearch() {
+      syncStateFromFields();
+      const marketOutput = state[promptOutputKey('市場動向プロンプト')] || '';
+      const merged = [
+        '## 市場調査',
+        '',
+        '### 市場動向',
+        marketOutput || '未入力',
+        '',
+        '### 採用する市場動向',
+        state.marketAdoptTrend || '未入力',
+        '',
+        '### 採用する機会・脅威',
+        state.marketAdoptOpportunityThreat || '未入力',
+        '',
+        '### 採用する根拠・出典',
+        state.marketAdoptSources || '未入力',
+        ''
+      ].join('\n');
+      state.marketResult = merged;
+      const textarea = document.querySelector('[data-key="marketResult"]');
+      if (textarea) textarea.value = merged;
+      persistProjectData();
+      showToast('市場調査を統合しました');
+    }
+
+    function mergeCompetitorResearch() {
+      syncStateFromFields();
+      const competitorOutput = state[promptOutputKey('競合分析')] || '';
+      const merged = [
+        '## 競合調査',
+        '',
+        '### 競合分析',
+        competitorOutput || '未入力',
+        '',
+        '### 採用する競合情報',
+        state.competitorAdoptInfo || '未入力',
+        '',
+        '### 採用する競合の強み・弱み',
+        state.competitorAdoptStrengthWeakness || '未入力',
+        '',
+        '### 採用する自社が勝てる隙間',
+        state.competitorAdoptGap || '未入力',
+        ''
+      ].join('\n');
+      state.competitorResult = merged;
+      const textarea = document.querySelector('[data-key="competitorResult"]');
+      if (textarea) textarea.value = merged;
+      persistProjectData();
+      showToast('競合調査を統合しました');
+    }
+
+    function mergeSwotResearch() {
+      syncStateFromFields();
+      const merged = [
+        '## SWOT分析',
+        '',
+        '### 強み',
+        state.swotStrength || '未入力',
+        '',
+        '### 弱み',
+        state.swotWeakness || '未入力',
+        '',
+        '### 機会',
+        state.swotOpportunity || '未入力',
+        '',
+        '### 脅威',
+        state.swotThreat || '未入力',
+        '',
+        '### クロスSWOT',
+        state.crossSwot || '未入力',
+        ''
+      ].join('\n');
+      state.swotResult = merged;
+      const textarea = document.querySelector('[data-key="swotResult"]');
+      if (textarea) textarea.value = merged;
+      persistProjectData();
+      showToast('SWOTを統合しました');
+    }
+
+    const WEBINAR_PREFIX = 'webinar-flow-tool';
+    // 🔴アカウント分離：ウェビナー側もログイン中アカウントの scoped 領域だけを読む（他アカウントのウェビナー案件漏洩防止）
+    function webinarScopedPrefix() {
+      const acct = String(localStorage.getItem(loginIdStorageKey) || '').trim();
+      return acct ? `${WEBINAR_PREFIX}-acct-${acct}` : WEBINAR_PREFIX;
+    }
+    function readWebinarCatalog() {
+      const SP = webinarScopedPrefix();
+      try {
+        const cat = JSON.parse(localStorage.getItem(`${SP}-projects-v1`) || '[]');
+        if (Array.isArray(cat) && cat.length) {
+          return cat.filter((x) => x && x.id).map((x) => ({ id: String(x.id), name: String(x.name || '案件').trim() || '案件' }));
+        }
+      } catch {}
+      const out = [];
+      Object.keys(localStorage).forEach((k) => {
+        if (k.startsWith(`${SP}-project-state-`)) {
+          const id = k.replace(`${SP}-project-state-`, '');
+          let name = `案件${id.slice(-4)}`;
+          try { const s = JSON.parse(localStorage.getItem(k) || '{}'); if (s && s.projectName) name = String(s.projectName); } catch {}
+          out.push({ id, name });
+        }
+      });
+      return out;
+    }
+    function getWebinarBaseData(id) {
+      try {
+        const s = JSON.parse(localStorage.getItem(`${webinarScopedPrefix()}-project-state-${id}`) || '{}');
+        return String(s.baseDataResult || s.baseData || '').trim();
+      } catch { return ''; }
+    }
+    function populateWebinarImport() {
+      const sel = document.getElementById('webinarImportSelect');
+      if (!sel) return;
+      const prev = sel.value;
+      const list = readWebinarCatalog();
+      sel.innerHTML = '<option value="">案件を選択</option>' + list.map((x) => `<option value="${escapeAttr(x.id)}">${escapeHtml(x.name)}</option>`).join('');
+      if (prev && list.some((x) => x.id === prev)) sel.value = prev;
+    }
+    function importWebinarBaseData() {
+      const sel = document.getElementById('webinarImportSelect');
+      if (!sel || !sel.value) { showToast('案件を選択してください'); return; }
+      const data = getWebinarBaseData(sel.value);
+      if (!data) { showToast('この案件の基本データが空です'); return; }
+      const ta = document.querySelector('[data-key="baseData"]');
+      if (ta) {
+        ta.value = ta.value.trim() ? `${ta.value.trim()}\n\n${data}` : data;
+        state.baseData = ta.value;
+      } else {
+        state.baseData = data;
+      }
+      persistProjectData();
+      showToast('ウェビナーの基本データを取り込みました');
+    }
+
+    function mergeBaseData() {
+      syncStateFromFields();
+      const merged = [
+        '## 基本データ 現時点版',
+        '',
+        '### 案件',
+        [
+          state.projectName && `案件名: ${state.projectName}`,
+          state.clientName && `顧客名: ${state.clientName}`,
+          state.projectMemo && `案件メモ:\n${state.projectMemo}`
+        ].filter(Boolean).join('\n') || '未入力',
+        '',
+        '### 資料収集',
+        state.materialsResult || state.materials || '未入力',
+        '',
+        '### ヒアリング',
+        state.hearingResult || state.conversationRecord || '未入力',
+        '',
+        '### 商品調査',
+        state.productResult || '未入力',
+        '',
+        '### 顧客調査',
+        state.customerResult || '未入力',
+        '',
+        '### 市場調査',
+        [
+          state.marketAdoptTrend && `採用する市場動向:\n${state.marketAdoptTrend}`,
+          state.marketAdoptOpportunityThreat && `採用する機会・脅威:\n${state.marketAdoptOpportunityThreat}`,
+          state.marketAdoptSources && `採用する根拠・出典:\n${state.marketAdoptSources}`,
+          state.marketResult && `まとめ:\n${state.marketResult}`
+        ].filter(Boolean).join('\n\n') || '未入力',
+        '',
+        '### 競合調査',
+        [
+          state.competitorAdoptInfo && `採用する競合情報:\n${state.competitorAdoptInfo}`,
+          state.competitorAdoptStrengthWeakness && `採用する競合の強み・弱み:\n${state.competitorAdoptStrengthWeakness}`,
+          state.competitorAdoptGap && `採用する自社が勝てる隙間:\n${state.competitorAdoptGap}`,
+          state.competitorResult && `まとめ:\n${state.competitorResult}`
+        ].filter(Boolean).join('\n\n') || '未入力',
+        '',
+        '### SWOT分析',
+        [
+          state.swotStrength && `採用する強み:\n${state.swotStrength}`,
+          state.swotWeakness && `採用する弱み:\n${state.swotWeakness}`,
+          state.swotOpportunity && `採用する機会:\n${state.swotOpportunity}`,
+          state.swotThreat && `採用する脅威:\n${state.swotThreat}`,
+          state.crossSwot && `採用するクロスSWOT:\n${state.crossSwot}`,
+          state.swotResult && `まとめ:\n${state.swotResult}`
+        ].filter(Boolean).join('\n\n') || '未入力',
+        '',
+        '### 会社概要を作る',
+        state[promptOutputKey('会社概要を作る')] || '未入力',
+        '',
+        '### 決算書概要分析',
+        state[promptOutputKey('決算書概要分析プロンプトパーツ')] || '未入力',
+        '',
+        '### 経営課題発見',
+        state[promptOutputKey('経営課題発見プロンプト【多視点リスト型】')] || '未入力',
+        '',
+        '### 経営方針作成',
+        state[promptOutputKey('経営方針作成プロンプト')] || '未入力',
+        ''
+      ].join('\n');
+      state.baseData = merged;
+      const textarea = document.querySelector('[data-key="baseData"]');
+      if (textarea) textarea.value = merged;
+      persistProjectData();
+      showToast('基本データを統合しました');
+    }
+
+    function mergeTrainingCreator() {
+      syncStateFromFields();
+      const trainingOutput = state[promptOutputKey('研修企画書生成テンプレート（Traingo標準）')] || '';
+      const merged = [
+        '## 研修企画クリエイター',
+        '',
+        '### 研修企画',
+        trainingOutput || '未入力',
+        '',
+        '### 採用する既存コンテンツ・教材素材',
+        state.trainingExistingContent || '未入力',
+        '',
+        '### 採用する研修化テーマ',
+        state.trainingThemes || '未入力',
+        '',
+        '### 採用する最優先テーマ',
+        state.trainingPriorityTheme || '未入力',
+        '',
+        '### 採用する研修タイトル',
+        state.trainingTitle || '未入力',
+        '',
+        '### 採用する対象者',
+        state.trainingAudience || '未入力',
+        '',
+        '### 採用する研修の目的',
+        state.trainingPurpose || '未入力',
+        '',
+        '### 採用する到達目標',
+        state.trainingGoals || '未入力',
+        '',
+        '### 採用するカリキュラム案',
+        state.trainingCurriculum || '未入力',
+        '',
+        '### 採用する教材化・オンラインコース化の方針',
+        state.trainingMaterialsPlan || '未入力',
+        '',
+        '### 採用する提供方法',
+        state.trainingDelivery || '未入力',
+        '',
+        '### 採用する販売・提案への導線',
+        state.trainingSalesPath || '未入力',
+        '',
+        '### 採用する成果測定・次に作る成果物',
+        state.trainingMetrics || '未入力',
+        ''
+      ].join('\n');
+      state.trainingCreatorResult = merged;
+      const textarea = document.querySelector('[data-key="trainingCreatorResult"]');
+      if (textarea) textarea.value = merged;
+      persistProjectData();
+      showToast('研修企画クリエイターを統合しました');
+    }
+
+    function buildMarkdownOutput() {
+      syncStateFromFields();
+      const text = buildMarkdown();
+      state.markdownOutput = text;
+      const output = document.getElementById('markdownOutput');
+      output.value = text;
+      persistProjectData(true);
+      scrollToSection('markdown');
+      output.focus();
+      showToast('MD形式まとめに作成しました');
+    }
+
+    async function copyMarkdownOutput() {
+      const output = document.getElementById('markdownOutput');
+      const text = output.value || buildMarkdown();
+      if (!output.value) {
+        output.value = text;
+        state.markdownOutput = text;
+        persistProjectData(true);
+      }
+      const ok = await writeClipboard(text);
+      showToast(ok ? 'MD形式をコピーしました' : 'MD形式をコピーできませんでした', !ok);
+    }
+
+    function buildMarkdown() {
+      syncStateFromFields();
+      const lines = [
+        '# コンサル案件まとめ',
+        '',
+        '## 案件',
+        `- 案件名: ${state.projectName || '未入力'}`,
+        `- 顧客名: ${state.clientName || '未入力'}`,
+        '',
+        '### 案件メモ',
+        state.projectMemo || '未入力',
+        '',
+        '## 資料収集',
+        '### 素材',
+        state.materials || '未入力',
+        '',
+        '### まとめ資料に追加する内容',
+        state.materialsResult || '未入力',
+        '',
+        '## ヒアリング',
+        // 「会話記録・文字起こし」欄(conversationRecord)の生ログはMDまとめに転記しない。
+        // 過去に貼った会話文が保存され続け、MD作成時に「入れていない過去の会話」が出てくるのを止めるため
+        // （2026-06-24 阿久津さん指示「MD作成で余計な過去の会話が出る・やめてくれ」）。
+        // ヒアリングの要点は直下の「まとめ資料に追加する内容」(hearingResult)に集約する。
+        '### まとめ資料に追加する内容',
+        state.hearingResult || '未入力',
+        ...promptOutputsMarkdown(promptGroups.hearing),
+        '',
+        '## 商品調査',
+        '### 商品内容',
+        state.productContent || '未入力',
+        '',
+        '### 特徴',
+        state.productFeatures || '未入力',
+        '',
+        '### ベネフィット',
+        state.productBenefits || '未入力',
+        '',
+        '### USP',
+        state.productUsp || '未入力',
+        '',
+        '### まとめ資料に追加する内容',
+        state.productResult || '未入力',
+        '',
+        '## 顧客調査',
+        '### まとめ資料に追加する内容',
+        state.customerResult || '未入力',
+        ...promptOutputsMarkdown(promptGroups.customer),
+        '',
+        '## 市場調査',
+        '### まとめ資料に追加する内容',
+        state.marketResult || '未入力',
+        '',
+        '### 採用する市場動向',
+        state.marketAdoptTrend || '未入力',
+        '',
+        '### 採用する機会・脅威',
+        state.marketAdoptOpportunityThreat || '未入力',
+        '',
+        '### 採用する根拠・出典',
+        state.marketAdoptSources || '未入力',
+        ...promptOutputsMarkdown(promptGroups.market),
+        '',
+        '## 競合調査',
+        '### まとめ資料に追加する内容',
+        state.competitorResult || '未入力',
+        '',
+        '### 採用する競合情報',
+        state.competitorAdoptInfo || '未入力',
+        '',
+        '### 採用する競合の強み・弱み',
+        state.competitorAdoptStrengthWeakness || '未入力',
+        '',
+        '### 採用する自社が勝てる隙間',
+        state.competitorAdoptGap || '未入力',
+        ...promptOutputsMarkdown(promptGroups.competitor),
+        '',
+        '## SWOT分析',
+        '### 強み',
+        state.swotStrength || '未入力',
+        '',
+        '### 弱み',
+        state.swotWeakness || '未入力',
+        '',
+        '### 機会',
+        state.swotOpportunity || '未入力',
+        '',
+        '### 脅威',
+        state.swotThreat || '未入力',
+        '',
+        '### クロスSWOT',
+        state.crossSwot || '未入力',
+        '',
+        '### まとめ資料に追加する内容',
+        state.swotResult || '未入力',
+        ...promptOutputsMarkdown(promptGroups.swot),
+        '',
+        '## 基本データ 現時点版',
+        state.baseData || '未入力',
+        ...promptOutputsMarkdown(promptGroups.baseData),
+        ''
+        // MD作成は「基本データ統合」までで止める。研修企画クリエイター・事業計画書の内容は
+        // MDまとめに入れない（2026-06-25 阿久津さん指示「MD作成のところに、研修クリエイターや
+        // 事業計画の内容入れないで欲しい」）。両者は各セクションの専用出力で別途扱う。
+      ];
+      return lines.join('\n');
+    }
+
+    function promptOutputsMarkdown(names) {
+      return names.flatMap((name) => [
+        '',
+        `### ${displayPromptName(name)}`,
+        state[promptOutputKey(name)] || '未入力'
+      ]);
+    }
+
+    function displayPromptName(name) {
+      return String(name || '').replace(/プロンプト/gu, '').trim();
+    }
+
+    function fillVariables(body, group, promptName) {
+      const productContent = state.productContent || state.materials || '%%input1%%';
+      const features = state.productFeatures || '%%input2%%';
+      const benefits = state.productBenefits || '%%input3%%';
+      const persona = [state.customerProspect, state.customerPain, state.customerExpectation].filter(Boolean).join('\n') || '%%input2%%';
+      const hearing = state.conversationRecord || state.materials || '%%input1%%';
+      const customer = [state.customerProspect, state.customerPain, state.customerExpectation, state.materials].filter(Boolean).join('\n\n') || '%%input1%%';
+      const market = [
+        state.baseData && `基本データ:\n${state.baseData}`,
+        state.productContent && `商品内容:\n${state.productContent}`,
+        state.productResult && `商品調査:\n${state.productResult}`,
+        state.customerResult && `顧客調査:\n${state.customerResult}`,
+        state.materialsResult && `資料収集:\n${state.materialsResult}`
+      ].filter(Boolean).join('\n\n') || state.materials || '%%input1%%';
+      const competitor = [
+        state.productContent && `自社商品・サービス:\n${state.productContent}`,
+        state.productResult && `商品調査:\n${state.productResult}`,
+        state.customerResult && `顧客調査:\n${state.customerResult}`,
+        state.marketResult && `市場調査:\n${state.marketResult}`,
+        state.materialsResult && `資料収集:\n${state.materialsResult}`
+      ].filter(Boolean).join('\n\n') || state.materials || '%%input1%%';
+      const swotAll = [
+        state.baseData && `基本データ:\n${state.baseData}`,
+        state.hearingResult && `ヒアリング:\n${state.hearingResult}`,
+        state.productResult && `商品調査:\n${state.productResult}`,
+        state.customerResult && `顧客調査:\n${state.customerResult}`,
+        state.marketResult && `市場調査:\n${state.marketResult}`,
+        state.competitorResult && `競合調査:\n${state.competitorResult}`
+      ].filter(Boolean).join('\n\n') || state.conversationRecord || state.materials || '%%input1%%';
+      const baseDataSource = [
+        state.projectName && `案件名:\n${state.projectName}`,
+        state.clientName && `会社名・顧客名:\n${state.clientName}`,
+        state.projectMemo && `案件メモ:\n${state.projectMemo}`,
+        state.materials && `資料:\n${state.materials}`,
+        state.materialsResult && `資料収集まとめ:\n${state.materialsResult}`,
+        state.conversationRecord && `会話記録:\n${state.conversationRecord}`,
+        state.hearingResult && `ヒアリングまとめ:\n${state.hearingResult}`,
+        state.productResult && `商品調査:\n${state.productResult}`,
+        state.customerResult && `顧客調査:\n${state.customerResult}`,
+        state.marketResult && `市場調査:\n${state.marketResult}`,
+        state.competitorResult && `競合調査:\n${state.competitorResult}`,
+        state.swotResult && `SWOT分析:\n${state.swotResult}`
+      ].filter(Boolean).join('\n\n') || state.conversationRecord || state.materials || '%%input1%%';
+      const trainingBase = [
+        state.baseData,
+        state.hearingResult,
+        state.productResult,
+        state.customerResult,
+        state.materialsResult
+      ].filter(Boolean).join('\n\n') || 'ここに会社情報、事業計画、社長発言、顧客課題、商品情報、既存教材情報を貼り付けてください';
+      const trainingContent = state.trainingExistingContent || state.materials || 'ここに既存動画、講座、台本、スライド、PDF、ウェビナー内容、販売ページ情報を貼り付けてください';
+      const trainingTemplate = [
+        state.trainingThemes && `研修化できるテーマ候補:\n${state.trainingThemes}`,
+        state.trainingPriorityTheme && `最優先テーマ:\n${state.trainingPriorityTheme}`,
+        state.trainingTitle && `研修タイトル:\n${state.trainingTitle}`,
+        state.trainingAudience && `対象者:\n${state.trainingAudience}`,
+        state.trainingPurpose && `研修の目的:\n${state.trainingPurpose}`,
+        state.trainingGoals && `到達目標:\n${state.trainingGoals}`,
+        state.trainingCurriculum && `カリキュラム案:\n${state.trainingCurriculum}`,
+        state.trainingMaterialsPlan && `教材化方針:\n${state.trainingMaterialsPlan}`,
+        state.trainingDelivery && `提供方法:\n${state.trainingDelivery}`,
+        state.trainingSalesPath && `販売・提案への導線:\n${state.trainingSalesPath}`,
+        state.trainingMetrics && `成果測定・次に作る成果物:\n${state.trainingMetrics}`
+      ].filter(Boolean).join('\n\n') || 'ここに既存の企画書フォーマット、または必要な項目を貼り付けてください。未指定の場合は、下記の標準構成で作成してください';
+      const planTemplate = state.planFormat || 'ここに事業計画書のテンプレートを貼り付けてください';
+      const planMaterial = [
+        state.baseData && `基本情報:\n${state.baseData}`,
+        state.planFormat && `テンプレート:\n${state.planFormat}`
+      ].filter(Boolean).join('\n\n');
+      const isBenefitPrompt = promptName === 'ベネフィット転換プロンプト';
+      const input1 =
+        isBenefitPrompt
+          ? features
+          : group === 'product'
+            ? productContent
+            : group === 'hearing'
+              ? hearing
+              : group === 'market'
+                ? market
+                : group === 'competitor'
+                  ? competitor
+                  : group === 'swot'
+                    ? (promptName === 'クロスSWOT分析' ? (state.swotStrength || '%%input1%%') : swotAll)
+                    : group === 'baseData'
+                      ? (promptName === '会社概要を作る' ? (state.clientName || '%%input1%%') : baseDataSource)
+                      : group === 'plan'
+                        ? (planMaterial || baseDataSource || '%%input1%%')
+                        : customer;
+      const input2 = isBenefitPrompt ? persona : group === 'product' ? features : group === 'swot' && promptName === 'クロスSWOT分析' ? (state.swotWeakness || '%%input2%%') : (state.customerPain || '%%input2%%');
+      const input3 = group === 'product' ? benefits : group === 'swot' && promptName === 'クロスSWOT分析' ? (state.swotOpportunity || '%%input3%%') : (state.customerExpectation || '%%input3%%');
+      const input4 = group === 'swot' && promptName === 'クロスSWOT分析' ? (state.swotThreat || '%%input4%%') : '%%input4%%';
+      return String(body || '')
+        .replaceAll('%%input1%%', input1)
+        .replaceAll('%%input2%%', input2)
+        .replaceAll('%%input3%%', input3)
+        .replaceAll('%%input4%%', input4)
+        .replaceAll('{商品情報}', productContent)
+        .replaceAll('{自社の製品・サービス名}', productContent)
+        .replaceAll('{製品・サービスの特徴}', features)
+        .replaceAll('{提供する価値}', benefits)
+        .replaceAll('{顧客ヒアリングの音声データ}', state.conversationRecord || customer)
+        .replaceAll('{顧客ニーズ}', state.customerExpectation || '顧客ニーズ')
+        .replaceAll('ここに、これまでの会話記録や経営数値を貼り付けてください', baseDataSource)
+        .replaceAll('{基本情報}', state.baseData || baseDataSource || '未設定')
+        .replaceAll('{テンプレート}', planTemplate)
+        .replaceAll('変数 ="\n会話記録\n"', `変数 ="\n${baseDataSource}\n"`)
+        .replaceAll('ここに会社情報、事業計画、社長発言、顧客課題、商品情報、既存教材情報を貼り付けてください', trainingBase)
+        .replaceAll('ここに既存動画、講座、台本、スライド、PDF、ウェビナー内容、販売ページ情報を貼り付けてください', trainingContent)
+        .replaceAll('ここに既存の企画書フォーマット、または必要な項目を貼り付けてください。未指定の場合は、下記の標準構成で作成してください', trainingTemplate);
+    }
+
+    async function writeClipboard(text) {
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+      } catch {}
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', 'readonly');
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        textarea.style.top = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+        const ok = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        return ok;
+      } catch {
+        return false;
+      }
+    }
+
+    function showToast(message, bad = false) {
+      toast.textContent = message;
+      toast.style.background = bad ? 'var(--bad)' : 'var(--ok)';
+      toast.classList.add('show');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove('show'), 1600);
+    }
+
+    function resolveToolBaseUrl() {
+      return location.protocol === 'file:' ? 'http://localhost:4174' : location.origin;
+    }
+
+    function renderRegistrationLinks() {
+      const base = resolveToolBaseUrl();
+      const primary = `${base}/consulting-flow-tool/index.html`;
+      const publicUrl = `${base}/outputs/consulting-flow-tool/index.html`;
+      const adminPrimary = `${base}/consulting-flow-tool/admin.html`;
+      const adminPublic = `${base}/outputs/consulting-flow-tool/admin.html`;
+      const primaryLink = document.getElementById('toolEntryLink');
+      const publicLink = document.getElementById('toolPublicLink');
+      const adminPrimaryLink = document.getElementById('toolAdminPrimaryLink');
+      const adminPublicLink = document.getElementById('toolAdminPublicLink');
+      if (primaryLink) {
+        primaryLink.href = primary;
+        primaryLink.textContent = primary;
+      }
+      if (publicLink) {
+        publicLink.href = publicUrl;
+        publicLink.textContent = publicUrl;
+      }
+      if (adminPrimaryLink) {
+        adminPrimaryLink.href = adminPrimary;
+        adminPrimaryLink.textContent = adminPrimary;
+      }
+      if (adminPublicLink) {
+        adminPublicLink.href = adminPublic;
+        adminPublicLink.textContent = adminPublic;
+      }
+    }
+
+    function handleLogin() {
+      const id = (loginIdInput.value || '').trim();
+      const password = (loginPasswordInput.value || '').trim();
+      const users = ensureUserRegistry();
+      const user = users.find((item) => item.id === id && item.password === password);
+      if (user && user.role === 'admin') {
+        showToast('管理画面は /consulting-flow-tool/admin.html へアクセスしてください', true);
+        return;
+      }
+      if (user && user.role === 'user') {
+        const companyName = loginCompanyInput?.value || '';
+        const userName = loginUserNameInput?.value || '';
+        saveSignedSession(id, companyName, userName);
+        if (!String(companyName || '').trim()) {
+          saveUserProfilePatch(id, user.companyName, user.userName);
+        }
+        localStorage.setItem(authKey, '1');
+        loginPasswordInput.value = '';
+        showToast('ログインしました');
+        init();
+        return;
+      }
+      showToast('IDまたはパスワードが違います', true);
+    }
+
+    function saveUserProfilePatch(id, companyName, userName) {
+      const users = loadUserRegistry();
+      const idx = users.findIndex((user) => user.id === id);
+      if (idx < 0) return;
+      users[idx].companyName = String(companyName || '').trim();
+      users[idx].userName = String(userName || '').trim();
+      localStorage.setItem(userRegistryKey, JSON.stringify(users));
+    }
+
+    function prefillHeaderProfile() {
+      let profile = { companyName: '', userName: '' };
+      try {
+        profile = JSON.parse(localStorage.getItem(profileKey) || '{}');
+      } catch {
+        profile = { companyName: '', userName: '' };
+      }
+      if (headerCompanyInput) headerCompanyInput.value = String(profile.companyName || '').trim();
+      if (headerUserNameInput) headerUserNameInput.value = String(profile.userName || '').trim();
+    }
+
+    function saveHeaderProfile() {
+      const id = String(localStorage.getItem('consulting-flow-tool-login-id') || '').trim();
+      if (!id) {
+        showToast('ログイン情報が見つかりません。ログインし直してください', true);
+        return;
+      }
+      const companyName = String(headerCompanyInput?.value || '').trim();
+      const userName = String(headerUserNameInput?.value || '').trim();
+      if (!companyName || !userName) {
+        showToast('会社名とあなたの名前を入力してください', true);
+        return;
+      }
+      saveSignedSession(id, companyName, userName);
+      saveUserProfilePatch(id, companyName, userName);
+      setSignedUserBadge();
+      if (profileEdit) profileEdit.open = false;
+      showToast('プロフィールを更新しました');
+    }
+
+    function handleLogout() {
+      localStorage.removeItem(authKey);
+      localStorage.removeItem(authSessionKey);
+      localStorage.removeItem('consulting-flow-tool-login-id');
+      showAuthGate();
+      showToast('ログアウトしました');
+    }
+
+    function getRegisterText() {
+      const entryLinks = [
+        `Traingo-consulting URL: ${resolveToolBaseUrl()}/consulting-flow-tool/index.html`,
+        `配布向けURL: ${resolveToolBaseUrl()}/outputs/consulting-flow-tool/index.html`,
+        '初回登録ID: 管理者が発行します',
+        '初回登録Pass: 管理者が発行します',
+        '運用注意: 同一ブラウザ同一プロフィールでは同じ案件データを共有します'
+      ];
+      return `${entryLinks[0]}\n${entryLinks[1]}\n${entryLinks[2]}\n${entryLinks[3]}`;
+    }
+
+    function buildMailBody() {
+      return encodeURIComponent(`Traingo-consulting 利用開始情報\n\n${getRegisterText()}\n\n必要ならこのアカウント情報でツールを開いて案件を作成してください。`);
+    }
+
+    function openMailShare() {
+      const to = String(shareEmailInput?.value || '').trim();
+      if (!to) {
+        showToast('メールアドレスを入力してください', true);
+        return;
+      }
+      const subject = encodeURIComponent('Traingo-consulting 利用開始情報');
+      const body = buildMailBody();
+      const mailto = `mailto:${encodeURIComponent(to)}?subject=${subject}&body=${body}`;
+      const a = document.createElement('a');
+      a.href = mailto;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      showToast('メールアプリで下書きを開きました。送信ボタンを押すと相手に届きます。');
+    }
+
+    async function copyRegisterInfo() {
+      const text = getRegisterText();
+      const ok = await writeClipboard(text);
+      showToast(ok ? '登録情報をコピーしました' : 'コピーできませんでした', !ok);
+    }
+
+    mdTagFilterInput?.addEventListener('input', refreshMdHistorySelect);
+    loginBtn?.addEventListener('click', handleLogin);
+    profileEdit?.addEventListener('toggle', () => {
+      if (profileEdit.open) prefillHeaderProfile();
+    });
+    headerProfileSaveBtn?.addEventListener('click', saveHeaderProfile);
+    document.addEventListener('click', (event) => {
+      if (profileEdit && profileEdit.open && !profileEdit.contains(event.target)) {
+        profileEdit.open = false;
+      }
+    });
+    loginPasswordInput?.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        handleLogin();
+      }
+    });
+    logoutBtn?.addEventListener('click', handleLogout);
+    copyRegisterLinkBtn?.addEventListener('click', (event) => {
+      event.preventDefault();
+      copyRegisterInfo();
+    });
+    shareByEmailBtn?.addEventListener('click', (event) => {
+      event.preventDefault();
+      openMailShare();
+    });
+
+    function escapeHtml(text) {
+      return String(text || '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+    }
+
+    function escapeAttr(text) {
+      return escapeHtml(text).replaceAll('`', '&#096;');
+    }
+
+    renderRegistrationLinks();
+    init();
+  </script>
+</body>
+</html>
