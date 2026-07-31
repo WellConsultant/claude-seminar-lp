@@ -1,0 +1,1265 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>サービスメニュー生成ツール v18</title>
+  <style>
+    :root{
+      --navy:#101d35;--navy2:#263957;--ink:#18202d;--muted:#667085;
+      --line:#d7dce4;--paper:#fff;--soft:#f3f4f6;--gold:#9b722e;--danger:#a43b3b;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;background:#e9ebef}
+    button,input,textarea{font:inherit}
+    button{cursor:pointer}
+    .hidden{display:none!important}
+    .appbar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;border-bottom:1px solid #31415b}
+    .appbar-inner{max-width:1500px;margin:auto;min-height:58px;padding:8px 18px;display:flex;align-items:center;gap:12px}
+    .brand{font-size:15px;font-weight:800;white-space:nowrap}
+    .version{padding:3px 8px;border:1px solid #8290a8;border-radius:999px;font-size:11px}
+    .app-actions{margin-left:auto;display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+    .btn{border:1px solid #c5ccd6;background:#fff;color:#1a2639;border-radius:5px;padding:8px 11px;font-size:12px;font-weight:800}
+    .btn:hover{background:#f5f6f8}
+    .btn.dark{background:var(--navy2);color:#fff;border-color:#53647e}
+    .btn.gold{background:var(--gold);color:#fff;border-color:var(--gold)}
+    .btn.danger{color:var(--danger);border-color:#d9bbbb}
+    .btn:disabled{opacity:.4;cursor:not-allowed}
+    .workspace{max-width:1500px;margin:auto;display:grid;grid-template-columns:380px minmax(0,1fr);gap:14px;padding:14px}
+    .control{position:sticky;top:72px;align-self:start;max-height:calc(100vh - 86px);overflow:auto;background:#fff;border:1px solid #d5dae2;border-radius:7px}
+    .control-head{padding:16px 17px 12px;border-bottom:1px solid var(--line)}
+    .control-head h1{font-size:17px;margin:0 0 5px;color:var(--navy)}
+    .control-head p{font-size:12px;line-height:1.65;margin:0;color:var(--muted)}
+    details{border-bottom:1px solid var(--line)}
+    details:last-of-type{border-bottom:0}
+    summary{list-style:none;padding:13px 17px;font-size:13px;font-weight:800;color:var(--navy);cursor:pointer;display:flex;align-items:center;gap:9px}
+    summary::-webkit-details-marker{display:none}
+    summary:after{content:"＋";margin-left:auto;color:#6b7280;font-size:16px}
+    details[open] summary:after{content:"−"}
+    .step{display:grid;place-items:center;width:23px;height:23px;background:var(--navy);color:#fff;border-radius:50%;font:700 11px Georgia,serif}
+    .panel{padding:2px 17px 16px}
+    label{display:block;font-size:11px;font-weight:800;color:#344054;margin:8px 0 6px}
+    input[type="text"],textarea{width:100%;border:1px solid #b9c1cd;border-radius:5px;background:#fff;padding:9px;color:#172033}
+    textarea{resize:vertical;font-size:11px;line-height:1.55;white-space:pre-wrap}
+    #listInput{min-height:245px}
+    #promptOutput{min-height:205px;background:#f8f9fb}
+    #aiOutput{min-height:210px}
+    .hint{font-size:10.5px;line-height:1.55;color:#6d7480;margin:7px 0 0}
+    .status{display:none;margin:10px 17px 14px;padding:9px 10px;border-radius:4px;background:#edf3ee;color:#295c36;font-size:11px;line-height:1.5}
+    .status.show{display:block}
+    .status.error{background:#f8ecec;color:#8a2929}
+    .full{width:100%}
+    .row{display:flex;gap:7px}
+    .row>*{flex:1}
+    .file-btn{display:block;text-align:center;margin-top:8px}
+    .count{float:right;color:#6b7280;font-weight:500}
+    .replace-guide{margin:9px 0 0;padding:9px 10px;border-left:3px solid var(--gold);background:#f8f4eb;color:#51442f;font-size:11px;font-weight:700;line-height:1.55}
+    .replace-result{min-height:18px;margin:7px 0 0;color:#2f6640;font-size:11px;font-weight:800}
+    .bottom-tools{padding:14px 17px;border-top:1px solid var(--line)}
+    .preview-shell{min-width:0}
+    .preview-note{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px;padding:0 3px;font-size:12px;color:#667085}
+    .preview{background:#fff;border:1px solid #d4d9e1;box-shadow:0 3px 18px rgba(16,29,53,.08)}
+    .site-hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:58px 7% 53px}
+    .site-hero:after{content:"";position:absolute;width:330px;height:330px;border:1px solid rgba(255,255,255,.12);transform:rotate(35deg);right:-105px;top:-165px}
+    .eyebrow{font-size:12px;font-weight:800;letter-spacing:.18em;color:#d8c18f;margin:0 0 14px}
+    .site-title{max-width:920px;font-size:clamp(29px,4.5vw,54px);line-height:1.25;letter-spacing:.02em;margin:0 0 18px;outline:none}
+    .site-lead{max-width:780px;margin:0;color:#dce3ed;line-height:1.85;font-size:15px;outline:none}
+    .summary{display:flex;gap:25px;margin-top:28px;flex-wrap:wrap}
+    .summary-item{border-left:2px solid var(--gold);padding-left:12px}
+    .summary-item b{display:block;font-family:Georgia,serif;font-size:24px}
+    .summary-item span{font-size:11px;color:#c8d0dc}
+    .catalog{padding:36px clamp(18px,5vw,65px) 58px}
+    .catalog-head{margin:0 auto 23px;max-width:1060px;border-bottom:1px solid #d9dde4;padding-bottom:12px;display:flex;align-items:end;justify-content:space-between}
+    .catalog-head h2{font-size:22px;margin:0;color:var(--navy)}
+    .catalog-head span{font-family:Georgia,serif;color:#7c8594}
+    .bulk-delete-tools{max-width:1060px;margin:-8px auto 18px;padding:12px 14px;border:1px solid #d8dde5;background:#f7f8fa;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+    .bulk-select-label{display:flex;align-items:center;gap:7px;color:#263957;font-size:12px;font-weight:800;cursor:pointer}
+    .bulk-select-label input,.service-selector{width:18px;height:18px;accent-color:#982f2f;cursor:pointer}
+    .bulk-count{margin-right:auto;color:#667085;font-size:11px;font-weight:800}
+    .bulk-delete-button{border:1px solid #b95d5d;background:#fff;color:#982f2f;border-radius:5px;padding:8px 12px;font-size:11px;font-weight:800}
+    .bulk-delete-button:hover:not(:disabled){background:#982f2f;color:#fff}
+    .bulk-delete-button:disabled{opacity:.4;cursor:not-allowed}
+    .bulk-delete-all{background:#982f2f;color:#fff}
+    .product-list{max-width:1060px;margin:auto;display:grid;gap:22px}
+    .product-card{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(270px,.85fr);min-height:280px;border:1px solid #d8dde5;background:#fff}
+    .product-card.is-selected{outline:3px solid #b95d5d;outline-offset:2px}
+    .service-select-wrap{position:absolute;z-index:5;left:9px;top:9px;display:flex;align-items:center;gap:6px;padding:6px 9px;border:1px solid #d8dde5;border-radius:5px;background:rgba(255,255,255,.97);color:#263957;font-size:11px;font-weight:800;box-shadow:0 1px 4px rgba(16,29,53,.08);cursor:pointer}
+    .product-card:nth-child(even){grid-template-columns:minmax(270px,.85fr) minmax(0,1.15fr)}
+    .product-card:nth-child(even) .product-image{order:-1}
+    .product-copy{padding:30px clamp(24px,4vw,46px);display:flex;flex-direction:column;justify-content:center;min-width:0}
+    .product-no{font-family:Georgia,serif;font-size:12px;letter-spacing:.12em;color:#8a6a30;margin-bottom:10px}
+    .benefit{font-size:20px;line-height:1.5;color:var(--navy);font-weight:800;margin:0 0 8px;outline:none}
+    .product-name{font-size:15px;line-height:1.5;font-weight:700;margin:0 0 13px;outline:none;color:#3d4758}
+    .description{font-size:13px;line-height:1.9;color:#4a5361;margin:0;outline:none;white-space:pre-wrap}
+    .description.empty{color:#8a929e;background:#f5f6f8;border:1px dashed #c9ced6;padding:12px}
+    .price{align-self:flex-start;margin-top:18px;border-top:1px solid #b68b43;padding-top:8px;font-family:Georgia,"Yu Mincho",serif;color:#182a49;font-weight:700;outline:none}
+    .service-delete-row{margin-top:24px;padding-top:15px;border-top:1px dashed #d7bebe}
+    .service-delete-button{width:100%;border:1px solid #c97f7f;background:#fff7f7;color:#982f2f;border-radius:5px;padding:10px 14px;font-size:12px;font-weight:800}
+    .service-delete-button:hover{background:#982f2f;color:#fff}
+    .product-image{position:relative;min-height:280px;overflow:hidden;background:#eef0f3;display:grid;place-items:center}
+    .product-image img{position:absolute;display:block}
+    .image-placeholder{padding:25px;text-align:center;color:#667085}
+    .image-placeholder b{display:block;color:#344054;font-size:14px;margin-bottom:7px}
+    .image-placeholder span{font-size:11px;line-height:1.6}
+    .image-actions{position:absolute;z-index:2;right:9px;bottom:9px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+    .image-change{border:1px solid rgba(255,255,255,.9);background:rgba(16,29,53,.9);color:#fff;padding:7px 10px;border-radius:4px;font-size:11px;font-weight:800}
+    .image-adjust-panel{position:absolute;z-index:3;left:9px;right:9px;bottom:48px;padding:10px;background:rgba(255,255,255,.96);border:1px solid #cbd2dc;border-radius:5px;box-shadow:0 5px 18px rgba(16,29,53,.18)}
+    .image-adjust-panel.hidden{display:none}
+    .image-adjust-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:8px 12px;align-items:center}
+    .image-adjust-panel label{display:grid;gap:3px;color:#344054;font-size:10px;font-weight:800}
+    .image-adjust-panel select{width:100%;border:1px solid #b9c1cd;background:#fff;padding:5px;font:inherit}
+    .image-adjust-panel input[type="range"]{width:100%;accent-color:#101d35}
+    .adjust-value{font-weight:500;color:#687386}
+    .card-tools{position:absolute;z-index:4;right:7px;top:7px;display:flex;gap:4px;opacity:1}
+    .card-tools button{min-width:31px;height:31px;padding:0 9px;border:1px solid #ccd2dc;background:rgba(255,255,255,.97);border-radius:4px;color:#263957;font-size:12px;font-weight:800;box-shadow:0 1px 4px rgba(16,29,53,.08)}
+    .service-edit-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;padding-top:14px;border-top:1px dashed #cdd3dd}
+    .service-edit-actions button{border:1px solid #aeb8c7;background:#fff;color:#182a49;border-radius:5px;padding:8px 11px;font-size:11px;font-weight:800;cursor:pointer}
+    .service-edit-actions .insert-service{border-color:#8c6a2d;color:#77551d;background:#fffaf0}
+    .service-editor{margin-top:12px;padding:14px;border:1px solid #c8cfda;background:#f7f8fa;border-radius:6px}
+    .service-editor-grid{display:grid;gap:10px}
+    .service-editor label{display:grid;gap:5px;color:#253550;font-size:11px;font-weight:800}
+    .service-editor input,.service-editor textarea{width:100%;border:1px solid #aeb8c7;border-radius:4px;background:#fff;padding:8px;color:#172033;font:inherit}
+    .service-editor textarea{min-height:95px;resize:vertical;line-height:1.6}
+    .service-editor-buttons{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
+    .service-editor-buttons button{border:1px solid #aeb8c7;background:#fff;color:#182a49;border-radius:5px;padding:8px 12px;font-size:11px;font-weight:800}
+    .service-editor-buttons .save-service-edit{background:#182a49;color:#fff;border-color:#182a49}
+    .card-tools .delete-service{border-color:#c97f7f;background:#fff5f5;color:#982f2f}
+    .card-tools .delete-service:hover{background:#982f2f;color:#fff}
+    [contenteditable="true"]:focus{box-shadow:0 0 0 2px #c6a35e;background:#fff9e9;border-radius:2px}
+    .editable-service{cursor:text}
+    .editable-service:hover{background:#fffaf0;box-shadow:0 0 0 1px #d9bf8d;border-radius:2px}
+    .edit-saved{display:none;margin:8px 0 0;color:#2f6640;font-size:11px;font-weight:800}
+    .product-card.is-edited .edit-saved{display:block}
+    .site-footer{background:#101d35;color:#bdc7d7;text-align:center;padding:30px 22px;font-size:11px}
+    .footer-name{margin:0 0 8px;color:#fff;font-size:15px;font-weight:800}
+    .footer-description{max-width:720px;margin:0 auto 10px;line-height:1.8}
+    .footer-link{display:inline-block;margin:2px 0 14px;color:#d8c18f;text-decoration:underline;text-underline-offset:3px}
+    .footer-copyright{margin:0;color:#8f9bad;font-size:10px}
+    .modal{position:fixed;inset:0;z-index:100;background:rgba(4,11,24,.7);display:grid;place-items:center;padding:20px}
+    .modal-box{width:min(900px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:7px;padding:22px}
+    .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .modal-head h2{font-size:18px;margin:0;color:var(--navy)}
+    .modal-close{border:0;background:none;font-size:25px}
+    .export-code{min-height:450px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px}
+    @media(max-width:920px){
+      .workspace{grid-template-columns:1fr;padding:9px}
+      .control{position:static;max-height:none}
+      .product-card,.product-card:nth-child(even){grid-template-columns:1fr}
+      .product-card:nth-child(even) .product-image{order:0}
+      .product-image{min-height:230px}
+      .appbar-inner{align-items:flex-start}.app-actions{gap:5px}
+      .btn{padding:7px 8px;font-size:11px}
+    }
+    @media print{
+      .appbar,.control,.preview-note,.card-tools,.image-actions,.image-adjust-panel,.bulk-delete-tools,.service-select-wrap,.service-delete-row{display:none!important}
+      body,.workspace{background:#fff}.workspace{display:block;padding:0}.preview{border:0;box-shadow:none}
+      .product-card{break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <header class="appbar">
+    <div class="appbar-inner">
+      <div class="brand">サービスメニュー生成ツール</div>
+      <span class="version">v18・取り込み後の追加・修正対応</span>
+      <div class="app-actions">
+        <button class="btn dark" id="undoBtn">↶ 戻す</button>
+        <button class="btn dark" id="redoBtn">↷ 進む</button>
+        <button class="btn dark" id="resetBtn">初期状態</button>
+        <button class="btn" id="saveProjectBtn">作業データを保存</button>
+        <button class="btn" id="loadProjectBtn">旧JSONから再開</button>
+        <button class="btn" id="copyHtmlBtn">完成HTMLをコピー</button>
+        <button class="btn gold" id="downloadBtn">完成HTMLをダウンロード</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="control">
+      <div class="control-head">
+        <h1>サービスメニュー生成ツール</h1>
+        <p>編集内容はこのブラウザへ自動保存されます。旧版で保存した作業JSONも読み込めます。取り込み後も、各サービスを追加・修正できます。</p>
+      </div>
+
+      <details open>
+        <summary><span class="step">1</span>商品リストを入れる</summary>
+        <div class="panel">
+          <label for="pageTitle">ページのタイトル</label>
+          <input id="pageTitle" type="text" value="商品・サービス一覧">
+          <label for="listInput">商品リスト <span class="count" id="parsedCount">0商品</span></label>
+          <textarea id="listInput" spellcheck="false" placeholder="ここへ今回の商品リストを貼り付けてください。&#10;例：&#10;1　サービス名　30,000円&#10;2　サービス名　50,000円"></textarea>
+          <p class="replace-guide">1行＝1商品です。「全メニューを入れ替える」を押したときだけ、右側をこのリストで置き換えます。取り込み後の追加・修正は、右側の各サービスから行えます。</p>
+          <p class="hint">「番号　商品名　価格」または「商品名　価格」の順で貼り付けます。タブ、カンマ、複数の空白に対応します。</p>
+          <button class="btn gold full" id="makeCardsBtn" style="margin-top:9px">この商品リストで全メニューを入れ替える</button>
+          <p class="replace-result" id="listReplaceResult" aria-live="polite"></p>
+        </div>
+      </details>
+
+      <details open>
+        <summary><span class="step">2</span>ページ上部を編集</summary>
+        <div class="panel">
+          <label for="eyebrowInput">上部の英字</label>
+          <input id="eyebrowInput" type="text" value="SERVICE MENU">
+          <label for="leadInput">ページの説明文</label>
+          <textarea id="leadInput" rows="4">商品・サービスの内容、特徴、料金をご案内します。</textarea>
+          <label for="summaryLabelInput">商品数の下の文言</label>
+          <input id="summaryLabelInput" type="text" value="サービス数">
+          <label for="summaryMainInput">右側の大きな文言</label>
+          <input id="summaryMainInput" type="text" value="提供内容">
+          <label for="summarySubInput">右側の小さな文言</label>
+          <input id="summarySubInput" type="text" value="商品・サービス">
+          <label for="catalogTitleInput">商品一覧の見出し</label>
+          <input id="catalogTitleInput" type="text" value="サービスメニュー">
+          <label for="catalogEnInput">商品一覧の英字</label>
+          <input id="catalogEnInput" type="text" value="MENU">
+          <p class="hint">右のプレビューを直接クリックして編集することもできます。商品数は、今回入力した項目数だけに自動連動します。</p>
+        </div>
+      </details>
+
+      <details open>
+        <summary><span class="step">3</span>フッターを編集</summary>
+        <div class="panel">
+          <label for="footerNameInput">事業・サービス名</label>
+          <input id="footerNameInput" type="text" value="サービスメニュー">
+          <label for="footerDescriptionInput">フッターの説明文</label>
+          <textarea id="footerDescriptionInput" rows="3"></textarea>
+          <label for="footerLinkTextInput">リンクに表示する文言</label>
+          <input id="footerLinkTextInput" type="text" value="お問い合わせ">
+          <label for="footerLinkUrlInput">リンク先URL</label>
+          <input id="footerLinkUrlInput" type="url" value="" placeholder="https://example.com/contact">
+          <label for="footerCopyrightInput">著作権表記</label>
+          <input id="footerCopyrightInput" type="text" value="">
+          <p class="hint">不要な項目は空欄にできます。右側の文言は直接編集も可能です。</p>
+        </div>
+      </details>
+
+      <details open>
+        <summary><span class="step">4</span>AI用プロンプトをコピー</summary>
+        <div class="panel">
+          <textarea id="promptOutput" readonly></textarea>
+          <button class="btn gold full" id="copyPromptBtn" style="margin-top:8px">現在の商品だけのプロンプトをコピー</button>
+          <p class="hint">商品ごとに独立して文章を作る指示です。別の商品・過去の商品を混ぜないようにしています。</p>
+          <p class="hint">コピーした内容をChatGPTなどへ貼り付けます。AIの回答は商品ごとの文章を読み込めるJSON形式で出ます。</p>
+        </div>
+      </details>
+
+      <details open>
+        <summary><span class="step">5</span>AIの回答を戻す</summary>
+        <div class="panel">
+          <label for="aiOutput">AIが出した回答</label>
+          <textarea id="aiOutput" placeholder='AIの回答をそのまま貼り付けます。```json ... ```が付いていても読み込めます。'></textarea>
+          <button class="btn gold full" id="applyAiBtn" style="margin-top:8px">文章を下の商品へ反映</button>
+          <label class="btn file-btn" for="aiFile">AI回答ファイルを選ぶ</label>
+          <input id="aiFile" class="hidden" type="file" accept=".txt,.md,.json,text/plain,application/json">
+          <p class="hint">テキスト・Markdown・JSONファイルを選んだ場合は、読込み後すぐに文章を反映します。</p>
+        </div>
+      </details>
+
+      <div class="status" id="status"></div>
+      <div class="bottom-tools">
+        <div class="row">
+          <button class="btn" id="addBtn">＋ 商品追加</button>
+          <button class="btn danger" id="removeLastBtn">− 最後の1件を削除</button>
+          <button class="btn" id="showCodeBtn">HTMLを見る</button>
+        </div>
+        <p class="hint">複数件を消すときは、右側の商品一覧上部で「すべて選択」または必要なサービスを選び、「選択したサービスを削除」を押します。</p>
+        <p class="hint">画像は商品ごとに、ファイル選択または画像URLで設定できます。JPG・PNG・WebP・GIFに対応し、GIFは完成HTMLでも動きます。</p>
+      </div>
+    </aside>
+
+    <section class="preview-shell">
+      <div class="preview-note">
+        <span>ベネフィット見出し・商品名・説明文・価格は、クリックして直接変更できます。変更はその場で保存されます。</span>
+        <span id="saveState">自動保存</span>
+      </div>
+      <div class="preview" id="preview">
+        <section class="site-hero">
+          <p class="eyebrow" id="heroEyebrow" contenteditable="true">SERVICE MENU</p>
+          <h1 class="site-title" id="heroTitle" contenteditable="true">商品・サービス一覧</h1>
+          <p class="site-lead" id="heroLead" contenteditable="true">商品・サービスの内容、特徴、料金をご案内します。</p>
+          <div class="summary">
+            <div class="summary-item"><b id="summaryCount">0</b><span id="summaryLabel" contenteditable="true">サービス数</span></div>
+            <div class="summary-item"><b id="summaryMain" contenteditable="true">提供内容</b><span id="summarySub" contenteditable="true">商品・サービス</span></div>
+          </div>
+        </section>
+        <section class="catalog">
+          <div class="catalog-head"><h2 id="catalogTitle" contenteditable="true">サービスメニュー</h2><span id="catalogEn" contenteditable="true">MENU</span></div>
+          <div class="bulk-delete-tools">
+            <button class="btn gold" id="addServiceTopBtn" type="button">＋ サービスを追加</button>
+            <label class="bulk-select-label"><input type="checkbox" id="selectAllServices">すべて選択</label>
+            <span class="bulk-count" id="selectedCount">0件選択中</span>
+            <button class="bulk-delete-button" id="deleteSelectedBtn" type="button" disabled>選択したサービスを削除</button>
+            <button class="bulk-delete-button bulk-delete-all" id="deleteAllBtn" type="button">全サービスを削除</button>
+          </div>
+          <div class="product-list" id="productList"></div>
+        </section>
+        <footer class="site-footer">
+          <p class="footer-name" id="footerName" contenteditable="true">サービスメニュー</p>
+          <p class="footer-description" id="footerDescription" contenteditable="true"></p>
+          <a class="footer-link" id="footerLink" href="#" contenteditable="true">お問い合わせ</a>
+          <p class="footer-copyright" id="footerCopyright" contenteditable="true"></p>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <input type="file" id="imagePicker" accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif" class="hidden">
+  <input type="file" id="projectPicker" accept=".json,application/json" class="hidden">
+
+  <div class="modal hidden" id="codeModal">
+    <div class="modal-box">
+      <div class="modal-head"><h2>完成HTML</h2><button class="modal-close" id="closeModal" aria-label="閉じる">×</button></div>
+      <textarea class="export-code" id="exportCode" readonly></textarea>
+      <div class="row" style="margin-top:10px">
+        <button class="btn" id="modalCopy">コードをコピー</button>
+        <button class="btn gold" id="modalDownload">HTMLをダウンロード</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (() => {
+    "use strict";
+    const $ = (s,p=document) => p.querySelector(s);
+    const productList = $("#productList");
+    const storageKey = "service_menu_generator_v18";
+    const previousStorageKey = "service_menu_generator_v17";
+    const initialText = $("#listInput").value;
+    const headerBindings = [
+      ["#eyebrowInput","#heroEyebrow"],
+      ["#leadInput","#heroLead"],
+      ["#summaryLabelInput","#summaryLabel"],
+      ["#summaryMainInput","#summaryMain"],
+      ["#summarySubInput","#summarySub"],
+      ["#catalogTitleInput","#catalogTitle"],
+      ["#catalogEnInput","#catalogEn"],
+      ["#footerNameInput","#footerName"],
+      ["#footerDescriptionInput","#footerDescription"],
+      ["#footerLinkTextInput","#footerLink"],
+      ["#footerCopyrightInput","#footerCopyright"]
+    ];
+    const history = [];
+    let historyIndex = -1;
+    let activeImageIndex = null;
+    let saveTimer = null;
+    let isComposingList = false;
+
+    function escapeHtml(v=""){
+      return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+    }
+
+    function safeUrl(v=""){
+      const url=String(v).trim();
+      return /^(https?:\/\/|mailto:|tel:|#)/i.test(url) ? url : "#";
+    }
+
+    function safeImageUrl(v=""){
+      const url=String(v).trim();
+      return /^(https?:\/\/|data:image\/(?:jpeg|png|webp|gif);base64,)/i.test(url) ? url : "";
+    }
+
+    function updateFooterLink(){
+      const link=$("#footerLink");
+      link.href=safeUrl($("#footerLinkUrlInput").value);
+      link.style.display=link.textContent.trim() ? "inline-block" : "none";
+    }
+
+    function syncHeaderInputs(){
+      headerBindings.forEach(([inputSelector,previewSelector])=>{
+        $(inputSelector).value=$(previewSelector).textContent.trim();
+      });
+    }
+
+    function resetHeader(){
+      $("#heroEyebrow").textContent="SERVICE MENU";
+      $("#heroLead").textContent="商品・サービスの内容、特徴、料金をご案内します。";
+      $("#summaryLabel").textContent="サービス数";
+      $("#summaryMain").textContent="提供内容";
+      $("#summarySub").textContent="商品・サービス";
+      $("#catalogTitle").textContent="サービスメニュー";
+      $("#catalogEn").textContent="MENU";
+      $("#footerName").textContent="サービスメニュー";
+      $("#footerDescription").textContent="";
+      $("#footerLink").textContent="お問い合わせ";
+      $("#footerLinkUrlInput").value="";
+      $("#footerCopyright").textContent="";
+      updateFooterLink();
+      syncHeaderInputs();
+    }
+
+    function parseList(text){
+      const items=[];
+      text.split(/\r?\n/).forEach(line=>{
+        let raw=line.trim();
+        if(!raw || /^(?:合計|総額)\b/.test(raw)) return;
+        if(/^(?:商品リスト|商品一覧|サービスリスト|サービス一覧|メニュー)$/i.test(raw)) return;
+
+        let no=null;
+        const numbered=raw.match(/^\s*(\d+)\s*[.)、:：-]?\s+(.+)$/);
+        if(numbered){
+          no=Number(numbered[1]);
+          raw=numbered[2].trim();
+        }
+
+        let name="";
+        let price="";
+        let parts=raw.split(/\t+/).map(v=>v.trim()).filter(Boolean);
+        if(parts.length>=2){
+          name=parts.slice(0,-1).join(" ");
+          price=parts.at(-1);
+        }else{
+          // 価格の後ろに注記が続く行も読み取る。
+          // 例：50000円（キャンペーン価格）、200,000円→0円キャンペーン価格
+          const priceMatch=raw.match(/(?:[¥￥]\s*[\d,]+|[\d,]+\s*円|無料|価格未定|[-ー―]{2,})/i);
+          if(priceMatch){
+            price=raw.slice(priceMatch.index).trim();
+            name=raw.slice(0,priceMatch.index).replace(/[\s,，]+$/,"").trim();
+          }else{
+            // 「商品名 98,000」のように通貨記号がない場合は、
+            // 行末の数値を価格として扱う。
+            const plainNumber=raw.match(/\s+([\d,]+)\s*$/);
+            if(plainNumber){
+              name=raw.slice(0,plainNumber.index).trim();
+              price=plainNumber[1];
+            }else{
+              // 価格が書かれていない行も、1行を1商品として扱う。
+              name=raw;
+            }
+          }
+        }
+
+        if(!name) return;
+        items.push({
+          no:no??items.length+1,
+          name,
+          price:normalizePrice(price),
+          benefit:"",
+          desc:"",
+          image:"",
+          imageFit:"natural",
+          imageZoom:100,
+          imageX:50,
+          imageY:50
+        });
+      });
+      return items;
+    }
+
+    function titleFromList(text){
+      const first=(text.split(/\r?\n/).map(v=>v.trim()).find(Boolean)||"");
+      if(!first || parseList(first).length) return "";
+      if(/^(?:商品リスト|サービス一覧|メニュー)$/i.test(first)) return "";
+      return first.replace(/[\t,，]+$/,"").trim();
+    }
+
+    function normalizePrice(value){
+      const v=(value||"").trim();
+      if(!v || /^-+$/.test(v)) return "プログラムに含む";
+      if(/^[\d,]+$/.test(v)) return "¥"+v;
+      return v.replace(/^￥/,"¥");
+    }
+
+    function syncSourceList(items){
+      $("#listInput").value=items.map((item,index)=>{
+        const name=String(item.name||"").replace(/[\t\r\n]+/g," ").trim()||"名称未入力";
+        const price=String(item.price||"").replace(/[\t\r\n]+/g," ").trim();
+        return `${index+1}\t${name}${price?`\t${price}`:""}`;
+      }).join("\n");
+      $("#parsedCount").textContent=items.length+"商品";
+      $("#listReplaceResult").textContent=`現在は${items.length}商品です。`;
+      updatePrompt();
+      scheduleSave();
+    }
+
+    function buildPrompt(items){
+      const list=items.map(p=>`${p.no}\t${p.name}\t${p.price}`).join("\n");
+      const exactCount=items.length;
+      return `以下の「今回の商品リスト」だけをもとに、商品紹介ページへ載せる文章を作成してください。
+
+重要：過去の会話、以前の商品リスト、他の商品、一般的なサービス一覧は参照しないでください。今回の商品リストに書かれていない商品名を回答へ入れてはいけません。
+
+【絶対条件：商品数】
+・今回の商品数は${exactCount}件です
+・JSON配列の要素数も必ず${exactCount}件にしてください
+・1行を1商品として扱い、追加・水増し・分割・統合をしないでください
+・以前の商品数が20件、27件などであっても一切引き継がないでください
+・今回の商品リストにない商品を1件でも追加してはいけません
+
+【作成する内容】
+各商品について、次の2つを作成してください。
+1. benefit：利用すると何ができるようになるかがひと目で伝わる見出し。30〜45文字程度。「〜できる」で終える。
+2. description：商品の内容、使い方、得られる変化が具体的に伝わる説明文。250〜300文字程度。
+
+【商品ごとの作成方法】
+・1商品ずつ完全に独立して考える
+・benefitとdescriptionは、その行の商品名だけを主語・対象にする
+・別の行の商品名、機能、用途、価格、ベネフィットを混ぜない
+・商品名から内容を特定できない場合は、もっともらしい機能を創作せず、「詳細情報を追加してください」とdescriptionに記載する
+・作成後、各回答の商品名と内容を照合し、別商品の説明が混ざっていないか確認する
+
+【文章ルール】
+・商品名だけから断定できない機能、実績、保証は勝手に加えない
+・大げさな表現、AIらしい抽象表現、同じ言い回しの繰り返しを避ける
+・初心者にもわかる自然な日本語にする
+・価格と商品名は変更しない
+・今回の${exactCount}商品だけを省略せず、番号順に作る
+
+【出力形式】
+説明、前置き、Markdownのコードブロックは付けず、次の形のJSON配列だけを出力してください。
+[
+  {
+    "no": 1,
+    "name": "元の商品名",
+    "benefit": "〜できる",
+    "description": "250〜300文字程度の説明文"
+  }
+]
+
+【今回の商品リスト】
+${list}`;
+    }
+
+    function updatePrompt(){
+      const items=collect();
+      $("#promptOutput").value=buildPrompt(items.length?items:parseList($("#listInput").value));
+    }
+
+    function imageSettings(item={}){
+      const fit=["natural","contain","cover"].includes(item.imageFit) ? item.imageFit : "natural";
+      const zoom=Math.min(200,Math.max(50,Number(item.imageZoom)||100));
+      const x=Math.min(100,Math.max(0,Number(item.imageX)??50));
+      const y=Math.min(100,Math.max(0,Number(item.imageY)??50));
+      return {fit,zoom,x:Number.isFinite(x)?x:50,y:Number.isFinite(y)?y:50};
+    }
+
+    function imageStyle(item){
+      const {fit,zoom,x,y}=imageSettings(item);
+      if(fit==="natural"){
+        return `width:auto;height:auto;max-width:100%;max-height:100%;left:${x}%;top:${y}%;transform:translate(-${x}%,-${y}%) scale(${zoom/100});transform-origin:${x}% ${y}%;`;
+      }
+      return `width:100%;height:100%;inset:0;object-fit:${fit};object-position:${x}% ${y}%;transform:scale(${zoom/100});transform-origin:${x}% ${y}%;`;
+    }
+
+    function imageMarkup(item){
+      const image=safeImageUrl(item.image);
+      if(image){
+        const s=imageSettings(item);
+        return `<img alt="${escapeHtml(item.name)}のイメージ" src="${escapeHtml(image)}" data-source="${escapeHtml(image)}" data-fit="${s.fit}" data-zoom="${s.zoom}" data-x="${s.x}" data-y="${s.y}" style="${imageStyle(item)}">`;
+      }
+      return `<div class="image-placeholder"><b>画像を入れてください</b><span>ファイル選択または画像URLに対応<br>JPG・PNG・WebP・GIFが使えます</span></div>`;
+    }
+
+    function render(items,keepHistory=true){
+      productList.innerHTML="";
+      items.forEach((item,index)=>{
+        const card=document.createElement("article");
+        card.className="product-card";
+        card.innerHTML=`
+          <label class="service-select-wrap"><input class="service-selector" type="checkbox" aria-label="${escapeHtml(item.name)}を削除対象に選択">削除選択</label>
+          <div class="card-tools">
+            <button data-act="up" title="上へ移動">↑ 上へ</button>
+            <button data-act="down" title="下へ移動">↓ 下へ</button>
+          </div>
+          <div class="product-copy">
+            <div class="product-no">CONTENT ${String(index+1).padStart(2,"0")}</div>
+            <h3 class="benefit editable-service" data-service-field="benefit" contenteditable="true" spellcheck="true">${escapeHtml(item.benefit||"AIで作ったベネフィット見出しがここに入ります")}</h3>
+            <p class="product-name editable-service" data-service-field="name" contenteditable="true" spellcheck="true">${escapeHtml(item.name)}</p>
+            <p class="description editable-service${item.desc?"":" empty"}" data-service-field="description" contenteditable="true" spellcheck="true">${escapeHtml(item.desc||"手順4のプロンプトをAIへ渡し、回答を手順5へ貼り付けると、この欄に約300文字の商品説明が入ります。")}</p>
+            <div class="price editable-service" data-service-field="price" contenteditable="true" spellcheck="true">${escapeHtml(item.price)}</div>
+            <p class="edit-saved" aria-live="polite">✓ 変更を保存しました</p>
+            <div class="service-edit-actions">
+              <button type="button" data-act="edit-service">内容を修正</button>
+              <button type="button" class="insert-service" data-act="insert-service">＋ この下に追加</button>
+            </div>
+            <div class="service-editor hidden">
+              <div class="service-editor-grid">
+                <label>ベネフィット見出し
+                  <input type="text" data-edit-field="benefit" value="${escapeHtml(item.benefit||"")}">
+                </label>
+                <label>商品・サービス名
+                  <input type="text" data-edit-field="name" value="${escapeHtml(item.name||"")}">
+                </label>
+                <label>説明文
+                  <textarea data-edit-field="description">${escapeHtml(item.desc||"")}</textarea>
+                </label>
+                <label>価格
+                  <input type="text" data-edit-field="price" value="${escapeHtml(item.price||"")}">
+                </label>
+              </div>
+              <div class="service-editor-buttons">
+                <button type="button" data-act="cancel-service-edit">閉じる</button>
+                <button type="button" class="save-service-edit" data-act="save-service-edit">この内容で保存</button>
+              </div>
+            </div>
+          </div>
+          <div class="product-image">
+            ${imageMarkup(item)}
+            <div class="image-adjust-panel hidden">
+              <div class="image-adjust-grid">
+                <label>表示方法
+                  <select data-adjust="fit">
+                    <option value="natural" ${imageSettings(item).fit==="natural"?"selected":""}>原寸（拡大しない）</option>
+                    <option value="contain" ${imageSettings(item).fit==="contain"?"selected":""}>全体を枠に収める</option>
+                    <option value="cover" ${imageSettings(item).fit==="cover"?"selected":""}>枠いっぱいに表示</option>
+                  </select>
+                </label>
+                <label>大きさ <span class="adjust-value" data-value="zoom">${imageSettings(item).zoom}%</span>
+                  <input type="range" min="50" max="200" value="${imageSettings(item).zoom}" data-adjust="zoom">
+                </label>
+                <label>左右位置 <span class="adjust-value" data-value="x">${imageSettings(item).x}%</span>
+                  <input type="range" min="0" max="100" value="${imageSettings(item).x}" data-adjust="x">
+                </label>
+                <label>上下位置 <span class="adjust-value" data-value="y">${imageSettings(item).y}%</span>
+                  <input type="range" min="0" max="100" value="${imageSettings(item).y}" data-adjust="y">
+                </label>
+              </div>
+            </div>
+            <div class="image-actions">
+              <button class="image-change" data-act="image">画像ファイル</button>
+              <button class="image-change" data-act="image-url">画像URL</button>
+              <button class="image-change" data-act="image-adjust">画像調整</button>
+            </div>
+          </div>`;
+        productList.appendChild(card);
+      });
+      $("#summaryCount").textContent=items.length;
+      $("#parsedCount").textContent=items.length+"商品";
+      updateSelectionUi();
+      updatePrompt();
+      if(keepHistory) commitState();
+      scheduleSave();
+    }
+
+    function collect(){
+      return [...productList.children].map((card,index)=>{
+        const descEl=$(".description",card);
+        const defaultDesc="手順4のプロンプトをAIへ渡し、回答を手順5へ貼り付けると、この欄に約300文字の商品説明が入ります。";
+        const defaultBenefit="AIで作ったベネフィット見出しがここに入ります";
+        const img=$("img",card);
+        const settings=img ? imageSettings({
+          imageFit:img.dataset.fit,
+          imageZoom:img.dataset.zoom,
+          imageX:img.dataset.x,
+          imageY:img.dataset.y
+        }) : imageSettings();
+        return {
+          no:index+1,
+          benefit:$(".benefit",card).textContent.trim()===defaultBenefit?"":$(".benefit",card).textContent.trim(),
+          name:$(".product-name",card).textContent.trim(),
+          desc:descEl.textContent.trim()===defaultDesc?"":descEl.textContent.trim(),
+          price:$(".price",card).textContent.trim(),
+          image:img?(img.dataset.source||img.src):"",
+          imageFit:settings.fit,
+          imageZoom:settings.zoom,
+          imageX:settings.x,
+          imageY:settings.y
+        };
+      });
+    }
+
+    function selectedCards(){
+      return [...productList.querySelectorAll(".product-card")].filter(card=>$(".service-selector",card)?.checked);
+    }
+
+    function updateSelectionUi(){
+      const cards=[...productList.querySelectorAll(".product-card")];
+      const selected=selectedCards();
+      cards.forEach(card=>card.classList.toggle("is-selected",Boolean($(".service-selector",card)?.checked)));
+      $("#selectedCount").textContent=`${selected.length}件選択中`;
+      $("#deleteSelectedBtn").disabled=selected.length===0;
+      $("#selectAllServices").checked=cards.length>0 && selected.length===cards.length;
+      $("#selectAllServices").indeterminate=selected.length>0 && selected.length<cards.length;
+      $("#deleteAllBtn").disabled=cards.length===0;
+    }
+
+    function deleteSelectedServices(){
+      const selected=selectedCards();
+      if(!selected.length){notify("削除するサービスを選んでください。",true);return}
+      if(!confirm(`選択した${selected.length}件のサービスをまとめて削除しますか？`)) return;
+      selected.forEach(card=>card.remove());
+      const items=collect();
+      syncSourceList(items);
+      render(items);
+      notify(`${selected.length}件を一括削除しました。残り${items.length}件です。商品リストとAI用プロンプトも更新しました。`);
+    }
+
+    function parseAiResult(raw){
+      let text=(raw||"").trim();
+      if(!text) throw new Error("AIの回答が空です。");
+      text=text.replace(/^```(?:json)?\s*/i,"").replace(/\s*```$/,"").trim();
+      const start=text.indexOf("[");
+      const end=text.lastIndexOf("]");
+      if(start<0 || end<start) throw new Error("JSON配列が見つかりません。手順3のプロンプトをそのままAIへ渡してください。");
+      const parsed=JSON.parse(text.slice(start,end+1));
+      if(!Array.isArray(parsed)) throw new Error("AIの回答が配列形式ではありません。");
+      return parsed;
+    }
+
+    function applyAiText(raw){
+      let rows;
+      try{rows=parseAiResult(raw)}
+      catch(error){notify("読み込めませんでした："+error.message,true);return false}
+      const current=collect();
+      if(rows.length!==current.length){
+        notify(`AI回答は${rows.length}件ですが、現在の商品は${current.length}件です。余分な商品は反映せず、現在の${current.length}商品だけを維持します。`,true);
+      }
+      const normalizeName=value=>String(value||"").normalize("NFKC").replace(/\s+/g,"").toLowerCase();
+      const byNo=new Map(rows.map(r=>[Number(r.no),r]));
+      let applied=0;
+      const mismatches=[];
+      const merged=current.map((item,index)=>{
+        const row=byNo.get(index+1);
+        if(!row) return item;
+        if(normalizeName(row.name)!==normalizeName(item.name)){
+          mismatches.push(`${index+1}番「${item.name}」`);
+          return item;
+        }
+        const benefit=String(row.benefit||"").trim();
+        const desc=String(row.description||row.desc||"").trim();
+        if(!benefit || !desc) return item;
+        applied++;
+        return {...item,benefit,desc};
+      });
+      if(mismatches.length){
+        const shown=mismatches.slice(0,3).join("、");
+        const more=mismatches.length>3?`ほか${mismatches.length-3}件`:"";
+        notify(`商品名が一致しない回答は反映しませんでした：${shown}${more}`,true);
+      }
+      if(!applied){
+        notify("現在の商品名と一致する文章がありません。古い商品のAI回答ではなく、手順4の最新プロンプトから作り直してください。",true);
+        return false;
+      }
+      render(merged);
+      if(!mismatches.length) notify(`${applied}商品の文章を、商品名を確認して反映しました。`);
+      document.querySelector(".preview-shell").scrollIntoView({behavior:"smooth",block:"start"});
+      return true;
+    }
+
+    function snapshot(){
+      return JSON.stringify({
+        title:$("#heroTitle").textContent.trim(),
+        lead:$("#heroLead").textContent.trim(),
+        eyebrow:$("#heroEyebrow").textContent.trim(),
+        summaryLabel:$("#summaryLabel").textContent.trim(),
+        summaryMain:$("#summaryMain").textContent.trim(),
+        summarySub:$("#summarySub").textContent.trim(),
+        catalogTitle:$("#catalogTitle").textContent.trim(),
+        catalogEn:$("#catalogEn").textContent.trim(),
+        footerName:$("#footerName").textContent.trim(),
+        footerDescription:$("#footerDescription").textContent.trim(),
+        footerLinkText:$("#footerLink").textContent.trim(),
+        footerLinkUrl:$("#footerLinkUrlInput").value.trim(),
+        footerCopyright:$("#footerCopyright").textContent.trim(),
+        inputTitle:$("#pageTitle").value,
+        input:$("#listInput").value,
+        aiOutput:$("#aiOutput").value,
+        items:collect()
+      });
+    }
+
+    function commitState(){
+      const state=snapshot();
+      if(history[historyIndex]===state) return;
+      history.splice(historyIndex+1);
+      history.push(state);
+      if(history.length>30) history.shift(); else historyIndex++;
+      if(history.length>30) historyIndex=history.length-1;
+      updateHistoryButtons();
+    }
+
+    function restoreState(raw,addHistory=false){
+      const state=typeof raw==="string"?JSON.parse(raw):raw;
+      $("#heroTitle").textContent=state.title;
+      $("#heroLead").textContent=state.lead;
+      $("#heroEyebrow").textContent=state.eyebrow||"SERVICE MENU";
+      $("#summaryLabel").textContent=state.summaryLabel||"サービス数";
+      $("#summaryMain").textContent=state.summaryMain||"提供内容";
+      $("#summarySub").textContent=state.summarySub||"商品・サービス";
+      $("#catalogTitle").textContent=state.catalogTitle||"サービスメニュー";
+      $("#catalogEn").textContent=state.catalogEn||"MENU";
+      $("#footerName").textContent=state.footerName||state.footer||"サービスメニュー";
+      $("#footerDescription").textContent=state.footerDescription||"";
+      $("#footerLink").textContent=state.footerLinkText||"お問い合わせ";
+      $("#footerLinkUrlInput").value=state.footerLinkUrl||"";
+      $("#footerCopyright").textContent=state.footerCopyright||"";
+      updateFooterLink();
+      $("#pageTitle").value=state.inputTitle||state.title;
+      syncHeaderInputs();
+      $("#listInput").value=state.input||"";
+      $("#aiOutput").value=state.aiOutput||"";
+      render(state.items,addHistory);
+    }
+
+    function updateHistoryButtons(){
+      $("#undoBtn").disabled=historyIndex<=0;
+      $("#redoBtn").disabled=historyIndex>=history.length-1;
+    }
+
+    function scheduleSave(){
+      clearTimeout(saveTimer);
+      $("#saveState").textContent="保存中…";
+      saveTimer=setTimeout(()=>{
+        try{
+          localStorage.setItem(storageKey,snapshot());
+          $("#saveState").textContent="自動保存済み";
+        }catch(error){
+          $("#saveState").textContent="画像が大きく自動保存できません";
+        }
+      },350);
+    }
+
+    function notify(message,isError=false){
+      const box=$("#status");
+      box.textContent=message;
+      box.classList.toggle("error",isError);
+      box.classList.add("show");
+      clearTimeout(notify.timer);
+      notify.timer=setTimeout(()=>box.classList.remove("show"),4500);
+    }
+
+    function makeCards({automatic=false,keepHistory=true}={}){
+      const items=parseList($("#listInput").value);
+      if(!items.length){
+        $("#aiOutput").value="";
+        syncSourceList([]);
+        render([],keepHistory);
+        $("#listReplaceResult").textContent="✓ サービスは0件です。以前のメニューは残っていません。";
+        if(!automatic) notify("全サービスを削除しました。以前のメニューは残っていません。");
+        return true;
+      }
+      const detectedTitle=titleFromList($("#listInput").value);
+      if(detectedTitle){
+        $("#pageTitle").value=detectedTitle;
+      }
+      $("#heroTitle").textContent=$("#pageTitle").value.trim()||"商品・サービス一覧";
+      $("#aiOutput").value="";
+      render(items,keepHistory);
+      const message=`${items.length}商品へ入れ替えました。以前の商品は残っていません。`;
+      $("#listReplaceResult").textContent="✓ "+message;
+      if(!automatic) notify(message);
+      return true;
+    }
+
+    function updateListDraft(){
+      const items=parseList($("#listInput").value);
+      $("#parsedCount").textContent=items.length+"商品";
+      $("#promptOutput").value=buildPrompt(items);
+      $("#listReplaceResult").textContent=items.length
+        ? `${items.length}商品を読み取りました。右側を入れ替える場合だけ、下のボタンを押してください。`
+        : "商品名と価格を貼り付けてください。右側の編集中データは消えません。";
+      scheduleSave();
+    }
+
+    function exportImage(item){
+      const image=safeImageUrl(item.image);
+      if(image) return `<div class="product-image"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.name)}のイメージ" style="${imageStyle(item)}"></div>`;
+      return `<div class="product-image image-empty"><span>画像を入れてください</span></div>`;
+    }
+
+    function projectFileName(){
+      const base=($("#heroTitle").textContent.trim()||"商品紹介ページ").replace(/[\\/:*?"<>|]/g,"_").slice(0,60);
+      return `${base}-作業データ.json`;
+    }
+
+    function downloadProject(){
+      const payload={
+        format:"swipe-product-page-project",
+        version:18,
+        savedAt:new Date().toISOString(),
+        state:JSON.parse(snapshot())
+      };
+      const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");
+      a.href=url;
+      a.download=projectFileName();
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+      notify("途中再開用の作業データを保存しました。");
+    }
+
+    function loadProjectText(raw){
+      let parsed;
+      try{parsed=JSON.parse(raw)}
+      catch(error){notify("作業データを読み込めませんでした。JSONファイルを確認してください。",true);return}
+      const source=parsed?.state || parsed?.project?.state || parsed?.data || parsed;
+      const oldItems=source?.items || source?.products || source?.services;
+      if(!source || !Array.isArray(oldItems)){
+        notify("商品データが入った作業JSONではありません。v7以降の「作業データを保存」で作ったJSONを選んでください。",true);
+        return;
+      }
+      const state={
+        ...source,
+        title:source.title || source.pageTitle || source.inputTitle || "商品・サービス一覧",
+        inputTitle:source.inputTitle || source.pageTitle || source.title || "商品・サービス一覧",
+        input:source.input || source.listInput || "",
+        aiOutput:source.aiOutput || "",
+        items:oldItems.map((item,index)=>({
+          no:index+1,
+          benefit:item.benefit || item.heading || "",
+          name:item.name || item.productName || item.serviceName || `サービス${index+1}`,
+          desc:item.desc || item.description || item.text || "",
+          price:item.price || item.amount || "",
+          image:item.image || item.imageUrl || item.imageURL || "",
+          imageFit:item.imageFit || "natural",
+          imageZoom:item.imageZoom ?? 100,
+          imageX:item.imageX ?? 50,
+          imageY:item.imageY ?? 50
+        }))
+      };
+      if(!state.input) state.input=state.items.map((item,index)=>`${index+1}\t${item.name}${item.price?`\t${item.price}`:""}`).join("\n");
+      try{
+        restoreState(state,true);
+        localStorage.setItem(storageKey,snapshot());
+        history.splice(0,history.length,snapshot());
+        historyIndex=0;
+        updateHistoryButtons();
+        notify(`${state.items.length}商品の作業状態を旧JSONから復元しました。入力し直さず続きから編集できます。`);
+      }catch(error){
+        notify("作業データの復元に失敗しました。",true);
+      }
+    }
+
+    function cleanExport(){
+      const data=collect();
+      const title=$("#heroTitle").textContent.trim();
+      const lead=$("#heroLead").textContent.trim();
+      const eyebrow=$("#heroEyebrow").textContent.trim();
+      const summaryLabel=$("#summaryLabel").textContent.trim();
+      const summaryMain=$("#summaryMain").textContent.trim();
+      const summarySub=$("#summarySub").textContent.trim();
+      const catalogTitle=$("#catalogTitle").textContent.trim();
+      const catalogEn=$("#catalogEn").textContent.trim();
+      const footerName=$("#footerName").textContent.trim();
+      const footerDescription=$("#footerDescription").textContent.trim();
+      const footerLinkText=$("#footerLink").textContent.trim();
+      const footerLinkUrl=$("#footerLinkUrlInput").value.trim();
+      const footerCopyright=$("#footerCopyright").textContent.trim();
+      const footerLink=footerLinkText ? `<a class="footer-link" href="${escapeHtml(safeUrl(footerLinkUrl))}">${escapeHtml(footerLinkText)}</a>` : "";
+      const cards=data.map((p,i)=>`<article class="product-card">
+  <div class="product-copy">
+    <div class="product-no">CONTENT ${String(i+1).padStart(2,"0")}</div>
+    <h2>${escapeHtml(p.benefit)}</h2>
+    <h3>${escapeHtml(p.name)}</h3>
+    <p>${escapeHtml(p.desc).replace(/\n/g,"<br>")}</p>
+    <div class="price">${escapeHtml(p.price)}</div>
+  </div>
+  ${exportImage(p)}
+</article>`).join("\n");
+      return `<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${escapeHtml(title)}</title>
+<style>
+*{box-sizing:border-box}body{margin:0;color:#18202d;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;background:#fff}
+.hero{position:relative;overflow:hidden;background:#101d35;color:#fff;padding:70px 7% 62px}.hero:after{content:"";position:absolute;width:330px;height:330px;border:1px solid rgba(255,255,255,.12);transform:rotate(35deg);right:-105px;top:-165px}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.18em;color:#d8c18f;margin:0 0 14px}.hero h1{max-width:920px;font-size:clamp(30px,4.5vw,54px);line-height:1.25;margin:0 0 18px}.lead{max-width:780px;margin:0;color:#dce3ed;line-height:1.85;font-size:15px}.summary{display:flex;gap:25px;margin-top:28px;flex-wrap:wrap}.summary-item{border-left:2px solid #9b722e;padding-left:12px}.summary-item b{display:block;font-family:Georgia,serif;font-size:24px}.summary-item span{font-size:11px;color:#c8d0dc}
+.catalog{padding:42px clamp(18px,5vw,65px) 65px}.catalog-title{max-width:1060px;margin:0 auto 25px;border-bottom:1px solid #d9dde4;padding-bottom:12px;font-size:22px;color:#101d35}.product-list{max-width:1060px;margin:auto;display:grid;gap:22px}
+.catalog-title{display:flex;align-items:end;justify-content:space-between}.catalog-title small{font-family:Georgia,serif;color:#7c8594;font-size:16px;font-weight:400}
+.product-card{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(270px,.85fr);min-height:280px;border:1px solid #d8dde5}.product-card:nth-child(even){grid-template-columns:minmax(270px,.85fr) minmax(0,1.15fr)}.product-card:nth-child(even) .product-image{order:-1}
+.product-copy{padding:32px clamp(25px,4vw,48px);display:flex;flex-direction:column;justify-content:center}.product-no{font-family:Georgia,serif;font-size:12px;letter-spacing:.12em;color:#8a6a30;margin-bottom:10px}
+.product-copy h2{font-size:20px;line-height:1.5;color:#101d35;margin:0 0 8px}.product-copy h3{font-size:15px;line-height:1.5;color:#3d4758;margin:0 0 13px}.product-copy p{font-size:13px;line-height:1.9;color:#4a5361;margin:0}
+.price{align-self:flex-start;margin-top:18px;border-top:1px solid #b68b43;padding-top:8px;font-family:Georgia,"Yu Mincho",serif;color:#182a49;font-weight:700}.product-image{position:relative;min-height:280px;background:#eef0f3;display:grid;place-items:center;overflow:hidden}.product-image img{position:absolute;display:block}.image-empty span{color:#7a8390;font-size:12px}
+footer{background:#101d35;color:#bdc7d7;text-align:center;padding:30px 22px;font-size:11px}.footer-name{margin:0 0 8px;color:#fff;font-size:15px;font-weight:800}.footer-description{max-width:720px;margin:0 auto 10px;line-height:1.8}.footer-link{display:inline-block;margin:2px 0 14px;color:#d8c18f;text-decoration:underline;text-underline-offset:3px}.footer-copyright{margin:0;color:#8f9bad;font-size:10px}
+@media(max-width:720px){.product-card,.product-card:nth-child(even){grid-template-columns:1fr}.product-card:nth-child(even) .product-image{order:0}.product-image{min-height:230px}.hero{padding:48px 22px}.catalog{padding:28px 12px 45px}}
+</style></head>
+<body>
+<header class="hero"><p class="eyebrow">${escapeHtml(eyebrow)}</p><h1>${escapeHtml(title)}</h1><p class="lead">${escapeHtml(lead)}</p><div class="summary"><div class="summary-item"><b>${data.length}</b><span>${escapeHtml(summaryLabel)}</span></div><div class="summary-item"><b>${escapeHtml(summaryMain)}</b><span>${escapeHtml(summarySub)}</span></div></div></header>
+<main class="catalog"><h2 class="catalog-title"><span>${escapeHtml(catalogTitle)}</span><small>${escapeHtml(catalogEn)}</small></h2><div class="product-list">${cards}</div></main>
+<footer>${footerName ? `<p class="footer-name">${escapeHtml(footerName)}</p>` : ""}${footerDescription ? `<p class="footer-description">${escapeHtml(footerDescription)}</p>` : ""}${footerLink}${footerCopyright ? `<p class="footer-copyright">${escapeHtml(footerCopyright)}</p>` : ""}</footer>
+</body></html>`;
+    }
+
+    async function copyText(text,message){
+      try{await navigator.clipboard.writeText(text)}
+      catch(error){
+        const t=document.createElement("textarea");
+        t.value=text;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();
+      }
+      notify(message);
+    }
+
+    function downloadExport(){
+      const blob=new Blob([cleanExport()],{type:"text/html;charset=utf-8"});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");
+      a.href=url;a.download="service-menu-page.html";document.body.appendChild(a);a.click();a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+      notify("完成HTMLをダウンロードしました。");
+    }
+
+    function blankService(){
+      return {name:"",price:"",benefit:"",desc:"",image:"",imageFit:"natural",imageZoom:100,imageX:50,imageY:50};
+    }
+
+    function addServiceAt(position){
+      const items=collect();
+      const insertAt=Math.max(0,Math.min(position,items.length));
+      items.splice(insertAt,0,blankService());
+      syncSourceList(items);
+      render(items);
+      const added=productList.children[insertAt];
+      const editor=$(".service-editor",added);
+      editor?.classList.remove("hidden");
+      $("[data-edit-field='name']",added)?.focus();
+      added?.scrollIntoView({behavior:"smooth",block:"center"});
+      notify("新しいサービスを追加しました。入力して「この内容で保存」を押してください。");
+    }
+
+    productList.addEventListener("click",event=>{
+      const btn=event.target.closest("button[data-act]");
+      if(!btn) return;
+      const card=btn.closest(".product-card");
+      const index=[...productList.children].indexOf(card);
+      const act=btn.dataset.act;
+      if(act==="edit-service"){
+        const editor=$(".service-editor",card);
+        const willOpen=editor.classList.contains("hidden");
+        document.querySelectorAll(".service-editor").forEach(panel=>panel.classList.add("hidden"));
+        if(willOpen){
+          editor.classList.remove("hidden");
+          $("[data-edit-field='name']",editor)?.focus();
+        }
+        return;
+      }
+      if(act==="cancel-service-edit"){
+        $(".service-editor",card)?.classList.add("hidden");
+        return;
+      }
+      if(act==="save-service-edit"){
+        const items=collect();
+        const editor=$(".service-editor",card);
+        const name=$("[data-edit-field='name']",editor).value.trim();
+        if(!name){notify("商品・サービス名を入力してください。",true);return}
+        items[index]={
+          ...items[index],
+          name,
+          benefit:$("[data-edit-field='benefit']",editor).value.trim(),
+          desc:$("[data-edit-field='description']",editor).value.trim(),
+          price:$("[data-edit-field='price']",editor).value.trim()
+        };
+        syncSourceList(items);
+        render(items);
+        productList.children[index]?.scrollIntoView({behavior:"smooth",block:"center"});
+        notify(`「${name}」の変更を保存しました。`);
+        return;
+      }
+      if(act==="insert-service"){
+        addServiceAt(index+1);
+        return;
+      }
+      if(act==="image"){activeImageIndex=index;$("#imagePicker").click();return}
+      if(act==="image-adjust"){
+        const panel=$(".image-adjust-panel",card);
+        const willOpen=panel.classList.contains("hidden");
+        document.querySelectorAll(".image-adjust-panel").forEach(p=>p.classList.add("hidden"));
+        if(willOpen) panel.classList.remove("hidden");
+        return;
+      }
+      if(act==="image-url"){
+        const items=collect();
+        const current=items[index]?.image || "";
+        const entered=prompt("画像のURLを貼り付けてください。JPG・PNG・WebP・GIFの直リンクが使えます。",/^https?:\/\//i.test(current)?current:"");
+        if(entered===null) return;
+        const url=safeImageUrl(entered);
+        if(!url){notify("http:// または https:// で始まる画像URLを入れてください。",true);return}
+        items[index].image=url;
+        render(items);
+        notify("この商品へ画像URLを設定しました。完成HTMLにも同じURLが入ります。");
+        return;
+      }
+      if(act==="up" && index>0) productList.insertBefore(card,productList.children[index-1]);
+      if(act==="down" && index<productList.children.length-1) productList.insertBefore(productList.children[index+2]||null,card);
+      const changedItems=collect();
+      syncSourceList(changedItems);
+      render(changedItems);
+    });
+
+    productList.addEventListener("input",event=>{
+      const control=event.target.closest("[data-adjust]");
+      if(!control) return;
+      const card=control.closest(".product-card");
+      const img=$("img",card);
+      if(!img) return;
+      const key=control.dataset.adjust;
+      if(key==="fit") img.dataset.fit=control.value;
+      if(key==="zoom") img.dataset.zoom=control.value;
+      if(key==="x") img.dataset.x=control.value;
+      if(key==="y") img.dataset.y=control.value;
+      const value=$(`[data-value="${key}"]`,card);
+      if(value) value.textContent=control.value+"%";
+      img.style.cssText=imageStyle({
+        imageFit:img.dataset.fit,
+        imageZoom:img.dataset.zoom,
+        imageX:img.dataset.x,
+        imageY:img.dataset.y
+      });
+      scheduleSave();
+    });
+    productList.addEventListener("change",event=>{
+      if(event.target.matches(".service-selector")){
+        updateSelectionUi();
+        return;
+      }
+      if(event.target.closest("[data-adjust]")) commitState();
+    });
+
+    $("#imagePicker").addEventListener("change",event=>{
+      const file=event.target.files[0];
+      if(!file || activeImageIndex===null) return;
+      const reader=new FileReader();
+      reader.onload=()=>{
+        const items=collect();
+        if(items[activeImageIndex]){
+          items[activeImageIndex].image=reader.result;
+          render(items);
+          notify(file.type==="image/gif"?"この商品だけにGIFを入れました。完成HTMLでも動きます。":"この商品だけに画像を入れました。");
+        }
+      };
+      reader.readAsDataURL(file);
+      event.target.value="";
+    });
+
+    $("#aiFile").addEventListener("change",event=>{
+      const file=event.target.files[0];
+      if(!file) return;
+      const reader=new FileReader();
+      reader.onload=()=>{
+        $("#aiOutput").value=String(reader.result||"");
+        applyAiText($("#aiOutput").value);
+      };
+      reader.readAsText(file,"UTF-8");
+      event.target.value="";
+    });
+
+    $("#projectPicker").addEventListener("change",event=>{
+      const file=event.target.files[0];
+      if(!file) return;
+      const reader=new FileReader();
+      reader.onload=()=>loadProjectText(String(reader.result||""));
+      reader.readAsText(file,"UTF-8");
+      event.target.value="";
+    });
+
+    $("#preview").addEventListener("input",event=>{
+      if(event.target.classList.contains("description")) event.target.classList.remove("empty");
+      if(event.target.id==="heroTitle") $("#pageTitle").value=event.target.textContent.trim();
+      if(event.target.closest("[data-service-field]")){
+        const card=event.target.closest(".product-card");
+        syncSourceList(collect());
+        card.classList.add("is-edited");
+        clearTimeout(card.editSavedTimer);
+        card.editSavedTimer=setTimeout(()=>card.classList.remove("is-edited"),1800);
+      }
+      syncHeaderInputs();
+      updatePrompt();scheduleSave();
+    });
+    $("#preview").addEventListener("focusout",event=>{
+      if(event.target.closest("[data-service-field]")) syncSourceList(collect());
+      commitState();
+    });
+    $("#listInput").addEventListener("compositionstart",()=>{isComposingList=true});
+    $("#listInput").addEventListener("compositionend",()=>{isComposingList=false;updateListDraft()});
+    $("#listInput").addEventListener("input",()=>{if(!isComposingList) updateListDraft()});
+    $("#listInput").addEventListener("paste",()=>{setTimeout(updateListDraft,0)});
+    $("#aiOutput").addEventListener("input",scheduleSave);
+    $("#pageTitle").addEventListener("input",()=>{$("#heroTitle").textContent=$("#pageTitle").value;scheduleSave()});
+    headerBindings.forEach(([inputSelector,previewSelector])=>{
+      $(inputSelector).addEventListener("input",()=>{
+        $(previewSelector).textContent=$(inputSelector).value;
+        if(previewSelector==="#footerLink") updateFooterLink();
+        scheduleSave();
+      });
+      $(inputSelector).addEventListener("change",commitState);
+    });
+    $("#footerLinkUrlInput").addEventListener("input",()=>{updateFooterLink();scheduleSave()});
+    $("#footerLinkUrlInput").addEventListener("change",commitState);
+    $("#makeCardsBtn").addEventListener("click",()=>makeCards());
+    $("#copyPromptBtn").addEventListener("click",()=>copyText($("#promptOutput").value,"AI用プロンプトをコピーしました。"));
+    $("#applyAiBtn").addEventListener("click",()=>applyAiText($("#aiOutput").value));
+    $("#copyHtmlBtn").addEventListener("click",()=>copyText(cleanExport(),"完成HTMLをコピーしました。"));
+    $("#downloadBtn").addEventListener("click",downloadExport);
+    $("#saveProjectBtn").addEventListener("click",downloadProject);
+    $("#loadProjectBtn").addEventListener("click",()=>$("#projectPicker").click());
+    $("#modalCopy").addEventListener("click",()=>copyText(cleanExport(),"完成HTMLをコピーしました。"));
+    $("#modalDownload").addEventListener("click",downloadExport);
+    $("#showCodeBtn").addEventListener("click",()=>{$("#exportCode").value=cleanExport();$("#codeModal").classList.remove("hidden")});
+    $("#closeModal").addEventListener("click",()=>$("#codeModal").classList.add("hidden"));
+    $("#codeModal").addEventListener("click",event=>{if(event.target.id==="codeModal") event.currentTarget.classList.add("hidden")});
+    $("#selectAllServices").addEventListener("change",event=>{
+      productList.querySelectorAll(".service-selector").forEach(input=>{input.checked=event.target.checked});
+      updateSelectionUi();
+    });
+    $("#deleteSelectedBtn").addEventListener("click",deleteSelectedServices);
+    $("#deleteAllBtn").addEventListener("click",()=>{
+      const items=collect();
+      if(!items.length){notify("削除できるサービスがありません。",true);return}
+      if(!confirm(`表示中の${items.length}件をすべて削除しますか？`)) return;
+      syncSourceList([]);
+      render([]);
+      notify(`${items.length}件をすべて削除しました。商品リストとAI用プロンプトも空にしました。`);
+    });
+    $("#addBtn").addEventListener("click",()=>addServiceAt(collect().length));
+    $("#addServiceTopBtn").addEventListener("click",()=>addServiceAt(collect().length));
+    $("#removeLastBtn").addEventListener("click",()=>{
+      const items=collect();
+      if(!items.length){notify("削除できるサービスがありません。",true);return}
+      const target=items[items.length-1];
+      if(!confirm(`最後のサービス「${target.name}」を削除しますか？`)) return;
+      items.pop();
+      syncSourceList(items);
+      render(items);
+      notify(`${items.length}件になりました。削除したサービスは商品リストとAI用プロンプトからも消えています。`);
+    });
+    $("#undoBtn").addEventListener("click",()=>{if(historyIndex>0){historyIndex--;restoreState(history[historyIndex]);updateHistoryButtons()}});
+    $("#redoBtn").addEventListener("click",()=>{if(historyIndex<history.length-1){historyIndex++;restoreState(history[historyIndex]);updateHistoryButtons()}});
+    $("#resetBtn").addEventListener("click",()=>{
+      if(!confirm("現在の編集内容を消して、商品0件の初期状態へ戻しますか？")) return;
+      localStorage.removeItem(storageKey);
+      $("#listInput").value=initialText;
+      $("#pageTitle").value="商品・サービス一覧";
+      resetHeader();
+      $("#aiOutput").value="";
+      render([]);
+      syncSourceList([]);
+      $("#heroTitle").textContent=$("#pageTitle").value;
+      $("#listReplaceResult").textContent="✓ 商品0件の初期状態へ戻しました。";
+      notify("初期状態へ戻しました。旧メニューは残っていません。");
+    });
+
+    try{
+      const saved=localStorage.getItem(storageKey) || localStorage.getItem(previousStorageKey);
+      if(saved){
+        restoreState(saved);
+        const shownItems=collect();
+        syncSourceList(shownItems);
+        localStorage.setItem(storageKey,snapshot());
+        history.push(snapshot());
+        historyIndex=0;
+        updateHistoryButtons();
+        $("#saveState").textContent="前回の内容を復元・自動保存";
+        notify("前回の編集状態を復元しました。各サービスを追加・修正できます。");
+      }
+      else{
+        $("#pageTitle").value="商品・サービス一覧";
+        $("#heroTitle").textContent=$("#pageTitle").value;
+        render([],false);
+        syncSourceList([]);
+        history.push(snapshot());
+        historyIndex=0;
+        updateHistoryButtons();
+        $("#saveState").textContent="自動保存済み";
+        $("#listReplaceResult").textContent="今回の商品リストを貼り付けてください。旧メニューは入っていません。";
+      }
+    }catch(error){
+      render([],false);
+      syncSourceList([]);
+    }
+  })();
+  </script>
+</body>
+</html>
