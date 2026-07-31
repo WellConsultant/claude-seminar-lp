@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>杉本健様｜補助金実務パートナー 戦略ミーティング 議事録 兼 ご提案書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0E2A47;
+  --navy-deep:#071A2E;
+  --navy-mid:#1B4670;
+  --gold:#C9A227;
+  --gold-dark:#7E6112;
+  --ink:#16202B;
+  --body:#33414F;
+  --muted:#67757F;
+  --line:#DCE3EA;
+  --tint:#F3F7FA;
+  --gold-tint:#FBF6E7;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  background:#0B1520;
+  font-family:'Noto Sans JP',sans-serif;
+  color:var(--ink);
+  overflow:hidden;
+}
+
+/* ===== ステージ ===== */
+#viewport{
+  position:fixed;inset:0;
+  display:flex;align-items:center;justify-content:center;
+}
+#stage{
+  width:1280px;height:720px;
+  transform-origin:center center;
+  position:relative;
+  box-shadow:0 24px 80px rgba(0,0,0,.55);
+  background:#fff;
+}
+.slide{
+  position:absolute;inset:0;
+  width:1280px;height:720px;
+  background:#fff;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+.slide.active{display:flex;}
+
+/* ===== ヘッダー / フッター ===== */
+.s-head{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:40px 64px 0 64px;flex-shrink:0;
+}
+.mark{display:flex;align-items:center;padding-top:6px;flex-shrink:0;}
+.mark i{
+  display:inline-block;width:0;height:0;
+  border-top:13px solid transparent;border-bottom:13px solid transparent;
+  border-left:16px solid var(--gold);margin-right:3px;
+}
+.mark i:first-child{border-left-color:var(--navy);}
+.h-txt{flex:1;}
+.h-title{font-size:32px;font-weight:900;color:var(--navy);letter-spacing:.04em;line-height:1.25;}
+.h-sub{font-size:15px;font-weight:500;color:var(--muted);margin-top:6px;letter-spacing:.03em;}
+.h-rule{height:3px;background:linear-gradient(90deg,var(--navy) 0 120px,var(--gold) 120px 190px,var(--line) 190px);margin:16px 64px 0 64px;flex-shrink:0;}
+
+.s-foot{
+  height:40px;background:var(--navy);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px 0 64px;flex-shrink:0;margin-top:auto;
+}
+.s-foot span{color:#B9C7D6;font-size:11.5px;font-weight:500;letter-spacing:.05em;}
+.s-foot .pg{color:#fff;font-weight:700;font-size:12px;}
+
+/* ===== 本文エリア ===== */
+.s-body{flex:1;padding:26px 64px 22px 64px;overflow:hidden;display:flex;flex-direction:column;}
+.cols{display:flex;gap:32px;flex:1;min-height:0;}
+.c-l{width:34%;flex-shrink:0;}
+.c-r{flex:1;min-width:0;}
+.c-half{flex:1;min-width:0;}
+
+.lead{font-size:25px;font-weight:900;color:var(--navy);line-height:1.5;letter-spacing:.01em;margin-bottom:16px;}
+.lead .g{color:var(--gold-dark);}
+.lead-s{font-size:20px;font-weight:900;color:var(--navy);line-height:1.5;margin-bottom:12px;}
+p.t{font-size:15.5px;line-height:1.85;color:var(--body);margin-bottom:12px;}
+p.t.sm{font-size:14.5px;line-height:1.8;}
+.eyebrow{font-size:12.5px;font-weight:700;color:var(--gold-dark);letter-spacing:.14em;margin-bottom:10px;}
+
+ul.list{list-style:none;}
+ul.list li{
+  font-size:15px;line-height:1.75;color:var(--body);
+  padding:7px 0 7px 22px;position:relative;
+}
+ul.list li::before{
+  content:'';position:absolute;left:2px;top:15px;
+  width:7px;height:7px;background:var(--gold);transform:rotate(45deg);
+}
+ul.list li b{color:var(--navy);font-weight:700;}
+ul.list.tight li{padding:5px 0 5px 22px;font-size:14.5px;line-height:1.7;}
+ul.list.tight li::before{top:13px;}
+
+.card{background:var(--tint);border-radius:6px;padding:20px 22px;border-left:5px solid var(--navy);}
+.card.gold{background:var(--gold-tint);border-left-color:var(--gold);}
+.card + .card{margin-top:14px;}
+.card h4{font-size:16.5px;font-weight:900;color:var(--navy);margin-bottom:8px;}
+.card p{font-size:14.5px;line-height:1.75;color:var(--body);}
+
+.quote{
+  background:var(--navy);color:#fff;border-radius:6px;
+  padding:18px 24px;margin-top:auto;
+}
+.quote p{font-size:15px;line-height:1.75;color:#E4ECF4;}
+.quote p b{color:var(--gold);font-weight:700;}
+
+.meta{border-top:1px solid var(--line);}
+.meta div{display:flex;border-bottom:1px solid var(--line);padding:9px 0;}
+.meta dt{width:104px;flex-shrink:0;font-size:13.5px;font-weight:700;color:var(--navy);}
+.meta dd{font-size:14.5px;color:var(--body);line-height:1.6;}
+
+/* 表紙 */
+.cover{background:var(--navy);position:relative;overflow:hidden;}
+.cover::after{
+  content:'';position:absolute;right:-160px;bottom:-200px;
+  width:620px;height:620px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,rgba(201,162,39,.30),rgba(201,162,39,0) 70%);
+}
+.cover-in{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 84px;}
+.cover-tag{
+  display:inline-block;align-self:flex-start;
+  border:1px solid rgba(201,162,39,.7);color:var(--gold);
+  font-size:13px;font-weight:700;letter-spacing:.12em;
+  padding:7px 16px;border-radius:2px;margin-bottom:30px;
+}
+.cover h1{
+  font-family:'Noto Serif JP',serif;
+  font-size:52px;font-weight:900;color:#fff;line-height:1.42;letter-spacing:.02em;
+}
+.cover h1 em{font-style:normal;color:var(--gold);}
+.cover .cover-sub{font-size:18px;color:#C6D4E2;line-height:1.8;margin-top:26px;font-weight:500;}
+.cover-line{width:88px;height:4px;background:var(--gold);margin:34px 0 26px;}
+.cover-to{font-size:22px;font-weight:700;color:#fff;letter-spacing:.04em;}
+.cover-from{font-size:14.5px;color:#9FB2C4;margin-top:10px;line-height:1.8;}
+
+/* 中扉 */
+.divider{background:var(--navy);position:relative;overflow:hidden;}
+.divider::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--gold);
+}
+.divider-in{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 88px;position:relative;z-index:2;}
+.divider .no{font-size:15px;font-weight:700;color:var(--gold);letter-spacing:.24em;margin-bottom:20px;}
+.divider h2{font-family:'Noto Serif JP',serif;font-size:56px;font-weight:900;color:#fff;line-height:1.36;letter-spacing:.03em;}
+.divider .en{font-size:19px;font-weight:700;color:#8FA6BC;letter-spacing:.18em;margin-top:22px;}
+.divider .dsub{font-size:16px;color:#C6D4E2;line-height:1.85;margin-top:24px;max-width:820px;}
+
+/* VS */
+.vs{display:flex;align-items:stretch;gap:0;flex:1;min-height:0;}
+.vs-box{flex:1;border-radius:6px;padding:22px 24px;display:flex;flex-direction:column;}
+.vs-box.a{background:#F1F3F5;border:1px solid #DDE2E7;}
+.vs-box.b{background:var(--gold-tint);border:2px solid var(--gold);}
+.vs-lab{font-size:12px;font-weight:700;letter-spacing:.1em;margin-bottom:4px;}
+.vs-box.a .vs-lab{color:#8A949E;}
+.vs-box.b .vs-lab{color:var(--gold-dark);}
+.vs-ttl{font-size:21px;font-weight:900;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid;}
+.vs-box.a .vs-ttl{color:#5D6A76;border-color:#CFD6DD;}
+.vs-box.b .vs-ttl{color:var(--navy);border-color:var(--gold);}
+.vs-mid{width:66px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.vs-circ{
+  width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:.04em;
+}
+
+/* グリッド */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1;min-height:0;align-content:stretch;}
+.g-card{
+  background:#fff;border:1px solid var(--line);border-top:4px solid var(--navy);
+  border-radius:5px;padding:20px 20px;display:flex;flex-direction:column;
+}
+.g-card .g-no{font-size:12px;font-weight:900;color:var(--gold-dark);letter-spacing:.12em;margin-bottom:8px;}
+.g-card h4{font-size:18px;font-weight:900;color:var(--navy);margin-bottom:9px;line-height:1.4;}
+.g-card p{font-size:13.5px;line-height:1.7;color:var(--body);}
+
+/* プロセス */
+.proc{display:flex;align-items:stretch;gap:8px;}
+.proc-step{
+  flex:1;background:var(--tint);border-radius:5px;padding:14px 12px;text-align:center;
+  border-bottom:3px solid var(--navy);
+}
+.proc-step .n{font-size:11px;font-weight:900;color:var(--gold-dark);letter-spacing:.1em;}
+.proc-step .t{font-size:14px;font-weight:900;color:var(--navy);margin-top:5px;line-height:1.4;}
+.proc-arrow{display:flex;align-items:center;color:var(--gold);font-size:19px;font-weight:900;flex-shrink:0;}
+
+/* プラン */
+.plans{display:grid;grid-template-columns:1fr 1.14fr 1fr;gap:16px;flex:1;min-height:0;}
+.plan{border:1px solid var(--line);border-radius:6px;padding:20px 20px;display:flex;flex-direction:column;background:#fff;}
+.plan.reco{border:2px solid var(--gold);background:var(--gold-tint);position:relative;}
+.plan .badge{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:#241C00;font-size:11.5px;font-weight:900;
+  padding:5px 16px;border-radius:20px;letter-spacing:.08em;white-space:nowrap;
+}
+.plan h4{font-size:19px;font-weight:900;color:var(--navy);margin-bottom:4px;}
+.plan .who{font-size:12.5px;color:var(--gold-dark);font-weight:700;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+.plan ul{list-style:none;flex:1;}
+.plan ul li{font-size:13px;line-height:1.65;color:var(--body);padding:5px 0 5px 17px;position:relative;}
+.plan ul li::before{content:'✓';position:absolute;left:0;top:5px;color:var(--gold-dark);font-weight:900;font-size:12px;}
+
+/* ロードマップ */
+.road{display:flex;gap:8px;align-items:flex-start;margin-bottom:20px;}
+.road-c{flex:1;background:#fff;border:1px solid var(--line);border-radius:5px;padding:16px 14px;display:flex;flex-direction:column;}
+.road-c .day{font-size:11.5px;font-weight:900;color:#fff;background:var(--navy);display:inline-block;padding:4px 9px;border-radius:3px;align-self:flex-start;letter-spacing:.04em;}
+.road-c h4{font-size:16px;font-weight:900;color:var(--navy);margin:11px 0 8px;line-height:1.4;}
+.road-c p{font-size:12.8px;line-height:1.7;color:var(--body);}
+.road-c.hi{background:var(--gold-tint);border-color:var(--gold);}
+.road-c.hi .day{background:var(--gold-dark);}
+
+/* CTA */
+.cta{background:var(--navy);}
+.cta-in{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 84px;}
+.cta h2{font-family:'Noto Serif JP',serif;font-size:44px;font-weight:900;color:#fff;line-height:1.4;}
+.cta h2 em{font-style:normal;color:var(--gold);}
+.cta .cta-body{font-size:16.5px;color:#C6D4E2;line-height:1.9;margin-top:24px;max-width:880px;}
+.cta-box{
+  margin-top:32px;background:rgba(255,255,255,.06);border:1px solid rgba(201,162,39,.45);
+  border-radius:6px;padding:22px 28px;display:flex;gap:44px;align-items:center;
+}
+.cta-box .k{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.12em;margin-bottom:7px;}
+.cta-box .v{font-size:19px;font-weight:900;color:#fff;letter-spacing:.02em;}
+.cta-box .v small{font-size:14px;font-weight:500;color:#C6D4E2;display:block;margin-top:5px;letter-spacing:0;}
+
+/* ===== ナビゲーション ===== */
+#nav{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:10px;
+  background:rgba(7,26,46,.94);border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;padding:8px 10px;z-index:100;
+  box-shadow:0 8px 28px rgba(0,0,0,.45);
+}
+#nav button{
+  min-width:48px;height:48px;border-radius:999px;border:none;
+  background:rgba(255,255,255,.10);color:#fff;font-size:17px;cursor:pointer;
+  font-family:inherit;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;padding:0 14px;
+}
+#nav button:hover{background:var(--gold);color:#241C00;}
+#nav button:active{transform:translateY(1px);}
+#nav button:focus-visible{outline:3px solid var(--gold);outline-offset:2px;}
+#nav button[disabled]{opacity:.32;cursor:not-allowed;background:rgba(255,255,255,.06);}
+#nav button[disabled]:hover{background:rgba(255,255,255,.06);color:#fff;}
+#counter{color:#fff;font-size:14px;font-weight:700;padding:0 14px;letter-spacing:.06em;min-width:82px;text-align:center;}
+#counter small{color:#8FA6BC;font-weight:500;}
+#bar{position:fixed;top:0;left:0;height:4px;background:var(--gold);z-index:101;transition:width .25s ease;}
+#hint{
+  position:fixed;bottom:22px;right:24px;z-index:100;
+  color:#7E93A8;font-size:12px;letter-spacing:.04em;
+}
+
+@media print{
+  body{background:#fff;overflow:visible;}
+  #viewport{position:static;display:block;}
+  #stage{transform:none!important;box-shadow:none;width:1280px;height:auto;}
+  .slide{display:flex!important;position:relative;page-break-after:always;}
+  #nav,#bar,#hint{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div id="bar" style="width:0%"></div>
+
+<div id="viewport">
+<div id="stage">
+
+<!-- ============ 01 表紙 ============ -->
+<section class="slide cover active">
+  <div class="cover-in">
+    <span class="cover-tag">2026.07.31 個別ミーティング　議事録 兼 ご提案書</span>
+    <h1>手続きが煩雑な補助金こそ、<br><em>行政書士の主戦場</em>です。</h1>
+    <div class="cover-sub">本日お伺いしたご状況の整理と、<br>「補助金実務パートナー」としてご一緒する場合のご提案。</div>
+    <div class="cover-line"></div>
+    <div class="cover-to">杉本 健 様</div>
+    <div class="cover-from">ご提案者：阿久津 和宏（行政書士）<br>info@fp-1.info ／ https://fp-1.info</div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">01</span></div>
+</section>
+
+<!-- ============ 02 議事録サマリー ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">本ミーティングの記録</div>
+      <div class="h-sub">MINUTES ／ 実施概要と、本日合意できた3つの論点</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="cols">
+      <div class="c-l">
+        <div class="eyebrow">実 施 概 要</div>
+        <dl class="meta">
+          <div><dt>日　時</dt><dd>2026年7月31日（金）</dd></div>
+          <div><dt>形　式</dt><dd>オンライン個別ミーティング（約60分）</dd></div>
+          <div><dt>出席者</dt><dd>杉本 健 様（行政書士）<br>阿久津 和宏</dd></div>
+          <div><dt>目　的</dt><dd>補助金実務パートナー<br>戦略ミーティング</dd></div>
+          <div><dt>次　回</dt><dd>ご検討期限：2026年8月2日</dd></div>
+        </dl>
+      </div>
+      <div class="c-r">
+        <div class="eyebrow">本 日 の 要 点</div>
+        <div class="card">
+          <h4>01　杉本様は、すでに「補助金の当事者経験」をお持ちである</h4>
+          <p>ものづくり補助金に外注業者（専門家）側として参加され、専門家報告書の作成や見積書の作り直しまで対応された経験がある。この「発注される側の煩雑さ」を実体験として語れる行政書士は多くない。</p>
+        </div>
+        <div class="card">
+          <h4>02　狙う領域は「計画書型」ではなく「手続き型」である</h4>
+          <p>杉本様からご提示いただいた国土交通省系（CO2削減計画の策定支援等）の切り口は、経産省系に比べ情報が整理されておらず、競合がほぼ存在しない。契約書実務の思考がそのまま活きる領域。</p>
+        </div>
+        <div class="card gold">
+          <h4>03　不足しているのは知識ではなく「環境」である</h4>
+          <p>補助金実務は難易度ではなく責任と手数の問題。毎回ルールが変わるため、都度の勉強では追いつかない。すでに整備済みの型・ツール・情報網を使う前提に切り替えることを提案。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">02</span></div>
+</section>
+
+<!-- ============ 03 ご状況の整理 ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">杉本様のご状況（お伺いした内容の整理）</div>
+      <div class="h-sub">CURRENT STATUS ／ 開業4年目・契約書実務を主軸とする行政書士事務所</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="cols">
+      <div class="c-l">
+        <p class="lead">契約書という<br><span class="g">「文書で守る」</span>領域を<br>すでに確立されている。</p>
+        <p class="t sm">前職は学習塾講師（中学受験・高校受験専門）。未経験の科目を担当しながら並行して習得された経験があり、新領域への学習耐性が高い。開業後は「継続的に依頼が入りやすい領域」を意図して選択されている。</p>
+      </div>
+      <div class="c-r">
+        <div class="eyebrow">主 な 取 扱 業 務</div>
+        <ul class="list tight">
+          <li><b>契約書作成（主軸）</b>　業務委託契約書、NDA、利用規約 ほか</li>
+          <li><b>民事系文書</b>　離婚協議書、婚前契約書、内容証明</li>
+          <li><b>LGBT関連の不動産取得支援</b>　パートナーシップ合意書、任意後見契約書の作成。最終的な提出先は不動産会社</li>
+          <li><b>士業・企業との連携</b>　事業会社へ架電し、行政書士業務の提携先を自ら開拓中</li>
+        </ul>
+        <div style="height:14px"></div>
+        <div class="eyebrow">顧 客 構 成 と 集 客 経 路</div>
+        <ul class="list tight">
+          <li><b>BtoC 約7割 ／ BtoB 約3割</b>　実質的に消費者案件が中心</li>
+          <li><b>集客は紹介が中心</b>　加えてミツモア・ココナラを併用（受注は内容証明が多く、そこから契約書作成へ派生するケースあり）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">03</span></div>
+</section>
+
+<!-- ============ 04 課題とご意向 ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">お伺いした課題と、ご意向</div>
+      <div class="h-sub">ISSUES ／ ミーティング中に明確になったこと</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="cols">
+      <div class="c-l">
+        <p class="lead"><span class="g">BtoBの案件を、</span><br>増やしたい。</p>
+        <p class="t sm">これは本日、杉本様ご自身のお言葉として明確にご提示いただいた方向性です。以降のご提案は、すべてこの一点を軸に組み立てています。</p>
+      </div>
+      <div class="c-r">
+        <div class="card">
+          <h4>顧客構成が消費者側に寄っている</h4>
+          <p>離婚協議書・婚前契約書・内容証明といった主力業務の性質上、依頼者が個人となる。不動産会社へ提出する書類も、依頼者本人は消費者であるため、実質的にBtoCへ集約されやすい。</p>
+        </div>
+        <div class="card">
+          <h4>「開拓されていない分野」を求めている</h4>
+          <p>業務選定の基準として「継続的に依頼が入るか」「他がまだ手をつけていないか」を重視されている。今回の補助金実務にご関心を持たれた理由も、まさにこの2点であるとお伺いした。</p>
+        </div>
+        <div class="card gold">
+          <h4>情報の入口を持っていない</h4>
+          <p>ドローン事業者から国交省補助金の書類作成を依頼された際、該当する公募が見つからず、代替案の提示にも至らずに失注。「どの補助金が今あり、自社に何が向くか」を把握していない事業者は非常に多く、その手前で機会が失われている。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">04</span></div>
+</section>
+
+<!-- ============ 05 既に持っている強み ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">すでにお持ちの、希少な経験</div>
+      <div class="h-sub">HIDDEN ASSET ／ 補助金を「発注される側」から見た経験</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="cols">
+      <div class="c-l">
+        <p class="lead">補助金を、<br><span class="g">業者側から</span><br>経験している。</p>
+        <p class="t sm">申請支援者としてではなく、補助対象経費を提供する事業者としての実務経験。この視点を持つ行政書士は、実務市場においてほとんど存在しません。</p>
+      </div>
+      <div class="c-r">
+        <div class="eyebrow">ものづくり補助金／専門家経費としての参加</div>
+        <ul class="list tight">
+          <li>クライアントが杉本様の業務を補助対象経費として計上。<b>専門家報告書</b>の作成まで対応された</li>
+          <li>通常どおり提出した見積書が<b>「対象経費にならない」と差し戻され、書式から作り直し</b>を求められた</li>
+          <li>そこから「業者側でもこの手間なら、<b>採択事業者本人はもっと負担が大きいはずだ</b>」という着想を得られた</li>
+          <li>「業務量に対して報酬設定が低かった。もう少し高く設定すべきだった」というご実感も、そのまま提案材料になる</li>
+        </ul>
+        <div style="height:12px"></div>
+        <div class="eyebrow">その他の補助金関連実績</div>
+        <ul class="list tight">
+          <li><b>東京都の感染症対策補助金</b>　知人の飲食店（空調設備の更新）で申請支援を1件受注</li>
+          <li><b>新宿区の広告費補助金</b>　営業の切り口として活用した経験あり</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">
+      <p>「業者側でも面倒だった」という体験は、<b>見込み客の痛みを言語化できる資産</b>です。補助金の受注は、突き詰めれば<b>不安と面倒に対して売る商売</b>。それを実感として語れる方は、説得力の初速がまったく違います。</p>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">05</span></div>
+</section>
+
+<!-- ============ 06 中扉 ============ -->
+<section class="slide divider">
+  <div class="divider-in">
+    <div class="no">S T R A T E G Y</div>
+    <h2>その経験を、<br>収益源に変えます。</h2>
+    <div class="en">FROM EXPERIENCE TO REVENUE</div>
+    <div class="dsub">ここからは、本日のお話をふまえた「杉本様が狙うべき市場」についての、私からの見立てを3点に絞ってご説明します。</div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">06</span></div>
+</section>
+
+<!-- ============ 07 見立て1 ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">見立て①　国土交通省系という「空白地帯」</div>
+      <div class="h-sub">MARKET ／ 杉本様からご提示いただいた切り口を、市場性の観点から評価する</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="cols">
+      <div class="c-l">
+        <p class="lead">ライバルが、<br><span class="g">ほぼいません。</span></p>
+        <p class="t sm">本日ご共有いただいた国土交通省のCO2削減計画策定支援に関する補助金。この着眼点は、市場性の観点から見て的確です。</p>
+        <div class="card gold" style="margin-top:16px">
+          <p>「営業段階で事業者に提案し、面倒な手続きは自分が引き受ける」という杉本様の構想は、この領域でそのまま成立します。</p>
+        </div>
+      </div>
+      <div class="c-r">
+        <div class="eyebrow">なぜ空白地帯なのか</div>
+        <ul class="list tight">
+          <li><b>情報が整理されていない</b>　経産省系のように公募情報がまとまっておらず、探すこと自体に手間がかかる。その手間が、そのまま参入障壁として機能している</li>
+          <li><b>対象が限定的で、規模が小さい</b>　中小企業向けの経産省系補助金とは対象要件が異なり、多くの支援者が最初から見ていない</li>
+          <li><b>建設業に強い行政書士は、補助金をほぼ扱えていない</b>　許認可専門で棲み分けが進んでおり、補助金まで手が回っていないケースが大半</li>
+          <li><b>一度入ると数年続く</b>　対象事業者数は少ないが、当たれば継続的な関係になりやすい</li>
+        </ul>
+        <div style="height:12px"></div>
+        <div class="eyebrow">同じ構造を持つ隣接領域</div>
+        <p class="t sm">介護・福祉、居住支援法人など、経産省系の補助金要件に合致しない業種にも同種の空白があります。「この分野にやたら詳しい人」というポジションは、この規模の市場でこそ短期間で確立できます。</p>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">07</span></div>
+</section>
+
+<!-- ============ 08 見立て2（VS） ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">見立て②　「計画書型」ではなく「手続き型」を獲る</div>
+      <div class="h-sub">POSITIONING ／ 契約書実務の思考が、そのまま武器になる領域</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="vs">
+      <div class="vs-box a">
+        <div class="vs-lab">A P P R O A C H  1</div>
+        <div class="vs-ttl">計画書型（新規申請の提案勝負）</div>
+        <ul class="list tight">
+          <li>ものづくり・持続化などの新規申請が中心</li>
+          <li>コンサルタント・中小企業診断士と正面から競合</li>
+          <li>事業計画の構想力と文章力の勝負になる</li>
+          <li>採択で関係が終わりやすく、単発化しやすい</li>
+          <li>「補助金やりませんか」という動機付けから始める必要がある</li>
+        </ul>
+      </div>
+      <div class="vs-mid"><div class="vs-circ">VS</div></div>
+      <div class="vs-box b">
+        <div class="vs-lab">A P P R O A C H  2　＜ 杉本様の適性 ＞</div>
+        <div class="vs-ttl">手続き型（交付申請・実績報告）</div>
+        <ul class="list tight">
+          <li>交付申請、実績報告、国交省系など手続き主体の領域</li>
+          <li>競合がほぼ存在しない。放置されている事業者が多い</li>
+          <li><b>要件を満たしているか、証拠書類が揃っているか</b>の精度勝負。契約書実務とまったく同じ思考</li>
+          <li>採択後に発生するため、案件が自動的に続く</li>
+          <li>省力化投資補助金の交付申請など、行政書士として代行できる領域が明確に存在する</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">
+      <p>補助金実務は、<b>難しいのではありません。責任が重いのです。</b>要件充足と証拠書類の確認という作業そのものは、行政書士の仕事と何ら変わりません。違うのは、相手方に話の通じない担当者が一定数いること。そこに耐えられるかどうかだけです。</p>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">08</span></div>
+</section>
+
+<!-- ============ 09 見立て3 ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">見立て③　補助金は、最も顧客化しやすい「フック」</div>
+      <div class="h-sub">SALES LOGIC ／ BtoB案件を増やすための最短経路</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="cols">
+      <div class="c-l">
+        <p class="lead">いつでもある。<br>しかも<span class="g">締切がある。</span></p>
+        <p class="t sm">この2つを同時に備えた商材は、士業の取扱業務のなかで補助金だけです。だから先送りされず、決断が早い。</p>
+      </div>
+      <div class="c-r">
+        <ul class="list">
+          <li><b>許認可は、タイミングが来ないと発生しない。</b>相手の事業判断を待つしかなく、こちらから案件を作れない</li>
+          <li><b>他の業務は、「やりたい」と思ってもらう必要がある。</b>需要が顕在化していない状態から動機付けを行うため、成約までが遠い</li>
+          <li><b>補助金は年間を通じて公募がある。</b>そのうえ締切が明確なので、「考えておきます」で流れにくい</li>
+          <li><b>既存の接点に聞くだけで、案件が出る。</b>契約書でご縁のあった事業者に「補助金で困っていませんか」「そういう方をご紹介いただけませんか」と聞くだけでよい。採択後に放置されている事業者は、想像以上に多い</li>
+          <li><b>入口が実績報告でも、そこから広がる。</b>次年度の申請、関連会社の案件、経費対象となる自社サービスの提案へと展開できる</li>
+        </ul>
+        <div class="card gold" style="margin-top:14px">
+          <p>不動産会社は補助金と相性が悪いと思われがちですが、<b>新規事業や関連会社での飲食店運営</b>など、切り口は必ず存在します。既存の関係先こそ、最初に当たるべきリストです。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">09</span></div>
+</section>
+
+<!-- ============ 10 中扉 ============ -->
+<section class="slide divider">
+  <div class="divider-in">
+    <div class="no">O U R  S U P P O R T</div>
+    <h2>お渡しするのは、<br>知識ではなく「環境」です。</h2>
+    <div class="en">WHAT WE PROVIDE</div>
+    <div class="dsub">補助金は毎回ルールが変わります。だからこそ、都度学び直す前提ではなく、すでに整備された型とツールの上で動く前提に切り替えていただきます。以下はすべて、私自身が自分の実務のために作り、現在も更新し続けているものです。</div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">10</span></div>
+</section>
+
+<!-- ============ 11 全体像 ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">ご提供する環境の全体像</div>
+      <div class="h-sub">OVERVIEW ／ 集客から実務、リピート・アップセルまでを一本で通す</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="grid3">
+      <div class="g-card">
+        <div class="g-no">0 1</div>
+        <h4>集客の仕組み</h4>
+        <p>リスト収集ツール、FAX DM・ホームDM・メールDMのテンプレート、自動集客テンプレート、補助金専用サイト、ニュースレター。</p>
+      </div>
+      <div class="g-card">
+        <div class="g-no">0 2</div>
+        <h4>情報の仕組み</h4>
+        <p>ほぼ毎日配信される補助金情報グループ、未知の補助金・許認可を即座に調べる情報収集ツール、補助金別の実務マニュアル。</p>
+      </div>
+      <div class="g-card">
+        <div class="g-no">0 3</div>
+        <h4>申請実務の型</h4>
+        <p>ヒアリングと基本データの作り方、AIプロンプト生成ツール、事業計画書の設計、加点テンプレート一式。</p>
+      </div>
+      <div class="g-card">
+        <div class="g-no">0 4</div>
+        <h4>交付申請・実績報告</h4>
+        <p>補正・不備への対応手順、「事務局が何を言っているのか分からない」事例集、AIを使った処理の型。</p>
+      </div>
+      <div class="g-card">
+        <div class="g-no">0 5</div>
+        <h4>新しい入口</h4>
+        <p>デジタル化・AI導入補助金における「支援事業者側」への登録サポート。近時もっとも手応えのある領域。</p>
+      </div>
+      <div class="g-card">
+        <div class="g-no">0 6</div>
+        <h4>パートナーシップ</h4>
+        <p>24時間のチャットサポート、オンライン相談、顧客ミーティングへの同席、案件の共同受注と利益シェア。</p>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">11</span></div>
+</section>
+
+<!-- ============ 12 集客 ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">01　集客の仕組み</div>
+      <div class="h-sub">MARKETING ／ 「誰に当てるか」から「どう会うか」までを、道具で埋める</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="cols">
+      <div class="c-l">
+        <p class="lead">見込み客は、<br><span class="g">無限にいます。</span></p>
+        <p class="t sm">補助金の採択事業者は毎年生まれ続け、その多くが採択後に放置されています。問題は「いるかどうか」ではなく、そこに当てる手段を持っているかどうかです。</p>
+      </div>
+      <div class="c-r">
+        <ul class="list tight">
+          <li><b>リスト収集ツール</b>　採択者リストのリスト化、Googleマップ経由での業種別収集。目安として月500〜1,000件規模。住所まで取得可能で、FAXが登録されている先も多い</li>
+          <li><b>DMテンプレート一式</b>　FAX DM、ホームDM、メールDM。当方で実際に成果の出た文面をそのままご提供</li>
+          <li><b>自動集客テンプレート</b>　問い合わせから個別相談の予約までを一直線に設計。「電話が繋がらない」「無料相談を予約したのに来ない」を構造的に潰す</li>
+          <li><b>補助金専用サイト（ファネルハブ）</b>　通常の事務所サイトとは別に、補助金対応の専門性を示す一枚を用意する</li>
+          <li><b>ニュースレター</b>　新規より既存。面識のある相手が買う。作成テンプレートのご提供、またはプランにより制作・発送の代行まで対応</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">12</span></div>
+</section>
+
+<!-- ============ 13 申請実務の型 ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">02　申請実務の型 ── AIに「考えさせない」</div>
+      <div class="h-sub">METHOD ／ AIで書けばいいと言っている人が、いま通らない理由</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="proc">
+      <div class="proc-step"><div class="n">STEP 1</div><div class="t">ヒアリング</div></div>
+      <div class="proc-arrow">▶</div>
+      <div class="proc-step"><div class="n">STEP 2</div><div class="t">基本データ化</div></div>
+      <div class="proc-arrow">▶</div>
+      <div class="proc-step"><div class="n">STEP 3</div><div class="t">参考資料・<br>見本の投入</div></div>
+      <div class="proc-arrow">▶</div>
+      <div class="proc-step"><div class="n">STEP 4</div><div class="t">ルールと<br>指示の付与</div></div>
+      <div class="proc-arrow">▶</div>
+      <div class="proc-step"><div class="n">STEP 5</div><div class="t">プロンプト生成</div></div>
+      <div class="proc-arrow">▶</div>
+      <div class="proc-step"><div class="n">STEP 6</div><div class="t">AI出力</div></div>
+    </div>
+    <div style="height:20px"></div>
+    <div class="cols">
+      <div class="c-half">
+        <div class="card">
+          <h4>AIに判断させないから、通る</h4>
+          <p>AIに考えさせると、全員が似た内容になり通らなくなります。判断を任せず、参考情報まで手元で与え切り、外部検索に行かせない状態を作る。当方の申請書はほぼこの方式で、直近の持続化補助金は全件採択となりました。</p>
+        </div>
+      </div>
+      <div class="c-half">
+        <div class="card gold">
+          <h4>軸は「基本データ」。これが単価を上げる</h4>
+          <p>顧客から最低限聞くべきことを構造化して蓄積する仕組みです。これがあると次の申請提案が即座にでき、アップセルが自然に発生し、作業も軽くなる。コンサルタントの大半が、やるべきなのにやっていない部分です。</p>
+        </div>
+      </div>
+    </div>
+    <div class="quote">
+      <p>この型は当方のパートナー全員が使用しています。契約書の作成と同じで、<b>なぜその項目が問われているのかを理解していなければ、良い文章にはなりません。</b>だからこそ、AIに考えさせるのではなく、こちらが判断してAIに書かせる。事業計画書の設計思想も併せてお渡しします。</p>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">13</span></div>
+</section>
+
+<!-- ============ 14 実務インフラ ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">03　迷う時間を、ゼロにする実務インフラ</div>
+      <div class="h-sub">OPERATION ／ 公募要領・ガイドブック・FAQを行き来しない</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="cols">
+      <div class="c-l">
+        <p class="lead">調べる時間は、<br><span class="g">利益になりません。</span></p>
+        <p class="t sm">公募要領、ガイドブック、参考資料、よくある質問。複数の書類を行き来しているうちに、何を確認していたのか分からなくなる。この消耗を構造的に取り除きます。</p>
+      </div>
+      <div class="c-r">
+        <ul class="list tight">
+          <li><b>実務マニュアル</b>　補助金ごとに、必要な情報を1枚で参照できる形にまとめたもの。新しい補助金はご要望に応じて順次作成</li>
+          <li><b>Q&Aボット</b>　実務マニュアルを土台に、いつでも質問できる状態。複数の補助金を並行して扱うと必ず混乱するため、その解消用</li>
+          <li><b>加点テンプレート</b>　加点項目は全体で概ね10種類程度。SECURITY ACTION自己宣言のように、極めて簡単なのに未対応のまま出している事業者が非常に多い。<b>行政書士として差別化しやすい部分</b></li>
+          <li><b>実績報告の不備対応</b>　事務局の指摘は難解なことが多い。AIを使った読み解きの手順に加え、「何を言っているか分からない」実例を集めたシートをご用意</li>
+        </ul>
+        <div class="card gold" style="margin-top:12px">
+          <p>この不備の実例シートは、<b>あえて事前に顧客へお見せする</b>ことをおすすめしています。受注率が上がり、実際に不備が何度続いても信頼が損なわれにくくなります。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">14</span></div>
+</section>
+
+<!-- ============ 15 支援事業者 ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">04　新しい入口 ── 「支援事業者」側になる</div>
+      <div class="h-sub">NEW MARKET ／ デジタル化・AI導入補助金 支援事業者登録のサポート</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="cols">
+      <div class="c-l">
+        <p class="lead">申請する側ではなく、<br><span class="g">売る側を支援する。</span></p>
+        <p class="t sm">ITツールを作った、補助金を使って売りたい。そういう事業者は確実に増えています。ただ、それが可能だと知らないだけです。</p>
+        <div class="card gold" style="margin-top:16px">
+          <p>ここ数か月、当方でもっとも手応えのある領域です。杉本様のように<b>IT系・システム系の事業者と接点がある方</b>には、特に相性の良い入口だと考えています。</p>
+        </div>
+      </div>
+      <div class="c-r">
+        <div class="eyebrow">なぜこの領域が有望なのか</div>
+        <ul class="list tight">
+          <li><b>需要が確実に増えている</b>　自社ツールを補助金対象として販売したい事業者が継続的に発生している</li>
+          <li><b>本人はできることを知らない</b>　制度の存在自体が知られておらず、提案するだけで話が前に進む</li>
+          <li><b>手続きが極めて煩雑</b>　自力でやろうとすると本当に嫌になる。だからこそ外注が発生する</li>
+          <li><b>ほぼ通る</b>　落とすための制度ではなく、要件を満たして手続きを正確に踏めば支援事業者登録は認められる。許認可と同じ構造</li>
+          <li><b>登録後は継続する</b>　支援事業者になった後も、ツール登録や更新など関与が続く</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">15</span></div>
+</section>
+
+<!-- ============ 16 パートナーシップの実像 ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">「パートナー」とは、具体的に何をするのか</div>
+      <div class="h-sub">PARTNERSHIP ／ 本日ご質問いただいた点への回答</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="cols">
+      <div class="c-l">
+        <p class="lead">情報を渡して終わり、<br><span class="g">ではありません。</span></p>
+        <p class="t sm">共通言語となるコンテンツと環境をお渡しし、その上で実際に一緒に手を動かす関係です。得意分野や相性を見ながら、双方向に仕事が動きます。</p>
+      </div>
+      <div class="c-r">
+        <ul class="list tight">
+          <li><b>案件の共同受注</b>　実績報告が集中する時期など、当方で抱えきれない案件を分担し、利益をシェアする</li>
+          <li><b>顧客ミーティングへの同席</b>　杉本様の顧客との打ち合わせに同席し、その場で対応する</li>
+          <li><b>24時間チャットサポート</b>　実務中に発生した疑問をその場で相談できる</li>
+          <li><b>オンライン相談</b>　文字より話した方が早い場面では、ミーティングを設定する（プランにより回数が異なります）</li>
+          <li><b>補助金情報グループ</b>　都道府県の補助金を中心に、ほぼ毎日情報が流れる。「他県にも同種の制度がないか」という仮説が立てやすくなる</li>
+          <li><b>新しい領域の共同開拓</b>　「こういうことはできませんか」というご相談は歓迎です。面白い分野があれば、一緒に開拓します</li>
+        </ul>
+        <div class="card" style="margin-top:12px">
+          <p>実際に、業界団体の役員を務める行政書士と共同でニュースレターを送付し、セミナー開催から顧客化に至った例もあります。<b>杉本様の側から持ち込んでいただく取り組みも、同様に検討します。</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">16</span></div>
+</section>
+
+<!-- ============ 17 プラン ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">プラン構成</div>
+      <div class="h-sub">PLANS ／ 関わり方は3種類。料金は別途ご案内いたします</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="plans">
+      <div class="plan">
+        <h4>チャットサポート</h4>
+        <div class="who">ご自身で進められる方向け</div>
+        <ul>
+          <li>全コンテンツの利用（集客・実務・AI・マニュアル・加点テンプレート一式）</li>
+          <li>補助金情報グループへの参加</li>
+          <li>実務に関するチャットサポート</li>
+          <li>個別チャットグループの設置</li>
+        </ul>
+      </div>
+      <div class="plan reco">
+        <span class="badge">お す す め</span>
+        <h4>パートナー</h4>
+        <div class="who">一緒に取り組む前提の方向け</div>
+        <ul>
+          <li>左記のすべてを含む</li>
+          <li>ウェルカムオリエンテーション（環境の使い方と初期設計）</li>
+          <li>戦略ミーティング（初動の方針決定）</li>
+          <li>オンライン相談</li>
+          <li>案件の共同受注・顧客同席</li>
+          <li>Traingo（研修・ファネル・メルマガ配信・予約システム）の利用権を含む</li>
+          <li>翌年度は継続プラン価格に移行</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <h4>集客代行</h4>
+        <div class="who">手を動かす時間を作りたい方向け</div>
+        <ul>
+          <li>パートナープランの内容を含む</li>
+          <li>ニュースレター・ホームDM・メールDMのコンテンツ制作</li>
+          <li>発送までの手続きを代行</li>
+          <li>対象は既存顧客・見込み客・白地リスト</li>
+          <li>補助金申請時の着手金が無料</li>
+          <li>ご確認いただくだけの体制</li>
+        </ul>
+      </div>
+    </div>
+    <p class="t sm" style="margin-top:14px;color:var(--muted)">※ 各プランの料金・ご契約条件は別途ご案内いたします。ご提供内容は随時追加・更新されます。</p>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">17</span></div>
+</section>
+
+<!-- ============ 18 ロードマップ ============ -->
+<section class="slide">
+  <div class="s-head">
+    <div class="mark"><i></i><i></i></div>
+    <div class="h-txt">
+      <div class="h-title">杉本様向け　90日ロードマップ（案）</div>
+      <div class="h-sub">ROADMAP ／ 本日のお話をふまえた、初動の設計</div>
+    </div>
+  </div>
+  <div class="h-rule"></div>
+  <div class="s-body">
+    <div class="road">
+      <div class="road-c">
+        <span class="day">DAY 1-14</span>
+        <h4>立ち上げ</h4>
+        <p>ウェルカムオリエンテーションで環境の全体像を把握。実務マニュアルと基本データの型を先に押さえる。学ぶ前に、使える状態を作る。</p>
+      </div>
+      <div class="road-c hi">
+        <span class="day">DAY 15-30</span>
+        <h4>領域の確定</h4>
+        <p>国土交通省系（CO2削減・建設業向け）を主軸に設定。対象事業者のリストを収集し、想定される手続きの流れを事前に把握しておく。</p>
+      </div>
+      <div class="road-c">
+        <span class="day">DAY 31-45</span>
+        <h4>接点づくり</h4>
+        <p>契約書でご縁のある既存事業者へ「補助金で困っていませんか」と接触。並行してニュースレターを発送し、面識のある層から掘り起こす。</p>
+      </div>
+      <div class="road-c">
+        <span class="day">DAY 46-75</span>
+        <h4>初回受注</h4>
+        <p>交付申請・実績報告から着手。難所は共同受注で伴走し、実際の不備対応まで一度通す。ここで「経験」が資産に変わる。</p>
+      </div>
+      <div class="road-c">
+        <span class="day">DAY 76-90</span>
+        <h4>型化と拡張</h4>
+        <p>基本データを蓄積し、次の申請提案へ接続。支援事業者登録など、隣接する入口へ展開する。</p>
+      </div>
+    </div>
+    <div class="quote">
+      <p>初回は<b>1回で通ると思わないこと</b>が前提です。不備・補正はあって当たり前。とりあえず一度出し、期限を先に延ばし、3〜4回のやり取りで着地させる。この感覚が身につけば、あとは同じことの繰り返しになります。</p>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">18</span></div>
+</section>
+
+<!-- ============ 19 CTA ============ -->
+<section class="slide cta">
+  <div class="cta-in">
+    <h2>やると決めた方だけが、<br><em>うまくいきます。</em></h2>
+    <div class="cta-body">煽るつもりはありません。うまくいかない方は、何をお渡ししてもうまくいきません。ただ、杉本様はすでに補助金の当事者経験をお持ちで、狙うべき市場のあたりもご自身でつけておられます。あとは、環境を使うと決めるかどうかだけです。ご不明点があれば、メールでも構いませんのでお気軽にお寄せください。</div>
+    <div class="cta-box">
+      <div>
+        <div class="k">ご 検 討 期 限</div>
+        <div class="v">2026年8月2日<small>この日までのお申し込みを対象としております</small></div>
+      </div>
+      <div>
+        <div class="k">ご 連 絡 先</div>
+        <div class="v">info@fp-1.info<small>https://fp-1.info</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>© 2026 阿久津和宏 ／ 補助金実務パートナー</span><span class="pg">19</span></div>
+</section>
+
+</div>
+</div>
+
+<nav id="nav" aria-label="スライド操作">
+  <button id="prev" type="button" aria-label="前のスライドへ戻る">◀ 前へ</button>
+  <span id="counter" aria-live="polite">01<small> / 19</small></span>
+  <button id="next" type="button" aria-label="次のスライドへ進む">次へ ▶</button>
+</nav>
+<div id="hint">← → キー / クリックでも移動できます</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var total=slides.length,cur=0;
+  var stage=document.getElementById('stage');
+  var prev=document.getElementById('prev'),next=document.getElementById('next');
+  var counter=document.getElementById('counter'),bar=document.getElementById('bar');
+
+  function pad(n){return n<10?'0'+n:''+n;}
+  function render(){
+    slides.forEach(function(s,i){s.classList.toggle('active',i===cur);});
+    counter.innerHTML=pad(cur+1)+'<small> / '+pad(total)+'</small>';
+    bar.style.width=((cur+1)/total*100)+'%';
+    prev.disabled=(cur===0);
+    next.disabled=(cur===total-1);
+  }
+  function go(n){
+    if(n<0||n>=total)return;
+    cur=n;render();
+  }
+  prev.addEventListener('click',function(){go(cur-1);});
+  next.addEventListener('click',function(){go(cur+1);});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(cur+1);}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1);}
+    if(e.key==='Home'){e.preventDefault();go(0);}
+    if(e.key==='End'){e.preventDefault();go(total-1);}
+  });
+  stage.addEventListener('click',function(e){
+    var r=stage.getBoundingClientRect();
+    if((e.clientX-r.left)/r.width>0.5){go(cur+1);}else{go(cur-1);}
+  });
+
+  function fit(){
+    var w=window.innerWidth,h=window.innerHeight;
+    var s=Math.min((w-48)/1280,(h-108)/720);
+    stage.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize',fit);
+  fit();render();
+})();
+</script>
+</body>
+</html>
