@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>スワイプファイル・テンプレート生成ツール v1</title>
+  <style>
+    :root{
+      --navy:#111f35;--navy2:#1d2d46;--ink:#172033;--muted:#687386;
+      --line:#d9dee7;--soft:#f4f6f8;--white:#fff;--ok:#2d6846;
+      --warn:#7c5411;--danger:#7b2631;--sidebar:284px;--editor-height:260px;
+      --editor-font:14px;--panel-gap:16px
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;color:var(--ink);background:#eef1f5}
+    button,textarea,input,select{font:inherit}button{cursor:pointer}
+    .top{height:58px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:30}
+    .brand{font-weight:700;letter-spacing:.02em}.brand small{font-weight:400;color:#c9d0da;margin-left:12px}
+    .save-state{font-size:12px;color:#d5dbe4}
+    .layout{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);min-height:calc(100vh - 58px)}
+    aside{background:#fff;border-right:1px solid var(--line);padding:18px 14px 12px;position:sticky;top:58px;height:calc(100vh - 58px);overflow:hidden;display:flex;flex-direction:column}
+    #sectionNav{overflow:auto;flex:1;min-height:0}
+    .nav-title{font-size:12px;color:var(--muted);font-weight:700;margin:0 8px 8px}
+    .step{width:100%;display:flex;gap:10px;align-items:flex-start;text-align:left;border:0;background:transparent;padding:9px 8px;border-radius:6px;color:#283448;line-height:1.35}
+    .step:hover{background:var(--soft)}.step.active{background:var(--navy);color:#fff}
+    .num{flex:0 0 24px;height:24px;border:1px solid #aab2bf;border-radius:50%;display:grid;place-items:center;font-size:11px}
+    .step.active .num{border-color:#fff}.phase{font-size:11px;opacity:.72;display:block;margin-bottom:2px}
+    .nav-actions{flex:0 0 auto;border-top:1px solid var(--line);padding-top:10px;margin-top:8px}
+    .nav-actions button{width:100%;margin-top:6px}
+    main{padding:22px;min-width:0}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:8px;margin-bottom:var(--panel-gap);overflow:hidden}
+    .panel-head{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .panel-head h2,.panel-head h3{font-size:16px;margin:0}.panel-body{padding:16px}
+    .intro{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}.intro h1{font-size:23px;margin:0 0 6px;color:var(--navy)}.intro p{margin:0;color:var(--muted);font-size:13px;line-height:1.65}
+    .tabs{display:flex;border-bottom:1px solid var(--line);background:#fafbfc;overflow:auto}
+    .tab{border:0;border-right:1px solid var(--line);background:transparent;padding:12px 17px;white-space:nowrap;color:#4d586a}
+    .tab.active{background:#fff;color:var(--navy);font-weight:700;border-top:3px solid var(--navy);padding-top:9px}
+    .tabpage{display:none}.tabpage.active{display:block}
+    label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}.hint{font-size:12px;color:var(--muted);font-weight:400}
+    textarea,input[type="text"],input[type="number"],select{width:100%;border:1px solid #bfc7d2;border-radius:5px;padding:10px 12px;background:#fff}
+    textarea{min-height:var(--editor-height);line-height:1.65;resize:vertical;font-size:var(--editor-font)}
+    textarea:focus,input:focus,select:focus{outline:2px solid #8c99aa;outline-offset:1px;border-color:#6d7889}
+    .source{min-height:330px}.prompt{min-height:380px;font-family:"SFMono-Regular",Consolas,monospace;font-size:calc(var(--editor-font) - 1px)}
+    .compiled{min-height:480px}.small-area{min-height:150px}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.right{margin-left:auto}.meta{font-size:12px;color:var(--muted)}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .field{min-width:0}.field + .field{}
+    .btn{border:1px solid #9ca6b5;background:#fff;color:#243148;border-radius:5px;padding:9px 14px;font-weight:650}
+    .btn:hover{background:#f1f3f6}.btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}.btn.primary:hover{background:var(--navy2)}
+    .btn.danger{color:var(--danger)}.btn.ok{color:var(--ok);border-color:#83a291}.btn.sm{padding:6px 9px;font-size:12px}
+    .file{font-size:12px;max-width:100%}.notice{padding:10px 12px;border-left:4px solid var(--navy);background:#f1f3f6;font-size:13px;line-height:1.55}
+    .warning{border-left-color:var(--warn);background:#faf5eb}.success{border-left-color:var(--ok);background:#eef6f1}
+    .counts{display:grid;grid-template-columns:repeat(4,minmax(100px,1fr));gap:8px;margin-top:10px}
+    .count{background:var(--soft);padding:9px 11px;border-radius:5px;font-size:12px}.count b{display:block;font-size:17px;color:var(--navy)}
+    .section-tools{display:flex;gap:7px;flex-wrap:wrap}
+    .status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#abb3bf;margin-right:5px}.status-dot.done{background:var(--ok)}
+    .footer-actions{position:sticky;bottom:0;background:rgba(238,241,245,.96);padding:10px 0;display:flex;gap:8px;justify-content:flex-end;z-index:12}
+    .final-panel{border:2px solid var(--navy)}.final-panel .panel-head{background:var(--navy);color:#fff}
+    .settings-range{display:grid;grid-template-columns:160px 1fr 55px;gap:12px;align-items:center;margin:12px 0}.settings-range label{margin:0}
+    .empty{padding:42px 20px;text-align:center;color:var(--muted)}.empty strong{display:block;color:var(--navy);font-size:18px;margin-bottom:8px}
+    .toast{position:fixed;right:20px;bottom:20px;background:#152239;color:#fff;padding:11px 15px;border-radius:5px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s;z-index:50}.toast.show{opacity:1;transform:none}
+    dialog{border:0;border-radius:9px;box-shadow:0 22px 70px #0004;width:min(680px,calc(100vw - 28px));padding:0}
+    dialog::backdrop{background:#0b1424aa}.dialog-head{padding:14px 16px;background:var(--navy);color:#fff}.dialog-head h2{font-size:17px;margin:0}.dialog-body{padding:16px}.dialog-actions{padding:12px 16px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px}
+    @media(max-width:900px){
+      .top{height:auto;min-height:56px;padding:12px 15px}.brand small{display:block;margin:3px 0 0}.layout{display:block}
+      aside{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);display:flex;flex-direction:row;overflow:auto;padding:9px}
+      #sectionNav{display:flex;overflow:visible;flex:none}.nav-title{display:none}.step{min-width:190px}.nav-actions{display:flex;border:0;border-left:1px solid var(--line);padding:0 0 0 8px;margin:0 0 0 8px;gap:6px}
+      .nav-actions button{min-width:130px;margin:0}.intro{display:block}.intro .row{margin-top:12px}main{padding:12px}.panel-body{padding:13px}
+      .grid2,.grid3{grid-template-columns:1fr}.counts{grid-template-columns:1fr 1fr}.right{margin-left:0}
+    }
+    @media print{
+      .top,aside,.tabs,.footer-actions,.intro .row,.panel-head button,.file,.section-tools,.no-print{display:none!important}
+      .layout{display:block}main{padding:0}.panel{border:0}.tabpage{display:none!important}.final-panel{display:block!important;border:0}
+      .final-panel .panel-head{background:#fff;color:#000}.compiled{border:0;min-height:auto}
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="brand">スワイプファイル・テンプレート生成ツール <small>構成分解・項目別作成 v1</small></div>
+    <div class="save-state" id="saveState">ブラウザ内に自動保存</div>
+  </header>
+
+  <div class="layout">
+    <aside>
+      <div class="nav-title">抽出した構成</div>
+      <div id="sectionNav"></div>
+      <div class="nav-actions">
+        <button class="btn sm" id="addSectionSide">＋ 項目追加</button>
+        <button class="btn primary sm" id="goCompileSide">最終統合へ</button>
+      </div>
+    </aside>
+
+    <main>
+      <section class="panel">
+        <div class="panel-body intro">
+          <div>
+            <h1 id="currentTitle">元データを読み込んでください</h1>
+            <p>HTML／Markdownを構成ごとに分解し、各項目の参考フォーマット、作成指示、プロンプト、回答を個別に管理します。</p>
+          </div>
+          <div class="row">
+            <button class="btn" id="exportProject">作業データ保存</button>
+            <label class="btn" for="importProject" style="margin:0">作業データ読込</label>
+            <input id="importProject" type="file" accept=".json" hidden>
+            <button class="btn primary" id="goCompileTop">最終統合</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="tabs">
+          <button class="tab active" data-tab="source">元データ</button>
+          <button class="tab" data-tab="basic">基本データ</button>
+          <button class="tab" data-tab="reference">参考情報</button>
+          <button class="tab" data-tab="rules">統一ルール</button>
+          <button class="tab" data-tab="settings">表示設定</button>
+        </div>
+        <div class="panel-body">
+          <div class="tabpage active" id="tab-source">
+            <label>スワイプ元のHTML／Markdown <span class="hint">貼り付けるか、ファイルを読み込んでください</span></label>
+            <textarea class="source" id="sourceData" placeholder="HTMLまたはMarkdownの元データを貼り付けてください。見出しをもとに自動分解します。"></textarea>
+            <div class="row" style="margin-top:10px">
+              <input class="file" id="sourceFile" type="file" accept=".html,.htm,.md,.markdown,.txt">
+              <button class="btn primary" id="analyzeSource">構成を抽出する</button>
+              <button class="btn" id="addStandard">標準構成を追加</button>
+              <span class="meta" id="analyzeStatus">まだ抽出していません</span>
+            </div>
+          </div>
+
+          <div class="tabpage" id="tab-basic">
+            <label>基本データ <span class="hint">会社・顧客・商品・数値など、全項目で共通利用します</span></label>
+            <textarea id="basicData" placeholder="会社概要、対象顧客、商品・サービス、実績、価格、提供方法、申込み方法などを入力してください。"></textarea>
+            <div class="row" style="margin-top:10px">
+              <input class="file" id="basicFile" type="file" accept=".txt,.md,.csv,.json">
+              <span class="meta">1回入力すれば、すべての項目別プロンプトへ自動反映します。</span>
+            </div>
+          </div>
+
+          <div class="tabpage" id="tab-reference">
+            <label>参考情報 <span class="hint">事例、既存原稿、調査結果、商品資料など</span></label>
+            <textarea id="referenceInfo" placeholder="すべての項目で参照させたい情報を入力してください。"></textarea>
+            <div class="row" style="margin-top:10px">
+              <input class="file" id="referenceFile" type="file" accept=".txt,.md,.csv,.json,.html,.htm">
+              <span class="meta">参考情報は事実の根拠として使い、基本データにない事実を創作させない設定です。</span>
+            </div>
+          </div>
+
+          <div class="tabpage" id="tab-rules">
+            <div class="grid2">
+              <div class="field">
+                <label>作成指示 <span class="hint">全項目共通</span></label>
+                <textarea id="globalInstruction" class="small-area"></textarea>
+              </div>
+              <div class="field">
+                <label>表現ルール・統一ルール <span class="hint">文体、禁止事項、出力形式など</span></label>
+                <textarea id="globalRules" class="small-area"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabpage" id="tab-settings">
+            <div class="notice">設定はすぐ画面へ反映され、次回も保持されます。各入力欄は右下をドラッグして個別に高さを変えることもできます。</div>
+            <div class="settings-range">
+              <label for="sidebarSize">サイドバー幅</label>
+              <input type="range" id="sidebarSize" min="220" max="420" step="4">
+              <span id="sidebarSizeValue" class="meta"></span>
+            </div>
+            <div class="settings-range">
+              <label for="editorHeight">入力欄の基本高さ</label>
+              <input type="range" id="editorHeight" min="140" max="620" step="10">
+              <span id="editorHeightValue" class="meta"></span>
+            </div>
+            <div class="settings-range">
+              <label for="editorFont">文字サイズ</label>
+              <input type="range" id="editorFont" min="11" max="22" step="1">
+              <span id="editorFontValue" class="meta"></span>
+            </div>
+            <div class="settings-range">
+              <label for="panelGap">パネル間隔</label>
+              <input type="range" id="panelGap" min="6" max="30" step="2">
+              <span id="panelGapValue" class="meta"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="sectionWorkspace"></div>
+
+      <section class="panel final-panel" id="compilePanel">
+        <div class="panel-head">
+          <h2>全項目の最終統合</h2>
+          <div class="row">
+            <span class="meta" id="completedCount" style="color:#fff">0／0項目回答済み</span>
+            <button class="btn" id="compileAnswers">回答をまとめる</button>
+            <button class="btn" id="copyCompiled">全文コピー</button>
+            <button class="btn" id="downloadCompiled">MD保存</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="notice">項目の並び順どおりに回答を統合します。統合後の文章は、この欄で直接修正できます。</div>
+          <textarea class="compiled" id="compiledData" placeholder="各項目の回答を入力した後、「回答をまとめる」を押してください。"></textarea>
+        </div>
+      </section>
+
+      <div class="footer-actions">
+        <button class="btn danger" id="resetAll">初期状態に戻す</button>
+        <button class="btn" id="prevSection">前の項目</button>
+        <button class="btn primary" id="nextSection">次の項目</button>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="sectionDialog">
+    <div class="dialog-head"><h2 id="dialogTitle">項目を追加</h2></div>
+    <div class="dialog-body">
+      <div class="grid2">
+        <div class="field">
+          <label for="dialogSectionTitle">見出し名</label>
+          <input type="text" id="dialogSectionTitle" placeholder="例：問題提起">
+        </div>
+        <div class="field">
+          <label for="dialogSectionType">分類</label>
+          <select id="dialogSectionType"></select>
+        </div>
+      </div>
+      <label for="dialogSectionReference" style="margin-top:14px">参考フォーマット</label>
+      <textarea id="dialogSectionReference" class="small-area" placeholder="この項目の見本となる文章やHTMLを入力してください。"></textarea>
+    </div>
+    <div class="dialog-actions">
+      <button class="btn" id="cancelDialog">キャンセル</button>
+      <button class="btn primary" id="saveDialog">保存</button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast">保存しました</div>
+
+  <script>
+    const STORAGE_KEY = "swipe-template-generator-v1";
+    const TYPES = [
+      "導入・キャッチコピー","問題提起","共感・課題の深掘り","解決策","商品・サービス説明",
+      "特徴・強み","実績・事例","提供内容","料金","申込み","よくある質問","プロフィール","その他"
+    ];
+    const STANDARD_SECTIONS = [
+      ["導入・キャッチコピー","導入・キャッチコピー"],
+      ["問題提起","問題提起"],
+      ["共感・課題の深掘り","共感・課題の深掘り"],
+      ["解決策","解決策"],
+      ["商品・サービス説明","商品・サービス説明"],
+      ["特徴・強み","特徴・強み"],
+      ["実績・事例","実績・事例"],
+      ["提供内容","提供内容"],
+      ["料金","料金"],
+      ["よくある質問","よくある質問"],
+      ["申込み","申込み"]
+    ];
+    const DEFAULT_INSTRUCTION = "基本データと参考情報だけを事実の根拠として、参考フォーマットの構成・情報量・役割を再現し、新しい内容を作成すること。";
+    const DEFAULT_RULES = `・基本データと参考情報にない固有名詞、実績、数値、価格、事実を創作しない
+・参考フォーマットの文章をそのままコピーせず、構成と役割を利用する
+・見出しと本文の役割を明確にする
+・前後の項目と重複させない
+・分からない情報は推測せず「要確認」と明記する
+・出力はMarkdown形式とする`;
+
+    const blankState = () => ({
+      version:1,current:0,source:"",basic:"",referenceInfo:"",
+      globalInstruction:DEFAULT_INSTRUCTION,globalRules:DEFAULT_RULES,
+      sections:[],finalDocument:"",
+      settings:{sidebar:284,editorHeight:260,editorFont:14,panelGap:16}
+    });
+    let state = blankState();
+    let dialogEditIndex = null;
+    const $ = id => document.getElementById(id);
+
+    function uid(){
+      return "s_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,8);
+    }
+    function newSection(title,type,reference=""){
+      return {id:uid(),title:title||"新しい項目",type:type||"その他",reference,instruction:"",answer:""};
+    }
+    function escapeHtml(value=""){
+      return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    }
+    function textCount(value=""){return String(value).replace(/\s/g,"").length}
+    function showToast(message){
+      const t=$("toast");t.textContent=message;t.classList.add("show");
+      clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove("show"),1900);
+    }
+    async function copyText(value,message="コピーしました"){
+      try{await navigator.clipboard.writeText(value)}
+      catch(e){
+        const ta=document.createElement("textarea");ta.value=value;document.body.appendChild(ta);
+        ta.select();document.execCommand("copy");ta.remove();
+      }
+      showToast(message);
+    }
+    function downloadText(value,filename,type="text/plain"){
+      const blob=new Blob([value],{type:type+";charset=utf-8"});
+      const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=filename;
+      document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    }
+    function save(){
+      state.source=$("sourceData").value;
+      state.basic=$("basicData").value;
+      state.referenceInfo=$("referenceInfo").value;
+      state.globalInstruction=$("globalInstruction").value;
+      state.globalRules=$("globalRules").value;
+      state.finalDocument=$("compiledData").value;
+      localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+      $("saveState").textContent="保存済み "+new Date().toLocaleTimeString("ja-JP",{hour:"2-digit",minute:"2-digit"});
+    }
+    function load(){
+      try{
+        const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if(saved&&saved.version===1)state={...blankState(),...saved,settings:{...blankState().settings,...(saved.settings||{})}};
+      }catch(e){state=blankState()}
+      $("sourceData").value=state.source||"";
+      $("basicData").value=state.basic||"";
+      $("referenceInfo").value=state.referenceInfo||"";
+      $("globalInstruction").value=state.globalInstruction||DEFAULT_INSTRUCTION;
+      $("globalRules").value=state.globalRules||DEFAULT_RULES;
+      $("compiledData").value=state.finalDocument||"";
+      applySettings();
+    }
+    function applySettings(){
+      const s=state.settings;
+      document.documentElement.style.setProperty("--sidebar",s.sidebar+"px");
+      document.documentElement.style.setProperty("--editor-height",s.editorHeight+"px");
+      document.documentElement.style.setProperty("--editor-font",s.editorFont+"px");
+      document.documentElement.style.setProperty("--panel-gap",s.panelGap+"px");
+      $("sidebarSize").value=s.sidebar;$("editorHeight").value=s.editorHeight;
+      $("editorFont").value=s.editorFont;$("panelGap").value=s.panelGap;
+      $("sidebarSizeValue").textContent=s.sidebar+"px";$("editorHeightValue").textContent=s.editorHeight+"px";
+      $("editorFontValue").textContent=s.editorFont+"px";$("panelGapValue").textContent=s.panelGap+"px";
+    }
+    function stripTags(html){
+      const doc=new DOMParser().parseFromString(html,"text/html");
+      return (doc.body.textContent||"").replace(/\n{3,}/g,"\n\n").trim();
+    }
+    function htmlFragmentToText(nodes){
+      const holder=document.createElement("div");
+      nodes.forEach(n=>holder.appendChild(n.cloneNode(true)));
+      holder.querySelectorAll("script,style,noscript,svg").forEach(n=>n.remove());
+      holder.querySelectorAll("br").forEach(n=>n.replaceWith("\n"));
+      holder.querySelectorAll("p,div,li,tr,blockquote").forEach(n=>n.insertAdjacentText("afterend","\n"));
+      return (holder.textContent||"").replace(/[ \t]+\n/g,"\n").replace(/\n{3,}/g,"\n\n").trim();
+    }
+    function cleanTitle(value){
+      return String(value).replace(/^#{1,6}\s*/,"").replace(/\s+/g," ").trim().slice(0,120)||"無題";
+    }
+    function detectType(title,content=""){
+      const text=(title+" "+content.slice(0,800)).toLowerCase();
+      const rules=[
+        ["料金",/料金|価格|費用|プラン|月額|金額|price/],
+        ["申込み",/申込|申し込|お問い合わせ|相談|予約|登録|購入|cta|contact/],
+        ["よくある質問",/よくある質問|faq|質問と回答|q&a/],
+        ["実績・事例",/実績|事例|お客様の声|導入例|成果|case|voice/],
+        ["特徴・強み",/特徴|強み|選ばれる理由|メリット|差別化|feature|benefit/],
+        ["商品・サービス説明",/商品|サービス|プログラム|講座|コース|製品|service|product/],
+        ["提供内容",/提供内容|サポート内容|内容|カリキュラム|流れ|ステップ|工程/],
+        ["解決策",/解決|方法|対策|仕組み|提案|solution/],
+        ["問題提起",/悩み|問題|課題|困って|こんなこと|problem|pain/],
+        ["共感・課題の深掘り",/なぜ|原因|理由|放置|失敗|間違い|共感/],
+        ["プロフィール",/プロフィール|代表|会社概要|私たち|運営者|about/],
+        ["導入・キャッチコピー",/キャッチ|ファーストビュー|メイン|冒頭|hero|headline/]
+      ];
+      return (rules.find(x=>x[1].test(text))||["その他"])[0];
+    }
+    function parseMarkdown(text){
+      const lines=text.split(/\r?\n/),items=[];let current=null;let pre=[];
+      const push=()=>{if(current){current.content=current.lines.join("\n").trim();delete current.lines;items.push(current);current=null}};
+      for(const line of lines){
+        const match=line.match(/^(#{1,6})\s+(.+?)\s*$/);
+        if(match){
+          push();current={title:cleanTitle(match[2]),level:match[1].length,lines:[]};
+        }else if(current){current.lines.push(line)}
+        else if(line.trim()){pre.push(line)}
+      }
+      push();
+      if(pre.length&&items.length)items.unshift({title:"導入・キャッチコピー",level:1,content:pre.join("\n").trim()});
+      return items.filter(x=>x.title||x.content);
+    }
+    function parseHtml(text){
+      const doc=new DOMParser().parseFromString(text,"text/html");
+      doc.querySelectorAll("script,style,noscript,template,svg").forEach(n=>n.remove());
+      const headings=[...doc.body.querySelectorAll("h1,h2,h3,h4,h5,h6")];
+      if(!headings.length){
+        const blocks=[...doc.body.querySelectorAll("section,article")].filter(n=>(n.textContent||"").trim().length>30);
+        return blocks.slice(0,50).map((node,i)=>{
+          const heading=node.querySelector("[class*='title'],[class*='heading'],strong,b");
+          return {title:cleanTitle(heading?.textContent||`セクション ${i+1}`),level:2,content:htmlFragmentToText([...node.childNodes])};
+        });
+      }
+      const items=[];
+      headings.forEach((heading,index)=>{
+        const nodes=[];let node=heading.nextSibling;
+        while(node){
+          if(node.nodeType===1&&/^H[1-6]$/.test(node.tagName))break;
+          nodes.push(node);node=node.nextSibling;
+        }
+        const content=htmlFragmentToText(nodes);
+        items.push({title:cleanTitle(heading.textContent),level:Number(heading.tagName.slice(1)),content});
+      });
+      const first=headings[0],pre=[],parent=first.parentNode;let node=parent?.firstChild;
+      while(node&&node!==first){pre.push(node);node=node.nextSibling}
+      const preText=htmlFragmentToText(pre);
+      if(preText.length>20)items.unshift({title:"導入・キャッチコピー",level:1,content:preText});
+      return items.filter(x=>x.title||x.content);
+    }
+    function fallbackParagraphs(text){
+      const plain=/<[a-z][\s\S]*>/i.test(text)?stripTags(text):text;
+      const blocks=plain.split(/\n\s*\n/).map(x=>x.trim()).filter(x=>x.length>20);
+      return blocks.slice(0,40).map((content,i)=>({
+        title:i===0?"導入・キャッチコピー":`セクション ${i+1}`,level:2,content
+      }));
+    }
+    function analyze(){
+      const text=$("sourceData").value.trim();
+      if(!text){showToast("元データを入力してください");return}
+      let items=/<(?:!doctype|html|body|main|section|article|h[1-6])[\s>]/i.test(text)?parseHtml(text):parseMarkdown(text);
+      if(items.length<2)items=fallbackParagraphs(text);
+      if(!items.length){showToast("構成を抽出できませんでした");return}
+      if(state.sections.length&&!confirm("現在の項目を置き換えて、元データから構成を抽出しますか？"))return;
+      state.sections=items.map(item=>newSection(item.title,detectType(item.title,item.content),item.content));
+      state.current=0;state.source=text;state.finalDocument="";$("compiledData").value="";
+      $("analyzeStatus").textContent=`${state.sections.length}項目を抽出しました`;
+      renderAll();save();showToast(`${state.sections.length}項目に分解しました`);
+    }
+    function sectionPrompt(section){
+      const ref=(section.reference||"").trim()||"（参考フォーマット未入力）";
+      const refCount=textCount(ref),low=Math.max(1,Math.round(refCount*.85)),high=Math.max(1,Math.round(refCount*1.15));
+      const sectionInstruction=(section.instruction||"").trim()||`${section.type}として機能する文章を作成すること。`;
+      return `以下の【基本データ】と【参考情報】を根拠として、【参考フォーマット】の構成を再現し、指定した項目を作成してください。
+
+【作成する項目】
+${section.title}
+
+【項目の分類・役割】
+${section.type}
+
+【基本データ】
+${(state.basic||"").trim()||"（未入力）"}
+
+【参考情報】
+${(state.referenceInfo||"").trim()||"（未入力）"}
+
+【参考フォーマット】
+${ref}
+
+【この項目の個別指示】
+${sectionInstruction}
+
+【全項目共通の作成指示】
+${(state.globalInstruction||"").trim()||DEFAULT_INSTRUCTION}
+
+【表現ルール・統一ルール】
+${(state.globalRules||"").trim()||DEFAULT_RULES}
+
+【出力条件】
+・出力するのは「${section.title}」に該当する完成原稿だけとする
+・参考フォーマットの役割、情報の順序、情報量を参考にする
+・参考フォーマットの文字数が有効な場合は、おおむね${low.toLocaleString()}〜${high.toLocaleString()}文字を目安とする
+・基本データまたは参考情報にない事実は作らない`;
+    }
+    function renderNav(){
+      const total=state.sections.length,done=state.sections.filter(s=>(s.answer||"").trim()).length;
+      if(!total){
+        $("sectionNav").innerHTML='<div class="empty"><strong>構成は未作成です</strong>元データから抽出するか、標準構成を追加してください。</div>';
+      }else{
+        $("sectionNav").innerHTML=state.sections.map((s,i)=>`
+          <button class="step ${i===state.current?"active":""}" data-index="${i}">
+            <span class="num">${i+1}</span>
+            <span><span class="phase"><span class="status-dot ${s.answer?.trim()?"done":""}"></span>${escapeHtml(s.type)}${s.answer?.trim()?"・回答済":""}</span>${escapeHtml(s.title)}</span>
+          </button>`).join("");
+        document.querySelectorAll(".step").forEach(btn=>btn.onclick=()=>switchSection(Number(btn.dataset.index)));
+      }
+      $("completedCount").textContent=`${done}／${total}項目回答済み`;
+    }
+    function renderWorkspace(){
+      const host=$("sectionWorkspace"),section=state.sections[state.current];
+      if(!section){
+        host.innerHTML=`<section class="panel"><div class="empty"><strong>項目別の編集欄</strong>「元データ」タブから構成を抽出してください。</div></section>`;
+        $("currentTitle").textContent="元データを読み込んでください";return;
+      }
+      $("currentTitle").textContent=`${state.current+1}. ${section.title}`;
+      const prompt=sectionPrompt(section);
+      host.innerHTML=`
+        <section class="panel">
+          <div class="panel-head">
+            <h2>選択中の項目</h2>
+            <div class="section-tools">
+              <button class="btn sm" id="editSection">見出し・分類を編集</button>
+              <button class="btn sm" id="moveUp" ${state.current===0?"disabled":""}>↑ 前へ</button>
+              <button class="btn sm" id="moveDown" ${state.current===state.sections.length-1?"disabled":""}>↓ 後へ</button>
+              <button class="btn danger sm" id="deleteSection">削除</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="grid2">
+              <div class="field"><label>見出し名</label><input type="text" id="sectionTitle" value="${escapeHtml(section.title)}"></div>
+              <div class="field"><label>分類</label><select id="sectionType">${TYPES.map(t=>`<option ${t===section.type?"selected":""}>${escapeHtml(t)}</option>`).join("")}</select></div>
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h2>この項目の参考フォーマット</h2><div class="row"><span class="meta" id="referenceCount">${textCount(section.reference).toLocaleString()}文字</span><button class="btn sm" id="copyReference">コピー</button></div></div>
+          <div class="panel-body">
+            <div class="notice">元データから抽出した見本です。不要な箇所を削除したり、別の見本へ差し替えたりできます。</div>
+            <textarea id="sectionReference">${escapeHtml(section.reference)}</textarea>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h2>この項目の作成指示</h2></div>
+          <div class="panel-body"><textarea class="small-area" id="sectionInstruction" placeholder="この項目だけに適用する指示を入力してください。">${escapeHtml(section.instruction)}</textarea></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h2>生成された項目別プロンプト</h2><div class="row"><span class="meta">${prompt.length.toLocaleString()}文字</span><button class="btn primary" id="copyPrompt">このプロンプトをコピー</button></div></div>
+          <div class="panel-body">
+            <div class="notice">このプロンプトをChatGPT等へ貼り付け、返ってきた回答を下の回答欄へ貼り付けてください。</div>
+            <textarea class="prompt" id="promptOutput" readonly>${escapeHtml(prompt)}</textarea>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h2>この項目の回答</h2><div class="row"><span class="meta" id="answerCount">${textCount(section.answer).toLocaleString()}文字</span><button class="btn" id="copyAnswer">回答コピー</button></div></div>
+          <div class="panel-body">
+            <textarea class="prompt" id="answerData" placeholder="ChatGPT等から返ってきた、この項目の完成原稿を貼り付けてください。">${escapeHtml(section.answer)}</textarea>
+          </div>
+        </section>`;
+      bindWorkspace(section);
+    }
+    function bindWorkspace(section){
+      $("sectionTitle").oninput=e=>{section.title=e.target.value;renderNav();save()};
+      $("sectionType").onchange=e=>{section.type=e.target.value;renderNav();renderWorkspace();save()};
+      $("sectionReference").oninput=e=>{section.reference=e.target.value;$("referenceCount").textContent=textCount(e.target.value).toLocaleString()+"文字";saveDebouncedRefresh()};
+      $("sectionInstruction").oninput=e=>{section.instruction=e.target.value;saveDebouncedRefresh()};
+      $("answerData").oninput=e=>{section.answer=e.target.value;$("answerCount").textContent=textCount(e.target.value).toLocaleString()+"文字";renderNav();save()};
+      $("copyReference").onclick=()=>copyText(section.reference,"参考フォーマットをコピーしました");
+      $("copyPrompt").onclick=()=>copyText(sectionPrompt(section),"項目別プロンプトをコピーしました");
+      $("copyAnswer").onclick=()=>copyText(section.answer,"回答をコピーしました");
+      $("editSection").onclick=()=>openSectionDialog(state.current);
+      $("moveUp").onclick=()=>moveSection(-1);$("moveDown").onclick=()=>moveSection(1);
+      $("deleteSection").onclick=()=>deleteSection();
+    }
+    let refreshTimer;
+    function saveDebouncedRefresh(){
+      save();clearTimeout(refreshTimer);refreshTimer=setTimeout(()=>renderWorkspace(),380);
+    }
+    function renderAll(){renderNav();renderWorkspace();updateButtons()}
+    function updateButtons(){
+      const n=state.sections.length,i=state.current;
+      $("prevSection").disabled=!n||i<=0;
+      $("nextSection").disabled=!n;
+      $("nextSection").textContent=n&&i===n-1?"最終統合へ":"次の項目";
+    }
+    function switchSection(index){
+      if(index<0||index>=state.sections.length)return;
+      state.current=index;renderAll();save();window.scrollTo({top:0,behavior:"smooth"});
+    }
+    function moveSection(direction){
+      const from=state.current,to=from+direction;
+      if(to<0||to>=state.sections.length)return;
+      [state.sections[from],state.sections[to]]=[state.sections[to],state.sections[from]];
+      state.current=to;renderAll();save();
+    }
+    function deleteSection(){
+      const section=state.sections[state.current];if(!section)return;
+      if(!confirm(`「${section.title}」を削除しますか？`))return;
+      state.sections.splice(state.current,1);state.current=Math.max(0,Math.min(state.current,state.sections.length-1));
+      renderAll();save();showToast("項目を削除しました");
+    }
+    function openSectionDialog(index=null){
+      dialogEditIndex=index;
+      const section=index===null?newSection("","その他",""):state.sections[index];
+      $("dialogTitle").textContent=index===null?"項目を追加":"項目を編集";
+      $("dialogSectionTitle").value=section.title==="新しい項目"?"":section.title;
+      $("dialogSectionType").value=section.type;
+      $("dialogSectionReference").value=section.reference||"";
+      $("sectionDialog").showModal();
+    }
+    function saveDialog(){
+      const title=$("dialogSectionTitle").value.trim()||"新しい項目";
+      const type=$("dialogSectionType").value,reference=$("dialogSectionReference").value;
+      if(dialogEditIndex===null){
+        state.sections.push(newSection(title,type,reference));state.current=state.sections.length-1;
+      }else{
+        Object.assign(state.sections[dialogEditIndex],{title,type,reference});state.current=dialogEditIndex;
+      }
+      $("sectionDialog").close();renderAll();save();showToast("項目を保存しました");
+    }
+    function addStandard(){
+      if(state.sections.length&&!confirm("現在の項目の後ろに標準構成を追加しますか？"))return;
+      STANDARD_SECTIONS.forEach(([title,type])=>state.sections.push(newSection(title,type,"")));
+      state.current=state.sections.length===STANDARD_SECTIONS.length?0:state.current;
+      renderAll();save();showToast("標準構成を追加しました");
+    }
+    function compileAnswers(){
+      if(!state.sections.length){showToast("統合する項目がありません");return}
+      const parts=state.sections.map(section=>`## ${section.title}\n\n${(section.answer||"").trim()||"（回答未入力）"}`);
+      state.finalDocument=parts.join("\n\n---\n\n");$("compiledData").value=state.finalDocument;
+      save();showToast("全項目を統合しました");
+    }
+    function goCompile(){
+      compileAnswers();$("compilePanel").scrollIntoView({behavior:"smooth",block:"start"});
+    }
+    function readTextFile(input,callback){
+      const file=input.files&&input.files[0];if(!file)return;
+      const reader=new FileReader();
+      reader.onload=()=>callback(String(reader.result||""),file.name);
+      reader.onerror=()=>showToast("ファイルを読み込めませんでした");
+      reader.readAsText(file,"utf-8");
+    }
+    function exportProject(){
+      save();downloadText(JSON.stringify(state,null,2),"スワイプテンプレート_作業データ.json","application/json");showToast("作業データを保存しました");
+    }
+    function importProjectFile(input){
+      readTextFile(input,(text)=>{
+        try{
+          const data=JSON.parse(text);
+          if(!data||!Array.isArray(data.sections))throw new Error();
+          state={...blankState(),...data,version:1,settings:{...blankState().settings,...(data.settings||{})}};
+          loadStateToFields();renderAll();save();showToast("作業データを読み込みました");
+        }catch(e){showToast("対応する作業データではありません")}
+      });
+    }
+    function loadStateToFields(){
+      $("sourceData").value=state.source||"";$("basicData").value=state.basic||"";
+      $("referenceInfo").value=state.referenceInfo||"";$("globalInstruction").value=state.globalInstruction||DEFAULT_INSTRUCTION;
+      $("globalRules").value=state.globalRules||DEFAULT_RULES;$("compiledData").value=state.finalDocument||"";applySettings();
+    }
+    function resetAll(){
+      if(!confirm("元データ、構成、回答、表示設定をすべて初期状態に戻しますか？"))return;
+      localStorage.removeItem(STORAGE_KEY);state=blankState();loadStateToFields();
+      $("analyzeStatus").textContent="まだ抽出していません";renderAll();save();showToast("初期状態に戻しました");
+    }
+
+    document.querySelectorAll(".tab").forEach(tab=>tab.onclick=()=>{
+      document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+      document.querySelectorAll(".tabpage").forEach(x=>x.classList.remove("active"));
+      tab.classList.add("active");$("tab-"+tab.dataset.tab).classList.add("active");
+    });
+    ["sourceData","basicData","referenceInfo","globalInstruction","globalRules","compiledData"].forEach(id=>$(id).addEventListener("input",save));
+    $("sourceFile").onchange=()=>readTextFile($("sourceFile"),(text,name)=>{$("sourceData").value=text;state.source=text;$("analyzeStatus").textContent=name+"を読み込みました";save()});
+    $("basicFile").onchange=()=>readTextFile($("basicFile"),(text,name)=>{$("basicData").value=text;state.basic=text;save();showToast(name+"を読み込みました")});
+    $("referenceFile").onchange=()=>readTextFile($("referenceFile"),(text,name)=>{$("referenceInfo").value=text;state.referenceInfo=text;save();showToast(name+"を読み込みました")});
+    $("analyzeSource").onclick=analyze;$("addStandard").onclick=addStandard;
+    $("addSectionSide").onclick=()=>openSectionDialog(null);$("cancelDialog").onclick=()=>$("sectionDialog").close();$("saveDialog").onclick=saveDialog;
+    $("dialogSectionType").innerHTML=TYPES.map(t=>`<option>${escapeHtml(t)}</option>`).join("");
+    $("compileAnswers").onclick=compileAnswers;$("goCompileTop").onclick=goCompile;$("goCompileSide").onclick=goCompile;
+    $("copyCompiled").onclick=()=>copyText($("compiledData").value,"統合原稿をコピーしました");
+    $("downloadCompiled").onclick=()=>downloadText($("compiledData").value,"スワイプテンプレート_統合原稿.md","text/markdown");
+    $("exportProject").onclick=exportProject;$("importProject").onchange=()=>importProjectFile($("importProject"));
+    $("resetAll").onclick=resetAll;
+    $("prevSection").onclick=()=>switchSection(state.current-1);
+    $("nextSection").onclick=()=>state.current===state.sections.length-1?goCompile():switchSection(state.current+1);
+    [["sidebarSize","sidebar","px"],["editorHeight","editorHeight","px"],["editorFont","editorFont","px"],["panelGap","panelGap","px"]].forEach(([id,key,unit])=>{
+      $(id).oninput=e=>{state.settings[key]=Number(e.target.value);applySettings();save()};
+    });
+
+    load();renderAll();
+  </script>
+</body>
+</html>
