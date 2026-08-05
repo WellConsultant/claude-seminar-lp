@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>資料請求ありがとうございます｜Traingo</title>
+<meta name="description" content="Traingoの資料請求ありがとうございます。資料はご入力のメールアドレス宛に自動でお送りしました。続けて無料相談もご利用いただけます。">
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --navy:#0f1f33;--navy-2:#1a3a5c;--amber:#f59e0b;--amber-d:#d97706;
+    --ink:#1f2937;--gray:#5b6577;--line:#e5e7eb;--bg:#f7f7f5;--white:#fff;--green:#059669;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic Medium","Meiryo",sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:0 20px;width:100%;}
+
+  header.hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);
+    color:#fff;padding:50px 0 64px;text-align:center;position:relative;overflow:hidden;
+  }
+  header.hero::after{content:"";position:absolute;right:-120px;bottom:-160px;width:360px;height:360px;
+    border-radius:50%;background:rgba(255,255,255,.04);}
+  .check{
+    width:74px;height:74px;border-radius:50%;background:var(--amber);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 22px;
+    box-shadow:0 8px 22px rgba(245,158,11,.4);
+  }
+  .check svg{width:38px;height:38px;}
+  .hero h1{font-size:26px;font-weight:800;margin-bottom:12px;color:#fff;}
+  .hero p{font-size:15px;color:#e8eef5;max-width:520px;margin:0 auto;}
+
+  .steps{display:flex;gap:8px;margin:30px auto 0;max-width:560px;}
+  .steps .step{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+    border-radius:10px;padding:11px 8px;font-size:12.5px;color:#e8eef5;text-align:center;}
+  .steps .step b{display:block;font-size:11px;letter-spacing:.06em;margin-bottom:3px;color:#9fb0cc;}
+  .steps .step.done{background:rgba(5,150,105,.22);border-color:rgba(5,150,105,.5);}
+  .steps .step.done b{color:#7fd3a6;}
+  .steps .step.active{background:var(--amber);border-color:var(--amber);color:var(--navy);font-weight:700;}
+  .steps .step.active b{color:var(--navy);}
+
+  main{flex:1;padding:0 0 56px;}
+  .card{
+    background:var(--white);border-radius:16px;padding:34px 30px;margin:-32px auto 0;
+    box-shadow:0 10px 30px rgba(15,31,51,.1);position:relative;z-index:2;text-align:center;
+  }
+  .card .next-label{
+    display:inline-block;background:rgba(245,158,11,.14);color:var(--amber-d);
+    font-weight:700;font-size:13px;padding:5px 16px;border-radius:999px;margin-bottom:18px;letter-spacing:.04em;
+  }
+  .card h2{font-size:21px;color:var(--navy);margin-bottom:12px;line-height:1.5;}
+  .card .desc{font-size:14.5px;color:var(--gray);max-width:480px;margin:0 auto 26px;}
+
+  .cta-btn{
+    display:inline-block;background:var(--amber);color:var(--navy);
+    font-weight:800;font-size:18px;text-decoration:none;
+    padding:18px 36px;border-radius:8px;width:100%;max-width:440px;
+    box-shadow:0 10px 24px rgba(245,158,11,.34);transition:.15s;
+  }
+  .cta-btn:hover{background:var(--amber-d);transform:translateY(-2px);}
+  .cta-sub{font-size:12.5px;color:var(--gray);margin-top:14px;}
+
+  .info{
+    margin:30px auto 0;background:#f8f9fb;border:1px solid var(--line);border-radius:12px;
+    padding:20px 22px;text-align:left;max-width:520px;
+  }
+  .info h3{font-size:14px;color:var(--navy);margin-bottom:12px;font-weight:800;}
+  .info ul{list-style:none;}
+  .info li{position:relative;padding:6px 0 6px 24px;font-size:13.5px;color:var(--ink);border-top:1px dashed var(--line);}
+  .info li:first-child{border-top:none;}
+  .info li::before{content:"✓";position:absolute;left:2px;top:6px;color:var(--amber-d);font-weight:800;}
+
+  .contact{margin:26px auto 0;font-size:13px;color:var(--gray);text-align:center;}
+  .contact a{color:var(--navy);font-weight:700;text-decoration:none;}
+
+  footer{background:var(--navy);color:#aeb8cb;text-align:center;padding:24px 20px;font-size:12.5px;}
+  footer .biz{color:#fff;font-weight:700;margin-bottom:4px;}
+
+  @media(max-width:600px){
+    .hero h1{font-size:22px;}
+    .card{padding:28px 20px;}
+    .card h2{font-size:18px;}
+    .cta-btn{font-size:16px;padding:16px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="check" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0f1f33" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <h1>資料請求ありがとうございました。</h1>
+    <p>ご入力いただいたメールアドレス宛に、資料のダウンロードリンクを自動でお送りしました。</p>
+
+    <div class="steps">
+      <div class="step done"><b>STEP 1</b>資料請求 完了</div>
+      <div class="step active"><b>STEP 2</b>メールで資料を受け取る</div>
+      <div class="step"><b>STEP 3</b>無料相談（任意）</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="card">
+      <span class="next-label">メールをご確認ください</span>
+      <h2>資料はメールでお届けしました</h2>
+      <p class="desc">数分以内に「info@fp-1.info」より資料ダウンロードのご案内メールが届きます。届かない場合は、迷惑メールフォルダのご確認、または下記までお問い合わせください。</p>
+
+      <a class="cta-btn" href="https://fp-1.info/hojokin/#cta" target="_blank" rel="noopener">
+        ▶ あわせて無料相談を申し込む
+      </a>
+      <p class="cta-sub">資料を見て気になる点があれば、無料相談で個別にお答えします。</p>
+
+      <div class="info">
+        <h3>資料に掲載している内容</h3>
+        <ul>
+          <li>Traingoの全機能（受講者・管理者・企業管理者の3ロール）</li>
+          <li>視聴ログ・修了証跡など助成金監査対応のしくみ</li>
+          <li>人材開発支援助成金・デジタル化補助金との連動の流れ</li>
+          <li>導入の進め方・サポート体制</li>
+          <li>料金の考え方（用途・人数別の概算）</li>
+        </ul>
+      </div>
+
+      <p class="contact">
+        資料が届かない場合は、こちらからご連絡ください。<br>
+        <a href="mailto:info@fp-1.info">info@fp-1.info</a><br>
+        <small>★ 無理な勧誘は一切いたしません。</small>
+      </p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="biz">Traingo｜法人向け研修プラットフォーム</div>
+  運営：Well Consultant 合同会社
+</footer>
+
+</body>
+</html>
