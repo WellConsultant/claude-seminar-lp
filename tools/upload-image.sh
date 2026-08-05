@@ -49,25 +49,35 @@ cp "$SRC" "$DEST"
 
 cd "$REPO_DIR"
 
-# コミット前にリモートの最新へ確実に合わせる。
-# これをしないと、他の端末やGitHub上での更新があったとき push が
-# non-fast-forward で弾かれる。rebase の取り残しもここで掃除する。
-# アップロード対象は未追跡ファイルなので reset --hard では消えない。
-rm -rf .git/rebase-merge .git/rebase-apply
-git fetch origin main --quiet
-git reset --hard FETCH_HEAD --quiet
+# リモートの最新状態へ強制的に合わせる。
+# merge / rebase / pull を一切使わないため、競合で途中停止して詰まることがない。
+# 過去に止まった rebase・merge の残骸もここで毎回掃除する。
+# HEAD が detached になっていた場合も main に戻す。
+sync_to_remote() {
+  rm -rf .git/rebase-merge .git/rebase-apply
+  rm -f .git/MERGE_HEAD .git/CHERRY_PICK_HEAD .git/index.lock
+  git fetch origin main --quiet
+  git reset --hard FETCH_HEAD --quiet
+  git symbolic-ref -q HEAD >/dev/null 2>&1 || git checkout -q -B main
+}
 
-START_HEAD=$(git rev-parse HEAD)
+# アップロード対象は未追跡ファイルなので reset --hard では消えない
+sync_to_remote
 
 git add "uploads/$FILENAME"
 git commit -m "Add uploaded file: $FILENAME" --quiet
 
 if ! git push origin main --quiet; then
-  # fetch から push までの間に更新が入った場合、一度だけ取り込み直して再送する
-  git fetch origin main --quiet
-  git rebase FETCH_HEAD --quiet || git rebase --abort 2>/dev/null || true
+  # fetch から push までの間に他から更新が入った場合。
+  # 作り直して1回だけ再送する（rebase を使わないので競合しない）
+  sync_to_remote
+  cp "$SRC" "$DEST"
+  git add "uploads/$FILENAME"
+  git commit -m "Add uploaded file: $FILENAME" --quiet
+
   if ! git push origin main --quiet; then
-    git reset --mixed "$START_HEAD" --quiet
+    # 諦める場合も、リポジトリは必ずリモートと同じ綺麗な状態で残す
+    sync_to_remote
     rm -f "$DEST"
     echo "エラー: GitHubへの送信に失敗しました。今回の送信待ちは自動的に解除しました。" >&2
     exit 1

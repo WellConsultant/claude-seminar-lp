@@ -55,19 +55,39 @@ fi
 
 cd "$REPO_DIR"
 
-# コミット前にリモートの最新へ確実に合わせる（upload-image.sh と同じ理由）。
-# アップロード対象は未追跡ファイルなので reset --hard では消えない。
-rm -rf .git/rebase-merge .git/rebase-apply
-git fetch origin main --quiet
-git reset --hard FETCH_HEAD --quiet
+# リモートの最新状態へ強制的に合わせる（upload-image.sh と同じ方式）。
+# merge / rebase / pull を使わないため、競合で途中停止して詰まることがない。
+sync_to_remote() {
+  rm -rf .git/rebase-merge .git/rebase-apply
+  rm -f .git/MERGE_HEAD .git/CHERRY_PICK_HEAD .git/index.lock
+  git fetch origin main --quiet
+  git reset --hard FETCH_HEAD --quiet
+  git symbolic-ref -q HEAD >/dev/null 2>&1 || git checkout -q -B main
+}
+
+# この時点では $BATCH_DIR は未追跡なので reset --hard では消えない
+sync_to_remote
 
 git add "$BATCH_DIR"
 git commit -m "Add batch upload: $TIMESTAMP" --quiet
 
 if ! git push origin main --quiet; then
-  git fetch origin main --quiet
-  git rebase FETCH_HEAD --quiet || git rebase --abort 2>/dev/null || true
-  git push origin main --quiet
+  # コミット済みなので $BATCH_DIR は reset --hard で消える。退避してから作り直す
+  TMP_BATCH=$(mktemp -d)
+  cp -R "$REPO_DIR/$BATCH_DIR/." "$TMP_BATCH/"
+  sync_to_remote
+  mkdir -p "$REPO_DIR/$BATCH_DIR"
+  cp -R "$TMP_BATCH/." "$REPO_DIR/$BATCH_DIR/"
+  rm -rf "$TMP_BATCH"
+
+  git add "$BATCH_DIR"
+  git commit -m "Add batch upload: $TIMESTAMP" --quiet
+
+  if ! git push origin main --quiet; then
+    sync_to_remote
+    echo "エラー: GitHubへの送信に失敗しました。今回の送信待ちは自動的に解除しました。" >&2
+    exit 1
+  fi
 fi
 
 URL="$RAW_BASE/$BATCH_DIR/index.txt"
