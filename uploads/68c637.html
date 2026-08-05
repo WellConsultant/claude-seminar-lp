@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社E.MIRAI様 企画書兼議事録｜2026.08.05</title>
+<style>
+:root{
+  --navy:#0e1e3f;
+  --navy2:#16305f;
+  --gold:#d9a13b;
+  --gold-l:#f3e3c4;
+  --gray:#5b6472;
+  --line:#dfe3ea;
+  --bg:#f4f6f9;
+  --red:#c0392b;
+  --green:#1f8a5f;
+  --blue:#2b6cb0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  background:#20242c;color:var(--navy);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+#stage{position:relative;width:1280px;height:720px;transform-origin:center center;}
+.slide{
+  position:absolute;inset:0;width:1280px;height:720px;background:#fff;
+  display:none;flex-direction:column;overflow:hidden;
+}
+.slide.active{display:flex;}
+
+/* ---------- common chrome ---------- */
+.head{
+  padding:34px 56px 0 56px;flex:0 0 auto;
+}
+.kicker{
+  display:inline-block;font-size:14px;letter-spacing:.14em;font-weight:700;
+  color:var(--gold);border-left:4px solid var(--gold);padding-left:10px;margin-bottom:10px;
+}
+h1.title{font-size:38px;line-height:1.25;font-weight:800;letter-spacing:.01em;}
+h1.title .sub{display:block;font-size:17px;font-weight:600;color:var(--gray);margin-top:8px;letter-spacing:.02em;}
+.rule{height:3px;background:linear-gradient(90deg,var(--navy) 0%,var(--gold) 38%,transparent 38%);margin-top:16px;}
+.body{flex:1 1 auto;padding:22px 56px 46px 56px;display:flex;flex-direction:column;gap:14px;min-height:0;}
+.foot{
+  position:absolute;bottom:0;left:0;right:0;height:34px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 56px;font-size:11.5px;color:#9aa3b0;border-top:1px solid var(--line);
+}
+.foot .fl{letter-spacing:.06em;}
+.pagenum{font-weight:700;color:var(--navy);}
+
+/* ---------- cover / section ---------- */
+.cover{background:linear-gradient(135deg,#0b1830 0%,#16305f 55%,#1d3f7c 100%);color:#fff;justify-content:center;padding:0 90px;}
+.cover .cv-kick{font-size:15px;letter-spacing:.3em;color:var(--gold);font-weight:700;margin-bottom:22px;}
+.cover h1{font-size:56px;line-height:1.22;font-weight:800;}
+.cover h1 em{font-style:normal;color:var(--gold);}
+.cover .cv-sub{font-size:20px;margin-top:22px;color:#c9d4e6;font-weight:600;line-height:1.7;}
+.cover .cv-meta{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.22);display:flex;gap:56px;font-size:14px;color:#aebbd0;}
+.cover .cv-meta b{display:block;color:#fff;font-size:16px;margin-top:6px;font-weight:700;}
+.cover .badge{position:absolute;right:80px;top:70px;width:120px;height:120px;border:2px solid var(--gold);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--gold);}
+.cover .badge span{font-size:11px;letter-spacing:.16em;}
+.cover .badge b{font-size:30px;line-height:1;margin-top:4px;}
+
+.section{background:var(--navy);color:#fff;justify-content:center;padding:0 90px;}
+.section .sc-no{font-size:90px;font-weight:800;color:rgba(217,161,59,.35);line-height:1;}
+.section h1{font-size:48px;font-weight:800;margin-top:6px;}
+.section p{font-size:19px;color:#b9c6db;margin-top:20px;line-height:1.8;max-width:900px;}
+.section .tagline{margin-top:28px;display:inline-block;background:var(--gold);color:var(--navy);font-weight:800;font-size:15px;padding:9px 20px;border-radius:3px;}
+
+/* ---------- components ---------- */
+.cols{display:flex;gap:20px;flex:1;min-height:0;}
+.col{flex:1;display:flex;flex-direction:column;gap:12px;min-width:0;}
+
+.card{border:1px solid var(--line);border-radius:8px;padding:18px 20px;background:#fff;display:flex;flex-direction:column;gap:8px;}
+.cols .col>.card:last-child{flex:1 1 auto;}
+.card.fill{background:var(--bg);}
+.card.navy{background:var(--navy);color:#fff;border-color:var(--navy);}
+.card.navy .c-ttl{color:var(--gold);}
+.card.gold{background:#fdf6e8;border-color:#eccf95;}
+.card.red{background:#fdf1ef;border-color:#eec4bd;}
+.card.green{background:#eef8f3;border-color:#bfe3d2;}
+.c-ttl{font-size:15.5px;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:8px;}
+.c-ttl .dot{width:9px;height:9px;background:var(--gold);border-radius:2px;flex:0 0 auto;}
+.c-txt{font-size:13.5px;line-height:1.75;color:#3a4351;}
+.card.navy .c-txt{color:#d5deec;}
+
+ul.li{list-style:none;display:flex;flex-direction:column;gap:7px;}
+ul.li li{font-size:13.5px;line-height:1.65;padding-left:18px;position:relative;color:#333c49;}
+ul.li li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;background:var(--gold);border-radius:50%;}
+ul.li li b{color:var(--navy);}
+ul.li.sm li{font-size:12.5px;}
+
+table.tb{width:100%;border-collapse:collapse;font-size:13px;}
+table.tb th{background:var(--navy);color:#fff;font-weight:700;padding:9px 12px;text-align:left;font-size:12.5px;letter-spacing:.03em;}
+table.tb td{border-bottom:1px solid var(--line);padding:9px 12px;vertical-align:top;line-height:1.6;}
+table.tb tr:nth-child(even) td{background:#fafbfd;}
+table.tb td.num{font-weight:800;color:var(--navy);white-space:nowrap;}
+table.tb .ok{color:var(--green);font-weight:800;}
+table.tb .ng{color:var(--red);font-weight:800;}
+table.tb .mid{color:#b07d1e;font-weight:800;}
+
+.kpis{display:flex;gap:14px;}
+.kpi{flex:1;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:6px;padding:16px 14px;text-align:center;background:#fff;}
+.kpi .k-l{font-size:11.5px;color:var(--gray);font-weight:700;letter-spacing:.04em;}
+.kpi .k-v{font-size:34px;font-weight:800;color:var(--navy);line-height:1.15;margin-top:6px;}
+.kpi .k-v small{font-size:15px;font-weight:700;margin-left:2px;}
+.kpi .k-n{font-size:11px;color:#8a94a3;margin-top:6px;line-height:1.5;}
+
+.flow{display:flex;align-items:stretch;gap:0;}
+.flow .fstep{flex:1;background:var(--bg);border:1px solid var(--line);padding:14px 12px 14px 22px;position:relative;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%,16px 50%);}
+.flow .fstep:first-child{clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%);padding-left:14px;}
+.flow .fstep.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+.flow .fstep.now{background:var(--gold);border-color:var(--gold);color:var(--navy);}
+.flow .f-n{font-size:10.5px;font-weight:800;letter-spacing:.1em;opacity:.75;}
+.flow .f-t{font-size:14px;font-weight:800;margin-top:3px;line-height:1.35;}
+.flow .f-d{font-size:10.5px;margin-top:4px;line-height:1.45;opacity:.85;}
+
+.badge-s{display:inline-block;font-size:11px;font-weight:800;padding:3px 9px;border-radius:3px;letter-spacing:.04em;}
+.b-todo{background:#fdf1ef;color:var(--red);}
+.b-done{background:#eef8f3;color:var(--green);}
+.b-now{background:#fdf6e8;color:#a9781a;}
+.b-info{background:#eef3fb;color:var(--blue);}
+
+.quote{border-left:4px solid var(--gold);background:#fdfaf4;padding:14px 18px;font-size:13.5px;line-height:1.8;color:#3a4351;}
+.quote .who{display:block;margin-top:8px;font-size:12px;color:var(--gray);font-weight:700;}
+
+.note{font-size:11.5px;color:#8a94a3;line-height:1.6;}
+.hl{background:linear-gradient(transparent 62%,rgba(217,161,59,.45) 62%);font-weight:800;}
+.big-msg{font-size:26px;font-weight:800;line-height:1.5;color:var(--navy);}
+.big-msg em{font-style:normal;color:var(--gold);}
+
+.tl{position:relative;padding-left:0;display:flex;gap:0;}
+.tlrow{display:flex;flex-direction:column;gap:10px;}
+.tlitem{display:flex;gap:14px;align-items:flex-start;}
+.tlitem .tdate{flex:0 0 132px;font-size:13px;font-weight:800;color:#fff;background:var(--navy);padding:6px 10px;border-radius:3px;text-align:center;}
+.tlitem .tdate.g{background:var(--gold);color:var(--navy);}
+.tlitem .tbody{flex:1;font-size:13px;line-height:1.6;padding-top:5px;color:#333c49;}
+.tlitem .tbody b{color:var(--navy);}
+
+.matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.mbox{border:1px solid var(--line);border-radius:7px;padding:14px 15px;background:#fff;}
+.mbox h4{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:7px;}
+.mbox p{font-size:12.5px;line-height:1.65;color:#3a4351;}
+.mbox.win{border:2px solid var(--gold);background:#fdf6e8;}
+.mbox .verdict{display:inline-block;margin-bottom:7px;font-size:11px;font-weight:800;padding:3px 8px;border-radius:3px;}
+
+.split{display:flex;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+.split>div{flex:1;padding:16px 18px;}
+.split .lft{background:#fdf1ef;}
+.split .rgt{background:#eef8f3;}
+.split h4{font-size:14px;font-weight:800;margin-bottom:8px;}
+.split .lft h4{color:var(--red);}
+.split .rgt h4{color:var(--green);}
+
+.compact table.tb td{padding:4.5px 10px;font-size:11.8px;line-height:1.5;}
+.compact table.tb th{padding:6px 10px;font-size:11.5px;}
+.confid{position:absolute;top:22px;right:56px;font-size:10.5px;font-weight:800;color:var(--red);border:1px solid var(--red);padding:3px 9px;border-radius:3px;letter-spacing:.08em;}
+
+/* nav */
+#nav{position:fixed;bottom:14px;right:18px;display:flex;gap:8px;z-index:50;}
+#nav button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);width:34px;height:30px;border-radius:5px;cursor:pointer;font-size:14px;}
+#nav button:hover{background:rgba(255,255,255,.3);}
+#nav .ind{color:#cfd6e2;font-size:12px;display:flex;align-items:center;padding:0 8px;letter-spacing:.05em;}
+
+@media print{
+  body{background:#fff;display:block;overflow:visible;}
+  #stage{transform:none!important;width:auto;height:auto;}
+  .slide{display:flex!important;position:relative;page-break-after:always;box-shadow:none;}
+  #nav{display:none;}
+  @page{size:1280px 720px;margin:0;}
+}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1 COVER -->
+<section class="slide cover active">
+  <div class="badge"><span>MEETING</span><b>08/05</b></div>
+  <div class="cv-kick">株式会社 E.MIRAI 御中</div>
+  <h1>成長投資 <em>3本柱</em> 実行計画<br>企画書 兼 議事録</h1>
+  <div class="cv-sub">① 小規模事業者持続化補助金 ─ 交付申請とリアルイベント事業<br>② 人材開発支援助成金 ─ AI活用研修　③ ものづくり補助金 ─ UV新商品開発</div>
+  <div class="cv-meta">
+    <div>開催日<b>2026年8月5日（水）</b></div>
+    <div>形式 / 所要<b>オンライン会議 / 約2時間10分</b></div>
+    <div>出席者<b>門倉 恵美子 様（社長）／ 猪口 和代 様 ／ 小川 裕美 様 ／ 阿久津 和宏</b></div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">01</span></div>
+</section>
+
+<!-- 2 AGENDA -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">AGENDA</div>
+    <h1 class="title">本日の論点は4つ<span class="sub">「今すぐ動かすもの」と「今月中に判断するもの」を切り分ける</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <table class="tb">
+      <tr><th style="width:52px">#</th><th style="width:250px">テーマ</th><th>本日のゴール</th><th style="width:150px">状態</th><th style="width:120px">期限</th></tr>
+      <tr><td class="num">1</td><td><b>持続化補助金 交付申請</b></td><td>差戻し内容の確認・対応方針の合意／見積書取得の段取り</td><td><span class="badge-s b-now">対応中</span></td><td>8月中</td></tr>
+      <tr><td class="num">2</td><td><b>リアルイベント企画</b></td><td>目的（代理店開拓）の確定。テーマ・出展者設計は宿題化</td><td><span class="badge-s b-todo">宿題</span></td><td>8/10 会議</td></tr>
+      <tr><td class="num">3</td><td><b>支援報酬の確認</b></td><td>採択報酬30万円（交付申請〜実績報告まで込み）の合意</td><td><span class="badge-s b-done">合意</span></td><td>—</td></tr>
+      <tr><td class="num">4</td><td><b>AI研修 × 人材開発支援助成金</b></td><td>実施意向の確認。デモ再送付 → 内容確認</td><td><span class="badge-s b-now">再開</span></td><td>年内推奨</td></tr>
+      <tr><td class="num">5</td><td><b>UV新商品 × ものづくり補助金</b></td><td>適用可能性の一次判定。枠の選定と必要情報の洗い出し</td><td><span class="badge-s b-info">調査</span></td><td>8月末</td></tr>
+    </table>
+    <div class="quote">本日は「①持続化の事務手続き」と「②イベントの中身」を明確に分離した。<span class="hl">交付決定は中身が固まる前でも取りに行ける</span>ため、まず手続きを最速で通し、企画は8/10に別途詰める。<span class="who">— 会議の基本方針</span></div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">02</span></div>
+</section>
+
+<!-- 3 EXEC SUMMARY -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">EXECUTIVE SUMMARY</div>
+    <h1 class="title">本日の決定事項と、次に動くこと<span class="sub">決定5件 / 宿題4件 / 次回 8月10日（月）13:00</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col">
+        <div class="card navy">
+          <div class="c-ttl">決定したこと</div>
+          <ul class="li sm" style="color:#fff">
+            <li style="color:#dfe7f3">持続化補助金は<b style="color:#fff">採択</b>。交付申請の差戻し対応は<b style="color:#fff">阿久津側が画面に入って修正</b>、送信のみ小川様が実施</li>
+            <li style="color:#dfe7f3">今後、差戻しメールは<b style="color:#fff">転送＋アプリ承認</b>のみで運用</li>
+            <li style="color:#dfe7f3">採択報酬<b style="color:#fff">30万円</b>。交付申請・実績報告支援を含む（追加30万は不要）</li>
+            <li style="color:#dfe7f3">イベントの主目的は<b style="color:#fff">新規代理店開拓</b>。既存代理店の出展誘致は主軸にしない</li>
+            <li style="color:#dfe7f3">次回打合せ <b style="color:#fff">8月10日（月）13:00</b>（8/11〜16はお盆休み）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card gold">
+          <div class="c-ttl">次回までの宿題</div>
+          <ul class="li sm">
+            <li><b>全員：</b>イベントの「テーマ」と「誰に何を売るか」を各自1案以上持ち寄る（ノーアイデア禁止）</li>
+            <li><b>小川様：</b>代理店の発注データ（社数×月次）を既存フォーマットのまま共有</li>
+            <li><b>猪口様：</b>ビューティワールドの名刺リスト／商談・成約数の内訳を整理</li>
+            <li><b>阿久津：</b>差戻し修正案・見積書の準備、AI研修デモ再送付、UV案件の補助金精査</li>
+          </ul>
+        </div>
+        <div class="card red">
+          <div class="c-ttl">リスク・注意</div>
+          <ul class="li sm">
+            <li>秋開催は集客期間が足りず<b>実質不可</b>。冬以降で逆算する</li>
+            <li>出展料で利益が出ると<b>収益納付</b>が発生する</li>
+            <li>UV案件は<b>情報管理厳守</b>（他社への漏洩厳禁）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">03</span></div>
+</section>
+
+<!-- 4 MAP -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">WHOLE PICTURE</div>
+    <h1 class="title">3つの制度活用を、1本の成長ストーリーに束ねる<span class="sub">「売る力」「人の力」「商品の力」を同時に補助金で立ち上げる</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="matrix" style="flex:1">
+      <div class="mbox" style="display:flex;flex-direction:column">
+        <span class="verdict b-now">進行中</span>
+        <h4>① 売る力｜持続化補助金</h4>
+        <p>リアルフェスを自主開催し、<b>新規代理店を開拓</b>する。補助上限200万円・補助率2/3。</p>
+        <div style="margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);font-size:12px;line-height:1.6;color:var(--gray)">
+          <b style="color:var(--navy)">現在地：</b>採択済 → 交付申請で差戻し対応中<br>
+          <b style="color:var(--navy)">次の壁：</b>企画テーマの確定
+        </div>
+      </div>
+      <div class="mbox" style="display:flex;flex-direction:column">
+        <span class="verdict b-info">再開検討</span>
+        <h4>② 人の力｜人材開発支援助成金</h4>
+        <p>AI（ChatGPT等）の業務活用研修を<b>動画・視聴履歴管理型</b>で受講。1名30万円 × 5名〜。</p>
+        <div style="margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);font-size:12px;line-height:1.6;color:var(--gray)">
+          <b style="color:var(--navy)">現在地：</b>デモ確認後、保留中<br>
+          <b style="color:var(--navy)">次の壁：</b>来年度は制度が無い可能性 → 年内着手
+        </div>
+      </div>
+      <div class="mbox win" style="display:flex;flex-direction:column">
+        <span class="verdict b-todo">最重要・新規</span>
+        <h4>③ 商品の力｜ものづくり補助金</h4>
+        <p>スペイン発の革新的UV成分を用いた<b>日本初のUV美容液</b>を開発。革新的製品・サービス枠が有力。</p>
+        <div style="margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);font-size:12px;line-height:1.6;color:var(--gray)">
+          <b style="color:var(--navy)">現在地：</b>先方とコンタクト成立、8月末に商談<br>
+          <b style="color:var(--navy)">次の壁：</b>枠選定と対象経費の確定
+        </div>
+      </div>
+    </div>
+    <div class="quote">3つは独立した話ではない。<span class="hl">UV新商品（③）ができれば、イベント（①）で語る「出展する理由」「代理店になる理由」が一気に強くなる。</span>そしてAI研修（②）で社内の実行スピードが上がる。順番と接続を意識して設計する。</div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">04</span></div>
+</section>
+
+<!-- 5 SECTION 1 -->
+<section class="slide section">
+  <div class="sc-no">01</div>
+  <h1>小規模事業者持続化補助金<br>交付申請フェーズ</h1>
+  <p>採択はゴールではなくスタートライン。交付決定通知書を受け取って初めて、発注も支払いも可能になる。ここを最速で通すことが、イベントの選択肢を広げる。</p>
+  <div class="tagline">まずは「事務」を片付け、「企画」に集中できる状態をつくる</div>
+  <div class="foot" style="border-top:1px solid rgba(255,255,255,.15);color:#7f8ca3"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum" style="color:#fff">05</span></div>
+</section>
+
+<!-- 6 FLOW -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">01 ─ PROCESS</div>
+    <h1 class="title">全体フローと現在地<span class="sub">「交付決定」までは1円も使えない。ここが最初の関門</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="flow">
+      <div class="fstep on"><div class="f-n">STEP 1</div><div class="f-t">申請・採択</div><div class="f-d">完了。事業計画は阿久津が作成</div></div>
+      <div class="fstep now"><div class="f-n">STEP 2</div><div class="f-t">交付申請</div><div class="f-d">差戻し対応＋見積書提出</div></div>
+      <div class="fstep"><div class="f-n">STEP 3</div><div class="f-t">交付決定通知</div><div class="f-d">通知書の受領</div></div>
+      <div class="fstep"><div class="f-n">STEP 4</div><div class="f-t">事業実施</div><div class="f-d">発注・支払いが可能に</div></div>
+      <div class="fstep"><div class="f-n">STEP 5</div><div class="f-t">実績報告</div><div class="f-d">全支払完了後に報告</div></div>
+      <div class="fstep"><div class="f-n">STEP 6</div><div class="f-t">入金</div><div class="f-d">補助金の受領</div></div>
+    </div>
+    <div class="cols" style="margin-top:6px">
+      <div class="col">
+        <div class="card fill">
+          <div class="c-ttl"><span class="dot"></span>いま起きていること</div>
+          <ul class="li sm">
+            <li>電子申請システム上で<b>差戻し</b>が発生。指摘は主に<b>従業員の賃金台帳・労働条件通知書</b>まわり</li>
+            <li>「事業所内最低賃金の対象となる方がいるように見受けられます」という指摘あり → 誰を指すかを含め阿久津側で確認</li>
+            <li>指摘 → 回答 → 再指摘、というやり取りが続く前提で進める</li>
+          </ul>
+        </div>
+        <div class="card gold">
+          <div class="c-ttl"><span class="dot"></span>運用ルール（今回決定）</div>
+          <ul class="li sm">
+            <li>差戻しメールは<b>阿久津へ転送</b>するだけでOK</li>
+            <li>アプリ承認（画面共有／リモート）のみ小川様が実施</li>
+            <li>修正内容の入力は阿久津が実施し、<b>最終送信だけ小川様</b>が押す</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="c-ttl"><span class="dot"></span>本日回収したもの</div>
+          <ul class="li sm">
+            <li>差戻し内容のスクリーンショット（PDF 2点）</li>
+            <li>申請内容一式の<b>HTML保存ファイル</b>（事業計画書を含む）</li>
+            <li>→ いずれもチャットワークで共有済</li>
+          </ul>
+        </div>
+        <div class="card red">
+          <div class="c-ttl"><span class="dot"></span>審査傾向の所感</div>
+          <div class="c-txt">指摘内容が回を追うごとに細かくなっている。<b>これまで問われなかった点が問われる</b>ため、書類の整合（賃金台帳・労働条件通知書の記載）を先回りして整える。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">06</span></div>
+</section>
+
+<!-- 7 MONEY -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">01 ─ MONEY</div>
+    <h1 class="title">お金の構造を正確に押さえる<span class="sub">「かけた額の2/3」ではなく「上限200万円」が効く</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="kpis">
+      <div class="kpi"><div class="k-l">補助上限額</div><div class="k-v">200<small>万円</small></div><div class="k-n">これ以上は出ない</div></div>
+      <div class="kpi"><div class="k-l">補助率</div><div class="k-v">2/3</div><div class="k-n">対象経費に対して</div></div>
+      <div class="kpi"><div class="k-l">上限に達する事業費</div><div class="k-v">300<small>万円</small></div><div class="k-n">これを超えた分は全額自己負担</div></div>
+      <div class="kpi"><div class="k-l">自己負担（300万時）</div><div class="k-v">100<small>万円</small></div><div class="k-n">手出し分</div></div>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="card fill">
+          <div class="c-ttl"><span class="dot"></span>誤解しやすいポイント</div>
+          <ul class="li sm">
+            <li>500万円かけても補助は<b>200万円で頭打ち</b>。「かけた分だけ2/3出る」わけではない</li>
+            <li>したがって<b>総額300万円前後に収めた設計</b>が最も効率が良い</li>
+            <li>手出し100万円に見合う<b>代理店獲得数</b>が出せるかが投資判断の基準</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card red">
+          <div class="c-ttl"><span class="dot"></span>収益納付に注意</div>
+          <div class="c-txt">補助事業で<b>利益が出た場合、収益納付</b>が発生する。出展料を高く取って黒字化すると補助金を返す構図になりうる。<br>→ 出展料は<b>ブース看板代など実費相当</b>にとどめ、初回は「集客と関係構築」に振り切る。</div>
+        </div>
+        <div class="card green">
+          <div class="c-ttl"><span class="dot"></span>経費内容は変えない方が有利</div>
+          <div class="c-txt">採択された計画書の<b>対象経費から大きくズラすと減額・不可のリスク</b>が高い。企画の自由度は「経費の枠内」で確保する。</div>
+        </div>
+      </div>
+    </div>
+    <div class="note">※ 経費項目例：会場費／展示会出展・賃料／看板制作／マーケティング・コンテンツ制作（当社サポート分を含む）。見積書は当社で用意できるものと、会場等の外部から取得するものに分かれる。</div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">07</span></div>
+</section>
+
+<!-- 8 SCHEDULE -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">01 ─ SCHEDULE</div>
+    <h1 class="title">期限は2027年6月30日。しかし逆算すると余裕はない<span class="sub">ギリギリを避けるほど入金スピードは上がる</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="tlrow" style="flex:1">
+      <div class="tlitem"><div class="tdate g">2026年8月</div><div class="tbody"><b>交付申請の完了</b>／差戻し修正 → 見積書取得 → 提出。並行して<b>8/10にイベント企画会議</b>。開催時期が未定でも見積は先に取る。</div></div>
+      <div class="tlitem"><div class="tdate">2026年9月</div><div class="tbody"><b>交付決定 → 企画確定・会場仮押さえ</b>／テーマ・出展者オファー・ペルソナを確定。企画に1〜2ヶ月を見込む。</div></div>
+      <div class="tlitem"><div class="tdate">2026年10〜11月</div><div class="tbody"><b>集客フェーズ</b>／出展者募集 → 出展者経由の来場者集客。エステ事業者リストへのDM・フォーム営業等を数回に分けて実施。</div></div>
+      <div class="tlitem"><div class="tdate">2026年冬〜2027年初</div><div class="tbody"><b>リアルイベント開催</b>／秋は集客期間が確保できないため現実的でない。冬以降が本線。</div></div>
+      <div class="tlitem"><div class="tdate">開催後〜</div><div class="tbody"><b>支払い完了 → 実績報告 → 入金</b>／「終わってから」ではなく開催前から証憑の整理を進める。</div></div>
+      <div class="tlitem"><div class="tdate" style="background:var(--red)">2027年6月30日</div><div class="tbody"><b>事業実施の最終期限（お尻）</b>／ここに寄せるほど入金は遅れる。本年度中の実施を強く推奨。</div></div>
+    </div>
+    <div class="quote">「秋か冬」と話していたが、今が8月。<span class="hl">秋開催は集客が間に合わない</span>。会場を今から押さえられるかという問題もあるため、<span class="hl">交付決定を最速で取り、日程の選択肢を確保する</span>ことを最優先とする。<span class="who">— 阿久津</span></div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">08</span></div>
+</section>
+
+<!-- 9 FEE -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">01 ─ FEE</div>
+    <h1 class="title">支援報酬の確認<span class="sub">採択報酬30万円で、実績報告までを一気通貫でサポート</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.15">
+        <table class="tb">
+          <tr><th>フェーズ</th><th style="width:130px">通常の考え方</th><th style="width:150px">今回のご提案</th><th>内容</th></tr>
+          <tr><td><b>採択報酬</b></td><td class="num">30万円</td><td class="num" style="color:var(--gold)">30万円</td><td>採択に対する成功報酬。当初のお打合せ通り。</td></tr>
+          <tr><td><b>交付申請支援</b></td><td class="num">30万円</td><td class="num ok">込み</td><td>差戻し対応・見積書取りまとめ・システム入力。</td></tr>
+          <tr><td><b>実績報告支援</b></td><td class="num">30万円</td><td class="num ok">込み</td><td>証憑整理・報告書作成の支援。</td></tr>
+          <tr><td colspan="2" style="text-align:right"><b>お支払い合計</b></td><td class="num" style="font-size:16px;color:var(--gold)">30万円</td><td>※ 別途、マーケティング支援については補助対象経費の枠内でご相談。</td></tr>
+        </table>
+        <div class="card green">
+          <div class="c-ttl"><span class="dot"></span>会議での確認結果</div>
+          <div class="c-txt">小川様より「契約時にも伺っていた通り」とご確認いただき、<b>最終的な了承は門倉社長の判断</b>とすることで整理。門倉社長にもご説明済み。</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card navy">
+          <div class="c-ttl">なぜ一気通貫が重要か</div>
+          <div class="c-txt">交付申請と実績報告は、<b>採択後に最も事故が起きやすい工程</b>。書類不備で減額・不交付になれば採択の意味が消える。ここを分断せず同じ担当が見ることで、計画書との整合を保ったまま入金まで到達できる。</div>
+        </div>
+        <div class="card">
+          <div class="c-ttl"><span class="dot"></span>あわせて</div>
+          <ul class="li sm">
+            <li>事業計画はほぼ阿久津が作成 → <b>責任を持って実行支援まで行う</b></li>
+            <li>マーケティング／集客の実行部分は当社でサポート可能（見積も当社で用意可）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">09</span></div>
+</section>
+
+<!-- 10 SECTION 2 -->
+<section class="slide section">
+  <div class="sc-no">02</div>
+  <h1>リアルイベント企画<br>「誰に、何を、なぜ」を決める</h1>
+  <p>本日いちばん時間を使った論点。現時点で企画はゼロベース。ただし目的だけは明確になった ─ <b style="color:#fff">新規代理店の開拓</b>。ここから逆算して、テーマ・出展者・集客を設計する。</p>
+  <div class="tagline">次回8/10は「ノーアイデアで臨まない」ことがルール</div>
+  <div class="foot" style="border-top:1px solid rgba(255,255,255,.15);color:#7f8ca3"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum" style="color:#fff">10</span></div>
+</section>
+
+<!-- 11 PURPOSE -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">02 ─ PURPOSE</div>
+    <h1 class="title">目的は「代理店開拓」で確定<span class="sub">ユーザー獲得より、スケールする方向を選ぶ</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="big-msg">目的：<em>まだ自社商品を扱っていない事業者</em>を集め、<br>体験を通じて<em>新規代理店</em>に転換する。</div>
+    <div class="cols">
+      <div class="col">
+        <div class="card green">
+          <div class="c-ttl"><span class="dot"></span>採用：新規代理店開拓</div>
+          <ul class="li sm">
+            <li>1社獲得の<b>見返りが大きく、スケールしやすい</b></li>
+            <li>代理店が儲かれば、元請けである自社が儲かる構造</li>
+            <li>「商品が良い」と実感しないと代理店にはならない → <b>まずユーザーとして使ってもらう</b>導線が必要</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card red">
+          <div class="c-ttl"><span class="dot"></span>主軸にしない：既存代理店の出展誘致</div>
+          <ul class="li sm">
+            <li>既存代理店は<b>全員が同じ商品</b>を扱うため、隣に並んでも差別化できず出展メリットがない</li>
+            <li>既存代理店はビューティワールド等ですでに接点があり、コミュニケーションは取れている</li>
+            <li>自店の顧客を他サロンに取られる懸念もある</li>
+            <li>※ ただし「既存代理店が自社顧客を連れてくる（アップセル機会）」という<b>土台としての参加</b>は歓迎</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="note">※「代理店を紹介すると手数料が入る」型の仕組みは、規模の小さい層には一定の需要が見込めるが、出展の動機としては弱い。設けるとしても1ブース程度の位置づけ。</div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">11</span></div>
+</section>
+
+<!-- 12 STRUCTURE -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">02 ─ MODEL</div>
+    <h1 class="title">イベントの基本構造<span class="sub">自社が全員を集めるのではなく、出展者に集客してもらう</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="matrix">
+      <div class="mbox"><h4>主催者（E.MIRAI）の役割</h4><p>①<b>場所を用意する</b>　②<b>テーマ／コンセプトを決める</b>　③<b>ユーザーを集める</b>　④<b>出展者のバックヤードを支援する</b><br><span class="note">＝「集める人」ではなく「集めやすくする人」</span></p></div>
+      <div class="mbox"><h4>出展者の役割</h4><p>自社の顧客・見込客を<b>会場に連れてくる</b>。出展者が集客するほどイベント全体の来場が増える。<br><span class="note">→ 出展者にとって「呼んだ方が得」な設計が必須</span></p></div>
+      <div class="mbox win"><h4>結果として起きること</h4><p>10ブース × 各10名で<b>100名規模</b>のイベントに。集客力が掛け算になる。<br><span class="note">当社が行うオンラインフェスの「リアル版」</span></p></div>
+    </div>
+    <div class="card fill">
+      <div class="c-ttl"><span class="dot"></span>集めたい相手（仮）</div>
+      <div class="c-txt">ユーザー（一般消費者）だけでなく、<b>エステサロン・サプリメント販売・オンライン物販など「取扱商品を探している事業者」</b>。この層には常に商材ニーズがある。ここに「体験して、良ければ扱ってください」と提示するのが本イベントの核。</div>
+    </div>
+    <div class="quote">当社のオンラインフェスでは、テーマ（例：補助金）を1つ決め、関連する登壇者3〜5名を集める。<span class="hl">講師料は払わず・取らず、各社が100名ずつ集めれば500社の見込客が生まれる</span>。しかも各社が連れてくるのは質の高い顧客であることが多い。この構造をリアルに移す。<span class="who">— 阿久津</span></div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">12</span></div>
+</section>
+
+<!-- 13 ISSUE -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">02 ─ KEY ISSUE</div>
+    <h1 class="title">最大の論点：出展者に「出る理由」をどう作るか<span class="sub">ここが解ければ、企画はほぼ決まる</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="split">
+      <div class="lft">
+        <h4>◤ 論点1｜同一商品問題</h4>
+        <p style="font-size:13px;line-height:1.7">自社の代理店だけを集めると、全員が同じ商品を売ることになり、出展する意味がなくなる。<b>持ちつ持たれつが成立しない。</b></p>
+        <p style="font-size:13px;line-height:1.7;margin-top:8px"><b>対応の方向性：</b>異業種・非競合で構成する。「エステサロン◯社／サプリ◯社／水◯社」のように<b>業種枠を分ける</b>、または各社が自店サービスを紹介できる建て付けにする。</p>
+      </div>
+      <div class="rgt">
+        <h4>◤ 論点2｜実績ゼロ問題</h4>
+        <p style="font-size:13px;line-height:1.7">初開催のため<b>「見込み来場者数」に説得力がない</b>。数字で誘えないなら、別の価値で誘う必要がある。</p>
+        <p style="font-size:13px;line-height:1.7;margin-top:8px"><b>対応の方向性：</b>①出展者への<b>スペシャルオファー</b>（出展料を実費相当まで下げる／当社が集客を代行する等）②「<b>この場でしか会えない相手が来る</b>」というテーマ設計。</p>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="card gold">
+          <div class="c-ttl"><span class="dot"></span>テーマ案（叩き台・思いつきレベル）</div>
+          <ul class="li sm">
+            <li><b>自然志向・ナチュラル</b>系フェス（美容 × 健康 × 食）</li>
+            <li><b>「事業を構築する」</b>＝サロン経営者の売上づくりがテーマ</li>
+            <li><b>「取扱商品を増やす」</b>＝商材発掘の場として明確に打ち出す</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card navy">
+          <div class="c-ttl">決めるべき順番</div>
+          <div class="c-txt">① テーマ → ② 誰に何を売るか（ペルソナ） → ③ 出展者へのオファー → ④ 集客手段・媒体 → ⑤ 会場規模<br><br><b style="color:var(--gold)">テーマが決まれば、どのリストを集めるべきか・どの媒体が有効かは自動的に決まる。</b>逆にテーマが無いまま集客手段の話をしても答えは出ない。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">13</span></div>
+</section>
+
+<!-- 14 BENCHMARK -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">02 ─ BENCHMARK</div>
+    <h1 class="title">参考事例の分析：なぜ「出なかった」のか<span class="sub">断った理由の裏返しが、自社イベントの設計要件になる</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.05">
+        <table class="tb">
+          <tr><th colspan="2">他社主催イベント（お誘いを受けたが不参加）</th></tr>
+          <tr><td style="width:150px"><b>来場実績の打ち出し</b></td><td>2日間で約1,500名</td></tr>
+          <tr><td><b>メディア</b></td><td>約80社の取材</td></tr>
+          <tr><td><b>出展料</b></td><td class="num">1コマ2日間 18万円＋税</td></tr>
+          <tr><td><b>構成</b></td><td>自然志向系。飲食が中心＋美容＋ペット等が混在</td></tr>
+          <tr><td><b>会場の見え方</b></td><td>長テーブルに商品を並べる形式</td></tr>
+        </table>
+        <div class="card red">
+          <div class="c-ttl"><span class="dot"></span>不参加を決めた理由（門倉社長・小川様）</div>
+          <ul class="li sm">
+            <li>集客数に対して<b>出展料が高い</b></li>
+            <li>出展社数も少なく<b>集客力が見込めない</b></li>
+            <li>過去実績の打ち出しが弱く<b>信用できなかった</b></li>
+            <li><b>コンセプトがバラバラ</b>で、誰向けか分からない</li>
+            <li>見せ方（長テーブル陳列）に魅力を感じなかった</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card green">
+          <div class="c-ttl"><span class="dot"></span>裏返して得られる自社イベントの要件</div>
+          <ul class="li sm">
+            <li><b>要件A：</b>出展料を「高い」と感じさせない（＝実費相当。収益納付の観点とも一致）</li>
+            <li><b>要件B：</b>数が読めない代わりに、<b>「誰が来るか」の質</b>を明示する</li>
+            <li><b>要件C：</b>コンセプトを1本に絞る。混在させない</li>
+            <li><b>要件D：</b>ブース什器・看板など<b>見た目の作り込み</b>に予算を割く（対象経費にも合致）</li>
+            <li><b>要件E：</b>出展者が「客を連れてきたくなる」明確な理由を用意する</li>
+          </ul>
+        </div>
+        <div class="quote" style="font-size:12.5px">「集客が少ないし値段が高かった。出展社数も少なく、力が見込めないと思った」<span class="who">— 門倉社長</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">14</span></div>
+</section>
+
+<!-- 15 OWN DATA -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">02 ─ OWN DATA</div>
+    <h1 class="title">自社実績：ビューティワールドの数字を分解する<span class="sub">大量動員よりも「商談の質」に自社の強みが出ている</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="kpis">
+      <div class="kpi"><div class="k-l">会期来場者数</div><div class="k-v">68,000<small>名</small></div><div class="k-n">3日間・主催者発表<br>（事前予想は約7万人）</div></div>
+      <div class="kpi"><div class="k-l">獲得名刺・リスト</div><div class="k-v">42<small>〜43社</small></div><div class="k-n">売り込み目的の名刺も含む</div></div>
+      <div class="kpi"><div class="k-l">商談化</div><div class="k-v">5<small>〜6社</small></div><div class="k-n">リストからの移行率 約12〜14%</div></div>
+      <div class="kpi" style="border-top-color:var(--green)"><div class="k-l">成約（新規代理店）</div><div class="k-v" style="color:var(--green)">4<small>〜5社</small></div><div class="k-n">1社は条件不一致でお断り</div></div>
+      <div class="kpi" style="border-top-color:var(--green)"><div class="k-l">商談 → 成約率</div><div class="k-v" style="color:var(--green)">90<small>%超</small></div><div class="k-n">当社の最大の武器</div></div>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="card red">
+          <div class="c-ttl"><span class="dot"></span>課題として見えるもの</div>
+          <ul class="li sm">
+            <li>6.8万人の来場に対し<b>名刺獲得は42〜43件</b>。入口の取りこぼしが大きい</li>
+            <li>今回は<b>海外企業の来場</b>も多く、条件面で進まないケースがあった</li>
+            <li>未成約の約40社へは終了直後にメール送付、以降も数回接触。<b>しつこくならない範囲</b>で運用中</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card green">
+          <div class="c-ttl"><span class="dot"></span>強みとして見えるもの</div>
+          <ul class="li sm">
+            <li><b>商談に至れば9割以上決まる</b>。「説得して契約させる」ではなく「向こうから扱いたいと言ってくる」構造</li>
+            <li>実際に<b>触って・試して・説明を聞く体験</b>が転換の決め手になっている</li>
+            <li>＝ 数を集めるイベントより、<b>体験の質を高めるイベント</b>のほうが自社に合う</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="note">※ 数値は会議中に口頭で確認したもの。名刺リスト・商談内訳は猪口様が再集計のうえ共有予定。</div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">15</span></div>
+</section>
+
+<!-- 16 AGENCY DATA -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">02 ─ OWN DATA</div>
+    <h1 class="title">代理店の現状<span class="sub">「代理店が今の倍になれば売上も倍」── 開拓が最短の成長レバー</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col">
+        <table class="tb">
+          <tr><th>項目</th><th>現状</th></tr>
+          <tr><td>代理店数</td><td class="num">約50社</td></tr>
+          <tr><td>主な業態</td><td>エステサロンが多数。ほかネット物販など</td></tr>
+          <tr><td>ノルマ</td><td>月間最低発注などの<b>縛りなし</b>（＝「解約」の概念がない）</td></tr>
+          <tr><td>発注パターン</td><td>大手：大量仕入 → 2〜3ヶ月に1回／小規模サロン：少量 → ほぼ毎月</td></tr>
+          <tr><td>発注周期の傾向</td><td><b>偶数月に集中</b>、奇数月は落ち込む → <b>約2ヶ月サイクル</b></td></tr>
+          <tr><td>アクティブ率</td><td>50社すべてが稼働しているわけではない（全く発注のない先もあり）</td></tr>
+        </table>
+        <div class="card gold">
+          <div class="c-ttl"><span class="dot"></span>依頼事項（小川様）</div>
+          <div class="c-txt">既存フォーマットのままで構わないので、<b>「何月に何社が発注したか」の発注データ</b>を共有いただきたい。社名は不要。新規に作成いただく必要はない。</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card navy">
+          <div class="c-ttl">なぜ発注データを見たいのか</div>
+          <div class="c-txt">数字を掘ると必ず<b>「打ち出せるもの」</b>が出てくる。<br><br>例：<br>・半年に1回以上発注している先の割合 ＝ <b>継続率</b><br>・大手型 / 小規模サロン型の<b>発注パターンの違い</b><br>・偶数月集中という<b>季節性</b><br><br>これらは、イベントのコンセプト・出展者への訴求・代理店募集時の「実績の証拠」として、そのまま武器になる。</div>
+        </div>
+        <div class="card">
+          <div class="c-ttl"><span class="dot"></span>あわせて欲しい情報</div>
+          <ul class="li sm">
+            <li>うまくいっている代理店の<b>成功事例</b>（どんな取り組みで売れているか）</li>
+            <li>可能であれば<b>代理店インタビュー</b>。データを見たうえで「取材させてください」と打診するのが自然で通りやすい</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">16</span></div>
+</section>
+
+<!-- 17 HYPOTHESIS -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">02 ─ HYPOTHESIS</div>
+    <h1 class="title">勝ち筋仮説：「人数」ではなく「成約率」で戦う<span class="sub">大型展示会でも、自ブースの前を通る人数はたかが知れている</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="big-msg">「うちと商談した会社の<em>9割以上</em>が代理店になっています」<br>── これを言える会社は、そう多くない。</div>
+    <div class="cols">
+      <div class="col">
+        <div class="card fill">
+          <div class="c-ttl"><span class="dot"></span>仮説の論理</div>
+          <ul class="li sm">
+            <li>6.8万人規模の展示会でも、<b>実際に自ブースを訪れる人数は限られる</b>。母数の大きさは幻想になりうる</li>
+            <li>重要なのは<b>「どれだけ関係性を作れたか」</b>。自社はここで勝っている</li>
+            <li>ならば<b>商談数が増えれば売上は増える</b>という単純な式が成立する</li>
+            <li>イベントの評価指標は「来場者数」ではなく<b>「商談数」</b>に置く</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card green">
+          <div class="c-ttl"><span class="dot"></span>体験の設計が転換を生む</div>
+          <div class="c-txt">現状すでに「説明して理解してもらう」より<b>「試した人が向こうから扱いたいと言ってくる」</b>パターンが主。<br>→ イベントの主機能は<b>説明会ではなく体験会</b>。<b>商品を知ってもらい・使ってもらい・良さを実感した店舗を増やす</b>ことが最大の課題であり、そこにフォーカスする。</div>
+        </div>
+        <div class="card gold">
+          <div class="c-ttl"><span class="dot"></span>もう一つの資産：展示会後のフォロー</div>
+          <div class="c-txt">「展示会の集客は当日より<b>その後</b>」。未成約リストへの接触設計を体系化すれば、それ自体が<b>E.MIRAIのノウハウ</b>になる。<br>・代理店募集メールは月1回程度に留める<br>・それ以外の<b>非営業の接触</b>を設計して関係を切らさない</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">17</span></div>
+</section>
+
+<!-- 18 LEAD GEN -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">02 ─ ACQUISITION</div>
+    <h1 class="title">新規はどう集めるか（実務レベルの想定）<span class="sub">手段は多くない。テーマが決まれば実行は機械的に進む</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="flow">
+      <div class="fstep on"><div class="f-n">STEP 1</div><div class="f-t">ターゲット定義</div><div class="f-d">例：エステ事業者／サプリ販売／オンライン物販</div></div>
+      <div class="fstep on"><div class="f-n">STEP 2</div><div class="f-t">白地リスト収集</div><div class="f-d">ホットペッパー・Googleマップ等から抽出</div></div>
+      <div class="fstep on"><div class="f-n">STEP 3</div><div class="f-t">複数回アプローチ</div><div class="f-d">問い合わせフォーム・メールDM等を数回に分けて</div></div>
+      <div class="fstep on"><div class="f-n">STEP 4</div><div class="f-t">見込客の獲得</div><div class="f-d">反応者をリスト化</div></div>
+      <div class="fstep now"><div class="f-n">STEP 5</div><div class="f-t">プレイベント／本イベントへ</div><div class="f-d">「出展しませんか」「来ませんか」を案内</div></div>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="card fill">
+          <div class="c-ttl"><span class="dot"></span>ポイント</div>
+          <ul class="li sm">
+            <li>いきなり本番の大型イベントを狙わず、<b>プレイベント（小規模）で試す</b>選択肢も有効</li>
+            <li>オンラインイベントを併用すると集客の裾野が広がる</li>
+            <li>既存代理店経由の紹介は<b>「ユーザーを連れてきてもらう」</b>形にすると成立する（代理店にとってはアップセル機会）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card red">
+          <div class="c-ttl"><span class="dot"></span>先に決めないと動けないこと</div>
+          <div class="c-txt">「どうやって集客するか」の前に、<b>誰に・何を売るか</b>が決まっていないとリストも媒体も選べない。<br>テーマ次第では<b>まったく別の業種</b>がターゲットになる可能性もある。<br><br><b style="color:var(--red)">＝ だから8/10の宿題はテーマとターゲット。</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">18</span></div>
+</section>
+
+<!-- 19 HOMEWORK -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">02 ─ NEXT</div>
+    <h1 class="title">8月10日（月）13:00 に向けた宿題<span class="sub">「ノーアイデアの状態では議論しない」を全員のルールに</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <table class="tb">
+      <tr><th style="width:130px">担当</th><th style="width:300px">宿題</th><th>備考・観点</th></tr>
+      <tr><td><b>門倉社長</b></td><td>イベントの<b>テーマ案</b>／どういう建て付けなら出展したいと思うか</td><td>他社イベントを断った理由の裏返しから発想する。「自分なら何があれば出るか」</td></tr>
+      <tr><td><b>猪口様</b></td><td>イベントの<b>企画案・コンセプト案</b>／ビューティワールドの名刺リスト・商談内訳の整理</td><td>「美と健康のテーマで自主開催」のイメージを具体化。何社・どの業種を集めるか</td></tr>
+      <tr><td><b>小川様</b></td><td><b>発注データ</b>の共有（既存フォーマットのままで可）</td><td>新規作成は不要。社名は不要。「何月に何社」が分かればよい</td></tr>
+      <tr><td><b>阿久津</b></td><td>差戻し修正案の作成／見積書の準備／AI研修デモの再送付／UV案件の補助金精査</td><td>チャットワークで確認事項を随時投げる</td></tr>
+    </table>
+    <div class="cols">
+      <div class="col">
+        <div class="card navy">
+          <div class="c-ttl">8/10で決めたいこと</div>
+          <ul class="li sm"><li style="color:#dfe7f3">テーマ（1本）</li><li style="color:#dfe7f3">ターゲット（誰に何を売るか）</li><li style="color:#dfe7f3">出展者へのオファー内容</li><li style="color:#dfe7f3"><b style="color:#fff">会場の規模感</b>（＝見積が取れる状態にする）</li></ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card gold">
+          <div class="c-ttl"><span class="dot"></span>実務メモ</div>
+          <ul class="li sm">
+            <li>企画が固まりきらなくても、<b>やや大きめの会場で見積を取っておく</b>のは可（後で縮小できる）</li>
+            <li>ただし<b>金額が大きく上振れするのは避ける</b></li>
+            <li>設備が整った会場（長テーブル陳列にならない見せ方ができる場所）を優先</li>
+            <li>会場選定は土地勘の問題があるため、別途相談しながら進める</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="note">※ 8月11日〜16日はお盆休みのため、実質的に動けるのは8月7〜10日と8月17日以降。</div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">19</span></div>
+</section>
+
+<!-- 20 SECTION 3 -->
+<section class="slide section">
+  <div class="sc-no">03</div>
+  <h1>AI活用研修 ×<br>人材開発支援助成金</h1>
+  <p>以前ご提案し、デモ画面まで進んだまま保留になっていた案件。小川様「やった方がいいとは思う」、門倉社長「興味はある」。実施の方向で内容を再確認する。</p>
+  <div class="tagline">来年度は制度が無い可能性 ─ 年内着手を推奨</div>
+  <div class="foot" style="border-top:1px solid rgba(255,255,255,.15);color:#7f8ca3"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum" style="color:#fff">20</span></div>
+</section>
+
+<!-- 21 AI TRAINING -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">03 ─ SCHEME</div>
+    <h1 class="title">AI研修の仕組みと費用<span class="sub">動画視聴 × 視聴履歴管理で、助成金の要件を満たす</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.1">
+        <table class="tb">
+          <tr><th style="width:150px">項目</th><th>内容</th></tr>
+          <tr><td><b>研修内容</b></td><td>ChatGPT等のAI活用。<b>「会社の業務効率化にどう落とし込むか」</b>まで扱う</td></tr>
+          <tr><td><b>形式</b></td><td>動画視聴型。<b>1人ひとりの視聴履歴を取得するシステム</b>を用いて実施（助成金の要件）</td></tr>
+          <tr><td><b>ボリューム</b></td><td class="num">約30時間（〜50時間規模）</td></tr>
+          <tr><td><b>スケジュール</b></td><td>「集中的に受講」の縛りなし。<b>社内スケジュールに合わせて配分可能</b></td></tr>
+          <tr><td><b>受講費用</b></td><td class="num">1名 30万円 ／ <b>5名から</b> → 5名で150万円</td></tr>
+          <tr><td><b>助成率</b></td><td class="num" style="color:var(--green)">3/4</td></tr>
+          <tr><td><b>社労士報酬</b></td><td class="num">3万円（全体・本プラン上）<span class="note">※ 通常は助成額の20%程度が相場</span></td></tr>
+          <tr><td><b>支払先</b></td><td>研修会社</td></tr>
+        </table>
+      </div>
+      <div class="col">
+        <div class="card gold">
+          <div class="c-ttl"><span class="dot"></span>タイミング</div>
+          <div class="c-txt"><b>来年度は制度が無くなる可能性</b>があるため、実施するなら<b>年内</b>が望ましい。</div>
+        </div>
+        <div class="card">
+          <div class="c-ttl"><span class="dot"></span>会議での確認</div>
+          <ul class="li sm">
+            <li>デモ画面はチャットワーク経由で送付済だが<b>期限切れ</b> → 阿久津より<b>再発行・再送付</b></li>
+            <li>門倉社長：「どういう流れで何をすればいいのかが分かればよい」→ <b>プログラム内容を改めて確認</b></li>
+            <li>小川様：他業務との重複を避けたいため<b>スケジュール調整をお願いしたい</b></li>
+          </ul>
+        </div>
+        <div class="card red">
+          <div class="c-ttl"><span class="dot"></span>留意点</div>
+          <div class="c-txt">受講時間分の<b>賃金負担</b>が発生する点も含めて総コストを見る必要がある。</div>
+        </div>
+      </div>
+    </div>
+    <div class="note">※ 金額・助成率は会議中の口頭確認ベース。正式な条件は最新の要領・社労士確認をもって確定とする。</div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">21</span></div>
+</section>
+
+<!-- 22 SECTION 4 -->
+<section class="slide section">
+  <div class="sc-no">04</div>
+  <h1>新規プロジェクト<br>日本初のUV美容液 開発構想</h1>
+  <p>本日いちばん熱量の高かったテーマ。スペインのベンチャー企業が特許を持つ革新的UV成分を日本に初導入し、自社ブランドとして製品化する構想。ものづくり補助金の適用可能性を検討する。</p>
+  <div class="tagline">※ 本件は情報管理厳守。外部への共有を禁ずる</div>
+  <div class="foot" style="border-top:1px solid rgba(255,255,255,.15);color:#7f8ca3"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum" style="color:#fff">22</span></div>
+</section>
+
+<!-- 23 UV PRODUCT -->
+<section class="slide">
+  <div class="confid">CONFIDENTIAL</div>
+  <div class="head">
+    <div class="kicker">04 ─ PRODUCT</div>
+    <h1 class="title">何が革新的なのか<span class="sub">「紫外線を防ぐ」から「紫外線を味方につける」へ</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="split">
+      <div class="lft">
+        <h4>◤ 従来の日焼け止め（定説）</h4>
+        <p style="font-size:13.5px;line-height:1.8">紫外線に当たると肌は黒くなり、ダメージを受ける。<br>だから<b>「ブロックする」</b>。<br><br>→ 塗ること自体への抵抗感も根強い。</p>
+      </div>
+      <div class="rgt">
+        <h4>◤ 新成分「smart UV RPVB360」</h4>
+        <p style="font-size:13.5px;line-height:1.8">紫外線を浴びると<b>化学反応を起こして分子構造が変わり、肌の上にバリアを形成</b>する。<br><b>紫外線が強いほど守りが強くなる</b>という発想の転換。<br><br>→ <b>「日焼けして美肌になる」</b>という物語が成立する。</p>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="card fill">
+          <div class="c-ttl"><span class="dot"></span>権利・市場状況</div>
+          <ul class="li sm">
+            <li>スペインのベンチャー企業が<b>特許を保有</b>。博士が開発し、<b>受賞歴</b>もある</li>
+            <li>スペイン・香港・フランス等で既に展開。<b>日本ではこの成分を使った日焼け止めを販売している会社がない</b></li>
+            <li>先方は<b>ライセンス契約先・協業先を探している</b>状況（Web上には日本からのオファー情報は掲載されていない）</li>
+            <li>独占ライセンスの可否は<b>これから交渉</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card green">
+          <div class="c-ttl"><span class="dot"></span>ここまでの経緯（猪口様）</div>
+          <ul class="li sm">
+            <li>Instagramで海外の情報に触れて着目 → 徹底的に調査しスペイン企業に到達</li>
+            <li>公式サイトの問い合わせフォームから<b>3回送付 → 返信なし</b></li>
+            <li><b>LinkedInで責任者・担当者を特定</b>し直接コンタクト → ついに返信を獲得</li>
+            <li>翻訳は知人に依頼して対応。<b>「協業できる」との回答</b>を得た</li>
+            <li><b>2026年8月末にオンラインミーティング予定</b>（日程は調整中）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="note">※ 阿久津所感：ゴミが宝物になるような発想の転換であり、コンセプト設計もプレスリリースもしやすい。味方につく人が多い商材。ただし「日本初」「世界初」は疑われやすいため、<b>事実の裏取りとエビデンス提示</b>が鍵になる。</div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">23</span></div>
+</section>
+
+<!-- 24 UV MARKET -->
+<section class="slide">
+  <div class="confid">CONFIDENTIAL</div>
+  <div class="head">
+    <div class="kicker">04 ─ BUSINESS</div>
+    <h1 class="title">事業としての広がり<span class="sub">既存の美容チャネルを超えて、新しい代理店ルートが開く</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="matrix">
+      <div class="mbox"><h4>① 新チャネルの開拓</h4><p><b>アウトドア・スポーツ関連</b>（ゴルフ等）への展開が想定できる。既存の美容チャネルとは別の代理店網を全国レベルで構築できる可能性。</p></div>
+      <div class="mbox"><h4>② ターゲット層の転換</h4><p>従来の美容顧客に加え、<b>「日焼け止めに抵抗がある層」「屋外活動者」</b>という新規層にリーチできる。訴求軸が根本から変わる。</p></div>
+      <div class="mbox win"><h4>③ 時流との一致</h4><p>紫外線・気温の上昇、通年での紫外線対策ニーズ。<b>「浴びても美肌になる」</b>は現在の生活実感に強く刺さる。</p></div>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="card fill">
+          <div class="c-ttl"><span class="dot"></span>自社の実行体制</div>
+          <ul class="li sm">
+            <li><b>製造販売業の許可を最近取得済</b></li>
+            <li>製造は<b>OEM会社へ委託</b>（自社工場は持たない）</li>
+            <li>成分の提供を受けたうえで、<b>日本人の肌に合わせた処方開発・テスト</b>を行う想定</li>
+          </ul>
+        </div>
+        <div class="card gold">
+          <div class="c-ttl"><span class="dot"></span>イベント（テーマ01）との接続</div>
+          <div class="c-txt">この商品が形になれば、<b>プレスリリースと展示会出展の組み合わせ</b>が極めて強い一手になる。「この仲間になれます」という出展・代理店募集の理由が生まれる。<br><b>ただし先方との話がまとまっていることが前提。</b></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card navy">
+          <div class="c-ttl">経営としてのスタンス（門倉社長）</div>
+          <div class="c-txt">「<b>補助金が出る・出ないに関わらず、これは作る。</b>多少でも出ればありがたい」<br><br>→ 補助金は<b>実行の前提ではなく加速装置</b>。この前提のもとで最適な制度を選ぶ。</div>
+        </div>
+        <div class="card red">
+          <div class="c-ttl"><span class="dot"></span>スピードが命</div>
+          <div class="c-txt">「<b>日本で一番最初に入れることに価値がある</b>」（門倉社長）。他社に先を越されれば構想の価値は大きく毀損する。<b>情報管理を徹底</b>し、交渉を最優先で進める。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">24</span></div>
+</section>
+
+<!-- 25 FRAME COMPARISON -->
+<section class="slide">
+  <div class="confid">CONFIDENTIAL</div>
+  <div class="head">
+    <div class="kicker">04 ─ SUBSIDY</div>
+    <h1 class="title">ものづくり補助金：どの枠で狙うか<span class="sub">現時点の一次判定 ─ 革新的製品・サービス枠が有力</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="matrix">
+      <div class="mbox">
+        <span class="verdict b-todo">該当しにくい</span>
+        <h4>グローバル枠</h4>
+        <p>海外展開を対象とする枠。本件は<b>海外から日本へ導入</b>する構図のため、方向が逆で適合しない。</p>
+      </div>
+      <div class="mbox">
+        <span class="verdict b-todo">要件が厳しい</span>
+        <h4>新事業進出枠</h4>
+        <p>既存事業と<b>完全に分離</b>していることが要件。既存顧客とはまったく別の顧客であることが、<b>申請から入金まで一貫して</b>求められる。<br><br>すでに化粧品を販売しているため、日焼け止めは「新事業」として通しにくい。</p>
+      </div>
+      <div class="mbox win">
+        <span class="verdict b-done">有力</span>
+        <h4>革新的製品・サービス枠</h4>
+        <p>従来のものづくり補助金の流れを汲む枠。<b>自社の技術力を活かして新商品・新サービスを開発する</b>ことを対象とする。<br><br>→ 要件面では<b>現時点で問題なし</b>。革新性の説明もしやすい。</p>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="card navy">
+          <div class="c-ttl">審査で本当に見られるもの</div>
+          <div class="c-txt">審査は<b>ビジネスモデルと商品の革新性</b>。事業計画の詳細が占める比重は実は2割程度。<br>最も重要なのは<b>会社概要</b>（ここは問題なし）、次に<b>事業計画の概要を100字程度に要約したときに、審査官が引っかからないか</b>。<br><br><b style="color:var(--gold)">誰が読んでも「これはやってほしい」と思える一文になるかどうか。</b></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card red">
+          <div class="c-ttl"><span class="dot"></span>本件の弱点になりうる点</div>
+          <ul class="li sm">
+            <li>補助金全般として<b>最も通りやすいのは「製造業への転換」＝製造設備への投資</b></li>
+            <li>本件は<b>製造をOEMに委託</b>するため、設備投資が発生せず、この点では評価が伸びにくい</li>
+            <li>→ 他制度も含めて、<b>より適合する補助金がないか阿久津側で精査</b>する</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="note">※ 現時点では情報が限られるため一次判定。8月末の先方ミーティング後、条件が判明した段階で最終判断する。</div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">25</span></div>
+</section>
+
+<!-- 26 UV COST -->
+<section class="slide">
+  <div class="confid">CONFIDENTIAL</div>
+  <div class="head">
+    <div class="kicker">04 ─ COST</div>
+    <h1 class="title">対象経費の想定と、まだ決まっていないこと<span class="sub">経費がカチッと決まれば、申請の勝率は大きく上がる</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="cols">
+      <div class="col" style="flex:1.05">
+        <table class="tb">
+          <tr><th>対象経費（案）</th><th style="width:130px">金額</th><th style="width:110px">確度</th></tr>
+          <tr><td>新技術のライセンス費・導入費用</td><td class="num">未定</td><td class="mid">8月末に判明</td></tr>
+          <tr><td>試作に必要な原料調達費</td><td class="num">未定</td><td class="mid">ロット条件次第</td></tr>
+          <tr><td>分析・安全性試験の外部委託費</td><td class="num">未定</td><td class="mid">処方確定後</td></tr>
+          <tr><td>製造費用（OEM委託）</td><td class="num">未定</td><td class="ng">枠との相性に注意</td></tr>
+          <tr><td>パッケージ費用</td><td class="num">未定</td><td class="mid">—</td></tr>
+          <tr><td>広告宣伝費</td><td class="num">未定</td><td class="mid">—</td></tr>
+        </table>
+        <div class="card red">
+          <div class="c-ttl"><span class="dot"></span>重要な注意</div>
+          <div class="c-txt">経費項目のうち<b>入れると不利になるもの</b>がある。「入れなければよかった」となる前に、<b>項目と金額を決める段階で必ず事前相談</b>いただきたい。</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card gold">
+          <div class="c-ttl"><span class="dot"></span>8月末の先方ミーティングで確認すべきこと</div>
+          <ul class="li sm">
+            <li><b>サンプル提供の条件・量</b></li>
+            <li><b>ライセンス条件</b>（独占の可否、対価、期間）</li>
+            <li><b>原料の最低ロットと単価</b></li>
+            <li>協業・製造委託先の希望</li>
+            <li>日本市場に関する先方の意向</li>
+          </ul>
+          <div class="note" style="margin-top:4px">→ ここが判明すれば<b>8月末には予算が組める</b>見込み（猪口様）。</div>
+        </div>
+        <div class="card fill">
+          <div class="c-ttl"><span class="dot"></span>資金のタイミング</div>
+          <div class="c-txt">採択されても<b>実施できるのは翌年1月から</b>。それまでの試作・準備は<b>自己資金で先行</b>せざるを得ない。<br>補助金は<b>ライセンス費・商品開発以降</b>に充当する想定。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">26</span></div>
+</section>
+
+<!-- 27 UV ROADMAP -->
+<section class="slide">
+  <div class="confid">CONFIDENTIAL</div>
+  <div class="head">
+    <div class="kicker">04 ─ ROADMAP</div>
+    <h1 class="title">UVプロジェクト ロードマップ<span class="sub">「まず先方との条件確定」。すべてはそこから逆算する</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body">
+    <div class="tlrow" style="flex:1">
+      <div class="tlitem"><div class="tdate g">2026年8月上旬</div><div class="tbody"><b>情報共有</b>／先方企業のWebサイト・資料・想定販売先を阿久津へ共有（一部はチャットワークに掲載済）。阿久津より確認事項を投げる。</div></div>
+      <div class="tlitem"><div class="tdate g">2026年8月下旬</div><div class="tbody"><b>スペイン企業とのオンラインミーティング</b>／サンプル量・ライセンス条件・ロット・単価を確認。<span class="hl">ここで「日本初」が事実として確定する</span>。</div></div>
+      <div class="tlitem"><div class="tdate">2026年8月末〜9月</div><div class="tbody"><b>予算策定 → 補助金の枠を最終決定</b>／対象経費を確定し、革新的製品・サービス枠、または他制度で申請方針を固める。</div></div>
+      <div class="tlitem"><div class="tdate">2026年秋</div><div class="tbody"><b>申請準備</b>／市場リサーチ・市場課題の整理、ビジネスモデルの構築、事業計画書の作成。並行して処方開発の準備（自己資金）。</div></div>
+      <div class="tlitem"><div class="tdate">2027年1月〜</div><div class="tbody"><b>補助事業の実施</b>／ライセンス取得・試作・分析・安全性試験・製造・パッケージ・広告宣伝。</div></div>
+      <div class="tlitem"><div class="tdate">製品化後</div><div class="tbody"><b>プレスリリース ＋ 展示会・自社イベント</b>／「日本初」を軸に一気に代理店開拓へ。テーマ01のイベントと接続させる。</div></div>
+    </div>
+    <div class="quote">一次判定：<span class="hl">ものづくり補助金の適用は可能性が高い</span>。ただし枠の選定と対象経費の組み方で結果が変わるため、8月末の条件確定を待って最終判断する。それまでに、より適合する他制度がないかも並行して調べる。<span class="who">— 阿久津</span></div>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">27</span></div>
+</section>
+
+<!-- 28 ACTION -->
+<section class="slide">
+  <div class="head">
+    <div class="kicker">ACTION ITEMS</div>
+    <h1 class="title">アクションアイテム一覧<span class="sub">担当・期限・状態を一元管理</span></h1>
+    <div class="rule"></div>
+  </div>
+  <div class="body compact">
+    <table class="tb">
+      <tr><th style="width:40px">#</th><th style="width:230px">アクション</th><th style="width:110px">担当</th><th style="width:120px">期限</th><th>備考</th></tr>
+      <tr><td class="num">1</td><td>差戻し内容の修正案作成</td><td>阿久津</td><td>8月上旬</td><td>賃金台帳・労働条件通知書の編集が必要になる可能性</td></tr>
+      <tr><td class="num">2</td><td>修正内容の最終送信</td><td>小川様</td><td>修正後すぐ</td><td>入力は阿久津。送信ボタンのみ小川様</td></tr>
+      <tr><td class="num">3</td><td>見積書の取得（会場・看板・展示物 等）</td><td>阿久津／猪口様</td><td>8月中</td><td>開催時期未定でも先に取得する。当社で用意できる分は当社が作成</td></tr>
+      <tr><td class="num">4</td><td>イベントのテーマ・ターゲット案を持ち寄る</td><td>全員</td><td>8/10 会議</td><td>各自1案以上。ノーアイデア禁止</td></tr>
+      <tr><td class="num">5</td><td>代理店の発注データ共有</td><td>小川様</td><td>8/10 目安</td><td>既存フォーマットのままで可。社名不要</td></tr>
+      <tr><td class="num">6</td><td>ビューティワールドの名刺リスト・商談内訳の整理</td><td>猪口様</td><td>8/10 目安</td><td>移行率・成約率の傾向を確認する</td></tr>
+      <tr><td class="num">7</td><td>採択報酬30万円のお支払い</td><td>E.MIRAI 様</td><td>ご確認後</td><td>交付申請〜実績報告支援を含む</td></tr>
+      <tr><td class="num">8</td><td>AI研修デモ画面の再送付</td><td>阿久津</td><td>8月上旬</td><td>期限切れのため再発行。プログラム内容もあわせて送付</td></tr>
+      <tr><td class="num">9</td><td>AI研修の実施可否・受講者数の判断</td><td>門倉社長</td><td>年内目安</td><td>来年度は制度が無い可能性あり</td></tr>
+      <tr><td class="num">10</td><td>UV案件の情報共有（先方サイト・想定販売先）</td><td>猪口様</td><td>8月上旬</td><td>チャットワークに一部掲載済。想定販売先を追加</td></tr>
+      <tr><td class="num">11</td><td>スペイン企業とのミーティング実施・条件確認</td><td>猪口様／門倉社長</td><td>8月末</td><td>日程調整中</td></tr>
+      <tr><td class="num">12</td><td>UV案件に最適な補助金制度の精査</td><td>阿久津</td><td>8月末</td><td>ものづくり以外の可能性も含めて調査</td></tr>
+    </table>
+  </div>
+  <div class="foot"><span class="fl">E.MIRAI × 阿久津和宏　Confidential</span><span class="pagenum">28</span></div>
+</section>
+
+<!-- 29 CLOSING -->
+<section class="slide section" style="background:linear-gradient(135deg,#0b1830 0%,#16305f 60%,#1d3f7c 100%)">
+  <div class="sc-no" style="color:rgba(217,161,59,.3)">NEXT</div>
+  <h1>次回打合せ<br>2026年8月10日（月）13:00</h1>
+  <p>議題：イベントのテーマ・ターゲット・出展者オファーの確定／会場規模の決定（見積取得のため）／交付申請の進捗共有。<br><br>ご案内メールは猪口様宛にお送りし、Googleカレンダーからもリマインドが届くよう設定します。</p>
+  <div class="tagline">まず交付決定を取りに行く。企画は8/10で一気に前へ。</div>
+  <div class="foot" style="border-top:1px solid rgba(255,255,255,.15);color:#7f8ca3"><span class="fl">E.MIRAI × 阿久津和宏　Confidential　│　本資料は2026年8月5日の会議録に基づき作成</span><span class="pagenum" style="color:#fff">29</span></div>
+</section>
+
+</div>
+
+<div id="nav">
+  <button id="prev" aria-label="前のスライド">‹</button>
+  <span class="ind"><span id="cur">1</span> / <span id="tot">29</span></span>
+  <button id="next" aria-label="次のスライド">›</button>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0;
+  var cur=document.getElementById('cur');
+  document.getElementById('tot').textContent=slides.length;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.classList.toggle('active',k===i);});
+    cur.textContent=i+1;
+    location.hash='s'+(i+1);
+  }
+  function fit(){
+    var st=document.getElementById('stage');
+    var s=Math.min(window.innerWidth/1280,window.innerHeight/720);
+    st.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize',fit);
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown',' ','PageDown','Enter'].indexOf(e.key)>-1){e.preventDefault();show(i+1);}
+    if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(e.key)>-1){e.preventDefault();show(i-1);}
+    if(e.key==='Home'){show(0);}
+    if(e.key==='End'){show(slides.length-1);}
+  });
+  document.getElementById('next').addEventListener('click',function(){show(i+1);});
+  document.getElementById('prev').addEventListener('click',function(){show(i-1);});
+  document.getElementById('stage').addEventListener('click',function(e){
+    if(e.target.closest('#nav'))return;
+    var r=this.getBoundingClientRect();
+    show(((e.clientX-r.left)/r.width>0.35)?i+1:i-1);
+  });
+  window.addEventListener('hashchange',function(){
+    var h=/^#s(\d+)$/.exec(location.hash);
+    if(h && parseInt(h[1],10)-1!==i) show(parseInt(h[1],10)-1);
+  });
+  var m=/^#s(\d+)$/.exec(location.hash);
+  fit();show(m?parseInt(m[1],10)-1:0);
+})();
+</script>
+</body>
+</html>
