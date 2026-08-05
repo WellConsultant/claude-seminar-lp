@@ -71,7 +71,7 @@ sync_to_remote
 git add "$BATCH_DIR"
 git commit -m "Add batch upload: $TIMESTAMP" --quiet
 
-if ! git push origin main --quiet; then
+if ! git push origin main --quiet 2>/dev/null; then
   # コミット済みなので $BATCH_DIR は reset --hard で消える。退避してから作り直す
   TMP_BATCH=$(mktemp -d)
   cp -R "$REPO_DIR/$BATCH_DIR/." "$TMP_BATCH/"

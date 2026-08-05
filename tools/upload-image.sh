@@ -67,7 +67,7 @@ sync_to_remote
 git add "uploads/$FILENAME"
 git commit -m "Add uploaded file: $FILENAME" --quiet
 
-if ! git push origin main --quiet; then
+if ! git push origin main --quiet 2>/dev/null; then
   # fetch から push までの間に他から更新が入った場合。
   # 作り直して1回だけ再送する（rebase を使わないので競合しない）
   sync_to_remote
