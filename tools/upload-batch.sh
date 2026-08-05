@@ -54,9 +54,21 @@ if [ "$INDEX" -eq 0 ]; then
 fi
 
 cd "$REPO_DIR"
+
+# コミット前にリモートの最新へ確実に合わせる（upload-image.sh と同じ理由）。
+# アップロード対象は未追跡ファイルなので reset --hard では消えない。
+rm -rf .git/rebase-merge .git/rebase-apply
+git fetch origin main --quiet
+git reset --hard FETCH_HEAD --quiet
+
 git add "$BATCH_DIR"
 git commit -m "Add batch upload: $TIMESTAMP" --quiet
-git push origin main --quiet
+
+if ! git push origin main --quiet; then
+  git fetch origin main --quiet
+  git rebase FETCH_HEAD --quiet || git rebase --abort 2>/dev/null || true
+  git push origin main --quiet
+fi
 
 URL="$RAW_BASE/$BATCH_DIR/index.txt"
 HISTORY_FILE="$HOME/アップロード履歴.txt"

@@ -48,16 +48,30 @@ mkdir -p "$REPO_DIR/uploads"
 cp "$SRC" "$DEST"
 
 cd "$REPO_DIR"
+
+# コミット前にリモートの最新へ確実に合わせる。
+# これをしないと、他の端末やGitHub上での更新があったとき push が
+# non-fast-forward で弾かれる。rebase の取り残しもここで掃除する。
+# アップロード対象は未追跡ファイルなので reset --hard では消えない。
+rm -rf .git/rebase-merge .git/rebase-apply
+git fetch origin main --quiet
+git reset --hard FETCH_HEAD --quiet
+
 START_HEAD=$(git rev-parse HEAD)
 
 git add "uploads/$FILENAME"
 git commit -m "Add uploaded file: $FILENAME" --quiet
 
 if ! git push origin main --quiet; then
-  git reset --mixed "$START_HEAD" --quiet
-  rm -f "$DEST"
-  echo "エラー: GitHubへの送信に失敗しました。今回の送信待ちは自動的に解除しました。" >&2
-  exit 1
+  # fetch から push までの間に更新が入った場合、一度だけ取り込み直して再送する
+  git fetch origin main --quiet
+  git rebase FETCH_HEAD --quiet || git rebase --abort 2>/dev/null || true
+  if ! git push origin main --quiet; then
+    git reset --mixed "$START_HEAD" --quiet
+    rm -f "$DEST"
+    echo "エラー: GitHubへの送信に失敗しました。今回の送信待ちは自動的に解除しました。" >&2
+    exit 1
+  fi
 fi
 
 RAW_URL="https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/$FILENAME"
