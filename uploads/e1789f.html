@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROKA Smart UV® PvB 360 技術・知財詳報</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; background-color: #fdfdfd; color: #1a1a1a; }
+        .chart-container { position: relative; width: 100%; max-width: 800px; height: 400px; margin: 2rem auto; }
+        .patent-badge { background: linear-gradient(135deg, #b8860b 0%, #daa520 100%); color: white; padding: 4px 12px; border-radius: 4px; font-weight: bold; font-size: 0.75rem; display: inline-block; }
+        .gradient-border { border-image: linear-gradient(to right, #b8860b, #daa520) 1; }
+        .step-transition { transition: all 0.5s ease-in-out; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/80 backdrop-blur-md border-b z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center text-white font-black">RF</div>
+                <div>
+                    <h1 class="text-lg font-black leading-none">ROKA Smart UV®</h1>
+                    <p class="text-[10px] font-bold text-orange-600 tracking-widest uppercase">PvB 360 Technical Report</p>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-tighter">
+                <a href="#patent" class="hover:text-orange-600 transition">知財・背景</a>
+                <a href="#mechanism" class="hover:text-orange-600 transition">メカニズム</a>
+                <a href="#performance" class="hover:text-orange-600 transition">性能実証</a>
+                <a href="#safety" class="hover:text-orange-600 transition">安全性・環境</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-20 px-6 bg-gradient-to-b from-orange-50 to-white overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="flex-1">
+                    <span class="patent-badge mb-4">GLOBAL PATENTED TECHNOLOGY</span>
+                    <h2 class="text-5xl md:text-7xl font-black text-gray-900 leading-tight mb-6">
+                        太陽光を<br><span class="text-orange-600 italic">防御の力</span>に変える。
+                    </h2>
+                    <p class="text-xl text-gray-600 leading-relaxed mb-8">
+                        ROKA Furadadaが開発したPvB 360は、世界初の「光適応型」紫外線フィルターです。従来の日焼け止めが光によって劣化するのに対し、この技術は光を浴びることで自らを強化し、最強のUVAプロテクターへと変貌します。
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-white p-4 rounded-xl shadow-sm border flex items-center space-x-4">
+                            <span class="text-3xl">🛡️</span>
+                            <div>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase">UVA Boost</p>
+                                <p class="text-lg font-black">+85.5%</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl shadow-sm border flex items-center space-x-4">
+                            <span class="text-3xl">⚖️</span>
+                            <div>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase">Stability</p>
+                                <p class="text-lg font-black">8 Hours+</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 relative">
+                    <div class="w-full h-[400px] bg-white rounded-3xl shadow-2xl border flex items-center justify-center p-8 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-orange-100/20 to-transparent"></div>
+                        <div class="text-center z-10">
+                            <div id="mol-viz" class="w-48 h-48 mx-auto bg-orange-50 rounded-full flex items-center justify-center mb-6 border-4 border-dashed border-orange-300 relative transition-all duration-1000">
+                                <div id="mol-core" class="w-24 h-24 bg-orange-600 rounded-full shadow-lg flex items-center justify-center text-white font-black text-xl">PvB</div>
+                                <div class="absolute inset-0 animate-spin-slow">
+                                    <div class="w-6 h-6 bg-white border-2 border-orange-600 rounded-full absolute -top-3 left-1/2 -ml-3"></div>
+                                </div>
+                            </div>
+                            <h3 id="mol-label" class="text-xl font-black mb-2">前駆体 (Pre-filter)</h3>
+                            <p id="mol-detail" class="text-sm text-gray-500">現在はUVBを吸収していますが、まだ進化前です。</p>
+                            <button onclick="activateProcess()" class="mt-8 px-6 py-3 bg-gray-900 text-white rounded-full font-bold hover:bg-orange-600 transition">UVを照射（シミュレーション）</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 space-y-32 py-20">
+
+        <!-- Section 1: Intellectual Property -->
+        <section id="patent" class="scroll-mt-24">
+            <div class="mb-12">
+                <h3 class="text-3xl font-black mb-6">知的財産とイノベーションの背景</h3>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    本セクションでは、ROKA Smart UV® PvB 360を支える独占的権利について説明します。この技術は、単なる新しい成分の発見ではなく、化学反応を皮膚保護に応用した全く新しい**「ディープテック」**の成果です。スペインのRoka Furadada社は、国際特許（PCT）を通じてこの独自の光変換プロセスを保護しています。
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-8 rounded-3xl border-2 border-dashed border-gray-200">
+                    <h4 class="text-xl font-bold mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-orange-600 text-white rounded flex items-center justify-center mr-3 text-sm">P</span>
+                        特許技術の核心：Photo-Fries転位
+                    </h4>
+                    <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+                        PvB 360の最大の特徴は、分子がエネルギー（UV）を吸収した際、破壊されるのではなく、自らの原子配置を変えて新しい分子に生まれ変わる「Photo-Fries転位」を実用化した点にあります。このプロセス自体の美容・日焼け止め用途での利用が、彼らの知財ポートフォリオの核となっています。
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-xs font-bold text-gray-700">
+                            <span class="text-orange-600 mr-2">●</span> グローバル特許出願済 (PCT加盟国)
+                        </li>
+                        <li class="flex items-center text-xs font-bold text-gray-700">
+                            <span class="text-orange-600 mr-2">●</span> 独自構造のプロ・フィルター成分
+                        </li>
+                        <li class="flex items-center text-xs font-bold text-gray-700">
+                            <span class="text-orange-600 mr-2">●</span> 化学構造の自己修復・進化プロセスの保護
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-orange-900 text-white p-8 rounded-3xl">
+                    <h4 class="text-xl font-bold mb-4 italic uppercase tracking-widest">Market Advantage</h4>
+                    <p class="text-sm text-orange-200 mb-6">
+                        特許によって保護されたこの技術は、模倣が極めて困難です。既存の大手化粧品メーカーも直面していた「UV保護の減衰」を、逆転の発想で解決しました。
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="border border-orange-700 p-4 rounded-xl">
+                            <p class="text-[10px] text-orange-400 font-bold uppercase mb-1">独占性</p>
+                            <p class="text-xs">他社にない唯一無二の光適応機能</p>
+                        </div>
+                        <div class="border border-orange-700 p-4 rounded-xl">
+                            <p class="text-[10px] text-orange-400 font-bold uppercase mb-1">信頼性</p>
+                            <p class="text-xs">科学的根拠に基づく特許ポートフォリオ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Mechanism Deep Dive -->
+        <section id="mechanism" class="scroll-mt-24">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-black mb-4">化学的メカニズム：どのように「進化」するのか</h3>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    PvB 360は、塗布時にはUVB（290nm付近）を主に吸収する「前駆体」の状態です。ここに太陽光が当たると、以下のステップで劇的な変化を遂げます。
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-white border rounded-2xl relative overflow-hidden group">
+                    <span class="absolute top-0 right-0 p-4 text-4xl font-black text-gray-100 group-hover:text-orange-50 transition">01</span>
+                    <h5 class="font-bold text-orange-600 mb-2">光の吸収 (Absorption)</h5>
+                    <p class="text-sm text-gray-500 leading-relaxed">
+                        肌に塗ったPvB 360がUVBエネルギーをキャッチ。このエネルギーが分子内の結合を揺らします。
+                    </p>
+                </div>
+                <div class="p-8 bg-white border rounded-2xl relative overflow-hidden group">
+                    <span class="absolute top-0 right-0 p-4 text-4xl font-black text-gray-100 group-hover:text-orange-50 transition">02</span>
+                    <h5 class="font-bold text-orange-600 mb-2">分子の転位 (Rearrangement)</h5>
+                    <p class="text-sm text-gray-500 leading-relaxed">
+                        Photo-Fries反応により、分子内の原子がより安定した「UVA吸収に適した位置」へと移動します。
+                    </p>
+                </div>
+                <div class="p-8 bg-white border rounded-2xl relative overflow-hidden group">
+                    <span class="absolute top-0 right-0 p-4 text-4xl font-black text-gray-100 group-hover:text-orange-50 transition">03</span>
+                    <h5 class="font-bold text-orange-600 mb-2">防御力の最適化 (Optimization)</h5>
+                    <p class="text-sm text-gray-500 leading-relaxed">
+                        変化後の分子はUVA（360nm）を強力にカット。さらに光に対して非常に壊れにくい性質を獲得します。
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-gray-100 p-8 rounded-3xl">
+                <h4 class="font-bold mb-6 text-center">吸収スペクトルの変化（波長シフト）</h4>
+                <div class="chart-container">
+                    <canvas id="spectrumShiftChart"></canvas>
+                </div>
+                <p class="text-xs text-gray-500 mt-4 text-center">
+                    ※灰色のエリア（照射前）はUVB領域に限定されていますが、オレンジのエリア（照射後）はUVA（320-400nm）をカバーするように大きく拡大しています。
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 3: Performance Data -->
+        <section id="performance" class="scroll-mt-24">
+            <div class="mb-12">
+                <h3 class="text-3xl font-black mb-4">臨床・性能データの実証</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    このセクションでは、ラボおよび臨床試験で得られた具体的な数値を提示します。PvB 360を2%配合した処方において、時間の経過とともにどれだけ防御力が増し、また細胞へのダメージをどの程度防げたかを正確に可視化しています。
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Chart: Protection Boost -->
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border">
+                        <h4 class="font-bold mb-4">UVA防御力(UVA-PF)の向上率</h4>
+                        <div class="h-[300px]">
+                            <canvas id="uvaPfLineChart"></canvas>
+                        </div>
+                        <div class="mt-4 p-4 bg-orange-50 rounded-lg">
+                            <p class="text-xs text-orange-800 leading-relaxed">
+                                <strong>解説:</strong> 照射開始から120分（10 MED相当）で、UVA防御指数が初期値から**85.5%上昇**。その後8時間が経過してもその高い防御能力を維持し続けます。これは「時間が経つほど守りが固まる」というPvB 360独自の性質を証明しています。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biological Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900 text-white p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">ROS Inhibition</h5>
+                            <p class="text-4xl font-black mb-2">-32%</p>
+                            <p class="text-sm text-gray-400 leading-tight">活性酸素(ROS)の発生を抑制。酸化ストレスから肌を守ります。</p>
+                        </div>
+                        <div class="mt-8 h-24">
+                            <canvas id="rosChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border flex flex-col justify-between">
+                        <div>
+                            <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">mtDNA Protection</h5>
+                            <p class="text-4xl font-black text-orange-600 mb-2">-59%</p>
+                            <p class="text-sm text-gray-500 leading-tight">ミトコンドリアDNAへのダメージを約6割削減。細胞レベルの健康を維持。</p>
+                        </div>
+                        <div class="mt-8 h-24">
+                            <canvas id="dnaChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 bg-orange-100 p-6 rounded-2xl border border-orange-200">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-3xl">🌟</span>
+                            <div>
+                                <h5 class="font-bold text-orange-900">相乗効果：光安定性の劇的改善</h5>
+                                <p class="text-xs text-orange-800 leading-relaxed">
+                                    PvB 360は他の不安定なフィルター（アボベンゾン等）の光分解を抑制する「安定剤」としても機能します。処方全体の寿命を延ばし、塗り直しの頻度を物理的に下げることが可能です。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Safety & Eco -->
+        <section id="safety" class="scroll-mt-24">
+            <div class="bg-gray-50 rounded-[3rem] p-12 border">
+                <div class="flex flex-col md:flex-row gap-16 items-start">
+                    <div class="flex-1">
+                        <h3 class="text-3xl font-black mb-6">安全性と環境への完全な準拠</h3>
+                        <p class="text-gray-600 mb-8 leading-relaxed">
+                            Roka Furadada社は「クリーンビューティー」の先駆者として、成分の安全性だけでなく、地球環境、特に海洋生態系への影響を最小限に抑える厳しい基準を設けています。PvB 360は、最新の毒性試験をクリアし、サステナブルな未来を保証します。
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-white p-5 rounded-2xl border shadow-sm">
+                                <h6 class="font-bold text-sm mb-2 flex items-center">
+                                    <span class="text-green-500 mr-2 text-lg">🌿</span> E-Toxi Safe
+                                </h6>
+                                <p class="text-xs text-gray-500">水生生物（藻類、ミジンコ、魚類）に対する毒性が極めて低く、サンゴ礁を傷つけません。</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-2xl border shadow-sm">
+                                <h6 class="font-bold text-sm mb-2 flex items-center">
+                                    <span class="text-blue-500 mr-2 text-lg">🧪</span> 皮膚親和性
+                                </h6>
+                                <p class="text-xs text-gray-500">HRIPT（累積刺激および感作試験）により、低刺激性と高い安全性が立証されています。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-1 w-full space-y-4">
+                        <div class="bg-white p-6 rounded-2xl shadow-lg flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">🌱</div>
+                                <span class="font-bold text-sm">Vegan & Cruelty Free</span>
+                            </div>
+                            <span class="text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded font-bold uppercase tracking-widest">Certified</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">🕌</div>
+                                <span class="font-bold text-sm">Halal Compliant</span>
+                            </div>
+                            <span class="text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded font-bold uppercase tracking-widest">Certified</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">🌏</div>
+                                <span class="font-bold text-sm">Global Regulatory Access</span>
+                            </div>
+                            <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-1 rounded font-bold uppercase tracking-widest">EU/CH/US OK</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-800 pb-12 mb-12">
+                <div class="mb-8 md:mb-0">
+                    <h2 class="text-2xl font-black italic">Roka Furadada S.L.</h2>
+                    <p class="text-gray-400 text-xs mt-2 uppercase tracking-widest font-bold">Bridging Science and Skin Care</p>
+                </div>
+                <div class="flex space-x-12">
+                    <div class="text-center">
+                        <p class="text-2xl font-black">20+</p>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Patents Filed</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-black">B-Corp</p>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Standard</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between text-[10px] text-gray-600 leading-relaxed gap-8">
+                <div class="max-w-md">
+                    <p>免責事項：本レポートに記載されているデータは、特定の条件下での試験結果に基づいています。最終製品における性能は、配合や他の成分との相互作用によって異なる場合があります。詳細な技術データシート(TDS)は公式代理店へお問い合わせください。</p>
+                </div>
+                <div class="text-right">
+                    <p>© 2024 Roka Furadada. All Rights Reserved. ROKA Smart UV® is a registered trademark.</p>
+                    <p class="mt-1">Generated by Intelligence Architect Framework.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Chart Defaults
+        Chart.defaults.font.family = "'Inter', 'Noto Sans JP', sans-serif";
+        Chart.defaults.color = '#71717a';
+
+        // 1. Spectrum Shift Chart
+        const spectrumCtx = document.getElementById('spectrumShiftChart').getContext('2d');
+        const spectrumChart = new Chart(spectrumCtx, {
+            type: 'line',
+            data: {
+                labels: [280, 300, 320, 340, 360, 380, 400],
+                datasets: [
+                    {
+                        label: '照射前 (UVB吸収中心)',
+                        data: [15, 95, 40, 10, 5, 2, 0],
+                        borderColor: '#a1a1aa',
+                        backgroundColor: 'rgba(161, 161, 170, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: '照射後 (UVA吸収強化)',
+                        data: [5, 20, 60, 92, 98, 70, 30],
+                        borderColor: '#ea580c',
+                        backgroundColor: 'rgba(234, 88, 12, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                        hidden: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { 
+                    y: { display: false, beginAtZero: true },
+                    x: { title: { display: true, text: '波長 (nm)', font: { size: 10 } } }
+                }
+            }
+        });
+
+        // 2. UVA-PF Line Chart
+        const uvaCtx = document.getElementById('uvaPfLineChart').getContext('2d');
+        new Chart(uvaCtx, {
+            type: 'line',
+            data: {
+                labels: ['0m', '30m', '60m', '90m', '120m', '4h', '8h'],
+                datasets: [{
+                    label: 'UVA防御力 向上率 (%)',
+                    data: [0, 50, 75, 82, 85.5, 85, 84],
+                    borderColor: '#ea580c',
+                    backgroundColor: 'rgba(234, 88, 12, 0.1)',
+                    borderWidth: 4,
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#ea580c'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { 
+                    y: { 
+                        beginAtZero: true, 
+                        max: 100,
+                        ticks: { callback: value => value + '%' }
+                    }
+                }
+            }
+        });
+
+        // Mini Charts for Stats
+        function createMiniBar(id, data, color) {
+            const ctx = document.getElementById(id).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['A', 'B'],
+                    datasets: [{
+                        data: data,
+                        backgroundColor: ['rgba(255,255,255,0.2)', color],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { x: { display: false }, y: { display: false, beginAtZero: true } }
+                }
+            });
+        }
+        createMiniBar('rosChart', [100, 68], '#fb923c');
+        createMiniBar('dnaChart', [100, 41], '#ea580c');
+
+        // Interaction Logic
+        function activateProcess() {
+            const mol = document.getElementById('mol-viz');
+            const core = document.getElementById('mol-core');
+            const label = document.getElementById('mol-label');
+            const detail = document.getElementById('mol-detail');
+
+            mol.style.transform = 'scale(1.1) rotate(180deg)';
+            mol.style.borderColor = '#ea580c';
+            mol.style.borderStyle = 'solid';
+            core.style.backgroundColor = '#1a1a1a';
+            core.innerText = 'PvB+';
+            label.innerText = '活性体 (UVA Protector)';
+            label.style.color = '#ea580c';
+            detail.innerText = 'Photo-Fries転位完了。UVA（360nm）を最高効率で吸収します。';
+
+            // Update spectrum chart
+            spectrumChart.setDatasetVisibility(1, true);
+            spectrumChart.update();
+        }
+    </script>
+</body>
+</html>
