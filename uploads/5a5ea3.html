@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>補助金・助成金活用型経営</title>
+</head>
+<body>
+
+<style>
+
+/* WPテーマのcontent-size/widthを全幅に */
+:root, html, body {
+  --wp--style--global--content-size: 100% !important;
+  --wp--style--global--wide-size: 100% !important;
+  --wp--style--root--padding-top: 0 !important;
+  --wp--style--root--padding-right: 0 !important;
+  --wp--style--root--padding-bottom: 0 !important;
+  --wp--style--root--padding-left: 0 !important;
+}
+body, body.page, body.home { margin:0 !important; padding:0 !important;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif !important;
+  font-size:16px !important; font-weight:400 !important; line-height:1.6 !important;
+  letter-spacing:0 !important; color:#222 !important;
+}
+/* WPブロック要素のみ全幅化（ローカルCSSの max-width には触らない） */
+.wp-site-blocks,
+.wp-site-blocks > main,
+main.wp-block-group,
+.wp-block-group.has-global-padding,
+.wp-block-post-content,
+.entry-content,
+.wp-block-group.alignfull,
+.wp-block-group-is-layout-constrained,
+.wp-block-post-content-is-layout-constrained,
+.wp-block-html {
+  max-width:100% !important; width:100% !important;
+  margin:0 !important; padding:0 !important;
+}
+.is-layout-constrained > .wp-block-group:not(.alignwide):not(.alignfull),
+.is-layout-constrained > .wp-block-html {
+  max-width:100% !important;
+  margin-left:0 !important; margin-right:0 !important;
+  padding-left:0 !important; padding-right:0 !important;
+}
+.has-global-padding,
+.has-global-padding > .alignfull {
+  padding-left:0 !important; padding-right:0 !important;
+}
+/* テーマヘッダー類非表示 */
+.wp-block-post-title, .entry-header, .entry-title,
+header.entry-header, .wp-block-template-part header,
+header.wp-block-template-part, .wp-site-blocks > header,
+.wp-block-site-title, .wp-block-navigation,
+.wp-block-template-part[data-area="header"] { display:none !important; }
+/* WPテーマフッター非表示 */
+.wp-site-blocks>footer, footer.wp-block-template-part,
+.wp-block-template-part[data-area="footer"],
+footer:not(.custom-footer) { display:none !important; }
+/* WP adminbar・上隙間リセット */
+#wpadminbar, #wpadminbar * { display:none !important; }
+html { margin-top:0 !important; }
+/* 投稿ナビゲーション非表示 */
+.post-navigation,.posts-navigation,.nav-previous,.nav-next,
+.wp-block-query-pagination,.more-link { display:none !important; }
+
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body { font-family: 'Hiragino Kaku Gothic ProN','Hiragino Sans','Meiryo',sans-serif; color: #222; background: #fff; line-height: 1.75; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+.inner { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+.section-label {
+  display: inline-block; color: #d35400; font-size: 12px; font-weight: bold;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  border-bottom: 2px solid #d35400; padding-bottom: 3px; margin-bottom: 16px;
+}
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 100; background: #1a1a1a; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.nav-inner { max-width: 880px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 62px; }
+.nav-logo { color: #fff; font-weight: bold; font-size: 14px; }
+.nav-links { display: flex; align-items: center; gap: 24px; }
+.nav-links a { color: #fff; font-size: 13px; transition: opacity 0.2s; }
+.nav-links a:hover { opacity: 0.75; }
+.nav-cta { background: #d35400; color: #fff !important; padding: 8px 20px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+.nav-cta:hover { background: #b84600 !important; }
+
+/* HERO */
+.hero {
+  background: #1a3a5c;
+  background-image: url('/wp-content/uploads/2026/05/hero-bg-31.png');
+  background-size: cover;
+  background-position: center;
+  color: #fff; padding: 52px 24px 20px; text-align: center; position: relative; overflow: hidden; border-bottom: 1px solid #eee;
+}
+.hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.05); z-index: 0; }
+.hero .inner { position: relative; z-index: 1; }
+.hero-pains { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px 32px; margin-bottom: 40px; }
+.hero-pain { font-size: 16px; color: #333; position: relative; padding-left: 30px; font-weight: bold; }
+.hero-pain::before { content: ''; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; background-image: url('/wp-content/uploads/2026/05/checkmark.png'); background-size: contain; background-repeat: no-repeat; }
+.hero h1 { font-size: 34px; font-weight: bold; line-height: 1.45; margin-bottom: 18px; color: #fff; }
+.hero-sub { font-size: 26px; color: #fff; font-weight: bold; margin-bottom: 52px; line-height: 1.5; letter-spacing: 0.02em; }
+.hero-circles { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-bottom: 52px; }
+.hero-circle { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 200px; cursor: default; pointer-events: none; }
+.hero-circle-ring { width: 120px; height: 120px; border-radius: 50%; border: 2px solid #fff; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; }
+.hero-circle-label { font-size: 15px; font-weight: bold; color: #fff; }
+.hero-circle-desc { font-size: 12px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+
+/* CORE OFFER */
+.core-offer { padding: 120px 24px 80px; background: #fff; }
+.core-offer h2 { font-size: 26px; color: #222; text-align: center; margin-bottom: 16px; font-weight: bold; }
+.core-offer-lead { color: #555; text-align: center; margin-bottom: 48px; font-size: 15px; line-height: 1.9; }
+.core-offer-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.core-card { border: 2px solid #e0e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s, box-shadow 0.2s; color: inherit; }
+.core-card:hover { border-color: #d35400; box-shadow: 0 4px 16px rgba(211,84,0,0.1); }
+.core-thumb { width: 100%; height: 160px; overflow: hidden; flex-shrink: 0; background: #333; position: relative; }
+.core-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.core-thumb-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%); color: #fff; font-size: 13px; font-weight: bold; padding: 20px 12px 10px; letter-spacing: 0.03em; }
+.core-card-body { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.core-card h3 { font-size: 14px; font-weight: bold; color: #222; line-height: 1.6; }
+.core-card p { font-size: 12px; color: #777; line-height: 1.7; flex: 1; }
+.core-card-cta { display: block; background: #d35400; color: #fff; padding: 10px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; text-align: center; white-space: nowrap; }
+
+/* MISSION */
+.mission { padding: 80px 24px 24px; background: #f4f7fa; text-align: center; }
+.mission h2 { font-size: 26px; font-weight: bold; color: #222; line-height: 1.55; margin-bottom: 24px; }
+.mission-body { font-size: 15px; color: #555; line-height: 1.95; max-width: 640px; margin: 0 auto; }
+
+/* CHARACTER */
+.about { padding: 80px 24px; background: #fff; }
+.about-flex { display: flex; gap: 56px; align-items: flex-start; }
+.about-text { flex: 1; }
+.about-text h2 { font-size: 22px; color: #222; font-weight: bold; line-height: 1.5; margin-bottom: 20px; }
+.about-text p { color: #555; font-size: 15px; line-height: 1.9; margin-bottom: 16px; }
+.about-graphic { flex-shrink: 0; width: 220px; text-align: center; }
+.about-profile-circle {
+  width: 160px; height: 160px; border-radius: 50%;
+  margin: 0 auto 16px; border: 3px solid #d35400; overflow: hidden;
+  background: #eee;
+}
+.about-profile-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.about-name { font-size: 16px; font-weight: bold; color: #222; margin-bottom: 4px; }
+.about-title { font-size: 12px; color: #777; line-height: 1.6; }
+
+/* AI SECTION */
+.ai-tools { padding: 56px 24px; background: #f8f8f8 url('/wp-content/uploads/2026/05/ai-bg-scaled.jpg') center center / cover no-repeat; }
+.ai-hero { margin-bottom: 16px; }
+.ai-hero h2 { font-size: 26px; font-weight: bold; color: #222; line-height: 1.45; margin-bottom: 12px; }
+.ai-hero p { font-size: 15px; color: #555; line-height: 1.65; margin-bottom: 0; max-width: 640px; }
+.ai-contact-link { display: inline-block; color: #d35400; font-size: 14px; font-weight: bold; border-bottom: 1px solid #d35400; padding-bottom: 2px; }
+.ai-sub-tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.ai-sub-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 24px 20px; }
+.ai-sub-card h3 { font-size: 15px; font-weight: bold; color: #222; margin-bottom: 10px; }
+.ai-sub-card p { font-size: 13px; color: #666; line-height: 1.75; }
+
+/* MOVEMENT */
+.movement { padding: 80px 24px; background: #f0f5fb; }
+.movement h2 { font-size: 22px; color: #222; font-weight: bold; margin-bottom: 12px; line-height: 1.5; }
+.movement-sub { font-size: 14px; color: #777; margin-bottom: 48px; }
+.movement-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.movement-card { background: #fff; border-radius: 8px; padding: 28px 24px; border: 1px solid #e0e8f0; transition: box-shadow 0.2s; }
+.movement-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.movement-icon { width: 52px; height: 52px; border-radius: 50%; background: #eef2f8; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.movement-card h3 { font-size: 15px; font-weight: bold; color: #222; margin-bottom: 10px; }
+.movement-card p { font-size: 13px; color: #555; line-height: 1.85; }
+
+/* VALUE LADDER (CORE OFFERと同じカード形式) */
+.value-ladder { padding: 80px 24px; background: #fff; }
+.value-ladder .inner { max-width: 1100px; margin: 0 auto; }
+.value-ladder h2 { font-size: 26px; color: #222; text-align: center; margin-bottom: 16px; font-weight: bold; }
+.value-ladder-sub { font-size: 15px; color: #555; text-align: center; margin-bottom: 48px; line-height: 1.9; }
+.ladder-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.ladder-card { border: 2px solid #e0e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s, box-shadow 0.2s; color: inherit; background: #fff; }
+.ladder-card:hover { border-color: #d35400; box-shadow: 0 4px 16px rgba(211,84,0,0.1); }
+.ladder-thumb { width: 100%; height: 140px; overflow: hidden; flex-shrink: 0; background: #333; position: relative; }
+.ladder-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.ladder-thumb-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0) 100%); color: #fff; font-size: 12px; font-weight: bold; padding: 22px 12px 10px; letter-spacing: 0.03em; }
+.ladder-card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.ladder-card-stepnum { font-size: 11px; color: #d35400; font-weight: bold; letter-spacing: 0.1em; }
+.ladder-card h3 { font-size: 14px; font-weight: bold; color: #222; line-height: 1.55; }
+.ladder-card-price { font-size: 12px; color: #d35400; font-weight: bold; }
+.ladder-card p { font-size: 12px; color: #666; line-height: 1.7; flex: 1; }
+.ladder-card-cta { display: block; background: #d35400; color: #fff; padding: 10px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; text-align: center; margin-top: 6px; }
+
+/* BLOG */
+.contents-hub { padding: 80px 24px; background: #f4f7fa; }
+.contents-hub > .inner > h2 { font-size: 24px; font-weight: bold; color: #222; margin-bottom: 48px; }
+.genre-section { margin-bottom: 56px; }
+.genre-section:last-child { margin-bottom: 0; }
+.genre-badge { display: inline-block; background: #d35400; color: #fff; font-size: 11px; font-weight: bold; padding: 4px 14px; border-radius: 3px; letter-spacing: 0.1em; margin-bottom: 12px; }
+.genre-title { font-size: 18px; font-weight: bold; color: #222; margin-bottom: 20px; }
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.blog-card { background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #e0e8f0; transition: box-shadow 0.2s; display: flex; flex-direction: column; }
+.blog-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.blog-thumb-申請 { width: 100%; height: 120px; background: #fef0e8; display: flex; align-items: center; justify-content: center; }
+.blog-thumb-コンサル { width: 100%; height: 120px; background: #e8eef8; display: flex; align-items: center; justify-content: center; }
+.blog-thumb-売る { width: 100%; height: 120px; background: #e8f4e8; display: flex; align-items: center; justify-content: center; }
+.blog-thumb-text { font-size: 11px; font-weight: bold; color: #999; letter-spacing: 0.1em; }
+.blog-body { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.blog-cat { font-size: 10px; font-weight: bold; color: #d35400; letter-spacing: 0.1em; }
+.blog-title { font-size: 13px; font-weight: bold; color: #222; line-height: 1.6; flex: 1; }
+.blog-more { font-size: 12px; color: #d35400; font-weight: bold; }
+
+/* GENRE PORTAL */
+.genre-portal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.genre-portal-card { background: #fff; border: 2px solid #e0e8f0; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s, box-shadow 0.2s; color: inherit; }
+.genre-portal-card:hover { border-color: #d35400; box-shadow: 0 4px 20px rgba(211,84,0,0.12); }
+.genre-portal-thumb { width: 100%; height: 140px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.genre-portal-body { padding: 22px 20px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.genre-portal-body h3 { font-size: 16px; font-weight: bold; color: #222; line-height: 1.5; }
+.genre-portal-body p { font-size: 13px; color: #666; line-height: 1.75; flex: 1; }
+.genre-portal-cta { display: block; border: 2px solid #d35400; color: #d35400; padding: 10px 16px; border-radius: 4px; font-size: 13px; font-weight: bold; text-align: center; transition: background 0.15s, color 0.15s; }
+.genre-portal-cta:hover { background: #d35400; color: #fff; }
+
+/* CTA */
+.cta-final { padding: 80px 24px; background: #f0f2f5; color: #222; text-align: center; }
+.cta-badge { display: inline-block; background: #d35400; color: #fff; font-size: 12px; font-weight: bold; padding: 6px 20px; border-radius: 30px; margin-bottom: 20px; letter-spacing: 0.1em; }
+.cta-final h2 { font-size: 26px; font-weight: bold; margin-bottom: 16px; color: #222; }
+.cta-final > .inner > p { color: #555; margin-bottom: 36px; font-size: 15px; max-width: 640px; margin-left: auto; margin-right: auto; }
+.cta-form { max-width: 640px; margin: 0 auto; background: #fff; border-radius: 10px; padding: 36px 32px 28px; text-align: left; color: #222; box-shadow: 0 8px 40px rgba(0,0,0,0.25); }
+.cta-form .form-row { margin-bottom: 18px; }
+.cta-form .form-label { display: block; font-size: 13px; font-weight: bold; color: #333; margin-bottom: 6px; }
+.cta-form .form-required { display: inline-block; background: #d35400; color: #fff; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+.cta-form .form-input { width: 100%; padding: 12px 14px; border: 1px solid #d0d0d0; border-radius: 6px; font-size: 14px; font-family: inherit; color: #222; background: #fff; transition: border-color 0.15s, box-shadow 0.15s; }
+.cta-form .form-input:focus { outline: none; border-color: #d35400; box-shadow: 0 0 0 3px rgba(211,84,0,0.15); }
+.cta-form textarea.form-input { resize: vertical; min-height: 110px; line-height: 1.7; }
+.cta-form .form-submit { display: block; width: 100%; background: #d35400; color: #fff; border: 0; padding: 16px 20px; border-radius: 6px; font-size: 15px; font-weight: bold; cursor: pointer; letter-spacing: 0.05em; transition: background 0.15s; }
+.cta-form .form-submit:hover { background: #b84600; }
+.cta-form .form-privacy { font-size: 11px; color: #888; margin-top: 14px; text-align: center; line-height: 1.7; }
+
+/* MOVEMENT image */
+.movement-image { margin-bottom: 4px; }
+.movement-image img { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; }
+
+/* BLOG more link */
+.blog-grid-more { text-align: center; margin-top: 24px; }
+.blog-grid-more a { display: inline-block; padding: 10px 28px; border: 1px solid #d35400; color: #d35400; border-radius: 30px; font-size: 13px; font-weight: bold; transition: background 0.15s, color 0.15s; }
+.blog-grid-more a:hover { background: #d35400; color: #fff; }
+.blog-thumb-img { width: 100%; height: 120px; overflow: hidden; }
+.blog-thumb-img img, .blog-thumb-img svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* BLOG ALL link bottom */
+.blog-all-bottom { text-align: center; margin-top: 40px; }
+.blog-all-bottom a { display: inline-block; padding: 14px 36px; background: #d35400; color: #fff; border-radius: 30px; font-size: 14px; font-weight: bold; letter-spacing: 0.05em; transition: background 0.15s; }
+.blog-all-bottom a:hover { background: #b84600; }
+
+/* FOOTER */
+footer { background: #1f2937; color: #fff; padding: 44px 24px 24px; }
+.footer-inner { max-width: 880px; margin: 0 auto; text-align: center; }
+.footer-nav { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; justify-content: center; }
+.footer-nav a { font-size: 13px; color: #fff; transition: color 0.2s; text-decoration: none; }
+.footer-nav a:hover { color: #d35400; }
+.footer-legal { display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 16px; justify-content: center; }
+.footer-legal a { font-size: 12px; color: #ccc; text-decoration: none; transition: color 0.2s; }
+.footer-legal a:hover { color: #fff; }
+.footer-copy { font-size: 12px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px; color: #aaa; }
+
+@media (max-width: 880px) {
+  .hero h1 { font-size: 24px; }
+  .hero-sub { font-size: 20px; }
+  .hero-circles { gap: 16px; }
+  .hero-circle { width: 160px; }
+  .hero-circle-ring { width: 96px; height: 96px; }
+  .core-offer-cards { grid-template-columns: 1fr; }
+  .about-flex { flex-direction: column; }
+  .about-graphic { width: 100%; }
+  .ai-sub-tools { grid-template-columns: 1fr; }
+  .movement-grid { grid-template-columns: 1fr; }
+  .ladder-cards { grid-template-columns: repeat(2, 1fr); }
+  .genre-portal-grid { grid-template-columns: 1fr; }
+  .step-arrow { display: none; }
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .nav-links a:not(.nav-cta) { display: none; }
+  .mission-body { padding: 0; }
+}
+
+
+/* MOBILE_MENU_v1 */
+.nav-hamburger{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer;padding:4px 10px;line-height:1;margin-left:8px;}
+.mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;background:#1a1a1a;flex-direction:column;padding:8px 24px 20px;z-index:99;border-top:1px solid #333;box-shadow:0 6px 16px rgba(0,0,0,0.4);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:#fff;text-decoration:none;padding:14px 0;border-bottom:1px solid #333;font-size:14px;}
+.mobile-menu a:last-child{border-bottom:0;}
+.mobile-menu .nav-cta{background:#d35400;text-align:center;border-radius:4px;font-weight:bold;margin-top:10px;border:0!important;padding:14px 0;}
+@media(max-width:880px){.nav-hamburger{display:inline-block!important;}}
+
+/* VOICE_SECTION_v1 */
+.voice-section{background:#f8f9fa;padding:64px 0 72px;}
+.voice-inner{max-width:880px;margin:0 auto;padding:0 24px;}
+.voice-eyebrow{font-size:13px;font-weight:700;color:#d35400;letter-spacing:0.12em;text-align:center;margin-bottom:8px;}
+.voice-h2{font-size:28px;font-weight:900;color:#1a3a5c;text-align:center;margin-bottom:12px;line-height:1.4;}
+.voice-lead{font-size:14px;color:#555;text-align:center;margin-bottom:40px;max-width:680px;margin-left:auto;margin-right:auto;}
+.voice-cat{margin-bottom:24px;}
+.voice-cat:last-child{margin-bottom:0;}
+.voice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.voice-card{background:#fff;border-radius:10px;padding:22px 22px 22px;box-shadow:0 2px 12px rgba(26,58,92,0.07);display:flex;flex-direction:column;position:relative;border-top:4px solid #1a3a5c;}
+.voice-cat.cat-support .voice-card{border-top-color:#d35400;}
+.voice-cat.cat-marketing .voice-card{border-top-color:#2e7d32;}
+.voice-cat-badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:#1a3a5c;padding:3px 10px;border-radius:3px;letter-spacing:0.04em;margin:0 auto 10px;align-self:center;}
+.voice-cat.cat-support .voice-cat-badge{background:#d35400;}
+.voice-cat.cat-marketing .voice-cat-badge{background:#2e7d32;}
+.voice-image{width:96px;height:96px;border-radius:50%;overflow:hidden;margin:0 auto 12px;background:#eef2f7;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.voice-image img{width:100%;height:100%;object-fit:cover;display:block;}
+.voice-stars{text-align:center;color:#f5b301;font-size:18px;letter-spacing:2px;margin-bottom:6px;line-height:1;}
+.voice-meta{text-align:center;font-size:12px;color:#666;font-weight:600;margin-bottom:10px;}
+.voice-headline{font-size:15px;font-weight:900;color:#1a3a5c;text-align:center;line-height:1.5;margin-bottom:12px;padding-bottom:10px;border-bottom:1px dashed #d4dde8;}
+.voice-text{font-size:13px;color:#333;line-height:1.85;flex:1;}
+@media(max-width:880px){
+  .voice-section{padding:48px 16px 56px;}
+  .voice-h2{font-size:22px;}
+  .voice-grid{grid-template-columns:1fr;gap:14px;}
+  .voice-card{padding:20px 18px 18px;}
+  .voice-image{width:84px;height:84px;}
+}
+
+</style>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="." class="nav-logo">補助金活用型経営を進めるガイド</a>
+    <div class="nav-links">
+      <a href="#core-offer">無料コンテンツ</a>
+      <a href="#blog">ブログ</a>
+      <a href="#seminar-archive">勉強会</a>
+      <a href="#about">プロフィール</a>
+      <a href="https://hojokin.well-c.biz/" target="_blank" rel="noopener">補助金フィード</a>
+      <a href="https://fp-1.info/hojokin/#:~:text=%E3%83%97%E3%83%83%E3%82%B7%E3%83%A5%E5%9E%8B%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%AB%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E4%BA%8B%E6%A5%AD%E6%A7%8B%E7%AF%89%E7%A0%94%E4%BF%AE%EF%BC%88%E3%83%AA%E3%82%B9%E3%82%AD%E3%83%8B%E3%83%B3%E3%82%B0%E5%8A%A9%E6%88%90%E9%87%91%E6%B4%BB%E7%94%A8%E5%8F%AF%E8%83%BD%EF%BC%89" target="_blank" rel="noopener">研修</a>
+
+      <button class="nav-hamburger" aria-label="メニュー">☰</button><a href="#cta" class="nav-cta">無料相談</a>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu">
+<a href="#core-offer">無料コンテンツ</a>
+      <a href="#blog">ブログ</a>
+      <a href="#seminar-archive">勉強会</a>
+      <a href="#about">プロフィール</a>
+      <a href="https://hojokin.well-c.biz/" target="_blank" rel="noopener">補助金フィード</a>
+      <a href="#cta" class="nav-cta">無料相談</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="inner">
+    <div class="hero-pains" style="flex-direction:column;align-items:flex-start;width:fit-content;margin-left:auto;margin-right:auto;background:#ffffff;border-radius:8px;padding:16px 28px;gap:12px;">
+      <span class="hero-pain">補助金の種類が多すぎて何を選べばいいかわからない</span>
+      <span class="hero-pain">申請書類の作り方がわからない</span>
+      <span class="hero-pain">補助金を使ってビジネスを伸ばしたい</span>
+    </div>
+    <h1>補助金・助成金活用型経営の<span style="color:#e02020;font-size:1.6em;line-height:1;vertical-align:middle;margin:0 6px;">3</span>つの方法</h1>
+
+    <div class="hero-circles" style="gap:32px;">
+      <div class="hero-circle" style="width:220px;">
+        <div style="width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:2px solid #d35400;">
+          <img src="/hojokin/wp-content/uploads/2026/05/slide-katsuyou-31.png" alt="補助金を活用する" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="hero-circle-label">補助金を活用する</div>
+        <div class="hero-circle-desc">設備投資・IT導入・事業再構築に使える補助金の選び方と活用法</div>
+      </div>
+      <div class="hero-circle" style="width:220px;">
+        <div style="width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:2px solid #d35400;">
+          <img src="/hojokin/wp-content/uploads/2026/05/slide-support-31.png" alt="補助金をサポートする" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="hero-circle-label">補助金をサポートする</div>
+        <div class="hero-circle-desc">士業・コンサルタント向けの知識と手法</div>
+      </div>
+      <div class="hero-circle" style="width:220px;">
+        <div style="width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:2px solid #d35400;">
+          <img src="/hojokin/wp-content/uploads/2026/05/slide-sales-30.png" alt="補助金で製品を売る" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="hero-circle-label">補助金で製品を売る</div>
+        <div class="hero-circle-desc">補助金対象製品・サービスの商品設計と販路開拓</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission" id="about" style="scroll-margin-top:60px;">
+  <div class="inner" style="display:flex;gap:48px;align-items:flex-start;text-align:left;">
+    <div style="flex:1;min-width:0;">
+      <h2 style="text-align:left;">補助金・助成金を経営の武器にする。<br>それが「補助金活用型経営」です。</h2>
+      <p class="mission-body" style="margin:0;max-width:none;">
+        毎年数千億円の補助金・助成金が中小企業向けに用意されています。しかし実際に活用できている企業はごくわずかです。このサイトは、補助金を「知る」「申請する」「活かす」ための情報と仕組みを提供します。情報だけでなく、AIツールとコンサルタントの伴走支援まで一貫して届けます。
+      </p>
+    </div>
+    <div style="flex-shrink:0;width:160px;text-align:center;">
+      <img src="/hojokin/wp-content/uploads/2026/05/akutsu-portrait.jpg" alt="阿久津和宏" style="width:160px;height:160px;display:block;border-radius:50%;object-fit:cover;">
+    </div>
+  </div>
+  <div class="inner">
+    <h3 style="font-size:20px;font-weight:bold;color:#222;margin-bottom:24px;text-align:left;">本業に専念できる環境構築に補助金を活用したい方は他にいませんか？</h3>
+    <div class="about-flex">
+      <div class="about-text" style="text-align:left;">
+        <p>初めまして。行政書士で認定支援機関の阿久津和宏です。Well Consultant 代表として、中小企業や、士業・コンサルタントの方の経営支援をしています。</p>
+        <p>僕のキャリアのスタートは、セブン-イレブン・ジャパンでの24年間です。店舗運営コンサルタントとして、加盟店オーナーが毎日ぶつかるリアルな経営課題と、ずーっと向き合ってきました。売上が伸びない理由、人が辞めていく理由、利益が残らない理由。どれも、表面の数字だけを追いかけたって、正直、なんも解決しないんですよね。本当の原因は、もっと深いところにある。この感覚は、独立した今もまったく変わっていません。</p>
+        <p>独立してからは、補助金の申請支援を専門にやってきました。これまでに700社以上、採択率は80%以上をずっと維持し続けています。ただ、僕がやっているのは、ただの「申請の代行」じゃないんです。</p>
+        <p>僕は、補助金は「もらえるお金」じゃなくて、事業を前に進めるための「実行装置」だと思っています。採択されたあと、そのお金で何を仕掛けるのか。販路をどう広げるのか。どんな商品やサービスを生み出すのか。営業の仕組みをどう組み直すのか。ここまで踏み込まないと、補助金は結局、ただの一時金で終わっちゃうんですよね。逆にここまで設計できれば、補助金はビジネス全体を一段も二段も押し上げる、強力なエンジンに化けます。</p>
+        <p>僕はコレを、「構造的共創」と呼んでいます。表面の症状じゃなくて、構造そのものを、経営者と一緒に組み直していく。経営者ご自身も気づいていない「言葉になっていない資産」を引き出して、事業計画書の中で組み立て直す。コレが、僕たちの採択率の本当の正体です。</p>
+        <p>最近は、AIを活用して、ちゃんと中身のある事業計画書を効率よく作る仕組みづくりにも取り組んでいます。専門知識のない経営者や、これから補助金支援に入っていく士業・コンサルタントの方が、AIを使いこなしながらも、ちゃんと「血の通った計画書」を仕上げられるように、です。AIに置き換えられるんじゃなくて、AIを味方につけて、もっと深く考え抜く。コレからの時代に生き残れる専門家って、結局そういう人たちだと思っています。</p>
+        <p>これまでに39名の専門家を育成して、全国17名を超えるパートナーと一緒にビジネスを共創してきました。年間39回開催している勉強会には、延べ303名の方が参加してくれています。</p>
+        <p>物価高、人手不足、賃上げ、デジタル化、事業承継...中小企業を取り巻く課題は、年々、重く複雑になっていく一方です。補助金制度はその中で、本気で挑戦する企業に対して国が手を差し伸べてくれる、数少ない有効な手段です。なのに、「申請が面倒」「自分には関係ない」って諦めちゃってる経営者が、本当に多い。コレ、はっきり言って、本当にもったいないんですよね。実際、補助金を一度でも受け取ったことがある会社って、1割もいないと言われていますから。</p>
+        <p>このサイトは、補助金を、ただの面倒な手続きじゃなくて、あなたのビジネスを構造から進化させるための「戦略的な武器」として使い倒してもらうために運営しています。</p>
+        <p>もしあなたが、もっと安定的にキャッシュを増やしたい。もっと安定的に顧客を獲得したい。もっと差別化して、お客さんの方から声をかけてもらえるようになりたい。そう本気で思っているなら、僕がコレまで積み上げてきたものを、惜しまずお渡しします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section style="background:#f8f9fa;padding:8px 24px 64px;">
+  <div class="inner">
+    <h2 style="font-size:22px;font-weight:bold;color:#1a3a5c;margin-bottom:32px;text-align:center;border-bottom:2px solid #1a3a5c;padding-bottom:12px;">主な出版実績</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:720px;margin:0 auto;">
+      <div style="height:320px;overflow:hidden;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,0.15);">
+        <img src="/hojokin/wp-content/uploads/2026/05/book1.avif" alt="出版書籍1" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="height:320px;overflow:hidden;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,0.15);">
+        <img src="/hojokin/wp-content/uploads/2026/05/book2.avif" alt="出版書籍2" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="height:320px;overflow:hidden;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,0.15);">
+        <img src="/hojokin/wp-content/uploads/2026/05/book3.webp" alt="出版書籍3" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CORE OFFER -->
+<section class="core-offer" id="core-offer">
+  <div class="inner">
+    <h2>補助金・助成金活用型経営を始めるには？</h2>
+    <p style="font-size:16px;color:#444;line-height:1.6;margin:24px 0 40px;text-align:left;">初めにやることはいくつかありますが、それほど多いものでもありません。補助金や助成金ごと、申請が申請できるか？どうか？、どのように活用できるのか？実務はどうなってるのか？ざっくり知る。これだけ知っていれば、あなたはもう、補助金・助成金活用型経営を踏み出し、資金・顧客・人材に困らない経営実現で、ライバルに一歩リードしているかもしれません。その中で今まで1000人以上が受け取ったコンテンツがこれ↓。今すぐ手に取ってみてください。</p>
+    <div class="core-offer-cards">
+      <a href="https://www.funnel-build.com/joseikinguide-opt" class="core-card" target="_blank" rel="noopener">
+        <div class="core-thumb">
+          <img src="/hojokin/wp-content/uploads/2026/05/guidebook-v5-scaled.jpg" alt="助成金獲得ガイドブック" style="width:100%;height:100%;object-fit:cover;">
+          <div class="core-thumb-label">無料ガイドブック｜助成金獲得</div>
+        </div>
+        <div class="core-card-body">
+          <h3>助成金獲得ガイドブック</h3>
+          <p>助成金の制度がわからない方へ。ガイドブック・助成金リスト・準備書類リスト・GPT質問ボットを無料進呈。157件超の採択実績をもとに制作。</p>
+          <span class="core-card-cta">今すぐ無料で受け取る</span>
+        </div>
+      </a>
+      <a href="https://lp2.well-c.biz/w/59207a04-fa65-47db-8099-0097f67d05c4" class="core-card" target="_blank" rel="noopener">
+        <div class="core-thumb">
+          <img src="/hojokin/wp-content/uploads/2026/05/webinar-v5-scaled.jpg" alt="補助金活用型7つのビジネスモデル構築ウェビナー" style="width:100%;height:100%;object-fit:cover;">
+          <div class="core-thumb-label">無料ウェビナー｜7つのビジネスモデル</div>
+        </div>
+        <div class="core-card-body">
+          <h3>補助金活用型7つのビジネスモデル<br>構築ウェビナー</h3>
+          <p>補助金を活用した7つのビジネスモデルを公開するライブ無料トレーニング。補助金で事業を安定・拡大する具体的な仕組みを学べます。</p>
+          <span class="core-card-cta">今すぐ視聴登録する</span>
+        </div>
+      </a>
+      <a href="https://www.funnel-build.com/ht3" class="core-card" target="_blank" rel="noopener">
+        <div class="core-thumb">
+          <img src="/hojokin/wp-content/uploads/2026/05/manual-v5-scaled.jpg" alt="補助金獲得実務マニュアル" style="width:100%;height:100%;object-fit:cover;">
+          <div class="core-thumb-label">無料マニュアル｜補助金獲得実務</div>
+        </div>
+        <div class="core-card-body">
+          <h3>補助金獲得実務マニュアル</h3>
+          <p>47ページのマニュアル＋500分超の動画講座＋事業計画テンプレート3種＋AI活用事例42個。1,000人超が読んだ実務書を無料でお届け。</p>
+          <span class="core-card-cta">今すぐ実務マニュアルを受け取る</span>
+        </div>
+      </a>
+    </div>
+  </div>
+    <div class="inner" style="margin-top:56px;" id="webinars">
+    <h2>開催中のウェビナーはこちら</h2>
+    <p style="font-size:15px;color:#555;line-height:1.9;margin:16px 0 32px;text-align:left;">現在お申し込みいただけるウェビナーの一覧です。補助金・助成金を活用した経営の実務を、テーマ別に学べます。気になるテーマからご参加ください。お申し込み後、ご視聴用URLをメールでお届けします。</p>
+    <div class="core-offer-cards">
+      <a href="https://lp2.well-c.biz/w/195a1c26-69ce-4982-b5c4-8eefa74a790e" class="core-card" target="_blank" rel="noopener">
+        <div class="core-card-body">
+          <h3>補助金獲得の極意</h3>
+          <p>9割の専門家が見誤る補助金採択の極意を言語化。誰も知らない補助金獲得の裏側を公開する新補助金攻略勉強会。</p>
+          <span class="core-card-cta">詳細・お申し込みはこちら</span>
+        </div>
+      </a>
+      <a href="https://lp2.well-c.biz/w/9eade6a5-b93d-46a0-9c0e-c5aac3dbb7c8" class="core-card" target="_blank" rel="noopener">
+        <div class="core-card-body">
+          <h3>補助金市場で、オンリーワンになる方法</h3>
+          <p>いいマーケットの探し方、レッドオーシャンを避ける考え方、補足サポートを主力に変える方法を解説。</p>
+          <span class="core-card-cta">詳細・お申し込みはこちら</span>
+        </div>
+      </a>
+      <a href="https://lp2.well-c.biz/w/c60b4460-e8f2-490f-b9bf-adbf02118f18" class="core-card" target="_blank" rel="noopener">
+        <div class="core-card-body">
+          <h3>補助金申請（代行）スターターキットの使い方</h3>
+          <p>補助金申請（代行）業務をすぐ始められるスターターキットの使い方と特典の活用法を解説。</p>
+          <span class="core-card-cta">詳細・お申し込みはこちら</span>
+        </div>
+      </a>
+      <a href="https://lp2.well-c.biz/w/63042c73-6bd6-4968-b09e-82dc64c1f52a" class="core-card" target="_blank" rel="noopener">
+        <div class="core-card-body">
+          <h3>継続案件が増え続ける 補助金コンサルタントの実務習得講座</h3>
+          <p>単発で終わらせず、継続案件が増え続ける補助金コンサルタントになるための実務を習得。</p>
+          <span class="core-card-cta">詳細・お申し込みはこちら</span>
+        </div>
+      </a>
+      <a href="https://lp2.well-c.biz/w/59207a04-fa65-47db-8099-0097f67d05c4" class="core-card" target="_blank" rel="noopener">
+        <div class="core-card-body">
+          <h3>補助金活用型7つのビジネスモデル構築講座</h3>
+          <p>補助金を活用した7つのビジネスモデルを公開。補助金で事業を安定・拡大する具体的な仕組みを学べます。</p>
+          <span class="core-card-cta">詳細・お申し込みはこちら</span>
+        </div>
+      </a>
+      <a href="https://lp2.well-c.biz/w/b0c3d250-1fa4-4705-bb38-7d4c56d1e8d2" class="core-card" target="_blank" rel="noopener">
+        <div class="core-card-body">
+          <h3>ランチェスター戦略風 AI時代のライバルに打ち勝つ9つの方法</h3>
+          <p>AI時代に中小企業がライバルに打ち勝つための9つの戦略をランチェスター戦略の視点で解説。</p>
+          <span class="core-card-cta">詳細・お申し込みはこちら</span>
+        </div>
+      </a>
+    </div>
+    <p style="text-align:center;margin-top:28px;"><a href="https://lp2.well-c.biz/webinars" target="_blank" rel="noopener" style="display:inline-block;background:#1a3a5c;color:#fff;padding:14px 28px;border-radius:4px;font-weight:bold;text-decoration:none;">最新のウェビナー一覧を見る →</a></p>
+  </div>
+  <div class="inner" style="margin-top:56px;" id="blog">
+    <h2>補助金・助成金活用型経営を詳しく読む</h2>
+    <p style="font-size:15px;color:#555;line-height:1.9;margin:16px 0 32px;text-align:left;">もっと詳しく、補助金・助成金活用型経営を始める方法や実務、知識、ノウハウを日々追加しています。もしあなたが補助金・助成金活用型経営に乗り出したいなら、チェックしてみてくださいね！</p>
+    <div class="genre-portal-grid">
+      <a href="https://fp-1.info/hojokin/blog-list/" class="genre-portal-card" target="_blank" rel="noopener">
+        <div class="genre-portal-thumb" style="background:none;overflow:hidden;">
+          <img src="/hojokin/wp-content/uploads/2026/05/blog-apply-2401.png" alt="補助金を申請したい人" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="genre-portal-body">
+          <div class="genre-badge">補助金を申請したい人</div>
+          <h3>補助金を申請したい人へ</h3>
+          <p>どの補助金が使えるか分からない。申請書の書き方が分からない。そんな方のために、補助金の選び方・申請手順・採択のコツを実務レベルで解説しています。</p>
+          <span class="genre-portal-cta">このジャンルを読む →</span>
+        </div>
+      </a>
+      <a href="https://fp-1.info/hojokin/blog-list/" class="genre-portal-card" target="_blank" rel="noopener">
+        <div class="genre-portal-thumb" style="background:none;overflow:hidden;">
+          <img src="/hojokin/wp-content/uploads/2026/05/blog-support-2384.png" alt="補助金をサポートしたい人" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="genre-portal-body">
+          <div class="genre-badge" style="background:#334db3;">補助金をサポートしたい人</div>
+          <h3>補助金をサポートしたい人へ</h3>
+          <p>補助金支援を仕事にしたい士業・コンサルタント向け。支援ビジネスの立ち上げ方・集客・報酬設計・継続収益化の手法を実例ベースで解説しています。</p>
+          <span class="genre-portal-cta" style="border-color:#334db3;color:#334db3;">このジャンルを読む →</span>
+        </div>
+      </a>
+      <a href="https://fp-1.info/hojokin/blog-list/" class="genre-portal-card" target="_blank" rel="noopener">
+        <div class="genre-portal-thumb" style="background:none;overflow:hidden;">
+          <img src="/hojokin/wp-content/uploads/2026/05/blog-sell-2387.png" alt="補助金を使って売りたい人" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="genre-portal-body">
+          <div class="genre-badge" style="background:#2e7d32;">補助金を使って売りたい人</div>
+          <h3>補助金を使って売りたい人へ</h3>
+          <p>IT導入・ものづくり補助金など、補助対象として製品・サービスを登録し、補助金経由で顧客を獲得する販路拡大の手法を解説しています。</p>
+          <span class="genre-portal-cta" style="border-color:#2e7d32;color:#2e7d32;">このジャンルを読む →</span>
+        </div>
+      </a>
+            <a href="https://fp-1.info/it/" class="genre-portal-card">
+        <div class="genre-portal-thumb" style="background:none;overflow:hidden;">
+          <img src="/hojokin/wp-content/uploads/2026/05/ai-basedata.jpg" alt="IT導入支援事業者・AIツール登録" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="genre-portal-body">
+          <div class="genre-badge" style="background:#1a3a5c;">AIツール・IT導入支援</div>
+          <h3>IT導入支援事業者・AIツール登録</h3>
+          <p>AIツールを補助金経由で導入してもらうための、支援事業者登録・ITツール登録・価格説明・理由書・実績報告を実務目線で整理しています。</p>
+          <span class="genre-portal-cta" style="border-color:#1a3a5c;color:#1a3a5c;">このジャンルを読む →</span>
+        </div>
+      </a>
+    </div>
+    <div class="blog-all-bottom">
+      <a href="https://fp-1.info/hojokin/blog-list/" target="_blank" rel="noopener">全体のブログ一覧へ →</a>
+    </div>
+  </div>
+</section>
+
+<!-- AI TOOLS -->
+<section class="ai-tools" id="ai-tools">
+  <div class="inner">
+    <div class="ai-hero">
+      <h2>生成AIを活用したスピードアップ支援</h2>
+      <p>実は、補助金・助成金は年々手続が面倒なところが増加しています。その理由の一つに、不正の横行や補助金・助成金を活用する事業者の増加があると言われていますが、その中で、手続きや事務処理、手続きの効率化と品質向上を実現するツールを活用しています。これらのもし興味がある方は、勉強会や個別相談でお知らせくださいね。その一部をお見せしますと...</p>
+    </div>
+    <div class="ai-sub-tools">
+      <div class="ai-sub-card">
+        <img src="/hojokin/wp-content/uploads/2026/05/ai-select.jpg" alt="補助金を選ぶAI" style="width:100%;height:120px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <h3>補助金を選ぶAI</h3>
+        <p>業種・規模・目的を入力するだけで使える補助金をリストアップ。申請優先度と受取金額の目安まで自動提示。「どれを使うか」の判断を圧倒的に短縮できます。</p>
+      </div>
+      <div class="ai-sub-card">
+        <img src="/hojokin/wp-content/uploads/2026/05/ai-bizplan.jpg" alt="事業計画書を作成するAI" style="width:100%;height:120px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <h3>事業計画書を作成するAI</h3>
+        <p>ヒアリングへの回答を入力するだけで採択を意識した事業計画書を自動生成。書き方が分からなくても実務レベルの計画書をスムーズに仕上げられます。</p>
+      </div>
+      <div class="ai-sub-card">
+        <img src="/hojokin/wp-content/uploads/2026/05/ai-basedata.jpg" alt="補助金万能型基本データ生成AI" style="width:100%;height:120px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <h3>補助金万能型基本データ生成AI</h3>
+        <p>事業内容・強み・課題を一度入力すれば、あらゆる補助金申請に使い回せる基本データを自動生成。申請のたびに一から書く手間をなくすことができます。</p>
+      </div>
+      <div class="ai-sub-card">
+        <img src="/hojokin/wp-content/uploads/2026/05/ai-koubo.jpg" alt="公募要領確認AI" style="width:100%;height:120px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <h3>公募要領確認AI</h3>
+        <p>公募要領のPDFをアップロードするだけで申請要件・対象経費・スケジュールを自動整理。見落としを防ぎ、申請準備を確実に進められます。</p>
+      </div>
+      <div class="ai-sub-card">
+        <img src="/hojokin/wp-content/uploads/2026/05/ai-report.jpg" alt="補助金レポート生成AI" style="width:100%;height:120px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <h3>補助金レポート生成AI</h3>
+        <p>公募されている補助金・助成金の申請に必要な書類を自動生成。申請要件や公募情報を入力するだけで、審査基準に沿った申請レポートをスムーズに作成することができます。</p>
+      </div>
+      <div class="ai-sub-card">
+        <img src="/hojokin/wp-content/uploads/2026/05/ai-marketing.jpg" alt="補助金マーケティングAI" style="width:100%;height:120px;object-fit:cover;border-radius:6px;margin-bottom:14px;">
+        <h3>補助金マーケティングAI</h3>
+        <p>補助金活用を切り口にした集客コンテンツ・LP・メールを自動生成。「補助金で導入できます」を訴求ポイントにして見込み客を集める仕組みを作ることができます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOVEMENT -->
+<section class="movement" id="movement">
+  <div class="inner">
+    <h2>私たちは、補助金・助成金活用型経営で、<br>こんな活動をしています。</h2>
+    <p class="movement-sub">情報提供・申請支援・ツール開発・人材育成の4つの柱</p>
+    <div class="movement-grid">
+      <div class="movement-card">
+        <div class="movement-image"><img src="/hojokin/wp-content/uploads/2026/05/info-scaled.jpg" alt="補助金情報の発信" style="width:100%;height:160px;object-fit:cover;border-radius:6px;margin-bottom:16px;"></div>
+        <h3>補助金情報の発信</h3>
+        <p>読者数1,000人超のメールマガジンを毎週配信。ものづくり・IT導入・小規模事業者持続化・事業再構築・雇用調整助成金など主要補助金の締切・補助率・対象業種・申請方法を整理し、「今週使える補助金はこれです」という形で届けます。情報が多くて選べない経営者でも、自分ごとの補助金がわかる内容になっています。</p>
+        <a href="https://hojokin.well-c.biz/" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px;color:#1f6feb;font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid #1f6feb;">→ 補助金フィードを見る</a>
+      </div>
+      <div class="movement-card">
+        <div class="movement-image"><img src="/hojokin/wp-content/uploads/2026/05/support-scaled.jpg" alt="申請サポートの仕組み化" style="width:100%;height:160px;object-fit:cover;border-radius:6px;margin-bottom:16px;"></div>
+        <h3>申請サポートの仕組み化</h3>
+        <p>採択件数157件・採択総額26億円超の実績をもとに、採択される申請書の型を体系化。士業・コンサルタント向けに毎週「補助金支援ビジネス構築ウェビナー」を無料開催しています。採択された申請書のパターン・審査員に刺さる書き方・スケジュール管理シートをセットで提供し、再現性のある申請支援ビジネスを作れるよう支援します。</p>
+        <a href="https://traingo.fp-1.info/l/webinar-hcp" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px;color:#1f6feb;font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid #1f6feb;">→ ウェビナーページを見る</a>
+      </div>
+      <div class="movement-card">
+        <div class="movement-image"><img src="/hojokin/wp-content/uploads/2026/05/channel-scaled.jpg" alt="補助金対応製品の販路開拓" style="width:100%;height:160px;object-fit:cover;border-radius:6px;margin-bottom:16px;"></div>
+        <h3>補助金対応製品の販路開拓</h3>
+        <p>IT導入補助金・ものづくり補助金の補助対象ツールとして自社製品・サービスを登録する支援を行います。「補助金で買えます」という切り口で商品を売る「補助金セールス」手法を経営者・コンサルタント向けに提供。補助金対象になることで、同じ製品でも成約率と客単価が大きく変わります。</p>
+        <a href="https://traingo.fp-1.info/l/7model" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px;color:#1f6feb;font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid #1f6feb;">→ 補助金活用型7つのビジネスモデル構築ウェビナーを見る</a>
+      </div>
+      <div class="movement-card">
+        <div class="movement-image"><img src="/hojokin/wp-content/uploads/2026/05/education-scaled.jpg" alt="補助金活用型経営の教育" style="width:100%;height:160px;object-fit:cover;border-radius:6px;margin-bottom:16px;"></div>
+        <h3>補助金活用型経営の教育</h3>
+        <p>毎週、無料オンラインウェビナーを開催。補助金の最新動向・採択のポイント・コンサルビジネスの作り方を実例ベースで解説しています。47ページの実務マニュアル＋500分超の動画講座＋事業計画テンプレート3種を無料で公開。157件の採択経験から抽出した「採択される申請書の共通点」を体系的に学べます。</p>
+        <a href="https://www.funnel-build.com/opt-ht3" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px;margin-right:14px;color:#1f6feb;font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid #1f6feb;">→ 実務ガイドブックを見る</a>
+      </div>
+      <div class="movement-card" style="grid-column: 1 / -1;">
+        <div style="display:flex;gap:32px;align-items:flex-start;">
+          <div style="flex:1;min-width:0;">
+            <h3>プッシュ型コンサルティング事業構築研修（リスキニング助成金活用可能）</h3>
+            <p style="margin-bottom:12px;">補助金・助成金を入口に、コンサル事業を新規事業として立ち上げる実践型研修です。制度の説明で終わる商談を、顧客課題の診断・提案・受注・継続契約まで一気通貫で回せる事業に変えたい企業に向けて設計しています。人材開発支援助成金（事業展開等リスキリング支援コース）対応設計です。</p>
+            <a href="https://fp-1.info/hojokin/push-consulting-training/" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px;color:#1f6feb;font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid #1f6feb;">→ 詳細はこちら</a>
+          </div>
+          <div style="flex-shrink:0;width:340px;">
+            <img src="/hojokin/wp-content/uploads/2026/05/reskilling-scaled.jpg" alt="プッシュ型コンサルティング事業構築研修" style="width:100%;height:220px;object-fit:cover;border-radius:8px;">
+          </div>
+        </div>
+      </div>
+      <div class="movement-card" style="grid-column: 1 / -1;">
+        <h3>補助金採択後・実績報告サポート</h3>
+        <p style="margin-bottom:12px;">採択されて終わりではありません。実績報告書類の作成、証拠書類の整理、事務局とのやり取りまで、行政書士が窓口となって入金確定まで伴走します。「手引きを読んでください」で終わらせないサポートです。</p>
+        <a href="https://fp-1.info/hojokin/houkoku/" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px;color:#1f6feb;font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid #1f6feb;">→ 詳細はこちら</a>
+      </div>
+    </div>
+    <div id="seminar-archive" style="text-align:center;margin-top:40px;padding-top:32px;border-top:1px solid #dce6f0;scroll-margin-top:60px;">
+      <a href="https://lp.well-c.biz/b-vip/" target="_blank" rel="noopener" style="display:block;max-width:800px;margin:0 auto 20px;">
+        <img src="/hojokin/wp-content/uploads/2026/05/seminar-preview-31.png" alt="補助金勉強会アーカイブ ラインナップ" style="width:100%;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,0.15);">
+      </a>
+      <a href="https://lp.well-c.biz/b-vip/" target="_blank" rel="noopener" style="display:inline-block;background:#1a3a5c;color:#fff;padding:14px 40px;border-radius:6px;font-size:14px;font-weight:bold;text-decoration:none;letter-spacing:0.04em;">勉強会アーカイブをチェックする →</a>
+      <p style="margin-top:16px;font-size:14px;color:#555;">毎週開催の勉強会はメルマガで案内しています。<a href="https://easywebinar.link/C45bseH86G" target="_blank" rel="noopener" style="color:#1a3a5c;font-weight:bold;text-decoration:underline;">申込フォームはこちら</a></p>
+      <p style="margin-top:6px;font-size:13px;color:#888;">毎週金曜日15時から・参加費無料</p>
+    </div>
+  </div>
+</section>
+
+<!-- CORE OFFER BOTTOM -->
+
+<!-- CONTENTS HUB -->
+<section class="contents-hub" id="contents-hub">
+  <div class="inner">
+    <h2>補助金・助成金ブログ</h2>
+
+    <div class="genre-section">
+      <div class="genre-badge">補助金申請</div>
+      <div class="genre-title">補助金・助成金を獲得する</div>
+      <div class="blog-grid">
+        <a href="https://fp-1.info/hojokin/2026/05/17/hojo-joseikin-chigai/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYzMCIgdmlld0JveD0iMCAwIDEyMDAgNjMwIj4KICA8IS0tIOiDjOaZryAtLT4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiMxYTNhNWMiLz4KCiAgPCEtLSDlt6bluK/jgqLjgq/jgrvjg7Pjg4ggLS0+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjgiIGhlaWdodD0iNjMwIiBmaWxsPSIjZDM1NDAwIi8+CgogIDwhLS0g5LiK6YOo6KOF6aO+44Op44Kk44OzIC0tPgogIDxyZWN0IHg9IjgwIiB5PSI4MCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iMiIgZmlsbD0iI2QzNTQwMCIgb3BhY2l0eT0iMC42Ii8+CgogIDwhLS0g5LiL6YOo6KOF6aO+44Op44Kk44OzIC0tPgogIDxyZWN0IHg9IjgwIiB5PSI1NDgiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9IjIiIGZpbGw9IiNkMzU0MDAiIG9wYWNpdHk9IjAuNiIvPgoKICA8IS0tIOOCq+ODhuOCtOODquODqeODmeODqyAtLT4KICA8cmVjdCB4PSI4MCIgeT0iMTEwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjM2IiByeD0iNCIgZmlsbD0iI2QzNTQwMCIvPgogIDx0ZXh0IHg9IjE4MCIgeT0iMTMzIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsICdIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJywgJ01laXJ5bycsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuijnOWKqemHkeODu+WKqeaIkOmHkTwvdGV4dD4KCiAgPCEtLSDjg6HjgqTjg7Pjg4bjgq3jgrnjg4ggLS0+CiAgPHRleHQgeD0iNjAwIiB5PSIyOTAiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJywgJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLCAnTWVpcnlvJywgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI3MiIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+6KOc5Yqp6YeR44Go5Yqp5oiQ6YeR44Gu6YGV44GEPC90ZXh0PgoKICA8IS0tIOOCteODluODhuOCreOCueODiCAtLT4KICA8dGV4dCB4PSI2MDAiIHk9IjM5MCIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLCAnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsICdNZWlyeW8nLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjMyIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZDM1NDAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7ov5TmuIjjgarjgZfjg7vlr77osaHjg7vmnaHku7bjgpLlvrnlupXmr5TovIM8L3RleHQ+CgogIDwhLS0g5Yy65YiH44KK57eaIC0tPgogIDxyZWN0IHg9IjQ4MCIgeT0iNDMwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjIiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMyIvPgoKICA8IS0tIOiqrOaYjuODhuOCreOCueODiCAtLT4KICA8dGV4dCB4PSI2MDAiIHk9IjQ3MCIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLCAnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsICdNZWlyeW8nLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjY2NkZGVlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7kuK3lsI/kvIHmpa3jg7vlgIvkurrkuovmpa3kuLvlkJHjgZHlrozlhajop6Poqqw8L3RleHQ+CgogIDwhLS0g5Y+z5LiL44OW44Op44Oz44OJIC0tPgo8L3N2Zz4K" alt="補助金と助成金の違いを実務目線で解説"></div>
+          <div class="blog-body">
+            <div class="blog-cat">補助金基礎</div>
+            <div class="blog-title">補助金と助成金の違いを実務目線で解説</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/hojo-shurui-erabi/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYzMCIgdmlld0JveD0iMCAwIDEyMDAgNjMwIj4KICA8IS0tIOiDjOaZryAtLT4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiMxYTNhNWMiLz4KCiAgPCEtLSDlt6bluK/jgqLjgq/jgrvjg7Pjg4ggLS0+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjgiIGhlaWdodD0iNjMwIiBmaWxsPSIjZDM1NDAwIi8+CgogIDwhLS0g5LiK6YOo6KOF6aO+44Op44Kk44OzIC0tPgogIDxyZWN0IHg9IjgwIiB5PSI4MCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iMiIgZmlsbD0iI2QzNTQwMCIgb3BhY2l0eT0iMC42Ii8+CgogIDwhLS0g5LiL6YOo6KOF6aO+44Op44Kk44OzIC0tPgogIDxyZWN0IHg9IjgwIiB5PSI1NDgiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9IjIiIGZpbGw9IiNkMzU0MDAiIG9wYWNpdHk9IjAuNiIvPgoKICA8IS0tIOOCq+ODhuOCtOODquODqeODmeODqyAtLT4KICA8cmVjdCB4PSI4MCIgeT0iMTEwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjM2IiByeD0iNCIgZmlsbD0iI2QzNTQwMCIvPgogIDx0ZXh0IHg9IjE4MCIgeT0iMTMzIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsICdIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJywgJ01laXJ5bycsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuijnOWKqemHkeOBrumBuOOBs+aWuTwvdGV4dD4KCiAgPCEtLSDjg6HjgqTjg7Pjg4bjgq3jgrnjg4jvvIgy6KGM5YiG5Ymy77yJIC0tPgogIDx0ZXh0IHg9IjYwMCIgeT0iMjcwIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsICdIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJywgJ01laXJ5bycsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNjgiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPuijnOWKqemHkTTnqK7poZ7jga48L3RleHQ+CiAgPHRleHQgeD0iNjAwIiB5PSIzNTUiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJywgJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLCAnTWVpcnlvJywgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI2OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+5q2j44GX44GE6YG444Gz5pa5PC90ZXh0PgoKICA8IS0tIOOCteODluODhuOCreOCueODiCAtLT4KICA8dGV4dCB4PSI2MDAiIHk9IjQzNSIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLCAnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsICdNZWlyeW8nLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZDM1NDAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7lr77osaHjg7vph5HpoY3jg7vnlKjpgJTjgpLlvrnlupXmr5TovIM8L3RleHQ+CgogIDwhLS0g5Yy65YiH44KK57eaIC0tPgogIDxyZWN0IHg9IjQ4MCIgeT0iNDc1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjIiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMyIvPgoKICA8IS0tIOiqrOaYjuODhuOCreOCueODiCAtLT4KICA8dGV4dCB4PSI2MDAiIHk9IjUxMCIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLCAnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsICdNZWlyeW8nLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjY2NkZGVlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7jgoLjga7jgaXjgY/jgorjg7tJVOWwjuWFpeODu+S6i+alreWGjeani+evieODu+aMgee2muWMljwvdGV4dD4KCiAgPCEtLSDlj7PkuIvjg5bjg6njg7Pjg4kgLS0+Cjwvc3ZnPgo=" alt="補助金4種類の正しい選び方"></div>
+          <div class="blog-body">
+            <div class="blog-cat">補助金選び方</div>
+            <div class="blog-title">補助金4種類の正しい選び方｜対象・金額・用途が全部違います</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/hojo-yushi-chigai/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYzMCIgdmlld0JveD0iMCAwIDEyMDAgNjMwIj4KICA8IS0tIOiDjOaZryAtLT4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiMxYTNhNWMiLz4KCiAgPCEtLSDlt6bluK/jgqLjgq/jgrvjg7Pjg4ggLS0+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjgiIGhlaWdodD0iNjMwIiBmaWxsPSIjZDM1NDAwIi8+CgogIDwhLS0g5LiK6YOo6KOF6aO+44Op44Kk44OzIC0tPgogIDxyZWN0IHg9IjgwIiB5PSI4MCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iMiIgZmlsbD0iI2QzNTQwMCIgb3BhY2l0eT0iMC42Ii8+CgogIDwhLS0g5LiL6YOo6KOF6aO+44Op44Kk44OzIC0tPgogIDxyZWN0IHg9IjgwIiB5PSI1NDgiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9IjIiIGZpbGw9IiNkMzU0MDAiIG9wYWNpdHk9IjAuNiIvPgoKICA8IS0tIOOCq+ODhuOCtOODquODqeODmeODqyAtLT4KICA8cmVjdCB4PSI4MCIgeT0iMTEwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjM2IiByeD0iNCIgZmlsbD0iI2QzNTQwMCIvPgogIDx0ZXh0IHg9IjE5MCIgeT0iMTMzIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsICdIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJywgJ01laXJ5bycsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuizh+mHkeiqv+mBlOOBruWfuuekjuefpeitmDwvdGV4dD4KCiAgPCEtLSDoo5zliqnph5Hjg5bjg63jg4Pjgq8gLS0+CiAgPHJlY3QgeD0iODAiIHk9IjE5MCIgd2lkdGg9IjQ5MCIgaGVpZ2h0PSIyMDAiIHJ4PSI4IiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA4Ii8+CiAgPHRleHQgeD0iMzI1IiB5PSIyNTUiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJywgJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLCAnTWVpcnlvJywgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2QzNTQwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+6KOc5Yqp6YeRPC90ZXh0PgogIDx0ZXh0IHg9IjMyNSIgeT0iMjk1IiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsICdIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJywgJ01laXJ5bycsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNhYWNjZWUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPui/lOa4iOS4jeimgeODu+aOoeaKnuertuS6ieOBguOCijwvdGV4dD4KICA8dGV4dCB4PSIzMjUiIHk9IjMzMCIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLCAnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsICdNZWlyeW8nLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmaWxsPSIjYWFjY2VlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7lvozmiZXjgYTjg7vmlL/nrZbnm67nmoTjgavpmZDlrpo8L3RleHQ+CiAgPHRleHQgeD0iMzI1IiB5PSIzNjgiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJywgJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLCAnTWVpcnlvJywgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNSIgZmlsbD0iI2NjZGRlZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+44KC44Gu6KOc5YqpIC8gSVToo5zliqkgLyDmjIHntprljJYgLyDlho3mp4vnr4k8L3RleHQ+CgogIDwhLS0gVlMg44OG44Kt44K544OIIC0tPgogIDx0ZXh0IHg9IjYwMCIgeT0iMzA1IiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsICdIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJywgJ01laXJ5bycsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNkMzU0MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPlZTPC90ZXh0PgoKICA8IS0tIOiejeizh+ODluODreODg+OCryAtLT4KICA8cmVjdCB4PSI2MzAiIHk9IjE5MCIgd2lkdGg9IjQ5MCIgaGVpZ2h0PSIyMDAiIHJ4PSI4IiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA4Ii8+CiAgPHRleHQgeD0iODc1IiB5PSIyNTUiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJywgJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLCAnTWVpcnlvJywgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+6J6N6LOHPC90ZXh0PgogIDx0ZXh0IHg9Ijg3NSIgeT0iMjk1IiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsICdIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJywgJ01laXJ5bycsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNhYWNjZWUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPui/lOa4iOe+qeWLmeOBguOCiuODu+eiuuWun+OBq+iqv+mBlOWPrzwvdGV4dD4KICA8dGV4dCB4PSI4NzUiIHk9IjMzMCIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLCAnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsICdNZWlyeW8nLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmaWxsPSIjYWFjY2VlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7liY3miZXjgYTjg7vnlKjpgJTmr5TovIPnmoToh6rnlLE8L3RleHQ+CiAgPHRleHQgeD0iODc1IiB5PSIzNjgiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJywgJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLCAnTWVpcnlvJywgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNSIgZmlsbD0iI2NjZGRlZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+5pS/562W5YWs5bqrIC8g6YqA6KGMIC8g5L+h55So5L+d6Ki85Y2U5LyaPC90ZXh0PgoKICA8IS0tIOODoeOCpOODs+ODhuOCreOCueODiCAtLT4KICA8dGV4dCB4PSI2MDAiIHk9IjQ1NSIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLCAnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsICdNZWlyeW8nLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjQyIiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZmZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7oo5zliqnph5Hjgajono3os4fjga7pgZXjgYQ8L3RleHQ+CgogIDwhLS0g44K144OW44OG44Kt44K544OIIC0tPgogIDx0ZXh0IHg9IjYwMCIgeT0iNTEwIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsICdIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJywgJ01laXJ5bycsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNkMzU0MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPuizh+mHkeiqv+mBlOOBrumBuOOBs+aWueODu+S9v+OBhOWIhuOBkeOCkuino+iqrDwvdGV4dD4KCiAgPCEtLSDlj7PkuIvjg5bjg6njg7Pjg4kgLS0+Cjwvc3ZnPgo=" alt="補助金と融資の違い"></div>
+          <div class="blog-body">
+            <div class="blog-cat">資金調達</div>
+            <div class="blog-title">補助金と融資の違い・使い分け方｜ゼロから分かる資金調達入門</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/hojokin-schedule/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYzMCIgdmlld0JveD0iMCAwIDEyMDAgNjMwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWEzYTVjIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMjQ0MCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjMwIiBmaWxsPSJ1cmwoI2JnKSIvPgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI4IiBoZWlnaHQ9IjYzMCIgZmlsbD0iI2QzNTQwMCIvPgogIDxyZWN0IHg9IjYwIiB5PSI2MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0NCIgcng9IjQiIGZpbGw9IiNkMzU0MDAiLz4KICA8dGV4dCB4PSIxNjAiIHk9IjkxIiBmb250LWZhbWlseT0iSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTiwgTm90byBTYW5zIEpQLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZmZmZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7jgrnjgrHjgrjjg6Xjg7zjg6s8L3RleHQ+CiAgPHRleHQgeD0iNjAiIHk9IjIyMCIgZm9udC1mYW1pbHk9IkhpcmFnaW5vIEtha3UgR290aGljIFByb04sIE5vdG8gU2FucyBKUCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1OCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmZmZmZiI+6KOc5Yqp6YeR44K544Kx44K444Ol44O844Or5a6M5YWo54mIPC90ZXh0PgogIDx0ZXh0IHg9IjYwIiB5PSIyOTUiIGZvbnQtZmFtaWx5PSJIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OLCBOb3RvIFNhbnMgSlAsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNTgiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmZmZmYiPuW5tOmWk+OBruWFrOWLn+ODu+e3oOWIh+OCv+OCpOODn+ODs+OCsDwvdGV4dD4KICA8dGV4dCB4PSI2MCIgeT0iMzk1IiBmb250LWZhbWlseT0iSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTiwgTm90byBTYW5zIEpQLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZDM1NDAwIj7jgYTjgaTjg7vjganjga7oo5zliqnph5HjgavnlLPoq4vjgZnjgovjgYvjgYzkuIDnm67jgafjgo/jgYvjgos8L3RleHQ+CiAgPHRleHQgeD0iNjAiIHk9IjU0MCIgZm9udC1mYW1pbHk9IkhpcmFnaW5vIEtha3UgR290aGljIFByb04sIE5vdG8gU2FucyBKUCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzhhYjRkOCI+6KOc5Yqp6YeR5rS755So5Z6L57WM5Za244KS6YCy44KB44KL44Ks44Kk44OJPC90ZXh0PgogIDx0ZXh0IHg9IjYwIiB5PSI1NzIiIGZvbnQtZmFtaWx5PSJIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OLCBOb3RvIFNhbnMgSlAsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM4YWI0ZDgiPuaOoeaKnuS7tuaVsDE1N+S7tiDmjqHmip7nt4/poY0yNuWEhOWGhui2heOBruWun+e4vuOBi+OCiTwvdGV4dD4KPC9zdmc+Cg==" alt="補助金スケジュール完全版"></div>
+          <div class="blog-body">
+            <div class="blog-cat">スケジュール</div>
+            <div class="blog-title">補助金スケジュール完全版｜年間の公募・締切タイミングの全体像</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/hojokin-saitakuritsu-ranking/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDYzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSLoo5zliqnph5HmjqHmip7njofjg6njg7Pjgq3jg7PjgrAyMDI2Ij4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhM2E1YyIvPgo8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyYTVhOGMiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9InVybCgjYmcpIi8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjExMDAiIGhlaWdodD0iNTMwIiByeD0iMTQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2QzNTQwMCIgc3Ryb2tlLXdpZHRoPSI0Ii8+Cjx0ZXh0IHg9IjYwMCIgeT0iMTgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjYyIiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZmIiBmb250LWZhbWlseT0iSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTiwgTWVpcnlvLCBzYW5zLXNlcmlmIj7oo5zliqnph5Eg5o6h5oqe546HPC90ZXh0Pgo8dGV4dCB4PSI2MDAiIHk9IjI2MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI2MiIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmZiIgZm9udC1mYW1pbHk9IkhpcmFnaW5vIEtha3UgR290aGljIFByb04sIE1laXJ5bywgc2Fucy1zZXJpZiI+44Op44Oz44Kt44Oz44KwIDIwMjY8L3RleHQ+CjxyZWN0IHg9IjMyMCIgeT0iMjk4IiB3aWR0aD0iNTYwIiBoZWlnaHQ9IjYiIGZpbGw9IiNkMzU0MDAiLz4KPHRleHQgeD0iNjAwIiB5PSIzNjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmQ0OWEiIGZvbnQtZmFtaWx5PSJIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OLCBNZWlyeW8sIHNhbnMtc2VyaWYiPuS4u+imgTfoo5zliqnph5Hjga7mnIDmlrDmjqHmip7njofjgag8L3RleHQ+Cjx0ZXh0IHg9IjYwMCIgeT0iNDE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZmZkNDlhIiBmb250LWZhbWlseT0iSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTiwgTWVpcnlvLCBzYW5zLXNlcmlmIj7pgbjjgbPmlrnjga7liKTmlq3ou7g8L3RleHQ+Cjx0ZXh0IHg9IjYwMCIgeT0iNTEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjIyIiBmaWxsPSIjY2ZkYmU4IiBmb250LWZhbWlseT0iSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTiwgTWVpcnlvLCBzYW5zLXNlcmlmIj7mjqHmip7njofjg7voo5zliqnkuIrpmZDjg7vpm6PmmJPluqbjgpIx5p6a44Gn6KaL44KLPC90ZXh0Pgo8L3N2Zz4K" alt="採択率の高い補助金ランキング"></div>
+          <div class="blog-body">
+            <div class="blog-cat">採択率</div>
+            <div class="blog-title">採択率の高い補助金ランキング｜公式データで見る通りやすい補助金</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/hojo-nyukin-flow/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYzMCIgdmlld0JveD0iMCAwIDEyMDAgNjMwIj4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiMxZjU2NzMiLz4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iOCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiNlZTliMDAiLz4KICA8cmVjdCB4PSI4MCIgeT0iODAiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9IjIiIGZpbGw9IiNlZTliMDAiIG9wYWNpdHk9IjAuNiIvPgogIDxyZWN0IHg9IjgwIiB5PSI1NDgiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9IjIiIGZpbGw9IiNlZTliMDAiIG9wYWNpdHk9IjAuNiIvPgogIDxyZWN0IHg9IjgwIiB5PSIxMTAiIHdpZHRoPSIyMjAiIGhlaWdodD0iMzYiIHJ4PSI0IiBmaWxsPSIjZWU5YjAwIi8+CiAgPHRleHQgeD0iMTkwIiB5PSIxMzMiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJywnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+5Z+656SO44O76YG444Gz5pa5PC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iMjkwIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPuWFpemHkeOCv+OCpOODn+ODs+OCsDwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjM5MCIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLCdIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZWU5YjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7mjqHmip7jgYvjgonlhaXph5Hjgb7jgafkvZXjg7bmnIjvvJ88L3RleHQ+CiAgPHJlY3QgeD0iNDgwIiB5PSI0MzAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMiIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4zIi8+CiAgPHRleHQgeD0iNjAwIiB5PSI0NzAiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJywnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2NkZGJlOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+6LOH6YeR57mw44KK6KiI55S744Gu56uL44Gm5pa544KC6Kej6KqsPC90ZXh0Pgo8L3N2Zz4K" alt="補助金の採択から入金までの流れ"></div>
+          <div class="blog-body">
+            <div class="blog-cat">資金繰り</div>
+            <div class="blog-title">補助金の採択から入金までにかかる期間と流れ</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+      </div>
+      <div class="blog-grid-more"><a href="https://fp-1.info/hojokin/blog-list/" target="_blank" rel="noopener">このジャンルの記事一覧へ →</a></div>
+    </div>
+
+    <div class="genre-section">
+      <div class="genre-badge">補助金別ガイド</div>
+      <div class="genre-title">主要補助金の実践ガイド</div>
+      <div class="blog-grid">
+        <a href="https://fp-1.info/hojokin/2026/05/17/it-hojo-guide/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4ODAgNDYyIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IklU5bCO5YWl6KOc5Yqp6YeRIOWujOWFqOaUu+eVpeOCrOOCpOODiTIwMjYiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJiZ0l0IiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYTNhNWMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGYyNTQwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iODgwIiBoZWlnaHQ9IjQ2MiIgZmlsbD0idXJsKCNiZ0l0KSIvPgogIDxnIGZvbnQtZmFtaWx5PSInSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsJ05vdG8gU2FucyBKUCcsc2Fucy1zZXJpZiI+CiAgICA8dGV4dCB4PSI2MCIgeT0iMTAwIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZDM1NDAwIj7oo5zliqnph5Hjg7vliqnmiJDph5HjgpLnjbLlvpfjgZnjgos8L3RleHQ+CiAgICA8dGV4dCB4PSI2MCIgeT0iMTcwIiBmb250LXNpemU9IjQ4IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZmZmZmIj5JVOWwjuWFpeijnOWKqemHkTwvdGV4dD4KICAgIDx0ZXh0IHg9IjYwIiB5PSIyMjAiIGZvbnQtc2l6ZT0iMzYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmZmZmYiPuWujOWFqOaUu+eVpeOCrOOCpOODiTIwMjY8L3RleHQ+CiAgICA8bGluZSB4MT0iNjAiIHkxPSIyNTAiIHgyPSIyODAiIHkyPSIyNTAiIHN0cm9rZT0iI2QzNTQwMCIgc3Ryb2tlLXdpZHRoPSI0Ii8+CiAgICA8dGV4dCB4PSI2MCIgeT0iMjkwIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSIjY2RkYmU4Ij7poZ7lnovjg7vlr77osaHjgr3jg5Xjg4jjg7voo5zliqnnjofjg7vnlLPoq4vmiYvpoIY8L3RleHQ+CiAgICA8dGV4dCB4PSI2MCIgeT0iMzIwIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSIjY2RkYmU4Ij7jgpLlrp/li5nnm67nt5rjgafjgoTjgZXjgZfjgY/op6Poqqw8L3RleHQ+CgogICAgPHJlY3QgeD0iNjAwIiB5PSIxMjAiIHdpZHRoPSIyMjAiIGhlaWdodD0iODAiIHJ4PSI2IiBmaWxsPSIjZDM1NDAwIi8+CiAgICA8dGV4dCB4PSI3MTAiIHk9IjE1NSIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+5pyA5aSnNDUw5LiH5YaGPC90ZXh0PgogICAgPHRleHQgeD0iNzEwIiB5PSIxODAiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9IiNmYmU0Y2MiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuijnOWKqeeOhyAxLzLjgJwzLzQ8L3RleHQ+CgogICAgPHJlY3QgeD0iNjAwIiB5PSIyMjAiIHdpZHRoPSIyMjAiIGhlaWdodD0iODAiIHJ4PSI2IiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDgiIHN0cm9rZT0iI2QzNTQwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8dGV4dCB4PSI3MTAiIHk9IjI1NSIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+5o6h5oqeIDE1N+S7tuODuzI25YSE5YaG6LaFPC90ZXh0PgogICAgPHRleHQgeD0iNzEwIiB5PSIyODAiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9IiNjZGRiZTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuebo+S/ru+8mumYv+S5hea0pSDlkozlro88L3RleHQ+CgogICAgPHRleHQgeD0iNjAiIHk9IjQzMCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2FhYmJjYyI+6KOc5Yqp6YeR5rS755So44Kz44Oz44K144Or44OG44Kj44Oz44Kw772cZnAtMS5pbmZvL2hvam9raW4vPC90ZXh0PgogIDwvZz4KPC9zdmc+Cg==" alt="IT導入補助金"></div>
+          <div class="blog-body">
+            <div class="blog-cat">IT導入補助金</div>
+            <div class="blog-title">IT導入補助金の対象ソフトウェアと申請手順をやさしく解説</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/monozukuri-hojokin-guide/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4ODAgNDYyIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IuOCguOBruOBpeOBj+OCiuijnOWKqemHkSDlrozlhajmlLvnlaXjgqzjgqTjg4kyMDI2Ij4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhM2E1YyIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwZjI1NDAiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI4ODAiIGhlaWdodD0iNDYyIiBmaWxsPSJ1cmwoI2JnKSIvPgogIDxnIGZvbnQtZmFtaWx5PSInSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsJ05vdG8gU2FucyBKUCcsc2Fucy1zZXJpZiI+CiAgICA8dGV4dCB4PSI2MCIgeT0iMTAwIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZDM1NDAwIj7oo5zliqnph5Hjg7vliqnmiJDph5HjgpLnjbLlvpfjgZnjgos8L3RleHQ+CiAgICA8dGV4dCB4PSI2MCIgeT0iMTcwIiBmb250LXNpemU9IjQ0IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZmZmZmIj7jgoLjga7jgaXjgY/jgoroo5zliqnph5E8L3RleHQ+CiAgICA8dGV4dCB4PSI2MCIgeT0iMjIwIiBmb250LXNpemU9IjM2IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZmZmZmIj7lrozlhajmlLvnlaXjgqzjgqTjg4kyMDI2PC90ZXh0PgogICAgPGxpbmUgeDE9IjYwIiB5MT0iMjUwIiB4Mj0iMjgwIiB5Mj0iMjUwIiBzdHJva2U9IiNkMzU0MDAiIHN0cm9rZS13aWR0aD0iNCIvPgogICAgPHRleHQgeD0iNjAiIHk9IjI5MCIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0iI2NkZGJlOCI+55Sz6KuL5p6g44O76KOc5Yqp546H44O75o6h5oqe44GV44KM44KLPC90ZXh0PgogICAgPHRleHQgeD0iNjAiIHk9IjMyMCIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0iI2NkZGJlOCI+5LqL5qWt6KiI55S75pu444Gu5L2c44KK5pa544KS5a6f5YuZ55uu57ea44Gn6Kej6KqsPC90ZXh0PgoKICAgIDxyZWN0IHg9IjYwMCIgeT0iMTIwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjgwIiByeD0iNiIgZmlsbD0iI2QzNTQwMCIvPgogICAgPHRleHQgeD0iNzEwIiB5PSIxNTUiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuacgOWkpzQsMDAw5LiH5YaGPC90ZXh0PgogICAgPHRleHQgeD0iNzEwIiB5PSIxODAiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9IiNmYmU0Y2MiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuijnOWKqeeOhyAxLzLjgJwyLzM8L3RleHQ+CgogICAgPHJlY3QgeD0iNjAwIiB5PSIyMjAiIHdpZHRoPSIyMjAiIGhlaWdodD0iODAiIHJ4PSI2IiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDgiIHN0cm9rZT0iI2QzNTQwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8dGV4dCB4PSI3MTAiIHk9IjI1NSIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+5o6h5oqeIDE1N+S7tuODuzI25YSE5YaG6LaFPC90ZXh0PgogICAgPHRleHQgeD0iNzEwIiB5PSIyODAiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9IiNjZGRiZTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuebo+S/ru+8mumYv+S5hea0pSDlkozlro88L3RleHQ+CgogICAgPHRleHQgeD0iNjAiIHk9IjQzMCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2FhYmJjYyI+6KOc5Yqp6YeR5rS755So44Kz44Oz44K144Or44OG44Kj44Oz44Kw772cZnAtMS5pbmZvL2hvam9raW4vPC90ZXh0PgogIDwvZz4KPC9zdmc+Cg==" alt="ものづくり補助金"></div>
+          <div class="blog-body">
+            <div class="blog-cat">ものづくり補助金</div>
+            <div class="blog-title">ものづくり補助金完全ガイド｜対象設備・申請のコツ・実例</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://shinjigyou-shinshutsu.smrj.go.jp/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="blog/saikochiku-hojokin-guide_thumb.svg" alt="新事業進出補助金"></div>
+          <div class="blog-body">
+            <div class="blog-cat">新事業進出</div>
+            <div class="blog-title">新事業進出補助金｜申請要件・対象事業・活用のポイント</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/jizokuka-hojokin-guide/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4ODAgNDYyIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IuWwj+imj+aooeS6i+alreiAheaMgee2muWMluijnOWKqemHkSDlrozlhajjgqzjgqTjg4kyMDI2Ij4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmdKeiIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWEzYTVjIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMjU0MCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9Ijg4MCIgaGVpZ2h0PSI0NjIiIGZpbGw9InVybCgjYmdKeikiLz4KICA8ZyBmb250LWZhbWlseT0iJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLCdOb3RvIFNhbnMgSlAnLHNhbnMtc2VyaWYiPgogICAgPHRleHQgeD0iNjAiIHk9IjEwMCIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2QzNTQwMCI+6KOc5Yqp6YeR44O75Yqp5oiQ6YeR44KS542y5b6X44GZ44KLPC90ZXh0PgogICAgPHRleHQgeD0iNjAiIHk9IjE2MCIgZm9udC1zaXplPSIzNiIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmZmZmZiI+5bCP6KaP5qih5LqL5qWt6ICF5oyB57aa5YyW6KOc5Yqp6YeRPC90ZXh0PgogICAgPHRleHQgeD0iNjAiIHk9IjIxMCIgZm9udC1zaXplPSIzNiIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmZmZmZiI+5a6M5YWo44Ks44Kk44OJMjAyNjwvdGV4dD4KICAgIDxsaW5lIHgxPSI2MCIgeTE9IjI0MCIgeDI9IjI4MCIgeTI9IjI0MCIgc3Ryb2tlPSIjZDM1NDAwIiBzdHJva2Utd2lkdGg9IjQiLz4KICAgIDx0ZXh0IHg9IjYwIiB5PSIyODAiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9IiNjZGRiZTgiPuS4iumZkOmhjeODu+Wvvuixoee1jOiyuzEx5Yy65YiG44O755Sz6KuL44Gu5rWB44KM44O7PC90ZXh0PgogICAgPHRleHQgeD0iNjAiIHk9IjMxMCIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0iI2NkZGJlOCI+5o6h5oqe44GV44KM44KL57WM5Za26KiI55S75pu444Gu5pu444GN5pa544KS6Kej6KqsPC90ZXh0PgoKICAgIDxyZWN0IHg9IjYwMCIgeT0iMTIwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjgwIiByeD0iNiIgZmlsbD0iI2QzNTQwMCIvPgogICAgPHRleHQgeD0iNzEwIiB5PSIxNTUiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuacgOWkpzIwMOS4h+WGhjwvdGV4dD4KICAgIDx0ZXh0IHg9IjcxMCIgeT0iMTgwIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSIjZmJlNGNjIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7oo5zliqnnjocgMi8zPC90ZXh0PgoKICAgIDxyZWN0IHg9IjYwMCIgeT0iMjIwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjgwIiByeD0iNiIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwLjA4IiBzdHJva2U9IiNkMzU0MDAiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPHRleHQgeD0iNzEwIiB5PSIyNTUiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuaOoeaKniAxNTfku7bjg7syNuWEhOWGhui2hTwvdGV4dD4KICAgIDx0ZXh0IHg9IjcxMCIgeT0iMjgwIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSIjY2RkYmU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7nm6Pkv67vvJrpmL/kuYXmtKUg5ZKM5a6PPC90ZXh0PgoKICAgIDx0ZXh0IHg9IjYwIiB5PSI0MzAiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiNhYWJiY2MiPuijnOWKqemHkea0u+eUqOOCs+ODs+OCteODq+ODhuOCo+ODs+OCsO+9nGZwLTEuaW5mby9ob2pva2luLzwvdGV4dD4KICA8L2c+Cjwvc3ZnPgo=" alt="小規模事業者持続化補助金"></div>
+          <div class="blog-body">
+            <div class="blog-cat">持続化補助金</div>
+            <div class="blog-title">小規模事業者持続化補助金完全ガイド｜販路開拓・採択のポイント</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/shoryokuka-hojokin-guide/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4ODAgNDYyIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IuS4reWwj+S8gealreecgeWKm+WMluaKleizh+ijnOWKqemHkSDlrozlhajjgqzjgqTjg4kyMDI2Ij4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWEzYTVjIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzBlMjUzYyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9Ijg4MCIgaGVpZ2h0PSI0NjIiIGZpbGw9InVybCgjYmcpIi8+CiAgPHJlY3QgeD0iNDAiIHk9IjQwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjM0IiByeD0iNCIgZmlsbD0iI2QzNTQwMCIvPgogIDx0ZXh0IHg9IjEyMCIgeT0iNjQiIGZvbnQtZmFtaWx5PSInSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+5a6M5YWo44Ks44Kk44OJMjAyNjwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iMTYwIiBmb250LWZhbWlseT0iJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmYiPuS4reWwj+S8gealreecgeWKm+WMluaKleizhzwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iMjE2IiBmb250LWZhbWlseT0iJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmYiPuijnOWKqemHkTwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIyNDYiIHgyPSIyMDAiIHkyPSIyNDYiIHN0cm9rZT0iI2QzNTQwMCIgc3Ryb2tlLXdpZHRoPSI0Ii8+CiAgPHRleHQgeD0iNDAiIHk9IjI5NCIgZm9udC1mYW1pbHk9IidIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjY2RkYmU4Ij7mnIDlpKcx5YSE5YaG44O76KOc5Yqp546HMi8zPC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIzMjgiIGZvbnQtZmFtaWx5PSInSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2NkZGJlOCI+44Kr44K/44Ot44Kw5Z6L44O75LiA6Iis5Z6L44Gu6YGV44GE44KS6Kej6KqsPC90ZXh0PgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDYyMCwyODApIj4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMjAiIGhlaWdodD0iMTIwIiByeD0iOCIgZmlsbD0iI2QzNTQwMCIgb3BhY2l0eT0iMC4xNSIvPgogICAgPHRleHQgeD0iMTEwIiB5PSI0NCIgZm9udC1mYW1pbHk9IidIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZDM1NDAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7mjqHmip7njoc8L3RleHQ+CiAgICA8dGV4dCB4PSIxMTAiIHk9IjkyIiBmb250LWZhbWlseT0iJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNkMzU0MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjY4PHRzcGFuIGZvbnQtc2l6ZT0iMjgiPiU8L3RzcGFuPjwvdGV4dD4KICA8L2c+CiAgPHRleHQgeD0iNDAiIHk9IjQxOCIgZm9udC1mYW1pbHk9IidIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjODhhMGI4Ij7kurrmiYvkuI3otrPop6Pmtoggw5cg55Sf55Sj5oCn5ZCR5LiKIMOXIOizg+S4iuOBkjwvdGV4dD4KPC9zdmc+Cg==" alt="省力化投資補助金"></div>
+          <div class="blog-body">
+            <div class="blog-cat">省力化投資</div>
+            <div class="blog-title">省力化投資補助金完全ガイド｜人手不足を補う設備導入支援</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/jinzai-kaihatsu-joseikin-guide/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4ODAgNDYyIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IuS6uuadkOmWi+eZuuaUr+aPtOWKqeaIkOmHkSDjg6rjgrnjgq3jg6rjg7PjgrDmlK/mj7TjgrPjg7zjgrnlrozlhajjgqzjgqTjg4kyMDI2Ij4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmdKayIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWEzYTVjIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMjU0MCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9Ijg4MCIgaGVpZ2h0PSI0NjIiIGZpbGw9InVybCgjYmdKaykiLz4KICA8ZyBmb250LWZhbWlseT0iJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLCdOb3RvIFNhbnMgSlAnLHNhbnMtc2VyaWYiPgogICAgPHRleHQgeD0iNjAiIHk9IjEwMCIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2QzNTQwMCI+6KOc5Yqp6YeR44O75Yqp5oiQ6YeR44KS542y5b6X44GZ44KLPC90ZXh0PgogICAgPHRleHQgeD0iNjAiIHk9IjE2MCIgZm9udC1zaXplPSIzNCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmZmZmZiI+5Lq65p2Q6ZaL55m65pSv5o+05Yqp5oiQ6YeRPC90ZXh0PgogICAgPHRleHQgeD0iNjAiIHk9IjIwNSIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmZmZmZiI+44Oq44K544Kt44Oq44Oz44Kw5pSv5o+044Kz44O844K5IDIwMjY8L3RleHQ+CiAgICA8bGluZSB4MT0iNjAiIHkxPSIyMzUiIHgyPSIyODAiIHkyPSIyMzUiIHN0cm9rZT0iI2QzNTQwMCIgc3Ryb2tlLXdpZHRoPSI0Ii8+CiAgICA8dGV4dCB4PSI2MCIgeT0iMjc1IiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSIjY2RkYmU4Ij7liqnmiJDnjoc3NSXjg7vos4Pph5HliqnmiJA5NjDlhobvvI9o44O75a++6LGh6KiT57e044O7PC90ZXh0PgogICAgPHRleHQgeD0iNjAiIHk9IjMwNSIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0iI2NkZGJlOCI+55Sz6KuL44Gu5rWB44KM44O75LqL5qWt5bGV6ZaL6KiI55S75pu444Gu5pu444GN5pa544KS6Kej6KqsPC90ZXh0PgoKICAgIDxyZWN0IHg9IjYwMCIgeT0iMTIwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjgwIiByeD0iNiIgZmlsbD0iI2QzNTQwMCIvPgogICAgPHRleHQgeD0iNzEwIiB5PSIxNTUiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPue1jOiyu+WKqeaIkCA3NSU8L3RleHQ+CiAgICA8dGV4dCB4PSI3MTAiIHk9IjE4MCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0iI2ZiZTRjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+6LOD6YeR5Yqp5oiQIDk2MOWGhu+8j2g8L3RleHQ+CgogICAgPHJlY3QgeD0iNjAwIiB5PSIyMjAiIHdpZHRoPSIyMjAiIGhlaWdodD0iODAiIHJ4PSI2IiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDgiIHN0cm9rZT0iI2QzNTQwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8dGV4dCB4PSI3MTAiIHk9IjI1NSIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+5o6h5oqeIDE1N+S7tuODuzI25YSE5YaG6LaFPC90ZXh0PgogICAgPHRleHQgeD0iNzEwIiB5PSIyODAiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9IiNjZGRiZTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuebo+S/ru+8mumYv+S5hea0pSDlkozlro88L3RleHQ+CgogICAgPHRleHQgeD0iNjAiIHk9IjQzMCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2FhYmJjYyI+6KOc5Yqp6YeR5rS755So44Kz44Oz44K144Or44OG44Kj44Oz44Kw772cZnAtMS5pbmZvL2hvam9raW4vPC90ZXh0PgogIDwvZz4KPC9zdmc+Cg==" alt="人材開発支援助成金"></div>
+          <div class="blog-body">
+            <div class="blog-cat">人材開発</div>
+            <div class="blog-title">人材開発支援助成金完全ガイド｜事業リスキリングコースの活用</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+      </div>
+      <div class="blog-grid-more"><a href="https://fp-1.info/hojokin/blog-list/" target="_blank" rel="noopener">このジャンルの記事一覧へ →</a></div>
+    </div>
+
+    <div class="genre-section">
+      <div class="genre-badge">コンサル</div>
+      <div class="genre-title">補助金をサポートするブログ</div>
+      <div class="blog-grid">
+        <a href="https://fp-1.info/hojokin/2026/05/17/hojo-consul-job/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDIyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIyMCIgZmlsbD0iIzFhM2E1YyIvPgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI0MDAiIGhlaWdodD0iMzYiIGZpbGw9IiMwZjIyMzgiLz4KICA8dGV4dCB4PSIyMDAiIHk9IjIzIiBmb250LWZhbWlseT0iSGlyYWdpbm8gU2FucywgTWVpcnlvLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuijnOWKqemHkeOCs+ODs+OCteODqzwvdGV4dD4KICA8dGV4dCB4PSIzMiIgeT0iNzgiIGZvbnQtZmFtaWx5PSJIaXJhZ2lubyBTYW5zLCBNZWlyeW8sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjZmZmZmZmIj7oo5zliqnph5HjgrPjg7PjgrXjg6vjgr/jg7Pjg4g8L3RleHQ+CiAgPHRleHQgeD0iMzIiIHk9IjEwNCIgZm9udC1mYW1pbHk9IkhpcmFnaW5vIFNhbnMsIE1laXJ5bywgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmZmZmYiPuOBqOOBr+OBqeOCk+OBquS7leS6i+OBizwvdGV4dD4KICA8bGluZSB4MT0iMzIiIHkxPSIxMjIiIHgyPSIyMDAiIHkyPSIxMjIiIHN0cm9rZT0iI2QzNTQwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iMzIiIHk9IjE0OCIgZm9udC1mYW1pbHk9IkhpcmFnaW5vIFNhbnMsIE1laXJ5bywgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjU1KSI+5aCx6YWs44O76LOH5qC844O75LuV5LqL5YaF5a6544KS6Kej6KqsPC90ZXh0PgogIDxyZWN0IHg9IjMyIiB5PSIxNjIiIHdpZHRoPSIxMjAiIGhlaWdodD0iMjgiIHJ4PSI0IiBmaWxsPSIjZDM1NDAwIi8+CiAgPHRleHQgeD0iOTIiIHk9IjE4MSIgZm9udC1mYW1pbHk9IkhpcmFnaW5vIFNhbnMsIE1laXJ5bywgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPue2muOBjeOCkuiqreOCgDwvdGV4dD4KPC9zdmc+Cg==" alt="補助金コンサルタントの仕事内容"></div>
+          <div class="blog-body">
+            <div class="blog-cat">補助金コンサル</div>
+            <div class="blog-title">補助金コンサルタントの仕事内容｜年収・働き方を解説</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/hojokin-sentaku-site/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDYzMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjMwIj4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiMxYTNhNWMiLz4KICA8cmVjdCB4PSI2MCIgeT0iNjAiIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjUxMCIgcng9IjE0IiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA1Ii8+CiAgPHJlY3QgeD0iOTAiIHk9IjEyMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0MCIgcng9IjYiIGZpbGw9IiNkMzU0MDAiLz4KICA8dGV4dCB4PSIxOTAiIHk9IjE0OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmYiPue1jOWWtuODu+izh+mHkeiqv+mBlDwvdGV4dD4KICA8dGV4dCB4PSI5MCIgeT0iMjQwIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsc2Fucy1zZXJpZiIgZm9udC1zaXplPSI2MCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmZmZmZiI+6KOc5Yqp6YeR5qSc57Si44K144Kk44OIPC90ZXh0PgogIDx0ZXh0IHg9IjkwIiB5PSIzMjAiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjYwIiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZkNjk5Ij7mr5TovIPjgajkvb/jgYTmlrk8L3RleHQ+CiAgPHRleHQgeD0iOTAiIHk9IjM4MCIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9IiNjZmRiZTYiPmpHcmFudHMgLyDjg5/jg6njgrXjg51wbHVzIC8g6Ieq5rK75L2T44Od44O844K/44OrPC90ZXh0PgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDkwLDQ0MCkiPgogICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSI4MCIgcng9IjEwIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjEyIiBzdHJva2U9IiNmZmQ2OTkiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPHRleHQgeD0iMTQwIiB5PSIzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmQ2OTkiPmpHcmFudHM8L3RleHQ+CiAgICA8dGV4dCB4PSIxNDAiIHk9IjYyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NmZGJlNiI+5Zu944Gu6KOc5Yqp6YeR44O76Zu75a2Q55Sz6KuLPC90ZXh0PgogICAgPHJlY3QgeD0iMzAwIiB5PSIwIiB3aWR0aD0iMjgwIiBoZWlnaHQ9IjgwIiByeD0iMTAiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMTIiIHN0cm9rZT0iI2ZmZDY5OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8dGV4dCB4PSI0NDAiIHk9IjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZDY5OSI+44Of44Op44K144OdcGx1czwvdGV4dD4KICAgIDx0ZXh0IHg9IjQ0MCIgeT0iNjIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjY2ZkYmU2Ij7ntYzllrboqrLpoYzmqKrmlq3mpJzntKI8L3RleHQ+CiAgICA8cmVjdCB4PSI2MDAiIHk9IjAiIHdpZHRoPSIyODAiIGhlaWdodD0iODAiIHJ4PSIxMCIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4xMiIgc3Ryb2tlPSIjZmZkNjk5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDx0ZXh0IHg9Ijc0MCIgeT0iMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZmZkNjk5Ij7oh6rmsrvkvZPjg53jg7zjgr/jg6s8L3RleHQ+CiAgICA8dGV4dCB4PSI3NDAiIHk9IjYyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NmZGJlNiI+5Zyw5Z+f54us6Ieq6KOc5Yqp6YeRPC90ZXh0PgogIDwvZz4KPC9zdmc+Cg==" alt="補助金選択サイト"></div>
+          <div class="blog-body">
+            <div class="blog-cat">補助金選び方</div>
+            <div class="blog-title">補助金を選択するための公式サイト・ツール一覧</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/hojokin-sales-up/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDYzMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjMwIj4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiMxYTNhNWMiLz4KICA8cmVjdCB4PSI2MCIgeT0iNjAiIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjUxMCIgcng9IjE0IiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA1Ii8+CiAgPHJlY3QgeD0iOTAiIHk9IjEyMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI0MCIgcng9IjYiIGZpbGw9IiNkMzU0MDAiLz4KICA8dGV4dCB4PSIxNzAiIHk9IjE0OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmYiPue1jOWWtuODu+izh+mHkeiqv+mBlDwvdGV4dD4KICA8dGV4dCB4PSI5MCIgeT0iMjQwIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsc2Fucy1zZXJpZiIgZm9udC1zaXplPSI2NCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmZmZmZiI+6KOc5Yqp6YeR44Gn5aOy5LiK44KS5LiK44GS44KLPC90ZXh0PgogIDx0ZXh0IHg9IjkwIiB5PSIzMjAiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjY0IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZkNjk5Ij4144Gk44Gu5Z6LPC90ZXh0PgogIDx0ZXh0IHg9IjkwIiB5PSIzODAiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSIjY2ZkYmU2Ij7mipXos4fjgpLlo7LkuIrjgavlpInjgYjjgovoqK3oqIg8L3RleHQ+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOTAsNDQwKSI+CiAgICA8ZyBmaWxsPSIjZmZkNjk5Ij4KICAgICAgPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMzYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZDY5OSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgICAgIDx0ZXh0IHg9IjQwIiB5PSI1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmQ2OTkiPjE8L3RleHQ+CiAgICA8L2c+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMTAsMCkiPjxjaXJjbGUgY3g9IjQwIiBjeT0iNDAiIHI9IjM2IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmQ2OTkiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9IjQwIiB5PSI1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmQ2OTkiPjI8L3RleHQ+PC9nPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjIwLDApIj48Y2lyY2xlIGN4PSI0MCIgY3k9IjQwIiByPSIzNiIgZmlsbD0iI2QzNTQwMCIvPjx0ZXh0IHg9IjQwIiB5PSI1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmYiPjM8L3RleHQ+PC9nPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzMwLDApIj48Y2lyY2xlIGN4PSI0MCIgY3k9IjQwIiByPSIzNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZkNjk5IiBzdHJva2Utd2lkdGg9IjMiLz48dGV4dCB4PSI0MCIgeT0iNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZkNjk5Ij40PC90ZXh0PjwvZz4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ0MCwwKSI+PGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iMzYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZDY5OSIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iNDAiIHk9IjUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmZDY5OSI+NTwvdGV4dD48L2c+CiAgPC9nPgo8L3N2Zz4K" alt="補助金活用でセールス加速"></div>
+          <div class="blog-body">
+            <div class="blog-cat">セールス活用</div>
+            <div class="blog-title">補助金活用でセールスを加速する方法｜売上を伸ばす戦略</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/consul-hoshu-type/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYzMCIgdmlld0JveD0iMCAwIDEyMDAgNjMwIj4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiM1NTM3NzIiLz4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iOCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiNmZmI3MDMiLz4KICA8cmVjdCB4PSI4MCIgeT0iODAiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9IjIiIGZpbGw9IiNmZmI3MDMiIG9wYWNpdHk9IjAuNiIvPgogIDxyZWN0IHg9IjgwIiB5PSI1NDgiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9IjIiIGZpbGw9IiNmZmI3MDMiIG9wYWNpdHk9IjAuNiIvPgogIDxyZWN0IHg9IjgwIiB5PSIxMTAiIHdpZHRoPSIyMjAiIGhlaWdodD0iMzYiIHJ4PSI0IiBmaWxsPSIjZmZiNzAzIi8+CiAgPHRleHQgeD0iMTkwIiB5PSIxMzMiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJywnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+44Kz44Oz44K144Or44O75aOr5qWtPC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iMjkwIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNjQiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPuOCs+ODs+OCteODq+aWmemHkeebuOWgtDwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjM5MCIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLCdIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZmZiNzAzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7nnYDmiYvph5Hjg7vmiJDlip/loLHphazjga7msbrjgoHmlrk8L3RleHQ+CiAgPHJlY3QgeD0iNDgwIiB5PSI0MzAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMiIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4zIi8+CiAgPHRleHQgeD0iNjAwIiB5PSI0NzAiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJywnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2NkZGJlOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+6KOc5Yqp6YeR5pSv5o+06ICF5ZCR44GR5L6h5qC85oim55WlPC90ZXh0Pgo8L3N2Zz4K" alt="補助金コンサルの報酬形態"></div>
+          <div class="blog-body">
+            <div class="blog-cat">コンサル料金</div>
+            <div class="blog-title">補助金コンサルタントの報酬形態｜成功報酬・顧問・スポット比較</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/consul-shukyaku/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYzMCIgdmlld0JveD0iMCAwIDEyMDAgNjMwIj4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiM2YTRjOTMiLz4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iOCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiNmYjg1MDAiLz4KICA8cmVjdCB4PSI4MCIgeT0iODAiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9IjIiIGZpbGw9IiNmYjg1MDAiIG9wYWNpdHk9IjAuNiIvPgogIDxyZWN0IHg9IjgwIiB5PSI1NDgiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9IjIiIGZpbGw9IiNmYjg1MDAiIG9wYWNpdHk9IjAuNiIvPgogIDxyZWN0IHg9IjgwIiB5PSIxMTAiIHdpZHRoPSIyMjAiIGhlaWdodD0iMzYiIHJ4PSI0IiBmaWxsPSIjZmI4NTAwIi8+CiAgPHRleHQgeD0iMTkwIiB5PSIxMzMiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJywnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+44Kz44Oz44K144Or44O75aOr5qWtPC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iMjkwIiBmb250LWZhbWlseT0iJ05vdG8gU2FucyBKUCcsJ0hpcmFnaW5vIEtha3UgR290aGljIFByb04nLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNjQiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPuijnOWKqemHkeOCs+ODs+OCteODq+mbhuWuojwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjM5MCIgZm9udC1mYW1pbHk9IidOb3RvIFNhbnMgSlAnLCdIaXJhZ2lubyBLYWt1IEdvdGhpYyBQcm9OJyxzYW5zLXNlcmlmIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZmI4NTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7llY/jgYTlkIjjgo/jgZvjgpLlopfjgoTjgZnlsI7nt5roqK3oqIg8L3RleHQ+CiAgPHJlY3QgeD0iNDgwIiB5PSI0MzAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMiIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4zIi8+CiAgPHRleHQgeD0iNjAwIiB5PSI0NzAiIGZvbnQtZmFtaWx5PSInTm90byBTYW5zIEpQJywnSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTicsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2NkZGJlOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+U0VP44O7U05T44O757S55LuL44Or44O844OI44Gu5L2c44KK5pa5PC90ZXh0Pgo8L3N2Zz4K" alt="補助金コンサルの集客"></div>
+          <div class="blog-body">
+            <div class="blog-cat">コンサル集客</div>
+            <div class="blog-title">補助金コンサルタントの集客方法｜SNS・紹介・SEOの使い分け</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+        <a href="https://fp-1.info/hojokin/2026/05/17/hojokin-shien-business/" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-thumb-img"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDYzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSLoo5zliqnph5HmlK/mj7Tjg5Pjgrjjg43jgrk344Oi44OH44OrIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhM2E1YyIvPgo8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyYTVhOGMiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9InVybCgjYmcpIi8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjExMDAiIGhlaWdodD0iNTMwIiByeD0iMTQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2QzNTQwMCIgc3Ryb2tlLXdpZHRoPSI0Ii8+Cjx0ZXh0IHg9IjYwMCIgeT0iMTgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjU2IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZmIiBmb250LWZhbWlseT0iSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTiwgTWVpcnlvLCBzYW5zLXNlcmlmIj7oo5zliqnph5HmlK/mj7Tjg5Pjgrjjg43jgrk8L3RleHQ+Cjx0ZXh0IHg9IjYwMCIgeT0iMjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjU2IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjZmZmIiBmb250LWZhbWlseT0iSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTiwgTWVpcnlvLCBzYW5zLXNlcmlmIj7mp4vnr4k344Oi44OH44OrPC90ZXh0Pgo8cmVjdCB4PSIzMjAiIHk9IjMwMCIgd2lkdGg9IjU2MCIgaGVpZ2h0PSI2IiBmaWxsPSIjZDM1NDAwIi8+Cjx0ZXh0IHg9IjYwMCIgeT0iMzcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZmZkNDlhIiBmb250LWZhbWlseT0iSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTiwgTWVpcnlvLCBzYW5zLXNlcmlmIj7lo6vmpa3jg7vjgrPjg7PjgrXjg6vjg7vorJvluKvmpa3jg7vosqnlo7Ljg7vjg6Hjg4fjgqPjgqI8L3RleHQ+Cjx0ZXh0IHg9IjYwMCIgeT0iNDIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZmZkNDlhIiBmb250LWZhbWlseT0iSGlyYWdpbm8gS2FrdSBHb3RoaWMgUHJvTiwgTWVpcnlvLCBzYW5zLXNlcmlmIj4344Gk44Gu5Y+O55uK44Oi44OH44Or44KS5b655bqV5q+U6LyDPC90ZXh0Pgo8dGV4dCB4PSI2MDAiIHk9IjUxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMiIgZmlsbD0iI2NmZGJlOCIgZm9udC1mYW1pbHk9IkhpcmFnaW5vIEtha3UgR290aGljIFByb04sIE1laXJ5bywgc2Fucy1zZXJpZiI+5o6h5oqe5Lu25pWwMTUw5Lu26LaF44Gu5a6f5YuZ55+l6KaL44KS44OT44K444ON44K544Gr44GZ44KLPC90ZXh0Pgo8L3N2Zz4K" alt="補助金支援ビジネスの作り方"></div>
+          <div class="blog-body">
+            <div class="blog-cat">支援ビジネス</div>
+            <div class="blog-title">補助金支援ビジネスの作り方｜申請代行を継続収益に変える設計</div>
+            <span class="blog-more">続きを読む →</span>
+          </div>
+        </a>
+      </div>
+      <div class="blog-grid-more"><a href="https://fp-1.info/hojokin/blog-list/" target="_blank" rel="noopener">このジャンルの記事一覧へ →</a></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VOICE_SECTION_v1 -->
+<section class="voice-section" id="voice">
+  <div class="voice-inner">
+    <div class="voice-eyebrow">CLIENT VOICE</div>
+    <h2 class="voice-h2">お客様の声</h2>
+    <p class="voice-lead">「補助金申請」「補助金サポート（士業・コンサルとして取り扱う側）」「補助金マーケティング（補助金を集客フックに使う側）」の3つの場面でいただいた声をまとめました。<br><span style="font-size:12px;color:#888;">※掲載内容は個人の感想であり、補助金の採択や成果を保証するものではありません。</span></p>
+
+    <!-- ===== カテゴリ1: 補助金申請 ===== -->
+    <div class="voice-cat cat-apply">
+    <div class="voice-grid">
+
+      <article class="voice-card">
+        <span class="voice-cat-badge">補助金申請</span>
+        <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-14.png" alt=""></div>
+        <div class="voice-stars">★★★★★</div>
+        <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">着手金を無駄にしたくなかった</span></div>
+        <p class="voice-text">通らなかったら着手金が無駄になる、というのが正直一番怖かったです。それでも前に進めたのは、不採択だった場合の次回サポートまで含めて道筋が示されていたから。「自分一人で何度もチャレンジして消耗する」という選択肢を取らずに済んだのは、本当に大きかったです。</p>
+      </article>
+
+      <article class="voice-card">
+        <span class="voice-cat-badge">補助金申請</span>
+        <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-17.png" alt=""></div>
+        <div class="voice-stars">★★★★★</div>
+        <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">事業の組み立て方そのものが違った</span></div>
+        <p class="voice-text">これまで農業系の補助金は自分で書いていたのですが、出来上がった事業計画書を見て言葉を失いました。書いている内容は同じはずなのに、組み立て方とコンセプトがまるで違う。「事業計画とは何か」を初めて理解できた気がします。次回もここに頼みたいと素直に思いました。</p>
+      </article>
+
+      <article class="voice-card">
+        <span class="voice-cat-badge">補助金申請</span>
+        <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-20.png" alt=""></div>
+        <div class="voice-stars">★★★★★</div>
+        <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">3回連続の不採択から、ようやく前へ</span></div>
+        <p class="voice-text">商工会議所で相談しながら3回申請して、3回とも落ちました。同じ事業の話なのに、出来上がる事業計画書はまったく別物。「視点」と「組み立て」が違うとはこういうことか、と思い知りました。今回ようやく次に進めて、正直ホッとしています。</p>
+      </article>
+
+      <article class="voice-card">
+        <span class="voice-cat-badge">補助金申請</span>
+        <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-23.png" alt=""></div>
+        <div class="voice-stars">★★★★★</div>
+        <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">やるべきことの輪郭がはっきりした</span></div>
+        <p class="voice-text">自分の事業の方向性は何となく分かっていても、次に何から手をつけるかでずっと迷っていました。面談で頭の中を一緒に整理してもらえたことで、優先順位が見えてきた感覚があります。「考えること」と「決めること」を分けて進められるようになりました。</p>
+      </article>
+
+      <article class="voice-card">
+        <span class="voice-cat-badge">補助金申請</span>
+        <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-26.png" alt=""></div>
+        <div class="voice-stars">★★★★★</div>
+        <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">なんだか希望がわいてきました</span></div>
+        <p class="voice-text">資金繰りも、現場の人手も、いろんなものが重なって正直あきらめかけていました。話を聞いてもらいながら一つずつ整理していくうちに、自分の事業にもまだ伸ばせる余白があるんだと気づけたんです。なんだか希望がわいてきました。</p>
+      </article>
+
+      <article class="voice-card">
+        <span class="voice-cat-badge">補助金申請</span>
+        <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-29.png" alt=""></div>
+        <div class="voice-stars">★★★★★</div>
+        <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">資金繰りの悩みに光が見えた</span></div>
+        <p class="voice-text">毎月の資金繰りで頭がいっぱいになり、お店のことに集中できない時期が続いていました。お金の流れと、使うべき優先順位を整理してもらえたので、自分の中でようやく動き出すきっかけがつかめました。一つひとつ実行していこうと思います。</p>
+      </article>
+
+      <article class="voice-card">
+        <span class="voice-cat-badge">補助金申請</span>
+        <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-32.png" alt=""></div>
+        <div class="voice-stars">★★★★★</div>
+        <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">単なる申請テクニックではなかった</span></div>
+        <p class="voice-text">いろいろな補助金代行の説明を聞いた直後だったので、内容の濃さに正直驚きました。マーケティングや事業構造の話まで踏み込んでいて、単なる申請テクニックの話ではない。経営者として知っておくべき視点が詰まったウェビナーでした。</p>
+      </article>
+
+      <article class="voice-card">
+        <span class="voice-cat-badge">補助金申請</span>
+        <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-35.png" alt=""></div>
+        <div class="voice-stars">★★★★★</div>
+        <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">採択の連絡で思わず声が出ました</span></div>
+        <p class="voice-text">申請が終わったあとも、本当に通るのかとずっとソワソワしていました。採択の連絡をいただいた瞬間、思わず声が出てしまいました。自分だけでは絶対に書けなかった事業計画書だったので、依頼してよかったと心から思っています。</p>
+      </article>
+
+      <article class="voice-card">
+        <span class="voice-cat-badge">補助金申請</span>
+        <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-38.png" alt=""></div>
+        <div class="voice-stars">★★★★★</div>
+        <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">1回目の提出で次に進めた</span></div>
+        <p class="voice-text">周りのお店から「一発で通るのは難しい」と聞いていたので、初回提出で次に進めたときは本当に驚きました。準備段階で揃えるべき書類や、自店の強みの言語化を丁寧に進めてもらえたことが、結果につながった気がしています。</p>
+      </article>
+
+      <article class="voice-card">
+        <span class="voice-cat-badge">補助金申請</span>
+        <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-41.png" alt=""></div>
+        <div class="voice-stars">★★★★★</div>
+        <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">自分の事業に向き合えた時間</span></div>
+        <p class="voice-text">自分の事業のことで、ここまで本気で向き合ってもらえた経験はこれまでありませんでした。ヒアリングを通じて、私自身も「なぜこの事業をやっているのか」を改めて言葉にすることができた時間でした。人生初、心から感謝を感じられた瞬間でした。</p>
+      </article>
+
+      <article class="voice-card">
+        <span class="voice-cat-badge">補助金申請</span>
+        <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-44.png" alt=""></div>
+        <div class="voice-stars">★★★★★</div>
+        <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">自分のサービスを言語化するのは別物だった</span></div>
+        <p class="voice-text">自分のサービスを人に説明することはできても、事業計画書という形に落とし込むのは別の難しさがあると痛感しました。一度は途中で諦めかけたのですが、構成の修正と文章の整理を一緒に進めてもらえたおかげで、最後まで書き切れました。</p>
+      </article>
+
+      <article class="voice-card">
+        <span class="voice-cat-badge">補助金申請</span>
+        <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-47.png" alt=""></div>
+        <div class="voice-stars">★★★★★</div>
+        <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">入金まで確認できて、ようやく一区切り</span></div>
+        <p class="voice-text">申請して終わりではなく、実績報告や認定通知の手続きが続くと初めて知りました。10月末までに実績報告を終え、その後の認定通知も無事に届き、それぞれの振込みも確認できたところでようやく一区切り。次の事業計画にも安心して取り組めます。</p>
+      </article>
+
+    </div>
+    </div><!-- /cat-apply -->
+
+    <!-- ===== カテゴリ2: 補助金サポート ===== -->
+    <div class="voice-cat cat-support">
+<div class="voice-grid">
+
+        <article class="voice-card">
+          <span class="voice-cat-badge">補助金サポート</span>
+          <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-15.png" alt=""></div>
+          <div class="voice-stars">★★★★★</div>
+          <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">クライアントの補助金支援が自分の武器になった</span></div>
+          <p class="voice-text">これまでは「補助金は士業の領域」と距離を置いていましたが、フレームを学んだことで自分のクライアントに自信を持って提案できるようになりました。事業計画と補助金が地続きで語れると、コンサル契約の継続率も明らかに変わってきています。</p>
+        </article>
+
+        <article class="voice-card">
+          <span class="voice-cat-badge">補助金サポート</span>
+          <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-18.png" alt=""></div>
+          <div class="voice-stars">★★★★★</div>
+          <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">採択率が体感で大きく変わった</span></div>
+          <p class="voice-text">以前は「申請してみないと分からない」感覚で支援していましたが、事業計画の組み立て方を見直してからは、お客様の採択率が体感で大きく変わりました。落ちにくい構造で書くという発想自体がなかったので、考え方の転換が一番の収穫でした。</p>
+        </article>
+
+        <article class="voice-card">
+          <span class="voice-cat-badge">補助金サポート</span>
+          <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-22.png" alt=""></div>
+          <div class="voice-stars">★★★★★</div>
+          <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">補助金きっかけでアップセルが生まれた</span></div>
+          <p class="voice-text">補助金サポートを入口にしたことで、申請後の事業実行・労務整備・助成金活用まで一連でご相談いただけるようになりました。「単発の申請代行」だった関係が、顧問契約や継続コンサルへとつながる流れが、自然に作れるようになりました。</p>
+        </article>
+
+      </div>
+    </div><!-- /cat-support -->
+
+    <!-- ===== カテゴリ3: 補助金マーケティング ===== -->
+    <div class="voice-cat cat-marketing">
+<div class="voice-grid">
+
+        <article class="voice-card">
+          <span class="voice-cat-badge">補助金マーケティング</span>
+          <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-25.png" alt=""></div>
+          <div class="voice-stars">★★★★★</div>
+          <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">受注までのリードタイムが大幅に縮んだ</span></div>
+          <p class="voice-text">いきなり本業サービスを提案するのと、補助金診断から入るのとでは、相手の聞く姿勢がまったく違いました。「補助金で資金を確保しながら一緒に伸ばす」という前提が共有できるので、初回面談から契約まで以前の半分以下の時間で進められています。</p>
+        </article>
+
+        <article class="voice-card">
+          <span class="voice-cat-badge">補助金マーケティング</span>
+          <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-30.png" alt=""></div>
+          <div class="voice-stars">★★★★★</div>
+          <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">補助金フックで見込客の質が変わった</span></div>
+          <p class="voice-text">広告で集めた見込客は冷やかしも多くて疲れていましたが、補助金セミナーを入口にしたことで、本気で事業を伸ばしたい人だけが残るようになりました。リスト数は減っても成約率は上がり、結果としてCPAも改善しています。</p>
+        </article>
+
+        <article class="voice-card">
+          <span class="voice-cat-badge">補助金マーケティング</span>
+          <div class="voice-image"><img src="/hojokin/wp-content/uploads/2026/05/voice-33.png" alt=""></div>
+          <div class="voice-stars">★★★★★</div>
+          <div class="voice-meta"><span style="color: rgb(26, 58, 92); font-size: 15px; font-family: &quot;Hiragino Kaku Gothic ProN&quot;, &quot;Hiragino Sans&quot;, Meiryo, sans-serif; letter-spacing: 0px;">無料の補助金診断から本業の依頼へ</span></div>
+          <p class="voice-text">無料の補助金診断という入り口を設けたら、これまで接点が持てなかった層から問い合わせが来るようになりました。診断の中で経営課題が見えるので、そのまま本業の顧問契約や事業計画支援につながるケースが目に見えて増えています。</p>
+        </article>
+
+      </div>
+    </div><!-- /cat-marketing -->
+
+  </div>
+</section>
+
+<!-- Opt-in Banner to funnel-build.com/opt-ht3 -->
+<section class="hojokin-optin-banner" style="max-width:1080px;margin:60px auto 0;padding:0 20px;text-align:center;box-sizing:border-box;">
+  <h2 style="font-size:28px;font-weight:700;line-height:1.5;margin:0 0 24px;color:#222;">補助金活用型経営を始めたいなら、今すぐ入手してください！</h2>
+  <a href="https://www.funnel-build.com/opt-ht3" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">
+    <img src="/hojokin/wp-content/uploads/2026/05/2026-05-24_15-51-40.png" alt="補助金獲得実務マニュアル 無料プレゼント" style="max-width:100%;height:auto;display:block;margin:0 auto;border:0;">
+  </a>
+</section>
+
+<!-- CTA -->
+<section class="cta-final" id="cta">
+  <div class="inner">
+    <div class="cta-badge">無料相談受付中</div>
+    <h2>まずは、お気軽にお問い合わせください。</h2>
+    <p>もしあなたが、補助金活用型経営を進めるための方法、企画、プランなどで迷っているなら、今すぐお問い合わせください。初回無料であなただけの最適な企画をご提供します。（ミーティング内で企画書を作成します）</p>
+    <form class="cta-form" action="https://fp-1.info/hojokin/thanks/" method="POST" id="contactForm" novalidate="" autocomplete="off">
+      <div class="form-row">
+        <label class="form-label">お名前 <span class="form-required">必須</span></label>
+        <input type="text" name="name" class="form-input" placeholder="例：山田 太郎" autocomplete="name">
+      </div>
+      <div class="form-row">
+        <label class="form-label">メールアドレス <span class="form-required">必須</span></label>
+        <input type="text" name="email" class="form-input" placeholder="例：info@example.com" autocomplete="off">
+      </div>
+      <div class="form-row">
+        <label class="form-label">電話番号 <span class="form-required">必須</span></label>
+        <input type="text" name="phone" class="form-input" placeholder="例：090-1234-5678" autocomplete="off">
+      </div>
+      <div class="form-row">
+        <label class="form-label">会社名・屋号 <span class="form-required">必須</span></label>
+        <input type="text" name="company" class="form-input" placeholder="例：株式会社○○" autocomplete="organization">
+      </div>
+      <div class="form-row">
+        <label class="form-label">ご相談内容 <span class="form-required">必須</span></label>
+        <select name="topic" class="form-input">
+          <option value="">選択してください</option>
+          <option value="subsidy_apply">補助金を申請したい（経営者）</option>
+          <option value="consultant_biz">補助金支援ビジネスを作りたい（士業・コンサル）</option>
+          <option value="product_channel">補助金対応製品の販路を作りたい</option>
+          <option value="hr_dev_grant">人材開発支援助成金を活用したい</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">ご質問・ご相談 <span class="form-required">必須</span></label>
+        <textarea name="message" rows="5" class="form-input" placeholder="現在のご状況やご相談内容をお書きください" autocomplete="off"></textarea>
+      </div>
+      <input type="hidden" name="source" value="hojokin-site-cta">
+      <div id="form-error-msg" style="display:none;color:#c0392b;font-size:13px;font-weight:bold;margin-bottom:12px;padding:10px 14px;background:#fdf0f0;border-radius:4px;border:1px solid #e8b4b4;">必須項目をすべて入力してください。</div>
+      <button type="submit" class="form-submit">無料相談を申し込む</button>
+      <p class="form-privacy">お預かりした情報は無料相談・関連情報のご案内のみに使用し、第三者への提供はいたしません。</p>
+    </form>
+    <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var f = this;
+      var required = [
+        {el: f.querySelector('[name="name"]'), label: 'お名前'},
+        {el: f.querySelector('[name="email"]'), label: 'メールアドレス'},
+        {el: f.querySelector('[name="phone"]'), label: '電話番号'},
+        {el: f.querySelector('[name="company"]'), label: '会社名・屋号'},
+        {el: f.querySelector('[name="topic"]'), label: 'ご相談内容'},
+        {el: f.querySelector('[name="message"]'), label: 'ご質問・ご相談'}
+      ];
+      var err = document.getElementById('form-error-msg');
+      var ok = true;
+      required.forEach(function(r) {
+        if (!r.el || !r.el.value.trim()) { ok = false; }
+        if (r.el) r.el.style.borderColor = (!r.el.value.trim()) ? '#c0392b' : '';
+      });
+      if (!ok) { err.style.display = 'block'; return; }
+      err.style.display = 'none';
+      var btn = f.querySelector('.form-submit');
+      if (btn) { btn.disabled = true; btn.textContent = '送信中...'; }
+      var data = new FormData(f);
+      fetch('https://fp-1.info/hojokin/wp-json/hojokin/v1/contact', {
+        method: 'POST', body: data
+      }).then(function(r){ return r.json(); })
+      .catch(function(){})
+      .finally(function(){
+        window.location.href = 'https://fp-1.info/hojokin/thanks/';
+      });
+    });
+    </script>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="custom-footer">
+  <div class="footer-inner">
+    <nav class="footer-nav">
+      <a href="#">トップ</a>
+      <a href="#core-offer">無料コンテンツ</a>
+      <a href="#blog">ブログ</a>
+      <a href="#seminar-archive">勉強会</a>
+      <a href="#about">プロフィール</a>
+      <a href="https://hojokin.well-c.biz/" target="_blank" rel="noopener">補助金フィード</a>
+      <a href="#cta">お問い合わせ</a>
+    </nav>
+    <div class="footer-legal">
+      <a href="https://fp-1.info/hojokin/privacy/" target="_blank" rel="noopener">プライバシーポリシー</a>
+      <a href="https://fp-1.info/hojokin/tokusho/" target="_blank" rel="noopener">特定商取引法に基づく表記</a>
+    </div>
+    <p class="footer-copy">© 2026 Well Consultant. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Intersection Observer: NAVアクティブ連動 -->
+<script>
+(function() {
+  const sectionIds = ['free-contents', 'blog', 'about', 'cta'];
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+  function setActive(id) {
+    navLinks.forEach(function(a) {
+      var href = a.getAttribute('href');
+      if (href === '#' + id) {
+        a.classList.add('is-active');
+      } else {
+        a.classList.remove('is-active');
+      }
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id);
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+    sectionIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  }
+})();
+</script>
+<script>/* MOBILE_MENU_v1 */
+(function(){var b=document.querySelector('.nav-hamburger');var m=document.querySelector('.mobile-menu');if(b&&m){b.addEventListener('click',function(e){e.preventDefault();m.classList.toggle('open');});Array.prototype.forEach.call(m.querySelectorAll('a'),function(a){a.addEventListener('click',function(){m.classList.remove('open');});});}})();
+</script>
+<script>
+(function(){function k(){['header.wp-block-template-part','.wp-site-blocks > header','.wp-block-template-part[data-area="header"]'].forEach(function(s){document.querySelectorAll(s).forEach(function(e){e.remove();});});}
+if(document.readyState!=='loading')k();else document.addEventListener('DOMContentLoaded',k);})();
+</script>
+
+
+</body>
+</html>
