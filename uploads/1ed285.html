@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>オファー連動ペルソナ生成 & なりきりインタビュー プロンプトツール</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+  :root{
+    --navy-900:#0d1f36;
+    --navy-800:#122a47;
+    --navy-700:#1c3d5e;
+    --navy-100:#e8edf3;
+    --gold-500:#b8924a;
+    --gold-600:#9c7a38;
+    --paper:#f7f5f0;
+    --white:#ffffff;
+    --ink:#1a2230;
+    --ink-soft:#4b5566;
+    --line:#d9ddE3;
+    --danger:#a8402f;
+    --ok:#2f6a4d;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size:16px;
+    line-height:1.8;
+    letter-spacing:0.02em;
+  }
+
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:32px 20px 96px;
+  }
+
+  header.hero{
+    background:linear-gradient(135deg, var(--navy-900), var(--navy-700));
+    color:var(--white);
+    border-radius:16px;
+    padding:40px 32px;
+    margin-bottom:40px;
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:220px; height:220px;
+    border-radius:50%;
+    border:1px solid rgba(184,146,74,0.35);
+  }
+  header.hero::before{
+    content:"";
+    position:absolute;
+    right:20px; bottom:-90px;
+    width:180px; height:180px;
+    border-radius:50%;
+    border:1px solid rgba(184,146,74,0.2);
+  }
+  .eyebrow{
+    display:inline-block;
+    font-size:12px;
+    letter-spacing:0.18em;
+    color:var(--gold-500);
+    border:1px solid rgba(184,146,74,0.5);
+    padding:4px 10px;
+    border-radius:999px;
+    margin-bottom:16px;
+  }
+  h1{
+    font-family:'Noto Serif JP', serif;
+    font-size:clamp(22px, 4vw, 30px);
+    font-weight:700;
+    margin:0 0 12px;
+    line-height:1.5;
+  }
+  header.hero p{
+    margin:0;
+    color:var(--navy-100);
+    font-size:14.5px;
+    max-width:56ch;
+  }
+
+  .flow{
+    display:flex;
+    gap:8px;
+    margin-top:24px;
+    flex-wrap:wrap;
+  }
+  .flow-step{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:10px;
+    padding:8px 12px;
+    font-size:13px;
+    color:var(--navy-100);
+  }
+  .flow-step b{
+    color:var(--gold-500);
+    font-family:'Noto Serif JP', serif;
+  }
+  .flow-arrow{
+    align-self:center;
+    color:rgba(255,255,255,0.4);
+    font-size:14px;
+  }
+
+  section.card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:28px 28px 32px;
+    margin-bottom:28px;
+    box-shadow:0 1px 2px rgba(13,31,54,0.04);
+  }
+
+  .card-head{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    margin-bottom:20px;
+  }
+  .badge{
+    flex:none;
+    width:34px; height:34px;
+    border-radius:50%;
+    background:var(--navy-800);
+    color:var(--gold-500);
+    font-family:'Noto Serif JP', serif;
+    font-weight:700;
+    font-size:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .card-head h2{
+    font-family:'Noto Serif JP', serif;
+    font-size:18px;
+    margin:2px 0 4px;
+    color:var(--navy-900);
+  }
+  .card-head p{
+    margin:0;
+    font-size:13.5px;
+    color:var(--ink-soft);
+  }
+
+  label{
+    display:block;
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--navy-800);
+    margin:18px 0 6px;
+  }
+  label .opt{
+    font-weight:400;
+    color:var(--ink-soft);
+    margin-left:6px;
+  }
+
+  textarea, input[type=text]{
+    width:100%;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+    font-size:16px;
+    font-family:inherit;
+    color:var(--ink);
+    background:var(--white);
+    resize:vertical;
+    min-height:48px;
+  }
+  textarea{min-height:76px;}
+  textarea:focus, input:focus{
+    outline:3px solid rgba(184,146,74,0.35);
+    outline-offset:1px;
+    border-color:var(--gold-600);
+  }
+
+  .hint{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+
+  .actions{
+    margin-top:24px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  button.primary{
+    background:var(--navy-800);
+    color:var(--white);
+    border:none;
+    border-radius:10px;
+    padding:14px 22px;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:0.02em;
+    cursor:pointer;
+    min-height:48px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:background .15s ease;
+  }
+  button.primary:hover{background:var(--navy-700);}
+  button.primary:active{transform:translateY(1px);}
+  button.primary:disabled{background:#9aa4b2; cursor:not-allowed;}
+
+  button.secondary{
+    background:var(--white);
+    color:var(--navy-800);
+    border:1px solid var(--navy-800);
+    border-radius:10px;
+    padding:12px 20px;
+    font-size:14.5px;
+    font-weight:700;
+    cursor:pointer;
+    min-height:48px;
+  }
+  button.secondary:hover{background:var(--navy-100);}
+
+  .output-wrap{
+    margin-top:22px;
+    display:none;
+  }
+  .output-wrap.show{display:block;}
+  .output-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:8px;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .output-head span{
+    font-size:13px;
+    font-weight:700;
+    color:var(--navy-800);
+  }
+  .copybtn{
+    background:var(--gold-500);
+    color:var(--navy-900);
+    border:none;
+    border-radius:8px;
+    padding:8px 14px;
+    font-size:13.5px;
+    font-weight:700;
+    cursor:pointer;
+    min-height:36px;
+  }
+  .copybtn:hover{background:var(--gold-600); color:var(--white);}
+  .copybtn.copied{background:var(--ok); color:var(--white);}
+
+  .promptbox{
+    width:100%;
+    min-height:260px;
+    background:var(--navy-900);
+    color:#dbe4ee;
+    border:1px solid var(--navy-800);
+    border-radius:10px;
+    padding:16px;
+    font-family:'SFMono-Regular', Menlo, Consolas, monospace;
+    font-size:12.8px;
+    line-height:1.7;
+    white-space:pre-wrap;
+  }
+
+  .step-divider{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:36px 0 24px;
+    color:var(--ink-soft);
+    font-size:12.5px;
+  }
+  .step-divider::before, .step-divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  .note{
+    background:var(--navy-100);
+    border:1px solid #c9d4e2;
+    border-radius:10px;
+    padding:12px 16px;
+    font-size:13px;
+    color:var(--navy-900);
+    margin-top:20px;
+  }
+
+  footer{
+    text-align:center;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:20px;
+  }
+
+  @media (max-width:520px){
+    section.card{padding:20px 18px 24px;}
+    header.hero{padding:28px 20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">PERSONA PROMPT BUILDER</span>
+    <h1>オファー連動ペルソナ生成 ＆<br>なりきりインタビュー プロンプトツール</h1>
+    <p>このツール自体はAIを内蔵していません。入力内容から「実行用プロンプト」を作るだけです。生成されたプロンプトをコピーして、ご自身がお使いのAI（Claude・ChatGPT等）に貼り付けて実行してください。</p>
+    <div class="flow">
+      <div class="flow-step"><b>①</b>オファー情報を入力</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><b>②</b>ペルソナ作成プロンプトを生成</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><b>③</b>AIの回答（ペルソナ）を貼付</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><b>④</b>なりきりインタビュー用プロンプトを生成</div>
+    </div>
+  </header>
+
+  <!-- STEP 1: 入力 -->
+  <section class="card">
+    <div class="card-head">
+      <div class="badge">1</div>
+      <div>
+        <h2>オファー情報を入力する</h2>
+        <p>埋まっている項目が多いほど、精度の高いペルソナが生成されます。空欄があっても生成は可能です。</p>
+      </div>
+    </div>
+
+    <label for="offerContent">オファーの内容（何を提供し、何を解決する商品・サービスか。価格帯・提供形態も）</label>
+    <textarea id="offerContent" placeholder="例：士業向け、ネット集客を仕組み化する無料動画講座。視聴後、年額9,980円のツール配信サービスに誘導。"></textarea>
+
+    <label for="afterResult">オファーが約束する結果（After）<span class="opt">導入後にどう変わるか（数値・状態）</span></label>
+    <textarea id="afterResult" placeholder="例：営業の日を作らなくても毎日2〜3件アポが自然に入り、紹介・下請けに依存しない集客が仕組みとして回る状態になる。"></textarea>
+
+    <label for="targetAttr">想定ターゲットの粗い属性<span class="opt">業種・職種・事業規模・個人/法人など</span></label>
+    <textarea id="targetAttr" placeholder="例：開業5〜10年程度の一人士業（行政書士・コンサルタント等）。紹介・下請け中心で新規開拓に悩んでいる層。"></textarea>
+
+    <label for="examples">過去の顧客実例・よくある相談内容<span class="opt">任意</span></label>
+    <textarea id="examples" placeholder="例：HPは作ったが問い合わせがない／紹介が途切れると収入が止まる不安がある、といった相談が多い。"></textarea>
+
+    <div class="actions">
+      <button class="primary" id="genPersonaBtn" type="button">② ペルソナ作成プロンプトを生成する</button>
+    </div>
+
+    <div class="output-wrap" id="personaOutputWrap">
+      <div class="output-head">
+        <span>生成されたプロンプト（このままコピーしてAIに貼り付けてください）</span>
+        <button class="copybtn" id="copyPersonaBtn" type="button">コピーする</button>
+      </div>
+      <textarea class="promptbox" id="personaPromptBox" readonly></textarea>
+      <div class="note">この全文をコピーし、Claude・ChatGPTなど、あなたが使っているAIとの新しい会話に貼り付けて実行してください。返ってきたペルソナ全文は、下のSTEP2の欄に貼り付けます。</div>
+    </div>
+  </section>
+
+  <div class="step-divider">AIの回答を受け取ったら次へ</div>
+
+  <!-- STEP 2: ペルソナ貼り付け → インタビュープロンプト生成 -->
+  <section class="card">
+    <div class="card-head">
+      <div class="badge">2</div>
+      <div>
+        <h2>なりきりインタビュー用プロンプトを作る</h2>
+        <p>STEP1で受け取ったペルソナ全文を、下の欄にそのまま貼り付けてください。</p>
+      </div>
+    </div>
+
+    <label for="personaText">AIから返ってきたペルソナ全文</label>
+    <textarea id="personaText" style="min-height:180px" placeholder="ここに、AIが出力したペルソナシート全文を貼り付けてください。"></textarea>
+
+    <div class="actions">
+      <button class="primary" id="genInterviewBtn" type="button">④ なりきりインタビュー用プロンプトを生成する</button>
+    </div>
+
+    <div class="output-wrap" id="interviewOutputWrap">
+      <div class="output-head">
+        <span>生成されたプロンプト（このままコピーしてAIに貼り付けてください）</span>
+        <button class="copybtn" id="copyInterviewBtn" type="button">コピーする</button>
+      </div>
+      <textarea class="promptbox" id="interviewPromptBox" readonly></textarea>
+      <div class="note">このプロンプトを、AIとの新しい会話（できればSTEP1とは別の会話）に貼り付けてください。以降、そのAIはこのペルソナ本人になりきって一人称で回答します。あなたはそのまま質問を続けるだけでインタビューが成立します。</div>
+    </div>
+  </section>
+
+  <footer>Well Consultant / 阿久津和宏　オファー連動ペルソナ生成ツール（プロンプト出力専用・AI非内蔵）</footer>
+</div>
+
+<script>
+function val(id){
+  const el = document.getElementById(id);
+  const v = el.value.trim();
+  return v.length ? v : "（未入力）";
+}
+
+function buildPersonaPrompt(){
+  const offerContent = val('offerContent');
+  const afterResult = val('afterResult');
+  const targetAttr = val('targetAttr');
+  const examples = val('examples');
+
+  return `あなたは経験豊富なマーケティング戦略コンサルタント兼コピーライターです。以下のオファー情報をもとに、解像度の高いペルソナを1体作成してください。
+
+【最重要原則】
+「なんとなくのペルソナ」ではなく、オファーが解決する結果と1対1で対応した、因果関係が破綻していないペルソナを作ってください。良いペルソナの条件は「情報量」ではなく「一貫性」です。悩み→今やっていること→結果→ストレス→勘違い・思い込みが、すべて同じ一人の人物の中で矛盾なくつながっている必要があります。属性を並べただけの無機質なリスト（例:「30代女性、Instagramをよく見る、几帳面」）は禁止です。
+
+【オファー情報】
+■オファーの内容：
+${offerContent}
+
+■オファーが約束する結果（After）：
+${afterResult}
+
+■想定ターゲットの粗い属性：
+${targetAttr}
+
+■過去の顧客実例・よくある相談内容：
+${examples}
+
+【作成プロセス（内部で必ず全ステップを検討すること）】
+
+Step 1：オファーの逆算（Before/After分解）
+・After で得られるものは何か
+・その After が価値があると感じるのは、Before がどんな状態のときか
+・Before の人は、After の存在をすでに知っているが手に入れられていないのか、それとも After の存在自体を知らないのか（コピーの前提が変わるため重要）
+
+Step 2：悩み（表面）と本当の問題（深層）を分ける
+・表面的な悩み＝本人が口に出す言葉
+・本当の問題＝表面的な悩みの奥にある、本人が気づいていない・言語化できていない根本原因
+・この2層を必ず両方出す
+
+Step 3：今やっていること（現状の行動・すでに試した対策）
+・この人物が今この瞬間、実際に何をして問題に対処しようとしているかを具体的に描く
+・重要：これは Step 2 の悩みに対する自然な反応でなければならない。悩みと無関係な行動を書かない
+
+Step 4：結果（現状の数値・状態）とその理由
+・今、現実にどんな結果（数字・状態）が出ているか
+・なぜ Step 3 の行動を続けているのに、この結果しか出ていないのかを因果で説明する（最重要）
+・NG：「頑張っているが結果が出ていない」で終わる（因果がない）
+・OK：「〇〇という方法でやっているが、それは△△という理由で構造的に限界があるため、この結果にしかならない」
+
+Step 5：ストレス・感情
+・Step 4 の結果が続くことで、この人物が日常のどんな場面で・どんな感情を感じているかを描く
+・抽象的な感情語だけでなく、それを感じる具体的なシーンを1つ添える
+
+Step 6：勘違い・思い込み（なぜ今のループから抜け出せないか）
+・この人物が信じてしまっている誤った前提を明確にする。この思い込みこそが、Step3〜4のループ（同じ努力→同じ限界）を継続させている真犯人
+・業界・世間でよく信じられているが実は違うこと、または自分自身についての誤った思い込み
+・この思い込みがある限り、オファーを知っても「自分には関係ない」と回避してしまう理由も添える
+
+Step 7：一貫性チェック（出力前に必ず自問する）
+・Step3（今の行動）はStep2（悩み）に対する自然な反応になっているか
+・Step4（結果）はStep3（行動）から論理的に導けるか
+・Step6（思い込み）はStep3〜4のループを継続させる理由として機能しているか
+・オファー（Step1のAfter）は、この人物のStep6の思い込みを崩し、Step4の結果を変えるものとして整合しているか
+
+【出力フォーマット】（この形式だけを最終出力すること。Step1〜7の検討過程は出力しない）
+
+【ペルソナ名】（〇〇業・〇〇な立場の人、というラベル。実名は不要）
+
+■ オファーとの対応
+このオファーが提供する結果：（Afterを1文で）
+この人物にとっての価値：（なぜこの人にAfterが刺さるか）
+
+■ 基本状況
+（業種・規模・立場・経験年数など、悩みの前提となる情報のみ）
+
+■ 悩み
+・表面的な悩み：「（本人が言いそうなセリフ）」
+・本当の問題：（本人が気づいていない根本原因）
+
+■ 今やっていること
+（現状の対処行動を具体的に）
+
+■ 結果（現状）
+（数字・状態）
+なぜこの結果なのか：（Step4の因果説明）
+
+■ ストレス
+（感じている感情＋それを感じる具体的な場面）
+
+■ 勘違い・思い込み
+・思い込んでいること：「（本人が信じている誤った前提）」
+・そのせいで起きていること：（この思い込みが原因で回避・停滞していること）
+
+■ 一貫性の要約（1〜2文）
+悩み→行動→結果→ストレス→思い込みが、なぜ一人の人物の中で自然につながっているかを1〜2文で説明
+
+【注意】
+・実在の顧客がモデルの場合でも、個人が特定できる情報は一般化してぼかしてください。
+・「勘違い・思い込み」は説教くさく描かず、あくまで本人の視点から見れば筋が通っている「合理的な誤解」として描いてください。`;
+}
+
+function buildInterviewPrompt(){
+  const persona = val('personaText');
+
+  return `あなたは今から、以下のペルソナ本人に完全になりきり、一人称でインタビューに答えてください。分析者としての解説口調（「〜という思い込みがあります」等）には絶対に戻らないでください。
+
+【なりきる対象のペルソナ】
+${persona}
+
+【目的】
+これは「きれいな模範解答」を作るための会話ではありません。実際にこの見込客にヒアリングしたら返ってきそうな、生々しく・時に矛盾を含む反応を再現することが目的です。コピーの検証、想定問答の洗い出し、セールストークのリハーサル相手として使います。
+
+【なりきりの絶対ルール】
+1. 一人称・その人の口調で答えてください。分析者としての解説口調に戻らないでください。
+2. 本人は自分の深層心理（自己防衛・アイデンティティ・確証バイアスなど）を自覚していません。ペルソナ設定に書かれた「本当の問題」や「思い込みの裏にある心理」を、本人のセリフとして直接言わせないでください。本人はあくまで表面的な理由でしか語りません。例：「なぜオンライン集客をしないんですか？」と聞かれたら「オンラインはうちの業界には合わない気がして…」程度に留め、「自分の実力不足が可視化されるのが怖いからです」のようなメタ認知的な発言はしないこと。
+3. 模範解答にしないでください。マーケター側に都合の良い、聞き分けの良い顧客を演じないこと。話が脱線する、質問の意図を誤解する、即答せず考え込む、多少頑固に自分の考えを主張する、といった生身の人間らしいノイズを適度に含めてください。
+4. 知らないことは知らないと答えてください。ペルソナ設定にない情報を聞かれたら、素直に「そこまでは分からないです」「考えたことなかったです」と答えること。
+5. 感情の温度を乗せてください。悩みやストレスに関わる質問には、素っ気なさ・照れ・愚痴っぽさ・防御的な反応など、ペルソナ設定の感情のトーンを反映させること。
+6. 思い込みの急所を突かれた場合、素直に納得せず、まず一瞬の沈黙・言い訳・話をそらす、といった防衛反応を見せてから、徐々に本音がにじみ出るような答え方をしてください。一問一答で急に説得されないこと。
+
+【進行ルール】
+・基本的に1問1答で答えてください。長い連続回答をせず、実際のインタビューのようにテンポよく区切ってください。
+・質問が曖昧な場合は、聞き返す・戸惑う反応をしても構いません。
+・こちらが「一旦キャラを抜けて解説して」「今の答えの意図を教えて」などメタな質問をした場合のみ、その時だけ分析者モードに戻って裏設定を説明し、説明が終わったら「では続けます」と一言添えて再びなりきりに戻ってください。
+
+【開始】
+まず最初の返答でだけ、以下の一言を添えてから回答を始めてください（以降は不要です）。
+「（このペルソナとして回答します。どうぞ質問してください）」
+
+以降は、このペルソナ本人の発言のみを返してください。地の文の解説・注釈・括弧書きの心情説明は挟まないでください。
+
+準備ができたら、上記の一言だけを返し、私からの質問を待ってください。`;
+}
+
+function wireGenerate(btnId, boxId, wrapId, builder){
+  document.getElementById(btnId).addEventListener('click', function(){
+    const text = builder();
+    const box = document.getElementById(boxId);
+    box.value = text;
+    document.getElementById(wrapId).classList.add('show');
+    box.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+}
+
+wireGenerate('genPersonaBtn', 'personaPromptBox', 'personaOutputWrap', buildPersonaPrompt);
+wireGenerate('genInterviewBtn', 'interviewPromptBox', 'interviewOutputWrap', buildInterviewPrompt);
+
+function wireCopy(btnId, boxId){
+  document.getElementById(btnId).addEventListener('click', async function(){
+    const box = document.getElementById(boxId);
+    const btn = document.getElementById(btnId);
+    try{
+      await navigator.clipboard.writeText(box.value);
+    }catch(e){
+      box.removeAttribute('readonly');
+      box.select();
+      document.execCommand('copy');
+      box.setAttribute('readonly', 'true');
+    }
+    const original = btn.textContent;
+    btn.textContent = 'コピーしました！';
+    btn.classList.add('copied');
+    setTimeout(function(){
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+wireCopy('copyPersonaBtn', 'personaPromptBox');
+wireCopy('copyInterviewBtn', 'interviewPromptBox');
+</script>
+</body>
+</html>
