@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山形県 産業廃棄物処理業 新規許可申請ガイド</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --primary-color: #001B3A; /* 濃紺 */
+            --secondary-color: #f4f6f9;
+            --border-color: #001B3A;
+            --highlight-color: #e6ecf2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .sidebar {
+            background-color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding: 1rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .sidebar a:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+        }
+
+        .main-content {
+            padding: 2rem;
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Typography & Elements */
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            border-left: 5px solid var(--primary-color);
+            padding-left: 10px;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .citation {
+            font-size: 0.85rem;
+            color: #555;
+            display: inline-block;
+            background-color: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .alert-box {
+            border: 2px solid #000;
+            background-color: var(--highlight-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+
+        .alert-box strong {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .warning {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        .unconfirmed {
+            background-color: #000;
+            color: #fff;
+            padding: 2px 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            white-space: nowrap;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: var(--secondary-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .badge-client { background-color: #000; color: #fff; }
+        .badge-admin { background-color: #666; color: #fff; }
+        .badge-proxy { background-color: var(--primary-color); color: #fff; }
+        .badge-normal { border: 1px solid #000; }
+        .badge-conditional { border: 1px dashed #000; }
+
+        .link-list {
+            word-break: break-all;
+        }
+
+        /* Steps */
+        .step-container {
+            background-color: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 5px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .step-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #fff;
+            border-left: 4px solid var(--primary-color);
+            font-weight: bold;
+        }
+
+        .step-arrow {
+            text-align: center;
+            color: var(--primary-color);
+            margin: 5px 0;
+            font-size: 1.2rem;
+        }
+
+        /* Media Queries for Desktop */
+        @media (min-width: 992px) {
+            .container {
+                flex-direction: row;
+            }
+            .sidebar {
+                width: 280px;
+                height: 100vh;
+                position: sticky;
+                top: 0;
+                border-bottom: none;
+                border-right: 2px solid var(--primary-color);
+                overflow-y: auto;
+            }
+            .sidebar ul {
+                flex-direction: column;
+            }
+            .sidebar a {
+                border: none;
+                border-bottom: 1px dashed var(--primary-color);
+                border-radius: 0;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .sidebar {
+                display: none;
+            }
+            .container {
+                display: block;
+            }
+            .main-content {
+                margin: 0;
+                padding: 0;
+                max-width: none;
+            }
+            h2, h3 {
+                page-break-after: avoid;
+            }
+            table {
+                page-break-inside: auto;
+            }
+            tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+            th {
+                background-color: #000 !important;
+                color: #fff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .alert-box, .step-container {
+                border: 1px solid #000;
+            }
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav class="sidebar">
+        <h2 style="font-size: 1.2rem; margin-top:0; border:none; color:var(--primary-color);">目次</h2>
+        <ul>
+            <li><a href="#section-1">1. 手続きの全体像・目的</a></li>
+            <li><a href="#section-2">2. 対象者と前提条件</a></li>
+            <li><a href="#section-3">3. 許可の要件と証明資料</a></li>
+            <li><a href="#section-4">4. 提出書類一覧（依頼者にご用意いただくもの）</a></li>
+            <li><a href="#section-5">5. 申請方法・窓口・手数料</a></li>
+            <li><a href="#section-6">6. 期限・標準処理期間・更新</a></li>
+            <li><a href="#section-7">7. 申請完了までの手順</a></li>
+            <li><a href="#section-8">8. 山形県独自のルール・注意事項</a></li>
+            <li><a href="#section-9">9. 資料の矛盾・【要確認】事項</a></li>
+            <li><a href="#section-10">10. 出典・資料リンク一覧</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header class="header">
+            <h1>山形県産業廃棄物処理業 新規許可申請ガイド</h1>
+            <p>ご依頼者様・行政書士間 準備・確認用マニュアル</p>
+        </header>
+
+        <p style="margin-top: 1.5rem;">
+            本ガイドは、山形県内で新たに産業廃棄物処理業（収集運搬業・処分業）を開始する事業者の皆様向けに、何を、なぜ、いつまでに、どのように準備すべきかを詳細にまとめたものです。
+            行政書士が代理申請を行うにあたり、<strong>「お客様（依頼者様）にご用意いただく事項」</strong>と<strong>「行政書士が作成・代行取得する事項」</strong>を明確に区分しています。
+        </p>
+
+        <section id="section-1">
+            <h2>1. 手続きの全体像・目的</h2>
+            <p>山形県内で新たに産業廃棄物、または特別管理産業廃棄物の「収集運搬業」および「処分業」を業として行うために、山形県知事（一部、山形市長）の許可を得る手続きです。</p>
+            
+            <h3>法的根拠</h3>
+            <ul>
+                <li><strong>収集運搬業：</strong> 廃棄物の処理及び清掃に関する法律（法）第14条第1項・第14条の4第1項 <span class="citation">【資料11：収集運搬手引き（全文） 32頁】【資料24：収集運搬記載方法 90頁】</span></li>
+                <li><strong>処分業：</strong> 法第14条第6項・第14条の4第6項 <span class="citation">【資料10：処分手引き（全文） 13頁】【資料25：処分記載方法 99頁】</span></li>
+            </ul>
+
+            <div class="alert-box">
+                <strong>【重要】事前協議および他法令の確認（処分業の場合）</strong><br>
+                処分業を新規申請（または処理施設を設置）する場合、申請前にあらかじめ「山形県産業廃棄物処理指導要綱第17条」に基づく<strong>「産業廃棄物処理施設設置等事前協議書」</strong>を提出し、山形県知事と協議を完了させる必要があります。また、大気汚染防止法、消防法などの関係法令の規制確認が事前に必要です。 <span class="citation">【資料10：処分手引き（全文） 14-15頁】</span>
+            </div>
+        </section>
+
+        <section id="section-2">
+            <h2>2. 対象者と前提条件</h2>
+            
+            <h3>① 対象者</h3>
+            <p>個人、または法人（取締役、監査役、相談役、顧問等のすべての役員、および5%以上の株式や出資を有する株主など）。 <span class="citation">【資料11：収集運搬手引き（全文） 35頁】</span></p>
+
+            <h3>② 絶対となる前提条件（欠格要件に該当しないこと）</h3>
+            <p>申請者（法人の場合は役員、政令使用人、5%以上の株主等。個人の場合は本人、政令使用人など）が、法に規定する<strong>欠格要件に一切該当しないこと</strong>が必須要件です。 <span class="citation">【資料11：収集運搬手引き（全文） 36頁】</span></p>
+            <ul>
+                <li>心身の故障、破産手続開始の決定を受けて復権を得ない者</li>
+                <li>拘禁刑（旧懲役・禁錮）以上の刑に処せられ、執行終了等から5年を経過しない者</li>
+                <li>生活環境保全を目的とする法令違反で罰金刑に処せられ、執行終了等から5年を経過しない者、暴力団関係者など <span class="citation">【資料18：欠格要件チェック表 1頁】</span></li>
+            </ul>
+
+            <h3>③ 管轄の注意（山形市内の取扱い）</h3>
+            <ul>
+                <li><strong>収集運搬業：</strong> 山形市内に「積替保管施設」を設置する場合は、山形市長の許可が必要です。単に山形市内を通過して運搬するのみであれば、山形県知事の許可のみで足ります。 <span class="citation">【資料11：収集運搬手引き（全文） 32頁】</span></li>
+                <li><strong>処分業：</strong> 山形市内に設置された処理施設で処分を行う場合は、山形県知事ではなく<strong>山形市長の許可</strong>が必要です（移動式処理施設を市外でも行う場合は県知事許可も必要）。 <span class="citation">【資料10：処分手引き（全文） 14頁】</span></li>
+            </ul>
+        </section>
+
+        <section id="section-3">
+            <h2>3. 許可の要件と証明資料</h2>
+
+            <h3>要件①：技術的能力（講習会の修了）</h3>
+            <p><strong>判断基準：</strong> (公財)日本産業廃棄物処理振興センター（JWTC）が実施する講習会を修了していること。</p>
+            <ul>
+                <li>受講対象者：法人の場合は代表者・役員・政令使用人。個人の場合は本人・政令使用人。</li>
+                <li>有効期限：<strong>新規許可講習会の修了証は5年間有効</strong>です。 <span class="citation">【資料11：収集運搬手引き（全文） 36頁】</span></li>
+                <li>証明資料：講習会修了証の写し。</li>
+            </ul>
+
+            <h3>要件②：経理的基礎（財務健全性）</h3>
+            <p><strong>判断基準：</strong> 処理業を的確かつ継続して行うに足りる経理的基礎を有すること。 <span class="citation">【資料9：チェック表（処分） 8頁】</span></p>
+            <ul>
+                <li><strong>法人：</strong> 直前3年の財務諸表、直前3年の法人税の納税証明書（その1）。</li>
+                <li><strong>個人：</strong> 資産に関する調書（銀行残高証明書・資産証明書添付）、直前3年の所得税確定申告書写し・納税証明書（その1）。</li>
+                <li class="warning">※実務上の注意：財務状況により（債務超過等）、追加で「経営改善計画書」や「中小企業診断士による診断書等」の提出が求められ、審査期間が延びる場合があります。</li>
+            </ul>
+
+            <h3>要件③：施設設備基準</h3>
+            <ul>
+                <li><strong>収集運搬業：</strong> 飛散・流出・悪臭漏れのない運搬車（車検証・写真・使用承諾書等）を有すること。駐車場（配置図・登記事項証明書・賃貸借契約書等）の確保。 <span class="citation">【資料11：収集運搬手引き（全文） 34-35頁】</span></li>
+                <li><strong>処分業：</strong> 適切な処理施設、地下水検査設備（最終処分場）、他物混入防止仕切り等（図面・設計計算書・登記事項証明書等）。 <span class="citation">【資料10：処分手引き（全文） 16-17頁】</span></li>
+            </ul>
+        </section>
+
+        <section id="section-4">
+            <h2>4. 提出書類一覧（新規許可申請）</h2>
+            <p>以下の表で「依頼者用意」となっている書類のご準備をお願いいたします。公的書類（住民票等）については、行政書士が委任状に基づき代行取得可能です。</p>
+            <p>
+                <span class="badge badge-normal">通常</span> 通常必要となるもの
+                <span class="badge badge-conditional">該当</span> 条件に該当する場合のみ必要<br>
+                <span class="badge badge-client">依頼者用意</span> お客様にご準備いただくもの
+                <span class="badge badge-proxy">行政書士</span> 行政書士が作成・代行取得するもの
+            </p>
+
+            <h3>① 収集運搬業（普通・特管）新規許可申請</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>書類名</th>
+                            <th>区分</th>
+                            <th>手配</th>
+                            <th>原本/写し/部数/期限</th>
+                            <th>備考・注意点</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>許可申請書</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-proxy">行政書士作成</span></td>
+                            <td>正本1部（依頼者捺印）</td>
+                            <td>指定様式。控えは各自保管。<span class="citation">【資料11-38頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>事業計画の概要</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-proxy">行政書士作成</span></td>
+                            <td>1部</td>
+                            <td>具体的な計画を詳細に記載。<span class="citation">【資料11-38頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>運搬車両の写真</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-client">依頼者用意</span></td>
+                            <td>各1部</td>
+                            <td>車体全景、ナンバープレートが確実に写っていること。<span class="citation">【資料8-65頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>自動車検査証(車検証)の写し</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-client">依頼者用意</span></td>
+                            <td>各1部（有効期間内）</td>
+                            <td>電子車検証の対応は<span class="unconfirmed">【要確認】</span>。<span class="citation">【資料8-65頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>使用承諾書等の写し</td>
+                            <td><span class="badge badge-conditional">該当</span></td>
+                            <td><span class="badge badge-client">依頼者用意</span></td>
+                            <td>各1部</td>
+                            <td>車両を他人から借用している場合。<span class="citation">【資料8-65頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>運搬容器の構造図・写真</td>
+                            <td><span class="badge badge-conditional">該当</span></td>
+                            <td><span class="badge badge-client">依頼者用意</span></td>
+                            <td>各1部</td>
+                            <td>液体や飛散性廃棄物の運搬に容器を使用する場合。<span class="citation">【資料9-9頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>駐車施設の図面・見取図・写真</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-proxy">行政書士作成</span></td>
+                            <td>各1部</td>
+                            <td>区画が明確であること。写真は依頼者が撮影。<span class="citation">【資料8-65頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>8-9</td>
+                            <td>駐車施設の土地・建物登記簿、公図</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-proxy">行政書士取得</span></td>
+                            <td>原本1部（3ヶ月以内）</td>
+                            <td>自己所有地の場合。<span class="citation">【資料8-65頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>駐車施設の賃貸借契約書等の写し</td>
+                            <td><span class="badge badge-conditional">該当</span></td>
+                            <td><span class="badge badge-client">依頼者用意</span></td>
+                            <td>写し1部</td>
+                            <td>土地を借用している場合。使用目的に注意。<span class="citation">【資料8-65頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>講習会修了証の写し</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-client">依頼者用意</span></td>
+                            <td>写し1部（5年以内）</td>
+                            <td>新規用（5年有効）。申請者の氏名と一致すること。<span class="citation">【資料11-35頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>12-13</td>
+                            <td>住民票(本籍記載)、登記されていないことの証明書</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-proxy">行政書士取得</span></td>
+                            <td>原本 各1部（3ヶ月以内）</td>
+                            <td>個人番号(マイナンバー)なし。役員・政令使用人全員分。<span class="citation">【資料11-39頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>14-17</td>
+                            <td>【法人のみ】履歴事項全部証明書、定款、財務諸表(3年)、法人税納税証明書</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-client">依頼者</span>/<span class="badge badge-proxy">書士</span></td>
+                            <td>定款・財務諸表は写し。他は原本（3ヶ月以内）</td>
+                            <td>定款は原本証明捺印が必要。<span class="citation">【資料19-5頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>18-20</td>
+                            <td>【個人のみ】資産調書(残高証明等)、所得税納税証明、確定申告書写し</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-client">依頼者</span>/<span class="badge badge-proxy">書士</span></td>
+                            <td>原本・写し 各1部（3ヶ月以内）</td>
+                            <td>直前3年分。資産証明書の詳細は<span class="unconfirmed">【要確認】</span>。<span class="citation">【資料9-8頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>21-22</td>
+                            <td>誓約書、欠格要件チェック表</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-proxy">行政書士作成</span></td>
+                            <td>1部（依頼者署名）</td>
+                            <td>役員・政令使用人・5%以上の株主全員対象。<span class="citation">【資料11-42頁】</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>② 処分業（普通・特管）新規許可申請 に追加で必要な書類</h3>
+            <p>収集運搬業の書類に加え、以下の<strong>「処分施設および保管場所に関する技術・権利書類」</strong>が必要です。</p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>書類名</th>
+                            <th>区分</th>
+                            <th>手配</th>
+                            <th>備考・注意点</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>26-27</td>
+                            <td>許可申請書(処分)、事業計画概要</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-proxy">行政書士作成</span></td>
+                            <td>処理方式、構造、種類を記載。<span class="citation">【資料10-22頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>28-29</td>
+                            <td>処分施設の図面、設計計算書</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-client">依頼者用意</span></td>
+                            <td>メーカー等より取得。処理能力や保管上限を説明。<span class="citation">【資料8-65頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>30-31</td>
+                            <td>全景・内部写真、付近見取図</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-client">依頼者用意</span></td>
+                            <td>場所の表示（看板等）を含めて撮影。<span class="citation">【資料8-65頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>32-34</td>
+                            <td>処分施設の土地・建物登記簿、公図、所有権証明（賃貸借契約書等）</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-proxy">行政書士取得</span></td>
+                            <td>権利関係を証明。<span class="citation">【資料8-65頁】</span></td>
+                        </tr>
+                        <tr>
+                            <td>35</td>
+                            <td>【特管のみ】性状分析担当者の技能証明</td>
+                            <td><span class="badge badge-normal">通常</span></td>
+                            <td><span class="badge badge-client">依頼者用意</span></td>
+                            <td>社内の分析担当者の資格・技能証明等。<span class="citation">【資料9-8頁】</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="section-5">
+            <h2>5. 申請方法・窓口・手数料</h2>
+
+            <h3>① 申請方法と事前予約</h3>
+            <ul>
+                <li><strong>県内事業者：</strong> 原則として<strong>「持参（窓口直接提出）」</strong>です。<br>
+                <span class="warning">※窓口提出時は、あらかじめ管轄窓口への「電話等での来庁予約」が必須です。</span> <span class="citation">【資料19：Web手続き案内 2頁】</span></li>
+                <li><strong>県外事業者（山形県内に事務所がない場合）：</strong> 原則<strong>「郵送」</strong>で受け付けます。</li>
+            </ul>
+
+            <h3>② 提出先（管轄窓口）</h3>
+            <p>主たる事務所または処分施設の所在地を管轄する総合支庁が窓口です。</p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>管轄エリア</th>
+                            <th>担当窓口・所在地</th>
+                            <th>電話番号</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>村山地区</strong>（山形市※除く、寒河江市等）</td>
+                            <td>村山総合支庁保健福祉環境部 環境課<br>山形市鉄砲町2-19-68</td>
+                            <td>023-621-8421<br>（収運は 8422 の可能性あり <span class="unconfirmed">【要確認】</span>）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>最上地区</strong>（新庄市、最上町等）</td>
+                            <td>最上総合支庁保健福祉環境部 環境課<br>新庄市金沢大道上2034</td>
+                            <td>0233-29-1287</td>
+                        </tr>
+                        <tr>
+                            <td><strong>置賜地区</strong>（米沢市、長井市等）</td>
+                            <td>置賜総合支庁保健福祉環境部 環境課<br>米沢市金池7-1-50</td>
+                            <td>0238-26-6034</td>
+                        </tr>
+                        <tr>
+                            <td><strong>庄内地区</strong>（鶴岡市、酒田市等）</td>
+                            <td>庄内総合支庁保健福祉環境部 環境課<br>東田川郡三川町大字横山字袖東19-1</td>
+                            <td>0235-66-4914</td>
+                        </tr>
+                        <tr>
+                            <td><strong>県外</strong>（県内に事業所等がない）</td>
+                            <td>山形県庁環境エネルギー部 循環型社会推進課<br>山形市松波2-8-1</td>
+                            <td>023-630-2323（原則郵送）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>山形市内</strong>（市内に施設を置く場合）</td>
+                            <td>山形市 廃棄物指導課<br>山形市旅篭町2-3-25 （郵便番号・FAX等は<span class="unconfirmed">【要確認】</span>）</td>
+                            <td>023-641-1212（内線869）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>③ 申請手数料と納付方法</h3>
+            <ul>
+                <li><strong>収集運搬業（普通・特管）：</strong> 各 81,000円</li>
+                <li><strong>処分業（普通・特管）：</strong> 各 100,000円</li>
+                <li><strong>納付方法：</strong> 「山形県収入証紙」で納付。県庁内または各総合支庁内の売店で購入可能です。<br>
+                ※県外事業者の郵送申請時の証紙購入方法は「担当者から後ほど連絡」となります。<span class="unconfirmed">【要確認】</span> <span class="citation">【資料19：Web手続き案内 1, 4頁】</span></li>
+            </ul>
+        </section>
+
+        <section id="section-6">
+            <h2>6. 期限・標準処理期間・更新</h2>
+            <ul>
+                <li><strong>許可の有効期限：</strong> 原則 <strong>5年間</strong> <span class="citation">【資料11：収集運搬手引き（全文） 39頁】</span></li>
+                <li><strong>標準処理期間：</strong> <strong>60日</strong>（書類補正や追加書類の準備日数は含まれません） <span class="citation">【資料11：収集運搬手引き（全文） 34頁】</span></li>
+                <li><strong>更新時期：</strong> 許可満了日の「2か月前」から受付開始。「1か月前」までに手続きを完了すること。 <span class="citation">【資料19：Web手続き案内 2頁】</span></li>
+            </ul>
+        </section>
+
+        <section id="section-7">
+            <h2>7. 申請準備から完了までの手順</h2>
+            <div class="step-container">
+                <div class="step-item">【ステップ1】 JWTC講習会の受講・修了（新規は5年間有効の講習）</div>
+                <div class="step-arrow">↓</div>
+                <div class="step-item">【ステップ2】 （処分業のみ）施設設置等の事前協議完了、他法令手続</div>
+                <div class="step-arrow">↓</div>
+                <div class="step-item">【ステップ3】 必要書類・公的証明書（3ヶ月以内）の収集・作成</div>
+                <div class="step-arrow">↓</div>
+                <div class="step-item">【ステップ4】 管轄窓口へ事前来庁予約（県外事業者は郵送手配）</div>
+                <div class="step-arrow">↓</div>
+                <div class="step-item">【ステップ5】 申請窓口へ提出・山形県収入証紙による手数料納付</div>
+                <div class="step-arrow">↓</div>
+                <div class="step-item">【ステップ6】 行政による書類審査・現場検査（処分業は必須）</div>
+                <div class="step-arrow">↓</div>
+                <div class="step-item">【ステップ7】 許可証の交付</div>
+                <div class="step-arrow">↓</div>
+                <div class="step-item">【ステップ8】 （収集運搬業のみ）全車両に表示を施し、状況写真を県へ提出</div>
+            </div>
+            <p style="text-align: right; font-size: 0.85rem;"><span class="citation">【資料10：14-16頁 / 資料11：33-36頁】</span></p>
+        </section>
+
+        <section id="section-8">
+            <h2>8. 山形県独自のルール・注意事項</h2>
+            
+            <h3>① 先行許可証を利用した添付書類の省略</h3>
+            <p>既に山形県知事発行の産業廃棄物処理業関係の許可（受付時点で5年以内に住民票等を添付したもの）を受けている場合、その許可証の写しを添付することで「住民票」「登記事項証明書」「誓約書」を省略できます。※他県知事や山形市長発行のものは対象外です。 <span class="citation">【資料11：収集運搬手引き（全文） 39頁】</span></p>
+
+            <h3>② 県外郵送時の返信用封筒</h3>
+            <p>郵送申請時、受領印を押した「副本」を返信してもらうため、<strong>110円切手を貼った長形3号封筒</strong>の同封が独自ルールとして定められています。また、新しい許可証送付用に<strong>レターパック</strong>または<strong>350円切手を貼った角形2号封筒</strong>も必要です。 <span class="citation">【資料19：Web手続き案内 1頁】</span></p>
+
+            <div class="alert-box">
+                <strong>【補正になりやすい重大な注意点】</strong>
+                <ul>
+                    <li><strong>公的書類の期限切れ：</strong> 登記事項証明書、住民票、納税証明書などはすべて「発行から3ヶ月以内」の原本が必要です。</li>
+                    <li><strong>講習修了証の誤り：</strong> 新規申請に「更新用（2年有効）」の修了証は使えません。</li>
+                    <li><strong>「事業の範囲」の記載漏れ：</strong> 石綿含有産業廃棄物、水銀使用製品産業廃棄物等の取扱いの有無の記載ルールが極めて厳しく、記載不備が多発します。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="section-9">
+            <h2>9. 資料の矛盾・【要確認】事項</h2>
+            <p>ご提供いただいた行政資料内で、以下の点について表記の揺れや記載がない事項が確認されました。申請の実務を進めるにあたり、行政窓口への事前照会が必要です。</p>
+            
+            <ul>
+                <li><strong>村山総合支庁環境課の電話番号の差異：</strong> Web案内では代表が <code>023-621-8421</code> となっていますが、収集運搬手引きには <code>023-621-8422</code> と記載されています。事前予約の際、どちらが直通か確認が必要です。</li>
+                <li><strong>【要確認】山形市 廃棄物指導課の詳細：</strong> 山形市内に施設を置く場合の窓口について、住所・電話番号以外の情報（郵便番号、FAX、開庁時間）が明記されていません。</li>
+                <li><strong>【要確認】電子車検証の取扱い：</strong> 提出書類の「車検証の写し」について、現在の電子車検証では「自動車検査証記録事項」も合わせて提出すべきか明記がありません。</li>
+                <li><strong>【要確認】個人の「資産証明書」の定義：</strong> 個人の資産調書に添付する資産証明書が、市町村発行の固定資産評価証明書等を指すのか確認が必要です。</li>
+                <li><strong>【要確認】郵送時の県証紙購入方法：</strong> 県外業者が郵送申請する場合の手数料（山形県収入証紙）について、「担当から後ほど連絡」とありますが、現金書留や事前振込等、具体的な代理購入手順の確認が必要です。</li>
+            </ul>
+        </section>
+
+        <section id="section-10">
+            <h2>10. 出典・資料リンク一覧</h2>
+            <p>本ガイド作成の根拠となった山形県の公開資料です。</p>
+            <div class="link-list">
+                <ol>
+                    <li>
+                        <strong>産業廃棄物処理業廃止・変更届出書（様式第11号）</strong><br>
+                        直リンク: <a href="https://www.pref.yamagata.jp/documents/17440/11-henkoutodoker060226.docx" target="_blank">https://www.pref.yamagata.jp/documents/17440/11-henkoutodoker060226.docx</a><br>
+                        掲載ページ: <a href="https://www.pref.yamagata.jp/050010/kurashi/kankyo/haikibutsu/shorigyousha/horigyotetsuduki2020.html" target="_blank">山形県 産業廃棄物処理業関係手続き</a>
+                    </li>
+                    <li>
+                        <strong>特別管理産業廃棄物処理業廃止・変更届出書（様式第17号）</strong><br>
+                        直リンク: <a href="https://www.pref.yamagata.jp/documents/17440/17-henkoutodoker060226.docx" target="_blank">https://www.pref.yamagata.jp/documents/17440/17-henkoutodoker060226.docx</a><br>
+                        掲載ページ: <a href="https://www.pref.yamagata.jp/050010/kurashi/kankyo/haikibutsu/shorigyousha/horigyotetsuduki2020.html" target="_blank">山形県 産業廃棄物処理業関係手続き</a>
+                    </li>
+                    <li>
+                        <strong>写真（ワード）</strong><br>
+                        直リンク: <a href="https://www.pref.yamagata.jp/documents/17440/carh29.docx" target="_blank">https://www.pref.yamagata.jp/documents/17440/carh29.docx</a><br>
+                        掲載ページ: <a href="https://www.pref.yamagata.jp/050010/kurashi/kankyo/haikibutsu/shorigyousha/horigyotetsuduki2020.html" target="_blank">山形県 産業廃棄物処理業関係手続き</a>
+                    </li>
+                    <li>
+                        <strong>必要書類チェック表（PDF複数）</strong><br>
+                        直リンク集:<br>
+                        <a href="https://www.pref.yamagata.jp/documents/17440/check001h2907.pdf" target="_blank">check001h2907.pdf</a>,
+                        <a href="https://www.pref.yamagata.jp/documents/17440/check002h2907.pdf" target="_blank">check002h2907.pdf</a>,
+                        <a href="https://www.pref.yamagata.jp/documents/17440/check003h2907.pdf" target="_blank">check003h2907.pdf</a>,
+                        <a href="https://www.pref.yamagata.jp/documents/17440/check004h2907.pdf" target="_blank">check004h2907.pdf</a>,
+                        <a href="https://www.pref.yamagata.jp/documents/17440/check3.pdf" target="_blank">check3.pdf</a>,
+                        <a href="https://www.pref.yamagata.jp/documents/17440/check6.pdf" target="_blank">check6.pdf</a><br>
+                        掲載ページ: <a href="https://www.pref.yamagata.jp/050010/kurashi/kankyo/haikibutsu/shorigyousha/horigyotetsuduki2020.html" target="_blank">山形県 産業廃棄物処理業関係手続き</a>
+                    </li>
+                    <li>
+                        <strong>各種Word書式（計画書・誓約書・調書等）</strong><br>
+                        保管場所概要: <a href="https://www.pref.yamagata.jp/documents/17440/hokangaiyo.docx" target="_blank">hokangaiyo.docx</a><br>
+                        計画書(処分): <a href="https://www.pref.yamagata.jp/documents/17440/keikaku-sho.docx" target="_blank">keikaku-sho.docx</a><br>
+                        計画書(収運): <a href="https://www.pref.yamagata.jp/documents/17440/keikakuh29.docx" target="_blank">keikakuh29.docx</a><br>
+                        誓約書: <a href="https://www.pref.yamagata.jp/documents/17440/seiyakusho-r0602-a.docx" target="_blank">seiyakusho-r0602-a.docx</a><br>
+                        資金(処分): <a href="https://www.pref.yamagata.jp/documents/17440/shikin-h2910-a.docx" target="_blank">shikin-h2910-a.docx</a><br>
+                        資金(収運): <a href="https://www.pref.yamagata.jp/documents/17440/shikinh29.docx" target="_blank">shikinh29.docx</a><br>
+                        資産調書: <a href="https://www.pref.yamagata.jp/documents/17440/shisanh29.docx" target="_blank">shisanh29.docx</a><br>
+                        処分後書類: <a href="https://www.pref.yamagata.jp/documents/17440/shobungo.docx" target="_blank">shobungo.docx</a><br>
+                        容器写真: <a href="https://www.pref.yamagata.jp/documents/17440/youkih29.docx" target="_blank">youkih29.docx</a><br>
+                        役員対照表: <a href="https://www.pref.yamagata.jp/documents/17440/yakuin-sinkyu.docx" target="_blank">yakuin-sinkyu.docx</a><br>
+                        掲載ページ: <a href="https://www.pref.yamagata.jp/050010/kurashi/kankyo/haikibutsu/shorigyousha/horigyotetsuduki2020.html" target="_blank">山形県 産業廃棄物処理業関係手続き</a>
+                    </li>
+                    <li>
+                        <strong>手引き・記載方法・欠格要件チェック表</strong><br>
+                        欠格要件: <a href="https://www.pref.yamagata.jp/documents/17440/kekkaku_check.pdf" target="_blank">kekkaku_check.pdf</a><br>
+                        処分手引(全文): <a href="https://www.pref.yamagata.jp/documents/17440/shobun_tebiki_all.pdf" target="_blank">shobun_tebiki_all.pdf</a><br>
+                        処分チェック表: <a href="https://www.pref.yamagata.jp/documents/17440/shobun_tebiki_check.pdf" target="_blank">shobun_tebiki_check.pdf</a><br>
+                        処分本文(記載方法): <a href="https://www.pref.yamagata.jp/documents/17440/shobun_tebiki_honbun.pdf" target="_blank">shobun_tebiki_honbun.pdf</a><br>
+                        処分記載例: <a href="https://www.pref.yamagata.jp/documents/17440/shobun_tebiki_kisairei.pdf" target="_blank">shobun_tebiki_kisairei.pdf</a><br>
+                        収運手引(全文): <a href="https://www.pref.yamagata.jp/documents/17440/shuun_tebiki_all.pdf" target="_blank">shuun_tebiki_all.pdf</a><br>
+                        収運チェック表: <a href="https://www.pref.yamagata.jp/documents/17440/shuun_tebiki_check.pdf" target="_blank">shuun_tebiki_check.pdf</a><br>
+                        収運記載方法: <a href="https://www.pref.yamagata.jp/documents/17440/shuun_tebiki_kisaihouhou.pdf" target="_blank">shuun_tebiki_kisaihouhou.pdf</a><br>
+                        収運記載例: <a href="https://www.pref.yamagata.jp/documents/17440/shuun_tebiki_kisairei.pdf" target="_blank">shuun_tebiki_kisairei.pdf</a><br>
+                        掲載ページ: <a href="https://www.pref.yamagata.jp/050010/kurashi/kankyo/haikibutsu/shorigyousha/horigyotetsuduki2020.html" target="_blank">山形県 産業廃棄物処理業関係手続き</a>
+                    </li>
+                    <li>
+                        <strong>各種許可申請書式（様式第6号、8号、10号、12号、14号、16号）</strong><br>
+                        様式第6号(収運): <a href="https://www.pref.yamagata.jp/documents/17440/yo6-r060226.docx" target="_blank">yo6-r060226.docx</a><br>
+                        様式第8号(処分): <a href="https://www.pref.yamagata.jp/documents/17440/yo8-r060226-.docx" target="_blank">yo8-r060226-.docx</a><br>
+                        様式第10号(変更): <a href="https://www.pref.yamagata.jp/documents/17440/yo10-r060226.docx" target="_blank">yo10-r060226.docx</a><br>
+                        様式第12号(特管収運): <a href="https://www.pref.yamagata.jp/documents/17440/yo12-r060226.docx" target="_blank">yo12-r060226.docx</a><br>
+                        様式第14号(特管処分): <a href="https://www.pref.yamagata.jp/documents/17440/yo14-r060226.docx" target="_blank">yo14-r060226.docx</a><br>
+                        様式第16号(特管変更): <a href="https://www.pref.yamagata.jp/documents/17440/yo16-r060226.docx" target="_blank">yo16-r060226.docx</a><br>
+                        掲載ページ: <a href="https://www.pref.yamagata.jp/050010/kurashi/kankyo/haikibutsu/shorigyousha/horigyotetsuduki2020.html" target="_blank">山形県 産業廃棄物処理業関係手続き</a>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>
