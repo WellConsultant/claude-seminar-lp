@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>山形県 産業廃棄物処理業許可申請｜お客様確認ページ</title>
+<style>
+:root{--navy:#16324f;--blue:#245f8f;--sky:#eaf4fb;--ink:#1e2933;--muted:#61707e;--line:#d9e2e8;--bg:#f4f7f9;--white:#fff;--warn:#fff1cf;--ok:#157347;--shadow:0 8px 24px rgba(22,50,79,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.75}
+button,input,textarea{font:inherit}.hero{background:linear-gradient(135deg,#102a43,#245f8f);color:#fff;padding:52px 24px 46px}.hero-inner,.layout,.footer-inner{max-width:1240px;margin:auto}.eyebrow{margin:0 0 8px;font-weight:700;color:#bfe3fb;letter-spacing:.06em}.hero h1{font-size:clamp(28px,4vw,46px);line-height:1.3;margin:0 0 14px}.hero p{max-width:800px;margin:0;color:#e8f3fa}.statusbar{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}.status{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:12px 16px;min-width:180px}.status strong{display:block;font-size:24px}.toolbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);box-shadow:0 3px 12px rgba(22,50,79,.06)}.toolbar-inner{max-width:1240px;margin:auto;padding:10px 24px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.toolbar a,.toolbar button{border:0;border-radius:8px;padding:9px 14px;text-decoration:none;font-weight:700;cursor:pointer}.toolbar a{color:var(--navy);background:var(--sky)}.toolbar button{color:#fff;background:var(--navy)}.toolbar .secondary{background:#eef2f5;color:var(--navy)}.save-state{margin-left:auto;color:var(--muted);font-size:13px}.layout{padding:34px 24px 70px}.notice{background:#fff;border-left:5px solid var(--blue);border-radius:10px;padding:18px 20px;box-shadow:var(--shadow);margin-bottom:30px}.notice h2{font-size:18px;margin:0 0 4px}.notice p{margin:0;color:var(--muted)}.section{scroll-margin-top:76px;margin-top:44px}.section-title{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}.section-index{display:grid;place-items:center;min-width:48px;height:48px;border-radius:12px;background:var(--navy);color:#fff;font-size:22px;font-weight:800}.section-title h2{font-size:clamp(24px,3vw,34px);line-height:1.35;margin:0}.section-title p{margin:4px 0 0;color:var(--muted)}.question-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.question-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow);break-inside:avoid}.question-card:has(input[type=radio]:checked){border-color:#77a8ca}.question-head{display:flex;align-items:center;gap:9px}.number{display:grid;place-items:center;width:32px;height:32px;background:var(--navy);color:#fff;border-radius:50%;font-weight:800}.badge{display:inline-block;background:var(--sky);color:#164f78;border:1px solid #cbe1ef;border-radius:999px;padding:3px 10px;font-size:13px;font-weight:700}.badge.small{font-size:12px;white-space:nowrap}.question-card h3{font-size:17px;line-height:1.65;margin:13px 0}.answer-options{display:flex;gap:8px;flex-wrap:wrap}.answer-options label{border:1px solid var(--line);border-radius:8px;padding:7px 11px;cursor:pointer;background:#fafcfd}.answer-options label:has(input:checked){background:#dff1ff;border-color:#5d9dc7}.memo-label{display:block;margin-top:14px;font-size:13px;font-weight:700;color:var(--muted)}textarea{display:block;width:100%;margin-top:5px;border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical;color:var(--ink);background:#fff}.evidence{margin-top:14px;background:#f6f8fa;border-radius:9px;padding:11px 13px}.evidence>span{font-size:12px;font-weight:800;color:var(--blue)}.evidence p{margin:2px 0 0;font-size:13px;color:#4e5e6b}.important{color:#b42318}mark{background:var(--warn);padding:1px 3px;border-radius:3px}.table-wrap{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:auto;box-shadow:var(--shadow)}table{width:100%;border-collapse:separate;border-spacing:0;min-width:1160px;font-size:13px}th{position:sticky;top:60px;z-index:2;background:var(--navy);color:#fff;text-align:left;padding:12px 10px;white-space:nowrap}td{border-bottom:1px solid var(--line);padding:11px 10px;vertical-align:top}tbody tr:nth-child(even){background:#f9fbfc}tbody tr:has(input:checked){background:#edf8f1;color:#52635b}.check-cell{text-align:center;width:46px}.check-cell input{width:20px;height:20px;accent-color:var(--ok)}.no-cell{text-align:center;font-weight:800}.doc-name{font-weight:800;min-width:180px}.note-cell{min-width:270px}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.filter-btn{border:1px solid #bbceda;background:#fff;color:var(--navy);border-radius:999px;padding:6px 12px;cursor:pointer}.filter-btn.active{background:var(--navy);color:#fff}.footer{background:#102a43;color:#dcebf5;padding:28px 24px}.footer p{margin:0;font-size:13px}.print-note{display:none}
+@media(max-width:820px){.question-grid{grid-template-columns:1fr}.save-state{width:100%;margin-left:0}.hero{padding-top:38px}.toolbar-inner{padding:9px 14px}.layout{padding:26px 14px 50px}.question-card{padding:17px}.answer-options label{flex:1 1 calc(50% - 8px);text-align:center}}
+@media print{@page{size:A4;margin:11mm}body{background:#fff;font-size:10pt}.hero{padding:18px;background:#fff;color:#111;border-bottom:2px solid #16324f}.hero p,.statusbar,.toolbar,.notice,.filters,.footer{display:none}.hero h1{font-size:20pt}.layout{max-width:none;padding:14px 0}.section{margin-top:22px;scroll-margin:0}.section-title{margin-bottom:10px}.section-title h2{font-size:17pt}.section-index{width:35px;min-width:35px;height:35px}.question-grid{display:block}.question-card{box-shadow:none;margin-bottom:9px;padding:12px;border-radius:6px}.question-card h3{font-size:11pt;margin:7px 0}.answer-options label{padding:3px 7px}.evidence{padding:6px}.print-note{display:block}textarea{min-height:44px}table{min-width:0;font-size:7.2pt}th{position:static;padding:5px;background:#16324f!important;color:#fff!important}td{padding:5px}.badge{border:0;padding:1px 4px}.table-wrap{overflow:visible;box-shadow:none}.section:last-of-type{break-before:page}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="hero-inner"><p class="eyebrow">山形県｜産業廃棄物処理業許可申請</p><h1>お客様ヒアリング・必要書類確認ページ</h1><p>許可区分・申請要件・車両・施設・財務状況を確認し、申請準備に必要な書類を漏れなく整理するためのページです。</p><div class="statusbar"><div class="status"><span>ヒアリング回答</span><strong id="answer-count">0 / 17</strong></div><div class="status"><span>準備済み書類</span><strong id="doc-count">0 / 29</strong></div></div></div></header>
+<nav class="toolbar" aria-label="ページ操作"><div class="toolbar-inner"><a href="#hearing">1. ヒアリング</a><a href="#documents">2. 必要書類</a><button type="button" onclick="saveData()">入力内容を保存</button><button class="secondary" type="button" onclick="window.print()">印刷・PDF保存</button><button class="secondary" type="button" onclick="resetData()">入力をリセット</button><span class="save-state" id="save-state">この端末内に自動保存されます</span></div></nav>
+<main class="layout">
+<aside class="notice"><h2>ご確認ください</h2><p>「【要確認】」の表示がある項目は、申請先への事前確認が必要です。証明書類の有効期限、提出部数、手数料は申請時点の最新情報を行政書士が最終確認します。</p></aside>
+<section class="section" id="hearing"><div class="section-title"><span class="section-index">1</span><div><h2>新規許可申請用ヒアリングシート</h2><p>全17項目。該当する回答を選び、必要に応じて補足事項をご記入ください。</p></div></div><div class="question-grid">
+  <article class="question-card" id="q-1" data-category="申請区分">
+    <div class="question-head"><span class="number">1</span><span class="badge">申請区分</span></div>
+    <h3>申請するのは「収集運搬業」「処分業」のどちらか？また「普通」「特別管理」のどちらか？</h3>
+    <div class="answer-options" role="group" aria-label="設問1の回答">
+      <label><input type="radio" name="answer-1" value="はい"> はい</label>
+      <label><input type="radio" name="answer-1" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-1" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-1" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-1" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>【資料11-32頁】【資料10-13頁】</p></div>
+  </article>
+  <article class="question-card" id="q-2" data-category="申請区分">
+    <div class="question-head"><span class="number">2</span><span class="badge">申請区分</span></div>
+    <h3>取扱品目に「石綿含有」「水銀使用製品」「水銀含有ばいじん等」は含まれるか？</h3>
+    <div class="answer-options" role="group" aria-label="設問2の回答">
+      <label><input type="radio" name="answer-2" value="はい"> はい</label>
+      <label><input type="radio" name="answer-2" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-2" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-2" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-2" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>記載ルールが厳格で補正になりやすいため詳細確認必須【資料11-38頁】</p></div>
+  </article>
+  <article class="question-card" id="q-3" data-category="管轄確認">
+    <div class="question-head"><span class="number">3</span><span class="badge">管轄確認</span></div>
+    <h3>主たる事務所や施設は「山形県内」か「山形県外」か？</h3>
+    <div class="answer-options" role="group" aria-label="設問3の回答">
+      <label><input type="radio" name="answer-3" value="はい"> はい</label>
+      <label><input type="radio" name="answer-3" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-3" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-3" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-3" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>県外事業者は原則「郵送受付」となる【資料19-1頁】</p></div>
+  </article>
+  <article class="question-card" id="q-4" data-category="管轄確認">
+    <div class="question-head"><span class="number">4</span><span class="badge">管轄確認</span></div>
+    <h3>山形市内に「積替保管施設」や「処分施設」を設置する予定はあるか？</h3>
+    <div class="answer-options" role="group" aria-label="設問4の回答">
+      <label><input type="radio" name="answer-4" value="はい"> はい</label>
+      <label><input type="radio" name="answer-4" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-4" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-4" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-4" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>設置する場合は県ではなく「山形市長」の許可になる【資料11-32頁】【資料10-14頁】</p></div>
+  </article>
+  <article class="question-card" id="q-5" data-category="法人/個人">
+    <div class="question-head"><span class="number">5</span><span class="badge">法人/個人</span></div>
+    <h3>申請者は「法人」か「個人」か？（個人の場合、未成年ではないか？）</h3>
+    <div class="answer-options" role="group" aria-label="設問5の回答">
+      <label><input type="radio" name="answer-5" value="はい"> はい</label>
+      <label><input type="radio" name="answer-5" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-5" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-5" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-5" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>未成年の場合は法定代理人の書類が追加で必要【資料11-41頁】</p></div>
+  </article>
+  <article class="question-card" id="q-6" data-category="許可要件(人)">
+    <div class="question-head"><span class="number">6</span><span class="badge">許可要件(人)</span></div>
+    <h3>申請者、全役員、5%以上の株主、政令使用人に「欠格要件」に該当する者はいないか？</h3>
+    <div class="answer-options" role="group" aria-label="設問6の回答">
+      <label><input type="radio" name="answer-6" value="はい"> はい</label>
+      <label><input type="radio" name="answer-6" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-6" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-6" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-6" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>破産、禁錮刑以上、罰金刑等の該当有無。欠格要件チェック表で念入りに確認【資料11-36頁】【資料18-1頁】</p></div>
+  </article>
+  <article class="question-card" id="q-7" data-category="許可要件(人)">
+    <div class="question-head"><span class="number">7</span><span class="badge">許可要件(人)</span></div>
+    <h3>JWTCの「新規許可講習会」を修了しているか？（法人は代表/役員/政令使用人、個人は本人/政令使用人）</h3>
+    <div class="answer-options" role="group" aria-label="設問7の回答">
+      <label><input type="radio" name="answer-7" value="はい"> はい</label>
+      <label><input type="radio" name="answer-7" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-7" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-7" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-7" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>※「更新用(2年有効)」は不可。「新規用(5年有効)」であること【資料11-35,36頁】</p></div>
+  </article>
+  <article class="question-card" id="q-8" data-category="許可要件(経理)">
+    <div class="question-head"><span class="number">8</span><span class="badge">許可要件(経理)</span></div>
+    <h3>【法人の場合】直前3年の決算において、債務超過や赤字の状況はないか？</h3>
+    <div class="answer-options" role="group" aria-label="設問8の回答">
+      <label><input type="radio" name="answer-8" value="はい"> はい</label>
+      <label><input type="radio" name="answer-8" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-8" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-8" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-8" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>国の通知に基づく審査。要件を満たさない場合は「経営改善計画書」や「中小企業診断士の診断書等」が追加で要求される【資料9-8頁】</p></div>
+  </article>
+  <article class="question-card" id="q-9" data-category="許可要件(経理)">
+    <div class="question-head"><span class="number">9</span><span class="badge">許可要件(経理)</span></div>
+    <h3>【個人の場合】経理的基礎を証明する資産（銀行残高など）は十分にあるか？</h3>
+    <div class="answer-options" role="group" aria-label="設問9の回答">
+      <label><input type="radio" name="answer-9" value="はい"> はい</label>
+      <label><input type="radio" name="answer-9" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-9" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-9" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-9" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>資産に関する調書に添付する「資産証明書」の具体的内容は市町村発行のものか<mark>【要確認】</mark>【資料9-8頁】</p></div>
+  </article>
+  <article class="question-card" id="q-10" data-category="独自ルール">
+    <div class="question-head"><span class="number">10</span><span class="badge">独自ルール</span></div>
+    <h3>【重要】過去5年以内に「山形県知事」から産廃関係の先行許可を受けているか？</h3>
+    <div class="answer-options" role="group" aria-label="設問10の回答">
+      <label><input type="radio" name="answer-10" value="はい"> はい</label>
+      <label><input type="radio" name="answer-10" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-10" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-10" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-10" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>受けている場合、住民票・登記事項証明書・誓約書の添付が省略可能【資料11-39頁】</p></div>
+  </article>
+  <article class="question-card" id="q-11" data-category="収運業・設備">
+    <div class="question-head"><span class="number">11</span><span class="badge">収運業・設備</span></div>
+    <h3>登録する運搬車両は自社所有か、他者からの借用（リース等）か？</h3>
+    <div class="answer-options" role="group" aria-label="設問11の回答">
+      <label><input type="radio" name="answer-11" value="はい"> はい</label>
+      <label><input type="radio" name="answer-11" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-11" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-11" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-11" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>借用の場合は「使用承諾書等」が必要。また電子車検証の添付方法は<mark>【要確認】</mark>【資料8-65頁】</p></div>
+  </article>
+  <article class="question-card" id="q-12" data-category="収運業・設備">
+    <div class="question-head"><span class="number">12</span><span class="badge">収運業・設備</span></div>
+    <h3>液体や飛散性廃棄物の運搬に「専用容器」を使用するか？</h3>
+    <div class="answer-options" role="group" aria-label="設問12の回答">
+      <label><input type="radio" name="answer-12" value="はい"> はい</label>
+      <label><input type="radio" name="answer-12" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-12" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-12" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-12" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>使用する場合は容器の構造図・写真が必要【資料9-9頁】</p></div>
+  </article>
+  <article class="question-card" id="q-13" data-category="収運業・設備">
+    <div class="question-head"><span class="number">13</span><span class="badge">収運業・設備</span></div>
+    <h3>車両の駐車施設（駐車場）は自社所有か、借用（賃貸）か？</h3>
+    <div class="answer-options" role="group" aria-label="設問13の回答">
+      <label><input type="radio" name="answer-13" value="はい"> はい</label>
+      <label><input type="radio" name="answer-13" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-13" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-13" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-13" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>借用の場合は「賃貸借契約書等」が必要【資料8-65頁】</p></div>
+  </article>
+  <article class="question-card" id="q-14" data-category="処分業・設備">
+    <div class="question-head"><span class="number">14</span><span class="badge">処分業・設備</span></div>
+    <h3>【処分業のみ】山形県指導要綱に基づく「事前協議」は完了しているか？</h3>
+    <div class="answer-options" role="group" aria-label="設問14の回答">
+      <label><input type="radio" name="answer-14" value="はい"> はい</label>
+      <label><input type="radio" name="answer-14" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-14" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-14" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-14" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>申請前に知事との協議完了が必須。猶予期限があるかは<mark>【要確認】</mark>【資料10-14頁】</p></div>
+  </article>
+  <article class="question-card" id="q-15" data-category="処分業・設備">
+    <div class="question-head"><span class="number">15</span><span class="badge">処分業・設備</span></div>
+    <h3>【処分業のみ】大気汚染防止法、消防法など他法令の規制確認・手続きは済んでいるか？</h3>
+    <div class="answer-options" role="group" aria-label="設問15の回答">
+      <label><input type="radio" name="answer-15" value="はい"> はい</label>
+      <label><input type="radio" name="answer-15" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-15" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-15" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-15" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>担当課への事前確認が必須【資料10-14,15頁】</p></div>
+  </article>
+  <article class="question-card" id="q-16" data-category="処分業・設備">
+    <div class="question-head"><span class="number">16</span><span class="badge">処分業・設備</span></div>
+    <h3>【処分業のみ】処分施設およびその敷地は自社所有か、借用か？</h3>
+    <div class="answer-options" role="group" aria-label="設問16の回答">
+      <label><input type="radio" name="answer-16" value="はい"> はい</label>
+      <label><input type="radio" name="answer-16" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-16" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-16" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-16" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>登記等で証明できない場合の所有権証明書類は<mark>【要確認】</mark>。借用の場合は賃貸借契約書等が必要【資料8-65頁】</p></div>
+  </article>
+  <article class="question-card" id="q-17" data-category="処分業・特管">
+    <div class="question-head"><span class="number">17</span><span class="badge">処分業・特管</span></div>
+    <h3>【特管処分業のみ】性状の分析を行う担当者の資格・技能証明書類は用意できるか？</h3>
+    <div class="answer-options" role="group" aria-label="設問17の回答">
+      <label><input type="radio" name="answer-17" value="はい"> はい</label>
+      <label><input type="radio" name="answer-17" value="いいえ"> いいえ</label>
+      <label><input type="radio" name="answer-17" value="該当なし"> 該当なし</label>
+      <label><input type="radio" name="answer-17" value="確認中"> 確認中</label>
+    </div>
+    <label class="memo-label">回答・補足事項<textarea name="memo-17" rows="3" placeholder="具体的な内容、対象者、車両・施設情報などをご記入ください。"></textarea></label>
+    <div class="evidence"><span>根拠・注意点</span><p>社内分析担当者の知識技能を証する書類が必要【資料9-8頁】</p></div>
+  </article></div></section>
+<section class="section" id="documents"><div class="section-title"><span class="section-index">2</span><div><h2>収集すべき書類一覧</h2><p>全29項目。準備できた書類の左端をチェックしてください。</p></div></div><div class="filters" id="filters"></div><div class="table-wrap"><table><thead><tr><th>準備</th><th>No.</th><th>区分</th><th>書類名</th><th>対象者</th><th>手配担当</th><th>原本／写し・部数・期限</th><th>備考・注意点（根拠資料）</th></tr></thead><tbody>
+  <tr data-category="基本">
+    <td class="check-cell"><input type="checkbox" name="doc-1" aria-label="許可申請書（第1〜3面）を準備済みにする"></td>
+    <td class="no-cell">1</td>
+    <td><span class="badge small">基本</span></td>
+    <td class="doc-name">許可申請書（第1〜3面）</td>
+    <td>全員</td>
+    <td>行政書士作成</td>
+    <td>正本1部</td>
+    <td class="note-cell">指定様式。控えは各自保管【資料11-38頁】</td>
+  </tr>
+  <tr data-category="基本">
+    <td class="check-cell"><input type="checkbox" name="doc-2" aria-label="事業計画の概要を準備済みにする"></td>
+    <td class="no-cell">2</td>
+    <td><span class="badge small">基本</span></td>
+    <td class="doc-name">事業計画の概要</td>
+    <td>全員</td>
+    <td>行政書士作成</td>
+    <td>1部</td>
+    <td class="note-cell">全体計画、種類・量、措置概要等【資料11-38頁】</td>
+  </tr>
+  <tr data-category="基本">
+    <td class="check-cell"><input type="checkbox" name="doc-3" aria-label="誓約書を準備済みにする"></td>
+    <td class="no-cell">3</td>
+    <td><span class="badge small">基本</span></td>
+    <td class="doc-name">誓約書</td>
+    <td>全員</td>
+    <td>行政書士作成</td>
+    <td>1部（依頼者署名）</td>
+    <td class="note-cell">法人は役員・政令使用人・5%以上株主全員分【資料11-38, 42頁】</td>
+  </tr>
+  <tr data-category="基本">
+    <td class="check-cell"><input type="checkbox" name="doc-4" aria-label="欠格要件チェック表を準備済みにする"></td>
+    <td class="no-cell">4</td>
+    <td><span class="badge small">基本</span></td>
+    <td class="doc-name">欠格要件チェック表</td>
+    <td>全員</td>
+    <td>行政書士作成</td>
+    <td>1部（依頼者署名）</td>
+    <td class="note-cell">誓約書に添付する【資料11-42, 58頁】</td>
+  </tr>
+  <tr data-category="基本">
+    <td class="check-cell"><input type="checkbox" name="doc-5" aria-label="県民税等に関する申告書を準備済みにする"></td>
+    <td class="no-cell">5</td>
+    <td><span class="badge small">基本</span></td>
+    <td class="doc-name">県民税等に関する申告書</td>
+    <td>全員</td>
+    <td>行政書士作成</td>
+    <td>1部</td>
+    <td class="note-cell">納税義務・社保納付義務等がない場合に提出【資料24-44, 47頁】</td>
+  </tr>
+  <tr data-category="要件">
+    <td class="check-cell"><input type="checkbox" name="doc-6" aria-label="講習会修了証の写しを準備済みにする"></td>
+    <td class="no-cell">6</td>
+    <td><span class="badge small">要件</span></td>
+    <td class="doc-name">講習会修了証の写し</td>
+    <td>全員</td>
+    <td>依頼者用意</td>
+    <td>写し 1部</td>
+    <td class="note-cell">新規は5年以内有効のもの【資料11-35, 36頁】</td>
+  </tr>
+  <tr data-category="公証">
+    <td class="check-cell"><input type="checkbox" name="doc-7" aria-label="住民票の写しを準備済みにする"></td>
+    <td class="no-cell">7</td>
+    <td><span class="badge small">公証</span></td>
+    <td class="doc-name">住民票の写し</td>
+    <td>全員</td>
+    <td>行政書士取得</td>
+    <td>原本 各1部（3ヶ月以内）</td>
+    <td class="note-cell">本籍記載あり、マイナンバーなし。全役員・政令使用人分【資料11-39頁】</td>
+  </tr>
+  <tr data-category="公証">
+    <td class="check-cell"><input type="checkbox" name="doc-8" aria-label="登記されていないことの証明書を準備済みにする"></td>
+    <td class="no-cell">8</td>
+    <td><span class="badge small">公証</span></td>
+    <td class="doc-name">登記されていないことの証明書</td>
+    <td>全員</td>
+    <td>行政書士取得</td>
+    <td>原本 各1部（3ヶ月以内）</td>
+    <td class="note-cell">全役員・政令使用人分【資料11-39頁】</td>
+  </tr>
+  <tr data-category="法人">
+    <td class="check-cell"><input type="checkbox" name="doc-9" aria-label="履歴事項全部証明書を準備済みにする"></td>
+    <td class="no-cell">9</td>
+    <td><span class="badge small">法人</span></td>
+    <td class="doc-name">履歴事項全部証明書</td>
+    <td>法人のみ</td>
+    <td>行政書士取得</td>
+    <td>原本 1部（3ヶ月以内）</td>
+    <td class="note-cell">【資料19-5頁】</td>
+  </tr>
+  <tr data-category="法人">
+    <td class="check-cell"><input type="checkbox" name="doc-10" aria-label="定款又は寄附行為の写しを準備済みにする"></td>
+    <td class="no-cell">10</td>
+    <td><span class="badge small">法人</span></td>
+    <td class="doc-name">定款又は寄附行為の写し</td>
+    <td>法人のみ</td>
+    <td>依頼者用意</td>
+    <td>写し 1部</td>
+    <td class="note-cell">現行のもので、原本と相違ない旨の原本照合捺印必須【資料19-5頁】</td>
+  </tr>
+  <tr data-category="法人">
+    <td class="check-cell"><input type="checkbox" name="doc-11" aria-label="財務諸表（貸借、損益等）を準備済みにする"></td>
+    <td class="no-cell">11</td>
+    <td><span class="badge small">法人</span></td>
+    <td class="doc-name">財務諸表（貸借、損益等）</td>
+    <td>法人のみ</td>
+    <td>依頼者用意</td>
+    <td>写し 1部</td>
+    <td class="note-cell">直前3事業年度分【資料19-5頁】</td>
+  </tr>
+  <tr data-category="法人">
+    <td class="check-cell"><input type="checkbox" name="doc-12" aria-label="法人税の納税証明書（その1）を準備済みにする"></td>
+    <td class="no-cell">12</td>
+    <td><span class="badge small">法人</span></td>
+    <td class="doc-name">法人税の納税証明書（その1）</td>
+    <td>法人のみ</td>
+    <td>行政書士取得</td>
+    <td>原本 1部（3ヶ月以内）</td>
+    <td class="note-cell">直前3年分<mark>【要確認：手引きには所得税と記載あり】</mark>【資料19-5頁】</td>
+  </tr>
+  <tr data-category="個人">
+    <td class="check-cell"><input type="checkbox" name="doc-13" aria-label="資産に関する調書を準備済みにする"></td>
+    <td class="no-cell">13</td>
+    <td><span class="badge small">個人</span></td>
+    <td class="doc-name">資産に関する調書</td>
+    <td>個人のみ</td>
+    <td>依頼者用意</td>
+    <td>1部</td>
+    <td class="note-cell">銀行残高証明書と資産証明書（詳細<mark>【要確認】</mark>）を添付【資料9-8頁】</td>
+  </tr>
+  <tr data-category="個人">
+    <td class="check-cell"><input type="checkbox" name="doc-14" aria-label="所得税納税証明書（その1）を準備済みにする"></td>
+    <td class="no-cell">14</td>
+    <td><span class="badge small">個人</span></td>
+    <td class="doc-name">所得税納税証明書（その1）</td>
+    <td>個人のみ</td>
+    <td>行政書士取得</td>
+    <td>原本 1部（3ヶ月以内）</td>
+    <td class="note-cell">直前3年分【資料9-8頁】</td>
+  </tr>
+  <tr data-category="個人">
+    <td class="check-cell"><input type="checkbox" name="doc-15" aria-label="確定申告書の写しを準備済みにする"></td>
+    <td class="no-cell">15</td>
+    <td><span class="badge small">個人</span></td>
+    <td class="doc-name">確定申告書の写し</td>
+    <td>個人のみ</td>
+    <td>依頼者用意</td>
+    <td>写し 1部</td>
+    <td class="note-cell">直前3年分。税務署の受付印等があるもの【資料9-8頁】</td>
+  </tr>
+  <tr data-category="収運">
+    <td class="check-cell"><input type="checkbox" name="doc-16" aria-label="運搬車両の写真を準備済みにする"></td>
+    <td class="no-cell">16</td>
+    <td><span class="badge small">収運</span></td>
+    <td class="doc-name">運搬車両の写真</td>
+    <td>収運業</td>
+    <td>依頼者撮影</td>
+    <td>各1部</td>
+    <td class="note-cell">車体全景、ナンバーが確実に写ること【資料8-65頁】</td>
+  </tr>
+  <tr data-category="収運">
+    <td class="check-cell"><input type="checkbox" name="doc-17" aria-label="自動車検査証（車検証）の写しを準備済みにする"></td>
+    <td class="no-cell">17</td>
+    <td><span class="badge small">収運</span></td>
+    <td class="doc-name">自動車検査証（車検証）の写し</td>
+    <td>収運業</td>
+    <td>依頼者用意</td>
+    <td>写し 各1部</td>
+    <td class="note-cell">有効期間内のもの。電子車検証時の取扱は<mark>【要確認】</mark>【資料8-65頁】</td>
+  </tr>
+  <tr data-category="収運">
+    <td class="check-cell"><input type="checkbox" name="doc-18" aria-label="使用承諾書等の写しを準備済みにする"></td>
+    <td class="no-cell">18</td>
+    <td><span class="badge small">収運</span></td>
+    <td class="doc-name">使用承諾書等の写し</td>
+    <td>該当のみ</td>
+    <td>依頼者用意</td>
+    <td>写し 各1部</td>
+    <td class="note-cell">車両を他人から借用している場合【資料8-65頁】</td>
+  </tr>
+  <tr data-category="収運">
+    <td class="check-cell"><input type="checkbox" name="doc-19" aria-label="運搬容器の構造図・写真を準備済みにする"></td>
+    <td class="no-cell">19</td>
+    <td><span class="badge small">収運</span></td>
+    <td class="doc-name">運搬容器の構造図・写真</td>
+    <td>該当のみ</td>
+    <td>依頼者用意</td>
+    <td>各1部</td>
+    <td class="note-cell">液体や飛散性廃棄物の運搬に容器を使用する場合【資料9-9頁】</td>
+  </tr>
+  <tr data-category="施設">
+    <td class="check-cell"><input type="checkbox" name="doc-20" aria-label="駐車施設・処分施設の付近見取図を準備済みにする"></td>
+    <td class="no-cell">20</td>
+    <td><span class="badge small">施設</span></td>
+    <td class="doc-name">駐車施設・処分施設の付近見取図</td>
+    <td>全員</td>
+    <td>行政書士作成</td>
+    <td>各1部</td>
+    <td class="note-cell">実地図より該当部分を明示して作成【資料8-65頁】</td>
+  </tr>
+  <tr data-category="施設">
+    <td class="check-cell"><input type="checkbox" name="doc-21" aria-label="駐車施設・処分施設の写真を準備済みにする"></td>
+    <td class="no-cell">21</td>
+    <td><span class="badge small">施設</span></td>
+    <td class="doc-name">駐車施設・処分施設の写真</td>
+    <td>全員</td>
+    <td>依頼者撮影</td>
+    <td>各1部</td>
+    <td class="note-cell">区画が明確なもの。処分施設は全景・内部・看板【資料8-65頁】</td>
+  </tr>
+  <tr data-category="施設">
+    <td class="check-cell"><input type="checkbox" name="doc-22" aria-label="土地・建物登記事項証明書を準備済みにする"></td>
+    <td class="no-cell">22</td>
+    <td><span class="badge small">施設</span></td>
+    <td class="doc-name">土地・建物登記事項証明書</td>
+    <td>全員</td>
+    <td>行政書士取得</td>
+    <td>原本 1部（3ヶ月以内）</td>
+    <td class="note-cell">駐車場・処分施設の権利証明用【資料8-65頁】</td>
+  </tr>
+  <tr data-category="施設">
+    <td class="check-cell"><input type="checkbox" name="doc-23" aria-label="公図（字限図）を準備済みにする"></td>
+    <td class="no-cell">23</td>
+    <td><span class="badge small">施設</span></td>
+    <td class="doc-name">公図（字限図）</td>
+    <td>全員</td>
+    <td>行政書士取得</td>
+    <td>原本 1部（3ヶ月以内）</td>
+    <td class="note-cell">敷地境界の明示用【資料8-65頁】</td>
+  </tr>
+  <tr data-category="施設">
+    <td class="check-cell"><input type="checkbox" name="doc-24" aria-label="賃貸借契約書等の写しを準備済みにする"></td>
+    <td class="no-cell">24</td>
+    <td><span class="badge small">施設</span></td>
+    <td class="doc-name">賃貸借契約書等の写し</td>
+    <td>該当のみ</td>
+    <td>依頼者用意</td>
+    <td>写し 1部</td>
+    <td class="note-cell">駐車場や施設敷地を借用している場合【資料8-65頁】</td>
+  </tr>
+  <tr data-category="処分">
+    <td class="check-cell"><input type="checkbox" name="doc-25" aria-label="処分施設の図面・設計計算書を準備済みにする"></td>
+    <td class="no-cell">25</td>
+    <td><span class="badge small">処分</span></td>
+    <td class="doc-name">処分施設の図面・設計計算書</td>
+    <td>処分業</td>
+    <td>依頼者用意</td>
+    <td>各1部</td>
+    <td class="note-cell">平面・立面・断面・構造図、容量計算・能力計算書【資料8-65頁】</td>
+  </tr>
+  <tr data-category="処分">
+    <td class="check-cell"><input type="checkbox" name="doc-26" aria-label="所有権を有することを示す書類を準備済みにする"></td>
+    <td class="no-cell">26</td>
+    <td><span class="badge small">処分</span></td>
+    <td class="doc-name">所有権を有することを示す書類</td>
+    <td>処分業</td>
+    <td>行政・依頼者</td>
+    <td>1部</td>
+    <td class="note-cell">登記等で証明できない場合<mark>【要確認】</mark>【資料8-65頁】</td>
+  </tr>
+  <tr data-category="処分">
+    <td class="check-cell"><input type="checkbox" name="doc-27" aria-label="分析技能証明書を準備済みにする"></td>
+    <td class="no-cell">27</td>
+    <td><span class="badge small">処分</span></td>
+    <td class="doc-name">分析技能証明書</td>
+    <td>特管処分</td>
+    <td>依頼者用意</td>
+    <td>写し 1部</td>
+    <td class="note-cell">性状分析担当者の知識技能を証する書類【資料9-8頁】</td>
+  </tr>
+  <tr data-category="県外">
+    <td class="check-cell"><input type="checkbox" name="doc-28" aria-label="返信用・送付用封筒（郵送用）を準備済みにする"></td>
+    <td class="no-cell">28</td>
+    <td><span class="badge small">県外</span></td>
+    <td class="doc-name">返信用・送付用封筒（郵送用）</td>
+    <td>県外業者</td>
+    <td>行政書士手配</td>
+    <td>各1部</td>
+    <td class="note-cell">副本返信用:110円切手/長3。許可証用:レターパック等【資料19-1頁】</td>
+  </tr>
+  <tr data-category="手数料">
+    <td class="check-cell"><input type="checkbox" name="doc-29" aria-label="山形県収入証紙を準備済みにする"></td>
+    <td class="no-cell">29</td>
+    <td><span class="badge small">手数料</span></td>
+    <td class="doc-name">山形県収入証紙</td>
+    <td>全員</td>
+    <td>依頼者/書士</td>
+    <td>-</td>
+    <td class="note-cell">収運8.1万、処分10万。県外郵送時の代理購入方法は<mark>【要確認】</mark>【資料19-1, 4頁】</td>
+  </tr></tbody></table></div></section>
+<p class="print-note">入力内容は印刷時点の内容です。提出前に行政書士による最終確認を受けてください。</p>
+</main>
+<footer class="footer"><div class="footer-inner"><p>本ページは申請準備の確認用です。許可取得を保証するものではありません。法令・運用・様式の改定がある場合は、申請時点の行政機関の案内を優先します。</p></div></footer>
+<script>
+const STORAGE_KEY='yamagata-sanpai-application-v1';
+const formControls=[...document.querySelectorAll('input,textarea')];
+function collect(){const data={};formControls.forEach(el=>{if(el.type==='radio'){if(el.checked)data[el.name]=el.value}else if(el.type==='checkbox'){data[el.name]=el.checked}else{data[el.name]=el.value}});return data}
+function apply(data){formControls.forEach(el=>{if(el.type==='radio')el.checked=data[el.name]===el.value;else if(el.type==='checkbox')el.checked=Boolean(data[el.name]);else if(data[el.name]!=null)el.value=data[el.name]});updateCounts()}
+function saveData(silent=false){localStorage.setItem(STORAGE_KEY,JSON.stringify(collect()));const el=document.getElementById('save-state');el.textContent='保存しました：'+new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});if(!silent)setTimeout(()=>el.textContent='この端末内に自動保存されます',2500)}
+function updateCounts(){document.getElementById('answer-count').textContent=document.querySelectorAll('input[type=radio]:checked').length+' / 17';document.getElementById('doc-count').textContent=document.querySelectorAll('input[type=checkbox]:checked').length+' / 29'}
+function resetData(){if(!confirm('入力内容とチェックをすべて消去します。よろしいですか？'))return;localStorage.removeItem(STORAGE_KEY);formControls.forEach(el=>{if(el.type==='radio'||el.type==='checkbox')el.checked=false;else el.value=''});updateCounts()}
+let timer;formControls.forEach(el=>el.addEventListener('input',()=>{updateCounts();clearTimeout(timer);timer=setTimeout(()=>saveData(true),400)}));
+const cats=['すべて',...new Set([...document.querySelectorAll('tbody tr')].map(r=>r.dataset.category))];const filters=document.getElementById('filters');cats.forEach((cat,i)=>{const b=document.createElement('button');b.type='button';b.className='filter-btn'+(i===0?' active':'');b.textContent=cat;b.onclick=()=>{document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('tbody tr').forEach(r=>r.hidden=cat!=='すべて'&&r.dataset.category!==cat)};filters.appendChild(b)});
+try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');apply(saved)}catch(e){updateCounts()}
+</script>
+</body></html>
