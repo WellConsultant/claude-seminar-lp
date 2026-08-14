@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="実際のChatGPT画面に近い操作型UIで、Chat・Work・Codex、作れる成果物、全機能、設定を学べる初心者向けガイド。">
+  <title>ChatGPT 全機能・完全操作ガイド｜2026年7月版</title>
+  <style>
+    :root{
+      --ink:#161718;--muted:#676b70;--line:#dededb;--paper:#f7f7f5;--white:#fff;
+      --side:#f2f2f0;--hover:#e7e7e4;--black:#202123;--navy:#0d2235;--navy2:#18384f;
+      --green:#0f6b54;--gold:#b3853a;--orange:#a6562c;--purple:#705583;--red:#9a453b;
+      --shadow:0 16px 42px rgba(0,0,0,.12);--radius:16px;--max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:66px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.72}
+    button,input{font:inherit}a{color:var(--navy2);text-underline-offset:3px}
+    .skip{position:absolute;left:-9999px}.skip:focus{left:10px;top:10px;z-index:999;background:#fff;padding:8px}
+    .guidebar{position:sticky;top:0;z-index:100;height:58px;background:rgba(15,26,35,.97);color:#fff;border-bottom:1px solid rgba(255,255,255,.12)}
+    .guidebar-in{height:100%;max-width:var(--max);margin:auto;padding:0 18px;display:flex;align-items:center;gap:16px}
+    .guide-logo{font-weight:800;white-space:nowrap}.guide-logo small{font-weight:500;opacity:.62;margin-left:7px}
+    .guide-nav{display:flex;gap:4px;overflow:auto;margin-left:auto;scrollbar-width:none}.guide-nav::-webkit-scrollbar{display:none}
+    .guide-nav a{color:#fff;text-decoration:none;padding:6px 9px;border-radius:8px;white-space:nowrap;font-size:.8rem}
+    .guide-nav a:hover{background:rgba(255,255,255,.12)}
+    .guide-intro{max-width:var(--max);margin:0 auto;padding:34px 18px 18px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end}
+    .kicker{font-size:.73rem;font-weight:800;letter-spacing:.15em;color:var(--gold)}
+    h1{font-size:clamp(2rem,4.2vw,3.65rem);line-height:1.08;letter-spacing:-.045em;color:var(--navy);margin:8px 0 12px}
+    .guide-intro p{max-width:760px;color:#444b50;margin:0}
+    .version{background:var(--navy);color:#fff;border-radius:12px;padding:12px 15px;font-size:.78rem;white-space:nowrap}
+
+    /* Actual-screen style simulator */
+    .screen-wrap{max-width:1320px;margin:18px auto 0;padding:0 14px}
+    .screen-label{display:flex;justify-content:space-between;align-items:center;margin:0 4px 8px;font-size:.76rem;color:var(--muted)}
+    .screen-label strong{color:var(--navy)}
+    .app{height:760px;position:relative;background:#fff;border:1px solid #c9c9c6;border-radius:18px;overflow:hidden;display:grid;grid-template-columns:248px 1fr 326px;box-shadow:var(--shadow)}
+    .app-sidebar{background:var(--side);border-right:1px solid #e4e4e1;padding:11px 10px;display:flex;flex-direction:column;min-width:0}
+    .side-top{height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 8px;margin-bottom:7px}
+    .oa-mark{width:29px;height:29px;border:2px solid #27292a;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:900}
+    .icon-btn{width:32px;height:32px;border:0;background:transparent;border-radius:8px;display:grid;place-items:center;color:#444;cursor:pointer}.icon-btn:hover{background:var(--hover)}
+    .side-menu{display:flex;flex-direction:column;gap:2px}
+    .side-item{width:100%;border:0;background:transparent;border-radius:9px;min-height:36px;padding:7px 9px;text-align:left;display:flex;align-items:center;gap:10px;color:#252627;cursor:pointer;font-size:.88rem}
+    .side-item:hover,.side-item.active{background:#e3e3df}.side-item .si{width:20px;text-align:center;font-size:.95rem}
+    .side-item .badge{margin-left:auto;background:var(--black);color:#fff;border-radius:8px;padding:0 5px;font-size:.64rem}
+    .side-divider{height:1px;background:#dddeda;margin:8px 6px}
+    .side-title{padding:9px 10px 5px;color:#777;font-size:.7rem;font-weight:700}
+    .recents{overflow:auto;min-height:0}.recent{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .profile{margin-top:auto;border-top:1px solid #dddeda;padding-top:8px}.avatar{width:27px;height:27px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:.7rem}
+    .app-main{min-width:0;position:relative;display:flex;flex-direction:column;background:#fff}
+    .app-top{height:56px;border-bottom:1px solid #ededeb;display:flex;align-items:center;padding:0 16px;gap:12px}
+    .mode-switch{display:flex;background:#f1f1ef;border-radius:10px;padding:3px;gap:2px}
+    .mode-btn{border:0;background:transparent;padding:6px 13px;border-radius:8px;font-size:.82rem;cursor:pointer;color:#626568}.mode-btn.active{background:#fff;color:#171819;box-shadow:0 1px 4px rgba(0,0,0,.13);font-weight:700}
+    .model-btn{border:0;background:transparent;border-radius:8px;padding:7px 9px;cursor:pointer;font-weight:650;color:#292b2d}.model-btn:hover{background:#f0f0ee}
+    .app-actions{margin-left:auto;display:flex;gap:4px}
+    .main-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;position:relative;overflow:auto}
+    .welcome{width:min(700px,100%);text-align:center;margin-top:auto}
+    .welcome h2{font-size:2rem;margin:0 0 23px;letter-spacing:-.035em;color:#242627}
+    .starter-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:16px}
+    .starter{border:1px solid #e2e2df;background:#fff;border-radius:13px;padding:12px;text-align:left;color:#555;font-size:.79rem;cursor:pointer}.starter:hover{background:#f8f8f6}
+    .composer-area{width:min(760px,100%);margin-top:auto;padding-bottom:22px;position:relative}
+    .plus-pop{position:absolute;left:0;bottom:92px;width:270px;background:#fff;border:1px solid #d5d5d2;border-radius:14px;padding:7px;box-shadow:0 14px 34px rgba(0,0,0,.16);display:none;z-index:6}
+    .plus-pop.show{display:block}.pop-title{font-size:.67rem;color:#777;padding:6px 9px}.pop-item{border:0;background:#fff;border-radius:8px;width:100%;padding:8px 9px;display:flex;align-items:center;gap:10px;text-align:left;font-size:.82rem;cursor:pointer}.pop-item:hover{background:#f0f0ed}
+    .composer{border:1px solid #c9c9c6;border-radius:24px;min-height:112px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:17px 16px 12px;display:flex;flex-direction:column}
+    .composer-placeholder{text-align:left;color:#777;font-size:.93rem;flex:1}
+    .composer-bottom{display:flex;align-items:center;gap:7px}.round{width:34px;height:34px;border:1px solid #dededb;background:#fff;border-radius:50%;display:grid;place-items:center;cursor:pointer}.round:hover{background:#f0f0ed}
+    .tool-chip{border:1px solid #dededb;background:#fff;border-radius:18px;padding:6px 10px;font-size:.75rem;cursor:pointer}.tool-chip:hover{background:#f0f0ed}
+    .send{margin-left:auto;background:var(--black);color:#fff;border:0}
+    .disclaimer{text-align:center;color:#858585;font-size:.65rem;margin-top:8px}
+    .detail-panel{background:#fbfbfa;border-left:1px solid #dededb;display:flex;flex-direction:column;min-width:0}
+    .detail-head{height:56px;border-bottom:1px solid #e6e6e3;display:flex;align-items:center;padding:0 17px;font-weight:750;color:var(--navy)}
+    .detail-body{padding:18px;overflow:auto}
+    .detail-eyebrow{font-size:.67rem;letter-spacing:.12em;font-weight:800;color:var(--gold);margin-bottom:5px}
+    .detail-body h3{font-size:1.35rem;line-height:1.35;margin:0 0 10px;color:var(--navy)}
+    .detail-body p{font-size:.84rem;color:#464b4f;margin:0 0 12px}
+    .detail-where{background:#eef0ed;border-radius:10px;padding:11px 12px;font-size:.78rem;margin:13px 0}
+    .detail-body ul{font-size:.8rem;padding-left:1.25em;margin:10px 0}.detail-body li{margin:.35em 0}
+    .mini-prompt{background:#172531;color:#eef3f5;border-radius:10px;padding:11px 38px 11px 11px;position:relative;font-size:.75rem;line-height:1.55;white-space:pre-wrap}
+    .mini-copy{position:absolute;right:6px;top:6px;border:0;background:rgba(255,255,255,.1);color:#fff;border-radius:6px;padding:4px 6px;cursor:pointer;font-size:.64rem}
+    .hint{display:flex;gap:8px;background:#fff7e8;border:1px solid #ead7b2;border-radius:10px;padding:10px;font-size:.74rem;color:#65512f;margin-top:12px}
+    .hotspot{position:relative}.hotspot::after{content:"";position:absolute;inset:2px;border:2px solid transparent;border-radius:9px;pointer-events:none}.hotspot:hover::after{border-color:var(--gold)}
+    .mobile-detail{display:none}
+
+    /* Guide content */
+    main{max-width:var(--max);margin:auto;padding:66px 18px 90px}
+    section{margin:0 0 76px}
+    .sec-head{display:grid;grid-template-columns:54px 1fr;gap:16px;margin-bottom:25px}
+    .sec-num{font-family:Georgia,serif;color:var(--gold);font-size:1.8rem;border-top:2px solid var(--gold);padding-top:6px}
+    .sec-head h2{font-size:clamp(1.65rem,3vw,2.45rem);line-height:1.2;letter-spacing:-.03em;color:var(--navy);margin:0 0 6px}
+    .sec-head p{margin:0;color:var(--muted);max-width:800px}
+    .truth-note{background:var(--navy);color:#fff;border-radius:14px;padding:17px 20px;margin-bottom:24px;font-size:.86rem}.truth-note strong{color:#e8c889}
+    .jump-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.jump-grid a{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px;text-decoration:none;color:var(--ink);font-size:.82rem}.jump-grid a:hover{border-color:#879496;background:#fafaf8}.jump-grid b{display:block;color:var(--gold);font-family:Georgia,serif;font-size:1.05rem}
+    .product-map{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .product-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:19px;position:relative;overflow:hidden}
+    .product-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--navy)}
+    .product-card.work::before{background:var(--gold)}.product-card.codex::before{background:var(--green)}
+    .product-card h3{font-size:1.1rem;color:var(--navy);margin:0 0 7px}.product-card p{font-size:.84rem;color:#50565b;margin:0 0 8px}.product-card ul{font-size:.79rem;padding-left:1.15em;margin:0}
+    .artifact-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px}.filter-btn{border:1px solid #c9cbc8;background:#fff;border-radius:999px;padding:6px 10px;cursor:pointer;font-size:.76rem}.filter-btn.active{background:var(--navy);border-color:var(--navy);color:#fff}
+    .artifact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .artifact{background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px;min-height:152px;display:flex;flex-direction:column}.artifact.hidden{display:none}
+    .file-icon{width:36px;height:42px;border-radius:6px 10px 6px 6px;background:#e8ece9;color:var(--navy);display:grid;place-items:center;font-size:.67rem;font-weight:900;margin-bottom:10px;position:relative}.file-icon::after{content:"";position:absolute;right:0;top:0;border-left:9px solid transparent;border-bottom:9px solid #c7d0cc}
+    .artifact h3{font-size:.94rem;margin:0 0 5px;color:var(--navy)}.artifact p{font-size:.76rem;color:#555d62;margin:0}.artifact .ext{margin-top:auto;padding-top:8px;font-size:.66rem;color:#7b7f81;font-weight:700}
+    .cap-search{width:100%;border:1px solid #bfc3c0;background:#fff;border-radius:11px;padding:11px 13px;margin-bottom:13px}
+    .cap-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+    .cap-group{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}.cap-group.hidden{display:none}
+    .cap-title{background:#f0f1ee;padding:13px 16px;display:flex;align-items:center;gap:9px;font-weight:800;color:var(--navy)}.cap-title span{width:28px;height:28px;border-radius:8px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:.75rem}
+    .cap-list{display:grid;grid-template-columns:repeat(2,1fr);padding:8px}.cap-item{padding:9px;border-radius:8px}.cap-item:hover{background:#f4f4f1}.cap-item b{display:block;font-size:.79rem}.cap-item small{display:block;color:#686e72;font-size:.69rem;line-height:1.45}
+    .matrix{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;font-size:.8rem}.matrix th,.matrix td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.matrix th{background:var(--navy);color:#fff}.matrix tr:last-child td{border-bottom:0}.matrix td:first-child{font-weight:800;color:var(--navy)}
+    .steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.step{counter-increment:s;background:#fff;border:1px solid var(--line);border-radius:13px;padding:16px 16px 16px 51px;position:relative}.step::before{content:counter(s);position:absolute;left:14px;top:15px;width:27px;height:27px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;font-size:.75rem}.step h3{font-size:.9rem;margin:0 0 4px}.step p{font-size:.76rem;color:#555d61;margin:0}
+    details{background:#fff;border:1px solid var(--line);border-radius:12px;margin:8px 0;overflow:hidden}summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:800;color:var(--navy);display:flex;justify-content:space-between;gap:10px;font-size:.9rem}summary::-webkit-details-marker{display:none}summary::after{content:"＋";font-weight:400}details[open] summary::after{content:"−"}.fold{padding:0 16px 16px;font-size:.82rem}.fold ul{padding-left:1.25em}
+    .prompt{background:#15232e;color:#f0f3f4;border-radius:12px;padding:13px 48px 13px 14px;position:relative;white-space:pre-wrap;font-size:.8rem;line-height:1.6}.copy{position:absolute;right:8px;top:8px;border:1px solid rgba(255,255,255,.2);color:#fff;background:rgba(255,255,255,.08);border-radius:7px;padding:4px 7px;cursor:pointer;font-size:.65rem}
+    .callout{border-left:4px solid var(--gold);background:#fff;padding:14px 16px;border-radius:0 11px 11px 0;font-size:.82rem;margin:15px 0}.callout.warn{border-color:var(--red);background:#fff8f7}
+    .setting-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.setting-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px}.setting-card h3{font-size:.9rem;margin:0 0 6px;color:var(--navy)}.setting-card p{font-size:.75rem;margin:0;color:#555d61}
+    .sources{columns:2;column-gap:30px;padding-left:1.15em}.sources li{break-inside:avoid;margin-bottom:8px;font-size:.76rem}
+    footer{background:var(--navy);color:#fff;padding:32px 18px}.footer-in{max-width:var(--max);margin:auto;display:flex;justify-content:space-between;align-items:end;gap:20px}.footer-in p{margin:3px 0 0;color:#dce4e7;font-size:.76rem}.print{border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:8px;padding:7px 10px;cursor:pointer}
+    .top{position:fixed;right:16px;bottom:16px;width:40px;height:40px;border:0;border-radius:50%;background:var(--navy);color:#fff;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s}.top.show{opacity:1;pointer-events:auto}
+
+    @media(max-width:1080px){
+      .app{grid-template-columns:220px 1fr}.detail-panel{position:absolute;right:15px;top:72px;bottom:15px;width:330px;z-index:10;box-shadow:var(--shadow);border:1px solid #ddd;border-radius:14px;overflow:hidden;display:none}.detail-panel.open{display:flex}
+      .mobile-detail{display:block;position:absolute;right:14px;top:70px;z-index:5;border:1px solid #ddd;background:#fff;border-radius:9px;padding:7px 10px;font-size:.75rem;cursor:pointer}
+      .artifact-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    @media(max-width:760px){
+      .guide-intro{grid-template-columns:1fr}.version{justify-self:start}.app{height:690px;grid-template-columns:78px 1fr}.app-sidebar{padding:8px 6px}.side-item{justify-content:center}.side-item span:not(.si),.side-item .badge,.side-title,.recents,.profile .profile-name,.oa-text{display:none}.side-item .si{font-size:1.05rem}.side-divider{margin:5px}.app-top{padding:0 8px}.model-btn{font-size:.78rem}.mode-btn{padding:5px 9px}.welcome h2{font-size:1.55rem}.starter-cards{grid-template-columns:1fr}.starter:nth-child(n+3){display:none}.main-center{padding:16px}.detail-panel{left:90px;right:8px;width:auto}
+      .jump-grid{grid-template-columns:repeat(2,1fr)}.product-map,.steps,.setting-grid{grid-template-columns:1fr}.artifact-grid{grid-template-columns:repeat(2,1fr)}.cap-groups{grid-template-columns:1fr}.sources{columns:1}
+    }
+    @media(max-width:480px){.guide-logo small{display:none}.guide-intro{padding-top:26px}.app{grid-template-columns:58px 1fr;border-radius:12px}.side-top .icon-btn{display:none}.app-top{gap:4px}.mode-switch{padding:2px}.mode-btn{font-size:.7rem;padding:4px 7px}.model-btn{font-size:.7rem;padding:5px}.app-actions{display:none}.welcome h2{font-size:1.3rem}.composer{min-height:122px}.tool-chip{display:none}.detail-panel{left:65px}.artifact-grid{grid-template-columns:1fr}.cap-list{grid-template-columns:1fr}.sec-head{grid-template-columns:40px 1fr}.sec-num{font-size:1.4rem}}
+    @media print{
+      .guidebar,.top,.print,.screen-label,.mobile-detail,.copy,.mini-copy,.artifact-filter,.cap-search{display:none!important}
+      body{background:#fff;font-size:9.5pt}.guide-intro{padding:8mm 0}.screen-wrap{padding:0}.app{height:175mm;box-shadow:none;grid-template-columns:50mm 1fr;border-radius:0}.detail-panel{display:none}.app-main{display:flex}
+      main{padding:8mm 0;max-width:none}section{break-before:page;margin:0}.artifact,.product-card,.cap-group,.setting-card,.matrix,details{break-inside:avoid}a{color:#000;text-decoration:none}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">本文へ移動</a>
+  <header class="guidebar">
+    <div class="guidebar-in">
+      <div class="guide-logo">ChatGPT GUIDE <small>完全版</small></div>
+      <nav class="guide-nav" aria-label="ガイド目次">
+        <a href="#screen">画面</a><a href="#products">3つのモード</a><a href="#outputs">作れるもの</a><a href="#all-features">全機能</a><a href="#settings">設定</a><a href="#start">始め方</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="guide-intro">
+    <div>
+      <div class="kicker">BEGINNER'S COMPLETE OPERATION GUIDE</div>
+      <h1>ChatGPTの画面と<br>全機能がわかる本</h1>
+      <p>画面のどこを押すのか、Chat・Work・Codexで何が違うのか、文書・スライド・表計算・画像・Webサイトまで何を作れるのか。実際の操作画面に近いUIを触りながら確認できます。</p>
+    </div>
+    <div class="version">2026年7月29日版<br>初心者向け・画面対応</div>
+  </div>
+
+  <section id="screen" class="screen-wrap" aria-label="ChatGPT画面の操作型見本">
+    <div class="screen-label"><strong>操作型・ChatGPT画面見本</strong><span>各メニューをクリックすると右側に説明が出ます</span></div>
+    <div class="app">
+      <aside class="app-sidebar">
+        <div class="side-top"><div class="oa-mark">AI</div><button class="icon-btn" aria-label="サイドバーを閉じる">◧</button></div>
+        <div class="side-menu">
+          <button class="side-item hotspot active" data-feature="newchat"><span class="si">✎</span><span>新しいチャット</span></button>
+          <button class="side-item hotspot" data-feature="searchchats"><span class="si">⌕</span><span>チャットを検索</span></button>
+          <button class="side-item hotspot" data-feature="images"><span class="si">▧</span><span>画像</span></button>
+          <button class="side-item hotspot" data-feature="library"><span class="si">▤</span><span>ライブラリ</span></button>
+          <button class="side-item hotspot" data-feature="deepresearch"><span class="si">◎</span><span>Deep research</span></button>
+          <button class="side-item hotspot" data-feature="scheduled"><span class="si">◷</span><span>Scheduled</span><span class="badge">2</span></button>
+          <button class="side-item hotspot" data-feature="plugins"><span class="si">◇</span><span>Plugins</span></button>
+        </div>
+        <div class="side-divider"></div>
+        <div class="side-title">Projects</div>
+        <button class="side-item hotspot" data-feature="projects"><span class="si">＋</span><span>新しいプロジェクト</span></button>
+        <button class="side-item" data-feature="projects"><span class="si">▰</span><span>補助金ガイド制作</span></button>
+        <div class="side-title">最近のチャット</div>
+        <div class="recents">
+          <button class="side-item recent"><span class="si">·</span><span>顧客向けメール作成</span></button>
+          <button class="side-item recent"><span class="si">·</span><span>会議資料の要約</span></button>
+          <button class="side-item recent"><span class="si">·</span><span>売上データを分析</span></button>
+        </div>
+        <div class="profile">
+          <button class="side-item hotspot" data-feature="settings"><span class="avatar">A</span><span class="profile-name">プロフィール・設定</span></button>
+        </div>
+      </aside>
+
+      <div class="app-main">
+        <div class="app-top">
+          <div class="mode-switch">
+            <button class="mode-btn hotspot active" data-mode="chat" data-feature="chatmode">Chat</button>
+            <button class="mode-btn hotspot" data-mode="work" data-feature="workmode">Work</button>
+            <button class="mode-btn hotspot" data-mode="codex" data-feature="codexmode">Codex</button>
+          </div>
+          <button class="model-btn hotspot" data-feature="models">Instant ▾</button>
+          <div class="app-actions">
+            <button class="icon-btn hotspot" data-feature="share" aria-label="共有">↗</button>
+            <button class="icon-btn hotspot" data-feature="more" aria-label="その他">•••</button>
+          </div>
+        </div>
+        <button class="mobile-detail" type="button">説明を見る</button>
+        <div class="main-center">
+          <div class="welcome">
+            <h2 id="welcomeTitle">今日は何をお手伝いしましょうか？</h2>
+            <div class="starter-cards" id="starterCards">
+              <button class="starter" data-feature="websearch">最新情報を検索して整理する</button>
+              <button class="starter" data-feature="files">PDFやExcelを読み込む</button>
+              <button class="starter" data-feature="images">画像を作成・編集する</button>
+              <button class="starter" data-feature="voice">音声で相談する</button>
+            </div>
+          </div>
+          <div class="composer-area">
+            <div class="plus-pop" id="plusPop">
+              <div class="pop-title">追加・ツール</div>
+              <button class="pop-item" data-feature="files">▧　写真とファイルを追加</button>
+              <button class="pop-item" data-feature="library">▤　Libraryから追加</button>
+              <button class="pop-item" data-feature="websearch">⌕　Webを検索</button>
+              <button class="pop-item" data-feature="images">▣　画像を作成</button>
+              <button class="pop-item" data-feature="canvas">▱　Canvasを開く</button>
+              <button class="pop-item" data-feature="study">◉　学習モード</button>
+              <button class="pop-item" data-feature="agent">◇　Agent mode</button>
+              <button class="pop-item" data-feature="deepresearch">◎　Deep research</button>
+            </div>
+            <div class="composer hotspot" data-feature="composer">
+              <div class="composer-placeholder" id="composerText">メッセージを入力</div>
+              <div class="composer-bottom">
+                <button class="round" id="plusBtn" aria-label="追加メニュー">＋</button>
+                <button class="tool-chip" data-feature="tools">ツール</button>
+                <button class="tool-chip" data-feature="voice">🎙 音声</button>
+                <button class="round send" aria-label="送信">↑</button>
+              </div>
+            </div>
+            <div class="disclaimer">ChatGPTは間違えることがあります。重要な情報は確認してください。</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="detail-panel open" id="detailPanel">
+        <div class="detail-head">この場所でできること</div>
+        <div class="detail-body" id="detailBody"></div>
+      </aside>
+    </div>
+  </section>
+
+  <main id="main">
+    <section id="guide-map">
+      <div class="sec-head"><div class="sec-num">00</div><div><h2>このガイドの全体像</h2><p>「画面」「作れるもの」「全機能」「設定」の順で、抜けなく確認できます。</p></div></div>
+      <div class="truth-note"><strong>表示される機能は人によって違います。</strong> プラン、Web・スマホ・デスクトップ、地域、段階的提供、会社の管理設定によって、名称・位置・利用回数が異なります。このガイドは2026年7月29日時点のChatGPT Web、Work、Codexの公式情報と現行画面を基準にしています。</div>
+      <div class="jump-grid">
+        <a href="#products"><b>01</b>Chat・Work・Codex</a>
+        <a href="#outputs"><b>02</b>作れる成果物一覧</a>
+        <a href="#all-features"><b>03</b>全機能一覧</a>
+        <a href="#chat-guide"><b>04</b>Chatの機能</a>
+        <a href="#work-guide"><b>05</b>Workの機能</a>
+        <a href="#codex-guide"><b>06</b>Codexの機能</a>
+        <a href="#settings"><b>07</b>設定の全項目</a>
+        <a href="#start"><b>08</b>初心者の始め方</a>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="sec-head"><div class="sec-num">01</div><div><h2>最初に選ぶ3つのモード</h2><p>答えが欲しいならChat、完成物が欲しいならWork、ソフト開発ならCodexです。</p></div></div>
+      <div class="product-map">
+        <article class="product-card">
+          <h3>Chat</h3><p>質問と会話を中心に、すぐ答えてもらう場所。</p>
+          <ul><li>相談・説明・文章作成</li><li>Web検索・画像・ファイル分析</li><li>音声・Canvas・学習</li></ul>
+        </article>
+        <article class="product-card work">
+          <h3>Work</h3><p>複数工程を任せ、使える完成物まで作る場所。</p>
+          <ul><li>文書・表計算・スライド・PDF</li><li>サイト・図解・画像・調査報告</li><li>外部Apps、ブラウザ、長時間作業</li></ul>
+        </article>
+        <article class="product-card codex">
+          <h3>Codex</h3><p>コードと開発環境を扱う技術作業の場所。</p>
+          <ul><li>コード作成・修正・テスト</li><li>Git、レビュー、ターミナル</li><li>ローカル・クラウド・IDE・CLI</li></ul>
+        </article>
+      </div>
+      <table class="matrix" style="margin-top:13px">
+        <thead><tr><th>やりたいこと</th><th>選ぶ場所</th><th>理由</th></tr></thead>
+        <tbody>
+          <tr><td>質問に答えてほしい</td><td>Chat</td><td>最短で会話を始められる</td></tr>
+          <tr><td>メール文を作りたい</td><td>Chat</td><td>短い成果物は対話で十分</td></tr>
+          <tr><td>20ページのガイドをHTMLで作りたい</td><td>Work</td><td>調査・制作・ファイル保存・確認が必要</td></tr>
+          <tr><td>Excelを分析してグラフ付き報告書にしたい</td><td>Work</td><td>複数ファイルと複数工程をまとめて扱える</td></tr>
+          <tr><td>Webアプリの不具合を直したい</td><td>Codex</td><td>コード、コマンド、テスト、差分確認が必要</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="outputs">
+      <div class="sec-head"><div class="sec-num">02</div><div><h2>ChatGPTで作れる成果物</h2><p>前の版で不足していた「何を完成ファイルとして作れるか」を、形式ごとに整理しました。</p></div></div>
+      <div class="artifact-filter">
+        <button class="filter-btn active" data-out="all">すべて</button>
+        <button class="filter-btn" data-out="business">仕事</button>
+        <button class="filter-btn" data-out="visual">画像・図</button>
+        <button class="filter-btn" data-out="web">Web・開発</button>
+        <button class="filter-btn" data-out="data">データ</button>
+      </div>
+      <div class="artifact-grid">
+        <article class="artifact" data-out="business"><div class="file-icon">DOC</div><h3>Word文書</h3><p>報告書、企画書、契約書案、マニュアル、議事録。見出し・表・目次・画像も配置。</p><div class="ext">.docx / Google Docs</div></article>
+        <article class="artifact" data-out="business"><div class="file-icon">PDF</div><h3>PDF</h3><p>配布資料、申請ガイド、チェックリスト、印刷物、フォーム。レイアウトを確認して出力。</p><div class="ext">.pdf / fillable PDF</div></article>
+        <article class="artifact" data-out="business visual"><div class="file-icon">PPT</div><h3>プレゼン資料</h3><p>ウェビナー、営業資料、研修教材、提案書。編集できるスライドとして作成。</p><div class="ext">.pptx / Google Slides</div></article>
+        <article class="artifact" data-out="data business"><div class="file-icon">XLS</div><h3>表計算</h3><p>リスト、集計表、料金表、比較表、試算表、ダッシュボード。数式・書式・グラフ対応。</p><div class="ext">.xlsx / .csv / Google Sheets</div></article>
+        <article class="artifact" data-out="data"><div class="file-icon">CSV</div><h3>データファイル</h3><p>CSV、TSV、JSON、XML、YAMLなどの整形、変換、分割、統合、クリーニング。</p><div class="ext">.csv / .tsv / .json / .xml</div></article>
+        <article class="artifact" data-out="visual"><div class="file-icon">IMG</div><h3>画像</h3><p>写真風画像、イラスト、サムネイル、バナー、商品イメージ、背景透過素材、画像編集。</p><div class="ext">.png / .jpg / .webp</div></article>
+        <article class="artifact" data-out="visual data"><div class="file-icon">CHT</div><h3>グラフ・チャート</h3><p>棒、折れ線、円、散布図、ファネル、レーダーなど。数値と目的に合わせて作成。</p><div class="ext">HTML / PNG / spreadsheet chart</div></article>
+        <article class="artifact" data-out="visual business"><div class="file-icon">DGM</div><h3>図解・フロー</h3><p>業務フロー、組織図、関係図、タイムライン、手順図、比較図、インフォグラフィック。</p><div class="ext">HTML / Mermaid / SVG相当</div></article>
+        <article class="artifact" data-out="web business"><div class="file-icon">HTM</div><h3>HTML</h3><p>ブログ、LP、ガイド、スライド、A4印刷物、編集ツール。CSS・JavaScriptを内蔵可能。</p><div class="ext">.html</div></article>
+        <article class="artifact" data-out="web"><div class="file-icon">WEB</div><h3>Webサイト・Sites</h3><p>公開できるランディングページ、ポータル、計算機、診断、ダッシュボード、業務ツール。</p><div class="ext">公開URL / source files</div></article>
+        <article class="artifact" data-out="web"><div class="file-icon">APP</div><h3>アプリ・コード</h3><p>Webアプリ、スクリプト、拡張機能、API連携、CLI、デスクトップ用コード。</p><div class="ext">source code / repository</div></article>
+        <article class="artifact" data-out="data web"><div class="file-icon">NB</div><h3>ノートブック</h3><p>分析手順、実験、可視化、再実行できるデータ処理をコードと説明でまとめる。</p><div class="ext">.ipynb</div></article>
+        <article class="artifact" data-out="business"><div class="file-icon">TXT</div><h3>文章・Markdown</h3><p>メール、SNS、メルマガ、ブログ、FAQ、台本、プロンプト、仕様書、ナレッジ。</p><div class="ext">.txt / .md</div></article>
+        <article class="artifact" data-out="business data"><div class="file-icon">ZIP</div><h3>ファイル一式</h3><p>HTML・画像・CSS、分割した表計算、複数資料などをまとめた配布用パッケージ。</p><div class="ext">.zip</div></article>
+        <article class="artifact" data-out="business"><div class="file-icon">REP</div><h3>調査報告書</h3><p>Web、添付資料、接続Appsを横断した引用付きの調査・比較・市場分析。</p><div class="ext">HTML / DOCX / PDF</div></article>
+        <article class="artifact" data-out="business"><div class="file-icon">TPL</div><h3>テンプレート・フォーム</h3><p>ヒアリングシート、チェックリスト、記入様式、評価表、編集可能なひな形。</p><div class="ext">DOCX / XLSX / HTML / PDF</div></article>
+      </div>
+      <div class="callout"><strong>Chatで文章を表示するだけと、ファイルを作ることは別です。</strong> 「Wordファイルとして」「編集できるPowerPointで」「画像を埋め込んだ1ファイルHTMLで」「完成後に表示を確認して」と、欲しい形式を明記してください。</div>
+    </section>
+
+    <section id="all-features">
+      <div class="sec-head"><div class="sec-num">03</div><div><h2>ChatGPTの全機能一覧</h2><p>機能名または「やりたいこと」で検索できます。ChatだけでなくWork・Codex固有機能も含みます。</p></div></div>
+      <input class="cap-search" id="capSearch" type="search" placeholder="例：会議、メール、画像、予約、サイト、Google Drive、コード、通知">
+      <div class="cap-groups" id="capGroups">
+        <article class="cap-group" data-key="会話 質問 検索 ファイル 画像 音声 canvas 学習 GPT">
+          <div class="cap-title"><span>C</span>Chat・会話</div>
+          <div class="cap-list">
+            <div class="cap-item"><b>通常チャット</b><small>質問、相談、作成、要約、翻訳</small></div>
+            <div class="cap-item"><b>モデル選択</b><small>Instant、Medium、High、Pro等</small></div>
+            <div class="cap-item"><b>Web検索</b><small>最新情報と出典リンク</small></div>
+            <div class="cap-item"><b>ファイル添付</b><small>PDF、文書、表、スライド等</small></div>
+            <div class="cap-item"><b>画像入力</b><small>写真、図、画面を読み取る</small></div>
+            <div class="cap-item"><b>画像生成・編集</b><small>新規作成、部分編集、比率変更</small></div>
+            <div class="cap-item"><b>データ分析</b><small>計算、表、グラフ、Python処理</small></div>
+            <div class="cap-item"><b>Voice</b><small>音声で連続会話</small></div>
+            <div class="cap-item"><b>音声入力</b><small>話した内容を文字にして送信</small></div>
+            <div class="cap-item"><b>Record</b><small>会議・音声メモを文字起こし・要約</small></div>
+            <div class="cap-item"><b>Canvas</b><small>長文・コードを横で共同編集</small></div>
+            <div class="cap-item"><b>Study mode</b><small>質問を交え段階的に学習</small></div>
+            <div class="cap-item"><b>GPTs</b><small>目的別ChatGPTを利用・作成</small></div>
+            <div class="cap-item"><b>Health</b><small>対象地域・アカウントの健康専用体験</small></div>
+            <div class="cap-item"><b>Personality / Characteristics</b><small>返答の性格、長さ、温かさ、絵文字等</small></div>
+            <div class="cap-item"><b>共有・分岐</b><small>会話共有、別案として続ける</small></div>
+            <div class="cap-item"><b>Temporary Chat</b><small>履歴・Memoryを残さない会話</small></div>
+          </div>
+        </article>
+        <article class="cap-group" data-key="調査 Deep research agent browser computer web action 実行">
+          <div class="cap-title"><span>R</span>調査・実行</div>
+          <div class="cap-list">
+            <div class="cap-item"><b>Deep research</b><small>計画を確認して引用付き調査報告</small></div>
+            <div class="cap-item"><b>Agent mode</b><small>Web調査と画面操作を連続実行</small></div>
+            <div class="cap-item"><b>Browser</b><small>サイトを開き、確認・操作</small></div>
+            <div class="cap-item"><b>Computer use</b><small>許可したPC画面やアプリを操作</small></div>
+            <div class="cap-item"><b>Chrome extension</b><small>Chromeのページ文脈を共有</small></div>
+            <div class="cap-item"><b>Appshots</b><small>アプリ状態を画像として取得・確認</small></div>
+            <div class="cap-item"><b>長時間作業</b><small>途中経過を見ながら方向修正</small></div>
+            <div class="cap-item"><b>承認・確認</b><small>重要な変更や外部操作の前に確認</small></div>
+          </div>
+        </article>
+        <article class="cap-group" data-key="Work 文書 Word Excel スプレッドシート PowerPoint スライド PDF Sites visualization 図解 成果物">
+          <div class="cap-title"><span>W</span>Work・成果物制作</div>
+          <div class="cap-list">
+            <div class="cap-item"><b>文書作成</b><small>DOCX、Google Docs、Markdown</small></div>
+            <div class="cap-item"><b>表計算作成</b><small>XLSX、CSV、Google Sheets</small></div>
+            <div class="cap-item"><b>スライド作成</b><small>PPTX、Google Slides</small></div>
+            <div class="cap-item"><b>PDF作成</b><small>印刷資料、フォーム、報告書</small></div>
+            <div class="cap-item"><b>Sites</b><small>Webサイト・アプリを作成し公開</small></div>
+            <div class="cap-item"><b>Visualizations</b><small>対話型の図解、比較、シミュレーター</small></div>
+            <div class="cap-item"><b>ローカル作業</b><small>PC上のファイルとアプリを使用</small></div>
+            <div class="cap-item"><b>クラウド作業</b><small>PCを閉じても処理を継続</small></div>
+            <div class="cap-item"><b>成果物プレビュー</b><small>文書、表、画像等を画面で確認</small></div>
+            <div class="cap-item"><b>ファイル保存</b><small>作成物をLibraryへ残して再利用</small></div>
+          </div>
+        </article>
+        <article class="cap-group" data-key="整理 project library 履歴 検索 memory 記憶 通知 scheduled task automation pet">
+          <div class="cap-title"><span>O</span>整理・継続・自動化</div>
+          <div class="cap-list">
+            <div class="cap-item"><b>Projects</b><small>会話、資料、指示を案件別に整理</small></div>
+            <div class="cap-item"><b>Library</b><small>添付・作成ファイルを保存・検索</small></div>
+            <div class="cap-item"><b>チャット検索</b><small>過去の題名と本文から探す</small></div>
+            <div class="cap-item"><b>ピン留め</b><small>重要な会話を上部へ固定</small></div>
+            <div class="cap-item"><b>アーカイブ</b><small>削除せず一覧から隠す</small></div>
+            <div class="cap-item"><b>Memory</b><small>好みや目標を将来の会話に反映</small></div>
+            <div class="cap-item"><b>Scheduled tasks</b><small>日時指定、定期実行、条件監視</small></div>
+            <div class="cap-item"><b>Notifications</b><small>完了、確認、実行結果を通知</small></div>
+            <div class="cap-item"><b>Pets</b><small>作業状態を示すアニメーション相棒</small></div>
+            <div class="cap-item"><b>Recents</b><small>Chat・Workの最近の作業を一覧</small></div>
+            <div class="cap-item"><b>データ書き出し</b><small>会話・設定等のアカウントデータを取得</small></div>
+            <div class="cap-item"><b>Workspace切替</b><small>個人用と組織用の環境を切り替える</small></div>
+          </div>
+        </article>
+        <article class="cap-group" data-key="Plugins Skills Apps Connectors Gmail Google Drive Slack Notion SharePoint Calendar GitHub 外部連携">
+          <div class="cap-title"><span>P</span>Plugins・Skills・Apps</div>
+          <div class="cap-list">
+            <div class="cap-item"><b>Plugin Directory</b><small>業務機能パッケージを検索・追加</small></div>
+            <div class="cap-item"><b>Skills</b><small>繰り返し業務の手順・型を再利用</small></div>
+            <div class="cap-item"><b>Apps</b><small>外部サービスのデータ・操作と接続</small></div>
+            <div class="cap-item"><b>@メンション</b><small>使うPluginやSkillを明示</small></div>
+            <div class="cap-item"><b>Google連携</b><small>Drive、Docs、Sheets、Calendar等</small></div>
+            <div class="cap-item"><b>Microsoft連携</b><small>Outlook、OneDrive、SharePoint等</small></div>
+            <div class="cap-item"><b>コミュニケーション</b><small>Gmail、Slack、Teams等</small></div>
+            <div class="cap-item"><b>開発・業務</b><small>GitHub、Notion、Box、Atlassian等</small></div>
+            <div class="cap-item"><b>Custom Apps / MCP</b><small>独自のデータや機能を接続</small></div>
+            <div class="cap-item"><b>Record & Replay</b><small>一度見せた手順をSkill化</small></div>
+          </div>
+        </article>
+        <article class="cap-group" data-key="Codex code terminal git repository review testing IDE CLI cloud local worktree agent security browser image">
+          <div class="cap-title"><span>X</span>Codex・開発</div>
+          <div class="cap-list">
+            <div class="cap-item"><b>コード作成・修正</b><small>複数ファイルを理解して変更</small></div>
+            <div class="cap-item"><b>テスト・コマンド</b><small>端末で実行し、結果を検証</small></div>
+            <div class="cap-item"><b>Git・差分</b><small>変更内容を確認、コミット、PR</small></div>
+            <div class="cap-item"><b>コードレビュー</b><small>PRやローカル変更をレビュー</small></div>
+            <div class="cap-item"><b>CLI</b><small>ターミナルからCodexを利用</small></div>
+            <div class="cap-item"><b>IDE extension</b><small>エディタ内でコード作業</small></div>
+            <div class="cap-item"><b>Cloud</b><small>環境を用意して並列・遠隔作業</small></div>
+            <div class="cap-item"><b>Worktrees</b><small>作業を別ブランチ環境へ分離</small></div>
+            <div class="cap-item"><b>Browser testing</b><small>Webアプリを開いて動作確認</small></div>
+            <div class="cap-item"><b>Image generation</b><small>開発用の画像素材を作成</small></div>
+            <div class="cap-item"><b>Multi-agent</b><small>複数作業を並行して統合</small></div>
+            <div class="cap-item"><b>Codex Security</b><small>脆弱性の調査、検証、修正案</small></div>
+            <div class="cap-item"><b>Remote connections</b><small>別のPC、端末、SSH環境へ接続</small></div>
+            <div class="cap-item"><b>Codex Micro</b><small>対応キーボードから作業を監視・操作</small></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="chat-guide">
+      <div class="sec-head"><div class="sec-num">04</div><div><h2>Chatの機能を使う</h2><p>普段の質問、検索、ファイル、画像、音声はここから始めます。</p></div></div>
+      <div class="steps">
+        <article class="step"><h3>目的を書く</h3><p>「何をしてほしいか」を普通の日本語で入力。</p></article>
+        <article class="step"><h3>材料を追加</h3><p>＋からファイル、画像、Library、Web検索を選択。</p></article>
+        <article class="step"><h3>返答を直す</h3><p>短く、表に、根拠付きで、など追加注文。</p></article>
+      </div>
+      <details><summary>＋メニューの項目は何をするもの？</summary><div class="fold">
+        <table class="matrix">
+          <tbody>
+            <tr><td>写真とファイル</td><td>PCやスマホからPDF、画像、表計算などを添付</td></tr>
+            <tr><td>Library</td><td>以前アップロード・作成したファイルを再利用</td></tr>
+            <tr><td>Web検索</td><td>最新情報を調べ、リンク付きで回答</td></tr>
+            <tr><td>画像を作成</td><td>新しい画像の生成または既存画像の編集</td></tr>
+            <tr><td>Canvas</td><td>長文・コードを会話の横で編集</td></tr>
+            <tr><td>Study mode</td><td>答えだけでなく、質問を交えて学ぶ</td></tr>
+            <tr><td>Agent mode</td><td>Web上の複数工程や操作まで実行</td></tr>
+            <tr><td>Deep research</td><td>複数情報源を使う詳細な調査報告</td></tr>
+          </tbody>
+        </table>
+      </div></details>
+      <div class="prompt">【目的】添付した資料を初心者向けガイドにする
+【根拠】添付資料だけを使い、推測しない
+【形式】見出し、手順、注意点、チェックリスト
+【確認】重要事項には資料名とページ番号を付ける<button class="copy">コピー</button></div>
+    </section>
+
+    <section id="work-guide">
+      <div class="sec-head"><div class="sec-num">05</div><div><h2>Workで完成物まで任せる</h2><p>Workは「回答」ではなく、調査・制作・確認を通じて使える成果物を作るモードです。</p></div></div>
+      <div class="product-map">
+        <article class="product-card work"><h3>ローカル作業</h3><p>デスクトップアプリで、PC上のファイル・フォルダ・対応アプリを使う作業。</p><ul><li>PC内の資料を直接編集</li><li>ローカルのプレビューや確認</li><li>PCとアプリを開いておく必要あり</li></ul></article>
+        <article class="product-card work"><h3>クラウド作業</h3><p>Web・モバイル・デスクトップをまたいで、閉じた後も続けられる作業。</p><ul><li>長時間の調査・制作</li><li>別端末から継続</li><li>ローカル専用ファイルは直接使えない</li></ul></article>
+        <article class="product-card work"><h3>確認と承認</h3><p>途中経過を見て方向修正し、重要な外部操作や変更を承認。</p><ul><li>進捗を確認</li><li>追加情報へ回答</li><li>送信・公開前に止める指定</li></ul></article>
+      </div>
+      <div class="prompt" style="margin-top:13px">添付した資料を根拠に、初心者向けの画像入りHTMLガイドを作成してください。
+白・黒・ネイビーを使い、見出しと余白を大きくしすぎないでください。
+文章、表、図解、チェックリストを入れ、スマホと印刷に対応してください。
+完成後、目次リンク、画像、ボタン、印刷表示を確認し、HTMLファイルで渡してください。<button class="copy">コピー</button></div>
+    </section>
+
+    <section id="codex-guide">
+      <div class="sec-head"><div class="sec-num">06</div><div><h2>Codexでソフトウェアを扱う</h2><p>初心者は「どのフォルダ・何を直す・何を壊さない・どう確認する」を伝えれば始められます。</p></div></div>
+      <table class="matrix">
+        <thead><tr><th>使う場所</th><th>向いている場面</th><th>主な機能</th></tr></thead>
+        <tbody>
+          <tr><td>デスクトップ</td><td>ローカルの開発フォルダをまとめて作業</td><td>差分、ターミナル、複数リポジトリ、ブラウザ確認</td></tr>
+          <tr><td>CLI</td><td>ターミナル中心の開発</td><td>コマンド、スクリプト、自動化、非対話実行</td></tr>
+          <tr><td>IDE拡張</td><td>VS Code等でコードを見ながら作業</td><td>選択コード、編集、レビュー、コマンド</td></tr>
+          <tr><td>Cloud / Web</td><td>作業を預ける、並列化する</td><td>クラウド環境、GitHub、PR、遠隔実行</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn"><strong>権限が広いほど便利ですが、事故の範囲も広がります。</strong> 読み取り、workspace内書き込み、ネット接続、PC操作、コマンド承認を分けて考えます。完成後は差分とテスト結果を確認してください。</div>
+      <div class="prompt">このプロジェクトの不具合を直してください。
+対象：検索結果が指定件数に満たないと処理が終了する問題
+条件：指定件数になるまで候補を探す。指定地域外は除外。
+変更禁止：入力形式、既存CSV列、他の検索条件
+確認：再現テスト、修正後テスト、変更ファイル一覧を示す<button class="copy">コピー</button></div>
+    </section>
+
+    <section id="settings">
+      <div class="sec-head"><div class="sec-num">07</div><div><h2>設定で変えられること</h2><p>プロフィールを押してSettingsを開きます。表示項目はプラン・端末・管理設定で変わります。</p></div></div>
+      <div class="setting-grid">
+        <article class="setting-card"><h3>Account / Plan</h3><p>アカウント、契約、請求、ワークスペース切替。</p></article>
+        <article class="setting-card"><h3>Personalization</h3><p>性格、Characteristics、Custom Instructions、Memory。</p></article>
+        <article class="setting-card"><h3>Data Controls</h3><p>モデル改善への利用、履歴、データ書き出し、Temporary Chat。</p></article>
+        <article class="setting-card"><h3>Apps</h3><p>Google、Microsoft、Slack等の接続と権限。</p></article>
+        <article class="setting-card"><h3>Plugins / Skills</h3><p>インストール済み機能、利用可否、作成・共有。</p></article>
+        <article class="setting-card"><h3>Notifications</h3><p>Scheduled、長時間作業、確認事項の通知方法。</p></article>
+        <article class="setting-card"><h3>Voice</h3><p>声の選択、字幕、マイク、音声データ設定。</p></article>
+        <article class="setting-card"><h3>Browser / Computer</h3><p>Web閲覧、Chrome、PC・アプリ操作の接続と許可。</p></article>
+        <article class="setting-card"><h3>Keyboard Shortcuts</h3><p>新しいチャット、検索、設定、音声入力などのキー。</p></article>
+        <article class="setting-card"><h3>Models</h3><p>利用モデル、推論レベル、Work・Codexの初期値。</p></article>
+        <article class="setting-card"><h3>Archived chats</h3><p>アーカイブした会話の確認と削除。</p></article>
+        <article class="setting-card"><h3>Workspace controls</h3><p>管理者によるApps、Plugins、機能、権限、保持の設定。</p></article>
+      </div>
+      <details><summary>MemoryとCustom Instructionsの違い</summary><div class="fold">
+        <ul><li><strong>Custom Instructions：</strong>自分で書いた固定ルール。例「結論を先に」「行政書士向けに」。</li><li><strong>Memory：</strong>会話から覚えた名前、好み、目標など。確認・削除・停止が可能。</li><li><strong>Project instructions：</strong>その案件だけに効く指示。</li><li><strong>Skill：</strong>特定業務を毎回同じ手順・形式で行う仕組み。</li></ul>
+      </div></details>
+    </section>
+
+    <section id="start">
+      <div class="sec-head"><div class="sec-num">08</div><div><h2>初心者が最初に試す8項目</h2><p>上から順に試せば、ChatGPTの基本と仕事機能が一通りわかります。</p></div></div>
+      <div class="steps">
+        <article class="step"><h3>普通に質問</h3><p>専門用語なしで、知りたいことを書く。</p></article>
+        <article class="step"><h3>追加修正</h3><p>短く、表に、初心者向けに、と直す。</p></article>
+        <article class="step"><h3>Web検索</h3><p>今日の情報を公式情報優先で調べる。</p></article>
+        <article class="step"><h3>PDFを添付</h3><p>ページ番号付きで要点を出してもらう。</p></article>
+        <article class="step"><h3>画像を作る</h3><p>用途、比率、色、文字、避ける物を指定。</p></article>
+        <article class="step"><h3>Projectを作る</h3><p>継続案件の会話・資料・指示をまとめる。</p></article>
+        <article class="step"><h3>Workで完成物</h3><p>Word、Excel、PPT、PDF、HTMLを1つ作る。</p></article>
+        <article class="step"><h3>設定確認</h3><p>Memory、Data Controls、Appsの権限を見る。</p></article>
+      </div>
+    </section>
+
+    <section id="safety">
+      <div class="sec-head"><div class="sec-num">09</div><div><h2>重要な確認事項</h2><p>便利さより先に、情報・権限・最終確認の範囲を決めます。</p></div></div>
+      <table class="matrix">
+        <thead><tr><th>場面</th><th>必ず確認すること</th></tr></thead>
+        <tbody>
+          <tr><td>法律・制度・医療・税務・金融</td><td>公式原典、更新日、適用条件。AIの文章だけで確定しない。</td></tr>
+          <tr><td>顧客・社内資料</td><td>個人情報、秘密情報、契約上の持ち出し制限。</td></tr>
+          <tr><td>メール・予定・外部Apps</td><td>宛先、本文、日時、共有範囲、実行権限。</td></tr>
+          <tr><td>Agent・Computer use</td><td>購入、送信、削除、権限変更、公開の直前で確認。</td></tr>
+          <tr><td>Codex</td><td>変更差分、テスト、対象フォルダ、ネット・コマンド権限。</td></tr>
+          <tr><td>Record</td><td>録音する地域の法令と参加者の同意。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="sources">
+      <div class="sec-head"><div class="sec-num">10</div><div><h2>公式情報</h2><p>大きな更新時は、以下のOpenAI公式ページを基準に改訂してください。</p></div></div>
+      <ol class="sources">
+        <li><a href="https://learn.chatgpt.com/docs/features">ChatGPT Features</a></li>
+        <li><a href="https://learn.chatgpt.com/docs/get-started-with-work">Get started with ChatGPT Work</a></li>
+        <li><a href="https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex">ChatGPT Work and Codex</a></li>
+        <li><a href="https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview">ChatGPT Capabilities Overview</a></li>
+        <li><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">ChatGPT Release Notes</a></li>
+        <li><a href="https://help.openai.com/en/articles/20001354-gpt-56-in-chatgpt">GPT‑5.6 in ChatGPT</a></li>
+        <li><a href="https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt">Data analysis</a></li>
+        <li><a href="https://help.openai.com/en/articles/8555545-file-uploads-faq">File Uploads FAQ</a></li>
+        <li><a href="https://help.openai.com/en/articles/11084440-images-in-chatgpt">Images in ChatGPT</a></li>
+        <li><a href="https://help.openai.com/en/articles/8400625-voice-mode-faq">ChatGPT Voice</a></li>
+        <li><a href="https://help.openai.com/en/articles/10500283-deep-research-in-chatgpt">Deep research</a></li>
+        <li><a href="https://help.openai.com/en/articles/11752874-chatgpt-agent">ChatGPT agent</a></li>
+        <li><a href="https://help.openai.com/en/articles/10169521-projects-in-chatgpt">Projects</a></li>
+        <li><a href="https://help.openai.com/en/articles/20001052-file-storage-and-library-in-chatgpt">Library</a></li>
+        <li><a href="https://help.openai.com/en/articles/10291617-tasks-in-chatgpt">Scheduled Tasks</a></li>
+        <li><a href="https://help.openai.com/en/articles/20001256-plugins-in-chatgpt-and-codex">Plugins</a></li>
+        <li><a href="https://learn.chatgpt.com/docs/skills-and-plugins">Skills & Plugins</a></li>
+        <li><a href="https://learn.chatgpt.com/docs/sites">Sites</a></li>
+        <li><a href="https://learn.chatgpt.com/docs/visualizations">Visualizations</a></li>
+        <li><a href="https://learn.chatgpt.com/docs/pets">Pets</a></li>
+        <li><a href="https://help.openai.com/en/articles/8096356-chatgpt-custom-instructions">Custom Instructions</a></li>
+        <li><a href="https://help.openai.com/en/articles/7730893-data-controls-faq">Data Controls</a></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-in"><div><strong>ChatGPTの画面と全機能がわかる本</strong><p>2026年7月29日版｜初心者向け操作型HTMLガイド</p></div><button class="print" onclick="window.print()">印刷・PDF保存</button></div>
+  </footer>
+  <button class="top" aria-label="上へ戻る" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    const featureData={
+      newchat:{k:"画面左上",t:"新しいチャット",p:"別の話題を最初から始めます。今の会話の内容を引き継ぎたくないときに使います。",w:"左側の「新しいチャット」。ショートカットは環境により Cmd/Ctrl + N。",items:["同じ成果物の修正は同じ会話","話題や案件が変わったら新しい会話","継続案件はProject内で作成"],prompt:"新しい会話で、まず目的と完成形を書きます。"},
+      searchchats:{k:"左サイドバー",t:"チャットを検索",p:"過去の会話を題名や本文の言葉から探します。古い会話が左側から見えなくても、検索で見つかる場合があります。",w:"左側の虫眼鏡。Webでは Cmd/Ctrl + K、デスクトップでは環境により Cmd/Ctrl + G。",items:["覚えている固有語で検索","アーカイブ済みも検索対象","Canvas本文は検索対象外の場合あり"],prompt:"「株式会社○○」「薬局開設」など固有語で探す"},
+      images:{k:"左メニュー／＋",t:"画像",p:"文章から画像を作る、既存画像を編集する、作成画像を探す機能です。会話に画像を添付して内容を読み取ることもできます。",w:"左側の「画像」、または入力欄の＋から「画像を作成」。",items:["写真・イラスト・バナー","画像内の一部を選択して編集","縦横比変更・背景透過","作成画像はImagesに保存"],prompt:"16:9のウェビナー表紙。白・黒・ネイビー。文字を置く余白を左に。ロゴと文字は入れない。"},
+      library:{k:"左メニュー／＋",t:"Library",p:"ChatGPTへアップロードしたファイルと、ChatGPTが作ったファイルを保存・検索・再利用する場所です。",w:"左側のLibrary。会話では＋→「Libraryから追加」。",items:["文書・表計算・スライド・PDF","アップロード／生成で絞り込み","ファイル種類で検索","チャット削除とは別管理"],prompt:"以前作った「料金表.xlsx」をLibraryから追加して、金額だけ更新して。"},
+      deepresearch:{k:"左メニュー／＋",t:"Deep research",p:"Web、添付資料、接続Appsを横断し、調査計画を確認してから引用付きの詳しい報告書を作ります。",w:"左側のDeep research、または＋メニュー。",items:["調査する情報源を指定","開始前に計画を編集","途中で方向修正","引用・リンク付き報告書"],prompt:"2026年の中小企業向けAI導入支援制度を、行政公式情報だけで調査。対象、期限、費用、必要書類を比較表にして。"},
+      scheduled:{k:"左サイドバー",t:"Scheduled tasks",p:"リマインダー、定期報告、条件監視などを未来の日時に自動実行します。結果や確認事項は通知されます。",w:"左側のScheduled。チャットで「毎週月曜に」と頼んでも作成できます。",items:["一回だけのリマインダー","毎日・毎週・毎月","WebやAppsの変化を監視","停止・再開・編集・削除"],prompt:"毎週月曜の朝、経済産業省の補助金更新を確認し、前週から変更があるときだけリンク付きで知らせて。"},
+      plugins:{k:"左サイドバー",t:"Plugins",p:"Skills、Apps、接続機能をまとめた業務用パッケージを探して追加する場所です。",w:"WorkまたはCodexを選び、左側のPluginsを開きます。",items:["OpenAI公式・組織・個人のPlugin","Skill＝繰り返し手順","App＝外部データ・操作","@で明示して使用"],prompt:"@Google Drive を使って、今週更新された営業資料を探して要約して。"},
+      projects:{k:"左サイドバー",t:"Projects",p:"同じ案件の会話、資料、専用指示をまとめる仕事部屋です。長く続く案件に向きます。",w:"左側Projectsの＋。既存チャットをProjectへ移動することもできます。",items:["案件別の会話","共通資料を添付","Project専用指示","Project内Memory"],prompt:"「補助金実績報告」Projectを作り、公募要領、様式、顧客チェックリストをまとめる。"},
+      settings:{k:"左下プロフィール",t:"プロフィール・設定",p:"契約、Personalization、Memory、Data Controls、Apps、通知、音声、権限などを管理します。",w:"左下のプロフィール画像→Settings。端末により位置が異なります。",items:["Custom InstructionsとMemory","学習利用・データ書き出し","Appsと権限","通知・音声・ショートカット"],prompt:"まずData Controls、Memory、接続Appsの3か所を確認します。"},
+      chatmode:{k:"画面上部",t:"Chat",p:"質問、相談、検索、短い作成を会話しながら進める標準モードです。",w:"画面上部のChat / Work切替でChat。",items:["答え・説明・相談","短い文章の作成","検索・画像・ファイル","音声・学習・Canvas"],prompt:"この文章を顧客向けに、結論を先にして300字以内で書き直して。"},
+      workmode:{k:"画面上部",t:"Work",p:"調査、複数工程、外部ツール、ファイル制作まで任せ、使える完成物を作るモードです。",w:"画面上部のChat / Work切替でWork。",items:["文書・表・スライド・PDF","Sites・画像・図解","長時間・クラウド作業","進捗確認・重要操作の承認"],prompt:"添付資料を基に画像入りHTMLガイドを作り、スマホ・印刷・リンクを確認して完成ファイルで渡して。"},
+      codexmode:{k:"上部／デスクトップ",t:"Codex",p:"コード、リポジトリ、ターミナル、テスト、レビューを扱う開発専用エージェントです。",w:"対応するデスクトップ・CLI・IDE・Webから利用。Webの通常Chatでは選択位置が異なります。",items:["複数ファイルのコード修正","コマンド・テスト実行","Git差分・PR・レビュー","ローカル／クラウド作業"],prompt:"指定箇所以外を変えずに不具合を修正し、再現テストと修正後テストを実行して。"},
+      models:{k:"画面上部",t:"モデル・推論レベル",p:"回答の速さと考える深さを選びます。表示される選択肢はプランで異なります。",w:"上部のInstantなどの表示をクリック。",items:["Instant＝日常の速い回答","Medium＝標準的な推論","High＝複雑な分析","Extra High / Pro＝対象プランの高度作業"],prompt:"日常のメールはInstant、複雑な制度比較はMedium以上が目安。"},
+      share:{k:"画面右上",t:"共有",p:"会話を他の人が見られるリンクとして共有します。共有前に個人情報や機密情報を確認します。",w:"会話右上の共有ボタン。利用できない会話や組織設定もあります。",items:["共有範囲を確認","秘密情報を削除","共有後のリンク管理","Project共有とは別"],prompt:"共有する前に、氏名・住所・顧客情報が残っていないか確認。"},
+      more:{k:"画面右上／会話メニュー",t:"その他の操作",p:"会話名変更、ピン留め、Projectへ移動、アーカイブ、削除などを行います。",w:"会話の•••メニュー。",items:["名前変更","ピン留め","Projectへ移動","アーカイブ／削除"],prompt:"削除は復元できません。隠すだけならアーカイブを使います。"},
+      composer:{k:"画面下部",t:"入力欄",p:"質問、依頼、追加修正を入力する中心です。＋から材料とツールを追加し、音声でも入力できます。",w:"画面下部の大きな入力欄。",items:["目的・読者・材料・形式を書く","＋でファイルやツール","@でPluginやSkill","送信前に内容確認"],prompt:"【目的】料金表を作る\n【読者】初めての顧客\n【材料】添付Excel\n【形式】A4・編集可能なHTML"},
+      tools:{k:"入力欄",t:"ツールメニュー",p:"検索、画像、Canvas、Study、Agent、Deep researchなど、その会話で使う機能を選びます。",w:"入力欄の「ツール」または＋。",items:["表示項目はプランで異なる","自動選択に任せることも可能","必要なツールを明示できる"],prompt:"Web検索を使い、行政の公式情報だけで確認して。"},
+      files:{k:"入力欄の＋",t:"写真とファイル",p:"PDF、Word、Excel、PowerPoint、画像、テキストなどを会話に追加して、読解・分析・変換・作成に使います。",w:"＋→写真とファイル。ドラッグ＆ドロップや貼り付けも利用できます。",items:["要約・比較・情報抽出","表計算の集計・グラフ","資料を別形式へ変換","重要箇所はページ指定"],prompt:"添付PDFの5〜12ページだけを使い、必要書類・期限・要確認事項を表にして。"},
+      websearch:{k:"＋／自動選択",t:"Web検索",p:"現在の情報をWebで調べ、情報源へのリンク付きで答えます。短い最新確認に向きます。",w:"＋→Web検索、または「最新情報を検索して」と依頼。",items:["ニュース・制度・価格・人物","公式サイトを優先指定","出典リンクを開いて確認","詳しい横断調査はDeep research"],prompt:"2026年7月時点の情報を、公式サイト優先で検索し、更新日とURLを付けて。"},
+      voice:{k:"入力欄のマイク",t:"Voice・音声入力",p:"Voiceは声で連続会話、音声入力は話した内容を文字にして送信前に直す機能です。",w:"入力欄のVoiceアイコンまたはマイク。",items:["Voice＝自然な往復会話","Dictation＝文字化して送信","対応環境では画面共有","会話後に文字記録を確認"],prompt:"考えを声で話し、最後に要点・決定事項・次の行動をまとめてもらう。"},
+      canvas:{k:"＋メニュー",t:"Canvas",p:"長い文章やコードを、会話とは別の編集面で共同編集します。直したい範囲を選択できます。",w:"＋→Canvas、または「Canvasで編集して」。",items:["文章の部分修正","インライン提案","コード編集","版を比較しながら改善"],prompt:"この企画書をCanvasで開き、第3章だけ短く書き直して。"},
+      study:{k:"＋メニュー",t:"Study mode",p:"すぐ答えを出すだけでなく、質問、段階的説明、理解確認を交えて学習します。",w:"＋→Study and learn。",items:["初心者向けに分解","一問ずつ確認","教材PDF・画像を使用","試験問題・復習"],prompt:"この資料を使って、一問ずつ質問し、私の回答後に解説して。"},
+      agent:{k:"＋メニュー",t:"Agent mode",p:"調査だけでなく、Webサイトを操作し、複数工程を実行します。重要操作では確認が入ります。",w:"＋→Agent mode、または /agent。",items:["サイトを移動・確認","フォーム入力等の作業","途中で指示変更","購入・送信・削除は慎重に確認"],prompt:"3社の公式料金ページを確認して比較表を作る。契約や送信はせず、比較表作成で停止。"}
+    };
+    const detail=document.getElementById("detailBody");
+    function showFeature(key){
+      const d=featureData[key]||featureData.newchat;
+      document.querySelectorAll(".side-item").forEach(x=>x.classList.toggle("active",x.dataset.feature===key));
+      detail.innerHTML=`<div class="detail-eyebrow">${d.k}</div><h3>${d.t}</h3><p>${d.p}</p><div class="detail-where"><strong>場所：</strong>${d.w}</div><ul>${d.items.map(x=>`<li>${x}</li>`).join("")}</ul><div class="mini-prompt">${d.prompt}<button class="mini-copy">コピー</button></div><div class="hint"><span>!</span><span>画面名や位置はプラン・端末・更新で変わることがあります。</span></div>`;
+      document.getElementById("detailPanel").classList.add("open");
+      bindCopies();
+    }
+    document.querySelectorAll("[data-feature]").forEach(el=>el.addEventListener("click",e=>{if(el.id!=="plusBtn")showFeature(el.dataset.feature)}));
+    document.querySelectorAll(".mode-btn").forEach(btn=>btn.addEventListener("click",()=>{
+      document.querySelectorAll(".mode-btn").forEach(x=>x.classList.remove("active"));btn.classList.add("active");
+      const mode=btn.dataset.mode,title=document.getElementById("welcomeTitle"),text=document.getElementById("composerText");
+      if(mode==="chat"){title.textContent="今日は何をお手伝いしましょうか？";text.textContent="メッセージを入力"}
+      if(mode==="work"){title.textContent="どんな仕事を完成させますか？";text.textContent="成果物、材料、条件、完成形を伝える"}
+      if(mode==="codex"){title.textContent="どのコードやプロジェクトを扱いますか？";text.textContent="フォルダ、変更内容、変更禁止事項、確認方法を伝える"}
+    }));
+    const plus=document.getElementById("plusPop");
+    document.getElementById("plusBtn").addEventListener("click",e=>{e.stopPropagation();plus.classList.toggle("show");showFeature("tools")});
+    document.addEventListener("click",e=>{if(!plus.contains(e.target)&&e.target.id!=="plusBtn")plus.classList.remove("show")});
+    document.querySelector(".mobile-detail").addEventListener("click",()=>document.getElementById("detailPanel").classList.toggle("open"));
+    function bindCopies(){
+      document.querySelectorAll(".copy,.mini-copy").forEach(btn=>{if(btn.dataset.bound)return;btn.dataset.bound=1;btn.addEventListener("click",async()=>{
+        const text=btn.parentElement.innerText.replace("コピー","").trim();try{await navigator.clipboard.writeText(text);btn.textContent="完了"}catch(e){btn.textContent="選択"}setTimeout(()=>btn.textContent="コピー",1300);
+      })});
+    }
+    bindCopies();showFeature("newchat");
+    let out="all";
+    document.querySelectorAll(".filter-btn").forEach(btn=>btn.addEventListener("click",()=>{
+      document.querySelectorAll(".filter-btn").forEach(x=>x.classList.remove("active"));btn.classList.add("active");out=btn.dataset.out;
+      document.querySelectorAll(".artifact").forEach(a=>a.classList.toggle("hidden",out!=="all"&&!a.dataset.out.split(" ").includes(out)));
+    }));
+    document.getElementById("capSearch").addEventListener("input",e=>{
+      const q=e.target.value.trim().toLowerCase();
+      document.querySelectorAll(".cap-group").forEach(g=>g.classList.toggle("hidden",!((g.dataset.key+" "+g.innerText).toLowerCase().includes(q))));
+    });
+    const topBtn=document.querySelector(".top");addEventListener("scroll",()=>topBtn.classList.toggle("show",scrollY>650),{passive:true});
+  </script>
+</body>
+</html>
