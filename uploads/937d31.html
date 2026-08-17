@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="ja"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="行政書士・補助金案件自動化システムを、公式情報の収集からガイド、ブログ、専門サイト、公開後の運用までゼロから作るための初心者向け手順書です。">
+  <title>行政書士・補助金案件自動化システム｜ゼロからの作り方</title>
+  <style>
+    :root{
+      --ink:#17231f; --muted:#5c6b65; --green:#155f4b; --green2:#0d7b5c;
+      --pale:#edf7f2; --cream:#fbf7ee; --gold:#bf8a24; --line:#d8e2dc;
+      --white:#fff; --danger:#9a3f38; --shadow:0 18px 50px rgba(21,55,44,.11);
+      --radius:22px; --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:86px}
+    body{margin:0;color:var(--ink);background:#f7faf8;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.9}
+    a{color:var(--green2)}
+    button{font:inherit}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .topbar-inner{max-width:var(--max);margin:auto;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:13px 24px}
+    .brand{font-weight:800;color:var(--green);letter-spacing:.02em}
+    .top-actions{display:flex;align-items:center;gap:12px}
+    .mini-progress{font-size:.82rem;color:var(--muted)}
+    .print-btn,.save-btn{border:1px solid var(--green);color:var(--green);background:white;border-radius:999px;padding:7px 14px;cursor:pointer;white-space:nowrap}
+    .save-btn{border-color:var(--green2);background:var(--green2);color:#fff}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0c493b 0%,#117359 65%,#17906a 100%);color:#fff}
+    .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.07)}
+    .hero:before{width:420px;height:420px;right:-120px;top:-210px}.hero:after{width:260px;height:260px;left:-100px;bottom:-150px}
+    .hero-inner{position:relative;max-width:var(--max);margin:auto;padding:84px 24px 70px;display:grid;grid-template-columns:1.45fr .75fr;gap:50px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;font-size:.84rem;font-weight:700;letter-spacing:.12em;color:#dff8ee}
+    .eyebrow:before{content:"";width:28px;height:2px;background:#f4c96d}
+    h1{font-size:clamp(2rem,5vw,4.3rem);line-height:1.18;letter-spacing:-.035em;margin:0 0 22px}
+    .hero p{font-size:1.08rem;max-width:720px;color:#e4f4ee;margin:0}
+    .hero-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);border-radius:24px;padding:25px;box-shadow:var(--shadow)}
+    .hero-card strong{display:block;color:#fff;font-size:1.08rem;margin-bottom:12px}
+    .hero-card ol{margin:0;padding-left:1.35em;color:#eefbf6}.hero-card li+li{margin-top:6px}
+    .notice{max-width:var(--max);margin:-26px auto 34px;position:relative;z-index:3;padding:0 24px}
+    .notice-inner{display:grid;grid-template-columns:auto 1fr;gap:16px;background:#fff;border-left:6px solid var(--gold);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow)}
+    .notice-mark{font-size:1.4rem}.notice p{margin:0}.notice strong{color:#755111}
+    .layout{max-width:var(--max);margin:auto;padding:18px 24px 100px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:38px}
+    .toc{position:sticky;top:84px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;max-height:calc(100vh - 104px);overflow:auto}
+    .toc-title{font-weight:800;color:var(--green);margin-bottom:10px}.toc ol{list-style:none;padding:0;margin:0}
+    .toc a{display:block;text-decoration:none;color:var(--muted);font-size:.88rem;line-height:1.45;padding:7px 9px;border-radius:9px;border-left:3px solid transparent}
+    .toc a:hover,.toc a.active{background:var(--pale);color:var(--green);border-left-color:var(--green2);font-weight:700}
+    main{min-width:0}
+    section{margin:0 0 68px}
+    .section-kicker{color:var(--green2);font-weight:800;letter-spacing:.1em;font-size:.8rem;text-transform:uppercase;margin-bottom:4px}
+    h2{font-size:clamp(1.65rem,3vw,2.35rem);line-height:1.35;margin:0 0 18px;color:#173c31}
+    h3{font-size:1.28rem;line-height:1.5;margin:30px 0 10px;color:#214c3f}
+    p{margin:0 0 16px}.lead{font-size:1.06rem;color:#465b53}
+    .plain{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 8px 26px rgba(21,55,44,.06)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+    .card .num{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--pale);color:var(--green);font-weight:900;margin-bottom:12px}
+    .card h3{margin:0 0 8px;font-size:1.08rem}.card p{font-size:.94rem;color:var(--muted);margin:0}
+    .flow{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:28px 18px;margin-top:28px}
+    .flow-step{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 14px;text-align:center;min-height:128px}
+    .flow-step:not(:nth-child(5n)):after{content:"→";position:absolute;right:-18px;top:45%;color:var(--gold);font-weight:900}
+    .flow-step b{display:block;color:var(--green);margin-bottom:6px}.flow-step span{font-size:.84rem;color:var(--muted);line-height:1.5;display:block}
+    .architecture{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:13px;align-items:stretch;margin:24px 0}
+    .arch-box{padding:21px 17px;border-radius:17px;background:#fff;border:1px solid var(--line)}
+    .arch-box strong{color:var(--green);display:block;margin-bottom:7px}.arch-box small{color:var(--muted);line-height:1.65;display:block}
+    .arrow{display:grid;place-items:center;color:var(--gold);font-size:1.5rem;font-weight:900}
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:#fff;margin:20px 0}
+    table{width:100%;border-collapse:collapse;min-width:670px}th,td{text-align:left;vertical-align:top;padding:15px 17px;border-bottom:1px solid var(--line)}
+    th{background:var(--pale);color:var(--green);font-size:.9rem}tr:last-child td{border-bottom:0}
+    .phase{background:#fff;border:1px solid var(--line);border-radius:var(--radius);margin:22px 0;overflow:hidden}
+    .phase-head{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:22px 24px;background:linear-gradient(90deg,var(--pale),#fff)}
+    .phase-no{width:50px;height:50px;display:grid;place-items:center;border-radius:15px;background:var(--green);color:#fff;font-size:1.18rem;font-weight:900}
+    .phase-head h3{margin:0;color:#173c31}.phase-head p{margin:3px 0 0;color:var(--muted);font-size:.92rem}
+    .phase-body{padding:22px 26px 26px}
+    .four{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+    .label-box{background:#fafcfb;border:1px solid var(--line);border-radius:12px;padding:13px;font-size:.88rem}
+    .label-box b{display:block;color:var(--green);font-size:.8rem;margin-bottom:4px}
+    .callout{border-radius:16px;padding:20px 22px;margin:22px 0;background:var(--cream);border:1px solid #eadabb}
+    .callout strong{display:block;color:#76530d;margin-bottom:5px}.callout p:last-child{margin-bottom:0}
+    .callout.green{background:var(--pale);border-color:#bfdfd0}.callout.green strong{color:var(--green)}
+    .callout.red{background:#fff3f2;border-color:#eac9c6}.callout.red strong{color:var(--danger)}
+    .checklist{list-style:none;padding:0;margin:16px 0 0}.checklist li{position:relative;padding:10px 10px 10px 34px;border-bottom:1px dashed var(--line)}
+    .checklist li:before{content:"✓";position:absolute;left:5px;top:10px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:var(--pale);color:var(--green);font-size:.76rem;font-weight:900}
+    .check-ui{display:grid;gap:9px;margin-top:18px}.check-ui label{display:flex;align-items:flex-start;gap:11px;background:#fff;border:1px solid var(--line);padding:13px 15px;border-radius:12px;cursor:pointer}.check-ui input{margin-top:7px;accent-color:var(--green2);width:18px;height:18px}
+    .formula{background:#153d32;color:#fff;border-radius:18px;padding:24px;text-align:center;font-size:1.07rem;margin:20px 0}.formula span{color:#f4ce7b;font-weight:800}
+    .qa-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}.qa b{display:block;color:var(--green)}
+    details{background:#fff;border:1px solid var(--line);border-radius:13px;margin:10px 0;padding:0 17px}summary{cursor:pointer;font-weight:700;color:#214c3f;padding:15px 0}details p{color:var(--muted);font-size:.94rem}
+    .finish{background:linear-gradient(135deg,#123f33,#0d7456);color:white;border-radius:26px;padding:34px}.finish h2{color:white}.finish p{color:#e1f4ec}.finish .check-ui label{color:var(--ink)}
+    footer{background:#102c25;color:#cfe2db;padding:35px 24px;text-align:center;font-size:.86rem}
+    .small{font-size:.87rem;color:var(--muted)}
+    @media(max-width:980px){.hero-inner{grid-template-columns:1fr}.hero-card{max-width:650px}.layout{grid-template-columns:1fr}.toc{position:relative;top:auto;max-height:none}.toc ol{columns:2}.flow{grid-template-columns:repeat(2,1fr)}.flow-step:not(:nth-child(5n)):after{display:none}.flow-step:last-child{grid-column:1/-1}.grid.three{grid-template-columns:1fr 1fr}.four{grid-template-columns:1fr 1fr}}
+    @media(max-width:650px){.topbar-inner{padding:10px 12px}.brand{font-size:.78rem}.mini-progress{display:none}.hero-inner{padding:58px 18px 50px}.hero-card{padding:19px}.notice{padding:0 14px}.layout{padding:10px 15px 70px}.toc ol{columns:1}.grid,.grid.three,.qa-grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.flow-step:last-child{grid-column:auto}.architecture{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.four{grid-template-columns:1fr}.plain{padding:20px}.phase-head{padding:18px}.phase-body{padding:18px}.top-actions .print-btn{display:none}.save-btn{padding:7px 11px;font-size:.82rem}h1{font-size:2.35rem}}
+    @media print{.topbar,.toc,.print-btn,.save-btn{display:none!important}.hero{background:#fff;color:#15251f}.hero p,.hero-card ol{color:#334b42}.hero-card{border:1px solid #ccc}.notice{margin:15px 0}.layout{display:block;max-width:none;padding:0}.phase,.card,.plain{break-inside:avoid}.hero-inner{padding:25px 0}.hero:before,.hero:after{display:none}section{margin-bottom:35px}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">行政書士・補助金システムの作り方</div>
+      <div class="top-actions"><span class="mini-progress" id="progressText">読了位置 0%</span><button class="save-btn" type="button" onclick="saveAsHtml()">HTMLを保存</button><button class="print-btn" type="button" onclick="window.print()">印刷・PDF保存</button></div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">BEGINNER'S COMPLETE GUIDE</div>
+        <h1>ゼロから作る<br>行政書士・補助金<br>案件自動化システム</h1>
+        <p>公式ページのURLを入れるところから、根拠資料の収集、申請者向けガイド、ブログ、専門サイト、公開前後の検査まで。技術者でない方にも「なぜ必要か」が分かる順番で説明します。</p>
+      </div>
+      <aside class="hero-card" aria-label="この資料で分かること">
+        <strong>この資料で分かること</strong>
+        <ol>
+          <li>最初に決めるべき目的と完成条件</li>
+          <li>情報を安全に集める仕組み</li>
+          <li>AIに任せる部分と人が判断する部分</li>
+          <li>ガイド・記事・サイトの作り分け</li>
+          <li>事故を防ぐ確認と公開の手順</li>
+        </ol>
+      </aside>
+    </div>
+  </div>
+
+  <div class="notice"><div class="notice-inner"><div class="notice-mark">💡</div><p><strong>最初に覚えることは一つだけです。</strong><br>このシステムは「AIが勝手に申請を完成させる道具」ではありません。公式情報を集め、整理し、下書きを作り、人が確認しやすくする道具です。最終判断と申請は、必ず担当者が行います。</p></div></div>
+
+  <div class="layout">
+    <nav class="toc" aria-label="目次">
+      <div class="toc-title">目次</div>
+      <ol>
+        <li><a href="#overview" class="active">1. 60秒で分かる全体像</a></li>
+        <li><a href="#goal">2. 目的と完成条件</a></li>
+        <li><a href="#architecture">3. システムの基本構造</a></li>
+        <li><a href="#prepare">4. 作る前の準備</a></li>
+        <li><a href="#input">5. 案件を開始する画面</a></li>
+        <li><a href="#research">6. 公式情報を集める</a></li>
+        <li><a href="#integrate">7. 情報を統合する</a></li>
+        <li><a href="#content">8. 成果物を作る</a></li>
+        <li><a href="#persona">9. 補助金のペルソナ分析</a></li>
+        <li><a href="#site">10. 専門サイトを組み立てる</a></li>
+        <li><a href="#safety">11. 安全設計</a></li>
+        <li><a href="#test">12. 検査の作り方</a></li>
+        <li><a href="#publish">13. 公開と公開後確認</a></li>
+        <li><a href="#operate">14. 日々の運用</a></li>
+        <li><a href="#roadmap">15. 実装ロードマップ</a></li>
+        <li><a href="#glossary">16. 用語集</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <section id="overview">
+        <div class="section-kicker">Overview</div>
+        <h2>1. 60秒で分かる全体像</h2>
+        <p class="lead">作るべきものは、文章生成機ではなく「根拠を失わずに、案件を順番に前へ進める仕組み」です。入口は公式URL、出口は確認済みのガイドや公開サイトです。</p>
+        <div class="flow" aria-label="全体フロー">
+          <div class="flow-step"><b>① 案件開始</b><span>公式URLと手続名を入力</span></div>
+          <div class="flow-step"><b>② 候補収集</b><span>公式資料を一覧化</span></div>
+          <div class="flow-step"><b>③ 第1確認</b><span>保存する資料を人が決定</span></div>
+          <div class="flow-step"><b>④ 整理・統合</b><span>要件・期限・疑問を構造化</span></div>
+          <div class="flow-step"><b>⑤ ガイド作成</b><span>申請者が読める言葉へ変換</span></div>
+          <div class="flow-step"><b>⑥ 記事作成</b><span>一つの疑問を一記事で解決</span></div>
+          <div class="flow-step"><b>⑦ サイト化</b><span>ガイドと記事を一体化</span></div>
+          <div class="flow-step"><b>⑧ 自動検査</b><span>文字数・リンク・情報漏れ</span></div>
+          <div class="flow-step"><b>⑨ 第2確認</b><span>人が公開範囲を決定</span></div>
+          <div class="flow-step"><b>⑩ 公開・運用</b><span>実際のURLで再確認</span></div>
+        </div>
+        <div class="callout green"><strong>二つの確認が安全の要です</strong><p>第1確認は「何を根拠として採用するか」、第2確認は「何を外部へ見せるか」を決めます。この二つを自動で通過させない設計にします。</p></div>
+      </section>
+
+      <section id="goal">
+        <div class="section-kicker">Goal</div><h2>2. 最初に目的と完成条件を決める</h2>
+        <p>いきなり画面やAIを作り始めると、途中で必要機能が増え、何をもって完成か分からなくなります。最初に「誰の、どんな仕事を、どこまで楽にするか」を一文にします。</p>
+        <div class="formula"><span>良い目的</span> ＝ 対象者 ＋ 困っている仕事 ＋ 望む結果 ＋ 人が残す判断</div>
+        <p>例えば、「行政書士が初めて扱う手続について、公式情報の収集から申請者向け案内までを一画面で進め、最終確認は行政書士が行えるようにする」です。この一文が、必要な機能と不要な機能の境界になります。</p>
+        <div class="grid three">
+          <div class="card"><div class="num">A</div><h3>利用者</h3><p>行政書士、補助金支援者、社内担当者など、実際に操作する人を一人に絞ります。</p></div>
+          <div class="card"><div class="num">B</div><h3>成果物</h3><p>調査メモではなく、ガイド、記事、サイトなど、最後に利用する形を決めます。</p></div>
+          <div class="card"><div class="num">C</div><h3>責任の境界</h3><p>AIは候補と下書きまで。採否判断、最終確認、提出、公開は人が行います。</p></div>
+        </div>
+        <h3>完成と呼べる状態</h3>
+        <ul class="checklist">
+          <li>公式URLから新しい案件を開始できる。</li>
+          <li>根拠候補を一覧で確認し、採用する資料を選べる。</li>
+          <li>採用した根拠と生成文章の関係を後からたどれる。</li>
+          <li>申請者向けガイドと記事を、同じ情報源から作れる。</li>
+          <li>個人情報を含む案件資料と、一般公開用の文章が分離されている。</li>
+          <li>公開前に人の承認で停止し、承認後も実際の公開画面を検査できる。</li>
+        </ul>
+      </section>
+
+      <section id="architecture">
+        <div class="section-kicker">Architecture</div><h2>3. システムを5つの役割に分ける</h2>
+        <p>一つの大きな仕組みとして作るのではなく、役割を分けます。問題が起きたときに「収集が悪いのか、文章生成が悪いのか、公開が悪いのか」を切り分けられます。</p>
+        <div class="architecture">
+          <div class="arch-box"><strong>① 操作画面</strong><small>案件入力、資料選択、進捗、プレビュー、承認を一つの流れで見せます。</small></div><div class="arrow">→</div>
+          <div class="arch-box"><strong>② 処理の司令塔</strong><small>各工程の順序を守り、未確認なら次へ進ませません。</small></div><div class="arrow">→</div>
+          <div class="arch-box"><strong>③ 情報保管</strong><small>案件ごとに根拠、抽出文、成果物、検査記録を分離して保存します。</small></div>
+        </div>
+        <div class="architecture">
+          <div class="arch-box"><strong>④ AI・文章生成</strong><small>根拠だけを渡し、決められた構成と表現で下書きを作ります。</small></div><div class="arrow">→</div>
+          <div class="arch-box"><strong>⑤ 検査・公開</strong><small>文字数、リンク、秘密情報、表示崩れを確認し、承認後に公開します。</small></div><div class="arrow">→</div>
+          <div class="arch-box"><strong>利用者に見える結果</strong><small>案件画面、申請者ガイド、専門サイト、公開URL、確認記録です。</small></div>
+        </div>
+        <div class="callout"><strong>設計のコツ</strong><p>AIの回答をそのまま保存するのではなく、「入力」「根拠」「生成条件」「出力」「検査結果」を一組として残します。あとで誤りが見つかったとき、原因を追えるからです。</p></div>
+      </section>
+
+      <section id="prepare">
+        <div class="section-kicker">Preparation</div><h2>4. 作る前に用意するもの</h2>
+        <div class="table-wrap"><table><thead><tr><th>用意するもの</th><th>役割</th><th>初心者向けの考え方</th></tr></thead><tbody>
+          <tr><td>パソコン内で動く実行環境</td><td>画面表示、情報処理、保存を行う</td><td>最初は自分のパソコンだけで動かし、公開は後に分けます。</td></tr>
+          <tr><td>ブラウザ</td><td>操作画面と完成HTMLを確認する</td><td>作っただけでなく、実際にクリックして確認するために使います。</td></tr>
+          <tr><td>文章生成AI</td><td>整理、要約、下書き、表現調整</td><td>法律判断を任せず、根拠の範囲で文章を作らせます。</td></tr>
+          <tr><td>安全な保存領域</td><td>案件別に根拠と成果物を保管する</td><td>案件同士を混ぜず、過去の成果物を上書きしません。</td></tr>
+          <tr><td>公開先</td><td>確認済みサイトを外部から見られるようにする</td><td>ローカル完成と公開完了は別物として扱います。</td></tr>
+        </tbody></table></div>
+        <h3>最初から決めておく運用ルール</h3>
+        <div class="grid">
+          <div class="card"><div class="num">1</div><h3>原本を直接直さない</h3><p>変更は必ず新しい作業用の複製で試します。動いている仕組みと案件履歴を守ります。</p></div>
+          <div class="card"><div class="num">2</div><h3>古い版から始めない</h3><p>どれが現行かを一つに決め、毎回そこから新しく作業を開始します。</p></div>
+          <div class="card"><div class="num">3</div><h3>公開は承認後だけ</h3><p>ローカル確認、保存、公開、送信を別々の状態として管理します。</p></div>
+          <div class="card"><div class="num">4</div><h3>証拠を残す</h3><p>「動いたはず」ではなく、日時、対象、結果、実画面を確認できる記録を残します。</p></div>
+        </div>
+      </section>
+
+      <section id="input">
+        <div class="section-kicker">Input</div><h2>5. 案件を開始する画面を作る</h2>
+        <p>最初の画面は、入力項目を増やしすぎないことが大切です。公式ページから分かることを利用者へ再入力させず、まず三つの情報で開始できるようにします。</p>
+        <div class="plain">
+          <div class="grid three">
+            <div><h3>公式URL</h3><p class="small">調査の出発点。検索結果やまとめ記事ではなく、制度を運営する機関のページを使います。</p></div>
+            <div><h3>手続・制度名</h3><p class="small">何について調べるかを表します。正式名称がページから分かれば自動補完します。</p></div>
+            <div><h3>案件の仮名</h3><p class="small">申請者が未定なら制度名で開始し、個人情報なしでも調査を先に進めます。</p></div>
+          </div>
+        </div>
+        <h3>開始ボタンを押した直後に行うこと</h3>
+        <ol>
+          <li>URLが安全な形式か、実際に開けるかを確認する。</li>
+          <li>運営主体、対象地域、制度名、公募回、申請区分を読み取る。</li>
+          <li>同じ名称の別制度や過年度情報と混ざっていないかを確かめる。</li>
+          <li>新しい案件番号を付け、他案件と分離した作業領域を用意する。</li>
+          <li>「候補収集中」と表示し、現在何をしているか利用者に見せる。</li>
+        </ol>
+        <div class="callout red"><strong>自動で進めてはいけない場合</strong><p>公式性を確認できない、対象地域が複数に分かれる、公募回によって要件が大きく違う場合は、推測せず候補を示して人の選択を待ちます。</p></div>
+      </section>
+
+      <section id="research">
+        <div class="section-kicker">Research</div><h2>6. 公式情報を集める仕組みを作る</h2>
+        <p>検索件数を増やすことが目的ではありません。申請に必要な判断を支える一次情報を漏れなく集めることが目的です。</p>
+        <div class="phase"><div class="phase-head"><div class="phase-no">1</div><div><h3>公式ページの範囲をたどる</h3><p>同じ運営主体の中から、制度に直接関係するページと資料を探します。</p></div></div><div class="phase-body"><p>トップページだけでなく、公募要領、手引き、様式、よくある質問、スケジュール、申請方法、審査項目、採択後の手続、関連法令や要綱まで候補にします。</p><div class="four"><div class="label-box"><b>対象者</b>誰が申請できるか</div><div class="label-box"><b>期限</b>いつまでに何をするか</div><div class="label-box"><b>要件</b>何を満たす必要があるか</div><div class="label-box"><b>証拠</b>何を提出して示すか</div></div></div></div>
+        <div class="phase"><div class="phase-head"><div class="phase-no">2</div><div><h3>候補一覧を見せる</h3><p>保存前に、名称・種類・更新日・URL・採用理由を並べます。</p></div></div><div class="phase-body"><p>古い資料、説明会だけの資料、重複、別制度を見分けられるようにします。ここで人が保存対象を確定するのが第1確認です。確認前に大量保存すると、後のAIが古い情報まで根拠として使う危険があります。</p></div></div>
+        <div class="phase"><div class="phase-head"><div class="phase-no">3</div><div><h3>原文と読める本文を両方残す</h3><p>元資料を保持しつつ、検索・引用できる文字情報へ変換します。</p></div></div><div class="phase-body"><p>PDF、表計算、文書、Webページは、そのままの原資料と抽出した本文の両方を管理します。表や注記が崩れた可能性も記録し、重要な金額、日付、条件は必ず原資料へ戻って確認します。</p></div></div>
+        <h3>出典台帳に持たせる項目</h3>
+        <div class="table-wrap"><table><thead><tr><th>項目</th><th>意味</th><th>使い道</th></tr></thead><tbody>
+          <tr><td>資料名・運営主体</td><td>誰が何を公表したか</td><td>公式性を判断する</td></tr>
+          <tr><td>URL・取得日時</td><td>どこをいつ確認したか</td><td>更新差分を追う</td></tr>
+          <tr><td>対象制度・公募回</td><td>どの申請に有効か</td><td>過年度資料の混入を防ぐ</td></tr>
+          <tr><td>重要箇所</td><td>要件、期限、金額、例外</td><td>文章生成の根拠にする</td></tr>
+          <tr><td>要確認事項</td><td>読取不能、矛盾、未公表</td><td>AIに推測させない</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="integrate">
+        <div class="section-kicker">Integration</div><h2>7. 集めた情報を一つの設計図へ統合する</h2>
+        <p>資料を集めただけでは、申請者は動けません。複数資料の情報を「誰が・いつ・何を・なぜ・どの順番で行うか」に並べ替えます。これが文章生成前の最重要工程です。</p>
+        <div class="grid">
+          <div class="card"><div class="num">①</div><h3>制度の目的</h3><p>行政が何を実現したくて制度を作ったか。形式的な要件の意味を理解します。</p></div>
+          <div class="card"><div class="num">②</div><h3>対象と除外</h3><p>対象者、対象事業、対象経費だけでなく、対象外と例外を明示します。</p></div>
+          <div class="card"><div class="num">③</div><h3>時系列</h3><p>準備、申請、審査、採択・許可後、報告までを一本の時間軸にします。</p></div>
+          <div class="card"><div class="num">④</div><h3>役割分担</h3><p>申請者、専門家、行政機関がそれぞれ何を行うかを分けます。</p></div>
+          <div class="card"><div class="num">⑤</div><h3>証拠と書類</h3><p>各要件を、どの書類・数値・説明で証明するかを対応させます。</p></div>
+          <div class="card"><div class="num">⑥</div><h3>不明点</h3><p>資料間の矛盾、未公表、個別確認が必要な点を消さずに残します。</p></div>
+        </div>
+        <div class="callout green"><strong>統合結果の良い形</strong><p>単なる長い要約ではなく、「全体の流れ」「要件一覧」「必要資料」「役割分担」「期限」「判断が必要な点」「根拠URL」が互いにつながっている状態です。</p></div>
+      </section>
+
+      <section id="content">
+        <div class="section-kicker">Content</div><h2>8. 同じ根拠から三つの成果物を作る</h2>
+        <p>根拠は共通でも、読む人と目的が違えば文章の形は変わります。内部の調査結果をそのまま公開せず、用途別に作り分けます。</p>
+        <div class="table-wrap"><table><thead><tr><th>成果物</th><th>読む人</th><th>目的</th><th>書き方</th></tr></thead><tbody>
+          <tr><td>申請者用ガイド</td><td>申請を検討・準備する方</td><td>全体像を理解し、次の行動が分かる</td><td>丁寧なです・ます調。協力いただきたい行動を先に伝える</td></tr>
+          <tr><td>見込み客向け記事</td><td>一つの疑問を検索している方</td><td>疑問を解消し、自分に関係があるか判断する</td><td>一記事一疑問。狭いテーマを具体例と根拠で深掘りする</td></tr>
+          <tr><td>専門サイト</td><td>制度を知りたい一般の方</td><td>ガイドと記事を迷わず行き来する</td><td>トップにガイド、横に記事一覧、下部に専門家紹介と共通案内</td></tr>
+        </tbody></table></div>
+        <h3>申請者用ガイドの構成</h3>
+        <ol>
+          <li>この制度・手続の目的と、対象になり得る人</li>
+          <li>申請から完了までの全体の流れ</li>
+          <li>要件、対象外、注意点</li>
+          <li>準備する資料と、その資料が必要な理由</li>
+          <li>申請者と支援者の役割分担</li>
+          <li>期限、費用、審査・確認のポイント</li>
+          <li>許可・採択後に続く手続</li>
+          <li>よくある疑問、次に行うこと、公式根拠</li>
+        </ol>
+        <div class="callout"><strong>補助金ガイドの文字量</strong><p>補助金版では、表や見出しだけで水増しせず、画面上で読める本文を<strong>3万文字以上</strong>にします。制度説明だけでなく、対象判断、準備、審査、採択後、ペルソナ分析まで一冊で理解できる深さを確保します。</p></div>
+        <h3>ブログ記事を決める方法</h3>
+        <p>記事数を先に決めません。見込み客が検索前・申請前・準備中・採択後に抱く疑問を洗い出し、一つの疑問を一記事にします。近い疑問でも、答えや読者の状況が違えば別記事にします。</p>
+        <div class="grid three">
+          <div class="card"><div class="num">?</div><h3>対象判断</h3><p>「自社は対象か」「この経費は使えるか」など、入口の疑問です。</p></div>
+          <div class="card"><div class="num">?</div><h3>申請準備</h3><p>「何から始めるか」「数字をどう説明するか」など、作業の疑問です。</p></div>
+          <div class="card"><div class="num">?</div><h3>失敗回避</h3><p>「不採択になりやすい理由」「採択前に契約してよいか」などの疑問です。</p></div>
+        </div>
+        <p class="small">各記事は画面上で読める本文を<strong>5,000文字以上</strong>とし、結論だけで終わらせず、前提、理由、具体例、よくある誤解、確認方法、次の行動、公式根拠まで含めます。</p>
+      </section>
+
+      <section id="persona">
+        <div class="section-kicker">Persona</div><h2>9. 補助金ではペルソナ分析をガイドに混ぜる</h2>
+        <p>補助金は「要件に当てはまる」だけでは足りません。制度の政策目的と、会社の課題・投資・実行力が合っているかを考える必要があります。そのため、想定する申請者像をガイドの中に自然に織り込みます。</p>
+        <div class="plain">
+          <h3 style="margin-top:0">ペルソナ分析の7項目</h3>
+          <div class="grid">
+            <div><b>1. 会社の現在地</b><p class="small">業種、規模、人員、売上構成、商圏、既存設備。</p></div>
+            <div><b>2. 本人が感じる悩み</b><p class="small">売上停滞、人手不足、設備老朽化、新規顧客不足。</p></div>
+            <div><b>3. まだ言葉にできていない課題</b><p class="small">生産性、付加価値、事業構造、社内体制の弱点。</p></div>
+            <div><b>4. 実現したい変化</b><p class="small">新市場進出、高単価化、省力化、地域課題の解決。</p></div>
+            <div><b>5. 制度との適合</b><p class="small">形式要件だけでなく、政策目的と投資内容の一致。</p></div>
+            <div><b>6. 実行できる力</b><p class="small">資金、人材、時間、協力先、管理能力。</p></div>
+            <div><b>7. 不安と質問</b><p class="small">自己負担、審査、書類、採択後の義務、失敗時の影響。</p></div>
+          </div>
+        </div>
+        <h3>ガイドへの混ぜ方</h3>
+        <p>「ペルソナ分析」という独立した理論説明だけにせず、各章で読者が自社を照らし合わせられる問いを置きます。例えば対象要件の後に「こんな会社は相性がよい」、経費説明の後に「投資目的を一文で説明できるか」、採択後の章に「実行体制を確保できるか」を入れます。</p>
+        <div class="callout red"><strong>避けること</strong><p>都合のよい架空の会社像を作って「採択される」と断定しません。ペルソナは読者の自己判断を助けるものです。適合性の最終判断は、最新の公募要領と個別事情を確認して行います。</p></div>
+      </section>
+
+      <section id="site">
+        <div class="section-kicker">Website</div><h2>10. ガイドと記事を一つの専門サイトにする</h2>
+        <p>サイトは、制度の全体像を知りたい人と、一つの疑問だけを解決したい人の両方を受け止めます。別々のサイトに分けず、一つの情報設計にします。</p>
+        <div class="architecture">
+          <div class="arch-box"><strong>トップページ</strong><small>3万文字以上の申請ガイド。目次、流れ、要件、準備、FAQ、出典を掲載。</small></div><div class="arrow">↔</div>
+          <div class="arch-box"><strong>記事サイドバー</strong><small>疑問ごとの記事を分類し、今読んでいる記事と関連する記事へ案内。</small></div><div class="arrow">↔</div>
+          <div class="arch-box"><strong>各記事ページ</strong><small>一つの疑問を5千文字以上で解決し、ガイドの該当章へ戻せる。</small></div>
+        </div>
+        <h3>各ページで共通にする部分</h3>
+        <ul class="checklist">
+          <li>ページ上部に、制度名とガイドへ戻る導線を置く。</li>
+          <li>本文の横または下に、ブログ記事一覧を置く。</li>
+          <li>本文の直後に、担当専門家の自己紹介を置く。</li>
+          <li>その下に、運営サイトと同じ案内・連絡先・規約等のフッターを置く。</li>
+          <li>公式根拠へのリンクと情報確認日を表示する。</li>
+          <li>スマートフォンでは、記事一覧を本文の下へ自然に並べる。</li>
+        </ul>
+        <p>専門家紹介や共通フッターは一か所で管理し、全ページで同じ内容が出るようにします。変更時に一部ページだけ古い内容が残る事故を防げます。</p>
+      </section>
+
+      <section id="safety">
+        <div class="section-kicker">Safety</div><h2>11. 「壊さない・漏らさない・勝手に出さない」を設計する</h2>
+        <div class="grid three">
+          <div class="card"><div class="num">守</div><h3>原本保護</h3><p>変更は毎回新しい作業版で行い、利用中の仕組みを停止・上書きしません。</p></div>
+          <div class="card"><div class="num">秘</div><h3>情報分離</h3><p>申請者名、会社情報、連絡先、非公開資料を公開用文章へ渡しません。</p></div>
+          <div class="card"><div class="num">認</div><h3>人の承認</h3><p>資料採用と外部公開の前で必ず停止し、人の判断を待ちます。</p></div>
+        </div>
+        <h3>技術面で最低限行う防御</h3>
+        <div class="qa-grid">
+          <div class="qa"><b>入力を信用しない</b>URL、案件名、文章の長さや文字種を検査し、不正な場所へ保存させません。</div>
+          <div class="qa"><b>認証情報を書き込まない</b>AIや公開先の秘密鍵を、HTMLや案件資料の中へ保存しません。</div>
+          <div class="qa"><b>ローカル利用を基本にする</b>初期状態は自分のパソコンからだけ使えるようにし、外部公開を別工程にします。</div>
+          <div class="qa"><b>案件を混ぜない</b>案件ごとに識別し、他社の資料や過去案件の文章を自動流用しません。</div>
+          <div class="qa"><b>操作履歴を残す</b>誰が、いつ、どの資料を採用し、何を公開したかを確認できるようにします。</div>
+          <div class="qa"><b>失敗時は止める</b>期限や金額の矛盾、根拠不明、文字化けを検出したら生成・公開を止めます。</div>
+        </div>
+      </section>
+
+      <section id="test">
+        <div class="section-kicker">Quality Assurance</div><h2>12. 完成を判断する検査を作る</h2>
+        <p>「文章が生成された」「画面が開いた」は完成ではありません。機械で確認できることと、人が実画面で確認することを分けて、両方に合格させます。</p>
+        <div class="table-wrap"><table><thead><tr><th>検査層</th><th>確認すること</th><th>合格の証拠</th></tr></thead><tbody>
+          <tr><td>内容検査</td><td>必須章、文字数、制度名、対象公募回、出典、禁止表現</td><td>検査結果が全項目合格</td></tr>
+          <tr><td>リンク検査</td><td>目次、記事間、公式根拠、問い合わせ導線</td><td>リンク切れがなく、目的の場所へ移動</td></tr>
+          <tr><td>秘密情報検査</td><td>氏名、会社名、連絡先、個別事情、内部情報</td><td>公開用ページで検出ゼロ</td></tr>
+          <tr><td>表示検査</td><td>文字化け、見出し、表、余白、スマートフォン幅</td><td>実画面で読めて横はみ出しなし</td></tr>
+          <tr><td>操作検査</td><td>開始、選択、保存、再開、プレビュー、承認停止</td><td>利用者と同じ操作で最後まで到達</td></tr>
+          <tr><td>回帰検査</td><td>以前から使える案件や機能が壊れていないか</td><td>変更前と同じ主要操作が成功</td></tr>
+        </tbody></table></div>
+        <h3>文字数の数え方</h3>
+        <p>HTMLのタグやメニュー名を含めず、読者が本文として画面上で読む文字だけを数えます。空白や同じ文の繰り返しで増やさず、内容の深さで基準を満たします。</p>
+        <div class="callout green"><strong>拒否テストも用意します</strong><p>正しい操作だけでなく、非公式URL、未承認の公開、根拠のない金額、別案件の個人情報、短すぎる記事などをわざと入力し、システムが止められるか確認します。</p></div>
+      </section>
+
+      <section id="publish">
+        <div class="section-kicker">Release</div><h2>13. 公開は「アップロード」ではなく「実際に使える確認」まで</h2>
+        <p>公開前に、公開先と範囲、使用するURL、既存ページへの影響を示して第2確認を受けます。承認されたら、新しい未使用の場所へ公開し、実際の公開URLで再検査します。</p>
+        <div class="phase"><div class="phase-head"><div class="phase-no">前</div><div><h3>公開前</h3><p>対象と戻し方を固定します。</p></div></div><div class="phase-body"><ul class="checklist"><li>公開する内容と、公開しない案件情報を分ける。</li><li>公開先が空いていることを確認する。</li><li>既存サイトの状態を記録する。</li><li>失敗時に元へ戻せる方法を決める。</li><li>利用者の明示承認を受ける。</li></ul></div></div>
+        <div class="phase"><div class="phase-head"><div class="phase-no">中</div><div><h3>公開中</h3><p>中途半端な状態を外部へ見せません。</p></div></div><div class="phase-body"><p>仮の場所へ一式を送り、内容と件数を確認してから一度に切り替えます。公開中の同名データへ一つずつ上書きすると、文章だけ新しく画像やリンクは古い、という混在が起きます。</p></div></div>
+        <div class="phase"><div class="phase-head"><div class="phase-no">後</div><div><h3>公開後</h3><p>利用者が見る入口から確認します。</p></div></div><div class="phase-body"><ul class="checklist"><li>公開URLをブラウザで開き、タイトルと本文を目で確認する。</li><li>トップから記事をクリックし、戻る導線も試す。</li><li>公式根拠と問い合わせ導線が正しい場所へ着くか確認する。</li><li>スマートフォン相当の幅で読む。</li><li>既存のトップページや他制度のページが変わっていないか確認する。</li></ul></div></div>
+        <div class="callout red"><strong>重要</strong><p>保存成功、構築成功、通信の成功だけでは公開完了ではありません。利用者が実際のURLを開き、必要な内容を読み、リンクを使えることまで確認して初めて公開完了です。</p></div>
+      </section>
+
+      <section id="operate">
+        <div class="section-kicker">Operation</div><h2>14. 作った後の運用を最初から設計する</h2>
+        <p>行政手続や補助金は、期限、様式、要件が更新されます。完成した日から、情報は古くなり始めます。更新を前提とした仕組みにします。</p>
+        <div class="grid">
+          <div class="card"><div class="num">日</div><h3>案件ごと</h3><p>採用資料、判断、申請者への案内、次の期限を記録し、「続きから」再開できるようにします。</p></div>
+          <div class="card"><div class="num">月</div><h3>定期確認</h3><p>公式ページの更新、公募開始・終了、FAQ追加、様式変更を確認します。</p></div>
+          <div class="card"><div class="num">変</div><h3>制度変更時</h3><p>以前の版を消さず、新しい公募回として根拠と成果物を分離します。</p></div>
+          <div class="card"><div class="num">障</div><h3>問題発生時</h3><p>影響範囲を止め、原因、誤った出力、公開状態、再発防止を記録して再検査します。</p></div>
+        </div>
+        <h3>補助金は採択後も続きます</h3>
+        <p>採択だけで案件を完了にしません。交付申請、交付決定、発注、納品、検収、支払、実績報告、精算、効果報告、財産管理までを時系列で管理します。「いつ契約してよいか」「どの証拠を残すか」を早い段階から案内します。</p>
+      </section>
+
+      <section id="roadmap">
+        <div class="section-kicker">Roadmap</div><h2>15. ゼロから完成までの実装ロードマップ</h2>
+        <p>最初から全機能を作らず、利用者が確認できる小さな完成単位で積み上げます。各段階の完了条件を満たしてから次へ進みます。</p>
+        <div class="table-wrap"><table><thead><tr><th>段階</th><th>作るもの</th><th>完了条件</th></tr></thead><tbody>
+          <tr><td>第1週：設計</td><td>目的、利用者、成果物、二つの承認、保存区分</td><td>一枚の流れ図を第三者が説明できる</td></tr>
+          <tr><td>第2週：案件管理</td><td>新規開始、案件一覧、進捗表示、再開</td><td>二つのテスト案件が混ざらず再開できる</td></tr>
+          <tr><td>第3週：資料収集</td><td>公式性確認、候補一覧、選択、原文・本文保存</td><td>採用資料と除外理由を後から確認できる</td></tr>
+          <tr><td>第4週：情報統合</td><td>要件、期限、書類、役割、矛盾、出典の整理</td><td>根拠不明の断定がなく、要確認が残る</td></tr>
+          <tr><td>第5週：ガイド生成</td><td>申請者用ガイド、プレビュー、修正</td><td>構成、文章量、出典、表現の検査に合格</td></tr>
+          <tr><td>第6週：記事・サイト</td><td>疑問抽出、記事生成、ナビゲーション、共通紹介</td><td>ガイドと全記事を相互に移動できる</td></tr>
+          <tr><td>第7週：安全・検査</td><td>秘密情報検査、拒否テスト、回帰テスト</td><td>危険な入力と未承認公開を確実に止める</td></tr>
+          <tr><td>第8週：限定公開</td><td>新規公開先、公開記録、実画面検査</td><td>実URL・実クリック・スマホ表示がすべて合格</td></tr>
+        </tbody></table></div>
+        <div class="finish">
+          <h2>最終チェック</h2>
+          <p>以下をすべて説明・確認できれば、ゼロから作ったシステムは「使い始められる状態」です。チェックはこのブラウザ内だけに保存され、外部送信されません。</p>
+          <div class="check-ui" id="finalChecklist">
+            <label><input type="checkbox">目的と、AI・人の責任範囲を説明できる</label>
+            <label><input type="checkbox">公式URLから根拠候補を集め、第1確認で止められる</label>
+            <label><input type="checkbox">案件別に根拠・成果物・検査記録を分離できる</label>
+            <label><input type="checkbox">ガイド、記事、サイトを同じ根拠から作り分けられる</label>
+            <label><input type="checkbox">個人情報を公開用ページへ混ぜない</label>
+            <label><input type="checkbox">公開前の第2確認と、公開後の実画面検査がある</label>
+            <label><input type="checkbox">制度更新と採択・許可後の運用まで続けられる</label>
+          </div>
+        </div>
+      </section>
+
+      <section id="glossary">
+        <div class="section-kicker">Glossary</div><h2>16. 初めての方向け用語集</h2>
+        <details><summary>一次情報とは？</summary><p>制度を運営する行政機関や事務局が直接公表した情報です。まとめサイトや解説記事は理解の助けになりますが、要件・期限・金額の最終根拠には公式資料を使います。</p></details>
+        <details><summary>APIとは？</summary><p>別のサービスへ決められた形式で仕事を依頼する窓口です。このシステムでは、文章生成AIや公開サービスと安全にやり取りするときに使います。</p></details>
+        <details><summary>プロンプトとは？</summary><p>AIへ渡す作業指示です。単なる質問ではなく、役割、使ってよい根拠、出力構成、禁止事項、検査条件まで明記します。</p></details>
+        <details><summary>ローカルと公開の違いは？</summary><p>ローカルは自分のパソコン内でだけ見える状態、公開はインターネット上のURLから外部の人が見られる状態です。ローカル完成だけでは送信用リンクになりません。</p></details>
+        <details><summary>回帰検査とは？</summary><p>新しい機能を追加した結果、以前から使えていた機能が壊れていないか確かめる検査です。変更した部分だけでなく、利用者の主要な流れをもう一度試します。</p></details>
+        <details><summary>ペルソナとは？</summary><p>制度を利用する具体的な人物・会社像です。補助金では、形式要件だけでなく、会社の課題、投資目的、実行力、不安を整理し、読者が自社との相性を考えられるように使います。</p></details>
+      </section>
+    </main>
+  </div>
+
+  <footer>行政書士・補助金案件自動化システム「ゼロからの作り方」｜設計・実装・検査・公開・運用の全体手順</footer>
+  <script>
+    function saveAsHtml(){
+      const source='<!doctype html>\n'+document.documentElement.outerHTML;
+      const blob=new Blob([source],{type:'text/html;charset=utf-8'});
+      const url=URL.createObjectURL(blob);
+      const link=document.createElement('a');
+      link.href=url;
+      link.download='行政書士・補助金システム_ゼロからの作り方.html';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+    }
+    const links=[...document.querySelectorAll('.toc a')];
+    const sections=[...document.querySelectorAll('main section')];
+    const progressText=document.getElementById('progressText');
+    const onScroll=()=>{
+      const max=document.documentElement.scrollHeight-innerHeight;
+      const pct=max>0?Math.min(100,Math.max(0,Math.round(scrollY/max*100))):0;
+      progressText.textContent=`読了位置 ${pct}%`;
+      let current=sections[0]?.id;
+      for(const s of sections){if(s.getBoundingClientRect().top<=120)current=s.id;}
+      links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')===`#${current}`));
+    };
+    addEventListener('scroll',onScroll,{passive:true});onScroll();
+  </script>
+
+
+</body><div id="codex-browser-sidebar-comments-root" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483647;"></div></html>
