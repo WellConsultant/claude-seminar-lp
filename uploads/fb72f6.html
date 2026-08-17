@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    
+  </style>
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 16mm;
+    background-color: #f8fafc;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+    color: #1e293b;
+    line-height: 1.75;
+    font-size: 10.5pt;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Header Banner */
+  .header-banner {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: #ffffff;
+    padding: 24px 28px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .header-banner h1 {
+    font-size: 18pt;
+    margin: 0 0 8px 0;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    border: none;
+    padding: 0;
+  }
+
+  .header-banner p {
+    margin: 0;
+    font-size: 11pt;
+    opacity: 0.92;
+  }
+
+  /* Section Styling */
+  .intro-box {
+    background-color: #ffffff;
+    border-left: 4px solid #3b82f6;
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .toc-box {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+  }
+
+  .toc-title {
+    font-weight: 700;
+    color: #0f172a;
+    font-size: 12pt;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 6px;
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-list li {
+    padding: 6px 0;
+    border-bottom: 1px dashed #f1f5f9;
+    font-weight: 600;
+    color: #2563eb;
+  }
+
+  .toc-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* Content Cards */
+  .card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    page-break-inside: avoid;
+  }
+
+  .card-header {
+    display: table;
+    width: 100%;
+    margin-bottom: 14px;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 8px;
+  }
+
+  .card-badge {
+    display: table-cell;
+    vertical-align: middle;
+    width: 36px;
+    height: 36px;
+    background-color: #2563eb;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12pt;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .card-title-text {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 12px;
+    font-size: 13pt;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  /* Link Styling */
+  .url-box {
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 9pt;
+    color: #0f172a;
+    word-break: break-all;
+    margin: 8px 0 12px 0;
+  }
+
+  .url-box a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+
+  .step-box {
+    background-color: #f8fafc;
+    border-left: 3px solid #64748b;
+    padding: 10px 14px;
+    margin: 10px 0;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .step-title {
+    font-weight: bold;
+    color: #334155;
+    margin-bottom: 4px;
+  }
+
+  /* Image Container Placeholder Styling */
+  .img-placeholder {
+    background-color: #f1f5f9;
+    border: 1px dashed #94a3b8;
+    padding: 8px;
+    border-radius: 6px;
+    margin: 6px 0 10px 0;
+    font-size: 8.5pt;
+    color: #475569;
+  }
+
+  /* PS Section Styling */
+  .ps-card {
+    background-color: #ffffff;
+    border: 2px solid #3b82f6;
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-top: 28px;
+    page-break-inside: avoid;
+  }
+
+  .ps-title {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-top: 0;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 6px;
+  }
+
+  .highlight-badge {
+    display: inline-block;
+    background-color: #ef4444;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 9pt;
+    margin-bottom: 8px;
+  }
+
+  ul {
+    padding-left: 20px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Header Banner -->
+  <div class="header-banner">
+    <h1>自前ツールの作り方・無料提供シェアメルマガ</h1>
+    <p>こんにちは、阿久津です。今日も最新情報をお届けします。</p>
+  </div>
+
+  <!-- Intro -->
+  <div class="intro-box">
+    <p>お盆明けで<br>
+    きっと仕事が溜まっていて、メルマガなんて<br>
+    読んでいる暇ないよ<br>
+    という方のために、一つ<br>
+    自前ツールの作り方や<br>
+    ツール一部無料で提供・シェアします。</p>
+
+    <p style="margin-bottom: 0;">なぜこの話をするのかというと<br>
+    ここ1ヶ月の中で、最も使用している<br>
+    ツールだからです。</p>
+  </div>
+
+  <!-- Table of Contents -->
+  <div class="toc-box">
+    <div class="toc-title">＜保存版：各種自前ツールの作り方、使い方＞</div>
+    <ul class="toc-list">
+      <li>❶ サイトリンクを一括取得するHTMLツールの使い方</li>
+      <li>❷ GeminiNotebookをサイドパネルで使う拡張機能の作り方</li>
+      <li>❸ 書式を一括アップロードする拡張機能の使い方</li>
+      <li>❹ 知らないことを一括で調べてお客様への提示資料も作ってしまうスキルの作り方・入手方法</li>
+      <li>❺ HTMLで資料やLPを作ったあと、最速でリンク化するツールの作り方</li>
+    </ul>
+  </div>
+
+  <!-- Content 1 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-badge">❶</div>
+      <div class="card-title-text">全サイトを一括取得する</div>
+    </div>
+    
+    <p>例えば、<br>
+    問い合わせをしようとしているが<br>
+    どういう製品で、どういうサービスかわからない<br>
+    特定の会社は見つかっている、</p>
+
+    <p>そういうときあなたはどうしていますか？<br>
+    僕がよくやるのはこれです。<br>
+    できない仕様にしているサイトも<br>
+    現実あるのですが（特に行政のページ）</p>
+
+    <p>全サイトのリンクを取得するツール<br>
+    を使って<br>
+    例えば僕のドメインで、fp-1.info<br>
+    というドメインがあるのですが、<br>
+    ここから</p>
+
+    <p>サブドメインも含めて収集すると<br>
+    800ページくらい出てきます。<br>
+    これをGeminiNotebookに<br>
+    リンクを全て貼り付ければ</p>
+
+    <p>もうサイトに行く必要はありません。<br>
+    勝手にGeminiNotebookが見に行ってくれるので<br>
+    あなたはgemini NoteBookにだけ<br>
+    質問したりすればいいんです。</p>
+
+    <div class="step-box">
+      <div class="step-title">手順❶ サイトリンクを収集する</div>
+      <div class="url-box"><a href="https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/39b5a5.png">https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/39b5a5.png</a></div>
+      <div class="img-placeholder">※こういうツールは、ネットで検索すれば出てきます。</div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-title">手順❷ GeminiNotebookのソースにリンクを追加する</div>
+      <div class="url-box"><a href="https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/1ce219.png">https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/1ce219.png</a></div>
+    </div>
+
+    <div class="step-box">
+      <div class="step-title">手順❸ GeminiNotebookで質問するなど...</div>
+    </div>
+  </div>
+
+  <!-- Content 2 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-badge">❷</div>
+      <div class="card-title-text">GeminiNoteBookのページをサイドバーで開く</div>
+    </div>
+
+    <p>手頃に、GeminiNotebookを使いたいとき<br>
+    いちいちブラウザのタブを追加して、<br>
+    検索したり、Googleのメニューから選んだり<br>
+    よく使う人にとってはめんどくさいです。</p>
+
+    <p>そういう場合はこれ↓<br>
+    Chrome拡張機能（Manifest V3）の Side Panel API を使い、<br>
+    NotebookLMの画面埋め込み制限（X-Frame-Options）<br>
+    を解除する設定を施すことで、サイドバー内に表示できます。</p>
+
+    <p style="margin-bottom: 0;">これはGeminiに行ったら帰ったきた文言なのですが、<br>
+    難しいことは知らなくて大丈夫です。<br>
+    NotebookLMをサイドバーで使えるようにしたい<br>
+    と伝えればOKです。</p>
+  </div>
+
+  <!-- Content 3 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-badge">❸</div>
+      <div class="card-title-text">ページ内の書式を一括アップロードする拡張機能</div>
+    </div>
+
+    <p>僕たちはよく、業務の中で、⚫︎⚫︎県の⚫︎⚫︎業許可<br>
+    など、書式を使い回しできず、<br>
+    県ごとに書式の違うことがよくあって、<br>
+    いちいちダウンロードしているんです。</p>
+
+    <p>書式一覧ページに行って、<br>
+    申請書<br>
+    添付書類<br>
+    などなどを</p>
+
+    <p>多い時は50以上の書式があることも<br>
+    珍しくありません。</p>
+
+    <p>これなんとかならんのかな？<br>
+    と思っていて<br>
+    右クリックして対象ファイルを保存？<br>
+    をクリックすれば一個一個開かずとも保存はできるが</p>
+
+    <p>かなりめんどくさいです。<br>
+    そこでそんな拡張機能とかないかな<br>
+    と探していたのですが、意外になくて<br>
+    そしたら最近noteである方が作っていて<br>
+    紹介していたので、それに似せて作ってみたのですが</p>
+
+    <p>保存ファイル名が<br>
+    sheet01-saitama<br>
+    みたいななんのファイルかわからないという<br>
+    ことも発生して、、、</p>
+
+    <p>多分これ僕だけじゃないと思うのですが、<br>
+    なのでその拡張機能を作ったんです。<br>
+    書式の表示されているページをひらいて<br>
+    拡張機能を開き<br>
+    対象のファイル形式だけ選択して<br>
+    ポチっと押すと、</p>
+
+    <p>例えば、<br>
+    行政書士阿久津和宏<br>
+    という表示にhttps://fp-1.info/downloads/02というリンクが含まれていたら<br>
+    これを保存すると、行政書士阿久津和宏<br>
+    というファイル名で保存されます。</p>
+
+    <p>なので<br>
+    ファイル名を変える必要すらないです。<br>
+    長くなりましたが、イメージ湧きます？<br>
+    興味ある人は自己責任で、ですが<br>
+    こちらから使ってみてください。</p>
+    <div class="url-box"><a href="https://well-c.notion.site/20260609?source=copy_link">https://well-c.notion.site/20260609?source=copy_link</a></div>
+
+    <p style="margin-top: 12px; margin-bottom: 4px;"><strong>拡張機能の実装方法はこちら</strong></p>
+    <div class="url-box"><a href="https://well-c.notion.site/3751cb19f9a280c9b197e6e6ae2227cd?source=copy_link">https://well-c.notion.site/3751cb19f9a280c9b197e6e6ae2227cd?source=copy_link</a></div>
+  </div>
+
+  <!-- Content 4 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-badge">❹</div>
+      <div class="card-title-text">知らない補助金を一括で調べて詳細レポート化<br><span style="font-size: 10pt; font-weight: normal; color: #475569;">（お客様への提示資料も作ってしまう）スキルの作り方・入手方法</span></div>
+    </div>
+
+    <p>これ補助金でいうと、<br>
+    これ使えそう？って思ってページを開いたら<br>
+    意味不明、ちょっと時間がかかりそうだ<br>
+    あとでみよう、と思って数日、数週間、数ヶ月が過ぎてしまう<br>
+    これはあるあるです。</p>
+
+    <p>何千種類とあるので、これ知らないものの方が多いのが普通です。<br>
+    僕でもパッと答えられるのは<br>
+    20個くらいです。</p>
+
+    <p>自分で使うもよし、<br>
+    お客さんに教えてあげるもよし、<br>
+    その作り方はこちら<br>
+    ↓</p>
+    <div class="url-box"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/937d31.html">https://htmlpreview.github.io/?https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/937d31.html</a></div>
+
+    <p style="margin-bottom: 0;">うちの裏側なので恥ずかしいのですが、シェアします。<br>
+    いつまでも公開されていないのでチェックしてみてくださいね。</p>
+  </div>
+
+  <!-- Content 5 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-badge">❺</div>
+      <div class="card-title-text">HTMLで資料やLPを作ったあと、最速でリンク化するツールの作り方</div>
+    </div>
+
+    <p>続いて、LPは作ったでもこれを公開するのがややめんどいんだよな、<br>
+    ChatGPTでサイトという機能を使えば<br>
+    すぐ公開することはできるけど、<br>
+    制限きてたりしたら使えない、</p>
+
+    <p>AIに告げても毎回違う形式になっていまったり、<br>
+    そういう時は</p>
+
+    <p>・画像<br>
+    ・PDF<br>
+    ・HTMLサイト<br>
+    などリンクにして送付することができるようになります。<br>
+    ここまでNotion以外シェアしているリンクは全てこれで<br>
+    作っているので、ファイルをドラッグするだけでシェアできる<br>
+    状態になります。</p>
+
+    <p>その<br>
+    HTMLで資料やLPを作ったあと、最速でリンク化するツールの作り方<br>
+    ガイドはこちら<br>
+    ↓↓↓↓↓</p>
+    <div class="url-box"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/cb8657.html">https://htmlpreview.github.io/?https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/cb8657.html</a></div>
+
+    <p style="margin-bottom: 0;">もしあなたも使えそうなものがあったら<br>
+    作ってみてくださいね。ないものは作った方が<br>
+    早いしお金もかかりませんからね。</p>
+  </div>
+
+  <!-- PS Section 1 -->
+  <div class="ps-card">
+    <div class="ps-title">PS. Toolsサービスのご案内</div>
+    <p>なぜこれらの自前ツールの作り方や<br>
+    ツール一部無料で提供したのか？<br>
+    実は、<br>
+    こういうツールを<br>
+    特に顧客対応、ネット集客に特化した<br>
+    ツールをシェアするコースを提供しています。</p>
+
+    <p>もしあなたも</p>
+    <ul>
+      <li>提供されているツールをそのまま使う</li>
+      <li>提供されているツールをアレンジして使う</li>
+      <li>提供されているツールをヒントに自分流のツールを作る</li>
+      <li>いいツールできたぞ、と阿久津に売り込む</li>
+    </ul>
+    <p>ことが可能なToolsサービス<br>
+    もし興味ある方はこちら<br>
+    ↓<br>
+    実は通年公開しているわけではなく、<br>
+    このサブスクリプションは、<br>
+    どんどんツールが増えていきます。<br>
+    なので早くここに参加した人が有利なように<br>
+    設計しないと不公平なので、<br>
+    締め切りを設けています。<br>
+    <span class="highlight-badge">今回の締め切りは8月31日まで。</span></p>
+
+    <p>特別価格<br>
+    ですが今後案内する時は金額が増加しています<br>
+    現状の最安値なので興味ある方はチェックしてみてくださいね。</p>
+
+    <p>詳細はこちら</p>
+    <div class="url-box"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/47f345.html">https://htmlpreview.github.io/?https://raw.githubusercontent.com/WellConsultant/claude-seminar-lp/main/uploads/47f345.html</a></div>
+    <p style="font-size: 9pt; color: #ef4444; font-weight: bold; margin-bottom: 0;">※今回の締め切りは8月31日まで。</p>
+  </div>
+
+  <!-- PS Section 2 -->
+  <div class="ps-card" style="margin-top: 20px;">
+    <div class="ps-title">PS. 補助金獲得の極意</div>
+    <p>こちらも好評です。<br>
+    補助金獲得の極意</p>
+
+    <p>今のうちに参加しておいてくださいね。<br>
+    今回の内容の公開は8月中。8月中に参加の方は<br>
+    特典等グレードアップ無料。</p>
+    
+    <p>詳細はこちら</p>
+    <div class="url-box"><a href="https://lp2.well-c.biz/l/webinar-gokui">https://lp2.well-c.biz/l/webinar-gokui</a></div>
+  </div>
+
+</body>
+</html>
+
+</body>
+</html>
