@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>画像アップロードツールの作り方｜完全初心者向け</title>
+<style>
+:root{--ink:#182230;--muted:#607080;--line:#dce5ef;--blue:#2563eb;--bg:#f4f7fb;--paper:#fff;--code:#17202d}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.8}a{color:#174baf}.wrap{max-width:1040px;margin:auto}.hero{padding:58px 22px;background:linear-gradient(135deg,#0c2e67,#2c6bc8 58%,#6dbbd1);color:#fff}.hero h1{font-size:clamp(29px,5vw,50px);line-height:1.25;margin:15px 0}.hero p{max-width:760px;font-size:17px}.badge{border:1px solid #ffffff66;border-radius:99px;padding:4px 12px;font-size:13px}nav{position:sticky;top:0;z-index:3;background:#fffffff0;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}nav .wrap{display:flex;gap:20px;overflow:auto;white-space:nowrap}nav a{padding:10px 0;text-decoration:none;color:var(--muted);font-size:13px}main{padding:34px 22px 70px}section,.card{background:var(--paper);border:1px solid var(--line);border-radius:17px;box-shadow:0 12px 34px #17202d12;padding:28px;margin:22px 0}h2{font-size:28px;line-height:1.35;margin:0 0 12px}h3{font-size:20px;margin:25px 0 7px}.lead{font-size:18px}.small,.source{font-size:13px;color:var(--muted)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}@media(max-width:720px){.grid{grid-template-columns:1fr}}.note,.warn,.ok{padding:14px 17px;border-radius:11px;margin:16px 0}.note{background:#eef5ff;border-left:5px solid var(--blue)}.warn{background:#fff5e5;border-left:5px solid #db9418}.ok{background:#eaf8f1;border-left:5px solid #21a06c}.danger{background:#fff0f0;border-left-color:#d04141;color:#721c1c}.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:18px 0}.flow b{background:#eaf1ff;color:#17448e;border-radius:9px;padding:8px 12px;font-size:14px}.arrow{color:var(--blue);font-weight:bold}.steps{display:grid;gap:11px;counter-reset:s}.step{position:relative;padding:15px 17px 15px 56px;border:1px solid var(--line);border-radius:12px;background:#fbfcfe}.step:before{counter-increment:s;content:counter(s);position:absolute;left:16px;top:16px;width:27px;height:27px;background:var(--blue);color:#fff;border-radius:50%;display:grid;place-items:center;font-weight:bold}.step h3{margin:0;font-size:17px}pre{position:relative;overflow:auto;background:var(--code);color:#edf5ff;border-radius:11px;padding:17px;font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace}code{font:inherit;background:#edf2f8;border-radius:5px;padding:2px 5px}pre code{background:none;padding:0}.copy{position:absolute;right:9px;top:9px;border:1px solid #ffffff55;background:#ffffff1b;color:#fff;border-radius:6px;padding:5px 8px;cursor:pointer}table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:9px}th{background:#eff4fa}.check{display:flex;gap:9px;padding:9px 0;border-bottom:1px solid var(--line)}.check input{margin-top:7px;width:18px;height:18px;accent-color:#087443}.footer{text-align:center;color:var(--muted);font-size:13px}
+</style></head><body>
+<header class="hero"><div class="wrap"><span class="badge">macOS × AppleScript × GitHub</span><h1>画像をドロップするだけで<br>URLを返すツールの作り方</h1><p>指定された「画像アップロード 3.app」を実際に読み取り、同じ仕組みをゼロから作る手順にしました。GitHub登録、リポジトリ準備、スクリプト、アプリ化、テスト、配布まで説明します。</p></div></header>
+<nav><div class="wrap"><a href="#first">最初に読む</a><a href="#map">仕組み</a><a href="#github">GitHub登録</a><a href="#script">スクリプト</a><a href="#app">アプリ化</a><a href="#use">使い方</a><a href="#trouble">トラブル</a><a href="#safe">安全対策</a></div></nav>
+<main class="wrap">
+<section id="first"><h2>まず結論：このツールがしていること</h2><p class="lead">画像を特別なサービスへ直接送るのではなく、GitHubのリポジトリへ保存し、そのファイルのURLを表示・コピーしています。</p><div class="flow"><b>ファイルをドロップ</b><span class="arrow">→</span><b>AppleScript</b><span class="arrow">→</span><b>Shell</b><span class="arrow">→</span><b>GitHubへpush</b><span class="arrow">→</span><b>URL</b></div><div class="warn"><strong>重要：</strong>現在の実物は <code>WellConsultant/claude-seminar-lp</code> へ送る設定です。Publicリポジトリなら画像も公開されます。顧客資料や秘密の画像は送らないでください。</div><div class="grid"><div><h3>作るもの</h3><ul><li>1個をドロップしてURLを返す</li><li>複数個をドロップして一覧URLを返す</li><li>アップロード履歴を保存する</li></ul></div><div><h3>必要なもの</h3><ul><li>Mac</li><li>GitHubアカウント</li><li>GitHub DesktopまたはGit</li><li>スクリプトエディタ</li></ul></div></div></section>
+<section id="map"><h2>全体像を理解する</h2><p>アプリは受付係、Shellは作業係、GitHubは倉庫です。</p><table><tr><th>部品</th><th>役割</th><th>実物の場所</th></tr><tr><td>AppleScriptアプリ</td><td>ドロップされたファイルを受け取りShellを呼びます。</td><td><code>画像アップロード 3.app</code></td></tr><tr><td>1個用Shell</td><td>拡張子・サイズ確認、コピー、commit、push、URL表示。</td><td><code>~/claude-seminar-lp/tools/upload-image.sh</code></td></tr><tr><td>複数用Shell</td><td>複数ファイルと一覧ファイルをまとめてpush。</td><td><code>~/claude-seminar-lp/tools/upload-batch.sh</code></td></tr><tr><td>GitHub作業コピー</td><td>ファイルを置くローカルのGitリポジトリ。</td><td><code>~/.claude/tools/claude-seminar-lp-uploads</code></td></tr></table></section>
+<section id="github"><h2>1. GitHubを登録する</h2><p><a href="https://github.com/signup" target="_blank" rel="noopener">GitHub公式の登録ページ</a>を開き、メールアドレス、パスワード、ユーザー名を登録します。確認メールを開き、できれば2段階認証またはパスキーも設定します。</p><div class="steps"><div class="step"><h3>アカウントを作る</h3><p>仕事用なら管理できるメールアドレスを使います。ユーザー名はURLの一部になります。</p></div><div class="step"><h3>リポジトリを作る</h3><p>ログイン後、右上の「＋」→「New repository」を選びます。</p></div><div class="step"><h3>設定する</h3><p>Repository nameは <code>my-image-uploads</code> など。迷ったら<strong>Private</strong>。READMEは最初は作らなくて構いません。</p></div></div><p class="source">公式：<a href="https://docs.github.com/en/account-and-profile/how-tos/account-management/creating-an-account-on-github" target="_blank" rel="noopener">アカウント作成</a> / <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository" target="_blank" rel="noopener">リポジトリ作成</a></p></section>
+<section id="git"><h2>2. MacとGitHubをつなぐ</h2><p>このツールは裏側でGitのpushを行うため、MacからGitHubへ送れる状態が必要です。</p><div class="ok"><strong>初心者にはGitHub Desktopがおすすめです。</strong>インストールして「Sign in to GitHub.com」を押し、ブラウザで許可します。</div><p>ターミナルを使う場合は、次を実行します。</p><pre><button class="copy">コピー</button><code>git --version
+git config --global user.name "あなたの名前"
+git config --global user.email "GitHubに登録したメールアドレス"</code></pre><p>GitHubへの接続はHTTPSまたはSSHです。SSHでは秘密鍵を他人に渡さず、公開鍵だけをGitHubへ登録します。</p><p class="source">公式：<a href="https://docs.github.com/en/get-started/git-basics/set-up-git" target="_blank" rel="noopener">Gitのセットアップ</a> / <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh" target="_blank" rel="noopener">SSH接続</a></p></section>
+<section id="script"><h2>3. アップロード用フォルダとShellを作る</h2><p>ターミナルで次を1ブロックずつ実行します。</p><pre><button class="copy">コピー</button><code>mkdir -p "$HOME/claude-seminar-lp/tools"
+mkdir -p "$HOME/.claude/tools/claude-seminar-lp-uploads/uploads"</code></pre><p>GitHubリポジトリの「Code」からURLをコピーして、次を実行します。URLは自分のものに置き換えてください。</p><pre><button class="copy">コピー</button><code>git clone https://github.com/あなたのユーザー名/my-image-uploads.git "$HOME/.claude/tools/claude-seminar-lp-uploads"
+mkdir -p "$HOME/.claude/tools/claude-seminar-lp-uploads/uploads"</code></pre><h3>1個用Shell</h3><p><code>~/claude-seminar-lp/tools/upload-image.sh</code>を作り、次の内容を貼り付けます。</p><pre><button class="copy">コピー</button><code>#!/bin/bash
+set -e
+REPO_DIR="$HOME/.claude/tools/claude-seminar-lp-uploads"
+SRC="$1"
+MAX_BYTES=99614720
+EXT=$(basename "$SRC" | sed 's/.*\.//' | tr '[:upper:]' '[:lower:]')
+case "$EXT" in
+  jpg|jpeg|png|gif|webp|svg|pdf|mp4|mov|m4v|html|htm) ;;
+  *) echo "対応していない拡張子です" >&amp;2; exit 1 ;;
+esac
+SIZE=$(stat -f%z "$SRC")
+[ "$SIZE" -le "$MAX_BYTES" ] || { echo "大きすぎます" >&amp;2; exit 1; }
+NAME="$(openssl rand -hex 3).$EXT"
+mkdir -p "$REPO_DIR/uploads"
+cp "$SRC" "$REPO_DIR/uploads/$NAME"
+cd "$REPO_DIR"
+git fetch origin main --quiet
+git reset --hard FETCH_HEAD --quiet
+git add "uploads/$NAME"
+git commit -m "Add uploaded file" --quiet
+git push origin main --quiet
+echo "https://raw.githubusercontent.com/あなたのユーザー名/my-image-uploads/main/uploads/$NAME"</code></pre><pre><button class="copy">コピー</button><code>chmod +x "$HOME/claude-seminar-lp/tools/upload-image.sh"</code></pre><div class="note">実物にはpush失敗時の戻し処理、HTMLをhtmlpreviewで開く処理、履歴追記も入っています。実運用ではそれらを残してください。</div></section>
+<section id="batch"><h2>4. 複数ファイル用を追加する</h2><p><code>upload-batch.sh</code>は複数ファイルを <code>uploads/b-ランダム名/</code> に置き、元の名前とURLを書いた <code>index.txt</code> を返します。</p><pre><button class="copy">コピー</button><code>#!/bin/bash
+set -e
+REPO_DIR="$HOME/.claude/tools/claude-seminar-lp-uploads"
+RAW_BASE="https://raw.githubusercontent.com/あなたのユーザー名/my-image-uploads/main"
+BATCH="uploads/b-$(openssl rand -hex 3)"
+mkdir -p "$REPO_DIR/$BATCH"
+MANIFEST="$REPO_DIR/$BATCH/index.txt"
+: &gt; "$MANIFEST"
+for SRC in "$@"; do
+  [ -f "$SRC" ] || continue
+  EXT=$(basename "$SRC" | sed 's/.*\.//')
+  NAME="$(openssl rand -hex 3).$EXT"
+  cp "$SRC" "$REPO_DIR/$BATCH/$NAME"
+  echo "$(basename "$SRC") -> $RAW_BASE/$BATCH/$NAME" &gt;&gt; "$MANIFEST"
+done
+cd "$REPO_DIR"
+git add "$BATCH"
+git commit -m "Add batch upload" --quiet
+git push origin main --quiet
+echo "$RAW_BASE/$BATCH/index.txt"</code></pre></section>
+<section id="app"><h2>5. AppleScriptをアプリにする</h2><p>Macの「スクリプトエディタ」をSpotlightで開きます。次を貼り付け、ファイル形式を「アプリケーション」にして保存します。</p><pre><button class="copy">コピー</button><code>on run
+  display dialog "画像をこのアプリにドロップしてください。" buttons {"閉じる"}
+end run
+
+on open theFiles
+  if (count of theFiles) &gt; 1 then
+    set batchScript to (POSIX path of (path to home folder)) &amp; "claude-seminar-lp/tools/upload-batch.sh"
+    set fileArgs to ""
+    repeat with aFile in theFiles
+      set fileArgs to fileArgs &amp; " " &amp; quoted form of (POSIX path of aFile)
+    end repeat
+    set theURL to do shell script quoted form of batchScript &amp; fileArgs
+  else
+    set uploadScript to (POSIX path of (path to home folder)) &amp; "claude-seminar-lp/tools/upload-image.sh"
+    set theURL to do shell script quoted form of uploadScript &amp; " " &amp; quoted form of (POSIX path of (item 1 of theFiles))
+  end if
+  set the clipboard to theURL
+  display dialog theURL with title "アップロード完了（リンクはコピー済み）" buttons {"開く","閉じる"} default button "開く"
+  if button returned of result is "開く" then open location theURL
+end open</code></pre><div class="steps"><div class="step"><h3>保存</h3><p>「ファイル」→「書き出す」→ファイル形式「アプリケーション」。新しい名前で保存します。</p></div><div class="step"><h3>テスト</h3><p>画像を1個ドロップし、URLが表示されるか確認します。</p></div><div class="step"><h3>配布</h3><p>アプリだけを渡しても動きません。受け取るMacにもShell、Git、認証、リポジトリが必要です。</p></div></div></section>
+<section id="use"><h2>6. 完成後の使い方</h2><div class="grid"><div class="card"><h3>1個の場合</h3><ol><li>画像をアプリへドロップ。</li><li>push完了まで待つ。</li><li>表示されたURLを使う。</li><li>URLは自動でコピー済み。</li></ol></div><div class="card"><h3>複数の場合</h3><ol><li>画像を複数選択。</li><li>まとめてドロップ。</li><li>返った <code>index.txt</code> を開く。</li><li>一覧からURLを使う。</li></ol></div></div><p>履歴は <code>~/アップロード履歴.txt</code> に残ります。GitHub上の <code>uploads/</code> も確認してください。</p></section>
+<section id="trouble"><h2>7. 困ったときの確認表</h2><table><tr><th>症状</th><th>確認・対処</th></tr><tr><td>リポジトリがない</td><td><code>~/.claude/tools/claude-seminar-lp-uploads/.git</code>があるか。正しいURLでcloneします。</td></tr><tr><td>pushで止まる</td><td>GitHub Desktopでログインするか、HTTPS/SSH認証を設定します。</td></tr><tr><td>拡張子エラー</td><td>jpg、png、gif、webp、svg、pdf、mp4、mov、m4v、html、htmだけが対象です。</td></tr><tr><td>大きすぎる</td><td>実物は99,614,720 bytes（約95MiB）を超えると止まります。</td></tr><tr><td>URLが開けない</td><td>GitHub上にファイルがあるか、URLのユーザー名・リポジトリ名を確認します。</td></tr><tr><td>アプリが無反応</td><td>AppleScriptをスクリプトエディタで開き、エラーを確認します。</td></tr></table><pre><button class="copy">コピー</button><code>ls -la "$HOME/.claude/tools/claude-seminar-lp-uploads"
+git -C "$HOME/.claude/tools/claude-seminar-lp-uploads" remote -v
+git -C "$HOME/.claude/tools/claude-seminar-lp-uploads" status</code></pre></section>
+<section id="safe"><h2>8. 安全対策</h2><div class="warn danger"><strong>Publicリポジトリは秘密の保管庫ではありません。</strong>顧客情報、契約書、未公開資料、個人写真は送らないでください。</div><div class="steps"><div class="step"><h3>迷ったらPrivate</h3><p>社内用ならPrivateを選びます。ただしPrivateのraw URLを外部ページへ埋め込めるとは限りません。</p></div><div class="step"><h3>公開用と保管用を分ける</h3><p>Webページで公開する素材だけを公開用リポジトリに置きます。</p></div><div class="step"><h3>秘密情報を書かない</h3><p>パスワード、トークン、秘密鍵をShellやAppleScriptへ直書きしません。</p></div><div class="step"><h3>誤送信時は削除だけで終わらせない</h3><p>GitHubの履歴に残る場合があります。漏れた鍵は無効化し、必要なら履歴対策を行います。</p></div></div></section>
+<section id="check"><h2>9. 完成チェックリスト</h2><label class="check"><input type="checkbox"> GitHub登録とメール確認を終えた</label><label class="check"><input type="checkbox"> 2段階認証またはパスキーを設定した</label><label class="check"><input type="checkbox"> リポジトリを作った</label><label class="check"><input type="checkbox"> Macへcloneできた</label><label class="check"><input type="checkbox"> Shellに実行権限を付けた</label><label class="check"><input type="checkbox"> 1個アップロードできた</label><label class="check"><input type="checkbox"> 複数アップロードできた</label><label class="check"><input type="checkbox"> GitHubとURLを確認した</label><label class="check"><input type="checkbox"> 秘密のファイルを送っていない</label></section>
+<section><h2>実物から確認できた仕様</h2><p class="small">指定アプリをAppleScriptへ逆コンパイルし、呼び出し先Shellも確認しています。</p><table><tr><th>形式</th><td>macOS AppleScriptドロップレット。Intel / Apple Silicon対応。</td></tr><tr><th>対応拡張子</th><td>jpg / jpeg / png / gif / webp / svg / pdf / mp4 / mov / m4v / html / htm</td></tr><tr><th>履歴</th><td><code>~/アップロード履歴.txt</code></td></tr><tr><th>HTMLのURL</th><td><code>htmlpreview.github.io</code>を経由</td></tr></table><p class="source">GitHubの画面や仕様は変わることがあります。登録時は<a href="https://docs.github.com/" target="_blank" rel="noopener">公式ドキュメント</a>も確認してください。</p></section>
+<p class="footer">作成日：2026-08-17｜外部CSS・外部画像なしで単独表示できます。</p>
+</main><script>
+document.querySelectorAll(".copy").forEach(function(b){b.addEventListener("click",function(){var t=b.parentElement.querySelector("code").innerText;navigator.clipboard.writeText(t).then(function(){b.textContent="コピー済み";setTimeout(function(){b.textContent="コピー"},1400)}).catch(function(){b.textContent="手動でコピー"})})});
+document.querySelectorAll(".check input").forEach(function(b,i){var k="guide-check-"+i;b.checked=localStorage.getItem(k)==="1";b.addEventListener("change",function(){localStorage.setItem(k,b.checked?"1":"0")})});
+</script></body></html>
