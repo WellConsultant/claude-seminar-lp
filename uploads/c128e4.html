@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>機能概要説明書プロンプトメーカー</title>
+
+  <!-- File parsing libraries (client-side only) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+
+  <style>
+    :root{
+      --navy:#16324f;
+      --blue:#246bce;
+      --blue2:#eaf2ff;
+      --ink:#233142;
+      --muted:#64748b;
+      --line:#dbe4ef;
+      --bg:#f4f7fb;
+      --white:#fff;
+      --ok:#157347;
+      --danger:#b42318;
+      --shadow:0 12px 36px rgba(22,50,79,.10);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.7;
+    }
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 80px}
+    .hero{
+      background:linear-gradient(135deg,var(--navy),#234d78);
+      color:#fff;border-radius:22px;padding:34px 34px 30px;
+      box-shadow:var(--shadow);margin-bottom:22px
+    }
+    .hero h1{margin:0 0 8px;font-size:clamp(24px,3.2vw,38px);letter-spacing:.03em}
+    .hero p{margin:0;color:#d9e8f8;font-size:15px}
+    .badge{
+      display:inline-flex;align-items:center;gap:7px;
+      margin-top:18px;padding:7px 12px;border-radius:999px;
+      background:rgba(255,255,255,.13);font-size:12px
+    }
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .card{
+      background:var(--white);border:1px solid var(--line);
+      border-radius:var(--radius);padding:22px;box-shadow:0 5px 18px rgba(22,50,79,.05)
+    }
+    .card.full{grid-column:1/-1}
+    .section-title{
+      display:flex;align-items:center;gap:10px;
+      margin:0 0 16px;font-size:18px;color:var(--navy)
+    }
+    .num{
+      width:30px;height:30px;border-radius:9px;background:var(--blue);
+      color:#fff;display:inline-grid;place-items:center;font-weight:700;font-size:14px
+    }
+    label{display:block;font-weight:700;font-size:13px;margin:0 0 6px;color:#334155}
+    input,textarea,select{
+      width:100%;border:1px solid #cfd9e5;border-radius:10px;
+      padding:11px 12px;font:inherit;color:var(--ink);background:#fff;outline:none
+    }
+    input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(36,107,206,.10)}
+    textarea{resize:vertical;min-height:98px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .field{margin-bottom:13px}
+    .hint{font-size:12px;color:var(--muted);margin-top:5px}
+    .dropzone{
+      border:2px dashed #9eb7d4;border-radius:14px;padding:30px 18px;text-align:center;
+      background:#f8fbff;cursor:pointer;transition:.2s
+    }
+    .dropzone.drag{border-color:var(--blue);background:var(--blue2);transform:translateY(-1px)}
+    .dropzone strong{display:block;color:var(--navy);font-size:16px}
+    .dropzone span{font-size:12px;color:var(--muted)}
+    .file-status{
+      margin-top:12px;padding:10px 12px;border-radius:10px;background:#f8fafc;
+      border:1px solid var(--line);font-size:13px;min-height:43px
+    }
+    .ok{color:var(--ok);font-weight:700}.err{color:var(--danger);font-weight:700}
+    .checks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .check{
+      border:1px solid var(--line);border-radius:10px;padding:10px;background:#fbfdff;
+      display:flex;align-items:flex-start;gap:8px;font-size:13px
+    }
+    .check input{width:auto;margin-top:4px}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    button{
+      appearance:none;border:0;border-radius:10px;padding:11px 16px;
+      font-weight:700;font-size:14px;cursor:pointer;transition:.15s
+    }
+    .primary{background:var(--blue);color:#fff}
+    .primary:hover{filter:brightness(.95);transform:translateY(-1px)}
+    .secondary{background:#edf3fa;color:var(--navy);border:1px solid #d4e0ed}
+    .danger{background:#fff1f0;color:var(--danger);border:1px solid #ffd0cc}
+    .output{
+      min-height:420px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      font-size:13px;white-space:pre-wrap
+    }
+    .toolbar{
+      display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px
+    }
+    .counter{font-size:12px;color:var(--muted)}
+    .toast{
+      position:fixed;right:20px;bottom:20px;background:var(--navy);color:#fff;
+      padding:12px 16px;border-radius:10px;box-shadow:var(--shadow);opacity:0;
+      transform:translateY(15px);pointer-events:none;transition:.2s;z-index:100
+    }
+    .toast.show{opacity:1;transform:translateY(0)}
+    .mini{
+      background:#f7faff;border:1px solid #dce8f5;border-radius:11px;padding:12px 14px;
+      font-size:13px;color:#3b536d
+    }
+    @media (max-width:850px){
+      .grid{grid-template-columns:1fr}
+      .card.full{grid-column:auto}
+      .checks{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:560px){
+      .row{grid-template-columns:1fr}
+      .checks{grid-template-columns:1fr}
+      .hero{padding:26px 20px}
+      .card{padding:18px}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>機能概要説明書プロンプトメーカー</h1>
+    <p>仕様書・提案書・操作資料をアップロードし、必要事項を穴埋めするだけで、AIに渡せる「機能説明資料作成プロンプト」を自動生成します。HTMLはブラウザ印刷からPDF保存できます。</p>
+    <div class="badge">ブラウザ内で処理／サーバー送信なし</div>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2 class="section-title"><span class="num">1</span>参考資料をアップロード</h2>
+      <div id="dropzone" class="dropzone">
+        <strong>クリックまたはドラッグ＆ドロップ</strong>
+        <span>PDF／DOCX／PPTX／TXT／HTML／MD／CSV／JSON</span>
+        <input id="fileInput" type="file" accept=".pdf,.docx,.pptx,.txt,.html,.htm,.md,.csv,.json" hidden>
+      </div>
+      <div id="fileStatus" class="file-status">まだ資料は読み込まれていません。</div>
+      <div class="field" style="margin-top:13px">
+        <label for="sourceText">抽出テキスト・補足情報</label>
+        <textarea id="sourceText" placeholder="アップロードした資料の文章がここに入ります。直接貼り付けても使えます。" style="min-height:190px"></textarea>
+        <div class="hint">資料の表現をそのまま写すのではなく、構成・粒度・項目を参考にするようプロンプト化します。</div>
+      </div>
+    </section>
+
+    <section class="card full">
+      <h2 class="section-title"><span class="num">2</span>ＡＩで資料をＪＳＯＮ整理・フォームへ自動入力</h2>
+      <div class="mini">
+        ①資料をアップロード → ②「ＪＳＯＮ整理プロンプトを生成」→ ③生成したプロンプトをＡＩへ貼り付ける
+        → ④ＡＩが返したＪＳＯＮを下欄へ貼り付ける → ⑤「フォームに自動入力」の順で使います。
+        導入実績は実名を除外する設計です。
+      </div>
+      <div class="row" style="margin-top:14px">
+        <div class="field">
+          <label for="jsonPrompt">資料整理用プロンプト</label>
+          <textarea id="jsonPrompt" style="min-height:300px" placeholder="アップロード後、「ＪＳＯＮ整理プロンプトを生成」を押してください。"></textarea>
+          <div class="actions">
+            <button id="generateJsonPromptBtn" class="primary">ＪＳＯＮ整理プロンプトを生成</button>
+            <button id="copyJsonPromptBtn" class="secondary">整理プロンプトをコピー</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="jsonInput">ＡＩが返したＪＳＯＮ</label>
+          <textarea id="jsonInput" style="min-height:300px" placeholder='{
+  "toolName": "製品名",
+  "planName": "標準プラン",
+  "price": "年額600,000円（税抜）",
+  "developer": "開発・販売事業者名",
+  "category": "Ⅰ ソフトウェア／カテゴリー1",
+  "overview": "製品概要",
+  "salesRecords": [
+    {
+      "industry": "士業",
+      "businessType": "個人事業主",
+      "employeeSize": "0～50人",
+      "introductionDate": "2026年6月",
+      "quantity": "1",
+      "problem": "導入前の課題",
+      "effect": "導入後の効果"
+    }
+  ],
+  "salesCount": "1件",
+  "pageCount": 15,
+  "special": "追加条件"
+}'></textarea>
+          <div class="actions">
+            <button id="applyJsonBtn" class="primary">フォームに自動入力</button>
+            <button id="formatJsonBtn" class="secondary">ＪＳＯＮを整形</button>
+            <button id="clearJsonBtn" class="danger">ＪＳＯＮ欄を消去</button>
+          </div>
+          <div id="jsonStatus" class="file-status">ＪＳＯＮはまだ適用されていません。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title"><span class="num">3</span>製品・事業者情報</h2>
+      <div class="field">
+        <label for="toolName">ＩＴツール名</label>
+        <input id="toolName" placeholder="例：Ｔｒａｉｎｇｏ">
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="planName">プラン名</label>
+          <input id="planName" placeholder="例：標準プラン">
+        </div>
+        <div class="field">
+          <label for="price">価格</label>
+          <input id="price" placeholder="例：年額６００，０００円（税抜）">
+        </div>
+      </div>
+      <div class="field">
+        <label for="developer">開発・販売事業者名</label>
+        <input id="developer" placeholder="例：Well Consultant合同会社">
+      </div>
+      <div class="field">
+        <label for="category">大分類・カテゴリー</label>
+        <input id="category" placeholder="例：Ⅰ ソフトウェア／カテゴリー１">
+      </div>
+      <div class="field">
+        <label for="overview">製品の位置づけ・用途</label>
+        <textarea id="overview" placeholder="例：研修動画、業務マニュアル、配布資料等を一元管理し、社内教育と情報共有を効率化するクラウド型業務支援ツール"></textarea>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title"><span class="num">4</span>導入実績</h2>
+      <div class="mini">複数件ある場合は、1件ごとに改行して入力してください。原則として会社名・代表者名・電話番号・住所などの実名情報は入力せず、業種・規模・導入時期・導入数量・課題・効果のみを記載してください。空欄の項目は、AIに「要確認」と表示させます。</div>
+      <div class="field" style="margin-top:13px">
+        <label for="salesRecords">販売・導入実績</label>
+        <textarea id="salesRecords" style="min-height:220px" placeholder="例：
+例：
+導入先業種：士業
+事業形態：個人事業主
+従業員規模：0～50人
+導入時期：2026年6月
+導入数量：1
+導入前の課題：新人教育や業務手順の共有が属人化していた
+導入後の効果：マニュアル共有と進捗確認を一元化できた"></textarea>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="salesCount">販売総件数</label>
+          <input id="salesCount" placeholder="例：1件">
+        </div>
+        <div class="field">
+          <label for="pageCount">想定ページ数</label>
+          <input id="pageCount" type="number" min="1" placeholder="例：15">
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title"><span class="num">5</span>作成条件</h2>
+      <div class="field">
+        <label for="purpose">資料の目的</label>
+        <select id="purpose">
+          <option>ＩＴ導入補助金のＩＴツール登録用</option>
+          <option>顧客向け機能説明資料</option>
+          <option>社内説明・営業資料</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>含めたい項目</label>
+        <div class="checks">
+          <label class="check"><input type="checkbox" value="表紙" checked>表紙</label>
+          <label class="check"><input type="checkbox" value="正式製品名・プラン・価格" checked>製品名・価格</label>
+          <label class="check"><input type="checkbox" value="販売実績" checked>販売実績</label>
+          <label class="check"><input type="checkbox" value="画面キャプチャ欄" checked>画面キャプチャ</label>
+          <label class="check"><input type="checkbox" value="機能一覧表" checked>機能一覧表</label>
+          <label class="check"><input type="checkbox" value="機能概要図" checked>機能概要図</label>
+          <label class="check"><input type="checkbox" value="業務フロー図" checked>業務フロー図</label>
+          <label class="check"><input type="checkbox" value="利用方法" checked>利用方法</label>
+          <label class="check"><input type="checkbox" value="生産性向上効果" checked>生産性向上効果</label>
+          <label class="check"><input type="checkbox" value="導入前後比較" checked>導入前後比較</label>
+          <label class="check"><input type="checkbox" value="セキュリティ" checked>セキュリティ</label>
+          <label class="check"><input type="checkbox" value="提出前セルフチェック" checked>セルフチェック</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="outputFormat">最終成果物</label>
+          <select id="outputFormat">
+            <option>ブラウザ印刷でPDF保存できるHTML</option>
+            <option>Word貼り付け用原稿</option>
+            <option>文章のみ</option>
+          </select>
+          <div class="hint">PDFは、生成されたHTMLをブラウザで開き、「印刷」→「PDFとして保存」で作成します。</div>
+        </div>
+        <div class="field">
+          <label for="tone">デザイン・文体</label>
+          <select id="tone">
+            <option>公的申請向け・簡潔・客観的</option>
+            <option>法人向け・見やすく専門的</option>
+            <option>営業提案向け・分かりやすい</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="special">追加条件</label>
+        <textarea id="special" placeholder="例：商品販売ツールではなく、業務効率化ツールとして表現する。書籍という表現は使わず、マニュアル・配布資料・プレゼン資料と記載する。ウェビナーは社内外研修と表記する。"></textarea>
+      </div>
+    </section>
+
+    <section class="card full">
+      <div class="toolbar">
+        <h2 class="section-title" style="margin:0"><span class="num">6</span>生成されたプロンプト</h2>
+        <span id="counter" class="counter">0文字</span>
+      </div>
+      <div class="mini" style="margin-bottom:12px">
+        「ブラウザ印刷でPDF保存できるHTML」を選ぶと、AIはPDFファイルではなく印刷用HTMLを生成します。
+        生成HTMLをブラウザで開き、印刷画面から「PDFとして保存」してください。目次は生成しません。
+      </div>
+      <textarea id="output" class="output" placeholder="上の項目を入力し、「プロンプトを生成」を押してください。"></textarea>
+      <div class="actions">
+        <button id="generateBtn" class="primary">プロンプトを生成</button>
+        <button id="copyBtn" class="secondary">コピー</button>
+        <button id="downloadBtn" class="secondary">テキスト保存</button>
+        <button id="resetBtn" class="danger">入力をリセット</button>
+      </div>
+    </section>
+
+    <section class="card full">
+      <h2 class="section-title"><span class="num">7</span>ＡＩが生成したＨＴＭＬを貼り付けて保存</h2>
+      <div class="mini">
+        ChatGPT等が生成した完成ＨＴＭＬを下欄へ貼り付け、「ＨＴＭＬファイルとして保存」を押してください。
+        保存したファイルをブラウザで開き、印刷画面から「ＰＤＦとして保存」できます。
+      </div>
+      <div class="field" style="margin-top:14px">
+        <label for="htmlResult">完成ＨＴＭＬコード</label>
+        <textarea id="htmlResult" style="min-height:420px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px" placeholder="ここに、AIが出力したHTMLコードを貼り付けてください。```html などのコードブロックが付いていても保存時に自動で除去します。"></textarea>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="htmlFileName">保存ファイル名</label>
+          <input id="htmlFileName" placeholder="例：Ｔｒａｉｎｇｏ_機能概要説明書.html">
+        </div>
+        <div class="field">
+          <label for="previewMode">確認方法</label>
+          <select id="previewMode">
+            <option value="newtab">新しいタブでプレビュー</option>
+            <option value="download">保存のみ</option>
+          </select>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="saveHtmlBtn" class="primary">ＨＴＭＬファイルとして保存</button>
+        <button id="previewHtmlBtn" class="secondary">プレビュー</button>
+        <button id="copyHtmlBtn" class="secondary">ＨＴＭＬをコピー</button>
+        <button id="clearHtmlBtn" class="danger">ＨＴＭＬ欄を消去</button>
+      </div>
+      <div id="htmlStatus" class="file-status">完成ＨＴＭＬはまだ貼り付けられていません。</div>
+    </section>
+  </main>
+</div>
+
+<div id="toast" class="toast">コピーしました</div>
+
+<script type="module">
+  // PDF.js module
+  let pdfjsLib = null;
+  try {
+    pdfjsLib = await import("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs");
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+  } catch(e) {
+    console.warn("PDF.js load failed", e);
+  }
+
+  const $ = id => document.getElementById(id);
+  const dropzone = $("dropzone");
+  const fileInput = $("fileInput");
+  const fileStatus = $("fileStatus");
+  const sourceText = $("sourceText");
+  const output = $("output");
+  const counter = $("counter");
+
+  function showToast(text){
+    const t = $("toast");
+    t.textContent = text;
+    t.classList.add("show");
+    setTimeout(()=>t.classList.remove("show"),1600);
+  }
+
+  function escXmlText(str){
+    return str.replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&");
+  }
+
+  async function parsePDF(file){
+    if(!pdfjsLib) throw new Error("PDF解析ライブラリを読み込めませんでした。");
+    const buf = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({data:buf}).promise;
+    let text = "";
+    for(let i=1;i<=pdf.numPages;i++){
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      const line = content.items.map(x=>x.str).join(" ");
+      text += `\n\n【${i}ページ】\n${line}`;
+    }
+    return text.trim();
+  }
+
+  async function parseDOCX(file){
+    if(!window.mammoth) throw new Error("DOCX解析ライブラリを読み込めませんでした。");
+    const buf = await file.arrayBuffer();
+    const result = await window.mammoth.extractRawText({arrayBuffer:buf});
+    return result.value.trim();
+  }
+
+  async function parsePPTX(file){
+    if(!window.JSZip) throw new Error("PPTX解析ライブラリを読み込めませんでした。");
+    const zip = await JSZip.loadAsync(await file.arrayBuffer());
+    const slideNames = Object.keys(zip.files)
+      .filter(n=>/^ppt\/slides\/slide\d+\.xml$/.test(n))
+      .sort((a,b)=>Number(a.match(/\d+/)[0])-Number(b.match(/\d+/)[0]));
+    let all = "";
+    for(let i=0;i<slideNames.length;i++){
+      const xml = await zip.file(slideNames[i]).async("text");
+      const texts = [...xml.matchAll(/<a:t>([\s\S]*?)<\/a:t>/g)].map(m=>escXmlText(m[1]));
+      all += `\n\n【スライド${i+1}】\n${texts.join(" ")}`;
+    }
+    return all.trim();
+  }
+
+  async function parseTextFile(file){
+    return (await file.text()).trim();
+  }
+
+  async function handleFile(file){
+    if(!file) return;
+    fileStatus.innerHTML = `「${file.name}」を解析しています…`;
+    try{
+      const ext = file.name.split(".").pop().toLowerCase();
+      let text = "";
+      if(ext === "pdf") text = await parsePDF(file);
+      else if(ext === "docx") text = await parseDOCX(file);
+      else if(ext === "pptx") text = await parsePPTX(file);
+      else text = await parseTextFile(file);
+
+      sourceText.value = text;
+      if(ext === "json"){
+        $("jsonInput").value = text;
+        try{
+          const parsed = JSON.parse(text);
+          if(parsed && (parsed.toolName !== undefined || parsed.salesRecords !== undefined)){
+            applyJsonToForm();
+          }
+        }catch(_){}
+      }
+      fileStatus.innerHTML = `<span class="ok">読み込み完了：</span>${file.name}（${text.length.toLocaleString()}文字抽出）`;
+    }catch(err){
+      fileStatus.innerHTML = `<span class="err">読み込み失敗：</span>${err.message}`;
+    }
+  }
+
+  dropzone.addEventListener("click",()=>fileInput.click());
+  fileInput.addEventListener("change",e=>handleFile(e.target.files[0]));
+  ["dragenter","dragover"].forEach(ev=>dropzone.addEventListener(ev,e=>{
+    e.preventDefault(); dropzone.classList.add("drag");
+  }));
+  ["dragleave","drop"].forEach(ev=>dropzone.addEventListener(ev,e=>{
+    e.preventDefault(); dropzone.classList.remove("drag");
+  }));
+  dropzone.addEventListener("drop",e=>handleFile(e.dataTransfer.files[0]));
+
+  function val(id, fallback="未入力"){
+    const v = $(id).value.trim();
+    return v || fallback;
+  }
+
+  function selectedItems(){
+    return [...document.querySelectorAll('.checks input:checked')].map(x=>x.value);
+  }
+
+  function stripCodeFence(text){
+    return String(text || "")
+      .trim()
+      .replace(/^```(?:json)?\s*/i, "")
+      .replace(/\s*```$/i, "")
+      .trim();
+  }
+
+  function buildJsonExtractionPrompt(){
+    const source = sourceText.value.trim();
+    const prompt = `あなたは、ＩＴツールの仕様書・提案書・操作資料から、機能概要説明書作成フォームへ入力する情報を整理する担当者です。
+
+以下の資料を読み、指定されたJSON形式だけを出力してください。
+
+# 最重要ルール
+1. JSON以外の説明文、前置き、後書き、Markdownのコードフェンスを出力しないでください。
+2. 資料にない事実、価格、機能、効果、実績を創作しないでください。
+3. 不明な値は空文字 ""、不明な配列は [] としてください。
+4. 導入実績には会社名、事務所名、個人名、代表者名、電話番号、住所、法人番号、メールアドレスを絶対に含めないでください。
+5. 導入実績は「業種・事業形態・従業員規模・導入時期・導入数量・導入前の課題・導入後の効果」だけに匿名化してください。
+6. 「書籍」は、製品の実際の用途に応じて「マニュアル・配布資料・プレゼン資料」として整理してください。
+7. 「ウェビナー」は、社内教育や外部向け教育を含む場合、「社内外研修」として整理してください。
+8. 製品を販売ツールとして強調せず、業務効率化、情報共有、教育管理、標準化、属人化解消の観点を優先してください。
+9. pageCountは整数、その他の値は文字列で出力してください。
+10. salesRecordsは必ず配列にしてください。
+
+# 出力するJSONスキーマ
+{
+  "toolName": "",
+  "planName": "",
+  "price": "",
+  "developer": "",
+  "category": "",
+  "overview": "",
+  "salesRecords": [
+    {
+      "industry": "",
+      "businessType": "",
+      "employeeSize": "",
+      "introductionDate": "",
+      "quantity": "",
+      "problem": "",
+      "effect": ""
+    }
+  ],
+  "salesCount": "",
+  "pageCount": 15,
+  "purpose": "ＩＴ導入補助金のＩＴツール登録用",
+  "outputFormat": "ブラウザ印刷でPDF保存できるHTML",
+  "tone": "公的申請向け・簡潔・客観的",
+  "special": ""
+}
+
+# 資料
+---
+${source || "資料未入力"}
+---`;
+    $("jsonPrompt").value = prompt;
+    showToast("ＪＳＯＮ整理プロンプトを生成しました");
+  }
+
+  function recordsToText(records){
+    if(!Array.isArray(records)) return typeof records === "string" ? records : "";
+    return records.map((r, i)=>{
+      const x = r || {};
+      return [
+        records.length > 1 ? `【導入事例${i+1}】` : "",
+        `導入先業種：${x.industry || ""}`,
+        `事業形態：${x.businessType || ""}`,
+        `従業員規模：${x.employeeSize || ""}`,
+        `導入時期：${x.introductionDate || ""}`,
+        `導入数量：${x.quantity || ""}`,
+        `導入前の課題：${x.problem || ""}`,
+        `導入後の効果：${x.effect || ""}`
+      ].filter(Boolean).join("\n");
+    }).join("\n\n");
+  }
+
+  function setSelectValue(id, value){
+    if(!value) return;
+    const el = $(id);
+    const option = [...el.options].find(o=>o.value === value || o.text === value);
+    if(option) el.value = option.value;
+  }
+
+  function applyJsonToForm(){
+    const status = $("jsonStatus");
+    try{
+      const raw = stripCodeFence($("jsonInput").value);
+      if(!raw) throw new Error("ＪＳＯＮが入力されていません。");
+      const data = JSON.parse(raw);
+
+      const map = {
+        toolName: "toolName",
+        planName: "planName",
+        price: "price",
+        developer: "developer",
+        category: "category",
+        overview: "overview",
+        salesCount: "salesCount",
+        pageCount: "pageCount",
+        special: "special"
+      };
+      Object.entries(map).forEach(([key,id])=>{
+        if(data[key] !== undefined && data[key] !== null && data[key] !== ""){
+          $(id).value = String(data[key]);
+        }
+      });
+
+      if(data.salesRecords !== undefined){
+        $("salesRecords").value = recordsToText(data.salesRecords);
+      }
+      setSelectValue("purpose", data.purpose);
+      setSelectValue("outputFormat", data.outputFormat);
+      setSelectValue("tone", data.tone);
+
+      status.innerHTML = '<span class="ok">自動入力完了：</span>ＪＳＯＮの内容をフォームへ反映しました。';
+      showToast("フォームへ自動入力しました");
+    }catch(err){
+      status.innerHTML = `<span class="err">適用できません：</span>${err.message}`;
+    }
+  }
+
+  function formatJsonInput(){
+    try{
+      const data = JSON.parse(stripCodeFence($("jsonInput").value));
+      $("jsonInput").value = JSON.stringify(data, null, 2);
+      $("jsonStatus").innerHTML = '<span class="ok">整形完了：</span>有効なＪＳＯＮです。';
+    }catch(err){
+      $("jsonStatus").innerHTML = `<span class="err">整形できません：</span>${err.message}`;
+    }
+  }
+
+  function cleanHtmlCode(text){
+    let cleaned = String(text || "").trim();
+    cleaned = cleaned.replace(/^```(?:html)?\s*/i, "");
+    cleaned = cleaned.replace(/\s*```$/i, "");
+    const doctypeIndex = cleaned.search(/<!doctype html>/i);
+    const htmlIndex = cleaned.search(/<html[\s>]/i);
+    const startIndex = doctypeIndex >= 0 ? doctypeIndex : htmlIndex;
+    if(startIndex > 0) cleaned = cleaned.slice(startIndex);
+    return cleaned.trim();
+  }
+
+  function getHtmlFileName(){
+    let name = $("htmlFileName").value.trim();
+    if(!name){
+      const tool = $("toolName").value.trim() || "機能概要説明書";
+      name = `${tool}_機能概要説明書.html`;
+    }
+    if(!/\.html?$/i.test(name)) name += ".html";
+    return name;
+  }
+
+  function validateHtml(htmlText){
+    if(!htmlText) throw new Error("ＨＴＭＬコードが貼り付けられていません。");
+    if(!/<html[\s>]/i.test(htmlText) && !/<!doctype html>/i.test(htmlText)){
+      throw new Error("完成したＨＴＭＬコードを貼り付けてください。");
+    }
+  }
+
+  function downloadHtml(){
+    const status = $("htmlStatus");
+    try{
+      const cleaned = cleanHtmlCode($("htmlResult").value);
+      validateHtml(cleaned);
+      const blob = new Blob([cleaned], {type:"text/html;charset=utf-8"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = getHtmlFileName();
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+      status.innerHTML = `<span class="ok">保存しました：</span>${getHtmlFileName()}`;
+      if($("previewMode").value === "newtab"){
+        const previewUrl = URL.createObjectURL(new Blob([cleaned], {type:"text/html;charset=utf-8"}));
+        window.open(previewUrl, "_blank", "noopener");
+        setTimeout(()=>URL.revokeObjectURL(previewUrl),60000);
+      }
+      showToast("ＨＴＭＬファイルを保存しました");
+    }catch(err){
+      status.innerHTML = `<span class="err">保存できません：</span>${err.message}`;
+    }
+  }
+
+  function previewHtml(){
+    const status = $("htmlStatus");
+    try{
+      const cleaned = cleanHtmlCode($("htmlResult").value);
+      validateHtml(cleaned);
+      const blob = new Blob([cleaned], {type:"text/html;charset=utf-8"});
+      const url = URL.createObjectURL(blob);
+      const win = window.open(url, "_blank", "noopener");
+      if(!win) throw new Error("ポップアップがブロックされました。ブラウザで許可してください。");
+      setTimeout(()=>URL.revokeObjectURL(url),60000);
+      status.innerHTML = '<span class="ok">プレビューを開きました。</span>';
+    }catch(err){
+      status.innerHTML = `<span class="err">プレビューできません：</span>${err.message}`;
+    }
+  }
+
+  function buildPrompt(){
+    const source = sourceText.value.trim();
+    const sourceBlock = source
+      ? `\n# 参考資料から抽出した内容\n以下は、アップロード資料から抽出した文章です。内容を丸写しせず、構成、項目の粒度、説明順序、表の作り方を参考にしてください。\n\n---\n${source}\n---`
+      : `\n# 参考資料\n資料の抽出内容は未入力です。入力情報だけで作成し、不明事項は「要確認」と表示してください。`;
+
+    const items = selectedItems().map(x=>`・${x}`).join("\n") || "・必要な項目を適切に構成する";
+    const pages = val("pageCount","指定なし");
+
+    const prompt = `あなたは、ＩＴ導入補助金のＩＴツール登録資料および法人向け機能説明資料を作成する専門家です。
+
+以下の情報と参考資料を基に、「機能概要説明書」を作成してください。
+
+# 最重要ルール
+1. 入力されていない事実、機能、実績、数値、導入効果を勝手に創作しないでください。
+2. フォームに入力された製品名、プラン名、価格、事業者名、導入実績は最優先の確定情報です。参考資料に記載がなくても、入力値をそのまま使用してください。
+3. フォームが空欄の項目だけを「要確認」としてください。入力済みの項目を「要確認」に置き換えてはいけません。
+4. 参考資料の文章をそのまま流用せず、対象製品の内容に合わせて全面的に書き直してください。
+5. 販売促進資料ではなく、業務効率化、生産性向上、標準化、属人化解消の観点を中心に説明してください。
+6. 各機能は「機能名」「詳細・項目内容」「特徴」「生産性向上効果」が分かるように整理してください。
+7. 実装済み機能と今後の予定を混同しないでください。実装状況が不明な機能は断定しないでください。
+8. 導入実績は匿名で記載し、会社名・個人名・電話番号・住所などの実名情報は出力しないでください。業種、事業形態、従業員規模、導入時期、導入数量、課題、効果のみを使用してください。
+9. 画面キャプチャが提供されていない箇所は、画像を捏造せず「画面キャプチャ挿入欄」としてください。
+10. 日本語は公的申請資料に適した、簡潔で客観的な表現にしてください。
+11. 製品名は入力された表記を維持してください。
+
+# 基本情報
+【ＩＴツール名】
+${val("toolName")}
+
+【プラン名】
+${val("planName")}
+
+【価格】
+${val("price")}
+
+【開発・販売事業者名】
+${val("developer")}
+
+【大分類・カテゴリー】
+${val("category")}
+
+【製品の位置づけ・用途】
+${val("overview")}
+
+【資料の目的】
+${val("purpose")}
+
+【販売・導入実績】
+${val("salesRecords")}
+
+【販売総件数】
+${val("salesCount")}
+
+【想定ページ数】
+${pages}ページ
+※ページ数が指定されている場合は、必ずそのページ数に収まるようにページ構成を調整してください。
+
+【最終成果物】
+${val("outputFormat")}
+
+【デザイン・文体】
+${val("tone")}
+
+【追加条件】
+${val("special","特になし")}
+
+# 必ず含める項目
+${items}
+
+# 推奨構成
+1. 表紙
+2. ＩＴツールの正式な製品名・プラン名・価格
+3. 販売・導入実績
+4. 開発・販売事業者
+5. ツール概要
+6. 画面構成・画面キャプチャ
+7. 機能一覧
+8. 機能概要図
+9. 導入前後の業務フロー
+10. ＩＴツールの利用方法
+11. 導入による生産性向上効果
+12. セキュリティ・データ管理
+13. 提出前セルフチェック
+※不要な項目は入力条件に応じて調整してください。
+
+# 機能一覧表の書式
+次の列で整理してください。
+
+| No. | 区分 | 機能名 | 詳細・項目内容 | 特徴 | 生産性向上効果 |
+|---|---|---|---|---|---|
+
+機能は、利用者の業務順序に沿って分類してください。単に機能名を羅列せず、どの作業をどのように効率化するのかを具体的に記載してください。
+
+# 生産性向上効果の書き方
+以下の観点から、入力情報で根拠があるものだけを使用してください。
+
+・紙、メール、共有フォルダ、表計算ソフト等への分散管理の解消
+・資料作成、配布、更新、検索にかかる時間の削減
+・同じ説明や教育を繰り返す人的工数の削減
+・受講状況、進捗、完了状況の見える化
+・担当者ごとの説明や業務品質のばらつきの抑制
+・特定担当者への知識集中と属人化の解消
+・対応漏れ、確認漏れ、更新漏れの防止
+・管理者が本来業務へ集中できる環境の整備
+
+${sourceBlock}
+
+# 出力指示
+最終成果物が「ブラウザ印刷でPDF保存できるHTML」の場合は、以下を守ってください。
+
+・HTML、CSS、JavaScriptを1つのファイルにまとめる
+・作成後はブラウザで開き、「印刷」→「PDFとして保存」でPDF化できるHTMLにする
+・目次は作成しない。ページ番号や章番号から目次を自動生成しない
+・A4縦、余白12～15mmを前提とし、@pageと@media printを必ず設定する
+・各ページは<section class="page">で区切り、印刷時は必ず1ページ単位で改ページする
+・指定ページ数がある場合は、そのページ数と<section class="page">の数を一致させる
+・入力済みの製品名、プラン名、価格は必ず本文に表示する。価格が入力済みなら「要確認」と表示しない
+・製品名・プラン名・価格を、見出しだけが中央に孤立するレイアウトにしない
+・項目名と値は、2列の情報表または横並びの情報カードでまとめ、不要な縦線や大きな空白を作らない
+・1ページの上半分だけで内容が終わる場合は、次の関連項目を同じページへ配置し、空白を詰める
+・見出し直後に過度な余白を入れない。章タイトルと本文の間隔は12～18px程度にする
+・表の見出し行だけがページ下部に残らないよう、表全体または数行単位で改ページを制御する
+・表、カード、図は break-inside: avoid; page-break-inside: avoid; を設定する
+・本文の最小文字サイズは10.5pt、表内は9pt以上とし、極端に文字を小さくしない
+・紺、白、淡い青、淡いグレーを基調とした法人向けデザインにする
+・画面キャプチャ欄は後から画像を差し替えられる構造にする
+・「ウェビナー」等の表記変更条件が追加条件にある場合は、全ページで統一する
+・完成したHTMLコードのみをコードブロックで出力する
+
+Word貼り付け用原稿または文章のみを求める場合は、見出しごとに完成原稿を出力してください。`;
+
+    output.value = prompt;
+    updateCount();
+  }
+
+  function updateCount(){
+    counter.textContent = `${output.value.length.toLocaleString()}文字`;
+  }
+
+  $("generateJsonPromptBtn").addEventListener("click", buildJsonExtractionPrompt);
+  $("copyJsonPromptBtn").addEventListener("click", async()=>{
+    if(!$("jsonPrompt").value.trim()) buildJsonExtractionPrompt();
+    try{
+      await navigator.clipboard.writeText($("jsonPrompt").value);
+      showToast("整理プロンプトをコピーしました");
+    }catch{
+      $("jsonPrompt").select();
+      document.execCommand("copy");
+      showToast("整理プロンプトをコピーしました");
+    }
+  });
+  $("applyJsonBtn").addEventListener("click", applyJsonToForm);
+  $("formatJsonBtn").addEventListener("click", formatJsonInput);
+  $("clearJsonBtn").addEventListener("click", ()=>{
+    $("jsonInput").value = "";
+    $("jsonStatus").textContent = "ＪＳＯＮはまだ適用されていません。";
+  });
+
+  $("saveHtmlBtn").addEventListener("click", downloadHtml);
+  $("previewHtmlBtn").addEventListener("click", previewHtml);
+  $("copyHtmlBtn").addEventListener("click", async()=>{
+    const cleaned = cleanHtmlCode($("htmlResult").value);
+    if(!cleaned){
+      $("htmlStatus").innerHTML = '<span class="err">コピーできません：</span>ＨＴＭＬコードがありません。';
+      return;
+    }
+    try{
+      await navigator.clipboard.writeText(cleaned);
+      showToast("ＨＴＭＬをコピーしました");
+    }catch{
+      $("htmlResult").select();
+      document.execCommand("copy");
+      showToast("ＨＴＭＬをコピーしました");
+    }
+  });
+  $("clearHtmlBtn").addEventListener("click", ()=>{
+    $("htmlResult").value = "";
+    $("htmlStatus").textContent = "完成ＨＴＭＬはまだ貼り付けられていません。";
+  });
+
+  $("generateBtn").addEventListener("click", buildPrompt);
+  $("copyBtn").addEventListener("click", async()=>{
+    if(!output.value.trim()) buildPrompt();
+    try{
+      await navigator.clipboard.writeText(output.value);
+      showToast("プロンプトをコピーしました");
+    }catch{
+      output.select(); document.execCommand("copy");
+      showToast("プロンプトをコピーしました");
+    }
+  });
+
+  $("downloadBtn").addEventListener("click",()=>{
+    if(!output.value.trim()) buildPrompt();
+    const tool = $("toolName").value.trim() || "ITツール";
+    const blob = new Blob([output.value],{type:"text/plain;charset=utf-8"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `${tool}_機能概要説明書作成プロンプト.txt`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  $("resetBtn").addEventListener("click",()=>{
+    if(!confirm("すべての入力内容を消去しますか？")) return;
+    document.querySelectorAll("input:not([type=checkbox]), textarea").forEach(el=>el.value="");
+    document.querySelectorAll(".checks input").forEach(el=>el.checked=true);
+    fileStatus.textContent = "まだ資料は読み込まれていません。";
+    $("jsonPrompt").value = "";
+    $("jsonInput").value = "";
+    $("jsonStatus").textContent = "ＪＳＯＮはまだ適用されていません。";
+    $("htmlResult").value = "";
+    $("htmlFileName").value = "";
+    $("htmlStatus").textContent = "完成ＨＴＭＬはまだ貼り付けられていません。";
+    output.value = "";
+    updateCount();
+  });
+
+  $("toolName").addEventListener("input",()=>{
+    if(!$("htmlFileName").dataset.edited){
+      const tool = $("toolName").value.trim();
+      $("htmlFileName").value = tool ? `${tool}_機能概要説明書.html` : "";
+    }
+  });
+  $("htmlFileName").addEventListener("input",()=>{$("htmlFileName").dataset.edited="1";});
+
+  output.addEventListener("input",updateCount);
+
+  // Useful defaults for Traingo-like usage, easy to overwrite
+  $("special").value = "販売ツールとしてではなく、業務効率化ツールとして説明する。書籍という表現は使わず、マニュアル・配布資料・プレゼン資料と記載する。ウェビナーという表現は使わず、社内外研修と記載する。";
+</script>
+</body>
+</html>
