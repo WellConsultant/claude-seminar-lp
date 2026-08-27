@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>マンガでわかる ChatGPTアカウント停止を避ける7つのポイント</title>
+<style>
+  :root{--ink:#10233f;--blue:#1368e8;--cyan:#49c8e8;--yellow:#ffd84d;--coral:#ff6f5e;--paper:#f5f8fc;--muted:#607089}
+  *{box-sizing:border-box} body{margin:0;background:#dfe7f2;color:var(--ink);font-family:"Noto Sans JP","Yu Gothic",sans-serif;line-height:1.55}
+  .book{max-width:1120px;margin:auto;background:var(--paper);box-shadow:0 0 40px #7892b44d}
+  .page{min-height:790px;padding:50px 64px;position:relative;overflow:hidden;page-break-after:always;background:linear-gradient(135deg,#fff 0 70%,#edf5ff 70%)}
+  .page:after{content:attr(data-page);position:absolute;right:26px;bottom:18px;font-weight:900;color:#8fa1b8}
+  .cover{min-height:790px;background:var(--ink);color:#fff;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
+  .kicker{display:inline-block;background:var(--yellow);color:var(--ink);font-weight:900;padding:8px 14px;transform:rotate(-2deg);box-shadow:5px 5px 0 var(--coral)}
+  h1{font-size:55px;line-height:1.08;margin:25px 0 18px;letter-spacing:-.04em} h2{font-size:38px;line-height:1.2;margin:0 0 26px;border-left:10px solid var(--blue);padding-left:18px} h3{font-size:25px;margin:0 0 8px}
+  .lead{font-size:20px;font-weight:700}.small{font-size:13px;color:var(--muted)}
+  .hero{height:630px;background:url('manga_characters.png') 78% 38%/220% auto no-repeat;filter:drop-shadow(10px 10px 0 #49c8e866)}
+  .speech{background:#fff;color:var(--ink);border:4px solid var(--ink);border-radius:28px;padding:18px 22px;font-size:21px;font-weight:900;position:relative;box-shadow:8px 8px 0 var(--yellow)}
+  .speech:after{content:"";position:absolute;bottom:-22px;left:45px;border:12px solid transparent;border-top-color:var(--ink)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .panel{background:#fff;border:4px solid var(--ink);border-radius:12px;padding:22px;box-shadow:7px 7px 0 #afc6e5;position:relative}.panel.warn{box-shadow:7px 7px 0 var(--coral)}.panel.ok{box-shadow:7px 7px 0 var(--cyan)}
+  .num{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--blue);color:white;font-size:25px;font-weight:900;margin-bottom:12px}
+  .tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#dfeaff;color:#0b55c6;font-weight:900;font-size:13px}.tag.red{background:#ffe2de;color:#b52318}.tag.green{background:#d9f7f0;color:#087863}
+  .summary{margin-top:26px;background:var(--ink);color:#fff;border-radius:14px;padding:18px 22px;font-size:19px;font-weight:800}.summary b{color:var(--yellow)}
+  .strip{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:center;margin:20px 0}.character{height:210px;background-image:url('manga_characters.png');background-size:520% auto;background-repeat:no-repeat}.man-worry{background-position:4% 8%}.woman{background-position:72% 10%}.man-ok{background-position:37% 88%}
+  .myth{font-size:24px;font-weight:900;color:var(--coral);text-decoration:line-through}.fact{font-size:24px;font-weight:900;color:var(--blue)}
+  .flow{display:flex;gap:12px;align-items:stretch}.step{flex:1;background:white;border:3px solid var(--ink);padding:18px;border-radius:10px}.arrow{font-size:35px;display:grid;place-items:center;color:var(--blue)}
+  ul{margin:10px 0 0;padding-left:1.3em}li{margin:7px 0}.check li::marker{content:"✓  ";color:#0aa889;font-weight:bold}.bad li::marker{content:"×  ";color:var(--coral);font-weight:bold}
+  .sources a{color:#0b55c6;word-break:break-all}.stamp{display:inline-block;border:5px solid var(--coral);color:var(--coral);font-weight:1000;font-size:30px;padding:6px 15px;transform:rotate(-6deg)}
+  @media(max-width:800px){.page{padding:34px 25px;min-height:auto}.cover,.grid2,.grid3,.strip{grid-template-columns:1fr}h1{font-size:42px}h2{font-size:31px}.hero{height:380px}.character{display:none}.flow{flex-direction:column}.arrow{transform:rotate(90deg)}}
+  @media print{body{background:#fff}.book{box-shadow:none}.page{width:297mm;min-height:210mm;padding:13mm 17mm}.cover{min-height:210mm}a{text-decoration:none}}
+</style>
+</head>
+<body><main class="book">
+<section class="page cover" data-page="01">
+ <div><span class="kicker">規約のむずかしい話を、10分で。</span><h1>マンガでわかる<br>ChatGPT<br>アカウント停止</h1><p class="lead">何をすると危ない？<br>どう使えばリスクを減らせる？</p><div class="speech">「普通に使う」の中身を、具体的に確認しましょう。</div><p class="small" style="color:#b9c8dc;margin-top:40px">2026年8月版｜OpenAI利用規約・利用ポリシーをもとに構成</p></div>
+ <div class="hero" aria-label="規約を説明する漫画キャラクター"></div>
+</section>
+
+<section class="page" data-page="02"><h2>第1話　停止される理由は3つ</h2>
+ <div class="strip"><div class="character man-worry"></div><div class="speech">「何回か変な質問をしたら、いきなりBANですか？」</div></div>
+ <div class="grid3">
+  <div class="panel warn"><span class="num">1</span><h3>規約・ポリシー違反</h3><p>禁止された使い方や、安全対策の回避など。</p></div>
+  <div class="panel"><span class="num">2</span><h3>法令への対応</h3><p>法律上、停止・削除などの対応が必要になった場合。</p></div>
+  <div class="panel"><span class="num">3</span><h3>危害・リスク</h3><p>OpenAI、利用者、第三者へ危害を生じさせるおそれがある場合。</p></div>
+ </div><div class="summary"><b>要点：</b>「特定の質問を1回したら即停止」という単純な基準ではありません。何を目的に、どう使ったかが重要です。</div>
+</section>
+
+<section class="page" data-page="03"><h2>第2話　アカウントを貸さない</h2>
+ <div class="grid2"><div class="panel warn"><span class="tag red">NG</span><h3>パスワードを共有</h3><ul class="bad"><li>家族や知人へログイン情報を渡す</li><li>社内で個人アカウントを共用する</li><li>第三者に自由に使わせる</li></ul></div>
+ <div class="panel ok"><span class="tag green">対策</span><h3>利用者ごとにアクセスを分ける</h3><ul class="check"><li>自分の認証情報は自分だけで管理</li><li>組織利用は適切な法人向けプランを検討</li><li>不審なログインがあれば認証情報を変更</li></ul></div></div>
+ <div class="strip"><div class="character woman"></div><div><p class="fact">認証情報の共有は禁止です。</p><p>規約は、アカウントを他人が利用できる状態にしないことを求めています。</p></div></div>
+ <div class="summary"><b>ひとことで：</b>「1契約をみんなで使えば得」は、規約上のリスクになります。</div>
+</section>
+
+<section class="page" data-page="04"><h2>第3話　制限を無理に回避しない</h2>
+ <div class="flow"><div class="step"><span class="tag red">危険</span><h3>回数制限を回避</h3><p>仕組みを変えて、レート制限や利用制限をすり抜ける。</p></div><div class="arrow">→</div><div class="step"><span class="tag red">危険</span><h3>安全対策を無効化</h3><p>保護措置や安全機能を意図的に回避する。</p></div><div class="arrow">→</div><div class="step"><span class="tag red">危険</span><h3>自動抽出</h3><p>サービスからデータや出力をプログラムで自動抽出する。</p></div></div>
+ <div class="panel" style="margin-top:35px"><h3>ここは混同注意</h3><p><b>APIを正規の方法で自動利用すること自体</b>と、ChatGPTの画面やサービスから規約に反して自動抽出することは同じではありません。利用する製品に適用される規約と技術仕様を確認します。</p></div>
+ <div class="summary"><b>要点：</b>自動化の問題は「大量だから」だけではありません。制限・保護措置・適用規約を破る設計が危険です。</div>
+</section>
+
+<section class="page" data-page="05"><h2>第4話　AI出力を人間作と偽らない</h2>
+ <div class="strip"><div class="character man-ok"></div><div class="speech">「AIを使った文章は、全部“AI製”と表示しないとダメですか？」</div></div>
+ <p class="myth">誤解：AIを使ったら、必ず全作品に表示義務がある</p>
+ <p class="fact">正確：AI出力を、人間が生成したものだと偽る行為が禁止</p>
+ <div class="grid2"><div class="panel"><h3>避けるべき例</h3><p>AIが生成した成果を、事実に反して「人が最初からすべて作った」と主張する。</p></div><div class="panel ok"><h3>実務上の対応</h3><p>用途、契約、業界ルールに応じてAI利用を適切に説明し、人が正確性や権利関係を確認する。</p></div></div>
+ <div class="summary"><b>要点：</b>「AIを使ったこと」そのものと、「生成主体を偽ること」は別です。</div>
+</section>
+
+<section class="page" data-page="06"><h2>第5話　危険なのは“話題”より“使い方”</h2>
+ <div class="grid2"><div class="panel warn"><h3>禁止される目的の例</h3><ul class="bad"><li>脅迫、嫌がらせ、詐欺、なりすまし</li><li>暴力・テロ・武器の実行支援</li><li>違法行為や悪質なサイバー攻撃</li><li>安全対策の回避</li><li>未成年者の搾取・危害</li></ul></div>
+ <div class="panel ok"><h3>同じ話題でも異なる例</h3><ul class="check"><li>ニュースや歴史の分析</li><li>被害防止・啓発・安全教育</li><li>創作上の一般的な相談</li><li>専門家が関与する適切な業務</li></ul></div></div>
+ <div class="strip"><div class="character woman"></div><div class="speech">センシティブな単語を書いた回数だけで判断する、という規約ではありません。</div></div>
+ <div class="summary"><b>修正ポイント：</b>「エロ・グロ・犯罪系の質問を繰り返すとBAN」というまとめ方は不正確です。禁止される内容・目的・具体性を区別します。</div>
+</section>
+
+<section class="page" data-page="07"><h2>第6話　個人情報と他人の権利を守る</h2>
+ <div class="grid3"><div class="panel warn"><h3>プライバシー</h3><p>無断で私的・機微な情報を収集、監視、プロファイル、配布しない。</p></div><div class="panel warn"><h3>知的財産</h3><p>著作権など、第三者の権利を侵害する目的で利用しない。</p></div><div class="panel warn"><h3>本人らしさ</h3><p>同意なく、本人と誤認させるような顔・声の利用をしない。</p></div></div>
+ <div class="panel ok" style="margin-top:30px"><h3>会社で使う前の3点確認</h3><ol><li>入力する情報をOpenAIへ提供する権限があるか</li><li>顧客情報・機密情報を入れる必要が本当にあるか</li><li>出力を公開・配布する前に、人が権利と正確性を確認したか</li></ol></div>
+ <div class="summary"><b>要点：</b>出力の所有権が認められることと、第三者の権利を侵害してよいことは別です。</div>
+</section>
+
+<section class="page" data-page="08"><h2>第7話　競合モデル開発・年齢・放置</h2>
+ <div class="grid3"><div class="panel warn"><h3>競合モデル開発</h3><p>OpenAIと競合するモデルを開発するために出力を利用することは禁止されています。</p></div><div class="panel"><h3>最低年齢</h3><p>13歳以上、または居住国でサービス利用に同意できる最低年齢以上。18歳未満は保護者の許可が必要です。</p></div><div class="panel"><h3>長期の未利用</h3><p>有料アカウントではなく、1年以上使われていない場合、事前通知のうえアカウントが終了されることがあります。</p></div></div>
+ <div class="summary"><b>注意：</b>これはすべてのAI開発を禁じる話ではありません。禁止対象は「OpenAIと競合するモデルを出力で開発すること」です。</div>
+</section>
+
+<section class="page" data-page="09"><h2>もし停止されたら</h2>
+ <div class="flow"><div class="step"><span class="num">1</span><h3>通知を確認</h3><p>登録メール、画面表示、請求状況を確認。</p></div><div class="arrow">→</div><div class="step"><span class="num">2</span><h3>事実を整理</h3><p>日時、利用内容、外部ツール、ログイン状況を記録。</p></div><div class="arrow">→</div><div class="step"><span class="num">3</span><h3>異議申立て</h3><p>誤りだと考える場合は、サポートへ具体的に申し立てる。</p></div></div>
+ <div class="panel ok" style="margin-top:40px"><h3>申し立てに入れる情報</h3><ul class="check"><li>アカウントを特定できる情報</li><li>停止が誤りだと考える理由</li><li>該当する利用目的と操作</li><li>不審なアクセスが疑われる場合は、その状況</li></ul></div>
+ <div class="strip"><div class="character man-ok"></div><div><span class="stamp">落ち着いて記録</span><p>推測だけで原因を断定せず、確認できる事実を時系列でまとめます。</p></div></div>
+</section>
+
+<section class="page sources" data-page="10"><h2>最終チェックリスト</h2>
+ <div class="grid2"><div class="panel ok"><h3>この7点を守る</h3><ul class="check"><li>認証情報を他人と共有しない</li><li>制限・安全対策を回避しない</li><li>サービスから自動抽出しない</li><li>AI出力を人間作と偽らない</li><li>違法・有害な目的に使わない</li><li>個人情報・知財を侵害しない</li><li>出力を人が確認してから使う</li></ul></div>
+ <div><div class="speech">「普通に使う」とは、ルールを知らなくてよいという意味ではありません。</div><p style="margin-top:45px">規約は更新されます。仕事で継続利用する場合は、最新版を定期的に確認してください。</p></div></div>
+ <div class="panel" style="margin-top:32px"><h3>公式情報</h3><p>OpenAI 利用規約（2026年1月1日発効）<br><a href="https://openai.com/policies/terms-of-use/">https://openai.com/policies/terms-of-use/</a></p><p>OpenAI 利用ポリシー（2025年10月29日発効）<br><a href="https://openai.com/policies/usage-policies/">https://openai.com/policies/usage-policies/</a></p></div>
+ <p class="small">本資料は2026年8月27日時点の公式情報を一般向けに要約したものです。法的助言ではありません。契約主体・利用製品・地域により適用条件が異なる場合があります。</p>
+</section>
+</main></body></html>
