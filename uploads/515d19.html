@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>実績がないと選ばれないのか｜調査データによる検証</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #E9E9E9;
+  font-family: 'Noto Sans JP', sans-serif;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 40px 0; gap: 32px;
+}
+.slide {
+  width: 1280px; height: 720px; background: #FFFFFF;
+  display: flex; flex-direction: column; overflow: hidden; position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,.15);
+}
+/* ヘッダー */
+.slide-header { display: flex; align-items: center; gap: 12px; padding: 32px 60px 0 60px; margin-bottom: 22px; flex-shrink: 0; }
+.arrow-icon { display: flex; align-items: center; }
+.arrow-icon span { display:inline-block; width:0; height:0; border-top:16px solid transparent; border-bottom:16px solid transparent; border-left:20px solid #F5A623; margin-right:4px; }
+.slide-title { font-size: 34px; font-weight: 900; color: #1A1A1A; letter-spacing: .04em; }
+.slide-num { position: absolute; top: 40px; right: 60px; font-size: 14px; font-weight: 700; color: #BBBBBB; letter-spacing: .1em; }
+/* フッター */
+.footer { height: 36px; background: #F5A623; display: flex; align-items: center; justify-content: flex-end; padding-right: 24px; flex-shrink: 0; margin-top: auto; }
+.footer span { color: #1A1A1A; font-size: 12px; font-weight: 500; }
+/* コンテンツ */
+.content { display: flex; flex: 1; gap: 40px; padding: 0 60px 24px 60px; overflow: hidden; }
+.content.single { flex-direction: column; gap: 18px; }
+.col-left { width: 34%; flex-shrink: 0; }
+.col-right { flex: 1; }
+.lead { font-size: 26px; font-weight: 900; color: #1A1A1A; line-height: 1.45; margin-bottom: 16px; }
+.lead-sm { font-size: 21px; font-weight: 700; color: #1A1A1A; line-height: 1.5; margin-bottom: 14px; }
+.accent { color: #F5A623; }
+.body-text { font-size: 16px; color: #333333; line-height: 1.85; margin-bottom: 12px; }
+.small { font-size: 14px; color: #666666; line-height: 1.7; }
+.hl { background: #FFF8EC; border-left: 4px solid #F5A623; padding: 16px 20px; margin: 12px 0; border-radius: 0 4px 4px 0; }
+.hl p { font-size: 16px; color: #1A1A1A; line-height: 1.7; font-weight: 500; }
+/* 出典 */
+.source { margin-top: auto; padding-top: 14px; border-top: 1px solid #E0E0E0; font-size: 12px; color: #777777; line-height: 1.6; }
+.source b { color: #1A1A1A; font-weight: 700; }
+.src-inline { font-size: 12px; color: #777777; line-height: 1.6; margin-top: 8px; }
+/* 表紙 */
+.cover { justify-content: center; padding: 0 90px; }
+.cover-eyebrow { font-size: 18px; font-weight: 700; color: #F5A623; letter-spacing: .18em; margin-bottom: 24px; }
+.cover-title { font-size: 62px; font-weight: 900; color: #1A1A1A; line-height: 1.28; letter-spacing: .02em; }
+.cover-sub { font-size: 21px; font-weight: 500; color: #555555; line-height: 1.8; margin-top: 28px; }
+.cover-rule { width: 90px; height: 8px; background: #F5A623; margin: 34px 0; }
+.cover-org { font-size: 16px; font-weight: 700; color: #1A1A1A; letter-spacing: .05em; }
+/* 中扉 */
+.interlude { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-left: 90px; }
+.interlude-title { font-size: 66px; font-weight: 900; color: #1A1A1A; line-height: 1.25; margin-bottom: 18px; }
+.interlude-sub { font-size: 32px; font-weight: 700; color: #F5A623; letter-spacing: .08em; }
+/* 横棒グラフ */
+.bars { display: flex; flex-direction: column; gap: 9px; }
+.bar-row { display: flex; align-items: center; gap: 14px; }
+.bar-label { width: 330px; font-size: 14px; color: #333333; text-align: right; flex-shrink: 0; line-height: 1.4; }
+.bar-track { flex: 1; height: 26px; background: #F4F4F4; position: relative; border-radius: 2px; }
+.bar-fill { height: 100%; background: #D8D8D8; border-radius: 2px; }
+.bar-row.on .bar-fill { background: #F5A623; }
+.bar-row.on .bar-label { font-weight: 900; color: #1A1A1A; }
+.bar-val { width: 62px; font-size: 15px; font-weight: 700; color: #555555; flex-shrink: 0; }
+.bar-row.on .bar-val { color: #F5A623; font-weight: 900; font-size: 17px; }
+/* 数値カード */
+.stat-row { display: flex; gap: 22px; }
+.stat { flex: 1; background: #F9F9F9; border-top: 5px solid #F5A623; border-radius: 6px; padding: 22px 20px; }
+.stat.grey { border-top-color: #BBBBBB; }
+.stat-num { font-size: 52px; font-weight: 900; color: #F5A623; line-height: 1.1; letter-spacing: -.02em; }
+.stat.grey .stat-num { color: #888888; }
+.stat-unit { font-size: 26px; }
+.stat-name { font-size: 15px; font-weight: 700; color: #1A1A1A; margin-top: 10px; line-height: 1.5; }
+.stat-desc { font-size: 13px; color: #666666; margin-top: 6px; line-height: 1.6; }
+/* 比較 */
+.compare-area { display: flex; align-items: stretch; gap: 0; }
+.cbox { flex: 1; padding: 24px 26px; border-radius: 6px; }
+.cbox.other { background: #F2F2F2; border: 1px solid #DDD; }
+.cbox.ours { background: #FFF8EC; border: 3px solid #F5A623; }
+.cbox-label { font-size: 20px; font-weight: 900; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid currentColor; color: #666; }
+.cbox.ours .cbox-label { color: #F5A623; }
+.clist { list-style: none; }
+.clist li { font-size: 15px; line-height: 1.7; padding: 5px 0 5px 18px; position: relative; color: #333; }
+.clist li::before { content: '・'; position: absolute; left: 0; }
+.vs { width: 54px; height: 54px; border-radius: 50%; background: #1A1A1A; color: #FFF; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 900; flex-shrink: 0; align-self: center; margin: 0 18px; }
+/* グリッド */
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.gbox { background: #F9F9F9; border-top: 4px solid #F5A623; border-radius: 6px; padding: 20px 18px; }
+.gbox-no { font-size: 13px; font-weight: 900; color: #F5A623; letter-spacing: .1em; margin-bottom: 8px; }
+.gbox-name { font-size: 18px; font-weight: 900; color: #1A1A1A; margin-bottom: 8px; line-height: 1.4; }
+.gbox-desc { font-size: 13px; color: #666; line-height: 1.65; }
+/* 出典一覧 */
+.ref-list { display: flex; flex-direction: column; gap: 11px; }
+.ref { display: flex; gap: 14px; align-items: flex-start; }
+.ref-no { width: 26px; height: 26px; flex-shrink: 0; background: #F5A623; color: #FFF; border-radius: 4px; font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+.ref-body { font-size: 13.5px; color: #333; line-height: 1.6; }
+.ref-body b { font-weight: 700; color: #1A1A1A; }
+.ref-body span { color: #888; font-size: 12px; word-break: break-all; }
+@media print {
+  body { background: #FFF; padding: 0; gap: 0; }
+  .slide { box-shadow: none; page-break-after: always; }
+}
+</style>
+</head>
+<body>
+
+<!-- 1 表紙 -->
+<div class="slide">
+  <div class="content single cover">
+    <div class="cover-eyebrow">EVIDENCE REPORT</div>
+    <div class="cover-title">「実績がないから、<br>選ばれない」は本当か。</div>
+    <div class="cover-rule"></div>
+    <div class="cover-sub">発注者は何を見て取引相手を決めているのか。<br>公的機関・民間調査 8件のデータで検証します。</div>
+    <div class="cover-sub" style="margin-top:34px;">
+      <span class="cover-org">Well Consultant ／ 認定経営革新等支援機関</span>
+    </div>
+  </div>
+  <div class="footer"><span>© 2026 Well Consultant</span></div>
+</div>
+
+<!-- 2 課題提起 -->
+<div class="slide">
+  <div class="slide-header"><div class="arrow-icon"><span></span><span></span></div><div class="slide-title">よくある思い込み</div></div>
+  <div class="slide-num">01</div>
+  <div class="content">
+    <div class="col-left">
+      <p class="lead">「まだ<span class="accent">実績がない</span>から、<br>営業しても<br>断られるだけ」</p>
+      <p class="small">独立直後・新規参入時に、最も多く聞かれる不安です。</p>
+    </div>
+    <div class="col-right">
+      <p class="body-text">この不安は「発注者は実績の量で相手を選んでいる」という前提の上に成り立っています。しかし、その前提自体を検証した人はほとんどいません。</p>
+      <p class="body-text">実際に発注者側へ「何を決め手にしたか」を尋ねた調査を確認すると、実績・経歴は決め手の上位に来ていない、という結果が繰り返し出ています。</p>
+      <div class="hl"><p>本資料では、発注者側に聞いた調査データを5つの論点に整理し、それぞれ出典を明記して検証します。</p></div>
+      <p class="small">※ 各スライド下部に調査主体・調査対象・サンプル数を記載しています。</p>
+    </div>
+  </div>
+  <div class="footer"><span>© 2026 Well Consultant</span></div>
+</div>
+
+<!-- 3 中扉 -->
+<div class="slide">
+  <div class="interlude">
+    <div class="interlude-title">データで検証する</div>
+    <div class="interlude-sub">5 POINTS OF EVIDENCE</div>
+  </div>
+  <div class="footer"><span>© 2026 Well Consultant</span></div>
+</div>
+
+<!-- 4 論点1 グラフ -->
+<div class="slide">
+  <div class="slide-header"><div class="arrow-icon"><span></span><span></span></div><div class="slide-title">論点1｜専門家選びで「経歴」は決め手の5位</div></div>
+  <div class="slide-num">02</div>
+  <div class="content single">
+    <p class="lead-sm">顧問税理士を選ぶ際の決め手（複数回答・上位10項目）</p>
+    <div class="bars">
+      <div class="bar-row"><div class="bar-label">基本業務（節税支援・決算対策など）の丁寧さ</div><div class="bar-track"><div class="bar-fill" style="width:94%"></div></div><div class="bar-val">42.2%</div></div>
+      <div class="bar-row"><div class="bar-label">人柄や人物（世代や性別、話しやすさ）</div><div class="bar-track"><div class="bar-fill" style="width:87.6%"></div></div><div class="bar-val">39.4%</div></div>
+      <div class="bar-row"><div class="bar-label">料金の安さ</div><div class="bar-track"><div class="bar-fill" style="width:59.6%"></div></div><div class="bar-val">26.8%</div></div>
+      <div class="bar-row"><div class="bar-label">ビジネス上のお付き合い・紹介などの関係</div><div class="bar-track"><div class="bar-fill" style="width:53.1%"></div></div><div class="bar-val">23.9%</div></div>
+      <div class="bar-row"><div class="bar-label">価格表など料金の明瞭さ</div><div class="bar-track"><div class="bar-fill" style="width:29.1%"></div></div><div class="bar-val">13.1%</div></div>
+      <div class="bar-row"><div class="bar-label">質問や対応などレスポンスの早さ</div><div class="bar-track"><div class="bar-fill" style="width:29.1%"></div></div><div class="bar-val">13.1%</div></div>
+      <div class="bar-row on"><div class="bar-label">税理士・公認会計士の方の経歴</div><div class="bar-track"><div class="bar-fill" style="width:29.1%"></div></div><div class="bar-val">13.1%</div></div>
+      <div class="bar-row"><div class="bar-label">経営（資金調達・助成金など）のアドバイス</div><div class="bar-track"><div class="bar-fill" style="width:26.9%"></div></div><div class="bar-val">12.1%</div></div>
+      <div class="bar-row"><div class="bar-label">相談の曜日や時間の柔軟性</div><div class="bar-track"><div class="bar-fill" style="width:26.2%"></div></div><div class="bar-val">11.8%</div></div>
+      <div class="bar-row"><div class="bar-label">事業や業界への理解</div><div class="bar-track"><div class="bar-fill" style="width:22.7%"></div></div><div class="bar-val">10.2%</div></div>
+    </div>
+    <div class="source"><b>出典：</b>株式会社ミロク情報サービス『会計事務所白書2017【事業主編】』（全国の事業主 586名を対象とした調査／複数回答）　https://www.accnt.jp/report/2017g.pdf</div>
+  </div>
+  <div class="footer"><span>© 2026 Well Consultant</span></div>
+</div>
+
+<!-- 5 論点1 解釈 -->
+<div class="slide">
+  <div class="slide-header"><div class="arrow-icon"><span></span><span></span></div><div class="slide-title">論点1の読み方｜決め手は「対応の質」</div></div>
+  <div class="slide-num">03</div>
+  <div class="content">
+    <div class="col-left">
+      <div class="stat" style="margin-bottom:18px;">
+        <div class="stat-num">13.1<span class="stat-unit">%</span></div>
+        <div class="stat-name">「経歴」を決め手に挙げた割合</div>
+        <div class="stat-desc">首位「丁寧さ」42.2%の3分の1以下</div>
+      </div>
+      <p class="small">実績・経歴で選ばれているのは、およそ8人に1人にとどまります。</p>
+    </div>
+    <div class="col-right">
+      <p class="body-text">上位2項目「基本業務の丁寧さ」「人柄や人物」は、いずれも<b>実績の量ではなく、目の前の対応の質で決まる要素</b>です。過去の蓄積がなくても、今日から差をつけられる領域といえます。</p>
+      <p class="body-text">別の調査でも同じ傾向が確認できます。経営者325人を対象とした2026年の調査では、税理士変更の最大の理由は価格ではなく「レスポンスの遅さ・相談しにくさ」（29.8%）であり、新しい相手を選ぶ際に重視されるのは「相談しやすさ・相性」やITリテラシーの高さと報告されています。</p>
+      <div class="hl"><p>選ばれない原因は「実績が足りない」ではなく、「丁寧さと人柄が伝わる接点がない」可能性が高い。</p></div>
+      <div class="source"><b>出典：</b>小谷野税理士法人「税理士変更に関する調査」（2026年／経営者325人）PR TIMES　https://prtimes.jp/main/html/rd/p/000000011.000144559.html</div>
+    </div>
+  </div>
+  <div class="footer"><span>© 2026 Well Consultant</span></div>
+</div>
+
+<!-- 6 論点2 -->
+<div class="slide">
+  <div class="slide-header"><div class="arrow-icon"><span></span><span></span></div><div class="slide-title">論点2｜そもそも実績審査を経ないルートが主流</div></div>
+  <div class="slide-num">04</div>
+  <div class="content single">
+    <p class="lead-sm">取引の入口は「比較検討」ではなく「紹介・人脈」で開いている</p>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-num">80<span class="stat-unit">%超</span></div>
+        <div class="stat-name">顧問税理士との契約のきっかけが「紹介」</div>
+        <div class="stat-desc">知人や他士業からの紹介で契約に至る事業主が圧倒的多数</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">61.6<span class="stat-unit">%</span></div>
+        <div class="stat-name">案件獲得ルート1位「人脈（知人の紹介含む）」</div>
+        <div class="stat-desc">2位は「過去・現在の取引先」58.9%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">35.6<span class="stat-unit">%</span></div>
+        <div class="stat-name">最も収入が得られた獲得経路1位も「人脈」</div>
+        <div class="stat-desc">単なる件数ではなく、収益面でも紹介が最上位</div>
+      </div>
+    </div>
+    <p class="body-text" style="margin-top:20px;">紹介とは、<b>実績の代わりに「紹介者への信頼」が担保として機能する取引形態</b>です。発注者は候補者の実績表を精査しているのではなく、信頼できる第三者の判断を借りて意思決定しています。つまり、実績がない段階でも、信頼の移転が起きれば取引は成立します。</p>
+    <div class="source">
+      <b>出典：</b>①株式会社ミロク情報サービス『会計事務所白書2017』（事業主586名）／辻本税理士事務所による同白書の紹介記事　②③一般社団法人プロフェッショナル＆パラレルキャリア・フリーランス協会『フリーランス白書2024』『フリーランス白書2025』（2025年版 回答総数1,071名）　https://blog.freelance-jp.org/
+    </div>
+  </div>
+  <div class="footer"><span>© 2026 Well Consultant</span></div>
+</div>
+
+<!-- 7 論点3 -->
+<div class="slide">
+  <div class="slide-header"><div class="arrow-icon"><span></span><span></span></div><div class="slide-title">論点3｜「知らなかった相手」にも発注は起きている</div></div>
+  <div class="slide-num">05</div>
+  <div class="content">
+    <div class="col-left">
+      <div class="stat" style="margin-bottom:16px;">
+        <div class="stat-num">82.3<span class="stat-unit">%</span></div>
+        <div class="stat-name">AI検索で「それまで知らなかった企業・サービス」を発見した割合</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">21.1<span class="stat-unit">%</span></div>
+        <div class="stat-name">うち、実際にその企業へ発注・契約した割合</div>
+      </div>
+    </div>
+    <div class="col-right">
+      <p class="body-text">BtoBの発注担当者を対象とした2026年の調査では、AI検索の利用者の82.3%が、それまで存在すら知らなかった企業・サービスを発見したと回答しました。そして、そのうち21.1%が実際に発注・契約に至っています。</p>
+      <p class="body-text">これは、<b>認知も取引履歴もない相手に対して、およそ5社に1社の割合で発注が発生している</b>ことを意味します。「知られていないから選ばれない」も、必ずしも成立しません。</p>
+      <div class="hl"><p>検索・AI検索経由の新規発見が購買の入口になり、既存の実績や知名度に依存しない受注機会が拡大している。</p></div>
+      <div class="source"><b>出典：</b>株式会社Piftee『BtoB発注先選定におけるAI検索活用の実態調査2026』　https://piftee.co.jp/blog/research-2</div>
+    </div>
+  </div>
+  <div class="footer"><span>© 2026 Well Consultant</span></div>
+</div>
+
+<!-- 8 論点4 -->
+<div class="slide">
+  <div class="slide-header"><div class="arrow-icon"><span></span><span></span></div><div class="slide-title">論点4｜落選理由は「実績不足」ではない</div></div>
+  <div class="slide-num">06</div>
+  <div class="content single">
+    <p class="lead-sm">300万円以上のBtoB大型購買で、候補から外した理由（上位）</p>
+    <div class="bars" style="margin-top:6px;">
+      <div class="bar-row on"><div class="bar-label">自社の課題に対応する機能不足</div><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><div class="bar-val">39.1%</div></div>
+      <div class="bar-row on"><div class="bar-label">企業規模の不一致</div><div class="bar-track"><div class="bar-fill" style="width:69%"></div></div><div class="bar-val">34.5%</div></div>
+    </div>
+    <p class="body-text" style="margin-top:18px;">高額な取引であるにもかかわらず、候補から外す理由の上位に「実績不足」「導入事例の少なさ」は挙がっていません。上位を占めたのは、<b>自社の課題に合っているかどうか</b>という適合性の問題でした。</p>
+    <p class="body-text">同調査では、営業担当者と初めて本格的にやり取りした時点で、購買側の課題の明確化が「完了」または「おおむね進んでいた」との回答が70.4%に達しています。<b>発注者はすでに課題を持って探しており、その課題に的確に答えられるかで選別している</b>という構図です。</p>
+    <div class="hl"><p>審査されているのは「あなたの過去」ではなく「相手の課題への適合度」。ここは実績年数と無関係に勝負できる。</p></div>
+    <div class="source"><b>出典：</b>株式会社IDEATECH『BtoB大型購買の実態調査』（2026年／300万円以上の購買に関与した会社員 n=307）PR TIMES　https://prtimes.jp/main/html/rd/p/000000629.000045863.html</div>
+  </div>
+  <div class="footer"><span>© 2026 Well Consultant</span></div>
+</div>
+
+<!-- 9 論点5 -->
+<div class="slide">
+  <div class="slide-header"><div class="arrow-icon"><span></span><span></span></div><div class="slide-title">論点5｜国が「実績不問で発注する制度」を用意している</div></div>
+  <div class="slide-num">07</div>
+  <div class="content">
+    <div class="col-left">
+      <p class="lead">トライアル<br><span class="accent">発注制度</span></p>
+      <p class="small">地方自治法施行令第167条の2第1項第4号に基づく随意契約制度</p>
+    </div>
+    <div class="col-right">
+      <p class="body-text">経済産業省は、優れた製品や技術を有するものの<b>まだ受注実績が少ないスタートアップなどの新規中小企業</b>に対して、随意契約を行える「トライアル発注制度」を案内しています。制度の目的は、こうして受注実績を作らせることで販路開拓を支援し、地域内企業の育成を図ることにあります。</p>
+      <p class="body-text">さらに、技術力を証明できる事業者については、通常より上位等級への入札参加を認める措置も設けられています。</p>
+      <div class="hl"><p>行政自身が「実績がないこと」を取引しない理由にしていない。実績は先にあるものではなく、取引の結果として後からつくられるもの、という前提に立った制度設計。</p></div>
+      <div class="source"><b>出典：</b>経済産業省「スタートアップにおける公共調達促進」　https://www.meti.go.jp/policy/newbusiness/public_procurement.html</div>
+    </div>
+  </div>
+  <div class="footer"><span>© 2026 Well Consultant</span></div>
+</div>
+
+<!-- 10 反証 -->
+<div class="slide">
+  <div class="slide-header"><div class="arrow-icon"><span></span><span></span></div><div class="slide-title">公平のために｜実績重視を示すデータもある</div></div>
+  <div class="slide-num">08</div>
+  <div class="content single">
+    <div class="compare-area">
+      <div class="cbox other">
+        <div class="cbox-label">実績が重視される場面</div>
+        <ul class="clist">
+          <li>発注元が重視する要素は「過去の制作物の数や質」65.6%、「実務年数」53.4%（フリーランスへの発注時）</li>
+          <li>発注元の41.3%が発注先とのトラブルを経験。最多は「納品物の品質が要求水準を満たさなかった」44%</li>
+          <li>フリーランス採用で最も重視されるのは「専門性・スキル」54.7%</li>
+        </ul>
+      </div>
+      <div class="vs">VS</div>
+      <div class="cbox ours">
+        <div class="cbox-label">それでも実績を超える要素</div>
+        <ul class="clist">
+          <li>実績重視でもトラブルは4割超。実績は品質を保証しきれていない</li>
+          <li>トラブル2位は「態度や言動が不適切で円滑なコミュニケーションができなかった」38%</li>
+          <li>面談を経て最終決定に至る段階では「企業文化との相性・人柄」の重視度が上昇（相性37.7%）</li>
+        </ul>
+      </div>
+    </div>
+    <p class="body-text" style="margin-top:18px;">実績は<b>書類選考を通過するための目安</b>としては機能しています。しかし、実績を重視して選んでも4割以上がトラブルに直面しており、最終判断の場面では相性・人柄・コミュニケーションが決め手に浮上します。実績は十分条件でも必要条件でもない、というのが実態です。</p>
+    <div class="source"><b>出典：</b>株式会社デイトラ「フリーランスへの発注時における、発注元が抱える課題」調査　https://www.daily-trial.co.jp/freelance-order-survey/ ／ Workship MAGAZINE「フリーランス採用に関する調査」　https://goworkship.com/magazine/recruitment-research-freelance/</div>
+  </div>
+  <div class="footer"><span>© 2026 Well Consultant</span></div>
+</div>
+
+<!-- 11 結論 -->
+<div class="slide">
+  <div class="slide-header"><div class="arrow-icon"><span></span><span></span></div><div class="slide-title">結論｜実績を代替する4つの指標</div></div>
+  <div class="slide-num">09</div>
+  <div class="content single">
+    <p class="lead-sm">「実績を見ない人がいる」のではなく、<span class="accent">実績を飛び越えるルートが4本ある</span></p>
+    <div class="grid4" style="margin-top:8px;">
+      <div class="gbox">
+        <div class="gbox-no">ROUTE 01</div>
+        <div class="gbox-name">紹介・人脈</div>
+        <div class="gbox-desc">紹介者への信頼が実績の代わりに担保となる。税理士契約の8割超、フリーランス案件の6割超がこのルート。</div>
+      </div>
+      <div class="gbox">
+        <div class="gbox-no">ROUTE 02</div>
+        <div class="gbox-name">課題への適合</div>
+        <div class="gbox-desc">落選理由の最上位は機能不足39.1%。過去の量ではなく、目の前の課題に答えられるかで選別される。</div>
+      </div>
+      <div class="gbox">
+        <div class="gbox-no">ROUTE 03</div>
+        <div class="gbox-name">丁寧さ・人柄</div>
+        <div class="gbox-desc">選定の決め手1位42.2%・2位39.4%。経歴13.1%の約3倍。初日から差をつけられる領域。</div>
+      </div>
+      <div class="gbox">
+        <div class="gbox-no">ROUTE 04</div>
+        <div class="gbox-name">レスポンス</div>
+        <div class="gbox-desc">乗り換え理由の1位は「レスポンスの遅さ・相談しにくさ」29.8%。速さは実績なしで提供できる価値。</div>
+      </div>
+    </div>
+    <div class="hl" style="margin-top:20px;"><p>実績は入口の目安にすぎない。紹介・課題適合・人柄・レスポンスという代替指標を意図的に設計すれば、実績を飛び越えて取引は成立する。<br>逆に言えば、実績があってもこの4つが欠ければ、乗り換えられる側になる。</p></div>
+  </div>
+  <div class="footer"><span>© 2026 Well Consultant</span></div>
+</div>
+
+<!-- 12 出典一覧 -->
+<div class="slide">
+  <div class="slide-header"><div class="arrow-icon"><span></span><span></span></div><div class="slide-title">出典一覧</div></div>
+  <div class="slide-num">10</div>
+  <div class="content single">
+    <div class="ref-list">
+      <div class="ref"><div class="ref-no">1</div><div class="ref-body"><b>株式会社ミロク情報サービス『会計事務所白書2017【事業主編】』</b>（全国の事業主586名／複数回答）<br><span>https://www.accnt.jp/report/2017g.pdf</span></div></div>
+      <div class="ref"><div class="ref-no">2</div><div class="ref-body"><b>小谷野税理士法人「税理士変更に関する調査」</b>（2026年／経営者325人）PR TIMES<br><span>https://prtimes.jp/main/html/rd/p/000000011.000144559.html</span></div></div>
+      <div class="ref"><div class="ref-no">3</div><div class="ref-body"><b>一般社団法人プロフェッショナル＆パラレルキャリア・フリーランス協会『フリーランス白書2024』『フリーランス白書2025』</b>（2025年版 回答総数1,071名）<br><span>https://blog.freelance-jp.org/</span></div></div>
+      <div class="ref"><div class="ref-no">4</div><div class="ref-body"><b>株式会社Piftee『BtoB発注先選定におけるAI検索活用の実態調査2026』</b><br><span>https://piftee.co.jp/blog/research-2</span></div></div>
+      <div class="ref"><div class="ref-no">5</div><div class="ref-body"><b>株式会社IDEATECH『BtoB大型購買の実態調査』</b>（2026年／n=307）PR TIMES<br><span>https://prtimes.jp/main/html/rd/p/000000629.000045863.html</span></div></div>
+      <div class="ref"><div class="ref-no">6</div><div class="ref-body"><b>経済産業省「スタートアップにおける公共調達促進」</b>（トライアル発注制度）<br><span>https://www.meti.go.jp/policy/newbusiness/public_procurement.html</span></div></div>
+      <div class="ref"><div class="ref-no">7</div><div class="ref-body"><b>株式会社デイトラ「フリーランスへの発注時における、発注元が抱える課題」調査</b><br><span>https://www.daily-trial.co.jp/freelance-order-survey/</span></div></div>
+      <div class="ref"><div class="ref-no">8</div><div class="ref-body"><b>Workship MAGAZINE「フリーランス採用に関する調査」</b><br><span>https://goworkship.com/magazine/recruitment-research-freelance/</span></div></div>
+    </div>
+    <p class="small" style="margin-top:14px;">※ 各数値は各調査の公表値をそのまま引用しています。調査対象・設問形式（複数回答等）が調査ごとに異なるため、数値の単純比較はご注意ください。</p>
+  </div>
+  <div class="footer"><span>© 2026 Well Consultant</span></div>
+</div>
+
+</body>
+</html>
