@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI自動電話システムを作る方法</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0F1B33; --navy2:#16264A; --ink:#1B2A4A; --orange:#F0762A; --orange2:#FFB27A;
+  --paper:#FFFFFF; --paper2:#F5F7FB; --line:#D9DEE8; --muted:#6B7690; --text:#1F2937;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#0A1226;font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;color:var(--text);overflow:hidden}
+#deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+.slide{position:absolute;width:1280px;height:720px;left:50%;top:50%;transform:translate(-50%,-50%) scale(var(--s,1));transform-origin:center;background:var(--paper);border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45);opacity:0;visibility:hidden;transition:opacity .35s ease}
+.slide.active{opacity:1;visibility:visible}
+.slide .inner{position:absolute;inset:0;padding:56px 72px 60px}
+.slide .bar{position:absolute;left:0;top:0;width:100%;height:8px;background:linear-gradient(90deg,var(--orange),var(--orange2))}
+.slide h2{font-size:38px;font-weight:900;color:var(--ink);line-height:1.25;letter-spacing:-.01em;margin-bottom:10px}
+.slide .sub{font-size:18px;color:var(--muted);margin-bottom:18px}
+.slide .rule{height:2px;background:var(--ink);opacity:.15;margin:6px 0 22px}
+.foot{position:absolute;left:72px;right:72px;bottom:22px;display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.foot .n{font-weight:700;color:var(--orange)}
+/* bullets */
+ul.b{list-style:none;font-size:22px;line-height:1.55}
+ul.b li{position:relative;padding-left:34px;margin-bottom:14px}
+ul.b li::before{content:"";position:absolute;left:6px;top:14px;width:12px;height:12px;border-radius:50%;background:var(--orange)}
+ul.b li b{display:block;color:var(--ink);font-size:23px;font-weight:700}
+ul.b li span{display:block;font-size:19px;color:#374151;margin-top:2px}
+.note{position:absolute;left:72px;right:72px;bottom:58px;background:#FFF4EA;border-left:6px solid var(--orange);padding:14px 18px;font-size:16px;line-height:1.5;color:var(--ink);border-radius:6px}
+.has-note ul.b,.has-note table,.has-note .cols,.has-note pre,.has-note .faq-body{margin-bottom:0}
+/* table */
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;line-height:1.45;border-radius:8px;overflow:hidden}
+th{background:var(--ink);color:#fff;text-align:left;padding:10px 12px;font-weight:700}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--paper2)}
+td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
+table.wrapfirst td:first-child{white-space:normal}
+table.s12{font-size:13px} table.s12 th,table.s12 td{padding:7px 9px}
+table.s11{font-size:12px} table.s11 th,table.s11 td{padding:6px 8px}
+tr.hl td{background:#FFF1E4!important;font-weight:700}
+/* two columns */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.col h3{font-size:20px;font-weight:700;color:#fff;padding:10px 16px;border-radius:8px 8px 0 0}
+.col:first-child h3{background:var(--ink)} .col:last-child h3{background:var(--orange)}
+.col ul{list-style:none;background:var(--paper2);padding:16px 18px;border-radius:0 0 8px 8px;font-size:17px;line-height:1.5;min-height:300px}
+.col ul li{padding-left:20px;position:relative;margin-bottom:10px}
+.col ul li::before{content:"●";position:absolute;left:0;top:0;color:var(--orange);font-size:11px;line-height:26px}
+.col.s14 ul{font-size:15px}
+/* big number */
+.big{display:grid;grid-template-columns:460px 1fr;gap:32px;align-items:start}
+.big .num{font-size:78px;font-weight:900;color:var(--orange);line-height:1.05;letter-spacing:-.02em}
+.big .cap{font-size:17px;color:var(--muted);margin-top:14px;line-height:1.55}
+.big ul{list-style:none;background:var(--paper2);padding:22px 24px;border-radius:10px;font-size:18px;line-height:1.55}
+.big ul li{padding-left:22px;position:relative;margin-bottom:12px}
+.big ul li::before{content:"●";position:absolute;left:0;color:var(--orange);font-size:11px;line-height:28px}
+/* code */
+pre{background:#111827;color:#E5E7EB;border-radius:10px;padding:20px 24px;font:15px/1.55 Menlo,Consolas,"Noto Sans JP",monospace;white-space:pre-wrap;overflow:hidden}
+/* dialog */
+.dlg{font-size:16.5px;line-height:1.5}
+.dlg p{margin-bottom:8px;padding-left:92px;text-indent:-92px}
+.dlg .ai{color:var(--orange);font-weight:700;display:inline-block;width:92px;text-indent:0}
+.dlg .cu{color:var(--ink);font-weight:700;display:inline-block;width:92px;text-indent:0}
+/* faq */
+.q{font-size:28px;font-weight:900;color:var(--orange);margin-bottom:16px;line-height:1.3}
+.faq-body .a{font-size:21px;font-weight:700;color:var(--ink);margin-bottom:14px}
+.faq-body dl{font-size:17px;line-height:1.5}
+.faq-body dt{font-weight:700;color:var(--ink);margin-top:8px}
+.faq-body dd{color:#374151;margin-left:1em}
+/* dark slides */
+.dark{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff}
+.dark .inner{padding:0}
+.title .accent{position:absolute;left:96px;top:236px;width:14px;height:210px;background:var(--orange);border-radius:7px}
+.title h1{position:absolute;left:136px;top:220px;right:80px;font-size:56px;font-weight:900;line-height:1.2;color:#fff}
+.title .lead{position:absolute;left:136px;top:372px;right:120px;font-size:22px;color:#D6DDEB;line-height:1.5}
+.title .meta{position:absolute;left:136px;top:560px;right:80px;font-size:15px;color:#9AA7C2;line-height:1.7}
+.sec{background:var(--paper2)}
+.sec .num{position:absolute;left:96px;top:150px;font-size:112px;font-weight:900;color:var(--orange);line-height:1;letter-spacing:-.03em}
+.sec h1{position:absolute;left:96px;top:300px;right:96px;font-size:46px;font-weight:900;color:var(--ink);line-height:1.25}
+.sec .lead{position:absolute;left:96px;top:430px;right:120px;font-size:20px;color:var(--muted);line-height:1.6}
+/* offer */
+.offer h1{position:absolute;left:72px;top:44px;right:72px;font-size:34px;font-weight:900;color:#fff}
+.offer .tag{position:absolute;left:72px;top:110px;font-size:24px;font-weight:900;color:var(--orange)}
+.offer .l{position:absolute;left:72px;top:160px;width:560px;height:470px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:24px 28px;color:#fff}
+.offer .l li{list-style:none;font-size:21px;font-weight:700;margin-bottom:12px;padding-left:22px;position:relative}
+.offer .l li::before{content:"●";position:absolute;left:0;color:var(--orange);font-size:11px;line-height:32px}
+.offer .l p{font-size:15px;color:#D6DDEB;margin-top:16px;line-height:1.55}
+.offer .l .fee{position:absolute;left:28px;bottom:20px;font-size:12px;color:#9AA7C2}
+.offer .r{position:absolute;left:660px;top:160px;width:548px;height:470px;background:#fff;border-radius:12px;padding:24px 28px;color:var(--ink);font-size:16px;line-height:1.7}
+.offer .r .h{font-size:22px;font-weight:900;color:var(--orange);margin-bottom:8px}
+.offer .r .demo{font-size:19px;font-weight:900}
+.offer .r .url{font-size:13px;word-break:break-all;color:#374151}
+.offer .r .co{margin-top:14px;font-size:14px;color:#374151;line-height:1.6}
+.offer .ft{position:absolute;left:72px;right:72px;bottom:26px;font-size:14px;color:#9AA7C2}
+.end h1{position:absolute;left:0;right:0;top:280px;text-align:center;font-size:48px;font-weight:900;color:#fff}
+.end p{position:absolute;left:0;right:0;top:370px;text-align:center;font-size:19px;color:#D6DDEB}
+/* toc */
+ul.toc{list-style:none;font-size:19px;line-height:1.5}
+ul.toc li{display:grid;grid-template-columns:330px 1fr;gap:18px;padding:11px 0;border-bottom:1px solid var(--line)}
+ul.toc li b{color:var(--ink);font-weight:700}
+ul.toc li span{color:#374151;font-size:17px}
+/* chrome */
+#prog{position:fixed;left:0;bottom:0;height:5px;background:var(--orange);width:0;z-index:5;transition:width .3s}
+#ctr{position:fixed;right:18px;bottom:14px;color:#9AA7C2;font-size:13px;z-index:5;font-family:Menlo,monospace}
+#help{position:fixed;left:18px;bottom:12px;color:#6B7690;font-size:12px;z-index:5}
+#nav{position:fixed;right:18px;top:14px;z-index:6;display:flex;gap:8px}
+#nav button{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
+#nav button:hover{background:rgba(255,255,255,.2)}
+#grid{position:fixed;inset:0;background:#0A1226;overflow:auto;z-index:10;display:none;padding:24px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+#grid.on{display:grid}
+#grid .t{background:#fff;border-radius:6px;padding:10px 12px;font-size:12px;cursor:pointer;color:var(--ink);min-height:72px;border-left:4px solid var(--orange)}
+#grid .t:hover{outline:2px solid var(--orange)}
+#grid .t small{display:block;color:var(--muted);margin-bottom:4px}
+@media print{html,body{overflow:visible;background:#fff}#deck{position:static;display:block}.slide{position:relative;left:0;top:0;transform:none;opacity:1;visibility:visible;page-break-after:always;box-shadow:none;border-radius:0;margin:0 auto}#prog,#ctr,#help,#nav,#grid{display:none!important}}
+</style>
+</head>
+<body>
+<div id="deck"></div>
+<div id="prog"></div>
+<div id="ctr"></div>
+<div id="help">← → / スペース：進む　G：一覧　F：全画面</div>
+<div id="nav"><button onclick="go(cur-1)">‹ 前へ</button><button onclick="go(cur+1)">次へ ›</button><button onclick="toggleGrid()">一覧</button><button onclick="fs()">全画面</button></div>
+<div id="grid"></div>
+<script>
+const S = [];
+const title=(t,lead,meta)=>S.push({k:'title',t,lead,meta});
+const section=(num,t,lead)=>S.push({k:'sec',num,t,lead});
+const bullets=(t,sec,items,o={})=>S.push({k:'bullets',t,sec,items,...o});
+const two=(t,sec,lt,l,rt,r,o={})=>S.push({k:'two',t,sec,lt,l,rt,r,...o});
+const table=(t,sec,h,rows,o={})=>S.push({k:'table',t,sec,h,rows,...o});
+const big=(t,sec,num,cap,items)=>S.push({k:'big',t,sec,num,cap,items});
+const dialog=(t,sec,lines,o={})=>S.push({k:'dlg',t,sec,lines,...o});
+const code=(t,sec,c,o={})=>S.push({k:'code',t,sec,c,...o});
+const faq=(q,items,o={})=>S.push({k:'faq',q,items,...o});
+
+title("AI自動電話システムを作る方法","事務所の電話をAIに任せ、通話後に要約メールと予約リンクまで自動で届く仕組みを、自分の手で作る",["2026年9月、行政書士事務所で実際に構築・稼働させた記録をもとに作成","つまずいた箇所は「つまずきポイント」としてそのまま残しています","あくつ行政書士事務所（Well Consultant合同会社）　阿久津 和宏"]);
+S.push({k:'toc',t:'このスライドの構成',items:[
+["第1章　はじめに","このガイドでできるようになること、必要なもの、正直な前提"],
+["第2章　時間の節約","電話1本の本当のコスト、年間180時間、出られなかった電話の損失"],
+["第3章　AI自動応答電話の概要","4つの部品、つながり方、費用、個人情報の経路、050番号の制約"],
+["第4章　AI自動応答電話の作り方","10工程と所要時間、各工程の要点、完了チェックリスト"],
+["第5章　詳細な手順","手順1〜14。画面操作、書類の書き方、プログラム、試験通話、トラブル早見表"],
+["第6章　終わりに","作った後にやる3つのこと、費用の総括"],
+["相場と比較／よくある質問／ご相談","AI電話受付サービスの価格帯と機能比較、よくある質問5つ、サポート内容とお問い合わせ先"]]});
+
+section("01","はじめに","「電話に出る」という仕事を、AIに任せたい人のためのガイドです。");
+bullets("読み終えるとできるようになること","はじめに",[
+"自分の事務所や会社の専用電話番号（050番号）を取り、かかってきた電話にAIが日本語で応対する仕組みを作れる",
+"AIが相手の名前と用件を聞き取り、「折り返し電話・メール・無料相談の予約」のどれを希望するかまで確認できる",
+"通話が終わった瞬間に、要約と相手の連絡先が自分のメール受信トレイに届く",
+"相手が「予約したい」と言えば、その場で予約ページのリンクをショートメッセージで送れる",
+"月々の固定費が1,000円前後、1通話あたり数十円で運用できる"]);
+two("必要なものと、正直な前提","はじめに","必要なもの",["パソコン（MacでもWindowsでも可）","インターネット回線","クレジットカード","本人確認書類（履歴事項全部証明書・免許証など）","プログラミング経験は不要。コードはそのまま貼り付けて動くものだけ"],
+"「ボタン3回で完成」ではない理由",["日本で番号を取るには法律にもとづく本人確認があり、審査に1週間ほどかかる","応対を自然にするには、自分で何度か電話をかけて言い回しを直す作業が要る","私たちの最初の試験通話は名乗りの直後に切れた。原因は設定項目が日本語で使えなかったこと。突き止めるのに1時間","「実際に起きたこと」を隠さずに書くのがこのガイドの方針"]);
+bullets("読み進める順番","はじめに",[["第2章","そもそもやる価値があるのかを、自分の数字で確かめる"],["第3章","全体の仕組みをつかむ。第5章の途中で必ずここに戻りたくなる"],["第4章","作業の流れ（10工程）と所要時間を把握する"],["第5章","一つずつ手を動かす。つまずきポイント付き"]],{note:"急いでいる人は第4章から読み始めても構いません。ただし第5章の途中で第3章の図に戻ることになります。"});
+
+section("02","電話対応がなくなったらどれだけ時間が節約できるのか？","「電話くらい出ればいい」の前に、電話1本に消えている時間を数えます。");
+bullets("電話1本の「本当のコスト」は3分ではない","時間の節約",["鳴った瞬間に、いま手を動かしていた作業を止める（集中が切れる）","出る。名乗る。相手の名前を聞き取り、用件を聞く（3分）","「折り返します」と言って切る","聞いた内容をメモに残す。相手の番号を書き留める（1〜2分）","中断していた作業に戻る。どこまでやっていたかを思い出す（5〜15分）"],{note:"書類を書いている途中、数字を追っている途中、面談の最中。通話の3分よりも、戻るまでの10分の方が痛い。ここでは控えめに、電話1本につき合計15分が失われると仮定します。"});
+big("月に何本、年に何時間か","時間の節約","年180時間","＝ 1日8時間換算で22.5日。電話に出るためだけに、1年のうち1か月を使っている計算。",["1日3本 × 月20営業日 ＝ 月60本（営業電話も含めて控えめに見積もり）","月60本 × 15分 ＝ 900分 ＝ 月15時間","1日5本なら年300時間。1本20分の中断なら年400時間","この数字は仮定の積み重ね。自分の実態に置き換えて計算する","電話がほとんど鳴らない業種なら、作る意味は薄い。まず自分の数字を出す"]);
+bullets("「出られなかった電話」の損失","時間の節約",["面談中、移動中、休日。出られなかった電話のうち、折り返して連絡が取れるのは感覚的に半分程度","相手は「つながらなかった」と感じた時点で、別の事務所を探し始める","見込み客の初回の電話なら、その1本が数万円〜数十万円の仕事につながっていた可能性がある","AIが24時間出て、名前・用件・連絡先を聞き取り、メールで知らせれば「つながらなかった」体験がなくなる","相手には「AIが受け付けて、担当から折り返す」という流れが伝わる。電話番のスタッフを雇うのと同じ効果で、人件費はかからない"]);
+table("AIに任せられる電話、任せられない電話","時間の節約",["種類","例","AIの役割"],[["① 一次受付で済む電話","初めての問い合わせ、営業電話、資料請求、「担当いますか」","AIが名前・用件・連絡先を聞き取り、要約メールで知らせる"],["② 本人でないと答えられない電話","進行中の案件の相談、料金交渉、クレーム","「担当から折り返します」と受け付け、本人にすぐメール"],["③ 緊急の電話","今すぐ対応が必要なもの","同上。要約メールを見て本人が即折り返す"]],{note:"AIに「料金・納期・できるかどうかの断定はしない。聞かれたら担当から折り返す」というルールを入れる。これだけで、AIが勝手なことを言って信用を落とす事故がなくなります。"});
+bullets("節約できる時間の使い道を先に決める","時間の節約",["月15時間が戻ってきたら何に使うか。この問いを先に決めておくと、システムを作りきる動機になる","私たちは「お客様と直接向き合う面談」と「新しいサービスの設計」に振り向けた","電話対応は、やらないと不安になる仕事だが、やっても売上は増えない","売上を作る仕事に時間を移すこと。それがこのシステムを作る本当の目的"]);
+
+section("03","AI自動応答電話の概要","仕組みの全体像を、専門用語をできるだけ使わずに説明します。");
+table("登場する4つの部品","概要",["部品","役割","私たちが使ったもの","月額の目安"],[["① 電話番号と電話回線","相手からの電話を受け、音声を文字に変え、AIの返事を音声に戻す","Twilio（トゥイリオ）の050番号","767円＋通話料"],["② 中継サーバー","電話回線とAIの間に立ち、会話の流れを管理する","自作の小さなプログラム（Node.js）","0円（自分のPC）〜1,000円（VPS）"],["③ AI（頭脳）","相手の言葉を理解し、次に何を言うかを決める","Claude（クロード）のAPI","1通話 5〜10円"],["④ 通知","通話後の要約をメールで届ける。予約リンクをSMSで送る","Gmail、Twilio SMS","0円＋SMS 1通 約10円"]]);
+bullets("4つの部品はこの順番でつながる","概要",[["1. 相手の携帯 → Twilioの050番号","電話がかかる。Twilioが「どう応対すればいい？」と中継サーバーに問い合わせる（Webhook）"],["2. 中継サーバー → Twilio","言語・声・最初の名乗りなどの応対設定を返す。以後、通話中は常時接続（WebSocket）"],["3. Twilio → 中継サーバー → Claude","相手の発言を文字にして送る。中継サーバーが会話履歴とともにAIへ渡し、返事を受け取る"],["4. Claude → 中継サーバー → Twilio → 相手","AIの返事を文字で返し、Twilioが音声にして相手に流す"],["5. 通話終了 → 要約 → Gmail／SMS","会話全文をAIに要約させ、受信トレイに直接届ける。予約希望なら予約リンクをSMS送信"]]);
+bullets("① 電話番号と電話回線：Twilio","概要",["プログラムから電話やSMSを扱うためのサービス。世界中で使われ、日本の050番号も取得できる","選んだ理由は一つ。「音声を文字に変え、AIの返事を音声に戻す」という一番難しい部分をTwilioが全部やる。この機能が ConversationRelay（カンバセーションリレー）","以前は音声認識のプログラムを自分で組む必要があったが、いまは「日本語で、この声で」と指定するだけ","料金：050番号 月767円（2026年9月時点の実際の請求額）、着信通話料 1分数円、ConversationRelay 1分十数円。3分の通話で合計45〜50円","日本特有の事情：電気通信事業法にもとづく本人確認が必要。「規制バンドル」を提出し審査を通す。私たちは2回却下されて3回目で承認"],{small:1});
+bullets("② 中継サーバー：会話の交通整理役","概要",["Twilioからの「相手がこう言いました」という文字を受け取り、AIに渡し、AIの返事をTwilioに返す往復を担当","実体は300行ほどの一つのプログラムファイル。全文をこのガイドに載せている","パソコンにNode.jsを入れ、ファイルを一つ置き、コマンドを一つ打てば動く",["中継サーバーの5つの仕事","①応対設定を返す ②通話中に常時接続を保ち発言を受け取る ③会話をAIに送り返事を受け取る ④返事の中の目印（通話終了・予約SMS）を読み取り動作する ⑤通話後に要約させ、メールとSMSを送る"]],{small:1});
+bullets("③ AI：Claude（Haiku）","概要",["会話の頭脳はClaude（Anthropic社のAI）。中でも「Haiku（ハイク）」という速くて安いモデルを使う","電話では返事の速さが命。相手が話し終えてから1秒以内に返事が始まらないと「聞こえていないのかな」と不安になる","Haikuは返事を作るのに0.5〜1秒。賢さは上位モデルに劣るが、名前を聞く・用件を聞く・3択を案内する仕事には十分だった","AIへの指示は「システムプロンプト」という文章で与える。「返事は1〜3文。料金の断定はしない。名前は復唱して確認する」など","このシステムプロンプトの出来が、応対の質を決める。第5章で全文と、各行がある理由を説明する"],{small:1});
+code("④ 通知：通話後に届く要約メールの形","概要",`件名: 【AI電話受付】補助金相談 - アクツ カズヒロ
+
+■用件の要約
+補助金の活用について相談。どの補助金が自社で使えるか、無料診断を希望。
+■分類
+補助金相談
+■希望対応
+折り返し電話、希望時間帯：午前中、連絡先：（発信元番号）
+■聞き取れた相手情報
+名前：アクツ カズヒロ ／ 電話番号：（発信元番号）
+■対応メモ
+午前中に発信元番号へ折り返し電話し、無料診断について説明してください。`,{sub:"通話終了から30秒以内にGmailの受信トレイに届く。本人はメールを見て折り返すだけ。",note:"相手が「無料相談を予約したい」と言えば、AIが「この番号にショートメッセージをお送りしてよろしいですか」と確認し、同意が取れたらその場で予約ページのリンクをSMSで送ります。"});
+table("全体の費用（2026年9月・実額）","概要",["項目","費用"],[["初期費用","0円（すべて自分で構築）"],["050番号","月767円（Twilioの前払い残高から引落し）"],["中継サーバー","0円（自分のMacで稼働。常時稼働にするならVPSで月500〜1,000円）"],["Claude API","1通話5〜10円（Haiku。前払いチャージ）"],["通話料・音声処理","1通話（3分）45〜50円"],["SMS","1通 約10円"],["月30件の通話なら","約2,300円（SMS送信分は1通10円が加わる）"],["月100件なら","約5,800円"]],{hl:[6,7],note:"市販サービスは、一次取次だけの固定型が月1,000〜5,000円（AutoReception 980円税込、DMM AI秘書 1,650円税込など）、生成AIで自由会話する型が月4,000円前後から（IVRy スターター3,980円税抜＋番号維持500円＋従量）。2026年9月26日に各社公式料金ページで確認。月100件以内なら自作の方が安く、応対内容と声も自由に変えられます。"});
+two("費用を自分の数字で計算する","概要","計算式",["月額 ＝ 767円（050番号）","　＋ サーバー代（自分のPCなら0円、VPSなら500〜1,000円）","　＋ 通話本数 × 1通話あたりの変動費","変動費（3分）：通話料 約5円＋音声処理 約30円＋AI 5〜10円 ＝ 45〜50円","10分の長電話ならその3倍","月30本×3分 → 1,500円＋番号代 ≒ 2,300円","月100本 → 5,000円＋767円 ≒ 5,800円"],"人を雇う場合との比較",["電話番のパート：1日4時間・時給1,200円・月20日 ＝ 96,000円","AIはその40分の1の費用で、夜間と休日も出る","ただしAIは「担当から折り返す」までしかできない","その場で判断が要る電話は、結局本人が折り返す","この前提で「割に合うか」を判断する"]);
+bullets("相手の個人情報はどこを通るか","概要",[["1. Twilioのサーバー（米国）","音声を文字に変える処理と、文字を音声に戻す処理"],["2. 自分の中継サーバー","会話の記録を一時的に持ち、通話後にログとして保存"],["3. Anthropicのサーバー（米国）","会話の文字を受け取り、返事と要約を作る"],["4. Gmail","要約メール"]],{note:"通話内容は海外のサーバーを経由します。士業や医療など守秘義務のある業種は自分で確認し、冒頭に「通話は記録しています」と入れる。TwilioもAnthropicも業務利用前提の規約を公開。入力内容をAIの学習に使わない設定（AnthropicはAPI利用が該当）かを確認する。"});
+bullets("050番号でできないこと","概要",[["110番・119番などの緊急通報にかけられない","受付専用として使う分には問題ないが、この番号から緊急通報はできない"],["SMSの受信ができない","Twilioの日本の050番号は音声とFAXのみ。SMSを送るときは英字の送信者名から送る（手順10）"],["相手の電話に「050」と表示される","一部の人は050からの着信を営業電話だと思う。受ける用途に使う限り問題にならない"]]);
+bullets("作る前に決めておく5つのこと","概要",[["1. AIの名乗り方","「〇〇事務所のAI受付です」の〇〇。私たちは「行政書士阿久津和宏のエーアイ受付」と個人名で名乗らせた。相手が「誰にかけたか」を一瞬で理解できる"],["2. AIに答えさせてよい範囲","営業時間、所在地、扱っている業務の種類まで。料金と納期は答えさせない"],["3. 3つの選択肢","折り返し電話、メール、予約。予約を入れるなら予約ページのURL"],["4. 通知先メールアドレス","要約を受け取るアドレス"],["5. 電話番号の表示名","SMSの送信者名（英字11文字以内。例：WellConsult）"]],{small:1});
+
+section("04","AI自動応答電話の作り方","作業の全体像を10の工程として並べます。細かい操作は第5章。");
+table("全工程と所要時間","作り方",["工程","内容","手を動かす時間","待ち時間"],[["工程1","Twilioのアカウントを作り、残高をチャージする","20分","なし"],["工程2","本人確認書類（規制バンドル）を提出する","1〜2時間","審査に3〜7日"],["工程3","住所確認の郵便を受け取る","0分","郵送に2〜4日"],["工程4","Claude APIのキーを取得し、残高をチャージする","15分","なし"],["工程5","パソコンにNode.jsを入れ、中継サーバーを置いて起動する","30分","なし"],["工程6","中継サーバーを外から届く場所に公開する","15分","なし"],["工程7","050番号を購入し、中継サーバーにつなぐ","15分","なし"],["工程8","自分の携帯から試験通話をして、応対を直す","1〜3時間","なし"],["工程9","通知メールとSMSを設定する","30分","なし"],["工程10","常時稼働にする","30分〜2時間","なし"]],{cls:"s12",note:"手を動かす時間は合計5〜9時間。待ち時間込みで最短1週間、差し戻しがあれば2〜3週間。工程2を最初に済ませ、審査待ちの間に工程4〜6を進めるのが一番早い。"});
+two("工程1〜2：Twilioのアカウントと本人確認書類","作り方","工程1：アカウントと残高",["Twilioは前払い式。カードを登録し最初に2,000円ほどチャージ","050番号の月額767円も通話料もこの残高から引かれる","作成時に携帯番号とメールアドレスの確認がある。携帯は自分のもので可"],"工程2：規制バンドル（一番つまずく工程）",["法人の場合の必要書類5点：①履歴事項全部証明書（6か月以内）②所在地証明（履歴事項全部証明書で兼用）③代表者の住所証明（公共料金など6か月以内）④写真付き身分証（免許証は表と裏の両方）⑤Twilio所定の申請書（署名付き）","私たちの却下理由：1回目「申請書が様式に合っていない」「免許証が不鮮明」、2回目「免許証は表裏両方」","審査が通るとTwilioから住所確認の郵便が2通届く（返送不要）"],{cls:"s14"});
+two("工程3〜4：郵便の受け取りとClaude APIキー","作り方","工程3：住所確認の郵便",["審査が通ってから2〜4日で届く","転送不要郵便。不在で持ち戻りになると手続きがやり直し","届く時期は在宅か、事務所に人がいる状態にしておく"],"工程4：Claude APIのキー",["Anthropicのアカウントを作り、APIキーを発行し、残高をチャージ","最初は5ドル（約750円）で十分。1通話5〜10円なので50〜100通話分","APIキーはパスワードと同じ扱い。人に見せない、メールに書かない、プログラムに直接書かない","「秘匿設定ファイル」に置き、中継サーバーが起動時に読む方式"]);
+two("工程5〜6：中継サーバーの設置と公開","作り方","工程5：設置",["Node.js（無料）を公式サイトからインストール","server.js を適当なフォルダに置く","そのフォルダで node server.js と打つと起動","ブラウザで http://localhost:3790/health を開き「ok」なら成功"],"工程6：公開（トンネル）",["中継サーバーは自分のPCの中にしかない。Twilioがインターネット越しに届く「住所（URL）」が要る","Cloudflareの無料プログラム cloudflared を使うと、コマンド一つで https://xxxx.trycloudflare.com が発行される。契約も登録も不要","ただし一時的。止めると住所が消え、次は別の住所になる","試験用には最適、本番は工程10で恒久化"]);
+two("工程7〜8：番号の購入と試験通話","作り方","工程7：050番号の購入と接続",["工程2・3が終わるとTwilioの画面で050番号を検索・購入できる。番号は選べる（語呂合わせはこのタイミング）","購入時に承認済みバンドルと住所を番号に紐づける。紐づけがないと日本の番号は買えない","番号の設定画面のWebhookに、工程6の住所＋ /twiml を入れる"],"工程8：試験通話と応対の調整",["自分の携帯から050番号にかけ、名乗り→名前→用件→選択肢→締めまで確認","必ず何かがうまくいかない。1回目は名乗り直後に切れ、2回目は名乗りの後にAIが黙り、3回目でようやく成立","「名乗りが長い」「質問が唐突」「名前を漢字で聞き取って間違える」は、すべてシステムプロンプトの一文で解決した"]);
+two("工程9〜10：通知と常時稼働","作り方","工程9：通知メールとSMS",["要約メールはGmailの「アプリパスワード」で受信トレイに直接入れる（IMAP APPEND）","普通のメール送信（SMTP）だと迷惑メール判定で受信トレイに入らないことがある","予約リンクのSMSはTwilioで送る。送信者名を英字（例：WellConsult）にすれば事前登録なし。片方向で返信は受け取れない"],"工程10：常時稼働",["自分のPCで動かす限り、閉じたり再起動すると止まる","VPS（月500〜1,000円）：24時間動く。固定の住所も持てる","自分のPCを常時稼働：追加費用0円だが閉じられない。停電やOS更新で止まる","試験は自分のMac、本番はVPSに移す方針。試験中に中継サーバーが誰にも気づかれず止まり、名乗りだけで切れた事故が実際に起きた"]);
+table("工程ごとの完了チェックリスト","作り方",["工程","この状態になっていれば完了"],[["工程1","Twilioから「Your Twilio account has been funded」のメールが届いている"],["工程2","「has changed to Pending Review」のメールが届き、管理画面のバンドルが「Sent for review」"],["工程3","「has been approved」のメールが届いている。郵便2通が手元にある"],["工程4","Anthropicの管理画面に残高が表示されている。APIキーを秘匿設定ファイルに保存した"],["工程5","node server.js で「ポート3790で起動」と出る。localhost:3790/health が「ok」"],["工程6","https://〜.trycloudflare.com/health をスマホのブラウザで開いて「ok」"],["工程7","「Active numbers」に番号が1件あり、「A call comes in」に /twiml で終わるURLが保存されている"],["工程8","携帯からかけて名乗り→名前確認→用件→締めまで通る。logs/ に通話記録ができている"],["工程9","通話後30秒以内に要約メールが受信トレイに届く。予約希望の通話で携帯にSMSが届く"],["工程10","PCを再起動しても電話がつながる（launchd）。またはVPSでの稼働が確認できている"]],{cls:"s12",note:"「たぶんできた」で次に進むと、後の工程で原因の分からない不具合になります。"});
+
+section("05","詳細な手順","実際の画面と操作を一つずつ。「つまずきポイント」は私たちが実際に止まった箇所です。");
+bullets("手順1：Twilioのアカウントを作る","詳細な手順",["https://www.twilio.com/ を開き「Sign up」から無料アカウントを作る（メール、氏名、パスワード）","届いたメールのリンクでメールアドレスを確認する","携帯電話番号を入れ、届いた確認コードを入力する","「何を作りたいか」は「Voice」「Other」など当てはまるものを選ぶ（後で変えられる）","ログイン後、右上「Admin」→「Account billing」でクレジットカードを登録し、2,000円をチャージ","「Your Twilio account has been funded」のメールが支払いの控えになる"],{small:1,note:"つまずきポイント：管理画面は英語で日本語化設定はない。ブラウザの翻訳を使うとボタン名が変わって迷うので、翻訳は切っておく。このガイドは英語のボタン名をそのまま書いている。"});
+bullets("手順2：規制バンドルを出す（入口）","詳細な手順",["左メニュー「Phone Numbers」→「Regulatory Compliance」→「Bundles」→「Create a Regulatory Bundle」","国は「Japan」、番号の種類は「National」（050番号）、利用者の区分は「Business」","すると必要書類の一覧が出る。次のスライドの5点を用意する"]);
+table("手順2：法人が用意する書類と注意点","詳細な手順",["書類","注意点"],[["1. 履歴事項全部証明書","法務局で取得。発行から6か月以内。PDFかJPG。「会社名と事業目的の証明」と「所在地の証明」の2つを兼ねられる"],["2. 代表者の住所を証明する書類","代表者個人宛の公共料金請求書（電気・ガス・水道）で6か月以内。住民票でも可。履歴事項全部証明書と同じ住所か確認"],["3. 代表者の権限を証明する書類","履歴事項全部証明書に代表者として載っていれば履歴事項全部証明書で兼用。画面上の項目名は「Corporate registration showing name of the Authorized Representative」"],["4. 代表者の写真付き身分証明書","運転免許証は表面と裏面の両方。裏面に何も書いていなくても出す。1枚のPDFに2ページで入れるのが確実。四隅が切れず文字が全部読めること。有効期限も確認"],["5. Twilio所定の申請書","「Completed Japan Regulatory Bundle Application」の「Japanese version」を開き、Googleドキュメントを「ファイル→ダウンロード→Word」で保存して記入"]],{cls:"s12 wrapfirst"});
+bullets("手順2：申請書（Twilio様式）の書き方","詳細な手順",[["パート1","会社名（履歴事項全部証明書どおり）、代表者名、上場企業かどうか（いいえ）"],["パート2","利用目的。自社利用にチェック。電話受付なら「コールセンター又は自動応答／自動転送システムにおける利用」にもチェック"],["パート3","実質的支配者。代表者の氏名・生年月日・住所を書き、「議決権又は収益配当・財産分配を受ける権利の50%超」にチェック"],["パート4","3つの宣誓（本人確認事項が真実、イラン・北朝鮮に所在しない、政府の要職者でない）にすべてチェック"],["パート5","会社名、代表者名、役職、日付、署名。署名は手書きを画像にして貼るか、印刷して手書きしスキャン。WordをPDFにしてアップロード"]],{small:1});
+two("手順2：つまずきポイント（申請書）","詳細な手順","1回目の却下：自作の書面を出していた",["Twilioの様式を使わず、自分で作った書面を出していた","却下理由は「Invalid document submission（要件に合わない書類）」の一言だけ。何が悪いかは書かれない","Twilioの様式をそのまま使うこと、これが唯一の正解"],"合同会社の「議決権」の考え方",["申請書パート3の「議決権」は株式会社の考え方","合同会社は社員1人につき1票が原則。出資99%でも議決権は過半数にならないことがある","チェック欄は「議決権 又は 収益配当・財産分配を受ける権利の50%超」なので、出資比率で50%超なら後半の条件で該当","Twilioから聞かれたら財産分配の比率で答える"]);
+bullets("手順2：提出と審査","詳細な手順",["書類をすべてアップロードし「Submit」→「... has changed to Pending Review」のメールが届く（審査待ち）","審査は3〜7日。承認「... has changed to Twilio Approved」／却下「... has changed to Twilio Rejected」","却下なら管理画面のバンドルのページで書類ごとに却下理由が赤字で出る。「Edit and resubmit」で該当書類だけ差し替え。再提出は無料・回数無制限",["つまずき：却下メールに1日気づかなかった","Twilioのメールは、Gmailのフィルタ設定によっては受信トレイに入らずアーカイブに直行する。「受信トレイに残す」フィルタを作るか、バンドルのページを毎日1回見る"],["つまずき：2回目の却下","Twilioの日本の担当者から日本語で「運転免許証は表と裏面両方ご提出いただきますようお願い申し上げます」。最初から両面を出しておけば、この1週間は要らなかった"]],{small:1});
+bullets("手順3：住所確認の郵便を受け取る","詳細な手順",["審査が通ると、Twilioの日本の担当者から「審査が完了しました。本人確認と住所確認のため、貴社と代表者様にそれぞれ1通ずつ書面をお送りします」というメールが届く","2〜4日後、Twilio Japan合同会社から転送不要の郵便が2通（法人宛・代表者宛）","中身は「住所確認のために送った。届いたことをTwilioが確認したら承認する」という案内文だけ。返送も記入も不要","届いたことをTwilioが確認すると「Congratulations! Your Regulatory Bundle ... has been approved」のメール。これで番号を購入できる"]);
+bullets("手順4：Claude APIのキーを取る","詳細な手順",["https://console.anthropic.com/ を開き、アカウントを作る","左メニュー「Billing」でクレジットカードを登録し、5ドルをチャージ","左メニュー「API Keys」→「Create Key」。名前は「phone」など分かりやすく","発行された文字列（sk-ant- で始まる長い文字列）をコピー。画面を閉じると二度と表示されないので、このタイミングで必ずコピー","コピーしたキーは次の手順5で「秘匿設定ファイル」に保存する"]);
+code("手順5：秘匿設定ファイルを作る","詳細な手順",`# ターミナル（Mac）
+mkdir -p ~/.claude
+nano ~/.claude/秘匿設定ファイル名
+
+# ファイルの中身（1行に1項目、「項目名=値」）
+ANTHROPIC_API_KEY=sk-ant-（手順4でコピーしたキー）
+GMAIL_USER=自分のGmailアドレス
+GMAIL_APP_PASSWORD=（手順10で発行するアプリパスワード）
+TWILIO_ACCOUNT_SID=（手順10で確認）
+TWILIO_AUTH_TOKEN=（手順10で確認）
+
+# 保存したら自分以外が読めないように権限を絞る
+chmod 600 ~/.claude/秘匿設定ファイル名`,{sub:"APIキーやパスワードはプログラムのファイルに直接書かない。中継サーバーが起動時にこのファイルを読む。",note:"つまずきポイント：このファイルの中身をチャットやメールに貼らない。AIアシスタントに手伝ってもらう場合も「値を読まず、項目名があるかどうかだけ確認する」ルールで運用すると安全。"});
+code("手順6：Node.jsを入れて、中継サーバーを起動する","詳細な手順",`1. https://nodejs.org/ から「LTS」をダウンロードしてインストール
+2. ターミナルで  node -v  →  v20 や v22 のように出れば成功
+3. 中継サーバーを置くフォルダを作る  例: ~/AI電話受付システム
+4. そのフォルダに server.js を保存する（ガイド本文に全文あり）
+5. そのフォルダに移動し  node server.js
+
+--- 起動時の表示 ---
+AI電話受付 中継サーバー: ポート3790で起動（/twiml, /relay, /health）
+通知: SMTP未設定→Gmail受信トレイへ直接配信（deliver_to_inbox.py）
+予約案内SMS: 未設定（TWILIO_ACCOUNT_SID / TWILIO_AUTH_TOKEN が必要）`,{note:"ブラウザで http://localhost:3790/health を開いて「ok」と出れば、外からの問い合わせに答えられる状態。server.js の全文は読む必要なし。そのまま保存する。"});
+table("手順6：server.js で自分用に書き換える5か所","詳細な手順",["項目","何を書くか"],[["GREETING（名乗り）","「行政書士阿久津和宏のエーアイ受付です。通話は記録しています。お名前をお伺いできますか。」を自分の名乗りに。「AI」は「あい」と読まれる音声があるのでカタカナで「エーアイ」。3文以内。長い名乗りは留守番電話に聞こえて相手が切る"],["KNOWLEDGE（会社情報）","AIが答えてよい範囲の会社情報。営業時間、所在地、扱う業務。料金は書かない（書くとAIが答えてしまう）"],["SYSTEM_PROMPT（応対ルール）","「行政書士・阿久津和宏」を自分の名前に。ルールの各行はそのまま使える（理由は手順9）"],["RESERVE_URL（予約ページ）","自分の予約ページのURL。予約機能を使わないならそのままで可（希望がなければ送られない）"],["SMS.from（SMS送信者名）","「WellConsult」を自分の社名の英字略称に。11文字以内、英数字のみ"]],{cls:"s12",note:"それ以外は触らなくて動く。秘匿設定ファイルの場所はプログラム冒頭の loadEnv() に書いてあるので、手順5のファイルの場所と一致しているか確認する。"});
+two("手順6：付属する2つの小さなプログラム","詳細な手順","deliver_to_inbox.py（要約を受信トレイへ）",["通話後の要約をGmailの受信トレイに直接入れる","server.js と同じフォルダに保存","Pythonで書かれているが、Macには最初から入っているので追加インストール不要","秘匿設定ファイルの GMAIL_USER / GMAIL_APP_PASSWORD を実行時に読む。値は出力しない"],"run.sh（落ちても立ち上げ直す）",["中継サーバーが止まったとき、2秒後に自動で立ち上げ直す","同じフォルダに保存し chmod +x run.sh","以後は node server.js の代わりに ./run.sh で起動","止まった時刻と終了コードは logs/supervisor.log に残る","試験中に中継サーバーが誰にも気づかれず止まっていたことがあり、この仕組みを入れた"]);
+code("手順7：中継サーバーを外から届く場所に公開する","詳細な手順",`# Mac（Homebrewが入っている場合）
+brew install cloudflared
+
+# 中継サーバーを起動したまま、別のターミナルで
+cloudflared tunnel --url http://localhost:3790
+
+# 数秒後に表示される住所（例）
+https://（ランダムな英単語）.trycloudflare.com
+
+# 確認：ブラウザで  その住所/health  →  ok`,{note:"つまずきポイント：この住所は cloudflared を止めると消え、次に起動すると別の住所になる。変わるたびに手順8のWebhookを書き直す必要がある。試験中はこれで構わないが、本番は手順11に切り替える。"});
+bullets("手順8：050番号を買って、中継サーバーにつなぐ","詳細な手順",["「Phone Numbers」→「Manage」→「Buy a number」。Country を「Japan」、検索欄に 50 と入れ「First part of number」で検索。月額767円","気に入った番号の「Buy」→「Review Phone Number」で「Next」→ 利用者区分「Business」で「Next」","「Comply with Regulatory Requirements」で「Assign approved Bundle」に Japan と打ち承認済みバンドルを選ぶ。「Assign Address」も同様","右下「Buy +81 50 …」→「You have purchased」で購入完了。残高から767円","「Active numbers」で番号を開き、「Voice Configuration」の「A call comes in」に 手順7の住所＋/twiml を入れ、HTTPは「POST」のまま「Save configuration」"],{small:1,note:"つまずきポイント：検索結果に出ている番号でも、最後の画面で「is not available」と弾かれることがある。私たちは最初に選んだ番号で2回弾かれ、別の番号にした。弾かれたらその番号はあきらめる。"});
+bullets("手順9：試験通話 1回目「名乗りの直後に切れた」","詳細な手順",["自分の携帯から050番号にかける。中継サーバーのターミナルに [着信] と出て、AIが名乗る。そのまま切れた。中継サーバーのログには何も出ない",["原因の突き止め方：Twilioの「Monitor」→「Logs」→「Errors」","「64101 - ConversationRelay: Invalid Parameter」、詳細に「hints is not supported by model telephony in ja-JP」"],["意味","日本語の電話用音声認識モデルでは「固有名詞ヒント」という設定項目は使えない。項目自体が拒否され、設定全体が無効になって切断されていた"],["直し方","server.js からその項目を消すだけ。ガイドの全文ではすでに消してある"]],{small:1,note:"教訓：電話が切れたときは、まずTwilioのErrorsを見る。中継サーバーのログに何も出ないときは、Twilioが中継サーバーに来る前に止まっている。"});
+two("手順9：試験通話 2回目「名乗りの後、AIが黙った」","詳細な手順","原因①：中継サーバーが止まっていた",["名乗りだけはTwilio側が読み上げるので、中継サーバーが死んでいても名乗りは聞こえる","その後の会話は中継サーバーが必要なので、そこで沈黙になる","手順6の run.sh（落ちたら立ち上げ直す）で解決"],"原因②：名乗りが質問で終わっていなかった",["「ご用件をお話しください」で終わると、相手は留守番電話だと思って話さずに切る","名乗りの最後を「お名前をお伺いできますか」という質問に変えた","さらに7秒間相手の声がなければ、AIから同じ質問を投げる","AIが先に質問すれば相手は答える。会話が始まる"]);
+bullets("手順9：試験通話 3回目「会話が最後まで成立した」","詳細な手順",["名前を聞く → 復唱して確認 → 用件を聞く → 無料診断を案内 → 折り返し番号を確認 → 希望の時間帯を聞く → 内容を復唱して締める。ここまで通った","通話後30秒で、要約メールが受信トレイに届いた",["ただし、名前が「阿久津」ではなく「悪津」と記録された","音声認識は音を正しく聞き取ったが、漢字の変換を間違えた。日本語の名前を音声だけから正しい漢字にするのは人間でも無理"],["対策：名前は漢字を扱わず、読みをカタカナで復唱して記録する","以後「アクツ カズヒロ様でお間違いないでしょうか」と確認し、メールにもカタカナで記録される"]],{small:1});
+table("手順9：システムプロンプトの各行が存在する理由","詳細な手順",["ルール","なぜあるのか"],[["返答は1〜3文","電話では長い返事は聞き取れない。AIは放っておくと5文でも10文でも話す"],["書き言葉・箇条書き・記号・URLを使わない","音声で読み上げられるので「・」や「1.」が「てん」「いち」と読まれる"],["料金・納期・可否を断定しない","AIが「できます」と言うと後で本人が困る。「担当から折り返します」に逃がす"],["名前はカタカナで復唱確認","漢字変換の誤りを避ける（前のスライド）"],["折り返し番号は「この番号でよいか」と聞く","発信者番号は自動記録されるので聞き直さない。以前AIが番号を聞かず「聞き取れませんでした」とメールに書く事故があった"],["締めの発言の末尾に [通話終了] を付ける","中継サーバーがこの目印を検出し、読み上げ終了を待ってから切断。ないと「ありがとうございました」の後も電話がつながったまま"],["予約の同意が取れたら [予約案内SMS] を付ける","この目印で中継サーバーがSMSを送る"]],{cls:"s12 wrapfirst",note:"つまずきポイント：試験通話は必ず自分以外の人にもかけてもらう。自分がかけると質問に「正しく」答えてしまう。実際のお客様は関係ないことを話し、途中で遮り、「あ」「それ？」と短い言葉を挟む。"});
+two("手順10：通知メールとSMSを設定する","詳細な手順","要約メール（Gmailアプリパスワード）",["Googleアカウント「セキュリティ」→「2段階認証プロセス」を有効に → 「アプリパスワード」で名前「phone」などで生成","16文字を秘匿設定ファイルの GMAIL_APP_PASSWORD に。GMAIL_USER は自分のGmailアドレス","中継サーバーを再起動すると「通知: SMTP未設定→Gmail受信トレイへ直接配信」と表示","テスト：echo \"テスト\" > /tmp/t.txt && python3 deliver_to_inbox.py \"【AI電話受付】配信テスト\" /tmp/t.txt","普通の送信を使わない理由：自分宛の自動送信と判断され受信トレイをスキップすることがある"],"予約リンクのSMS（Twilio）",["管理画面トップ右側「Account Info」の「Account SID」と「Auth Token」（Showで表示）を秘匿設定ファイルの TWILIO_ACCOUNT_SID / TWILIO_AUTH_TOKEN に","再起動すると「予約案内SMS: 設定あり（From=WellConsult）」と表示","AIが「ショートメッセージをお送りしてよろしいですか」と聞き、相手が「はい」と答えた瞬間に予約リンクが届く","日本の携帯宛は送信者名を英字にすれば事前登録なし。1通約10円。返信は受け取れないのでリンクだけを送る","つまずき：日本向けSMSは本文に電話番号を書くことが禁止。リンクと短い案内文だけ"],{cls:"s14"});
+bullets("手順11：常時稼働にする","詳細な手順",["ここまでで、PCが起動し run.sh と cloudflared が動いている間は、AIが電話を受けられる",["本番で解決すべき3点","①PCを閉じても止まらない ②住所（URL）が変わらない ③止まったら自動で立ち上がる（③は run.sh で解決済み）"],["一番確実：VPS","月500〜1,000円の仮想サーバーに server.js・run.sh・deliver_to_inbox.py・秘匿設定ファイルを置いて動かす。固定の住所があるので一時トンネル不要、WebhookのURLも固定できる"],["自分のMacで続けるなら：launchd","run.sh と cloudflared を登録するとログイン時に自動起動し、止まっても立ち上げ直す。ただしMacを閉じている間は受けられない"]],{small:1,note:"つまずきポイント：AIアシスタントに手伝ってもらって起動していたら、そのセッションが終わった瞬間に中継サーバーとトンネルが両方消えた。起動したプログラムは起動した人（プロセス）の子どもとして扱われ、親が終わると一緒に終わる。本番は必ず launchd か VPS で動かす。"});
+const R12=[["「この番号は現在使われていません」","Twilio「Active numbers」","購入未完了、または前払い残高ゼロで停止","残高をチャージ。番号の状態を確認"],["呼び出し音の後すぐ切れる。名乗りもない","Twilio「Monitor→Logs→Errors」","WebhookのURL誤り、中継サーバー未起動、トンネル消失","curl https://〜/twiml で応答確認。cloudflared再起動→新URLをWebhookに"],["名乗りの直後に切れる","Twilio「Errors」に 64101","応対設定にその言語で使えない項目がある","エラー詳細の項目名を server.js から消す"],["名乗りは聞こえるが、その後AIが黙る","中継サーバーのターミナル","中継サーバー停止。または名乗りが質問で終わっていない","run.sh で起動し直す。名乗りの最後を質問にする"],["同じことを2回言う、噛み合わない","logs/ の通話記録","短い相づち（「あ」「はい」）を発言として拾う","「聞き取れないときは聞き返す」の行を確認。interruptible を見直す"],["名前の漢字が間違って記録される","要約メール","音声認識は漢字を推測するしかない","名前はカタカナで扱う（手順9）"]];
+const R12b=[["要約メールが届かない","ターミナルの「[通話終了]」の行","アプリパスワードか GMAIL_USER が未設定・誤り","deliver_to_inbox.py を直接実行してエラーを見る"],["SMSが届かない","ターミナルの「[予約案内SMS]」の行","TWILIO_ACCOUNT_SID / AUTH_TOKEN 未設定。本文に電話番号","秘匿設定ファイルを確認。本文からURL以外の数字を除く"],["通話記録の時刻が9時間ずれる","logs/ のファイル名","世界標準時（UTC）で記録している","ガイドの server.js は日本時間に直してある"],["ある日突然、電話が全部切れる","cloudflaredのログ","一時トンネルのURLが変わった。PCがスリープ","手順11の常時稼働に移る"],["Twilioの残高が減り続ける","Twilio「Billing」","間違い電話や営業電話にもAIが応対（1本50円）","名乗りを短くし営業電話は早めに切れる作りに。着信の多い時間帯を通話記録で確認"]];
+table("手順12：よくあるトラブルと対処の早見表（1／2）","詳細な手順",["症状","見る場所","原因","対処"],R12,{cls:"s12 wrapfirst"});
+table("手順12：よくあるトラブルと対処の早見表（2／2）","詳細な手順",["症状","見る場所","原因","対処"],R12b,{cls:"s12 wrapfirst",note:"私たちが実際に遭遇した順。症状から引いてください。"});
+const DLG=[["AI受付","お電話ありがとうございます。行政書士阿久津和宏のエーアイ受付です。品質向上のため、通話内容を記録しています。ご用件をお話しください。"],["AI受付","ご相談内容をお伺いします。まず、お名前をお伺いしてもよろしいでしょうか。"],["お客様","悪かひです。"],["AI受付","かしこまりました。悪かひ様でお間違いないでしょうか。"],["お客様","悪津和弘 です。"],["AI受付","ありがとうございます。悪津和弘様でお間違いないでしょうか。"],["お客様","はい、間違いありません。"],["AI受付","かしこまりました。悪津和弘様ですね。本日はどのようなご用件でしょうか。"],["お客様","補助金について問い合わせたいと思って連絡しました。"],["AI受付","ありがとうございます。補助金についてのご相談ですね。当社では補助金申請の支援やコンサルティングを行っており、無料の診断も承っています。悪津和弘様のお悩みやご質問について、もう少し詳しくお聞かせいただけますでしょうか。"],["お客様","はい。"],["AI受付","ありがとうございます。具体的には、どのような補助金についてお考えですか？それとも、まずはどんな補助金が使えるのか診断してほしいということでしょうか？"],["お客様","分からないのです。"],["AI受付","かしこまりました。どんな補助金が活用できるのか、まず診断してほしいというご希望ですね。当社では無料診断を行っていますので、担当の阿久津から詳しくお話しさせていただきたいのですが、いかがでしょうか。"],["お客様","それ？"],["AI受付","申し訳ありません。もう一度説明させていただきます。当社では、あなたのお仕事に合った補助金が何かを無料で診断することができます。その診断について、担当の阿久津から詳しくお話ししたいのですが、よろしいでしょうか。"],["お客様","はい。"],["AI受付","ありがとうございます。では担当の阿久津から折り返しのご連絡をさせていただきたいのですが、ご都合の良い時間帯はありますか？"],["お客様","連絡ください。"],["AI受付","かしこまりました。では今かけていただいているこのお電話番号への折り返しでよろしいでしょうか？"],["お客様","はい、大丈夫です。"],["AI受付","ありがとうございます。ご都合の良い時間帯はいかがでしょうか？午前、午後など、おおよその希望時間がございましたらお教えください。"],["お客様","あ。"],["AI受付","申し訳ありません。ご都合の良い時間帯についてですが、いつ頃がよろしいでしょうか？"],["お客様","できれば午前中で。"],["AI受付","かしこまりました。午前中のご連絡ということですね。では、本日のご相談内容を確認させていただきます。補助金について、どの補助金が活用できるのか無料診断をしてほしいというご希望で、午前中に担当の阿久津からこのお電話番号に折り返しさせていただく、でよろしいでしょうか？"],["お客様","はい、お願いします。"],["AI受付","ありがとうございました。本日は補助金の無料診断についてのご相談をいただき、午前中に担当の阿久津よりこのお電話番号にお折り返しいたします。本日はお電話ありがとうございました。"]];
+dialog("手順13：実際の通話記録（2026年9月25日 21:34）①名前の確認","詳細な手順",DLG.slice(0,9),{sub:"2回目の試験通話をログ原文のまま掲載（電話番号のみ伏字）。名乗りは長い版、カタカナ化の前。"});
+dialog("手順13：実際の通話記録 ②用件と無料診断の案内","詳細な手順",DLG.slice(9,19));
+dialog("手順13：実際の通話記録 ③折り返しの確認と締め","詳細な手順",DLG.slice(19));
+bullets("手順13：この記録から分かる3つのこと","詳細な手順",[["1. 名前の漢字は2回聞いても直らなかった","「阿久津和宏」が「悪津和弘」に。音声認識の限界であって、AIの賢さの問題ではない。だからカタカナにした"],["2. 「それ？」「あ。」のような短い発言に、AIはそのつど律儀に反応している","正しい動作だが、AIの返事が長いと相手が途中で口を挟む回数が増える。返事を短くするとこの往復が減る"],["3. 最後の復唱が少し長い","「補助金の無料診断をご希望で、午前中に折り返し」の一文で十分。「返答は1〜3文」を「締めの復唱は2文」と具体的に書き足すのが次の改善"]],{small:1,note:"通話後に自動生成された要約は「件名：【AI電話受付】補助金相談 - 悪津和弘／用件の要約／分類／希望対応／聞き取れた相手情報／対応メモ」の形でログに保存された。この時点ではメール未設定。"});
+table("手順14：用語集（1／2）","詳細な手順",["用語","意味"],[["050番号","インターネット回線を使う電話番号。地域に関係なく取得でき月額が安い。緊急通報はできない"],["Twilio（トゥイリオ）","プログラムから電話・SMSを扱うためのサービス。世界中の企業が使っている"],["規制バンドル（Regulatory Bundle）","日本で電話番号を取るためにTwilioに提出する本人確認書類の一式"],["ConversationRelay","Twilioの機能。電話の音声を文字にし、返した文字を音声にして相手に流す"],["Webhook（ウェブフック）","「この出来事が起きたらこのURLに知らせて」という設定。ここでは「電話が来たら /twiml に知らせて」"],["TwiML（トゥイミル）","Twilioに「こう応対して」と伝える書式。中継サーバーが /twiml で返している"],["WebSocket（ウェブソケット）","通話中、Twilioと中継サーバーがつなぎっぱなしにする通信方式。発言がそのつど流れてくる"],["中継サーバー","TwilioとAIの間に立つ自作の小さなプログラム（server.js）"],["Node.js","server.js を動かすための実行環境。無料"]],{cls:"s12"});
+table("手順14：用語集（2／2）","詳細な手順",["用語","意味"],[["Claude（クロード）／Haiku（ハイク）","Anthropic社のAI。Haikuは速くて安いモデル"],["API／APIキー","プログラムからAIやTwilioを使うための入口と、その合鍵。合鍵は秘匿設定ファイルに置き人に見せない"],["システムプロンプト","AIに与える「あなたはこういう役割で、こういうルールで話す」という指示文。応対の質を決める"],["cloudflared","自分のPCの中継サーバーに、インターネットから届く一時的な住所（URL）を付けるプログラム。無料"],["VPS（ブイピーエス）","月500〜1,000円で借りられる24時間動くサーバー。本番運用の置き場所"],["launchd（ローンチディー）","macOSでプログラムを常駐させる仕組み"],["IMAP APPEND","Gmailの受信トレイにメールを直接置く方法。送信ではないので迷惑メール判定を受けない"],["アルファニューメリック送信者名","SMSの送信元を電話番号ではなく英字（例：WellConsult）にする方式。日本向けは登録不要・片方向"]],{cls:"s12"});
+
+section("06","終わりに","時間がかかったのは、プログラムを書くことではありませんでした。");
+bullets("振り返り：時間を使ったのは「仕組みの周りの手続き」","終わりに",["ここまでの手順で、事務所の電話をAIが受け、名前と用件と希望の連絡方法を聞き取り、通話後に要約メールと予約リンクが届く仕組みができた","時間がかかったのは、本人確認書類の審査、Twilioの英語の管理画面、電話が切れたときの原因調べ","つまり「仕組みそのもの」より「仕組みの周りの手続き」に時間を使った","このガイドは、その周りの手続きを実際に起きた順番で書いたもの。同じ場所で止まっても、同じページを開けば抜けられる"]);
+bullets("作った後にやる3つのこと","終わりに",[["1. 自分以外の人に電話をかけてもらう","10本かけてもらい、10本分の要約メールを読む。AIが答えられなかった質問、言い直しが多かった場面、途中で切った通話。それがすべてシステムプロンプトの次の一行になる"],["2. 掲載している電話番号を差し替える","ホームページ、名刺、Googleビジネスプロフィール、メール署名。勇気が要るが、AIが受けた電話は必ず要約メールで届き折り返せる。「出られなかった電話」がなくなる効果は翌週から実感できる"],["3. 月に一度、通話記録を読み返す","お客様がどんな言葉で何を聞いてくるか。ホームページの文章やサービス説明を直すための、一番安い調査"]]);
+big("費用と効果の総括","終わりに","月2,300円","番号代767円＋通話1本50円前後×30本。それで月15時間と「つながらなかった」機会損失がなくなる。",["作るのに1週間、慣れるのに1か月。それだけの価値はあると私たちは判断した","このガイドのプログラム・設定・手順は、すべて2026年9月時点で実際に稼働しているもの","TwilioやAnthropicの画面や料金は変わることがある。最新情報は各社の公式サイトで確認","ガイド本文（MD／HTML）には server.js・deliver_to_inbox.py・run.sh の全文を掲載"]);
+
+section("相場","AI電話受付サービスの相場","「自分で作る」以外の選択肢と、その価格帯。各社の公式料金ページを2026年9月26日に確認した記載だけを載せています。");
+table("AI電話受付・AI秘書の相場（月額の価格帯）","相場と比較",["タイプ","月額の目安","代表的なサービス（公式料金）","できること・できないこと"],[["一次取次型（固定シナリオ）","約1,000〜5,000円","AutoReception 980円（税込）＋通話1分5円／DMM AI秘書 1,650円（税込）＋1分5.5円／レセッパ 3,980円（税抜）／ミライAI BASIC 4,980円（税別）","名前・用件・折り返し番号を決まった順で聞く。会話の脱線には対応できない。通知はメール中心"],["生成AI自由会話型","約4,000円〜30,000円","IVRy スターター 3,980円（税抜、年払3,317円）＋番号維持500円＋自動応答1分3.3円等の従量／ミライAI PRO 30,000円（税別）＋初期30,000円","ChatGPT等で自然な会話。通知はメール・チャット・SMS。声の選択は公式記載なし"],["人力の電話代行","約10,000円〜","fondesk 10,000円（税別、50件込み、超過200円/件）","人が出る安心感。受付は9〜19時内で設定する（公式記載）"],["企業向け（個別見積）","非公開","LINE WORKS AiCall／PKSHA VoiceAgent／Canario（基本10,000円＋680〜1,480円/人）","シナリオ設計を業者が行う。導入に打合せと開発期間が要る"],["自分で作る（このガイド）","767円＋通話1本約50円","Twilio 050番号＋Claude API。月30本で約2,300円、月100本で約5,800円","生成AI自由会話、メール・SMS通知、声の選択が可能。構築に1週間、審査書類が要る"]],{cls:"s12 wrapfirst",hl:[4],note:"1万円未満で「生成AIの自由会話」と「声の選択」の両方を公式に明記したサービスは、今回確認した範囲では見つかりませんでした。自作の差別化点はここです。"});
+table("機能と価格の比較（2026年9月26日 各社公式ページ）","相場と比較",["サービス","初期費用","月額","AI自由会話","通知","050番号","声の変更"],[["IVRy","記載なし","0円〜／3,980円（税抜）＋番号500円＋従量","○ 生成AI（ChatGPT）","メール・Slack・Chatwork・LINE・SMS","○","記載なし"],["ミライAI","0円／PRO 30,000円","4,980円／PRO 30,000円（税別）＋番号500円","PROのみ○","メール・チャット・SMS","○（500円/月）","設定項目のみ"],["レセッパ","0円","3,980円（税抜）通知50件込","△ AIヒアリング","メール","転送連携","記載なし"],["AutoReception","0円","980円（税込）＋1分5円","× 一次取次のみ","メール・Slack・Chatwork・Teams","○","案内文のみ"],["DMM AI秘書","記載なし","1,650円（税込）＋1分5.5円","× 固定シナリオ","メール（音声添付）","○","挨拶文のみ"],["Canario","記載なし","10,000円＋680〜1,480円/人（税抜）","× 名前取次・伝言","チャット・メール","転送先","記載なし"],["fondesk","記載なし","10,000円（税別）50件込","人力","Slack・Chatwork・Teams・LINE・メール","転送先","該当なし"],["LINE WORKS AiCall","個別見積","個別見積（定額）","△ 固定シナリオ","LINE WORKS・LINE・SMS","記載なし","○ 複数から選択"],["自作（このガイド）","0円","767円＋通話1本45〜50円＋API 5〜10円","○ 生成AI（Claude）","メール・SMS","○","○ Google/ElevenLabs"]],{cls:"s11",hl:[8],note:"通話解析型（MiiTel Phone、CallConnect）はAIが電話に出るサービスではないため除外。価格は各社の公式ページの記載で、税表記はページのまま。最新は各社サイトで確認してください。"});
+
+section("FAQ","よくある質問","構築した後に、実際によく聞かれる5つの質問に答えます。");
+faq("機械的な音声ではなく、自分の音声を使ったりできないか？",["できます。声の種類は設定1行で切り替えられ、自分の声のクローンも作れます。",["いま使っている声","Googleの日本語音声（Neural2）。機械的に聞こえる場合は、同じGoogleのより新しい音声や、ElevenLabsの音声に切り替えられます。切り替えは server.js の声の指定を1行変えるだけです"],["自分の声にする方法","ElevenLabs などの音声クローンサービスに、自分の声を数分間録音して登録すると「自分の声」が作れます。Twilioの音声機能は Google・Amazon・ElevenLabs の3社の声に対応している（公式文書に明記）ので、ElevenLabs 側で作った声を指定する形になります"],["注意点","他人の声は本人の同意なしに使えません。自分の声でも「AIが応対している」ことは名乗りで伝えるべきです。クローン音声は追加費用がかかります（ElevenLabs：簡易クローン 月6ドル〜、高品質クローン 月22ドル〜。2026年9月の公式料金）"]],{note:"正直な現状：クローンした自分の声をこの電話システム上で実際に鳴らす検証はこれからです。Twilio の公式文書は ElevenLabs 対応を明記していますが、クローン音声の指定方法までは書かれていません。検証してからサービスとして提供します。"});
+faq("もっと流暢に話せるようにならないか？",["なります。流暢さを決めるのは3つで、それぞれ別々に改善できます。",["① 声そのもの（読み上げ音声）","Google の新しい世代の音声や ElevenLabs に替えると、抑揚と間が自然になります。効果が一番大きい"],["② 話す内容（システムプロンプト）","「返事は1〜3文」「話し言葉で」「記号を使わない」。AIは放っておくと長く話します。短くするほど流暢に聞こえます"],["③ 返事の速さ","相手が話し終えてから1秒以内に返事を始める。速いモデル（Haiku）を使い、名乗りの直後に質問することで、間の悪さが消えます"],["限界も書いておきます","固有名詞（人名・会社名）の聞き取りは音声認識側の問題で、話し方の改善では直りません。名前はカタカナで復唱確認する運用にしています。より精度の高い認識エンジンへの切り替えは検証中です"]]);
+faq("セキュリティは大丈夫なのか？",["業務利用の前提で設計していますが、「何がどこを通るか」を知った上で判断してください。",["通話内容が通る場所","Twilio（米国）→ 自分の中継サーバー → Anthropic（米国）→ Gmail。海外のサーバーを経由します。守秘義務のある業種は、この点を自分で確認する必要があります"],["やっている対策","APIキーやパスワードは秘匿設定ファイルに置き、自分以外が読めない権限にする。通話冒頭で「通話は記録しています」と伝える。AIに料金・可否を断定させない。SMSの本文に電話番号を書かない"],["AIの学習に使われるか","Anthropic の API 利用は、入力内容をモデルの学習に使わない規約です。Twilio も業務利用のプライバシーポリシーを公開しています"],["残るリスク","中継サーバーが自分のPCにある間は、PCの管理がそのままセキュリティです。本番はVPSに置き、通話記録の保存期間を決めておくことを勧めます"]]);
+faq("PCは常時接続が必要なのか？",["自分のPCで動かす構成なら必要です。VPSに置けば不要になります。",["自分のPCで動かす場合","中継サーバーとトンネルがPCの中で動いているので、PCを閉じる・スリープする・再起動すると電話が名乗りだけで切れます。試験段階の構成です"],["PCを閉じても動かす方法","月500〜1,000円のVPS（仮想サーバー）に中継サーバーを移す。24時間動き、住所（URL）も固定できるので、Twilio側の設定を書き直す必要がなくなります"],["Macを使い続ける場合","launchd という常駐の仕組みに登録すると、ログイン時に自動起動し、止まっても立ち上げ直します。ただしMacを閉じている間は受けられません"]],{note:"私たちも、試験は自分のMacで行い、本番はVPSに移す方針です。番号を公開する前にVPSへ移すことを勧めます。"});
+faq("PCがない場合はどうしたらいいか？",["運用はスマートフォンだけで完結します。最初の構築だけPCが要ります。",["日々の運用（PC不要）","通話後の要約メールをスマホで読んで折り返す。予約はお客様が自分でリンクから入れる。通話記録の確認もメールで済みます"],["最初の構築（PCが要る作業）","Twilioの書類提出、中継サーバーの設置、番号の接続。ここだけは合計5〜9時間ほどPCの操作が必要です。一時的に借りるか、構築を依頼してください"],["構築後の置き場所","中継サーバーはVPS上で動くので、手元にPCがなくても動き続けます。応対の言い回しを変えるときだけ、VPSに接続して1行直します"],["構築の依頼","このガイドの最後の問い合わせ先から、構築の代行（Twilio申請・実装・VPS設置まで）を受けられます"]]);
+
+S.push({k:'offer'});
+S.push({k:'end'});
+
+/* ---------- render ---------- */
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const li=items=>items.map(it=>Array.isArray(it)?`<li><b>${esc(it[0])}</b><span>${esc(it[1])}</span></li>`:`<li>${esc(it)}</li>`).join("");
+function frame(d,body,extra=""){return `<div class="inner ${d.note?'has-note':''}"><div class="bar"></div><h2>${esc(d.t)}</h2>${d.sub?`<div class="sub">${esc(d.sub)}</div>`:'<div class="rule"></div>'}${body}${d.note?`<div class="note">${esc(d.note)}</div>`:''}</div><div class="foot"><span>AI自動電話システムを作る方法｜${esc(d.sec||'')}</span><span class="n">__N__</span></div>`}
+function render(d){
+  switch(d.k){
+    case 'title': return {cls:'dark title',html:`<div class="inner"><div class="accent"></div><h1>${esc(d.t)}</h1><div class="lead">${esc(d.lead)}</div><div class="meta">${d.meta.map(esc).join('<br>')}</div></div>`};
+    case 'sec': return {cls:'sec',html:`<div class="inner"><div class="num">${esc(d.num)}</div><h1>${esc(d.t)}</h1><div class="lead">${esc(d.lead)}</div></div><div class="foot"><span>AI自動電話システムを作る方法</span><span class="n">__N__</span></div>`};
+    case 'toc': return {cls:'',html:frame({t:d.t,sec:'目次'},`<ul class="toc">${d.items.map(x=>`<li><b>${esc(x[0])}</b><span>${esc(x[1])}</span></li>`).join('')}</ul>`)};
+    case 'bullets': return {cls:d.small?'small':'',html:frame(d,`<ul class="b">${li(d.items)}</ul>`)};
+    case 'two': return {cls:'',html:frame(d,`<div class="cols"><div class="col ${d.cls||''}"><h3>${esc(d.lt)}</h3><ul>${d.l.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="col ${d.cls||''}"><h3>${esc(d.rt)}</h3><ul>${d.r.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div>`)};
+    case 'table': return {cls:'',html:frame(d,`<table class="${d.cls||''}"><thead><tr>${d.h.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${d.rows.map((r,i)=>`<tr class="${(d.hl||[]).includes(i)?'hl':''}">${r.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`)};
+    case 'big': return {cls:'',html:frame(d,`<div class="big"><div><div class="num">${esc(d.num)}</div><div class="cap">${esc(d.cap)}</div></div><ul>${d.items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`)};
+    case 'dlg': return {cls:'',html:frame(d,`<div class="dlg">${d.lines.map(l=>`<p><span class="${l[0]==='AI受付'?'ai':'cu'}">${esc(l[0])}：</span>${esc(l[1])}</p>`).join('')}</div>`)};
+    case 'code': return {cls:'',html:frame(d,`<pre>${esc(d.c)}</pre>`)};
+    case 'faq': return {cls:'',html:frame({t:'よくある質問',sec:'よくある質問',note:d.note},`<div class="q">Q. ${esc(d.q)}</div><div class="faq-body"><div class="a">A. ${esc(d.items[0])}</div><dl>${d.items.slice(1).map(x=>`<dt>■ ${esc(x[0])}</dt><dd>${esc(x[1])}</dd>`).join('')}</dl></div>`)};
+    case 'offer': return {cls:'dark offer',html:`<div class="inner"><h1>「自分の事務所でも作りたい」「作ったが動かない」方へ</h1><div class="tag">これらをサポートします</div>
+<div class="l"><ul><li>Claude、Codex などの実装支援</li><li>電話受付システムの実装支援</li><li>Twilio など海外ツールの申請支援</li><li>応対の声を自分の声や特定の人の声に変えることも可能</li></ul><p>実際に構築した本人が、どこで止まっているかを一緒に確認します。<br>自分の業種・電話本数で「割に合うか」の試算からご相談ください。</p><div class="fee">料金：5万円〜</div></div>
+<div class="r"><div class="h">お問い合わせください</div><div class="demo">AI電話受付（デモを試せます）：050-1722-4548</div>メール：info@fp-1.info<br>電話：050-3707-3507（受付 10:00〜18:00 土日祝を除く）<br>30分無料相談の予約：<div class="url">https://traingo.fp-1.info/reserve/d7ed4f33-f24b-4e41-83c7-c9bdb3774dde/30</div><div class="co">あくつ行政書士事務所（Well Consultant合同会社）<br>代表　阿久津 和宏（行政書士）<br>〒360-0816 埼玉県熊谷市石原641番地3</div></div>
+<div class="ft">050-1722-4548 にかけると、このガイドで作ったAI受付が実際に応対します。メールには「AI電話ガイドを見た」とお書きください。</div></div>`};
+    case 'end': return {cls:'dark end',html:`<div class="inner"><h1>ありがとうございました</h1><p>AI自動電話システムを作る方法　　お問い合わせ：info@fp-1.info　／　AI受付デモ：050-1722-4548</p></div>`};
+  }
+}
+const deck=document.getElementById('deck'), grid=document.getElementById('grid');
+S.forEach((d,i)=>{const r=render(d);const el=document.createElement('section');el.className='slide '+r.cls;el.innerHTML=r.html.replace('__N__',(i+1)+' / '+S.length);deck.appendChild(el);
+  const t=document.createElement('div');t.className='t';t.innerHTML=`<small>${i+1}</small>${esc(d.t||d.q||(d.k==='offer'?'お問い合わせ':d.k==='end'?'終了':''))}`;t.onclick=()=>{toggleGrid(false);go(i)};grid.appendChild(t);});
+const slides=[...document.querySelectorAll('.slide')];
+let cur=Math.min(Math.max(parseInt(location.hash.slice(1))||1,1),S.length)-1;
+function go(i){cur=Math.min(Math.max(i,0),S.length-1);slides.forEach((s,k)=>s.classList.toggle('active',k===cur));document.getElementById('prog').style.width=((cur+1)/S.length*100)+'%';document.getElementById('ctr').textContent=(cur+1)+' / '+S.length;history.replaceState(null,'','#'+(cur+1));fit();}
+function fit(){const s=Math.min(innerWidth/1300,innerHeight/740);document.documentElement.style.setProperty('--s',s);}
+function toggleGrid(v){grid.classList.toggle('on',v===undefined?!grid.classList.contains('on'):v)}
+function fs(){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{if(['ArrowRight',' ','PageDown','Enter'].includes(e.key)){e.preventDefault();go(cur+1)}else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(cur-1)}else if(e.key==='Home')go(0);else if(e.key==='End')go(S.length-1);else if(e.key==='g'||e.key==='G')toggleGrid();else if(e.key==='f'||e.key==='F')fs();else if(e.key==='Escape')toggleGrid(false)});
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX);addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)go(cur+(dx<0?1:-1));tx=null});
+deck.addEventListener('click',e=>{if(e.target.closest('a'))return;const x=e.clientX/innerWidth;go(cur+(x>0.5?1:-1))});
+/* auto-shrink overflowing content */
+function shrink(){slides.forEach(s=>{const inner=s.querySelector('.inner');if(!inner||s.classList.contains('dark')||s.classList.contains('sec'))return;const note=s.querySelector('.note');const limit=720-60-(note?note.offsetHeight+18:0);let body=[...inner.children].filter(c=>!c.classList.contains('bar')&&!c.classList.contains('note'));let guard=0;const h=()=>body.reduce((a,c)=>a+c.offsetHeight,0)+56;let fs=100;while(h()>limit&&guard++<12){fs-=5;inner.style.fontSize=fs+'%';body.forEach(c=>{c.style.zoom=fs/100})}})}
+go(cur);slides.forEach(s=>s.style.visibility='visible');requestAnimationFrame(()=>{shrink();slides.forEach((s,k)=>{if(k!==cur)s.style.visibility=''})});
+</script>
+</body>
+</html>
