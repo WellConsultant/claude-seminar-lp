@@ -131,7 +131,7 @@ $auto_body .= "無理な勧誘は一切いたしませんので、ご安心く�
 $auto_body .= str_repeat("-", 36) . "\n";
 $auto_body .= "経営可視化パッケージ\n";
 $auto_body .= "現在地を1枚に、未来を月次の数字に。\n";
-$auto_body .= "Mail: info@fp-1.info / Tel: 050-3707-3507（平日9-18時）\n";
+$auto_body .= "Mail: info@fp-1.info / Tel: 050-1722-4548（平日9-18時）\n";
 $auto_body .= str_repeat("-", 36) . "\n";
 
 $headers_auto  = "From: " . clean_header($MAIL_FROM) . "\r\n";

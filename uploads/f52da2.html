@@ -296,7 +296,7 @@ function render(d){
     case 'faq': return {cls:'',html:frame({t:'よくある質問',sec:'よくある質問',note:d.note},`<div class="q">Q. ${esc(d.q)}</div><div class="faq-body"><div class="a">A. ${esc(d.items[0])}</div><dl>${d.items.slice(1).map(x=>`<dt>■ ${esc(x[0])}</dt><dd>${esc(x[1])}</dd>`).join('')}</dl></div>`)};
     case 'offer': return {cls:'dark offer',html:`<div class="inner"><h1>「自分の事務所でも作りたい」「作ったが動かない」方へ</h1><div class="tag">これらをサポートします</div>
 <div class="l"><ul><li>Claude、Codex などの実装支援</li><li>電話受付システムの実装支援</li><li>Twilio など海外ツールの申請支援</li><li>応対の声を自分の声や特定の人の声に変えることも可能</li></ul><p>実際に構築した本人が、どこで止まっているかを一緒に確認します。<br>自分の業種・電話本数で「割に合うか」の試算からご相談ください。</p><div class="fee">料金：5万円〜</div></div>
-<div class="r"><div class="h">お問い合わせください</div><div class="demo">AI電話受付（デモを試せます）：050-1722-4548</div>メール：info@fp-1.info<br>電話：050-3707-3507（受付 10:00〜18:00 土日祝を除く）<br>30分無料相談の予約：<div class="url">https://traingo.fp-1.info/reserve/d7ed4f33-f24b-4e41-83c7-c9bdb3774dde/30</div><div class="co">あくつ行政書士事務所（Well Consultant合同会社）<br>代表　阿久津 和宏（行政書士）<br>〒360-0816 埼玉県熊谷市石原641番地3</div></div>
+<div class="r"><div class="h">お問い合わせください</div><div class="demo">AI電話受付（デモを試せます）：050-1722-4548</div>メール：info@fp-1.info<br>電話：050-1722-4548（受付 10:00〜18:00 土日祝を除く）<br>30分無料相談の予約：<div class="url">https://traingo.fp-1.info/reserve/d7ed4f33-f24b-4e41-83c7-c9bdb3774dde/30</div><div class="co">あくつ行政書士事務所（Well Consultant合同会社）<br>代表　阿久津 和宏（行政書士）<br>〒360-0816 埼玉県熊谷市石原641番地3</div></div>
 <div class="ft">050-1722-4548 にかけると、このガイドで作ったAI受付が実際に応対します。メールには「AI電話ガイドを見た」とお書きください。</div></div>`};
     case 'end': return {cls:'dark end',html:`<div class="inner"><h1>ありがとうございました</h1><p>AI自動電話システムを作る方法　　お問い合わせ：info@fp-1.info　／　AI受付デモ：050-1722-4548</p></div>`};
   }
