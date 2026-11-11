@@ -1,0 +1,327 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>行政書士AI自動化フロー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap">
+<style>
+:root {
+  --bg: #f4f6fa; --surface: #ffffff; --fg: #14213d; --muted: #5b6579; --line: #d9dfeb;
+  --navy: #0f2a56; --ai: #0b6e8a; --ai-bg: #e3f3f8; --gyo: #c2410c; --gyo-bg: #fdeadf;
+  --cli: #2f7d32; --cli-bg: #e5f3e4; --warn: #a16207; --warn-bg: #fdf3d6; --new: #7c2d92; --new-bg: #f3e6f7;
+  --trad: #5b6579; --trad-bg: #edeef2;
+  --font: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#0d1424;--surface:#151f35;--fg:#e8ecf5;--muted:#98a3ba;--line:#2a3855;--navy:#7da2f0;
+    --ai:#5cc4de;--ai-bg:#12333f;--gyo:#fb9a62;--gyo-bg:#3a2216;--cli:#86d28a;--cli-bg:#1a3319;
+    --warn:#f2c45a;--warn-bg:#3a2f10;--new:#d49be6;--new-bg:#35203f;--trad:#9ca3af;--trad-bg:#1f2937;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#0d1424;--surface:#151f35;--fg:#e8ecf5;--muted:#98a3ba;--line:#2a3855;--navy:#7da2f0;
+  --ai:#5cc4de;--ai-bg:#12333f;--gyo:#fb9a62;--gyo-bg:#3a2216;--cli:#86d28a;--cli-bg:#1a3319;
+  --warn:#f2c45a;--warn-bg:#3a2f10;--new:#d49be6;--new-bg:#35203f;--trad:#9ca3af;--trad-bg:#1f2937;color-scheme:dark;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.7;
+  padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));}
+.wrap{max-width:1080px;margin:0 auto;}
+h1{font-size:clamp(22px,4.4vw,32px);line-height:1.35;margin:0 0 6px;font-weight:900;letter-spacing:.01em;text-wrap:balance;}
+.lead{color:var(--muted);margin:0 0 20px;}
+h2{font-size:20px;margin:44px 0 12px;font-weight:900;text-wrap:balance;}
+h2 small{font-weight:500;color:var(--muted);font-size:13px;margin-left:8px;}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:16px;}
+.leg{border-radius:8px;padding:10px 14px;border:1px solid var(--line);background:var(--surface);}
+.leg b{display:block;font-size:14px;}.leg span{font-size:13px;color:var(--muted);}
+.leg.ai{border-left:6px solid var(--ai);}.leg.gyo{border-left:6px solid var(--gyo);}.leg.cli{border-left:6px solid var(--cli);}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px;position:sticky;top:env(safe-area-inset-top,0px);padding:8px 0;background:var(--bg);z-index:5;}
+.tabs button{font:inherit;font-weight:700;font-size:14px;padding:8px 16px;border-radius:999px;cursor:pointer;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);}
+.tabs button[aria-pressed="true"]{background:var(--navy);color:var(--bg);border-color:var(--navy);}
+.tabs button:focus-visible,a:focus-visible{outline:3px solid var(--ai);outline-offset:2px;}
+.notice{background:var(--warn-bg);border:1px solid var(--warn);border-radius:8px;padding:10px 14px;font-size:14px;margin:8px 0 20px;}
+.prereq{background:var(--new-bg);border:1px solid var(--new);border-radius:8px;padding:10px 14px;font-size:14px;margin:8px 0 20px;}
+.timeline{display:flex;flex-direction:column;gap:18px;}
+.phase{margin:22px 0 -6px;font-weight:900;font-size:13px;letter-spacing:.12em;color:var(--navy);border-bottom:2px solid var(--navy);padding-bottom:4px;}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.step-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:12px 16px;background:var(--navy);color:#fff;}
+:root[data-theme="dark"] .step-h{color:#0d1424;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .step-h{color:#0d1424;}}
+.no{font-weight:900;font-size:20px;min-width:2.2em;}
+.step-h h3{margin:0;font-size:17px;font-weight:900;flex:1 1 12em;min-width:0;}
+.badge{font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;background:#fff;color:var(--navy);white-space:nowrap;}
+.badge.new{background:var(--new-bg);color:var(--new);}.badge.mode{background:transparent;border:1px solid currentColor;}
+.trigger{padding:8px 16px;font-size:13.5px;color:var(--muted);border-bottom:1px dashed var(--line);}
+.trigger b{color:var(--fg);}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+.col{padding:12px 16px 14px;min-width:0;border-right:1px solid var(--line);}
+.col:last-child{border-right:0;}
+.col h4{margin:0 0 6px;font-size:13px;font-weight:900;display:inline-block;padding:1px 10px;border-radius:4px;}
+.col.ai h4{background:var(--ai-bg);color:var(--ai);}.col.gyo h4{background:var(--gyo-bg);color:var(--gyo);}.col.cli h4{background:var(--cli-bg);color:var(--cli);}
+.col.trad{display:none;}.col.trad h4{background:var(--trad-bg);color:var(--trad);}
+.col ul{margin:0;padding-left:1.2em;font-size:14px;}.col li{margin:3px 0;}
+.foot{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);font-size:13.5px;}
+.foot>div{padding:10px 16px;min-width:0;}.foot>div+div{border-left:1px solid var(--line);background:var(--warn-bg);}
+.foot b{font-size:12px;letter-spacing:.06em;color:var(--muted);display:block;}.foot>div+div b{color:var(--warn);}
+.timeline[data-view="gyo"] .col:not(.gyo),.timeline[data-view="cli"] .col:not(.cli),.timeline[data-view="ai"] .col:not(.ai){display:none;}
+.timeline[data-view="gyo"] .cols,.timeline[data-view="cli"] .cols,.timeline[data-view="ai"] .cols{grid-template-columns:1fr;}
+.timeline[data-view="gyo"] .col,.timeline[data-view="cli"] .col,.timeline[data-view="ai"] .col{border-right:0;}
+.timeline[data-view="trad"] .col:not(.trad){display:none;}
+.timeline[data-view="trad"] .col.trad{display:block;}
+.timeline[data-view="trad"] .cols{grid-template-columns:1fr;}
+.timeline[data-view="trad"] .col{border-right:0;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0;}
+.card h3{margin:0 0 6px;font-size:16px;font-weight:900;}.card p{margin:4px 0;font-size:14px;}
+.card .r{font-size:14px;margin:2px 0;}.card .r i{font-style:normal;font-weight:900;margin-right:6px;}
+.card .r.ai i{color:var(--ai);}.card .r.gyo i{color:var(--gyo);}.card .r.cli i{color:var(--cli);}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px;}
+th,td{padding:9px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
+th{background:var(--navy);color:#fff;font-size:13px;}
+:root[data-theme="dark"] th{color:#0d1424;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) th{color:#0d1424;}}
+tr:last-child td{border-bottom:0;}td.t{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:700;}
+.checks{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px 16px;}
+.checks li{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:14px;}
+.checks label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;}
+.checks input{margin-top:5px;width:16px;height:16px;flex:none;}
+@media (max-width:760px){
+  .cols{grid-template-columns:1fr;}.col{border-right:0;border-bottom:1px solid var(--line);}.col:last-child{border-bottom:0;}
+  .foot{grid-template-columns:1fr;}.foot>div+div{border-left:0;border-top:1px solid var(--line);}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<div class="wrap">
+  <h1>行政書士事務所 AI自動化フロー</h1>
+  <p class="lead">問い合わせから完了・更新管理まで。各工程で「AIが自動でやること」「行政書士がやること」「クライアントがやること」を分けています。紫のバッジは元の図になかった追加工程です。</p>
+
+  <div class="prereq"><b>【前提】開始前に必ず把握しておくこと：</b>クライアントのメールアドレス・Chatworkのチャット/グループURL・LINEの連絡先（個人またはグループ）を案件フォルダに登録してからフローを開始します。受付時点で連絡先が不明な場合は、工程0の初回返信の中で確認します。連絡先が揃っていないと、以降の自動送信・リマインドがすべて止まります。</div>
+
+  <div class="legend">
+    <div class="leg ai"><b>AI（自動）</b><span>仕分け、下書き、照合、期限管理、通知。送信と確定はしません（定型の自動送信を除く）。</span></div>
+    <div class="leg gyo"><b>行政書士（自分）</b><span>判断、確定、署名押印、提出。AIの下書きを承認します。</span></div>
+    <div class="leg cli"><b>クライアント</b><span>情報提供、書類提出、確認、署名、支払い。</span></div>
+  </div>
+
+  <div class="tabs" role="group" aria-label="表示する役割">
+    <button type="button" data-v="all" aria-pressed="true">全員を表示</button>
+    <button type="button" data-v="trad" aria-pressed="false">今まで（AIなし）</button>
+    <button type="button" data-v="gyo" aria-pressed="false">自分（行政書士）だけ</button>
+    <button type="button" data-v="cli" aria-pressed="false">クライアントだけ</button>
+    <button type="button" data-v="ai" aria-pressed="false">AIだけ</button>
+  </div>
+
+  <div class="notice"><b>AIが単独でやらないこと：</b>受任の判断／契約の締結／依頼者への個別送信（問い合わせへの即時自動返信・リマインド・行政書士が承認した案内を除く）／申請書の記載の確定／署名押印／申請・提出／電子申請のログイン・認証／領収書の発行。必ず行政書士が行います。</div>
+
+  <div class="timeline" id="timeline" data-view="all"></div>
+
+  <h2>例外の分岐<small>うまくいかなかった場合</small></h2>
+  <div class="grid2" id="exceptions"></div>
+
+  <h2>定時で動く自動処理<small>AIが決まった時刻に実行</small></h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>タイミング</th><th>AIがやること</th><th>通知先</th></tr></thead>
+    <tbody id="jobs"></tbody>
+  </table></div>
+
+  <h2>期限と督促のルール</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>対象</th><th>通知のタイミング</th><th>通知先</th></tr></thead>
+    <tbody id="rules"></tbody>
+  </table></div>
+
+  <h2>導入時に決めること<small>最初に1回だけ設定</small></h2>
+  <ul class="checks" id="setup"></ul>
+</div>
+
+<script>
+const STEPS = [
+  {phase:"A. 受付と受任", no:"0", title:"連絡の受付と分類・即時返信・軽い事前調査・面談日程", tag:"追加", mode:"自動＋下書き→承認",
+   trigger:"フォーム・メール・ビジネス用LINE・Chatwork・電話（推奨の窓口）に連絡が届いたとき。電話は、通話の録音か、AI電話受付システムの通話ログを渡して始める",
+   ai:["誰からの連絡かを分類する。新規の依頼の見込み→案件ID＋即時返信／既存の依頼者→既存の案件に追加（新しいIDは作らない）／役所・関係機関→最優先で行政書士に通知／他士業・紹介者→行政書士へ／営業・勧誘→除く（返信しない）／迷惑・詐欺のおそれ→除く（リンクは開かない）／迷うもの→行政書士へ","新規の依頼の見込みなら、案件IDを発行して案件フォルダを作成。同じ人が複数の経路で来たら1件にまとめる","新規の依頼の見込みにだけ、すぐに自動返信（受付完了＋無料面談のTraingoミーティングリンク＋個人情報の取扱いのリンク）。夜間・休日も数分以内。電話は録音・通話ログを文字起こしして要約し、折り返しが必要かを判定して行政書士に通知","初回返信の中でメール・Chatwork・LINEの連絡先を確認し、案件フォルダに記録（連絡先が揃わないと以降の自動送信が止まることを案内）","軽い事前調査（公開情報だけ・根拠URLつき）→ 事前調査メモ","手引き・様式・要件の取得：手続きと所管を特定／公式サイトから手引き・様式・条文をダウンロードして保存／最新かを確認／要件を出典つきで整理し、要件チェックリストを作る／面談で聞くことを作る","事前調査と要件に合わせて、案件用のヒアリングシートを作る","個別の初回返信を下書き（調査にもとづく一言、シートのリンク）","予約が入ったら確認メールを送り、リマインドを予約（3日前・前日・当日）","問い合わせがあったのに予約が入らない人へ、リマインドを自動送信（翌日・3日後・7日後）。ヒアリングシートを記入済みなのに未予約の場合も同様（記入内容に触れた一言を添える）。返信があれば止める","受信時刻・返信までの時間・経路を記録"],
+   gyo:["分類の確認（除いた連絡に、依頼や役所の連絡が紛れていないかを毎朝確認）","電話は、AIの要約を確認し、折り返しが必要なものを優先して対応","事前調査メモと、要件表・出典を確認（確認だけ）して、受けられそうか・追加で調べることを判断","個別の返信とフォローの下書きを確認して送信"],
+   cli:["自動返信のリンクから、無料面談の日時を選ぶ","事前ヒアリングシートに記入（個人情報の取扱いへの同意を含む）","メール・Chatwork・LINEの連絡先を伝える","確認メールとリマインドを受け取る"],
+   trad:["問い合わせはメール・電話を逐一確認して自分で返信（夜間・休日も対応）","要件・様式をウェブで手動検索","案件情報はExcelや紙台帳で手動管理","リマインドは手帳・カレンダーに自分で書き込んで管理","問い合わせへの返信は翌朝以降になることも多く、スピードに差が出やすい"],
+   out:"案件フォルダ（連絡先登録済み）、事前調査メモ、案件用ヒアリングシート、初回返信、面談予約、リマインド",
+   gate:"即時の自動返信とリマインドは定型文で自動送信。個別の返信・フォローは確認してから。クライアントの連絡先（メール・Chatwork・LINE）が揃ってから次へ。"},
+  {phase:"A. 受付と受任", no:"1", title:"面談・受任判断", tag:"元図①", mode:"人が判断",
+   trigger:"面談日の前日（AIが準備を通知）",
+   ai:["リマインドを自動送信（3日前・前日・当日。面談の案内は複数回あってよい）","面談3日前にヒアリングシートの記入状況を確認。記入済みなら回答を整理して面談で深掘りする質問リストを作成する。未記入・途中の場合は面談前にリマインドを送る（3日前・前日）。面談当日も未記入のままなら行政書士に通知し、口頭で確認すべき項目リストを別途作成する","Geminiメモが有効かを確認して通知","取り消し・変更があれば予定とリマインドを更新。開始から10分来なければ行政書士へ通知","面談の当日中に、お礼と次の連絡の予定のメールを下書き","面談後、Geminiのメモ（文字起こし）を案件フォルダにひもづけ、顧客情報に整理","要件チェックリストに当てはめて充足判定（満たす／満たさない／未確認。根拠の発言・書類つき）","利益相反のおそれを、過去の案件・相手方の名前と照合して知らせる","面談・ヒアリングシートから、今回の依頼範囲外で将来必要になりうる手続き・許認可・補助金のヒントを抽出して案件フォルダにメモしておく"],
+   gyo:["面談はGoogle Meetで行う。冒頭で録音・文字起こしの同意を得る","AIの充足判定を確認","受任するかどうかを判断","利益相反の照合結果と、他士業の領域でないかを確認","AIが下書きしたお礼メールを確認して送信"],
+   cli:["Meetで面談に出る","録音・文字起こしに同意する","事業内容・経歴・従業員数・財産などの事実を正確に伝える"],
+   trad:["面談中に手書き・PCでメモを取る","面談後に自分でメモを整理して要件確認・充足判定","受任判断は経験と記録をもとに自分で行う","利益相反の確認は過去案件を自分の記憶や手帳で確認","将来の追加依頼は記憶頼り・拾いきれないことが多い"],
+   out:"Geminiのメモ（文字起こし）、ヒアリングシート、受任可否メモ",
+   gate:"受任判断は行政書士のみ。受任できない場合は例外A。欠席・変更は例外F。面談のあと、見積・提案への返事がなければ、リマインドを自動送信（3日後・7日後・14日後）。"},
+  {phase:"A. 受付と受任", no:"2", title:"受任契約・委任状・本人確認", tag:"追加", mode:"下書き→承認",
+   trigger:"受任すると決めたとき",
+   ai:["ヒアリングシートと報酬規程をもとに見積もり根拠案（業務範囲・報酬額・実費の見込み）を作成し行政書士に提示する","行政書士の確認・確定を受けて見積書を作成","見積書をクライアントに送付し了承を待つ（返事がなければ3日後・7日後にリマインド）","了承でなく修正・交渉の申し入れが来た場合は内容を整理して行政書士に通知する（再調整後に見積書を更新して送り直す）","クライアントの了承後、委任契約書・重要事項説明書・委任状の案を作成","本人確認書類の提出依頼文を作成","行政書士の承認後に、契約書・委任状・本人確認依頼文を登録済みの連絡先へ送付する","届いた本人確認書類を読み取り、不鮮明・期限切れ・不足をチェックし、問題があれば再提出依頼文を作成して送付する","着手金と預かる実費の請求書を作成","入金を照合して通知（自動化できている場合はAPI、できていない場合は行政書士からの確認連絡を起点にする）","署名待ち・入金待ちの期間は、3日後・7日後にリマインドを予約"],
+   gyo:["AIが出した見積もり根拠案（業務範囲・報酬額・実費の見込み）を確認・修正して確定する","確定した報酬額をもとに契約条件を確認・確定","AIが作成した契約書・委任状の案を確認・修正してから送付を承認する","契約書に署名押印（電子または紙）","本人確認を行う","着手金の入金を確認"],
+   cli:["契約内容を読んで署名押印（電子または紙）","委任状に署名押印","本人確認書類を提出","着手金と預かる実費を支払う"],
+   trad:["見積書・契約書はテンプレートから手動で修正して送付","本人確認書類は目視で自分が確認","入金確認は通帳・ネットバンクで手動で確認","リマインドは手帳・カレンダーで自分で管理","入金から次の工程への連携も手動で判断"],
+   out:"委任契約書、委任状、見積書、請求書",
+   gate:"見積書へのクライアント了承を確認してから契約書を送付する。契約の署名と着手金の入金を確認するまで、次の工程に進めません。署名がなければリマインドを自動送信（3日後・7日後）。入金確認はAPIが可能ならAPI、できない場合は行政書士確認を起点にする。"},
+  {phase:"B. 書類の収集", no:"3", title:"必要書類の案内", tag:"元図②", mode:"AI確認＋承認→自動送信",
+   trigger:"契約と着手金を確認したとき",
+   ai:["確認済みの要件表から、必要書類一覧を作成（調べ直さない）","提出方法・提出先（フォルダ・Chatwork・LINE・メール）・期限の案内文を作成","案件ごとのQ&Aフォーム（クライアントが不明点を書き込めるArtifactページ）を作成し、URLを案内文に含める","行政書士の承認を得たあと、登録済みの連絡先（Chatwork・LINE・メール）へ自動送信","行政書士が設定日数内に未承認の場合、再通知を行う（日数はセットアップで設定）","行政書士が案件フォルダに入力した提出期限をカレンダーに登録","提出期限に合わせたリマインドを自動送信スケジュールに登録（期限の7日前・3日前・前日。提出済みの場合は自動キャンセル）","Q&Aフォームの新着を検知して行政書士に通知する（随時）"],
+   gyo:["依頼内容と一覧・案内文を確認してAIへ送信を許可","書類の提出期限を案件フォルダに登録する（AIのリマインドの基準になる。法定期限があるものはAIが確認する）"],
+   cli:["一覧を見て書類を集める","指定の方法で送る","Q&Aフォームで不明点を質問する（AIがまとめて行政書士に通知）"],
+   trad:["必要書類一覧をその都度ゼロから作成・送付","質問はメール・電話で個別に対応（対応ログの管理も手動）","督促のタイミングは自分でカレンダーを見て判断","提出期限の登録と管理は手帳・カレンダーで自分が行う"],
+   out:"書類一覧、依頼文、案件別Q&Aページ（Artifact）",
+   gate:"行政書士が承認したあとAIが自動送信。Q&Aはクライアントが直接書き込める状態にする。"},
+  {phase:"B. 書類の収集", no:"4", title:"受領・不足確認・公的書類の取得", tag:"元図③", mode:"自動＋確認",
+   trigger:"連携先に書類が届いたとき（個人用LINEで届いたものは、行政書士が案件フォルダへ移してから）",
+   ai:["届いた書類を案件別に分類してファイル名を統一","不足・不鮮明・記載漏れ・有効期限切れを抽出","不足一覧と再依頼文を作成（Q&Aフォームにも自動追記）","公的書類の請求書を下書き","督促を自動で予約（3日後・7日後・14日後）","受領した書類（決算書・登記・契約書など）から業況・規模・構造を読み取り、補助金の対象になりうるか・他の許認可が必要になりうるかのヒントを案件フォルダにメモしておく"],
+   gyo:["書類の有効性を確認","公的書類（住民票・登記事項証明書など）の請求（AIの下書きを確認して請求）"],
+   cli:["不足書類を再提出","不鮮明な書類を撮り直して送る","督促に返信する，または Q&Aフォームで連絡する"],
+   trad:["届いた書類をすべて自分で開封・仕分け・確認","不足・不鮮明・記載漏れを手動でリストアップ","連絡文を自分で作成・送付","公的書類の請求準備も自分で実施","将来の補助金・関連許認可の気づきは記憶頼り"],
+   out:"受領リスト、不足一覧、再依頼文",
+   gate:"再依頼文は確認後に送信。14日経っても揃わない場合は例外Bへ。"},
+  {phase:"C. 申請書の作成と確認", no:"5", title:"申請書類の作成", tag:"元図④", mode:"下書き→承認",
+   trigger:"行政書士から「進めてよい」と指示があったとき（書類が揃う前でも進められる工程は先行してよい。ただし本人確認・委任状など必須書類は前提）",
+   ai:["様式・手引きを再取得して、前回との差分を自動抽出。新版・旧版のどちらを使うべきかの1次判断（推奨版を根拠つきで提示）","ヒアリングシートの回答・文字起こし・受領済みの書類を、推奨版の様式に転記","様式に沿って申請書と添付書類案を下書き","転記元（どの書類のどこか）を併記","不明点を確認事項リストにまとめ、Q&Aフォームにも追記","工程5の進行中に新たな書類が届いた場合はその内容を取り込んで申請書に反映し、変更点を行政書士に通知する"],
+   gyo:["AIの差分1次判断を確認し、使う版を最終決定","記載内容を確定","要件を満たすかの最終判断"],
+   cli:["確認事項リストに回答する（Q&Aフォームまたは直接連絡）"],
+   trad:["様式をダウンロードして自分で転記","転記ミスのチェックも自分で実施","様式の版数確認も都度手動で確認","確認事項は電話・メールで個別に対応","新着書類が届いたら自分で確認して申請書に反映"],
+   out:"申請書、添付書類案、確認事項リスト",
+   gate:"記載内容の確定は行政書士のみ。差分の1次判断はAI、最終決定は行政書士。"},
+  {phase:"C. 申請書の作成と確認", no:"6", title:"点検（承諾の前に行う）", tag:"元図⑤前半", mode:"自動＋確認",
+   trigger:"行政書士が申請書の記載内容を確定したとき",
+   ai:["書類間の氏名・住所・生年月日・金額を照合","添付漏れ・期限・形式を点検","要件チェックリストの全項目を、申請書・添付書類に当てはめ直す。使った版が最新かも確認","チェック結果を作成","NGの場所と直し方の案を出す"],
+   gyo:["チェック結果を確認","NGの直し方を決めて直す"],
+   cli:["NGで確認が必要な点があれば回答する"],
+   trad:["チェックリストを見ながら全項目を手作業で確認","書類間の照合（氏名・住所・金額など）も自分で目視","ミスを見つけたら自分で修正して再確認","点検のやり直しトリガーも自分の判断で管理"],
+   out:"チェック結果",
+   gate:"NGが1件でもあれば直して再点検。再点検のトリガーは行政書士が手動で指示するか、修正ファイルの保存を検知してAIが自動で開始するか、セットアップで選ぶ。点検に通ってから、依頼者の承諾へ。"},
+  {phase:"C. 申請書の作成と確認", no:"7", title:"依頼者の承諾・提出準備", tag:"追加＋元図⑤後半", mode:"下書き→承認",
+   trigger:"点検が合格したとき",
+   ai:["確認用の要約シート（点検済みの版）を作成","要約シートを登録済みの連絡先（メール・Chatwork・LINE）に送付し承諾を待つ（返事がなければ3日後・7日後にリマインド）","指摘を反映した修正版を作成","承諾の日時と内容を記録","提出一式と手数料（印紙・証紙）を算出"],
+   gyo:["依頼者に内容を説明","署名押印が必要な書類を回収","最終確認・署名・職印","預かった実費で足りるかを確認"],
+   cli:["申請内容を読んで誤りを指摘","承諾して、申請書に署名押印","実費が足りない場合だけ、不足分を預ける"],
+   trad:["申請書の内容をメール・電話で依頼者に説明して承諾を得る","承諾のやりとり・記録も自分で管理","署名押印書類の回収スケジュールも手帳・連絡で管理","提出一式の最終確認・整理もすべて自分で実施"],
+   out:"承諾記録、署名済みの書類、提出一式",
+   gate:"承諾・署名・実費・最終確認がそろうまで提出しない。承諾のあとに内容が変わったら、工程6に戻る。"},
+  {phase:"D. 申請と審査", no:"8", title:"申請・提出・進捗管理", tag:"元図⑥", mode:"人が実施",
+   trigger:"工程7の確認がすべて済んだとき",
+   ai:["役所からの電話は、録音を要約して対応履歴に記録","郵送・持参・電子申請の準備","受付番号・申請日・標準処理期間を記録","進捗一覧を更新","申請完了の報告を下書き","審査中は週1回の進捗報告を下書き"],
+   gyo:["申請・提出を実施","電子申請のログイン・認証（手続によって行政書士本人または依頼者本人が操作。事前に確認しておく）","役所の電話・照会に対応して記録"],
+   cli:["役所から連絡が来たらすぐに共有"],
+   trad:["窓口・郵送・電子申請を自分で全部実施","役所からの電話・照会はすべて自分で対応・記録","進捗管理はExcel・手帳で自分が実施","週1回の進捗報告も自分で作成・送付"],
+   out:"提出記録、進捗一覧、申請完了報告",
+   gate:"提出と電子申請の認証は行政書士のみ。"},
+  {phase:"D. 申請と審査", no:"9", title:"補正・再提出", tag:"元図⑦", mode:"下書き→承認",
+   trigger:"役所から補正の指示が届いたとき",
+   ai:["補正指示を項目別に整理","修正案と追加書類の依頼文を作成","補正期限をカレンダーに登録（7日前・3日前・前日に通知）"],
+   gyo:["修正内容を確定","補正を提出"],
+   cli:["追加書類を提出","修正内容を確認"],
+   trad:["補正指示を受けて自分で内容を整理","修正・再提出を自分で実施","補正期限は手帳・カレンダーで自分で管理","追加書類の依頼文も自分で作成・送付"],
+   out:"修正版、補正管理表",
+   gate:"補正がなくなるまで繰り返す。修正した書類は、工程6の点検を通してから出す。"},
+  {phase:"E. 完了と次回管理", no:"10", title:"結果受領・残金の請求・納品", tag:"追加", mode:"下書き→承認",
+   trigger:"役所から結果通知が届いたとき",
+   ai:["完了案内を作成","結果で分岐（許可→残金請求へ進む／条件付き・一部許可→条件内容を整理して行政書士に通知→方針確認後に進む／不許可・却下→例外C）","許可の条件・有効期限・更新義務を整理し、この許可に紐づく次の手続き（変更届・更新・関連許認可）を案件フォルダにメモとして追記する","残金と実費の請求書を作成し、入金をAPI照合（可能な場合）して通知"],
+   gyo:["結果を確認","許可証・通知書をスキャンして案件フォルダに保存","条件付き・一部許可の場合は依頼者への説明内容と今後の方針を確定する","請求を承認","入金を確認してから、許可証を納品し原本を返却"],
+   cli:["残金と実費を支払う","入金確認のあと、許可証・通知書を受け取って内容を確認","条件付き・一部許可の場合は条件内容を確認して返答する","受領の連絡を返す"],
+   trad:["通知書を受け取り請求書を自分で作成・送付","入金確認は通帳・ネットバンクで手動確認","許可証・通知書を依頼者に自分で納品・返却","更新期限・次の手続きの把握は記憶や手帳頼り"],
+   out:"完了報告、請求書、納品記録",
+   gate:"納品は入金確認のあと（仮置き。納品後払いにも変えられます）。"},
+  {phase:"E. 完了と次回管理", no:"11", title:"領収書・完了・更新管理", tag:"元図⑧", mode:"下書き→承認",
+   trigger:"入金を確認し、納品が済んだとき",
+   ai:["領収書を下書き","案件書類・履歴・更新期限を保存","更新・変更届・事業年度終了届などの期限を登録（法定されているものはAIが調べて入力し行政書士に確認する。個別に定まるものは行政書士が案件フォルダに入力）","事前案内を予約（6か月前・3か月前・1か月前）","工程1・4・10 で案件フォルダに蓄積したメモを集約し、追加提案リスト（次に必要な手続き・関連許認可・利用可能な補助金の候補）を作成して行政書士に提示する","紹介・感想のお願い文を下書き（行政書士が確認して送信）"],
+   gyo:["領収書を発行","案件をクローズ","アフターフォローの要否を判断","追加提案リストを確認し、提案するものを選んで次の案件として立ち上げる（新規受任に進む場合は工程2へ）","紹介・感想依頼を確認して送信","更新・変更届の事前案内をAIの下書きで確認してクライアントに送信（6か月前・3か月前・1か月前）"],
+   cli:["（任意）紹介や感想"],
+   trad:["領収書を自分で作成・発行","更新・変更届の期限は手帳・Excelで自分が管理","事前案内のタイミングも自分で気にかけて送付","アフターフォローは記憶頼り・連絡漏れが発生しやすい","既存客への再接点・追加提案は担当者の記憶・勘に依存"],
+   out:"領収書、完了報告、更新予定表",
+   gate:"領収書の発行と案件のクローズは、入金確認のあと。"}
+];
+
+const EXC = [
+  {t:"A. 受任できない", ai:"別の許認可・補助金の候補を整理し、提案レポート案を作成", gyo:"提案するかを判断／お断りの連絡／税理士・司法書士・社労士など他士業を紹介", cli:"提案を検討して返答"},
+  {t:"B. 連絡が途絶える・書類が揃わない", ai:"14日経過した時点で行政書士に通知し、案件を「停止中」にする", gyo:"電話で連絡／期限を示して継続か中断かを確認／契約書の中断条項に従って判断", cli:"継続か中断かを回答"},
+  {t:"C. 不許可・却下・取下げ", ai:"通知書から理由を整理し、再申請・審査請求の選択肢と期限を一覧化", gyo:"今後の方針を説明／再申請を判断。審査請求の代理は特定行政書士のみ（期限は原則、処分を知った日の翌日から3か月以内。個別法で異なる場合あり）", cli:"方針を決めて返答"},
+  {t:"D. 内容変更・追加依頼", ai:"契約範囲との差分を抽出し、追加見積の案を作成", gyo:"範囲外かを判断／追加見積を承認して送信", cli:"追加見積に同意するか回答"},
+  {t:"E. 誤送信・情報漏えいのおそれ", ai:"対象の連携を停止し、送信ログと影響範囲を一覧化", gyo:"事実確認／依頼者への連絡と対応を判断", cli:"連絡を受けて対応を確認"},
+  {t:"F. 面談の取り消し・変更・欠席", ai:"予定とリマインドを更新。欠席（開始から10分）は行政書士に通知し、再予約の案内を下書き", gyo:"連絡して再予約を促す／再三の欠席は対応を判断", cli:"再予約する"},
+  {t:"G. クライアントが指定外チャンネルで連絡してきた（個人LINE・電話など）", ai:"行政書士が案件フォルダに転記した内容を検知し、案件に追加して対応状況を更新する", gyo:"内容を案件フォルダに転記し、必要なら返答。指定チャンネルへ誘導する一言を添える", cli:"次回から指定チャンネルで連絡する"}
+];
+
+const JOBS = [
+  ["問い合わせが届いたとき","数分以内に、無料面談リンクつきの定型メールを自動返信。受信から返信までの時間を記録","行政書士（毎朝の通知で確認）"],
+  ["毎朝8:00","連携フォルダ・メール・Chatwork・LINEを確認し、新着・除いた連絡・予約が入っていない問い合わせ・要対応を一覧にする","行政書士"],
+  ["毎日17:00","当日・翌日・3日以内の期限を抽出し、未対応の案件を一覧にする","行政書士"],
+  ["毎週月曜9:00","案件ごとの進捗一覧を更新し、依頼者への進捗報告を下書きする","行政書士（確認後に依頼者へ）"],
+  ["毎月1日","更新・変更届の期限が180日以内の案件を一覧にする","行政書士"],
+  ["入金があったとき","請求書と照合し、一致すれば次の工程へ進める準備をする","行政書士"],
+  ["毎月1日（既存客リスト）","クローズ済み案件を対象に、新規補助金・法改正・関連手続きの変化を照合し、再接点の候補（連絡するきっかけがある顧客）をリストアップして行政書士に提示する","行政書士"]
+];
+const RULES = [
+  ["面談のリマインド（自動送信・複数回）","3日前・前日・当日朝（予約日より前になる分は出さない）","依頼者"],
+  ["無反応のリマインド（定型・自動送信）","問い合わせ後：翌日・3日後・7日後／面談後・見積後：3日後・7日後・14日後／契約書・承諾待ち：3日後・7日後。返信があれば止める。最後まで返事がなければ「保留」","依頼者"],
+  ["書類の督促","3日後・7日後・14日後（14日で例外B）","依頼者（確認後）／14日後は行政書士"],
+  ["補正期限","7日前・3日前・前日","行政書士・依頼者"],
+  ["申請の標準処理期間","超過した日に役所への確認を促す","行政書士"],
+  ["許認可の更新・変更届","6か月前・3か月前・1か月前","行政書士・依頼者"],
+  ["請求の未入金","期日の翌日・7日後","行政書士"],
+  ["書類案内の未承認（行政書士）","設定日数が経過したら再通知（日数はセットアップで設定）","行政書士"],
+  ["申請書の承諾待ち（クライアント）","3日後・7日後にリマインド。返信があれば止める","依頼者"]
+];
+const SETUP = [
+  "対象業務（扱う許認可の種類）",
+  "申請書・契約書などの様式",
+  "チェック基準（照合する項目・有効期限の基準）",
+  "クライアントの連絡先の収集方法と案件フォルダへの登録ルール（メール・Chatworkチャット/グループURL・LINE ID/グループ）",
+  "連携先（書類受取フォルダ・メール・Chatwork・LINE）と閲覧権限",
+  "AIの実行権限（下書きまで／行政書士承認後に自動送信してよい文書：即時返信・リマインド・書類案内）",
+  "承認者と承認の手順（Chatwork/LINE/メールどれで通知するか）",
+  "依頼者への個人情報の取扱い同意文",
+  "データの保存場所・保存期間・操作ログ",
+  "報酬表と実費の扱い（納品と残金の順番を含む）",
+  "督促・フォローの文面と日数",
+  "他士業の紹介先",
+  "誤送信・漏えい時の連絡手順",
+  "日程調整リンク（Traingoのミーティングリンク）、面談はGoogle Meet、文字起こしはGeminiのメモ（プラン・保存先・録音の同意文）",
+  "LINEの窓口（個人用のやりとりを案件フォルダへ移す担当と期限）",
+  "電話の窓口（録音の置き場／AI電話受付の通話ログの出し方・録音を知らせる一言・保存期間）",
+  "軽い事前調査の範囲（調べてよい公開情報）",
+  "電子契約ツールの要否と選定（freeeサイン・クラウドサイン・DocuSignなど）：AIが比較表を出すので見て判断",
+  "入金確認の自動化方法（freee会計API・銀行API・メール転送など）：AIが対応可否と手間を整理するので見て判断",
+  "案件別Q&Aページ（Artifact）の作成ルールと共有方法",
+  "書類案内の未承認リマインド日数（例：翌日・2日・3日。自分の対応ペースに合わせて設定）",
+  "点検（工程6）後の再点検トリガー方法：行政書士が手動で指示するか、修正ファイル保存を検知してAIが自動開始するかを選ぶ",
+  "更新期限の登録ルール（法定期限はAIが調べて行政書士に確認、法定なし・個別設定は行政書士が入力）"
+];
+
+const esc = s => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const li = a => a.map(x => `<li>${esc(x)}</li>`).join("");
+let html = "", lastPhase = "";
+for (const s of STEPS) {
+  if (s.phase !== lastPhase) { html += `<div class="phase">${esc(s.phase)}</div>`; lastPhase = s.phase; }
+  const isNew = s.tag.includes("追加");
+  html += `<section class="step">
+    <div class="step-h"><span class="no">${esc(s.no)}</span><h3>${esc(s.title)}</h3>
+      <span class="badge ${isNew ? "new" : ""}">${esc(s.tag)}</span><span class="badge mode">${esc(s.mode)}</span></div>
+    <div class="trigger"><b>始まる条件：</b>${esc(s.trigger)}</div>
+    <div class="cols">
+      <div class="col trad"><h4>今まで（AIなし）</h4><ul>${li(s.trad)}</ul></div>
+      <div class="col ai"><h4>AI（自動）</h4><ul>${li(s.ai)}</ul></div>
+      <div class="col gyo"><h4>行政書士（自分）</h4><ul>${li(s.gyo)}</ul></div>
+      <div class="col cli"><h4>クライアント</h4><ul>${li(s.cli)}</ul></div>
+    </div>
+    <div class="foot"><div><b>成果物</b>${esc(s.out)}</div><div><b>止まる場所・確認</b>${esc(s.gate)}</div></div>
+  </section>`;
+}
+document.getElementById("timeline").innerHTML = html;
+
+document.getElementById("exceptions").innerHTML = EXC.map(e => `<div class="card"><h3>${esc(e.t)}</h3>
+  <p class="r ai"><i>AI</i>${esc(e.ai)}</p><p class="r gyo"><i>自分</i>${esc(e.gyo)}</p><p class="r cli"><i>依頼者</i>${esc(e.cli)}</p></div>`).join("");
+document.getElementById("jobs").innerHTML = JOBS.map(r => `<tr><td class="t">${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join("");
+document.getElementById("rules").innerHTML = RULES.map(r => `<tr><td class="t">${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join("");
+document.getElementById("setup").innerHTML = SETUP.map((x, i) => `<li><label for="c${i}"><input type="checkbox" id="c${i}"><span>${esc(x)}</span></label></li>`).join("");
+
+const tl = document.getElementById("timeline");
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+  tl.dataset.view = b.dataset.v;
+  document.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+}));
+</script>
+</body></html>
